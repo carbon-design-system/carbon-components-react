@@ -6,7 +6,7 @@
   "scripts": {
     "check": "npm run lint && npm run test",
     "coverage": "./node_modules/.bin/jest '/(components|lib|internal)/' --coverage && node scripts/create-badge.js",
-    "storybook": "./node_modules/.bin/start-storybook -p 9001",
+    "storybook": "./node_modules/.bin/start-storybook -p 9002",
     "test": "./node_modules/.bin/jest '/(components|lib|internal)/'",
     "test-watch": "./node_modules/.bin/jest '/(components|lib|internal)/' --watch",
     "test-a11y": "./node_modules/.bin/jest '/a11y/'",
@@ -105,6 +105,7 @@
     "css-loader": "0.23.1",
     "cz-conventional-changelog-components": "^1.0.0",
     "enzyme": "^2.6.0",
+    "enzyme-to-json": "1.5.0",
     "eslint": "^3.0.0",
     "eslint-plugin-jsx-a11y": "^2.0.0",
     "eslint-plugin-react": "^6.0.0",
@@ -127,7 +128,9 @@
     "coverageDirectory": "./.gh-pages/coverage",
     "moduleNameMapper": {
       "^.+\\.(scss)$": "<rootDir>/lib/styleMock.js"
-    }
+    },
+    "setupTestFrameworkScriptFile": "<rootDir>/lib/localStorageMock.js",
+    "snapshotSerializers": ["<rootDir>/node_modules/enzyme-to-json/serializer"]
   },
   "lint-staged": {
     "*.js": [

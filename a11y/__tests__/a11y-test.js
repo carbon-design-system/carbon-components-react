@@ -28,6 +28,13 @@ import FileUploader, {
 import Footer from '../../components/Footer';
 import Form from '../../components/Form';
 import FormGroup from '../../components/FormGroup';
+import GridPanel from '../../components/GridPanel';
+import GridPanelSettings from '../../components/GridPanelSettings';
+import Grid from '../../components/Grid';
+import GridBody from '../../components/GridBody';
+import GridBodyRow from '../../components/GridBodyRow';
+import GridHead from '../../components/GridHead';
+import GridHeadCell from '../../components/GridHeadCell';
 import Icon from '../../components/Icon';
 import InteriorLeftNav from '../../components/InteriorLeftNav';
 import InteriorLeftNavList from '../../components/InteriorLeftNavList';
@@ -731,6 +738,301 @@ describe('a11y scan', () => {
 
     AAT.getCompliance(wrapper.html(), 'ToolbarSearch', data => {
       expect(AAT.assertCompliance(data)).toEqual(0);
+      done();
+    });
+  });
+
+  it('GridPanel', done => {
+    const columns = [
+      {
+        name: 'firstName',
+        title: 'First Name',
+        render: data => data.firstName,
+        width: 25,
+      },
+      {
+        name: 'lastName',
+        title: 'Last Name',
+        render: data => data.lastName,
+        width: 25,
+      },
+      {
+        name: 'house',
+        title: 'House',
+        render: data => data.house,
+      },
+    ];
+
+    const data = [];
+
+    const wrapper = render(
+      <GridPanel
+        columns={columns}
+        data={data}
+        expandedDetailIndex={null}
+        expandedRowIndices={[]}
+        isFetching
+        localStorageKey="a11yTestGrid"
+        name="testGridpanel3"
+        renderDetailExpansion={() => {}}
+        renderRowExpansion={() => {}}
+        resetGrid={() => {}}
+        showPager
+        sort={{
+          direction: 'ASC',
+          property: 'firstName',
+        }}
+        totalItems={0}
+      />
+    );
+
+    AAT.getCompliance(wrapper.html(), 'GridPanel', aatData => {
+      expect(AAT.assertCompliance(aatData)).toEqual(0);
+      done();
+    });
+  });
+
+  it('Grid', done => {
+    const columns = [
+      {
+        name: 'column1',
+        title: 'First Name',
+        render: data => data.column1,
+        width: 25,
+      },
+      {
+        name: 'column2',
+        title: 'Last Name',
+        render: data => data.column2,
+        width: 25,
+      },
+      {
+        name: 'column3',
+        title: 'House',
+        render: data => data.column3,
+      },
+    ];
+
+    const data = [
+      {
+        column1: 'stuff1',
+        column2: 'more1',
+        column3: 'test1',
+      },
+      {
+        column1: 'stuff2',
+        column2: 'more2',
+        column3: 'test2',
+        expander: 'expand2',
+      },
+      {
+        column1: 'stuff3',
+        column2: 'more3',
+        column3: 'test3',
+        expander: 'expand3',
+      },
+    ];
+    const wrapper = render(
+      <Grid
+        columns={columns}
+        data={data}
+        expandedRowIndices={[1, 2]}
+        onSort={() => {}}
+        renderRowExpansion={(rowData, index) => `${rowData.expander}-${index}`}
+        sort={{
+          direction: 'ASC',
+          property: 'column2',
+        }}
+      />
+    );
+
+    AAT.getCompliance(wrapper.html(), 'Grid', aatData => {
+      expect(AAT.assertCompliance(aatData)).toEqual(0);
+      done();
+    });
+  });
+
+  it('GridBody', done => {
+    const columns = [
+      {
+        name: 'column1',
+        title: 'column1',
+        render: data => data.column1,
+        width: 50,
+      },
+      {
+        name: 'column2',
+        title: 'column2',
+        render: data => data.column2,
+        width: 25,
+      },
+      {
+        name: 'column3',
+        title: 'column3',
+        render: data => data.column3,
+        width: 25,
+      },
+    ];
+    const data = [
+      {
+        column1: 'stuff1',
+        column2: 'more1',
+        column3: 'test1',
+      },
+      {
+        column1: 'stuff2',
+        column2: 'more2',
+        column3: 'test2',
+        expander: 'expand',
+      },
+      {
+        column1: 'stuff3',
+        column2: 'more3',
+        column3: 'test3',
+      },
+    ];
+
+    const wrapper = render(
+      <GridBody
+        columns={columns}
+        data={data}
+        expandedRowIndices={[2]}
+        renderRowExpansion={rowData =>
+          `${rowData.column1}-${rowData.column3}-${rowData.column2}-${rowData.expander}`}
+      />
+    );
+
+    AAT.getCompliance(wrapper.html(), 'GridBody', aatData => {
+      expect(AAT.assertCompliance(aatData)).toEqual(0);
+      done();
+    });
+  });
+
+  it('GridBodyRow', done => {
+    const columns = [
+      {
+        name: 'column1',
+        title: 'column1',
+        render: data => data.column1,
+        width: 50,
+      },
+      {
+        name: 'column2',
+        title: 'column2',
+        render: data => data.column2,
+        width: 25,
+      },
+      {
+        name: 'column3',
+        title: 'column3',
+        render: data => data.column3,
+        width: 25,
+      },
+    ];
+    const data = {
+      column1: 'stuff',
+      column2: 'more',
+      column3: 'test',
+      expander: 'expandData',
+    };
+
+    const wrapper = render(
+      <GridBodyRow
+        columns={columns}
+        data={data}
+        index={2}
+        key={2}
+        renderRowExpansion={(rowData, index) => `${rowData.expander}-${index}`}
+        rowExpanded
+      />
+    );
+
+    AAT.getCompliance(wrapper.html(), 'GridBodyRow', aatData => {
+      expect(AAT.assertCompliance(aatData)).toEqual(0);
+      done();
+    });
+  });
+
+  it('GridHead', done => {
+    const columns = [
+      {
+        name: 'column1',
+        title: 'column1',
+        render: data => data.column1,
+        width: 50,
+      },
+      {
+        name: 'column2',
+        title: 'column2',
+        sortable: true,
+        render: data => data.column2,
+        width: 25,
+      },
+      {
+        name: 'column3',
+        title: 'column3',
+        render: data => data.column3,
+        width: 25,
+      },
+    ];
+
+    const wrapper = render(
+      <GridHead
+        columns={columns}
+        sort={{
+          direction: 'ASC',
+          property: 'column2',
+        }}
+        onSort={() => {}}
+      />
+    );
+
+    AAT.getCompliance(wrapper.html(), 'GridHead', aatData => {
+      expect(AAT.assertCompliance(aatData)).toEqual(0);
+      done();
+    });
+  });
+
+  it('GridHeadCell', done => {
+    const wrapper = render(
+      <GridHeadCell
+        column={{
+          name: 'column2',
+          title: 'column2',
+          render: data => data.column2,
+          width: 25,
+        }}
+        key="column2"
+        onSort={() => {}}
+      />
+    );
+
+    AAT.getCompliance(wrapper.html(), 'GridHeadCell', aatData => {
+      expect(AAT.assertCompliance(aatData)).toEqual(0);
+      done();
+    });
+  });
+
+  it('GridPanelSettings', done => {
+    const wrapper = render(
+      <GridPanelSettings
+        items={[
+          {
+            name: 'column3',
+            title: 'column3',
+            hidden: true,
+          },
+          {
+            name: 'column4',
+            title: 'column4',
+            hidden: false,
+          },
+        ]}
+      />
+    );
+
+    AAT.getCompliance(wrapper.html(), 'GridPanelSettings', aatData => {
+      expect(AAT.assertCompliance(aatData)).toEqual(0);
       done();
     });
   });

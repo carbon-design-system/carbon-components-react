@@ -1,0 +1,212 @@
+exports[`GridPanelSettings check if props are rendered correctly Menu close state menu close renders correctly 1`] = `
+<OverflowMenu
+  ariaLabel="list of options"
+  className="bx--grid-panel-settings"
+  flipped={false}
+  floatingMenu={false}
+  iconDescription="open and close list of options"
+  iconName="overflow-menu"
+  menuOffset={
+    Object {
+      "left": 60.5,
+      "top": 0,
+    }
+  }
+  menuOffsetFlip={
+    Object {
+      "left": -60.5,
+      "top": 0,
+    }
+  }
+  onClick={[Function]}
+  open={false}
+  tabIndex={0}>
+  <div
+    className="label">
+    Columns
+  </div>
+  <OverflowMenuItem
+    className="bx--grid-panel-settings__toggle"
+    hasDivider={false}
+    isDelete={false}
+    itemText={
+      <div
+        className="bx--grid-panel-settings__item">
+        <Icon
+          className="bx--grid-panel-settings__icon-hidden"
+          description="The column is visible"
+          fillRule="evenodd"
+          name="checkmark"
+          role="img" />
+        column3
+      </div>
+    }
+    onClick={[Function]} />
+  <OverflowMenuItem
+    className="bx--grid-panel-settings__toggle"
+    hasDivider={false}
+    isDelete={false}
+    itemText={
+      <div
+        className="bx--grid-panel-settings__item">
+        <Icon
+          className=""
+          description="The column is visible"
+          fillRule="evenodd"
+          name="checkmark"
+          role="img" />
+        column4
+      </div>
+    }
+    onClick={[Function]} />
+  <hr />
+  <OverflowMenuItem
+    className="bx--grid-panel-settings__reset"
+    hasDivider={false}
+    isDelete={false}
+    itemText="Reset Columns to Default"
+    onClick={[Function]} />
+</OverflowMenu>
+`;
+
+exports[`GridPanelSettings check if props are rendered correctly Menu open state menu open renders correctly 1`] = `
+<OverflowMenu
+  ariaLabel="list of options"
+  className="bx--grid-panel-settings"
+  flipped={false}
+  floatingMenu={false}
+  iconDescription="open and close list of options"
+  iconName="overflow-menu"
+  menuOffset={
+    Object {
+      "left": 60.5,
+      "top": 0,
+    }
+  }
+  menuOffsetFlip={
+    Object {
+      "left": -60.5,
+      "top": 0,
+    }
+  }
+  onClick={[Function]}
+  open={false}
+  tabIndex={0}>
+  <div
+    className="label">
+    Columns
+  </div>
+  <OverflowMenuItem
+    className="bx--grid-panel-settings__toggle"
+    hasDivider={false}
+    isDelete={false}
+    itemText={
+      <div
+        className="bx--grid-panel-settings__item">
+        <Icon
+          className=""
+          description="The column is visible"
+          fillRule="evenodd"
+          name="checkmark"
+          role="img" />
+        column6
+      </div>
+    }
+    onClick={[Function]} />
+  <OverflowMenuItem
+    className="bx--grid-panel-settings__toggle"
+    hasDivider={false}
+    isDelete={false}
+    itemText={
+      <div
+        className="bx--grid-panel-settings__item">
+        <Icon
+          className="bx--grid-panel-settings__icon-hidden"
+          description="The column is visible"
+          fillRule="evenodd"
+          name="checkmark"
+          role="img" />
+        column8
+      </div>
+    }
+    onClick={[Function]} />
+  <hr />
+  <OverflowMenuItem
+    className="bx--grid-panel-settings__reset"
+    hasDivider={false}
+    isDelete={false}
+    itemText="Reset Columns to Default"
+    onClick={[Function]} />
+</OverflowMenu>
+`;
+
+exports[`GridPanelSettings check if props are rendered correctly initial render renders correctly 1`] = `
+<OverflowMenu
+  ariaLabel="list of options"
+  className="bx--grid-panel-settings"
+  flipped={false}
+  floatingMenu={false}
+  iconDescription="open and close list of options"
+  iconName="overflow-menu"
+  menuOffset={
+    Object {
+      "left": 60.5,
+      "top": 0,
+    }
+  }
+  menuOffsetFlip={
+    Object {
+      "left": -60.5,
+      "top": 0,
+    }
+  }
+  onClick={[Function]}
+  open={false}
+  tabIndex={0}>
+  <div
+    className="label">
+    Columns
+  </div>
+  <OverflowMenuItem
+    className="bx--grid-panel-settings__toggle"
+    hasDivider={false}
+    isDelete={false}
+    itemText={
+      <div
+        className="bx--grid-panel-settings__item">
+        <Icon
+          className="bx--grid-panel-settings__icon-hidden"
+          description="The column is visible"
+          fillRule="evenodd"
+          name="checkmark"
+          role="img" />
+        column3
+      </div>
+    }
+    onClick={[Function]} />
+  <OverflowMenuItem
+    className="bx--grid-panel-settings__toggle"
+    hasDivider={false}
+    isDelete={false}
+    itemText={
+      <div
+        className="bx--grid-panel-settings__item">
+        <Icon
+          className=""
+          description="The column is visible"
+          fillRule="evenodd"
+          name="checkmark"
+          role="img" />
+        column4
+      </div>
+    }
+    onClick={[Function]} />
+  <hr />
+  <OverflowMenuItem
+    className="bx--grid-panel-settings__reset"
+    hasDivider={false}
+    isDelete={false}
+    itemText="Reset Columns to Default"
+    onClick={[Function]} />
+</OverflowMenu>
+`;

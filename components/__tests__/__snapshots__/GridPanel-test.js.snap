@@ -1,0 +1,533 @@
+exports[`GridPanel check if props are rendered correctly standard grid - detail expanded renders correctly 1`] = `
+<div
+  className="bx--grid-panel">
+  <div
+    className="bx--grid-panel__pagination">
+    <Pagination
+      backwardText="Backward"
+      className=""
+      disabled={false}
+      forwardText="Forward"
+      itemRangeText={[Function]}
+      itemsPerPageText="Items per page"
+      onChange={[Function]}
+      page={1}
+      pageNumberText="Page Number"
+      pageRangeText={[Function]}
+      pageSizes={
+        Array [
+          25,
+          50,
+          75,
+          100,
+          200,
+        ]
+      }
+      totalItems={3} />
+    <button
+      className="bx--grid-panel__refresh"
+      onClick={[Function]}>
+      <Icon
+        description="Refresh"
+        fillRule="evenodd"
+        name="restart--glyph"
+        role="img" />
+    </button>
+    <GridPanelSettings
+      items={Array []}
+      resetColumns={[Function]}
+      toggleColumnVisibility={[Function]} />
+  </div>
+  <Grid
+    columns={
+      Array [
+        Object {
+          "name": "column1",
+          "render": [Function],
+          "title": "column1",
+          "width": 50,
+        },
+        Object {
+          "name": "column2",
+          "render": [Function],
+          "sortable": true,
+          "title": "column2",
+          "width": 25,
+        },
+        Object {
+          "name": "column3",
+          "render": [Function],
+          "title": "column3",
+          "width": 25,
+        },
+      ]
+    }
+    data={
+      Array [
+        Object {
+          "column1": "stuff1",
+          "column2": "more1",
+          "column3": "test1",
+        },
+        Object {
+          "column1": "stuff2",
+          "column2": "more2",
+          "column3": "test2",
+          "expander": "expand2",
+        },
+        Object {
+          "column1": "stuff3",
+          "column2": "more3",
+          "column3": "test3",
+          "expander": "expand3",
+        },
+      ]
+    }
+    emptyText="emptyyy griddd"
+    expandedDetailIndex={2}
+    expandedRowIndices={Array []}
+    isFetching={false}
+    onSort={[Function]}
+    renderDetailExpansion={[Function]}
+    renderRowExpansion={[Function]}
+    sort={
+      Object {
+        "direction": "ASC",
+        "property": "column2",
+      }
+    }
+    updateColumns={[Function]} />
+</div>
+`;
+
+exports[`GridPanel check if props are rendered correctly standard grid - empty renders correctly 1`] = `
+<div
+  className="bx--grid-panel">
+  <div
+    className="bx--grid-panel__pagination">
+    <Pagination
+      backwardText="Backward"
+      className=""
+      disabled={false}
+      forwardText="Forward"
+      itemRangeText={[Function]}
+      itemsPerPageText="Items per page"
+      onChange={[Function]}
+      page={1}
+      pageNumberText="Page Number"
+      pageRangeText={[Function]}
+      pageSizes={
+        Array [
+          25,
+          50,
+          75,
+          100,
+          200,
+        ]
+      }
+      totalItems={3} />
+    <button
+      className="bx--grid-panel__refresh"
+      onClick={[Function]}>
+      <Icon
+        description="Refresh"
+        fillRule="evenodd"
+        name="restart--glyph"
+        role="img" />
+    </button>
+    <GridPanelSettings
+      items={Array []}
+      resetColumns={[Function]}
+      toggleColumnVisibility={[Function]} />
+  </div>
+  <Grid
+    columns={
+      Array [
+        Object {
+          "name": "column1",
+          "render": [Function],
+          "title": "column1",
+          "width": 50,
+        },
+        Object {
+          "name": "column2",
+          "render": [Function],
+          "sortable": true,
+          "title": "column2",
+          "width": 25,
+        },
+        Object {
+          "name": "column3",
+          "render": [Function],
+          "title": "column3",
+          "width": 25,
+        },
+      ]
+    }
+    data={Array []}
+    emptyText="emptyyy griddd"
+    expandedDetailIndex={null}
+    expandedRowIndices={Array []}
+    isFetching={false}
+    onSort={[Function]}
+    renderDetailExpansion={[Function]}
+    renderRowExpansion={[Function]}
+    sort={
+      Object {
+        "direction": "ASC",
+        "property": "column2",
+      }
+    }
+    updateColumns={[Function]} />
+</div>
+`;
+
+exports[`GridPanel check if props are rendered correctly standard grid - fetching renders correctly 1`] = `
+<div
+  className="bx--grid-panel">
+  <div
+    className="bx--grid-panel__pagination">
+    <Pagination
+      backwardText="Backward"
+      className=""
+      disabled={false}
+      forwardText="Forward"
+      itemRangeText={[Function]}
+      itemsPerPageText="Items per page"
+      onChange={[Function]}
+      page={1}
+      pageNumberText="Page Number"
+      pageRangeText={[Function]}
+      pageSizes={
+        Array [
+          25,
+          50,
+          75,
+          100,
+          200,
+        ]
+      }
+      totalItems={3} />
+    <button
+      className="bx--grid-panel__refresh"
+      onClick={[Function]}>
+      <Icon
+        description="Refresh"
+        fillRule="evenodd"
+        name="restart--glyph"
+        role="img" />
+    </button>
+    <GridPanelSettings
+      items={Array []}
+      resetColumns={[Function]}
+      toggleColumnVisibility={[Function]} />
+  </div>
+  <Grid
+    columns={
+      Array [
+        Object {
+          "name": "column1",
+          "render": [Function],
+          "title": "column1",
+          "width": 50,
+        },
+        Object {
+          "name": "column2",
+          "render": [Function],
+          "sortable": true,
+          "title": "column2",
+          "width": 25,
+        },
+        Object {
+          "name": "column3",
+          "render": [Function],
+          "title": "column3",
+          "width": 25,
+        },
+      ]
+    }
+    data={Array []}
+    emptyText="emptyyy"
+    expandedDetailIndex={null}
+    expandedRowIndices={Array []}
+    isFetching={true}
+    onSort={[Function]}
+    renderDetailExpansion={[Function]}
+    renderRowExpansion={[Function]}
+    sort={
+      Object {
+        "direction": "ASC",
+        "property": "column2",
+      }
+    }
+    updateColumns={[Function]} />
+</div>
+`;
+
+exports[`GridPanel check if props are rendered correctly standard grid - hidden pagination toolbar renders correctly 1`] = `
+<div
+  className="bx--grid-panel">
+  <Grid
+    columns={
+      Array [
+        Object {
+          "name": "column1",
+          "render": [Function],
+          "title": "column1",
+          "width": 50,
+        },
+        Object {
+          "name": "column2",
+          "render": [Function],
+          "sortable": true,
+          "title": "column2",
+          "width": 25,
+        },
+        Object {
+          "name": "column3",
+          "render": [Function],
+          "title": "column3",
+          "width": 25,
+        },
+      ]
+    }
+    data={
+      Array [
+        Object {
+          "column1": "stuff1",
+          "column2": "more1",
+          "column3": "test1",
+        },
+        Object {
+          "column1": "stuff2",
+          "column2": "more2",
+          "column3": "test2",
+        },
+        Object {
+          "column1": "stuff3",
+          "column2": "more3",
+          "column3": "test3",
+        },
+      ]
+    }
+    emptyText="emptyyy"
+    expandedDetailIndex={null}
+    expandedRowIndices={Array []}
+    isFetching={false}
+    onSort={[Function]}
+    renderDetailExpansion={[Function]}
+    renderRowExpansion={[Function]}
+    sort={
+      Object {
+        "direction": "ASC",
+        "property": "column2",
+      }
+    }
+    updateColumns={[Function]} />
+</div>
+`;
+
+exports[`GridPanel check if props are rendered correctly standard grid - loaded renders correctly 1`] = `
+<div
+  className="bx--grid-panel">
+  <div
+    className="bx--grid-panel__pagination">
+    <Pagination
+      backwardText="Backward"
+      className=""
+      disabled={false}
+      forwardText="Forward"
+      itemRangeText={[Function]}
+      itemsPerPageText="Items per page"
+      onChange={[Function]}
+      page={1}
+      pageNumberText="Page Number"
+      pageRangeText={[Function]}
+      pageSizes={
+        Array [
+          5,
+          10,
+          15,
+        ]
+      }
+      totalItems={3} />
+    <button
+      className="bx--grid-panel__refresh"
+      onClick={[Function]}>
+      <Icon
+        description="Refresh"
+        fillRule="evenodd"
+        name="restart--glyph"
+        role="img" />
+    </button>
+    <GridPanelSettings
+      items={Array []}
+      resetColumns={[Function]}
+      toggleColumnVisibility={[Function]} />
+  </div>
+  <Grid
+    columns={
+      Array [
+        Object {
+          "name": "column1",
+          "render": [Function],
+          "title": "column1",
+          "width": 50,
+        },
+        Object {
+          "name": "column2",
+          "render": [Function],
+          "sortable": true,
+          "title": "column2",
+          "width": 25,
+        },
+        Object {
+          "name": "column3",
+          "render": [Function],
+          "title": "column3",
+          "width": 25,
+        },
+      ]
+    }
+    data={
+      Array [
+        Object {
+          "column1": "stuff1",
+          "column2": "more1",
+          "column3": "test1",
+        },
+        Object {
+          "column1": "stuff2",
+          "column2": "more2",
+          "column3": "test2",
+        },
+        Object {
+          "column1": "stuff3",
+          "column2": "more3",
+          "column3": "test3",
+        },
+      ]
+    }
+    emptyText="emptyyy"
+    expandedDetailIndex={null}
+    expandedRowIndices={Array []}
+    isFetching={false}
+    onSort={[Function]}
+    renderDetailExpansion={[Function]}
+    renderRowExpansion={[Function]}
+    sort={
+      Object {
+        "direction": "ASC",
+        "property": "column2",
+      }
+    }
+    updateColumns={[Function]} />
+</div>
+`;
+
+exports[`GridPanel check if props are rendered correctly standard grid - rows expanded renders correctly 1`] = `
+<div
+  className="bx--grid-panel">
+  <div
+    className="bx--grid-panel__pagination">
+    <Pagination
+      backwardText="Backward"
+      className=""
+      disabled={false}
+      forwardText="Forward"
+      itemRangeText={[Function]}
+      itemsPerPageText="Items per page"
+      onChange={[Function]}
+      page={1}
+      pageNumberText="Page Number"
+      pageRangeText={[Function]}
+      pageSizes={
+        Array [
+          25,
+          50,
+          75,
+          100,
+          200,
+        ]
+      }
+      totalItems={3} />
+    <button
+      className="bx--grid-panel__refresh"
+      onClick={[Function]}>
+      <Icon
+        description="Refresh"
+        fillRule="evenodd"
+        name="restart--glyph"
+        role="img" />
+    </button>
+    <GridPanelSettings
+      items={Array []}
+      resetColumns={[Function]}
+      toggleColumnVisibility={[Function]} />
+  </div>
+  <Grid
+    columns={
+      Array [
+        Object {
+          "name": "column1",
+          "render": [Function],
+          "title": "column1",
+          "width": 50,
+        },
+        Object {
+          "name": "column2",
+          "render": [Function],
+          "sortable": true,
+          "title": "column2",
+          "width": 25,
+        },
+        Object {
+          "name": "column3",
+          "render": [Function],
+          "title": "column3",
+          "width": 25,
+        },
+      ]
+    }
+    data={
+      Array [
+        Object {
+          "column1": "stuff1",
+          "column2": "more1",
+          "column3": "test1",
+        },
+        Object {
+          "column1": "stuff2",
+          "column2": "more2",
+          "column3": "test2",
+          "expander": "expand2",
+        },
+        Object {
+          "column1": "stuff3",
+          "column2": "more3",
+          "column3": "test3",
+          "expander": "expand3",
+        },
+      ]
+    }
+    emptyText="emptyyy griddd"
+    expandedDetailIndex={null}
+    expandedRowIndices={
+      Array [
+        1,
+        2,
+      ]
+    }
+    isFetching={false}
+    onSort={[Function]}
+    renderDetailExpansion={[Function]}
+    renderRowExpansion={[Function]}
+    sort={
+      Object {
+        "direction": "ASC",
+        "property": "column2",
+      }
+    }
+    updateColumns={[Function]} />
+</div>
+`;

@@ -4,7 +4,8 @@ import classNames from 'classnames';
 
 const propTypes = {
   className: PropTypes.string,
-  itemText: PropTypes.string.isRequired,
+  itemText: PropTypes.oneOfType([PropTypes.string, PropTypes.object])
+    .isRequired,
   hasDivider: PropTypes.bool,
   isDelete: PropTypes.bool,
   onBlur: PropTypes.func,

@@ -1,0 +1,1397 @@
+exports[`Grid check if column sizes are calculated correctly column sizes specified < 100 renders correctly 1`] = `
+<div
+  className="bx--grid">
+  <GridHead
+    columns={
+      Array [
+        Object {
+          "name": "column1",
+          "render": [Function],
+          "title": "column1",
+          "width": 50,
+        },
+        Object {
+          "name": "column2",
+          "render": [Function],
+          "sortable": true,
+          "title": "column2",
+          "width": 25,
+        },
+        Object {
+          "name": "column3",
+          "render": [Function],
+          "title": "column3",
+          "width": 12.5,
+        },
+        Object {
+          "name": "column4",
+          "render": [Function],
+          "title": "column4",
+          "width": 12.5,
+        },
+      ]
+    }
+    onSort={[Function]}
+    sort={
+      Object {
+        "direction": "ASC",
+        "property": "column2",
+      }
+    }
+    updateColumns={[Function]} />
+  <GridBody
+    columns={
+      Array [
+        Object {
+          "name": "column1",
+          "render": [Function],
+          "title": "column1",
+          "width": 50,
+        },
+        Object {
+          "name": "column2",
+          "render": [Function],
+          "sortable": true,
+          "title": "column2",
+          "width": 25,
+        },
+        Object {
+          "name": "column3",
+          "render": [Function],
+          "title": "column3",
+          "width": 12.5,
+        },
+        Object {
+          "name": "column4",
+          "render": [Function],
+          "title": "column4",
+          "width": 12.5,
+        },
+      ]
+    }
+    data={
+      Array [
+        Object {
+          "column1": "stuff1",
+          "column2": "more1",
+          "column3": "test1",
+          "column4": "col1",
+        },
+        Object {
+          "column1": "stuff2",
+          "column2": "more2",
+          "column3": "test2",
+          "column4": "col2",
+        },
+      ]
+    }
+    detailPanelWidth={70}
+    expandedDetailIndex={null}
+    expandedRowIndices={Array []}
+    renderDetailExpansion={[Function]}
+    renderRowExpansion={[Function]} />
+</div>
+`;
+
+exports[`Grid check if column sizes are calculated correctly column sizes specified > 100 renders correctly 1`] = `
+<div
+  className="bx--grid">
+  <GridHead
+    columns={
+      Array [
+        Object {
+          "name": "column1",
+          "render": [Function],
+          "title": "column1",
+          "width": 45.3514739229025,
+        },
+        Object {
+          "name": "column2",
+          "render": [Function],
+          "sortable": true,
+          "title": "column2",
+          "width": 22.67573696145125,
+        },
+        Object {
+          "name": "column3",
+          "render": [Function],
+          "title": "column3",
+          "width": 27.2108843537415,
+        },
+        Object {
+          "name": "column4",
+          "render": [Function],
+          "title": "column4",
+          "width": 4.761904761904762,
+        },
+      ]
+    }
+    onSort={[Function]}
+    sort={
+      Object {
+        "direction": "ASC",
+        "property": "column2",
+      }
+    }
+    updateColumns={[Function]} />
+  <GridBody
+    columns={
+      Array [
+        Object {
+          "name": "column1",
+          "render": [Function],
+          "title": "column1",
+          "width": 45.3514739229025,
+        },
+        Object {
+          "name": "column2",
+          "render": [Function],
+          "sortable": true,
+          "title": "column2",
+          "width": 22.67573696145125,
+        },
+        Object {
+          "name": "column3",
+          "render": [Function],
+          "title": "column3",
+          "width": 27.2108843537415,
+        },
+        Object {
+          "name": "column4",
+          "render": [Function],
+          "title": "column4",
+          "width": 4.761904761904762,
+        },
+      ]
+    }
+    data={
+      Array [
+        Object {
+          "column1": "stuff1",
+          "column2": "more1",
+          "column3": "test1",
+          "column4": "col1",
+        },
+        Object {
+          "column1": "stuff2",
+          "column2": "more2",
+          "column3": "test2",
+          "column4": "col2",
+        },
+      ]
+    }
+    detailPanelWidth={70}
+    expandedDetailIndex={null}
+    expandedRowIndices={Array []}
+    renderDetailExpansion={[Function]}
+    renderRowExpansion={[Function]} />
+</div>
+`;
+
+exports[`Grid check if props are rendered correctly standard grid - detail expanded renders correctly 1`] = `
+<Grid
+  columns={
+    Array [
+      Object {
+        "name": "column1",
+        "render": [Function],
+        "title": "column1",
+        "width": 50,
+      },
+      Object {
+        "name": "column2",
+        "render": [Function],
+        "sortable": true,
+        "title": "column2",
+        "width": 25,
+      },
+      Object {
+        "name": "column3",
+        "render": [Function],
+        "title": "column3",
+        "width": 25,
+      },
+    ]
+  }
+  data={
+    Array [
+      Object {
+        "column1": "stuff1",
+        "column2": "more1",
+        "column3": "test1",
+      },
+      Object {
+        "column1": "stuff2",
+        "column2": "more2",
+        "column3": "test2",
+        "expander": "expand2",
+      },
+      Object {
+        "column1": "stuff3",
+        "column2": "more3",
+        "column3": "test3",
+        "expander": "expand3",
+      },
+    ]
+  }
+  emptyText="empty grid"
+  expandedDetailIndex={2}
+  expandedRowIndices={Array []}
+  isFetching={false}
+  onSort={[Function]}
+  renderDetailExpansion={[Function]}
+  renderRowExpansion={[Function]}
+  sort={
+    Object {
+      "direction": "ASC",
+      "property": "column2",
+    }
+  }
+  updateColumns={[Function]}>
+  <div
+    className="bx--grid">
+    <GridHead
+      columns={
+        Array [
+          Object {
+            "name": "column1",
+            "render": [Function],
+            "title": "column1",
+            "width": 50,
+          },
+          Object {
+            "name": "column2",
+            "render": [Function],
+            "sortable": true,
+            "title": "column2",
+            "width": 25,
+          },
+          Object {
+            "name": "column3",
+            "render": [Function],
+            "title": "column3",
+            "width": 25,
+          },
+        ]
+      }
+      onSort={[Function]}
+      sort={
+        Object {
+          "direction": "ASC",
+          "property": "column2",
+        }
+      }
+      updateColumns={[Function]}>
+      <div
+        className="bx--grid-head">
+        <div
+          className="bx--grid-head__resize-marker"
+          style={
+            Object {
+              "left": "-9999px",
+              "top": "-9999px",
+            }
+          } />
+        <div
+          className="bx--grid-head__resize-marker"
+          style={
+            Object {
+              "left": "-9999px",
+              "top": "-9999px",
+            }
+          } />
+        <div
+          className="bx--grid-head__row">
+          <GridHeadCell
+            className="bx--grid-head__cell"
+            column={
+              Object {
+                "name": "column1",
+                "render": [Function],
+                "title": "column1",
+                "width": 50,
+              }
+            }
+            dragEnd={[Function]}
+            dragOver={[Function]}
+            dragStart={[Function]}
+            onSort={[Function]}
+            sort={
+              Object {
+                "direction": "ASC",
+                "property": "column2",
+              }
+            }>
+            <div
+              className="bx--grid-head-cell bx--grid-head__cell"
+              onClick={null}
+              onDragOver={[Function]}
+              style={
+                Object {
+                  "width": "50%",
+                }
+              }>
+              <span
+                className="bx--grid-head-cell__title">
+                column1
+              </span>
+              <div
+                className="bx--grid-head-cell__handle"
+                draggable="true"
+                onDragEnd={[Function]}
+                onDragStart={[Function]} />
+            </div>
+          </GridHeadCell>
+          <GridHeadCell
+            className="bx--grid-head__cell"
+            column={
+              Object {
+                "name": "column2",
+                "render": [Function],
+                "sortable": true,
+                "title": "column2",
+                "width": 25,
+              }
+            }
+            dragEnd={[Function]}
+            dragOver={[Function]}
+            dragStart={[Function]}
+            onSort={[Function]}
+            sort={
+              Object {
+                "direction": "ASC",
+                "property": "column2",
+              }
+            }>
+            <div
+              className="bx--grid-head-cell bx--grid-head__cell bx--grid-head-cell--sortable"
+              onClick={[Function]}
+              onDragOver={[Function]}
+              style={
+                Object {
+                  "width": "25%",
+                }
+              }>
+              <span
+                className="bx--grid-head-cell__title bx--grid-head-cell__title--asc">
+                column2
+              </span>
+              <div
+                className="bx--grid-head-cell__handle"
+                draggable="true"
+                onDragEnd={[Function]}
+                onDragStart={[Function]} />
+            </div>
+          </GridHeadCell>
+          <GridHeadCell
+            className="bx--grid-head__cell"
+            column={
+              Object {
+                "name": "column3",
+                "render": [Function],
+                "title": "column3",
+                "width": 25,
+              }
+            }
+            dragEnd={[Function]}
+            dragOver={[Function]}
+            dragStart={[Function]}
+            onSort={[Function]}
+            sort={
+              Object {
+                "direction": "ASC",
+                "property": "column2",
+              }
+            }>
+            <div
+              className="bx--grid-head-cell bx--grid-head__cell"
+              onClick={null}
+              onDragOver={[Function]}
+              style={
+                Object {
+                  "width": "25%",
+                }
+              }>
+              <span
+                className="bx--grid-head-cell__title">
+                column3
+              </span>
+              <div
+                className="bx--grid-head-cell__handle"
+                draggable="true"
+                onDragEnd={[Function]}
+                onDragStart={[Function]} />
+            </div>
+          </GridHeadCell>
+        </div>
+      </div>
+    </GridHead>
+    <GridBody
+      columns={
+        Array [
+          Object {
+            "name": "column1",
+            "render": [Function],
+            "title": "column1",
+            "width": 50,
+          },
+          Object {
+            "name": "column2",
+            "render": [Function],
+            "sortable": true,
+            "title": "column2",
+            "width": 25,
+          },
+          Object {
+            "name": "column3",
+            "render": [Function],
+            "title": "column3",
+            "width": 25,
+          },
+        ]
+      }
+      data={
+        Array [
+          Object {
+            "column1": "stuff1",
+            "column2": "more1",
+            "column3": "test1",
+          },
+          Object {
+            "column1": "stuff2",
+            "column2": "more2",
+            "column3": "test2",
+            "expander": "expand2",
+          },
+          Object {
+            "column1": "stuff3",
+            "column2": "more3",
+            "column3": "test3",
+            "expander": "expand3",
+          },
+        ]
+      }
+      detailPanelWidth={70}
+      expandedDetailIndex={2}
+      expandedRowIndices={Array []}
+      renderDetailExpansion={[Function]}
+      renderRowExpansion={[Function]}>
+      <div
+        className="bx--grid-body">
+        <GridBodyRow
+          className=""
+          columns={
+            Array [
+              Object {
+                "name": "column1",
+                "render": [Function],
+                "title": "column1",
+                "width": 50,
+              },
+              Object {
+                "name": "column2",
+                "render": [Function],
+                "sortable": true,
+                "title": "column2",
+                "width": 25,
+              },
+              Object {
+                "name": "column3",
+                "render": [Function],
+                "title": "column3",
+                "width": 25,
+              },
+            ]
+          }
+          data={
+            Object {
+              "column1": "stuff1",
+              "column2": "more1",
+              "column3": "test1",
+            }
+          }
+          index={0}
+          renderRowExpansion={[Function]}
+          rowExpanded={false}>
+          <div
+            className="bx--grid-body-row ">
+            <div
+              className="bx--grid-body-row__row">
+              <div
+                className="bx--grid-body-row__cell"
+                style={
+                  Object {
+                    "width": "50%",
+                  }
+                }>
+                stuff1
+              </div>
+              <div
+                className="bx--grid-body-row__cell"
+                style={
+                  Object {
+                    "width": "25%",
+                  }
+                }>
+                more1
+              </div>
+              <div
+                className="bx--grid-body-row__cell"
+                style={
+                  Object {
+                    "width": "25%",
+                  }
+                }>
+                test1
+              </div>
+            </div>
+          </div>
+        </GridBodyRow>
+        <GridBodyRow
+          className=""
+          columns={
+            Array [
+              Object {
+                "name": "column1",
+                "render": [Function],
+                "title": "column1",
+                "width": 50,
+              },
+              Object {
+                "name": "column2",
+                "render": [Function],
+                "sortable": true,
+                "title": "column2",
+                "width": 25,
+              },
+              Object {
+                "name": "column3",
+                "render": [Function],
+                "title": "column3",
+                "width": 25,
+              },
+            ]
+          }
+          data={
+            Object {
+              "column1": "stuff2",
+              "column2": "more2",
+              "column3": "test2",
+              "expander": "expand2",
+            }
+          }
+          index={1}
+          renderRowExpansion={[Function]}
+          rowExpanded={false}>
+          <div
+            className="bx--grid-body-row ">
+            <div
+              className="bx--grid-body-row__row">
+              <div
+                className="bx--grid-body-row__cell"
+                style={
+                  Object {
+                    "width": "50%",
+                  }
+                }>
+                stuff2
+              </div>
+              <div
+                className="bx--grid-body-row__cell"
+                style={
+                  Object {
+                    "width": "25%",
+                  }
+                }>
+                more2
+              </div>
+              <div
+                className="bx--grid-body-row__cell"
+                style={
+                  Object {
+                    "width": "25%",
+                  }
+                }>
+                test2
+              </div>
+            </div>
+          </div>
+        </GridBodyRow>
+        <GridBodyRow
+          className=""
+          columns={
+            Array [
+              Object {
+                "name": "column1",
+                "render": [Function],
+                "title": "column1",
+                "width": 50,
+              },
+              Object {
+                "name": "column2",
+                "render": [Function],
+                "sortable": true,
+                "title": "column2",
+                "width": 25,
+              },
+              Object {
+                "name": "column3",
+                "render": [Function],
+                "title": "column3",
+                "width": 25,
+              },
+            ]
+          }
+          data={
+            Object {
+              "column1": "stuff3",
+              "column2": "more3",
+              "column3": "test3",
+              "expander": "expand3",
+            }
+          }
+          index={2}
+          renderRowExpansion={[Function]}
+          rowExpanded={false}>
+          <div
+            className="bx--grid-body-row ">
+            <div
+              className="bx--grid-body-row__row">
+              <div
+                className="bx--grid-body-row__cell"
+                style={
+                  Object {
+                    "width": "50%",
+                  }
+                }>
+                stuff3
+              </div>
+              <div
+                className="bx--grid-body-row__cell"
+                style={
+                  Object {
+                    "width": "25%",
+                  }
+                }>
+                more3
+              </div>
+              <div
+                className="bx--grid-body-row__cell"
+                style={
+                  Object {
+                    "width": "25%",
+                  }
+                }>
+                test3
+              </div>
+            </div>
+          </div>
+        </GridBodyRow>
+        <div
+          className="bx--grid-body__details"
+          style={
+            Object {
+              "width": "70%",
+            }
+          }>
+          stuff3-test3-more3-expand3
+        </div>
+      </div>
+    </GridBody>
+  </div>
+</Grid>
+`;
+
+exports[`Grid check if props are rendered correctly standard grid - empty renders correctly 1`] = `
+<div
+  className="bx--grid">
+  <GridHead
+    columns={
+      Array [
+        Object {
+          "name": "column1",
+          "render": [Function],
+          "title": "column1",
+          "width": 50,
+        },
+        Object {
+          "name": "column2",
+          "render": [Function],
+          "sortable": true,
+          "title": "column2",
+          "width": 25,
+        },
+        Object {
+          "name": "column3",
+          "render": [Function],
+          "title": "column3",
+          "width": 25,
+        },
+      ]
+    }
+    onSort={[Function]}
+    sort={
+      Object {
+        "direction": "ASC",
+        "property": "column2",
+      }
+    }
+    updateColumns={[Function]} />
+  <div
+    className="bx--grid__empty-text">
+    empty grid
+  </div>
+</div>
+`;
+
+exports[`Grid check if props are rendered correctly standard grid - fetching renders correctly 1`] = `
+<div
+  className="bx--grid">
+  <GridHead
+    columns={
+      Array [
+        Object {
+          "name": "column1",
+          "render": [Function],
+          "title": "column1",
+          "width": 50,
+        },
+        Object {
+          "name": "column2",
+          "render": [Function],
+          "sortable": true,
+          "title": "column2",
+          "width": 25,
+        },
+        Object {
+          "name": "column3",
+          "render": [Function],
+          "title": "column3",
+          "width": 25,
+        },
+      ]
+    }
+    onSort={[Function]}
+    sort={
+      Object {
+        "direction": "ASC",
+        "property": "column2",
+      }
+    }
+    updateColumns={[Function]} />
+  <Loading
+    active={true}
+    className="bx--grid_loading"
+    small={false}
+    withOverlay={true} />
+</div>
+`;
+
+exports[`Grid check if props are rendered correctly standard grid - loaded renders correctly 1`] = `
+<div
+  className="bx--grid">
+  <GridHead
+    columns={
+      Array [
+        Object {
+          "name": "column1",
+          "render": [Function],
+          "title": "column1",
+          "width": 50,
+        },
+        Object {
+          "name": "column2",
+          "render": [Function],
+          "sortable": true,
+          "title": "column2",
+          "width": 25,
+        },
+        Object {
+          "name": "column3",
+          "render": [Function],
+          "title": "column3",
+          "width": 25,
+        },
+      ]
+    }
+    onSort={[Function]}
+    sort={
+      Object {
+        "direction": "ASC",
+        "property": "column2",
+      }
+    }
+    updateColumns={[Function]} />
+  <GridBody
+    columns={
+      Array [
+        Object {
+          "name": "column1",
+          "render": [Function],
+          "title": "column1",
+          "width": 50,
+        },
+        Object {
+          "name": "column2",
+          "render": [Function],
+          "sortable": true,
+          "title": "column2",
+          "width": 25,
+        },
+        Object {
+          "name": "column3",
+          "render": [Function],
+          "title": "column3",
+          "width": 25,
+        },
+      ]
+    }
+    data={
+      Array [
+        Object {
+          "column1": "stuff1",
+          "column2": "more1",
+          "column3": "test1",
+        },
+        Object {
+          "column1": "stuff2",
+          "column2": "more2",
+          "column3": "test2",
+        },
+        Object {
+          "column1": "stuff3",
+          "column2": "more3",
+          "column3": "test3",
+        },
+      ]
+    }
+    detailPanelWidth={70}
+    expandedDetailIndex={0}
+    expandedRowIndices={Array []}
+    renderDetailExpansion={[Function]}
+    renderRowExpansion={[Function]} />
+</div>
+`;
+
+exports[`Grid check if props are rendered correctly standard grid - rows expanded renders correctly 1`] = `
+<Grid
+  columns={
+    Array [
+      Object {
+        "name": "column1",
+        "render": [Function],
+        "title": "column1",
+        "width": 50,
+      },
+      Object {
+        "name": "column2",
+        "render": [Function],
+        "sortable": true,
+        "title": "column2",
+        "width": 25,
+      },
+      Object {
+        "name": "column3",
+        "render": [Function],
+        "title": "column3",
+        "width": 25,
+      },
+    ]
+  }
+  data={
+    Array [
+      Object {
+        "column1": "stuff1",
+        "column2": "more1",
+        "column3": "test1",
+      },
+      Object {
+        "column1": "stuff2",
+        "column2": "more2",
+        "column3": "test2",
+        "expander": "expand2",
+      },
+      Object {
+        "column1": "stuff3",
+        "column2": "more3",
+        "column3": "test3",
+        "expander": "expand3",
+      },
+    ]
+  }
+  emptyText="empty grid"
+  expandedDetailIndex={null}
+  expandedRowIndices={
+    Array [
+      1,
+      2,
+    ]
+  }
+  isFetching={false}
+  onSort={[Function]}
+  renderDetailExpansion={[Function]}
+  renderRowExpansion={[Function]}
+  sort={
+    Object {
+      "direction": "ASC",
+      "property": "column2",
+    }
+  }
+  updateColumns={[Function]}>
+  <div
+    className="bx--grid">
+    <GridHead
+      columns={
+        Array [
+          Object {
+            "name": "column1",
+            "render": [Function],
+            "title": "column1",
+            "width": 50,
+          },
+          Object {
+            "name": "column2",
+            "render": [Function],
+            "sortable": true,
+            "title": "column2",
+            "width": 25,
+          },
+          Object {
+            "name": "column3",
+            "render": [Function],
+            "title": "column3",
+            "width": 25,
+          },
+        ]
+      }
+      onSort={[Function]}
+      sort={
+        Object {
+          "direction": "ASC",
+          "property": "column2",
+        }
+      }
+      updateColumns={[Function]}>
+      <div
+        className="bx--grid-head">
+        <div
+          className="bx--grid-head__resize-marker"
+          style={
+            Object {
+              "left": "-9999px",
+              "top": "-9999px",
+            }
+          } />
+        <div
+          className="bx--grid-head__resize-marker"
+          style={
+            Object {
+              "left": "-9999px",
+              "top": "-9999px",
+            }
+          } />
+        <div
+          className="bx--grid-head__row">
+          <GridHeadCell
+            className="bx--grid-head__cell"
+            column={
+              Object {
+                "name": "column1",
+                "render": [Function],
+                "title": "column1",
+                "width": 50,
+              }
+            }
+            dragEnd={[Function]}
+            dragOver={[Function]}
+            dragStart={[Function]}
+            onSort={[Function]}
+            sort={
+              Object {
+                "direction": "ASC",
+                "property": "column2",
+              }
+            }>
+            <div
+              className="bx--grid-head-cell bx--grid-head__cell"
+              onClick={null}
+              onDragOver={[Function]}
+              style={
+                Object {
+                  "width": "50%",
+                }
+              }>
+              <span
+                className="bx--grid-head-cell__title">
+                column1
+              </span>
+              <div
+                className="bx--grid-head-cell__handle"
+                draggable="true"
+                onDragEnd={[Function]}
+                onDragStart={[Function]} />
+            </div>
+          </GridHeadCell>
+          <GridHeadCell
+            className="bx--grid-head__cell"
+            column={
+              Object {
+                "name": "column2",
+                "render": [Function],
+                "sortable": true,
+                "title": "column2",
+                "width": 25,
+              }
+            }
+            dragEnd={[Function]}
+            dragOver={[Function]}
+            dragStart={[Function]}
+            onSort={[Function]}
+            sort={
+              Object {
+                "direction": "ASC",
+                "property": "column2",
+              }
+            }>
+            <div
+              className="bx--grid-head-cell bx--grid-head__cell bx--grid-head-cell--sortable"
+              onClick={[Function]}
+              onDragOver={[Function]}
+              style={
+                Object {
+                  "width": "25%",
+                }
+              }>
+              <span
+                className="bx--grid-head-cell__title bx--grid-head-cell__title--asc">
+                column2
+              </span>
+              <div
+                className="bx--grid-head-cell__handle"
+                draggable="true"
+                onDragEnd={[Function]}
+                onDragStart={[Function]} />
+            </div>
+          </GridHeadCell>
+          <GridHeadCell
+            className="bx--grid-head__cell"
+            column={
+              Object {
+                "name": "column3",
+                "render": [Function],
+                "title": "column3",
+                "width": 25,
+              }
+            }
+            dragEnd={[Function]}
+            dragOver={[Function]}
+            dragStart={[Function]}
+            onSort={[Function]}
+            sort={
+              Object {
+                "direction": "ASC",
+                "property": "column2",
+              }
+            }>
+            <div
+              className="bx--grid-head-cell bx--grid-head__cell"
+              onClick={null}
+              onDragOver={[Function]}
+              style={
+                Object {
+                  "width": "25%",
+                }
+              }>
+              <span
+                className="bx--grid-head-cell__title">
+                column3
+              </span>
+              <div
+                className="bx--grid-head-cell__handle"
+                draggable="true"
+                onDragEnd={[Function]}
+                onDragStart={[Function]} />
+            </div>
+          </GridHeadCell>
+        </div>
+      </div>
+    </GridHead>
+    <GridBody
+      columns={
+        Array [
+          Object {
+            "name": "column1",
+            "render": [Function],
+            "title": "column1",
+            "width": 50,
+          },
+          Object {
+            "name": "column2",
+            "render": [Function],
+            "sortable": true,
+            "title": "column2",
+            "width": 25,
+          },
+          Object {
+            "name": "column3",
+            "render": [Function],
+            "title": "column3",
+            "width": 25,
+          },
+        ]
+      }
+      data={
+        Array [
+          Object {
+            "column1": "stuff1",
+            "column2": "more1",
+            "column3": "test1",
+          },
+          Object {
+            "column1": "stuff2",
+            "column2": "more2",
+            "column3": "test2",
+            "expander": "expand2",
+          },
+          Object {
+            "column1": "stuff3",
+            "column2": "more3",
+            "column3": "test3",
+            "expander": "expand3",
+          },
+        ]
+      }
+      detailPanelWidth={70}
+      expandedDetailIndex={null}
+      expandedRowIndices={
+        Array [
+          1,
+          2,
+        ]
+      }
+      renderDetailExpansion={[Function]}
+      renderRowExpansion={[Function]}>
+      <div
+        className="bx--grid-body">
+        <GridBodyRow
+          className=""
+          columns={
+            Array [
+              Object {
+                "name": "column1",
+                "render": [Function],
+                "title": "column1",
+                "width": 50,
+              },
+              Object {
+                "name": "column2",
+                "render": [Function],
+                "sortable": true,
+                "title": "column2",
+                "width": 25,
+              },
+              Object {
+                "name": "column3",
+                "render": [Function],
+                "title": "column3",
+                "width": 25,
+              },
+            ]
+          }
+          data={
+            Object {
+              "column1": "stuff1",
+              "column2": "more1",
+              "column3": "test1",
+            }
+          }
+          index={0}
+          renderRowExpansion={[Function]}
+          rowExpanded={false}>
+          <div
+            className="bx--grid-body-row ">
+            <div
+              className="bx--grid-body-row__row">
+              <div
+                className="bx--grid-body-row__cell"
+                style={
+                  Object {
+                    "width": "50%",
+                  }
+                }>
+                stuff1
+              </div>
+              <div
+                className="bx--grid-body-row__cell"
+                style={
+                  Object {
+                    "width": "25%",
+                  }
+                }>
+                more1
+              </div>
+              <div
+                className="bx--grid-body-row__cell"
+                style={
+                  Object {
+                    "width": "25%",
+                  }
+                }>
+                test1
+              </div>
+            </div>
+          </div>
+        </GridBodyRow>
+        <GridBodyRow
+          className="bx--grid-body-row--expanded"
+          columns={
+            Array [
+              Object {
+                "name": "column1",
+                "render": [Function],
+                "title": "column1",
+                "width": 50,
+              },
+              Object {
+                "name": "column2",
+                "render": [Function],
+                "sortable": true,
+                "title": "column2",
+                "width": 25,
+              },
+              Object {
+                "name": "column3",
+                "render": [Function],
+                "title": "column3",
+                "width": 25,
+              },
+            ]
+          }
+          data={
+            Object {
+              "column1": "stuff2",
+              "column2": "more2",
+              "column3": "test2",
+              "expander": "expand2",
+            }
+          }
+          index={1}
+          renderRowExpansion={[Function]}
+          rowExpanded={true}>
+          <div
+            className="bx--grid-body-row bx--grid-body-row--expanded">
+            <div
+              className="bx--grid-body-row__row">
+              <div
+                className="bx--grid-body-row__cell"
+                style={
+                  Object {
+                    "width": "50%",
+                  }
+                }>
+                stuff2
+              </div>
+              <div
+                className="bx--grid-body-row__cell"
+                style={
+                  Object {
+                    "width": "25%",
+                  }
+                }>
+                more2
+              </div>
+              <div
+                className="bx--grid-body-row__cell"
+                style={
+                  Object {
+                    "width": "25%",
+                  }
+                }>
+                test2
+              </div>
+            </div>
+            <div
+              className="bx--grid-body-row__row--expansion">
+              expand2-1
+            </div>
+          </div>
+        </GridBodyRow>
+        <GridBodyRow
+          className="bx--grid-body-row--expanded"
+          columns={
+            Array [
+              Object {
+                "name": "column1",
+                "render": [Function],
+                "title": "column1",
+                "width": 50,
+              },
+              Object {
+                "name": "column2",
+                "render": [Function],
+                "sortable": true,
+                "title": "column2",
+                "width": 25,
+              },
+              Object {
+                "name": "column3",
+                "render": [Function],
+                "title": "column3",
+                "width": 25,
+              },
+            ]
+          }
+          data={
+            Object {
+              "column1": "stuff3",
+              "column2": "more3",
+              "column3": "test3",
+              "expander": "expand3",
+            }
+          }
+          index={2}
+          renderRowExpansion={[Function]}
+          rowExpanded={true}>
+          <div
+            className="bx--grid-body-row bx--grid-body-row--expanded">
+            <div
+              className="bx--grid-body-row__row">
+              <div
+                className="bx--grid-body-row__cell"
+                style={
+                  Object {
+                    "width": "50%",
+                  }
+                }>
+                stuff3
+              </div>
+              <div
+                className="bx--grid-body-row__cell"
+                style={
+                  Object {
+                    "width": "25%",
+                  }
+                }>
+                more3
+              </div>
+              <div
+                className="bx--grid-body-row__cell"
+                style={
+                  Object {
+                    "width": "25%",
+                  }
+                }>
+                test3
+              </div>
+            </div>
+            <div
+              className="bx--grid-body-row__row--expansion">
+              expand3-2
+            </div>
+          </div>
+        </GridBodyRow>
+      </div>
+    </GridBody>
+  </div>
+</Grid>
+`;

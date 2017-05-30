@@ -1,0 +1,65 @@
+exports[`GridHeadCell check if props are rendered correctly standard cell - ASC sort renders correctly 1`] = `
+<div
+  className="bx--grid-head-cell class1 bx--grid-head-cell--sortable"
+  onClick={[Function]}
+  onDragOver={[Function]}
+  style={
+    Object {
+      "width": "25%",
+    }
+  }>
+  <span
+    className="bx--grid-head-cell__title bx--grid-head-cell__title--asc">
+    column2
+  </span>
+  <div
+    className="bx--grid-head-cell__handle"
+    draggable="true"
+    onDragEnd={[Function]}
+    onDragStart={[Function]} />
+</div>
+`;
+
+exports[`GridHeadCell check if props are rendered correctly standard cell - DESC sort renders correctly 1`] = `
+<div
+  className="bx--grid-head-cell class1 bx--grid-head-cell--sortable"
+  onClick={[Function]}
+  onDragOver={[Function]}
+  style={
+    Object {
+      "width": "25%",
+    }
+  }>
+  <span
+    className="bx--grid-head-cell__title bx--grid-head-cell__title--desc">
+    column2
+  </span>
+  <div
+    className="bx--grid-head-cell__handle"
+    draggable="true"
+    onDragEnd={[Function]}
+    onDragStart={[Function]} />
+</div>
+`;
+
+exports[`GridHeadCell check if props are rendered correctly standard cell - no sort renders correctly 1`] = `
+<div
+  className="bx--grid-head-cell class1"
+  onClick={null}
+  onDragOver={[Function]}
+  style={
+    Object {
+      "width": "25%",
+    }
+  }>
+  <span
+    className="bx--grid-head-cell__title">
+    column2
+  </span>
+  <div
+    className="bx--grid-head-cell__handle"
+    draggable="true"
+    onDragEnd={[Function]}
+    onDragStart={[Function]} />
+</div>
+`;

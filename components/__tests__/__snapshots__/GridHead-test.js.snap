@@ -1,0 +1,171 @@
+exports[`Grid/Head check if props are rendered correctly standard header - ASC sort renders correctly 1`] = `
+<div
+  className="bx--grid-head">
+  <div
+    className="bx--grid-head__resize-marker"
+    style={
+      Object {
+        "left": "-9999px",
+        "top": "-9999px",
+      }
+    } />
+  <div
+    className="bx--grid-head__resize-marker"
+    style={
+      Object {
+        "left": "-9999px",
+        "top": "-9999px",
+      }
+    } />
+  <div
+    className="bx--grid-head__row">
+    <GridHeadCell
+      className="bx--grid-head__cell"
+      column={
+        Object {
+          "name": "column1",
+          "render": [Function],
+          "title": "column1",
+          "width": 50,
+        }
+      }
+      dragEnd={[Function]}
+      dragOver={[Function]}
+      dragStart={[Function]}
+      onSort={[Function]}
+      sort={
+        Object {
+          "direction": "ASC",
+          "property": "column2",
+        }
+      } />
+    <GridHeadCell
+      className="bx--grid-head__cell"
+      column={
+        Object {
+          "name": "column2",
+          "render": [Function],
+          "sortable": true,
+          "title": "column2",
+          "width": 25,
+        }
+      }
+      dragEnd={[Function]}
+      dragOver={[Function]}
+      dragStart={[Function]}
+      onSort={[Function]}
+      sort={
+        Object {
+          "direction": "ASC",
+          "property": "column2",
+        }
+      } />
+    <GridHeadCell
+      className="bx--grid-head__cell"
+      column={
+        Object {
+          "name": "column3",
+          "render": [Function],
+          "title": "column3",
+          "width": 25,
+        }
+      }
+      dragEnd={[Function]}
+      dragOver={[Function]}
+      dragStart={[Function]}
+      onSort={[Function]}
+      sort={
+        Object {
+          "direction": "ASC",
+          "property": "column2",
+        }
+      } />
+  </div>
+</div>
+`;
+
+exports[`Grid/Head check if props are rendered correctly standard header - DESC sort renders correctly 1`] = `
+<div
+  className="bx--grid-head">
+  <div
+    className="bx--grid-head__resize-marker"
+    style={
+      Object {
+        "left": "-9999px",
+        "top": "-9999px",
+      }
+    } />
+  <div
+    className="bx--grid-head__resize-marker"
+    style={
+      Object {
+        "left": "-9999px",
+        "top": "-9999px",
+      }
+    } />
+  <div
+    className="bx--grid-head__row">
+    <GridHeadCell
+      className="bx--grid-head__cell"
+      column={
+        Object {
+          "name": "column1",
+          "render": [Function],
+          "title": "column1",
+          "width": 50,
+        }
+      }
+      dragEnd={[Function]}
+      dragOver={[Function]}
+      dragStart={[Function]}
+      onSort={[Function]}
+      sort={
+        Object {
+          "direction": "DESC",
+          "property": "column2",
+        }
+      } />
+    <GridHeadCell
+      className="bx--grid-head__cell"
+      column={
+        Object {
+          "name": "column2",
+          "render": [Function],
+          "sortable": true,
+          "title": "column2",
+          "width": 25,
+        }
+      }
+      dragEnd={[Function]}
+      dragOver={[Function]}
+      dragStart={[Function]}
+      onSort={[Function]}
+      sort={
+        Object {
+          "direction": "DESC",
+          "property": "column2",
+        }
+      } />
+    <GridHeadCell
+      className="bx--grid-head__cell"
+      column={
+        Object {
+          "name": "column3",
+          "render": [Function],
+          "title": "column3",
+          "width": 25,
+        }
+      }
+      dragEnd={[Function]}
+      dragOver={[Function]}
+      dragStart={[Function]}
+      onSort={[Function]}
+      sort={
+        Object {
+          "direction": "DESC",
+          "property": "column2",
+        }
+      } />
+  </div>
+</div>
+`;

@@ -1,0 +1,75 @@
+exports[`GridBodyRow check if props are rendered correctly standard row - no row expansion renders correctly 1`] = `
+<div
+  className="bx--grid-body-row testRow">
+  <div
+    className="bx--grid-body-row__row">
+    <div
+      className="bx--grid-body-row__cell bx--grid-body-row__cell--overflow"
+      style={
+        Object {
+          "width": "50%",
+        }
+      }>
+      stuff
+    </div>
+    <div
+      className="bx--grid-body-row__cell"
+      style={
+        Object {
+          "width": "25%",
+        }
+      }>
+      more
+    </div>
+    <div
+      className="bx--grid-body-row__cell"
+      style={
+        Object {
+          "width": "25%",
+        }
+      }>
+      test
+    </div>
+  </div>
+</div>
+`;
+
+exports[`GridBodyRow check if props are rendered correctly standard row - row expanded renders correctly 1`] = `
+<div
+  className="bx--grid-body-row testRow">
+  <div
+    className="bx--grid-body-row__row">
+    <div
+      className="bx--grid-body-row__cell"
+      style={
+        Object {
+          "width": "50%",
+        }
+      }>
+      stuff
+    </div>
+    <div
+      className="bx--grid-body-row__cell"
+      style={
+        Object {
+          "width": "25%",
+        }
+      }>
+      more
+    </div>
+    <div
+      className="bx--grid-body-row__cell"
+      style={
+        Object {
+          "width": "25%",
+        }
+      }>
+      test
+    </div>
+  </div>
+  <div
+    className="bx--grid-body-row__row--expansion">
+    expandData-2
+  </div>
+</div>
+`;

@@ -1,0 +1,334 @@
+exports[`GridBody check if props are rendered correctly standard body - no row expansion renders correctly 1`] = `
+<div
+  className="bx--grid-body">
+  <GridBodyRow
+    className=""
+    columns={
+      Array [
+        Object {
+          "name": "column1",
+          "render": [Function],
+          "title": "column1",
+          "width": 50,
+        },
+        Object {
+          "name": "column2",
+          "render": [Function],
+          "title": "column2",
+          "width": 25,
+        },
+        Object {
+          "name": "column3",
+          "render": [Function],
+          "title": "column3",
+          "width": 25,
+        },
+      ]
+    }
+    data={
+      Object {
+        "column1": "stuff1",
+        "column2": "more1",
+        "column3": "test1",
+      }
+    }
+    index={0}
+    renderRowExpansion={null}
+    rowExpanded={false} />
+  <GridBodyRow
+    className=""
+    columns={
+      Array [
+        Object {
+          "name": "column1",
+          "render": [Function],
+          "title": "column1",
+          "width": 50,
+        },
+        Object {
+          "name": "column2",
+          "render": [Function],
+          "title": "column2",
+          "width": 25,
+        },
+        Object {
+          "name": "column3",
+          "render": [Function],
+          "title": "column3",
+          "width": 25,
+        },
+      ]
+    }
+    data={
+      Object {
+        "column1": "stuff2",
+        "column2": "more2",
+        "column3": "test2",
+      }
+    }
+    index={1}
+    renderRowExpansion={null}
+    rowExpanded={false} />
+  <GridBodyRow
+    className=""
+    columns={
+      Array [
+        Object {
+          "name": "column1",
+          "render": [Function],
+          "title": "column1",
+          "width": 50,
+        },
+        Object {
+          "name": "column2",
+          "render": [Function],
+          "title": "column2",
+          "width": 25,
+        },
+        Object {
+          "name": "column3",
+          "render": [Function],
+          "title": "column3",
+          "width": 25,
+        },
+      ]
+    }
+    data={
+      Object {
+        "column1": "stuff3",
+        "column2": "more3",
+        "column3": "test3",
+      }
+    }
+    index={2}
+    renderRowExpansion={null}
+    rowExpanded={false} />
+</div>
+`;
+
+exports[`GridBody check if props are rendered correctly standard body - row 2 detail expanded renders correctly 1`] = `
+<div
+  className="bx--grid-body">
+  <GridBodyRow
+    className=""
+    columns={
+      Array [
+        Object {
+          "name": "column1",
+          "render": [Function],
+          "title": "column1",
+          "width": 50,
+        },
+        Object {
+          "name": "column2",
+          "render": [Function],
+          "title": "column2",
+          "width": 25,
+        },
+        Object {
+          "name": "column3",
+          "render": [Function],
+          "title": "column3",
+          "width": 25,
+        },
+      ]
+    }
+    data={
+      Object {
+        "column1": "stuff1",
+        "column2": "more1",
+        "column3": "test1",
+      }
+    }
+    index={0}
+    renderRowExpansion={[Function]}
+    rowExpanded={false} />
+  <GridBodyRow
+    className=""
+    columns={
+      Array [
+        Object {
+          "name": "column1",
+          "render": [Function],
+          "title": "column1",
+          "width": 50,
+        },
+        Object {
+          "name": "column2",
+          "render": [Function],
+          "title": "column2",
+          "width": 25,
+        },
+        Object {
+          "name": "column3",
+          "render": [Function],
+          "title": "column3",
+          "width": 25,
+        },
+      ]
+    }
+    data={
+      Object {
+        "column1": "stuff2",
+        "column2": "more2",
+        "column3": "test2",
+        "expander": "expand",
+      }
+    }
+    index={1}
+    renderRowExpansion={[Function]}
+    rowExpanded={false} />
+  <GridBodyRow
+    className=""
+    columns={
+      Array [
+        Object {
+          "name": "column1",
+          "render": [Function],
+          "title": "column1",
+          "width": 50,
+        },
+        Object {
+          "name": "column2",
+          "render": [Function],
+          "title": "column2",
+          "width": 25,
+        },
+        Object {
+          "name": "column3",
+          "render": [Function],
+          "title": "column3",
+          "width": 25,
+        },
+      ]
+    }
+    data={
+      Object {
+        "column1": "stuff3",
+        "column2": "more3",
+        "column3": "test3",
+      }
+    }
+    index={2}
+    renderRowExpansion={[Function]}
+    rowExpanded={false} />
+  <div
+    className="bx--grid-body__details"
+    style={
+      Object {
+        "width": "70%",
+      }
+    }>
+    undefined-undefined
+  </div>
+</div>
+`;
+
+exports[`GridBody check if props are rendered correctly standard body - row 2 expanded renders correctly 1`] = `
+<div
+  className="bx--grid-body">
+  <GridBodyRow
+    className=""
+    columns={
+      Array [
+        Object {
+          "name": "column1",
+          "render": [Function],
+          "title": "column1",
+          "width": 50,
+        },
+        Object {
+          "name": "column2",
+          "render": [Function],
+          "title": "column2",
+          "width": 25,
+        },
+        Object {
+          "name": "column3",
+          "render": [Function],
+          "title": "column3",
+          "width": 25,
+        },
+      ]
+    }
+    data={
+      Object {
+        "column1": "stuff1",
+        "column2": "more1",
+        "column3": "test1",
+      }
+    }
+    index={0}
+    renderRowExpansion={[Function]}
+    rowExpanded={false} />
+  <GridBodyRow
+    className=""
+    columns={
+      Array [
+        Object {
+          "name": "column1",
+          "render": [Function],
+          "title": "column1",
+          "width": 50,
+        },
+        Object {
+          "name": "column2",
+          "render": [Function],
+          "title": "column2",
+          "width": 25,
+        },
+        Object {
+          "name": "column3",
+          "render": [Function],
+          "title": "column3",
+          "width": 25,
+        },
+      ]
+    }
+    data={
+      Object {
+        "column1": "stuff2",
+        "column2": "more2",
+        "column3": "test2",
+        "expander": "expand",
+      }
+    }
+    index={1}
+    renderRowExpansion={[Function]}
+    rowExpanded={false} />
+  <GridBodyRow
+    className="bx--grid-body-row--expanded"
+    columns={
+      Array [
+        Object {
+          "name": "column1",
+          "render": [Function],
+          "title": "column1",
+          "width": 50,
+        },
+        Object {
+          "name": "column2",
+          "render": [Function],
+          "title": "column2",
+          "width": 25,
+        },
+        Object {
+          "name": "column3",
+          "render": [Function],
+          "title": "column3",
+          "width": 25,
+        },
+      ]
+    }
+    data={
+      Object {
+        "column1": "stuff3",
+        "column2": "more3",
+        "column3": "test3",
+      }
+    }
+    index={2}
+    renderRowExpansion={[Function]}
+    rowExpanded={true} />
+</div>
+`;
