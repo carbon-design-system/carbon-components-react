@@ -117,7 +117,6 @@ const Icon = ({
     ...other,
   };
 
-  console.log(props);
   const svgContent = icon ? svgShapes(icon.svgData) : '';
 
   return (
