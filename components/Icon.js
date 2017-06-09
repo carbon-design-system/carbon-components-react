@@ -103,6 +103,7 @@ const Icon = ({
   ...other
 }) => {
   const icon = isPrefixed(name) ? findIcon(name) : findIcon(`icon--${name}`);
+
   const props = {
     className,
     fill,
@@ -116,6 +117,7 @@ const Icon = ({
     ...other,
   };
 
+  console.log(props);
   const svgContent = icon ? svgShapes(icon.svgData) : '';
 
   return (
