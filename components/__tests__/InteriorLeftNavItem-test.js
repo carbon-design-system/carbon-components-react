@@ -24,8 +24,8 @@ describe('InteriorLeftNavItem', () => {
     it('should add extra classes that are passed via className', () => {
       expect(wrapper.hasClass('extra-class')).toEqual(true);
     });
-    xit('should contain a label', () => {
-      expect(wrapper.find('a').text()).toEqual(wrapper.props().label);
+    it('should contain a default label', () => {
+      expect(wrapper.find('a').text()).toEqual('link');
     });
     it('should contain an href', () => {
       expect(wrapper.find('a').props().href).toEqual(wrapper.props().href);
