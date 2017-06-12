@@ -5,27 +5,7 @@ import SelectItem from '../../components/SelectItem';
 import SelectItemGroup from '../../components/SelectItemGroup';
 
 const selectProps = {
-  onBlur: () => {
-    action('blur');
-  }, // eslint-disable-line no-console
-  onClick: () => {
-    action('click');
-  }, // eslint-disable-line no-console
-  onFocus: () => {
-    action('focus');
-  }, // eslint-disable-line no-console
-  onMouseDown: () => {
-    action('mouseDown');
-  }, // eslint-disable-line no-console
-  onMouseEnter: () => {
-    action('mouseEnter');
-  }, // eslint-disable-line no-console
-  onMouseLeave: () => {
-    action('mouseLeave');
-  }, // eslint-disable-line no-console
-  onMouseUp: () => {
-    action('mouseUp');
-  }, // eslint-disable-line no-console
+  onChange: action('onChange'),
   className: 'some-class',
 };
 
@@ -39,12 +19,7 @@ storiesOf('Select', module)
       option in the list. The example below shows an enabled Select component with three items.
     `,
     () =>
-      <Select
-        {...selectProps}
-        onChange={action('onChange')} // eslint-disable-line no-console
-        id="select-1"
-        defaultValue="placeholder-item"
-      >
+      <Select {...selectProps} id="select-1" defaultValue="placeholder-item">
         <SelectItem disabled hidden value="placeholder-item" text="Pick an option" />
         <SelectItemGroup label="Starter">
           <SelectItem value="option-1" text="Option 1" />
@@ -61,13 +36,7 @@ storiesOf('Select', module)
       Inline select is for use when there will be multiple elements in a row
     `,
     () =>
-      <Select
-        {...selectProps}
-        inline
-        onChange={action('onChange')} // eslint-disable-line no-console
-        id="select-1"
-        defaultValue="placeholder-item"
-      >
+      <Select {...selectProps} inline id="select-1" defaultValue="placeholder-item">
         <SelectItem disabled hidden value="placeholder-item" text="Pick an option" />
         <SelectItemGroup label="Starter">
           <SelectItem value="option-1" text="Option 1" />
@@ -103,13 +72,7 @@ storiesOf('Select', module)
       option in the list. The example below shows a Select component without a label.
     `,
     () =>
-      <Select
-        {...selectProps}
-        onChange={action('onChange')} // eslint-disable-line no-console
-        id="select-3"
-        defaultValue="placeholder-item"
-        hideLabel
-      >
+      <Select {...selectProps} id="select-3" defaultValue="placeholder-item" hideLabel>
         <SelectItem disabled hidden value="placeholder-item" text="Pick an option" />
         <SelectItemGroup label="Starter">
           <SelectItem value="option-1" text="Option 1" />
