@@ -31,6 +31,8 @@ class DatePickerInput extends Component {
       datePickerType,
       pattern,
       calendarTrigger,
+      inputValue,
+      short,
       ...other
     } = this.props;
 

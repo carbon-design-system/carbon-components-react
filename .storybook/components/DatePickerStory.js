@@ -47,7 +47,7 @@ storiesOf('DatePicker', module)
       A simple Date Picker consists of an input field and no calendar.
     `,
     () => (
-      <DatePicker short datePickerType="simple">
+      <DatePicker short id="date-picker" datePickerType="simple">
         <DatePickerInput {...datePickerInputProps} {...simpleShortDatePickerInputProps} />
       </DatePicker>
     )
@@ -58,7 +58,7 @@ storiesOf('DatePicker', module)
       A simple Date Picker consists of an input field and no calendar.
     `,
     () => (
-      <DatePicker datePickerType="simple">
+      <DatePicker id="date-picker" datePickerType="simple">
         <DatePickerInput {...datePickerInputProps} {...simpleDatePickerInputProps} />
       </DatePicker>
     )
@@ -69,7 +69,7 @@ storiesOf('DatePicker', module)
       A single Date Picker consists of an input field and a calendar.
     `,
     () => (
-      <DatePicker datePickerType="single">
+      <DatePicker id="date-picker" datePickerType="single">
         <DatePickerInput calendarTrigger {...datePickerInputProps} {...singleDatePickerInputProps} />
       </DatePicker>
     )
@@ -80,7 +80,7 @@ storiesOf('DatePicker', module)
       A range Date Picker consists of two input fields and a calendar.
     `,
     () => (
-      <DatePicker datePickerType="range">
+      <DatePicker id="date-picker" datePickerType="range">
         <DatePickerInput {...datePickerInputProps} {...rangeDatePickerInputFromProps} />
         <DatePickerInput {...datePickerInputProps} {...rangeDatePickerInputToProps} />
       </DatePicker>
