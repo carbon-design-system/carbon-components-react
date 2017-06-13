@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 if (!process.env.EXCLUDE_SASS) {
-  import('@console/bluemix-components/consumables/scss/base-elements/select/select.scss');
+  import('carbon-components/consumables/scss/base-elements/select/select.scss');
 }
 
 const propTypes = {
@@ -18,7 +18,11 @@ const defaultProps = {
 
 const SelectItemGroup = ({ children, className, disabled, label, ...other }) => {
   const classNames = classnames('bx--select__optgroup', className);
-  return <optgroup className={classNames} label={label} disabled={disabled} {...other}>{children}</optgroup>;
+  return (
+    <optgroup className={classNames} label={label} disabled={disabled} {...other}>
+      {children}
+    </optgroup>
+  );
 };
 
 SelectItemGroup.propTypes = propTypes;

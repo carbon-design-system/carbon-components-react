@@ -2,16 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 if (!process.env.EXCLUDE_SASS) {
-  import('@console/bluemix-components/consumables/scss/base-elements/textarea/textarea.scss');
+  import('carbon-components/consumables/scss/base-elements/textarea/textarea.scss');
 }
 
 const propTypes = {
   className: PropTypes.string,
   cols: PropTypes.number,
-  defaultValue: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.number,
-  ]),
+  defaultValue: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   disabled: PropTypes.bool,
   id: PropTypes.string,
   labelText: PropTypes.string,
@@ -19,10 +16,7 @@ const propTypes = {
   onClick: PropTypes.func,
   placeholder: PropTypes.string,
   rows: PropTypes.number,
-  value: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.number,
-  ]),
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 };
 
 const defaultProps = {
@@ -50,20 +44,16 @@ const Textarea = ({ className, id, labelText, onChange, onClick, ...other }) => 
   };
 
   const textareaClasses = classNames('bx--textarea__input', className);
-  const label = labelText ? (
-    <label htmlFor={id} className="bx--form__label">
-      {labelText}
-    </label>
-  ) : null;
+  const label = labelText
+    ? <label htmlFor={id} className="bx--form__label">
+        {labelText}
+      </label>
+    : null;
 
   return (
     <div>
       {label}
-      <textarea
-        {...other}
-        {...textareaProps}
-        className={textareaClasses}
-      />
+      <textarea {...other} {...textareaProps} className={textareaClasses} />
     </div>
   );
 };
