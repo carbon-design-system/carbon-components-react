@@ -6,9 +6,7 @@ import ReactDOM from 'react-dom';
 
 class DatePicker extends Component {
   state = {
-    inputValue: '',
-    toInputValue: '',
-    calendar: ''
+    cal: {}
   }
 
   static propTypes = {
@@ -22,11 +20,35 @@ class DatePicker extends Component {
 
   componentDidMount() {
     if (this.props.datePickerType === 'single' || this.props.datePickerType === 'range') {
+      // Weekdays shorthand for english locale
+      Flatpickr.l10ns.en.weekdays.shorthand.forEach((day, index) => {
+        const currentDay = Flatpickr.l10ns.en.weekdays.shorthand;
+        if (currentDay[index] === 'Thu' || currentDay[index] === 'Th') {
+          currentDay[index] = 'Th';
+        } else {
+          currentDay[index] = currentDay[index].charAt(0);
+        }
+      });
       this.initDatePickerCalendar();
     }
   }
 
-  _rightArrowHTML() {
+  addKeyboardEvents = (cal) => {
+    const input = ReactDOM.findDOMNode(this.refs.inputField).querySelector('.bx--date-picker__input');
+    input.addEventListener('keydown', (e) => {
+      if (e.which === 40) {
+        cal.calendarContainer.focus();
+      }
+    });
+    cal.calendarContainer.addEventListener('keydown', (e) => {
+      if (e.which === 9 && this.props.datePickerType === 'range') {
+        this._updateClassNames(cal);
+        input.focus();
+      }
+    });
+  }
+
+  rightArrowHTML() {
     return (`
       <svg width="8" height="12" viewBox="0 0 8 12" fill-rule="evenodd">
         <path d="M0 10.6L4.7 6 0 1.4 1.4 0l6.1 6-6.1 6z"></path>
@@ -34,7 +56,7 @@ class DatePicker extends Component {
     );
   }
 
-  _leftArrowHTML() {
+  leftArrowHTML() {
     return (`
       <svg width="8" height="12" viewBox="0 0 8 12" fill-rule="evenodd">
         <path d="M7.5 10.6L2.8 6l4.7-4.6L6.1 0 0 6l6.1 6z"></path>
@@ -47,38 +69,81 @@ class DatePicker extends Component {
     const calendar = new Flatpickr(input, {
       mode: this.props.datePickerType,
       allowInput: true,
-      dateFormat: 'm/d/Y',
+      dateFormat: this.props.dateFormat,
       onClose: (selectedDates) => {
-        this._updateClassNames(calendar);
-        this._updateInputFields(selectedDates);
+        this.updateClassNames(calendar);
+        this.updateInputFields(selectedDates);
+        if (this.props.datePickerType === 'range') {
+          const toInputField = ReactDOM.findDOMNode(this.refs.toInputField).querySelector('.bx--date-picker__input');
+          if (calendar.selectedDates.length === 1) {
+            input.focus();
+          } else {
+            toInputField.focus();
+          }
+          toInputField.classList.remove('bx--focused');
+        }
       },
       onChange: () => {
-        this._updateClassNames(calendar);
+        this.updateClassNames(calendar);
+        if (this.props.datePickerType === 'range') {
+          const toInputField = ReactDOM.findDOMNode(this.refs.toInputField).querySelector('.bx--date-picker__input');
+          if (calendar.selectedDates.length === 1 && calendar.isOpen) {
+            toInputField.classList.add('bx--focused');
+          } else {
+            toInputField.classList.remove('bx--focused');
+          }
+        }
       },
       onMonthChange: () => {
-        this._updateClassNames(calendar);
+        this.updateClassNames(calendar);
       },
       onYearChange: () => {
-        this._updateClassNames(calendar);
+        this.updateClassNames(calendar);
       },
       onOpen: () => {
-        this._updateClassNames(calendar);
+        this.updateClassNames(calendar);
       },
       onValueUpdate: (selectedDates) => {
         this.setState({
           inputValue: selectedDates[0]
         })
       },
-      nextArrow: this._rightArrowHTML(),
-      prevArrow: this._leftArrowHTML(),
+      nextArrow: this.rightArrowHTML(),
+      prevArrow: this.leftArrowHTML(),
     });
-    this._updateClassNames(calendar);
+    if (this.props.datePickerType === 'range') {
+      const toInputField = ReactDOM.findDOMNode(this.refs.toInputField).querySelector('.bx--date-picker__input');
+      toInputField.addEventListener('click', () => {
+        toInputField.focus();
+        calendar.open();
+        this.updateClassNames(calendar);
+      });
+      this.addInputLogic(toInputField);
+    }
     this.setState({
-      calendar: calendar
-    })
+      cal: calendar
+    });
+    this.addKeyboardEvents(calendar);
+    this.updateClassNames(calendar);
+    this.addInputLogic(input);
   }
 
-  _updateClassNames = (calendar) => {
+  addInputLogic = (input) => {
+    const inputField = input;
+    inputField.addEventListener('change', () => {
+      const inputDate = this.state.cal.parseDate(new Date(inputField.value));
+      if (!(isNaN(inputDate.valueOf()))) {
+        this.state.cal.setDate(inputDate);
+      }
+      this.updateClassNames(this.state.cal);
+    });
+  }
+
+  openCalendar = () => {
+    this.state.cal.open();
+  }
+
+  updateClassNames = (calendar) => {
     const calendarContainer = calendar.calendarContainer;
     calendarContainer.classList.add('bx--date-picker__calendar');
     calendarContainer.querySelector('.flatpickr-month').classList.add('bx--date-picker__month');
@@ -99,23 +164,23 @@ class DatePicker extends Component {
     });
   }
 
-  _updateInputFields = (selectedDates) => {
+  updateInputFields = (selectedDates) => {
     const input = ReactDOM.findDOMNode(this.refs.inputField).querySelector('.bx--date-picker__input');
     if (this.props.datePickerType === 'range') {
       const toInput = ReactDOM.findDOMNode(this.refs.toInputField).querySelector('.bx--date-picker__input');
       if (selectedDates.length === 2) {
-        input.value = this._formatDate(selectedDates[0]);
-        toInput.value = this._formatDate(selectedDates[1]);
+        input.value = this.formatDate(selectedDates[0]);
+        toInput.value = this.formatDate(selectedDates[1]);
       } else if (selectedDates.length === 1) {
-        input.value = this._formatDate(selectedDates[0]);
+        input.value = this.formatDate(selectedDates[0]);
       }
     } else if (selectedDates.length === 1) {
-      input.value = this._formatDate(selectedDates[0]);
+      input.value = this.formatDate(selectedDates[0]);
     }
-    this._updateClassNames(this.state.calendar);
+    this.updateClassNames(this.state.cal);
   }
 
-  _formatDate = date => this.state.calendar.formatDate(date, this.state.calendar.config.dateFormat);
+  formatDate = date => this.state.cal.formatDate(date, this.props.dateFormat);
 
   render() {
     const {
@@ -123,6 +188,7 @@ class DatePicker extends Component {
       className,
       short,
       datePickerType,
+      dateFormat,
       ...other
     } = this.props;
 
@@ -134,7 +200,7 @@ class DatePicker extends Component {
     })
 
     const datePickerIcon = (datePickerType === 'range')
-    ? (<svg className="bx--date-picker__icon" width="17" height="19" viewBox="0 0 17 19">
+    ? (<svg onClick={this.openCalendar} className="bx--date-picker__icon" width="17" height="19" viewBox="0 0 17 19">
         <path d="M12 0h2v2.7h-2zM3 0h2v2.7H3z"/>
         <path d="M0 2v17h17V2H0zm15 15H2V7h13v10z"/>
         <path d="M9.9 15H8.6v-3.9H7.1v-.9c.9 0 1.7-.3 1.8-1.2h1v6z"/>
@@ -147,13 +213,11 @@ class DatePicker extends Component {
         if (index === 0) {
           return React.cloneElement(child, {
             datePickerType,
-            inputValue: this.state.inputValue,
             ref: 'inputField'
           });
         } else if (index === 1) {
           return React.cloneElement(child, {
             datePickerType,
-            inputValue: this.state.toInputValue,
             ref: 'toInputField'
           })
         }

@@ -14,7 +14,7 @@ const datePickerInputProps = {
   onClick: action('onClick'),
   onChange: action('onChange'),
   placeholder: 'mm/dd/yyyy',
-  pattern: '\d{1,2}/\d{1,2}/\d{4}'
+  pattern: '\d{1,2}/\d{1,2}/\d{4}',
 }
 
 const simpleShortDatePickerInputProps = {
@@ -69,7 +69,7 @@ storiesOf('DatePicker', module)
       A single Date Picker consists of an input field and a calendar.
     `,
     () => (
-      <DatePicker id="date-picker" datePickerType="single">
+      <DatePicker id="date-picker" datePickerType="single" dateFormat="m/d/Y">
         <DatePickerInput calendarTrigger {...datePickerInputProps} {...singleDatePickerInputProps} />
       </DatePicker>
     )
@@ -80,7 +80,7 @@ storiesOf('DatePicker', module)
       A range Date Picker consists of two input fields and a calendar.
     `,
     () => (
-      <DatePicker id="date-picker" datePickerType="range">
+      <DatePicker id="date-picker" datePickerType="range" dateFormat="m/d/Y">
         <DatePickerInput {...datePickerInputProps} {...rangeDatePickerInputFromProps} />
         <DatePickerInput {...datePickerInputProps} {...rangeDatePickerInputToProps} />
       </DatePicker>
