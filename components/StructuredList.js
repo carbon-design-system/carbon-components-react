@@ -6,12 +6,19 @@ class StructuredListWrapper extends Component {
   static propTypes = {
     children: PropTypes.node,
     className: PropTypes.string,
+    border: PropTypes.bool,
+  };
+
+  static defaultProps = {
+    border: true,
   };
 
   render() {
-    const { children, className, ...other } = this.props;
+    const { children, className, border, ...other } = this.props;
 
-    const classes = classNames('bx--structured-list', className);
+    const classes = classNames('bx--structured-list', className, {
+      'bx--structured-list--border': border,
+    });
 
     return (
       <section className={classes} {...other}>
@@ -106,51 +113,11 @@ class StructuredListContent extends Component {
   }
 }
 
-class StructuredList extends Component {
-  render() {
-    return (
-      <StructuredListWrapper>
-        <StructuredListHead>
-          <StructuredListRow head>
-            <StructuredListCell head>service</StructuredListCell>
-            <StructuredListCell head>type</StructuredListCell>
-            <StructuredListCell head>description</StructuredListCell>
-          </StructuredListRow>
-        </StructuredListHead>
-        <StructuredListBody>
-          <StructuredListRow>
-            <StructuredListCell noWrap>
-              Apache Spark
-            </StructuredListCell>
-            <StructuredListCell>IBM</StructuredListCell>
-            <StructuredListCell>
-              <StructuredListContent>
-                Apache Spark is an open source cluster computing framework optimized for
-                extremely fast and large scale data processing,
-                which you can access via the newly integrated notebook interface IBM Analytics
-                for Apache Spark.
-              </StructuredListContent>
-            </StructuredListCell>
-          </StructuredListRow>
-          <StructuredListRow>
-            <StructuredListCell noWrap>
-              Cloudant
-            </StructuredListCell>
-            <StructuredListCell>
-              <StructuredListContent>IBM</StructuredListContent>
-            </StructuredListCell>
-            <StructuredListCell>
-              <StructuredListContent>
-                Cloudant NoSQL DB is a fully managed data layer designed for modern web and
-                mobile applications that leverages a
-                flexible JSON schema.
-              </StructuredListContent>
-            </StructuredListCell>
-          </StructuredListRow>
-        </StructuredListBody>
-      </StructuredListWrapper>
-    );
-  }
-}
-
-export default StructuredList;
+export {
+  StructuredListWrapper,
+  StructuredListHead,
+  StructuredListBody,
+  StructuredListRow,
+  StructuredListContent,
+  StructuredListCell,
+};
