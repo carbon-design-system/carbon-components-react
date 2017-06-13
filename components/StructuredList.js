@@ -98,6 +98,14 @@ class StructuredListCell extends Component {
   }
 }
 
+class StructuredListContent extends Component {
+  render() {
+    const { children, className, ...other } = this.props;
+    const classes = classNames('bx--structured-list-content', className);
+    return <p className={classes} {...other}>{children}</p>;
+  }
+}
+
 class StructuredList extends Component {
   render() {
     return (
@@ -116,12 +124,12 @@ class StructuredList extends Component {
             </StructuredListCell>
             <StructuredListCell>IBM</StructuredListCell>
             <StructuredListCell>
-              <p className="bx--structured-list-content">
+              <StructuredListContent>
                 Apache Spark is an open source cluster computing framework optimized for
                 extremely fast and large scale data processing,
                 which you can access via the newly integrated notebook interface IBM Analytics
                 for Apache Spark.
-              </p>
+              </StructuredListContent>
             </StructuredListCell>
           </StructuredListRow>
           <StructuredListRow>
@@ -129,14 +137,14 @@ class StructuredList extends Component {
               Cloudant
             </StructuredListCell>
             <StructuredListCell>
-              <p className="bx--structured-list-content">IBM</p>
+              <StructuredListContent>IBM</StructuredListContent>
             </StructuredListCell>
             <StructuredListCell>
-              <p className="bx--structured-list-content">
+              <StructuredListContent>
                 Cloudant NoSQL DB is a fully managed data layer designed for modern web and
                 mobile applications that leverages a
                 flexible JSON schema.
-              </p>
+              </StructuredListContent>
             </StructuredListCell>
           </StructuredListRow>
         </StructuredListBody>
