@@ -1,8 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import classNames from 'classnames';
-// import ClickListener from '../internal/ClickListener';
-// import Icon from './Icon';
 
 class DatePickerInput extends Component {
   static propTypes = {
@@ -30,9 +28,6 @@ class DatePickerInput extends Component {
       type,
       datePickerType,
       pattern,
-      calendarTrigger,
-      inputValue,
-      short,
       ...other
     } = this.props;
 

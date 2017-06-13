@@ -188,7 +188,7 @@ class DatePicker extends Component {
       className,
       short,
       datePickerType,
-      dateFormat,
+      dateFormat, // eslint-disable-line
       ...other
     } = this.props;
 
