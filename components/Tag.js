@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 if (!process.env.EXCLUDE_SASS) {
-  import('@console/bluemix-components/consumables/scss/components/tags/tags.scss');
+  import('carbon-components/consumables/scss/components/tags/tags.scss');
 }
 
 const TYPES = {
@@ -26,10 +26,7 @@ const propTypes = {
 
 const Tag = ({ children, className, type, ...other }) => {
   const tagClass = `tag--${type}`;
-  const tagClasses = classNames(
-    tagClass,
-    className,
-  );
+  const tagClasses = classNames(tagClass, className);
   return <span className={tagClasses} {...other}>{children || TYPES[type]}</span>;
 };
 

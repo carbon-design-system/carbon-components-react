@@ -4,9 +4,7 @@ import classNames from 'classnames';
 import ClickListener from '../internal/ClickListener';
 import Icon from './Icon';
 if (!process.env.EXCLUDE_SASS) {
-  import(
-    '@console/bluemix-components/consumables/scss/components/overflow-menu/overflow-menu.scss'
-  );
+  import('carbon-components/consumables/scss/components/overflow-menu/overflow-menu.scss');
 }
 
 class OverflowMenu extends Component {
@@ -76,11 +74,9 @@ class OverflowMenu extends Component {
       ...other
     } = this.props;
 
-    const overflowMenuClasses = classNames(
-      this.props.className,
-      'bx--overflow-menu',
-      { 'bx--overflow-menu--open': this.state.open }
-    );
+    const overflowMenuClasses = classNames(this.props.className, 'bx--overflow-menu', {
+      'bx--overflow-menu--open': this.state.open,
+    });
 
     const childrenWithProps = React.Children.toArray(children).map(child =>
       React.cloneElement(child, {
@@ -93,7 +89,7 @@ class OverflowMenu extends Component {
         <div
           {...other}
           onKeyDown={this.handleKeyPress}
-          ref={overflow => (this.overflow = overflow)} // eslint-disable-line
+          ref={overflow => this.overflow = overflow} // eslint-disable-line
           className={overflowMenuClasses}
           aria-label={ariaLabel}
           id={id}

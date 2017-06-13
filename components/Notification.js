@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import Icon from './Icon';
 if (!process.env.EXCLUDE_SASS) {
-  import('@console/bluemix-components/consumables/scss/components/notifications/notifications.scss');
+  import('carbon-components/consumables/scss/components/notifications/notifications.scss');
 }
 
 class Notification extends Component {

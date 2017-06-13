@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 if (!process.env.EXCLUDE_SASS) {
-  import('@console/bluemix-components/consumables/scss/base-elements/toggle/toggle.scss');
+  import('carbon-components/consumables/scss/base-elements/toggle/toggle.scss');
 }
 
 const propTypes = {
@@ -22,12 +22,18 @@ const defaultProps = {
   onToggle: () => {},
 };
 
-const Toggle = ({ className, defaultToggled, toggled, onToggle, id, labelA, labelB, ...other }) => {
+const Toggle = ({
+  className,
+  defaultToggled,
+  toggled,
+  onToggle,
+  id,
+  labelA,
+  labelB,
+  ...other
+}) => {
   let input;
-  const wrapperClasses = classNames(
-    'toggleWrapper',
-    [className]: className
-  );
+  const wrapperClasses = classNames('toggleWrapper', ([className]: className));
 
   const checkedProps = {};
 
@@ -45,13 +51,17 @@ const Toggle = ({ className, defaultToggled, toggled, onToggle, id, labelA, labe
         type="checkbox"
         id={id}
         className="bx--toggle"
-        onChange={evt => { onToggle(input.checked, id, evt); }}
-        ref={el => { input = el; }}
+        onChange={evt => {
+          onToggle(input.checked, id, evt);
+        }}
+        ref={el => {
+          input = el;
+        }}
       />
 
       <label className="bx--toggle__label" htmlFor={id}>
         <span className="bx--toggle__text--left">{labelA}</span>
-        <span className="bx--toggle__appearance"></span>
+        <span className="bx--toggle__appearance" />
         <span className="bx--toggle__text--right">{labelB}</span>
       </label>
     </div>

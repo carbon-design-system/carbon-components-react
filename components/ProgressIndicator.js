@@ -2,7 +2,9 @@ import React, { Children } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 if (!process.env.EXCLUDE_SASS) {
-  import('@console/bluemix-components/consumables/scss/components/progress-indicator/progress-indicator.scss');
+  import(
+    'carbon-components/consumables/scss/components/progress-indicator/progress-indicator.scss'
+  );
 }
 
 const propTypes = {

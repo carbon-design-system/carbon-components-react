@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 if (!process.env.EXCLUDE_SASS) {
-  import('@console/bluemix-components/consumables/scss/components/overflow-menu/overflow-menu.scss');
+  import('carbon-components/consumables/scss/components/overflow-menu/overflow-menu.scss');
 }
 
 const propTypes = {
@@ -28,17 +28,16 @@ const defaultProps = {
   onClick: () => {},
 };
 
-const OverflowMenuItem = (
-  props) => {
+const OverflowMenuItem = props => {
   const { className, itemText, isDelete, isLastItem, closeMenu, onClick, ...other } = props;
 
   const overflowMenuItemClasses = classNames(
-    [className]: className,
+    ([className]: className),
     'bx--overflow-menu__btn',
-    { 'bx--overflow-menu__btn--delete': isDelete },
+    { 'bx--overflow-menu__btn--delete': isDelete }
   );
 
-  const handleClick = (evt) => {
+  const handleClick = evt => {
     onClick(evt);
     closeMenu();
   };
@@ -56,11 +55,12 @@ const OverflowMenuItem = (
     </li>
   );
 
-  const overflowMenuItem = isLastItem ?
-    <span>
-      <hr />
-      {item}
-    </span> : item;
+  const overflowMenuItem = isLastItem
+    ? <span>
+        <hr />
+        {item}
+      </span>
+    : item;
 
   return overflowMenuItem;
 };

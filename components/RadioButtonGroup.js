@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import RadioButton from './RadioButton';
 import warning from 'warning';
 if (!process.env.EXCLUDE_SASS) {
-  import('@console/bluemix-components/consumables/scss/base-elements/radio/radio.scss');
+  import('carbon-components/consumables/scss/base-elements/radio/radio.scss');
 }
 
 class RadioButtonGroup extends React.Component {

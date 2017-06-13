@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 if (!process.env.EXCLUDE_SASS) {
-  import('@console/bluemix-components/consumables/scss/base-elements/select/select.scss');
+  import('carbon-components/consumables/scss/base-elements/select/select.scss');
 }
 
 const propTypes = {
@@ -33,7 +33,8 @@ const SelectItem = ({ className, value, disabled, hidden, text, ...other }) => {
       value={value}
       disabled={disabled}
       hidden={hidden}
-    >{text}
+    >
+      {text}
     </option>
   );
 };

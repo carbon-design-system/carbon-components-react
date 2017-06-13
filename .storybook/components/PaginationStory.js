@@ -6,11 +6,12 @@ const props = {
   onChange: ({ page, pageSize }) => {
     console.log(`Page: ${page}`, `Page Size: ${pageSize}`); // eslint-disable-line no-console
   },
-  pageSizes: [10, 20, 30, 40, 50],
+  pageSizes: [20, 20, 30, 40, 50],
+  pagesUnknown: true,
 };
 
 storiesOf('Pagination', module)
-  .addDecorator((story) => (
+  .addDecorator(story => (
     <div style={{ width: '800px' }}>
       {story()}
     </div>
@@ -20,7 +21,5 @@ storiesOf('Pagination', module)
     `
       Description coming soon.
     `,
-    () => (
-      <Pagination {...props} totalItems={103} />
-    )
+    () => <Pagination {...props} totalItems={103} />
   );

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Icon from './Icon';
 import classNames from 'classnames';
 if (!process.env.EXCLUDE_SASS) {
-  import('@console/bluemix-components/consumables/scss/base-elements/number-input/number-input.scss');
+  import('carbon-components/consumables/scss/base-elements/number-input/number-input.scss');
 }
 
 class NumberInput extends Component {

@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import Icon from './Icon';
 if (!process.env.EXCLUDE_SASS) {
-  import('@console/bluemix-components/consumables/scss/base-elements/select/select.scss');
-  import('@console/bluemix-components/consumables/scss/base-elements/forms/forms.scss');
+  import('carbon-components/consumables/scss/base-elements/select/select.scss');
+  import('carbon-components/consumables/scss/base-elements/forms/forms.scss');
 }
 
 const propTypes = {
@@ -25,25 +25,36 @@ const defaultProps = {
   iconDescription: 'open list of options',
 };
 
-const Select = ({ className, id, labelText, disabled, children, iconDescription, hideLabel, ...other }) => {
+const Select = ({
+  className,
+  id,
+  labelText,
+  disabled,
+  children,
+  iconDescription,
+  hideLabel,
+  ...other
+}) => {
   const selectClasses = classNames({
     'bx--select': true,
     [className]: className,
   });
   const labelClasses = classNames('bx--form__label', { 'bx--visually-hidden': hideLabel });
-  const iconClasses = classNames('bx--select__arrow', { 'bx--select__arrow--no-label': hideLabel });
+  const iconClasses = classNames('bx--select__arrow', {
+    'bx--select__arrow--no-label': hideLabel,
+  });
   return (
     <div className={selectClasses}>
       <label htmlFor={id} className={labelClasses}>{labelText}</label>
-      <select
-        {...other}
-        id={id}
-        className="bx--select__input"
-        disabled={disabled}
-      >
+      <select {...other} id={id} className="bx--select__input" disabled={disabled}>
         {children}
       </select>
-      <Icon name="caret--down" className={iconClasses} fill="#5aaafa" description={iconDescription} />
+      <Icon
+        name="caret--down"
+        className={iconClasses}
+        fill="#5aaafa"
+        description={iconDescription}
+      />
     </div>
   );
 };

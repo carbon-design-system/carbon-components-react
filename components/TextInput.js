@@ -2,15 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 if (!process.env.EXCLUDE_SASS) {
-  import('@console/bluemix-components/consumables/scss/base-elements/text/text.scss');
+  import('carbon-components/consumables/scss/base-elements/text/text.scss');
 }
 
 const propTypes = {
   className: PropTypes.string,
-  defaultValue: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.number,
-  ]),
+  defaultValue: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   disabled: PropTypes.bool,
   id: PropTypes.string.isRequired,
   labelText: PropTypes.string,
@@ -18,10 +15,7 @@ const propTypes = {
   onClick: PropTypes.func,
   placeholder: PropTypes.string,
   type: PropTypes.string,
-  value: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.number,
-  ]),
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   hideLabel: PropTypes.bool,
 };
 
@@ -33,7 +27,17 @@ const defaultProps = {
   onClick: () => {},
 };
 
-const TextInput = ({ labelText, className, id, placeholder, type, onChange, onClick, hideLabel, ...other }) => {
+const TextInput = ({
+  labelText,
+  className,
+  id,
+  placeholder,
+  type,
+  onChange,
+  onClick,
+  hideLabel,
+  ...other
+}) => {
   const textInputProps = {
     id,
     onChange: evt => {
@@ -50,17 +54,14 @@ const TextInput = ({ labelText, className, id, placeholder, type, onChange, onCl
     type,
   };
 
-  const textInputClasses = classNames(
-    'bx--text__input',
-    className,
-  );
+  const textInputClasses = classNames('bx--text__input', className);
   const labelClasses = classNames('bx--form__label', { 'bx--visually-hidden': hideLabel });
 
-  const label = labelText ? (
-    <label htmlFor={id} className={labelClasses}>
-      {labelText}
-    </label>
-  ) : null;
+  const label = labelText
+    ? <label htmlFor={id} className={labelClasses}>
+        {labelText}
+      </label>
+    : null;
 
   return (
     <div>

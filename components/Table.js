@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 if (!process.env.EXCLUDE_SASS) {
-  import('@console/bluemix-components/consumables/scss/base-elements/responsiveTables/responsiveTables.scss');
+  import('carbon-components/consumables/scss/base-elements/responsiveTables/responsiveTables.scss');
 }
 
 const propTypes = {
