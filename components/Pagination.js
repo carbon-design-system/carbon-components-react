@@ -39,6 +39,7 @@ class Pagination extends Component {
     pageNumberText: 'Page Number',
     pageRangeText: (current, total) => `${current} of ${total} pages`,
     disabled: false,
+    pagesUnknown: false,
     page: 1,
   }
   static uuid = 0
@@ -46,7 +47,7 @@ class Pagination extends Component {
     page: this.props.page,
     pageSize: ((this.props.pageSize && this.props.pageSizes.includes(this.props.pageSize)) ?
       this.props.pageSize : this.props.pageSizes[0]),
-    pagesUnknown: this.props.pagesUnknown || false
+    pagesUnknown: this.props.pagesUnknown
   }
   componentWillReceiveProps({ pageSizes, page, pageSize }) {
     if (!equals(pageSizes, this.props.pageSizes)) {
