@@ -6,8 +6,7 @@ const props = {
   onChange: ({ page, pageSize }) => {
     console.log(`Page: ${page}`, `Page Size: ${pageSize}`); // eslint-disable-line no-console
   },
-  pageSizes: [20, 20, 30, 40, 50],
-  pagesUnknown: true,
+  pageSizes: [10, 20, 30, 40, 50],
 };
 
 storiesOf('Pagination', module)
