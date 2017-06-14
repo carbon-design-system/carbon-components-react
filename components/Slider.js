@@ -12,7 +12,7 @@ class Slider extends Component {
   };
 
   componentDidMount() {
-    this.updatePosition()
+    // this.updatePosition()
   }
 
   updatePosition(evt) {
@@ -127,17 +127,22 @@ class Slider extends Component {
     this._updatePosition();
   }
 
+  handleMouse = (type) => {
+    if (type === 'down') {
+      this.element.ownerDocument.addEventListener('mousemove',  (evt) => { this.updatePosition(evt); })
+    }
+  }
+
 
   render() {
     return (
       <div className="bx--form-item">
-        <label for="slider" className="bx--label">Slider Label</label>
+        <label htmlFor="slider" className="bx--label">Slider Label</label>
         <div className="bx--slider-container">
           <span className="bx--slider__range-label">0</span>
           <div
             className="bx--slider"
             onMouseDown={() => this.handleMouse('down')}
-            onMouseMove={() => this.handleMouse('move')}
             onMouseUp={() => this.handleMouse('up')}
           >
             <div className="bx--slider__track"></div>
