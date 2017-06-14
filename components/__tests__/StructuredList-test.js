@@ -22,14 +22,24 @@ describe('StructuredListWrapper', () => {
       expect(wrapper.hasClass('extra-class')).toEqual(true);
     });
 
-    it('By default, should add correct modifier class when border prop is true', () => {
+    it('By default, border prop is false', () => {
+      wrapper.setProps({ border: false });
+      expect(wrapper.hasClass('bx--structured-list--border')).toEqual(false);
+    });
+
+    it('By default, selection prop is false', () => {
+      wrapper.setProps({ border: false });
+      expect(wrapper.hasClass('bx--structured-list--selection')).toEqual(false);
+    });
+
+    it('Should add the modifier class for border when border prop is true', () => {
       wrapper.setProps({ border: true });
       expect(wrapper.hasClass('bx--structured-list--border')).toEqual(true);
     });
 
-    it('Should remove the modifier class for border when border prop is false', () => {
-      wrapper.setProps({ border: false });
-      expect(wrapper.hasClass('bx--structured-list--border')).toEqual(false);
+    it('Should add the modifier class for selection when selection prop is true', () => {
+      wrapper.setProps({ selection: true });
+      expect(wrapper.hasClass('bx--structured-list--selection')).toEqual(true);
     });
   });
 });
