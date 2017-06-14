@@ -5,18 +5,8 @@ import {
   StructuredListHead,
   StructuredListBody,
   StructuredListRow,
-  StructuredListContent,
   StructuredListCell,
 } from '../../components/StructuredList';
-import SelectItem from '../../components/SelectItem';
-import SelectItemGroup from '../../components/SelectItemGroup';
-
-const selectProps = {
-  onClick: () => {
-    action('click');
-  }, // eslint-disable-line no-console
-  className: 'some-class',
-};
 
 storiesOf('StructuredList', module).addWithInfo(
   'Simple',
@@ -39,12 +29,10 @@ storiesOf('StructuredList', module).addWithInfo(
           </StructuredListCell>
           <StructuredListCell>IBM</StructuredListCell>
           <StructuredListCell>
-            <StructuredListContent>
-              Apache Spark is an open source cluster computing framework optimized for
-              extremely fast and large scale data processing,
-              which you can access via the newly integrated notebook interface IBM Analytics
-              for Apache Spark.
-            </StructuredListContent>
+            Apache Spark is an open source cluster computing framework optimized for
+            extremely fast and large scale data processing,
+            which you can access via the newly integrated notebook interface IBM Analytics
+            for Apache Spark.
           </StructuredListCell>
         </StructuredListRow>
         <StructuredListRow>
@@ -52,14 +40,12 @@ storiesOf('StructuredList', module).addWithInfo(
             Cloudant
           </StructuredListCell>
           <StructuredListCell>
-            <StructuredListContent>IBM</StructuredListContent>
+            IBM
           </StructuredListCell>
           <StructuredListCell>
-            <StructuredListContent>
-              Cloudant NoSQL DB is a fully managed data layer designed for modern web and
-              mobile applications that leverages a
-              flexible JSON schema.
-            </StructuredListContent>
+            Cloudant NoSQL DB is a fully managed data layer designed for modern web and
+            mobile applications that leverages a
+            flexible JSON schema.
           </StructuredListCell>
         </StructuredListRow>
       </StructuredListBody>

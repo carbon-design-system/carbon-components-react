@@ -4,7 +4,6 @@ import {
   StructuredListHead,
   StructuredListBody,
   StructuredListRow,
-  StructuredListContent,
   StructuredListCell,
 } from '../StructuredList';
 import { shallow } from 'enzyme';

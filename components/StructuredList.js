@@ -105,19 +105,10 @@ class StructuredListCell extends Component {
   }
 }
 
-class StructuredListContent extends Component {
-  render() {
-    const { children, className, ...other } = this.props;
-    const classes = classNames('bx--structured-list-content', className);
-    return <p className={classes} {...other}>{children}</p>;
-  }
-}
-
 export {
   StructuredListWrapper,
   StructuredListHead,
   StructuredListBody,
   StructuredListRow,
-  StructuredListContent,
   StructuredListCell,
 };
