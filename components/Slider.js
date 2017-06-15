@@ -1,18 +1,37 @@
-import React, { PropTypes, Component } from 'react';
-import classNames from 'classnames';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+// import classNames from 'classnames';
 
 class Slider extends Component {
   static propTypes = {
+    id: PropTypes.string,
+    value: PropTypes.number.isRequired,
+    min: PropTypes.number.isRequired,
+    max: PropTypes.number.isRequired,
+    step: PropTypes.number,
+    stepMuliplier: PropTypes.number,
+    children: PropTypes.node,
   };
 
   static defaultProps = {
-  };
+    stepMuliplier: 4,
+  }
 
   state = {
+    dragging: false,
+    value: this.props.value,
+    left: 0,
   };
 
   componentDidMount() {
     // this.updatePosition()
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps !== this.props) {
+      // this.setState({ open: nextProps.open });
+      this.updatePosition()
+    }
   }
 
   updatePosition(evt) {
@@ -20,31 +39,38 @@ class Slider extends Component {
       left,
       newValue,
     } = this.calcValue(evt);
+    this.setState({
+      left,
+      value: newValue,
+     });
 
-
-    if (this.dragging) {
-      return;
-    }
-
-    this.dragging = true;
-
-    requestAnimationFrame(() => {
-      this.dragging = false;
-      this.thumb.style.left = `${left}%`;
-      this.filledTrack.style.transform = `translate(0%, -50%) scaleX(${left / 100})`;
-      this.input.value = newValue;
-      this.updateInput();
-      this.changeState('slider-value-change', { value: newValue });
-    });
+    // if (this.state.dragging) {
+    //   return;
+    // }
+    //
+    // this.state.dragging = true;
+    //
+    // requestAnimationFrame(() => {
+    //   this.state.dragging = false;
+    //   this.thumb.style.left = `${left}%`;
+    //   this.filledTrack.style.transform = `translate(0%, -50%) scaleX(${left / 100})`;
+    //   this.setState({
+    //     left,
+    //     value: newValue,
+    //    });
+    //   // this.updateInput();
+    // });
   }
 
   calcValue(evt) {
     const {
-      value,
       min,
       max,
       step,
-    } = this.getInputProps();
+      stepMuliplier,
+    } = this.props;
+
+    const { value } = this.state;
 
     const range = max - min;
     const valuePercentage = (((value - min) / range) * 100);
@@ -67,7 +93,7 @@ class Slider extends Component {
 
         if (direction !== undefined) {
           const multiplier = evt.shiftKey === true
-            ? (range / step) / this.options.stepMuliplier
+            ? (range / step) / stepMuliplier
             : 1;
           const stepMultiplied = step * multiplier;
           const stepSize = (stepMultiplied / range) * 100;
@@ -102,16 +128,6 @@ class Slider extends Component {
     }
   }
 
-  getInputProps() {
-    const values = {
-      value: this.input.value,
-      min: this.input.min,
-      max: this.input.max,
-      step: this.input.step ? this.input.step : 1,
-    };
-    return values;
-  }
-
   setValue(value) {
     this.input.value = value;
     this._updatePosition();
@@ -127,32 +143,69 @@ class Slider extends Component {
     this._updatePosition();
   }
 
-  handleMouse = (type) => {
-    if (type === 'down') {
-      this.element.ownerDocument.addEventListener('mousemove',  (evt) => { this.updatePosition(evt); })
-    }
+  handleMouseStart = () => {
+    this.element.ownerDocument.addEventListener('mousemove',  (evt) => { this.updatePosition(evt); })
+    this.element.ownerDocument.addEventListener('mouseup', this.handleMouseEnd())
   }
 
+  handleMouseEnd = () => {
+    this.element.ownerDocument.removeEventListener('mousemove',  (evt) => { this.updatePosition(evt); })
+    this.element.ownerDocument.removeEventListener('mouseup', this.handleMouseEnd())
+  }
 
   render() {
+    const {
+      value,
+      min,
+      max,
+      step,
+      required,
+      children,
+    } = this.props;
+
+    const filledTrackStyle = {
+      transform: `translate(0%, -50%) scaleX(${this.state.left / 100})`,
+    }
+    const thumbStyle = {
+      left: `${this.state.left}%`,
+    }
     return (
-      <div className="bx--form-item">
-        <label htmlFor="slider" className="bx--label">Slider Label</label>
-        <div className="bx--slider-container">
-          <span className="bx--slider__range-label">0</span>
+      <div className="bx--slider-container">
+        <span className="bx--slider__range-label">0</span>
+        <div
+          id={this.props.id}
+          className="bx--slider"
+          ref={node => {
+            this.element = node;
+          }}
+        >
           <div
-            className="bx--slider"
-            onMouseDown={() => this.handleMouse('down')}
-            onMouseUp={() => this.handleMouse('up')}
+            className="bx--slider__track"
+            ref={node => {
+              this.track = node;
+            }}
           >
-            <div className="bx--slider__track"></div>
-            <div className="bx--slider__filled-track"></div>
-            <div className="bx--slider__thumb" tabindex="0"></div>
-            <input id="slider" className="bx--slider__input" type="range" step="1" min="0" max="100" value="50" />
           </div>
-          <span className="bx--slider__range-label">100</span>
-          <input id="slider-input-box" type="text" className="bx--text-input bx-slider-text-input" placeholder="0" />
+          <div className="bx--slider__filled-track" style={filledTrackStyle}></div>
+          <div
+            className="bx--slider__thumb"
+            tabIndex="0"
+            style={thumbStyle}
+            onMouseDown={() => this.handleMouseStart()}
+            onKeyDown={(evt) => this.updatePosition(evt)}
+          >
+          </div>
+          <input
+            type="hidden"
+            value={value}
+            required={required}
+            min={min}
+            max={max}
+            step={step}
+          />
         </div>
+        <span className="bx--slider__range-label">100</span>
+        {children}
       </div>
     );
   }

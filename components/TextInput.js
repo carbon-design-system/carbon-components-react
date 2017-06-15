@@ -83,7 +83,7 @@ const TextInput = ({
     : <input {...other} {...textInputProps} className={textInputClasses} />;
 
   return (
-    <div className="bx--form-item">
+    <div className="">
       {label}
       {input}
       {error}
