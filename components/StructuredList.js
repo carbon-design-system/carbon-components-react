@@ -52,47 +52,75 @@ class StructuredListBody extends Component {
     className: PropTypes.string,
     head: PropTypes.bool,
   };
+
+  state = {
+    rowSelected: 0,
+  };
+
+  handleLabelRowKeyDown = evt => {
+    console.log('handleLabelRowKeyDown');
+    this.props.onKeyDown(evt);
+  };
+
   render() {
     const { children, className, ...other } = this.props;
     const classes = classNames('bx--structured-list-tbody', className);
+
+    // map through chilren
+    // if child.props.htmlFor !== undefined, then give its a label row (props: index, keyDown, focus)
+    // Use index as way to target focus
+    // else, it's an input (props: onChange)
+
+    // const labelRows = React.Children
+    //   .map(children, child => child)
+    //   .filter(child => child.props.htmlFor !== undefined)
+    //   .map((child, index) =>
+    //     React.cloneElement(StructuredListRow, {
+    //       index,
+    //       handleLabelRowKeyDown: this.handleLabelRowKeyDown,
+    //     })
+    //   );
+    // console.log('labelRows:', labelRows, 'children:', children);
     return <div className={classes} {...other}>{children}</div>;
   }
 }
 
 class StructuredListInput extends Component {
   static propTypes = {
-    type: PropTypes.string,
     className: PropTypes.string,
     id: PropTypes.string,
-    value: PropTypes.string,
+    value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
     name: PropTypes.string,
     title: PropTypes.string,
     defaultChecked: PropTypes.bool,
-    tabIndex: PropTypes.number,
+    onChange: PropTypes.func,
   };
 
   static defaultProps = {
-    type: 'radio',
-    tabIndex: -1,
-    defaultChecked: false,
+    onChange: () => {},
   };
 
   componentWillMount() {
     this.uid = this.props.id || uid();
   }
 
+  handleChange = evt => {
+    this.props.onChange(this.props.value, this.props.name, evt);
+  };
+
   render() {
-    const { type, tabIndex, value, name, title, defaultChecked } = this.props;
+    const { value, name, title, ...other } = this.props;
     return (
       <input
-        type={type}
-        tabIndex={tabIndex}
+        {...other}
+        type="radio"
+        onChange={this.handleChange}
+        tabIndex={-1}
         id={this.uid}
         className="bx--structured-list-input"
         value={value}
         name={name}
         title={title}
-        defaultChecked={defaultChecked}
       />
     );
   }
@@ -105,25 +133,27 @@ class StructuredListRow extends Component {
     head: PropTypes.bool,
     label: PropTypes.bool,
     htmlFor: PropTypes.string,
+    tabIndex: PropTypes.number,
   };
 
   static defaultProps = {
     head: false,
     label: false,
+    tabIndex: 0,
   };
 
   render() {
-    const { htmlFor, children, className, head, label, ...other } = this.props;
+    const { tabIndex, htmlFor, children, className, head, label, ...other } = this.props;
 
     const classes = classNames('bx--structured-list-row', className, {
       'bx--structured-list-row--header-row': head,
     });
 
     return label
-      ? <label className={classes} htmlFor={htmlFor} {...other}>
+      ? <label {...other} tabIndex={tabIndex} className={classes} htmlFor={htmlFor}>
           {children}
         </label>
-      : <div className={classes} {...other}>
+      : <div {...other} className={classes}>
           {children}
         </div>;
   }
