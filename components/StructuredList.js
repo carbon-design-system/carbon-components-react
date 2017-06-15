@@ -46,45 +46,6 @@ class StructuredListHead extends Component {
   }
 }
 
-class StructuredListBody extends Component {
-  static propTypes = {
-    children: PropTypes.node,
-    className: PropTypes.string,
-    head: PropTypes.bool,
-  };
-
-  state = {
-    rowSelected: 0,
-  };
-
-  handleLabelRowKeyDown = evt => {
-    console.log('handleLabelRowKeyDown');
-    this.props.onKeyDown(evt);
-  };
-
-  render() {
-    const { children, className, ...other } = this.props;
-    const classes = classNames('bx--structured-list-tbody', className);
-
-    // map through chilren
-    // if child.props.htmlFor !== undefined, then give its a label row (props: index, keyDown, focus)
-    // Use index as way to target focus
-    // else, it's an input (props: onChange)
-
-    // const labelRows = React.Children
-    //   .map(children, child => child)
-    //   .filter(child => child.props.htmlFor !== undefined)
-    //   .map((child, index) =>
-    //     React.cloneElement(StructuredListRow, {
-    //       index,
-    //       handleLabelRowKeyDown: this.handleLabelRowKeyDown,
-    //     })
-    //   );
-    // console.log('labelRows:', labelRows, 'children:', children);
-    return <div className={classes} {...other}>{children}</div>;
-  }
-}
-
 class StructuredListInput extends Component {
   static propTypes = {
     className: PropTypes.string,
@@ -156,6 +117,29 @@ class StructuredListRow extends Component {
       : <div {...other} className={classes}>
           {children}
         </div>;
+  }
+}
+
+class StructuredListBody extends Component {
+  static propTypes = {
+    children: PropTypes.node,
+    className: PropTypes.string,
+    head: PropTypes.bool,
+  };
+
+  state = {
+    rowSelected: 0,
+  };
+
+  handleLabelRowKeyDown = evt => {
+    console.log('handleLabelRowKeyDown');
+    this.props.onKeyDown(evt);
+  };
+
+  render() {
+    const { children, className, ...other } = this.props;
+    const classes = classNames('bx--structured-list-tbody', className);
+    return <div className={classes} {...other}>{children}</div>;
   }
 }
 
