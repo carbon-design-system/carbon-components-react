@@ -8,11 +8,10 @@ class DatePickerInput extends Component {
   };
 
   static defaultProps = {
-    pattern: '\d{1,2}/\d{1,2}/\d{4}',
+    pattern: 'd{1,2}/d{1,2}/d{4}',
     type: 'text',
     disabled: false,
     invalid: false,
-    short: false
   };
 
   render() {
@@ -52,13 +51,18 @@ class DatePickerInput extends Component {
       'bx--visually-hidden': hideLabel,
     });
 
-    const datePickerIcon = (datePickerType === 'single')
-    ? (<svg className="bx--date-picker__icon" width="17" height="19" viewBox="0 0 17 19">
-        <path d="M12 0h2v2.7h-2zM3 0h2v2.7H3z"/>
-        <path d="M0 2v17h17V2H0zm15 15H2V7h13v10z"/>
-        <path d="M9.9 15H8.6v-3.9H7.1v-.9c.9 0 1.7-.3 1.8-1.2h1v6z"/>
-      </svg>)
-    : '';
+    const datePickerIcon = datePickerType === 'single'
+      ? <svg
+          className="bx--date-picker__icon"
+          width="17"
+          height="19"
+          viewBox="0 0 17 19"
+        >
+          <path d="M12 0h2v2.7h-2zM3 0h2v2.7H3z" />
+          <path d="M0 2v17h17V2H0zm15 15H2V7h13v10z" />
+          <path d="M9.9 15H8.6v-3.9H7.1v-.9c.9 0 1.7-.3 1.8-1.2h1v6z" />
+        </svg>
+      : '';
 
     const label = labelText
       ? <label htmlFor={id} className={labelClasses}>
@@ -76,11 +80,20 @@ class DatePickerInput extends Component {
       ? <input
           {...other}
           {...datePickerInputProps}
-          ref={(input) => { this.input = input; }}
+          ref={input => {
+            this.input = input;
+          }}
           data-invalid
           className="bx--date-picker__input"
         />
-      : <input ref={(input) => { this.input = input; }} {...other} {...datePickerInputProps} className="bx--date-picker__input" />;
+      : <input
+          ref={input => {
+            this.input = input;
+          }}
+          {...other}
+          {...datePickerInputProps}
+          className="bx--date-picker__input"
+        />;
 
     return (
       <div className="bx--date-picker-container">
