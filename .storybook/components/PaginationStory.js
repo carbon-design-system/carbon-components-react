@@ -10,11 +10,11 @@ const props = {
 };
 
 storiesOf('Pagination', module)
-  .addDecorator(story => (
+  .addDecorator(story =>
     <div style={{ width: '800px' }}>
       {story()}
     </div>
-  ))
+  )
   .addWithInfo(
     '',
     `

@@ -29,6 +29,7 @@ class Pagination extends Component {
     page: PropTypes.number,
     pageSize: PropTypes.number,
     pagesUnknown: PropTypes.bool,
+    isLastPage: PropTypes.bool,
   }
   static defaultProps = {
     backwardText: 'Backward',
@@ -41,13 +42,15 @@ class Pagination extends Component {
     disabled: false,
     pagesUnknown: false,
     page: 1,
+    isLastPage: false,
   }
   static uuid = 0
   state = {
     page: this.props.page,
     pageSize: ((this.props.pageSize && this.props.pageSizes.includes(this.props.pageSize)) ?
       this.props.pageSize : this.props.pageSizes[0]),
-    pagesUnknown: this.props.pagesUnknown
+    pagesUnknown: this.props.pagesUnknown,
+    isLastPage: this.props.isLastPage
   }
   componentWillReceiveProps({ pageSizes, page, pageSize }) {
     if (!equals(pageSizes, this.props.pageSizes)) {
@@ -157,7 +160,7 @@ class Pagination extends Component {
               <button
                 className="bx--pagination__button bx--pagination__button--forward"
                 onClick={this.incrementPage}
-                disabled={this.props.disabled || (page === Math.ceil(totalItems / pageSize))}
+                disabled={this.props.isLastPage}
                 style={buttonStyleRight}
               >
                 <div>
