@@ -103,24 +103,29 @@ class StructuredListRow extends Component {
     children: PropTypes.node,
     className: PropTypes.string,
     head: PropTypes.bool,
+    label: PropTypes.bool,
+    htmlFor: PropTypes.string,
   };
 
   static defaultProps = {
     head: false,
+    label: false,
   };
 
   render() {
-    const { children, className, head, ...other } = this.props;
+    const { htmlFor, children, className, head, label, ...other } = this.props;
 
     const classes = classNames('bx--structured-list-row', className, {
       'bx--structured-list-row--header-row': head,
     });
 
-    return (
-      <div className={classes} {...other}>
-        {children}
-      </div>
-    );
+    return label
+      ? <label className={classes} htmlFor={htmlFor} {...other}>
+          {children}
+        </label>
+      : <div className={classes} {...other}>
+          {children}
+        </div>;
   }
 }
 

@@ -77,7 +77,7 @@ storiesOf('StructuredList', module)
             name="services"
             defaultChecked
           />
-          <StructuredListRow>
+          <StructuredListRow label htmlFor="apache-spark">
             <StructuredListCell>
               <Icon
                 className="bx--structured-list-svg"
@@ -102,7 +102,7 @@ storiesOf('StructuredList', module)
             title="cloudant"
             name="services"
           />
-          <StructuredListRow>
+          <StructuredListRow label htmlFor="cloudant">
             <StructuredListCell>
               <Icon
                 className="bx--structured-list-svg"
