@@ -12,20 +12,24 @@ export default class TimePicker extends Component {
     type: PropTypes.string,
     pattern: PropTypes.string,
     placeholder: PropTypes.string,
-    maxlength: PropTypes.number,
+    maxLength: PropTypes.number,
     invalid: PropTypes.bool,
     invalidText: PropTypes.string,
     hideLabel: PropTypes.bool,
+    disabled: PropTypes.bool,
   };
 
   static defaultProps = {
     type: 'text',
     pattern: '(1[012]|[1-9]):[0-5][0-9](\\s)?(?i)',
     placeholder: 'hh:mm',
-    maxlength: 5,
+    maxLength: 5,
     invalidText: 'Invalid time format.',
     invalid: false,
-  }
+    disabled: false,
+    onChange: () => {},
+    onClick: () => {},
+  };
 
   render() {
     const {
@@ -35,13 +39,33 @@ export default class TimePicker extends Component {
       labelText,
       type,
       pattern,
+      onChange,
+      onClick,
       placeholder,
-      maxlength,
+      maxLength,
       invalidText,
       invalid,
       hideLabel,
       ...other
     } = this.props;
+
+    const timePickerInputProps = {
+      onChange: evt => {
+        if (!other.disabled) {
+          onChange(evt);
+        }
+      },
+      onClick: evt => {
+        if (!other.disabled) {
+          onClick(evt);
+        }
+      },
+      pattern,
+      placeholder,
+      maxLength,
+      id,
+      type,
+    };
 
     const timePickerClasses = classNames({
       'bx--time-picker': true,
@@ -52,17 +76,17 @@ export default class TimePicker extends Component {
       'bx--visually-hidden': hideLabel,
     });
 
-  const label = labelText
-    ? <label htmlFor={id} className={labelClasses}>
-        {labelText}
-      </label>
-    : null;
+    const label = labelText
+      ? <label htmlFor={id} className={labelClasses}>
+          {labelText}
+        </label>
+      : null;
 
-  const error = invalid
-    ? <div className="bx--form-requirement">
-        {invalidText}
-      </div>
-    : null;
+    const error = invalid
+      ? <div className="bx--form-requirement">
+          {invalidText}
+        </div>
+      : null;
 
     return (
       <div className="bx--form-item">
@@ -71,14 +95,10 @@ export default class TimePicker extends Component {
           <div className="bx--time-picker__input">
             <input
               {...other}
-              id={id}
-              type={type}
+              {...timePickerInputProps}
               className="bx--time-picker__input-field"
-              pattern={pattern}
-              placeholder={placeholder}
-              maxlength={maxlength}
             />
-           {error}
+            {error}
           </div>
           {children}
         </div>
