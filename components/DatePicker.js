@@ -12,10 +12,14 @@ class DatePicker extends Component {
   static propTypes = {
     children: PropTypes.node,
     className: PropTypes.string,
+    short: PropTypes.bool,
+    datePickerType: PropTypes.string,
+    dateFormat: PropTypes.string
   };
 
   static defaultProps = {
-    short: false
+    short: false,
+    dateFormat: 'm/d/Y'
   };
 
   componentDidMount() {
@@ -102,11 +106,6 @@ class DatePicker extends Component {
       },
       onOpen: () => {
         this.updateClassNames(calendar);
-      },
-      onValueUpdate: (selectedDates) => {
-        this.setState({
-          inputValue: selectedDates[0]
-        })
       },
       nextArrow: this.rightArrowHTML(),
       prevArrow: this.leftArrowHTML(),
