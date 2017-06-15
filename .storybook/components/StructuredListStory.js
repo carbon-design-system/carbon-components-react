@@ -6,6 +6,7 @@ import {
   StructuredListHead,
   StructuredListBody,
   StructuredListRow,
+  StructuredListInput,
   StructuredListCell,
 } from '../../components/StructuredList';
 
@@ -69,15 +70,12 @@ storiesOf('StructuredList', module)
           </StructuredListRow>
         </StructuredListHead>
         <StructuredListBody>
-          <input
-            type="radio"
-            tabIndex="-1"
-            id=""
-            className="bx--structured-list-input"
-            value=""
-            name=""
-            title=""
-            checked
+          <StructuredListInput
+            id="apache-spark"
+            value="apache-spark"
+            title="apache-spark"
+            name="services"
+            defaultChecked
           />
           <StructuredListRow>
             <StructuredListCell>
@@ -98,15 +96,11 @@ storiesOf('StructuredList', module)
               for Apache Spark.
             </StructuredListCell>
           </StructuredListRow>
-          <input
-            type="radio"
-            tabIndex="-1"
-            id=""
-            className="bx--structured-list-input"
-            value=""
-            name=""
-            title=""
-            checked
+          <StructuredListInput
+            id="cloudant"
+            value="cloudant"
+            title="cloudant"
+            name="services"
           />
           <StructuredListRow>
             <StructuredListCell>

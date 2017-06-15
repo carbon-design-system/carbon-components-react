@@ -59,6 +59,45 @@ class StructuredListBody extends Component {
   }
 }
 
+class StructuredListInput extends Component {
+  static propTypes = {
+    type: PropTypes.string,
+    className: PropTypes.string,
+    id: PropTypes.string,
+    value: PropTypes.string,
+    name: PropTypes.string,
+    title: PropTypes.string,
+    defaultChecked: PropTypes.bool,
+    tabIndex: PropTypes.number,
+  };
+
+  static defaultProps = {
+    type: 'radio',
+    tabIndex: -1,
+    defaultChecked: false,
+  };
+
+  componentWillMount() {
+    this.uid = this.props.id || uid();
+  }
+
+  render() {
+    const { type, tabIndex, value, name, title, defaultChecked } = this.props;
+    return (
+      <input
+        type={type}
+        tabIndex={tabIndex}
+        id={this.uid}
+        className="bx--structured-list-input"
+        value={value}
+        name={name}
+        title={title}
+        defaultChecked={defaultChecked}
+      />
+    );
+  }
+}
+
 class StructuredListRow extends Component {
   static propTypes = {
     children: PropTypes.node,
@@ -80,46 +119,6 @@ class StructuredListRow extends Component {
     return (
       <div className={classes} {...other}>
         {children}
-      </div>
-    );
-  }
-}
-
-class StructuredListRowSelection extends Component {
-  static propTypes = {
-    checked: PropTypes.bool,
-    children: PropTypes.node,
-    id: PropTypes.string,
-    className: PropTypes.string,
-    value: PropTypes.string,
-    name: PropTypes.string,
-    title: PropTypes.string,
-  };
-
-  static defaultProps = {
-    checked: false,
-  };
-
-  componentWillMount() {
-    this.uid = this.props.id || uid();
-  }
-
-  render() {
-    const { checked, children, value, name, title } = this.props;
-
-    return (
-      <div>
-        <input
-          type="radio"
-          tabIndex="-1"
-          id={this.uid}
-          className="bx--structured-list-input"
-          value={value}
-          name={name}
-          title={title}
-          checked={checked}
-        />
-        <label htmlFor={this.uid}>{children}</label>
       </div>
     );
   }
@@ -156,6 +155,6 @@ export {
   StructuredListHead,
   StructuredListBody,
   StructuredListRow,
-  StructuredListRowSelection,
+  StructuredListInput,
   StructuredListCell,
 };
