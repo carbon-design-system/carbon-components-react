@@ -100,6 +100,7 @@ class StructuredListRow extends Component {
   };
 
   static defaultProps = {
+    htmlFor: 'unique id',
     head: false,
     label: false,
     tabIndex: 0,

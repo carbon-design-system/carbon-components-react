@@ -90,3 +90,38 @@ describe('StructuredListInput', () => {
     });
   });
 });
+
+describe('StructuredListRow', () => {
+  describe('Renders as expected', () => {
+    const wrapper = shallow(<StructuredListRow className="extra-class" />);
+
+    it('should have the expected classes', () => {
+      expect(wrapper.hasClass('bx--structured-list-row')).toEqual(true);
+    });
+
+    it('Should add extra classes that are passed via className', () => {
+      expect(wrapper.hasClass('extra-class')).toEqual(true);
+    });
+
+    it('should use correct class when head prop is true', () => {
+      wrapper.setProps({ head: true });
+
+      expect(wrapper.hasClass('bx--structured-list-row--header-row')).toEqual(true);
+    });
+
+    it('should use <div> HTML by default (or when label prop is false)', () => {
+      const wrapperLabel = shallow(<StructuredListRow />);
+      expect(wrapperLabel.node.type).toEqual('div');
+    });
+
+    it('should use <label> HTML when label prop is true', () => {
+      const wrapperLabel = shallow(<StructuredListRow label />);
+      expect(wrapperLabel.node.type).toEqual('label');
+    });
+
+    it('Should accept other props from ...other', () => {
+      const wrapperProps = shallow(<StructuredListInput title="title" />);
+      expect(wrapperProps.props().title).toEqual('title');
+    });
+  });
+});
