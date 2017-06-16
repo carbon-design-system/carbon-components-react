@@ -2,6 +2,7 @@ import React from 'react';
 import {
   StructuredListWrapper,
   StructuredListHead,
+  StructuredListInput,
   StructuredListBody,
   StructuredListRow,
   StructuredListCell,
@@ -61,6 +62,31 @@ describe('StructuredListHead', () => {
     it('Should accept other props from ...other', () => {
       const wrapperProps = shallow(<StructuredListHead title="title">hi</StructuredListHead>);
       expect(wrapperProps.props().title).toEqual('title');
+    });
+  });
+});
+
+describe('StructuredListInput', () => {
+  describe('Renders as expected', () => {
+    const wrapper = shallow(<StructuredListInput className="extra-class" />);
+
+    it('should have the expected classes', () => {
+      expect(wrapper.hasClass('bx--structured-list-input')).toEqual(true);
+    });
+
+    it('Should add extra classes that are passed via className', () => {
+      expect(wrapper.hasClass('extra-class')).toEqual(true);
+    });
+
+    it('Should accept other props from ...other', () => {
+      const wrapperProps = shallow(<StructuredListInput title="title" />);
+      expect(wrapperProps.props().title).toEqual('title');
+    });
+
+    it('Should render unique id with multiple inputs when no id prop is given', () => {
+      const wrapper1 = shallow(<StructuredListInput className="extra-class" />);
+      const wrapper2 = shallow(<StructuredListInput className="extra-class" />);
+      expect(wrapper1.props().id).not.toEqual(wrapper2.props().id);
     });
   });
 });

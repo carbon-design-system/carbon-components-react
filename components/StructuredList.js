@@ -59,26 +59,28 @@ class StructuredListInput extends Component {
 
   static defaultProps = {
     onChange: () => {},
+    type: 'radio',
   };
 
   componentWillMount() {
     this.uid = this.props.id || uid();
   }
 
-  handleChange = evt => {
-    this.props.onChange(this.props.value, this.props.name, evt);
-  };
+  // handleChange = evt => {
+  //   this.props.onChange(this.props.value, this.props.name, evt);
+  // };
 
   render() {
-    const { value, name, title, ...other } = this.props;
+    const { className, type, value, name, title, ...other } = this.props;
+    const classes = classNames('bx--structured-list-input', className);
     return (
       <input
         {...other}
-        type="radio"
-        onChange={this.handleChange}
+        type={type}
+        // onChange={this.handleChange}
         tabIndex={-1}
         id={this.uid}
-        className="bx--structured-list-input"
+        className={classes}
         value={value}
         name={name}
         title={title}
@@ -131,10 +133,10 @@ class StructuredListBody extends Component {
     rowSelected: 0,
   };
 
-  handleLabelRowKeyDown = evt => {
-    console.log('handleLabelRowKeyDown');
-    this.props.onKeyDown(evt);
-  };
+  // handleLabelRowKeyDown = evt => {
+  //   console.log('handleLabelRowKeyDown');
+  //   this.props.onKeyDown(evt);
+  // };
 
   render() {
     const { children, className, ...other } = this.props;
