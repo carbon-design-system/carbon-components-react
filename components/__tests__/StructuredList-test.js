@@ -43,3 +43,24 @@ describe('StructuredListWrapper', () => {
     });
   });
 });
+
+describe('StructuredListHead', () => {
+  describe('Renders as expected', () => {
+    const wrapper = shallow(
+      <StructuredListHead className="extra-class">hi</StructuredListHead>
+    );
+
+    it('should have the expected classes', () => {
+      expect(wrapper.hasClass('bx--structured-list-thead')).toEqual(true);
+    });
+
+    it('Should add extra classes that are passed via className', () => {
+      expect(wrapper.hasClass('extra-class')).toEqual(true);
+    });
+
+    it('Should accept other props from ...other', () => {
+      const wrapperProps = shallow(<StructuredListHead title="title">hi</StructuredListHead>);
+      expect(wrapperProps.props().title).toEqual('title');
+    });
+  });
+});
