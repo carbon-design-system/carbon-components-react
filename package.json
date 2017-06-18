@@ -127,6 +127,7 @@
     "shelljs": "^0.7.5",
     "storybook-addon-a11y": "^3.0.0",
     "validate-commit-msg": "^2.10.1",
+    "window-or-global": "^1.0.1",
     "semantic-release": "^6.3.6"
   },
   "jest": {
