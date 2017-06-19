@@ -88,6 +88,7 @@
   "dependencies": {
     "classnames": "2.2.5",
     "lodash.debounce": "^4.0.8",
+    "window-or-global": "^1.0.1",
     "react-addons-css-transition-group": "^15.4.2",
     "warning": "3.0.0"
   },
@@ -127,7 +128,6 @@
     "shelljs": "^0.7.5",
     "storybook-addon-a11y": "^3.0.0",
     "validate-commit-msg": "^2.10.1",
-    "window-or-global": "^1.0.1",
     "semantic-release": "^6.3.6"
   },
   "jest": {
