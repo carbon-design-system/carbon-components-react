@@ -144,13 +144,16 @@ class Slider extends Component {
   }
 
   handleMouseStart = () => {
+    console.log("hi");
     this.element.ownerDocument.addEventListener('mousemove',  (evt) => { this.updatePosition(evt); })
     this.element.ownerDocument.addEventListener('mouseup', this.handleMouseEnd())
   }
 
   handleMouseEnd = () => {
-    this.element.ownerDocument.removeEventListener('mousemove',  (evt) => { this.updatePosition(evt); })
-    this.element.ownerDocument.removeEventListener('mouseup', this.handleMouseEnd())
+    console.log("hi2");
+
+    this.element.ownerDocument.removeEventListener('mousemove', (evt) );
+    this.element.ownerDocument.removeEventListener('mouseup', this.handleMouseEnd());
   }
 
   render() {
@@ -178,6 +181,7 @@ class Slider extends Component {
           ref={node => {
             this.element = node;
           }}
+          onClick={(evt) => this.updatePosition(evt)}
         >
           <div
             className="bx--slider__track"
