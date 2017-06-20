@@ -97,6 +97,7 @@ class StructuredListRow extends Component {
     label: PropTypes.bool,
     htmlFor: PropTypes.string,
     tabIndex: PropTypes.number,
+    onKeyDown: PropTypes.func,
   };
 
   static defaultProps = {
@@ -104,17 +105,33 @@ class StructuredListRow extends Component {
     head: false,
     label: false,
     tabIndex: 0,
+    onKeyDown: () => {},
   };
 
   render() {
-    const { tabIndex, htmlFor, children, className, head, label, ...other } = this.props;
+    const {
+      onKeyDown,
+      tabIndex,
+      htmlFor,
+      children,
+      className,
+      head,
+      label,
+      ...other
+    } = this.props;
 
     const classes = classNames('bx--structured-list-row', className, {
       'bx--structured-list-row--header-row': head,
     });
 
     return label
-      ? <label {...other} tabIndex={tabIndex} className={classes} htmlFor={htmlFor}>
+      ? <label
+          {...other}
+          tabIndex={tabIndex}
+          className={classes}
+          htmlFor={htmlFor}
+          onKeyDown={onKeyDown}
+        >
           {children}
         </label>
       : <div {...other} className={classes}>
@@ -128,21 +145,34 @@ class StructuredListBody extends Component {
     children: PropTypes.node,
     className: PropTypes.string,
     head: PropTypes.bool,
+    onKeyDown: PropTypes.func,
+  };
+
+  static defaultProps = {
+    onKeyDown: () => {},
   };
 
   state = {
+    labelRows: null,
     rowSelected: 0,
   };
 
-  // handleLabelRowKeyDown = evt => {
-  //   console.log('handleLabelRowKeyDown');
-  //   this.props.onKeyDown(evt);
-  // };
+  handleKeyDown = evt => {
+    console.log('handleKeyDown');
+    this.props.onKeyDown(evt);
+  };
 
   render() {
     const { children, className, ...other } = this.props;
+    const childrenWithProps = React.Children.map(children, child => {
+      return child.type === StructuredListRow
+        ? React.cloneElement(child, {
+            onKeyDown: this.handleKeyDown,
+          })
+        : child;
+    });
     const classes = classNames('bx--structured-list-tbody', className);
-    return <div className={classes} {...other}>{children}</div>;
+    return <div className={classes} {...other}>{childrenWithProps}</div>;
   }
 }
 
