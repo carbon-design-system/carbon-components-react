@@ -40,7 +40,8 @@ describe('Search', () => {
       it('should set value as expected', () => {
         expect(textInput.props().defaultValue).toEqual(undefined);
         wrapper.setProps({ defaultValue: 'test' });
-        expect(textInput.props().value).toEqual('test');
+        expect(textInput.props().defaultValue).toEqual('test');
+        expect(textInput.props().value).toEqual(undefined);
       });
 
       it('should set placeholder as expected', () => {
