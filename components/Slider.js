@@ -7,7 +7,9 @@ class Slider extends Component {
     id: PropTypes.string,
     value: PropTypes.number.isRequired,
     min: PropTypes.number.isRequired,
+    minLabel: PropTypes.string,
     max: PropTypes.number.isRequired,
+    maxLabel: PropTypes.string,
     step: PropTypes.number,
     stepMuliplier: PropTypes.number,
     children: PropTypes.node,
@@ -17,6 +19,8 @@ class Slider extends Component {
   static defaultProps = {
     stepMuliplier: 4,
     disabled: false,
+    minLabel: '',
+    maxLabel: '',
   }
 
   state = {
@@ -36,11 +40,12 @@ class Slider extends Component {
   }
 
   updatePosition = (evt) => {
-    if (this.props.disabled) {
+    if (evt && this.props.disabled) {
       return;
     }
+
     if(evt) {
-      if(evt.dispatchConfig) { evt.persist(); }
+      if(evt.dispatchConfig) { evt.persist(); } // fix
     }
 
     if (this.state.dragging) {
@@ -102,9 +107,10 @@ class Slider extends Component {
           newValue = Number(value) + (stepMultiplied * direction);
         }
       }
-      if (type === 'mousemove' || type === 'click') {
+      if (type === 'mousemove' || type === 'click' || type === 'touchmove') {
+        const clientX = evt.touches ? evt.touches[0].clientX : evt.clientX;
         const track = this.track.getBoundingClientRect();
-        const unrounded = ((evt.clientX - track.left) / track.width);
+        const unrounded = ((clientX - track.left) / track.width);
         const rounded = Math.round(((range * unrounded) / step)) * step;
         left = (((rounded - min) / range) * 100);
         newValue = rounded;
@@ -133,6 +139,20 @@ class Slider extends Component {
     this.element.ownerDocument.removeEventListener('mouseup', this.handleMouseEnd)
   }
 
+  handleTouchStart = () => {
+    this.element.ownerDocument.addEventListener('touchmove', this.updatePosition); // fix
+    this.element.ownerDocument.addEventListener('touchup', this.handleTouchEnd);
+    this.element.ownerDocument.addEventListener('touchend', this.handleTouchEnd);
+    this.element.ownerDocument.addEventListener('touchcancel', this.handleTouchEnd);
+  }
+
+  handleTouchEnd = () => {
+    this.element.ownerDocument.removeEventListener('touchmove', this.updatePosition);
+    this.element.ownerDocument.removeEventListener('touchup', this.handleTouchEnd);
+    this.element.ownerDocument.removeEventListener('touchend', this.handleTouchEnd);
+    this.element.ownerDocument.removeEventListener('touchcancel', this.handleTouchEnd);
+  }
+
   renderChildren() {
     return React.Children.map(this.props.children, (child) => {
       return React.cloneElement(child, {
@@ -145,7 +165,9 @@ class Slider extends Component {
     const {
       value,
       min,
+      minLabel,
       max,
+      maxLabel,
       step,
       required,
       disabled,
@@ -164,7 +186,7 @@ class Slider extends Component {
     }
     return (
       <div className="bx--slider-container">
-        <span className="bx--slider__range-label">{min}</span>
+        <span className="bx--slider__range-label">{min}{minLabel}</span>
         <div
           id={this.props.id}
           className={sliderClasses}
@@ -186,6 +208,7 @@ class Slider extends Component {
             tabIndex="0"
             style={thumbStyle}
             onMouseDown={() => this.handleMouseStart()}
+            onTouchStart={() => this.handleTouchStart()}
             onKeyDown={(evt) => this.updatePosition(evt)}
           >
           </div>
@@ -198,7 +221,7 @@ class Slider extends Component {
             step={step}
           />
         </div>
-        <span className="bx--slider__range-label">{max}</span>
+        <span className="bx--slider__range-label">{max}{maxLabel}</span>
         {this.renderChildren()}
       </div>
     );
