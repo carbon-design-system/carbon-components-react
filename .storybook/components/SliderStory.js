@@ -14,7 +14,7 @@ storiesOf('Slider', module)
         <div className="bx--form-item">
           <label htmlFor="slider" className="bx--label">Slider Label</label>
           <Slider id="slider" value={50} min={0} max={100} step={1}>
-            {/* <TextInput className="bx--text-input bx-slider-text-input" value={}/> */}
+            <TextInput id="input-for-slider" className="bx--text-input bx-slider-text-input"/>
           </Slider>
         </div>
       </div>

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-// import classNames from 'classnames';
+import classNames from 'classnames';
 
 class Slider extends Component {
   static propTypes = {
@@ -11,10 +11,12 @@ class Slider extends Component {
     step: PropTypes.number,
     stepMuliplier: PropTypes.number,
     children: PropTypes.node,
+    disabled: PropTypes.bool,
   };
 
   static defaultProps = {
     stepMuliplier: 4,
+    disabled: false,
   }
 
   state = {
@@ -24,45 +26,44 @@ class Slider extends Component {
   };
 
   componentDidMount() {
-    // this.updatePosition()
+    this.updatePosition()
   }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps !== this.props) {
-      // this.setState({ open: nextProps.open });
       this.updatePosition()
     }
   }
 
-  updatePosition(evt) {
-    const {
-      left,
-      newValue,
-    } = this.calcValue(evt);
-    this.setState({
-      left,
-      value: newValue,
-     });
+  updatePosition = (evt) => {
+    if (this.props.disabled) {
+      return;
+    }
+    if(evt) {
+      if(evt.dispatchConfig) { evt.persist(); }
+    }
 
-    // if (this.state.dragging) {
-    //   return;
-    // }
-    //
-    // this.state.dragging = true;
-    //
-    // requestAnimationFrame(() => {
-    //   this.state.dragging = false;
-    //   this.thumb.style.left = `${left}%`;
-    //   this.filledTrack.style.transform = `translate(0%, -50%) scaleX(${left / 100})`;
-    //   this.setState({
-    //     left,
-    //     value: newValue,
-    //    });
-    //   // this.updateInput();
-    // });
+    if (this.state.dragging) {
+      return;
+    }
+
+    this.setState({ dragging: true });
+
+    requestAnimationFrame(() => {
+      this.setState({ dragging: false });
+      const {
+        left,
+        newValue,
+      } = this.calcValue(evt);
+
+      this.setState({
+        left,
+        value: newValue,
+       });
+    });
   }
 
-  calcValue(evt) {
+  calcValue = (evt) => {
     const {
       min,
       max,
@@ -122,38 +123,22 @@ class Slider extends Component {
     return { left, newValue };
   }
 
-  updateInput() {
-    if (this.boundInput) {
-      this.boundInput.value = this.input.value;
-    }
-  }
-
-  setValue(value) {
-    this.input.value = value;
-    this._updatePosition();
-  }
-
-  stepUp() {
-    this.input.stepUp();
-    this._updatePosition();
-  }
-
-  stepDown() {
-    this.input.stepDown();
-    this._updatePosition();
-  }
-
   handleMouseStart = () => {
-    console.log("hi");
-    this.element.ownerDocument.addEventListener('mousemove',  (evt) => { this.updatePosition(evt); })
-    this.element.ownerDocument.addEventListener('mouseup', this.handleMouseEnd())
+    this.element.ownerDocument.addEventListener('mousemove', this.updatePosition)
+    this.element.ownerDocument.addEventListener('mouseup', this.handleMouseEnd)
   }
 
   handleMouseEnd = () => {
-    console.log("hi2");
+    this.element.ownerDocument.removeEventListener('mousemove', this.updatePosition)
+    this.element.ownerDocument.removeEventListener('mouseup', this.handleMouseEnd)
+  }
 
-    this.element.ownerDocument.removeEventListener('mousemove', (evt) );
-    this.element.ownerDocument.removeEventListener('mouseup', this.handleMouseEnd());
+  renderChildren() {
+    return React.Children.map(this.props.children, (child) => {
+      return React.cloneElement(child, {
+        value: this.state.value
+      })
+    });
   }
 
   render() {
@@ -163,8 +148,13 @@ class Slider extends Component {
       max,
       step,
       required,
-      children,
+      disabled,
     } = this.props;
+
+    const sliderClasses = classNames(
+      'bx--slider',
+      { 'bx--slider--disabled': disabled },
+    );
 
     const filledTrackStyle = {
       transform: `translate(0%, -50%) scaleX(${this.state.left / 100})`,
@@ -174,10 +164,10 @@ class Slider extends Component {
     }
     return (
       <div className="bx--slider-container">
-        <span className="bx--slider__range-label">0</span>
+        <span className="bx--slider__range-label">{min}</span>
         <div
           id={this.props.id}
-          className="bx--slider"
+          className={sliderClasses}
           ref={node => {
             this.element = node;
           }}
@@ -208,8 +198,8 @@ class Slider extends Component {
             step={step}
           />
         </div>
-        <span className="bx--slider__range-label">100</span>
-        {children}
+        <span className="bx--slider__range-label">{max}</span>
+        {this.renderChildren()}
       </div>
     );
   }
