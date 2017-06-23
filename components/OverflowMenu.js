@@ -80,6 +80,10 @@ class OverflowMenu extends Component {
   };
 
   handleClickOutside = () => {
+    this.closeMenu();
+  };
+
+  closeMenu = () => {
     this.setState({ open: false });
   };
 
@@ -96,6 +100,7 @@ class OverflowMenu extends Component {
       menuOffset,
       menuOffsetFlip,
       iconClass,
+      onClick, // eslint-disable-line
       ...other
     } = this.props;
 
@@ -117,12 +122,17 @@ class OverflowMenu extends Component {
       iconClass
     );
 
+    const childrenWithProps = React.Children.map(children, child =>
+      React.cloneElement(child, {
+        closeMenu: this.closeMenu,
+      })
+    );
+
     return (
       <ClickListener onClickOutside={this.handleClickOutside}>
         <div
           {...other}
           className={overflowMenuClasses}
-          onClick={this.handleClick}
           onKeyDown={this.handleKeyPress}
           aria-label={ariaLabel}
           id={id}
@@ -132,6 +142,7 @@ class OverflowMenu extends Component {
           }}
         >
           <Icon
+            onClick={this.handleClick}
             className={overflowMenuIconClasses}
             name={iconName}
             description={iconDescription}
@@ -144,11 +155,11 @@ class OverflowMenu extends Component {
                 menuOffset={flipped ? menuOffsetFlip : menuOffset}
               >
                 <ul className={overflowMenuOptionsClasses}>
-                  {children}
+                  {childrenWithProps}
                 </ul>
               </FloatingMenu>
             : <ul className={overflowMenuOptionsClasses}>
-                {children}
+                {childrenWithProps}
               </ul>}
         </div>
       </ClickListener>
