@@ -82,7 +82,7 @@ describe('AccordionItem', () => {
     const heading = toggler.find('.bx--accordion__heading');
 
     it('should set state to open when clicked', () => {
-      expect(toggler.state().open).toBeUndefined();
+      expect(toggler.state().open).toEqual(false);
       heading.simulate('click');
       expect(toggler.state().open).toEqual(true);
     });
@@ -101,7 +101,7 @@ describe('AccordionItem', () => {
     });
 
     it('should toggle state when using enter or space', () => {
-      expect(toggler.state().open).toBeUndefined();
+      expect(toggler.state().open).toEqual(false);
       toggler.simulate('keypress', { which: 32 });
       expect(toggler.state().open).toEqual(true);
       toggler.simulate('keypress', { which: 13 });
@@ -112,7 +112,7 @@ describe('AccordionItem', () => {
 
     it('should not toggle if a keypress is made in a child element', () => {
       const input = toggler.find('.testInput');
-      expect(toggler.state().open).toBeUndefined();
+      expect(toggler.state().open).toEqual(false);
       toggler.simulate('keypress', { which: 32 });
       expect(toggler.state().open).toEqual(true);
       input.simulate('keypress', { which: 32 });
