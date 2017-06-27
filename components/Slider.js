@@ -4,7 +4,9 @@ import classNames from 'classnames';
 
 class Slider extends Component {
   static propTypes = {
+    className: PropTypes.string,
     id: PropTypes.string,
+    onChange: PropTypes.func,
     value: PropTypes.number.isRequired,
     min: PropTypes.number.isRequired,
     minLabel: PropTypes.string,
@@ -140,7 +142,7 @@ class Slider extends Component {
   }
 
   handleTouchStart = () => {
-    this.element.ownerDocument.addEventListener('touchmove', this.updatePosition); // fix
+    this.element.ownerDocument.addEventListener('touchmove', this.updatePosition);
     this.element.ownerDocument.addEventListener('touchup', this.handleTouchEnd);
     this.element.ownerDocument.addEventListener('touchend', this.handleTouchEnd);
     this.element.ownerDocument.addEventListener('touchcancel', this.handleTouchEnd);
@@ -163,7 +165,9 @@ class Slider extends Component {
 
   render() {
     const {
-      value,
+      className,
+      id,
+      onChange,
       min,
       minLabel,
       max,
@@ -173,22 +177,28 @@ class Slider extends Component {
       disabled,
     } = this.props;
 
+    const {
+      value,
+      left,
+    } = this.state;
+
     const sliderClasses = classNames(
       'bx--slider',
       { 'bx--slider--disabled': disabled },
+      className,
     );
 
     const filledTrackStyle = {
-      transform: `translate(0%, -50%) scaleX(${this.state.left / 100})`,
+      transform: `translate(0%, -50%) scaleX(${left / 100})`,
     }
     const thumbStyle = {
-      left: `${this.state.left}%`,
+      left: `${left}%`,
     }
     return (
       <div className="bx--slider-container">
         <span className="bx--slider__range-label">{min}{minLabel}</span>
         <div
-          id={this.props.id}
+          id={id}
           className={sliderClasses}
           ref={node => {
             this.element = node;
@@ -219,6 +229,11 @@ class Slider extends Component {
             min={min}
             max={max}
             step={step}
+            onChange={evt => {
+              if (!disabled) {
+                onChange(evt);
+              }
+            }}
           />
         </div>
         <span className="bx--slider__range-label">{max}{maxLabel}</span>

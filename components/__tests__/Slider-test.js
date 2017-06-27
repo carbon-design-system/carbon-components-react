@@ -7,8 +7,8 @@ import 'requestanimationframe';
 describe('Slider', () => {
   describe('Renders as expected', () => {
     const wrapper = mount(
-      <Slider id="slider" value={50} min={0} max={100} step={1}>
-        <TextInput id="input-for-slider" className="bx--text-input bx-slider-text-input"/>
+      <Slider id="slider" className="extra-class" value={50} min={0} max={100} step={1}>
+        <TextInput id="input-for-slider" className="bx-slider-text-input"/>
       </Slider>
     );
 
@@ -17,25 +17,36 @@ describe('Slider', () => {
     });
 
     it('has the expected classes', () => {
-      expect(wrapper.hasClass('bx--slider')).toEqual(true);
+      expect(wrapper.find('bx--slider-container')).toEqual(true);
     });
 
     it('renders extra classes passed in via className', () => {
-      expect(wrapper.hasClass('extra-class')).toEqual(true);
+      expect(wrapper.find('.bx--slider')).hasClass('extra-class').toEqual(true);
     });
 
     it('can be disabled', () => {
       wrapper.setProps({ disabled: true });
-      expect(wrapper.find('.bx--slider-container').props().disabled).toEqual(true);
+      expect(wrapper.props().disabled).toEqual(true);
     });
 
     it('can set value via props', () => {
       wrapper.setProps({ value: 55 });
-      expect(wrapper.find('.bx--slider-container').props().value).toEqual(55);
+      expect(wrapper.props().value).toEqual(55);
     });
-    it('can change step size', () => {
-    });
-    it('can change step size', () => {
+  });
+
+  describe('events', () => {
+    it('click changes value', () => {
+      const wrapper = mount(
+        <Slider id="slider" className="extra-class" value={50} min={0} max={100} step={1}>
+          <TextInput id="input-for-slider" className="bx-slider-text-input"/>
+        </Slider>
+      );
+
+      const slider = wrapper.find('.bx--slider');
+
+      slider.simulate('click', { clientX: 400 });
+      expect(wrapper.state().value).toEqual(55);
     });
   });
 });
