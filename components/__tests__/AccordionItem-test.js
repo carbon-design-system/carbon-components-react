@@ -43,6 +43,7 @@ describe('AccordionItem', () => {
         </AccordionItem>
       );
       expect(openItem.hasClass('bx--accordion__item--active')).toEqual(true);
+      expect(openItem.state().open).toEqual(true);
     });
 
     it('should apply the active class when the state is open', () => {
