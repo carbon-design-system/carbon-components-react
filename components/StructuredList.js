@@ -1,27 +1,27 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
-import uid from '../lib/uniqueId';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import classNames from "classnames";
+import uid from "../lib/uniqueId";
 
 class StructuredListWrapper extends Component {
   static propTypes = {
     children: PropTypes.node,
     className: PropTypes.string,
     border: PropTypes.bool,
-    selection: PropTypes.bool,
+    selection: PropTypes.bool
   };
 
   static defaultProps = {
     border: false,
-    selection: false,
+    selection: false
   };
 
   render() {
     const { children, selection, className, border, ...other } = this.props;
 
-    const classes = classNames('bx--structured-list', className, {
-      'bx--structured-list--border': border,
-      'bx--structured-list--selection': selection,
+    const classes = classNames("bx--structured-list", className, {
+      "bx--structured-list--border": border,
+      "bx--structured-list--selection": selection
     });
 
     return (
@@ -35,13 +35,13 @@ class StructuredListWrapper extends Component {
 class StructuredListHead extends Component {
   static propTypes = {
     children: PropTypes.node,
-    className: PropTypes.string,
+    className: PropTypes.string
   };
 
   render() {
     const { children, className, ...other } = this.props;
 
-    const classes = classNames('bx--structured-list-thead', className);
+    const classes = classNames("bx--structured-list-thead", className);
     return <div className={classes} {...other}>{children}</div>;
   }
 }
@@ -54,12 +54,12 @@ class StructuredListInput extends Component {
     name: PropTypes.string,
     title: PropTypes.string,
     defaultChecked: PropTypes.bool,
-    onChange: PropTypes.func,
+    onChange: PropTypes.func
   };
 
   static defaultProps = {
     onChange: () => {},
-    type: 'radio',
+    type: "radio"
   };
 
   componentWillMount() {
@@ -72,7 +72,7 @@ class StructuredListInput extends Component {
 
   render() {
     const { className, type, value, name, title, ...other } = this.props;
-    const classes = classNames('bx--structured-list-input', className);
+    const classes = classNames("bx--structured-list-input", className);
     return (
       <input
         {...other}
@@ -93,19 +93,24 @@ class StructuredListRow extends Component {
   static propTypes = {
     children: PropTypes.node,
     className: PropTypes.string,
+    value: PropTypes.string,
+    title: PropTypes.string,
+    name: PropTypes.string,
     head: PropTypes.bool,
     label: PropTypes.bool,
+    input: PropTypes.bool,
     htmlFor: PropTypes.string,
     tabIndex: PropTypes.number,
-    onKeyDown: PropTypes.func,
+    onKeyDown: PropTypes.func
   };
 
   static defaultProps = {
-    htmlFor: 'unique id',
+    htmlFor: "unique id",
     head: false,
     label: false,
+    input: false,
     tabIndex: 0,
-    onKeyDown: () => {},
+    onKeyDown: () => {}
   };
 
   render() {
@@ -117,11 +122,15 @@ class StructuredListRow extends Component {
       className,
       head,
       label,
+      input,
+      value,
+      title,
+      name,
       ...other
     } = this.props;
 
-    const classes = classNames('bx--structured-list-row', className, {
-      'bx--structured-list-row--header-row': head,
+    const classes = classNames("bx--structured-list-row", className, {
+      "bx--structured-list-row--header-row": head
     });
 
     return label
@@ -132,6 +141,14 @@ class StructuredListRow extends Component {
           htmlFor={htmlFor}
           onKeyDown={onKeyDown}
         >
+          {input
+            ? <StructuredListInput
+                id={htmlFor}
+                value={value}
+                title={title}
+                name={name}
+              />
+            : null}
           {children}
         </label>
       : <div {...other} className={classes}>
@@ -145,20 +162,20 @@ class StructuredListBody extends Component {
     children: PropTypes.node,
     className: PropTypes.string,
     head: PropTypes.bool,
-    onKeyDown: PropTypes.func,
+    onKeyDown: PropTypes.func
   };
 
   static defaultProps = {
-    onKeyDown: () => {},
+    onKeyDown: () => {}
   };
 
   state = {
     labelRows: null,
-    rowSelected: 0,
+    rowSelected: 0
   };
 
   handleKeyDown = evt => {
-    console.log('handleKeyDown');
+    console.log("handleKeyDown");
     this.props.onKeyDown(evt);
   };
 
@@ -167,11 +184,11 @@ class StructuredListBody extends Component {
     const childrenWithProps = React.Children.map(children, child => {
       return child.type === StructuredListRow
         ? React.cloneElement(child, {
-            onKeyDown: this.handleKeyDown,
+            onKeyDown: this.handleKeyDown
           })
         : child;
     });
-    const classes = classNames('bx--structured-list-tbody', className);
+    const classes = classNames("bx--structured-list-tbody", className);
     return <div className={classes} {...other}>{childrenWithProps}</div>;
   }
 }
@@ -181,21 +198,21 @@ class StructuredListCell extends Component {
     children: PropTypes.node,
     className: PropTypes.string,
     head: PropTypes.bool,
-    noWrap: PropTypes.bool,
+    noWrap: PropTypes.bool
   };
 
   static defaultProps = {
     head: false,
-    noWrap: false,
+    noWrap: false
   };
 
   render() {
     const { children, className, head, noWrap, ...other } = this.props;
 
     const classes = classNames(className, {
-      'bx--structured-list-th': head,
-      'bx--structured-list-td': !head,
-      'bx--structured-list-content--nowrap': noWrap,
+      "bx--structured-list-th": head,
+      "bx--structured-list-td": !head,
+      "bx--structured-list-content--nowrap": noWrap
     });
 
     return <div className={classes} {...other}>{children}</div>;
@@ -208,5 +225,5 @@ export {
   StructuredListBody,
   StructuredListRow,
   StructuredListInput,
-  StructuredListCell,
+  StructuredListCell
 };
