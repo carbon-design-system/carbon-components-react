@@ -51,7 +51,7 @@ class DatePicker extends Component {
   }
 
   addKeyboardEvents = cal => {
-    const input = ReactDOM.findDOMNode(this.refs.inputField).querySelector(
+    const input = ReactDOM.findDOMNode(this.inputField).querySelector(
       '.bx--date-picker__input'
     );
     input.addEventListener('keydown', e => {
@@ -82,7 +82,7 @@ class DatePicker extends Component {
   }
 
   initDatePickerCalendar = () => {
-    const input = ReactDOM.findDOMNode(this.refs.inputField).querySelector(
+    const input = ReactDOM.findDOMNode(this.inputField).querySelector(
       '.bx--date-picker__input'
     );
     const calendar = new Flatpickr(input, {
@@ -94,7 +94,7 @@ class DatePicker extends Component {
         this.updateInputFields(selectedDates);
         if (this.props.datePickerType === 'range') {
           const toInputField = ReactDOM.findDOMNode(
-            this.refs.toInputField
+            this.toInputField
           ).querySelector('.bx--date-picker__input');
           if (calendar.selectedDates.length === 1) {
             input.focus();
@@ -108,7 +108,7 @@ class DatePicker extends Component {
         this.updateClassNames(calendar);
         if (this.props.datePickerType === 'range') {
           const toInputField = ReactDOM.findDOMNode(
-            this.refs.toInputField
+            this.toInputField
           ).querySelector('.bx--date-picker__input');
           if (calendar.selectedDates.length === 1 && calendar.isOpen) {
             toInputField.classList.add('bx--focused');
@@ -131,7 +131,7 @@ class DatePicker extends Component {
     });
     if (this.props.datePickerType === 'range') {
       const toInputField = ReactDOM.findDOMNode(
-        this.refs.toInputField
+        this.toInputField
       ).querySelector('.bx--date-picker__input');
       toInputField.addEventListener('click', () => {
         toInputField.focus();
@@ -199,12 +199,12 @@ class DatePicker extends Component {
   };
 
   updateInputFields = selectedDates => {
-    const input = ReactDOM.findDOMNode(this.refs.inputField).querySelector(
+    const input = ReactDOM.findDOMNode(this.inputField).querySelector(
       '.bx--date-picker__input'
     );
     if (this.props.datePickerType === 'range') {
       const toInput = ReactDOM.findDOMNode(
-        this.refs.toInputField
+        this.toInputField
       ).querySelector('.bx--date-picker__input');
       if (selectedDates.length === 2) {
         input.value = this.formatDate(selectedDates[0]);
@@ -256,20 +256,20 @@ class DatePicker extends Component {
       if (index === 0 && child.type.name === 'DatePickerInput') {
         return React.cloneElement(child, {
           datePickerType,
-          ref: 'inputField',
+          ref: (inputField) => this.inputField = inputField,
         });
       } else if (index === 1 && child.type.name === 'DatePickerInput') {
         return React.cloneElement(child, {
           datePickerType,
-          ref: 'toInputField',
+          ref: (toInputField) => this.toInputField = toInputField,
         });
       } else if (index === 0) {
         return React.cloneElement(child, {
-          ref: 'inputField',
+          ref: (inputField) => this.inputField = inputField,
         });
       } else if (index === 1) {
         return React.cloneElement(child, {
-          ref: 'toInputField',
+          ref: (toInputField) => this.toInputField = toInputField,
         });
       }
     });
