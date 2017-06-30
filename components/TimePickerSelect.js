@@ -27,6 +27,7 @@ export default class TimePickerSelect extends Component {
       children,
       iconDescription,
       className,
+      inline, // eslint-disable-line
       ...other
     } = this.props;
 
