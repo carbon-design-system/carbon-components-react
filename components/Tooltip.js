@@ -14,6 +14,7 @@ class Tooltip extends Component {
     showIcon: PropTypes.bool,
     iconName: PropTypes.string,
     iconDescription: PropTypes.string,
+    positionThreshold: PropTypes.number,
   };
 
   static defaultProps = {
@@ -22,6 +23,7 @@ class Tooltip extends Component {
     showIcon: true,
     iconName: 'info--glyph',
     iconDescription: 'tooltip',
+    positionThreshold: 5,
   };
 
   state = {
@@ -29,16 +31,28 @@ class Tooltip extends Component {
   };
 
   componentDidMount() {
-    this.getTriggerPosition();
+    this.setTriggerPosition();
   }
 
-  getTriggerPosition = () => {
+  setTriggerPosition = () => {
     const triggerPosition = this.triggerEl.getBoundingClientRect();
-    this.setState({ triggerPosition });
+
+    if (this.shouldAdjustPosition(triggerPosition)) {
+      this.triggerPosition = triggerPosition;
+    }
+  };
+
+  shouldAdjustPosition = (position) => {
+    const positionProps = ['left', 'top', 'right', 'bottom', 'width', 'height'];
+    const prevPosition = this.triggerPosition;
+    const threshold = this.props.positionThreshold;
+
+    return !prevPosition || positionProps.some(prop => Math.abs(position[prop] - prevPosition[prop]) > threshold);
   };
 
   handleMouse = direction => {
     if (direction === 'over') {
+      this.setTriggerPosition();
       this.setState({ open: true });
     } else {
       this.setState({ open: false });
@@ -99,7 +113,7 @@ class Tooltip extends Component {
               {triggerText}
             </div>}
         <FloatingMenu
-          menuPosition={this.state.triggerPosition}
+          menuPosition={this.triggerPosition}
           menuDirection={direction}
           menuOffset={menuOffset}
         >
