@@ -21,7 +21,7 @@ describe('Slider', () => {
     });
 
     it('renders extra classes passed in via className', () => {
-      // expect(wrapper.find('.bx--slider')).hasClass('extra-class').toEqual(true);
+      expect(wrapper.find('.bx--slider').hasClass('extra-class')).toEqual(true);
     });
 
     it('can be disabled', () => {
@@ -48,26 +48,19 @@ describe('Slider', () => {
       }
       expect(wrapper.instance().calcValue(evt).newValue).toEqual(100)
     });
-  });
-
-  describe('keyDown interactions', () => {
-    const wrapper = mount(
-      <Slider id="slider" className="extra-class" value={50} min={0} max={100} step={1}>
-      </Slider>
-    );
-
-    it('steps the value up on right/up keyDown', () => {
-      const thumb = wrapper.find('.bx--slider__thumb');
-      thumb.simulate('keydown', {which: 38});
-      expect(wrapper.state().value).toEqual(51);
+    it('returns correct value from event with a right/up keydown', () => {
+      const evt = {
+        type: 'keydown',
+        which: '38',
+      }
+      expect(wrapper.instance().calcValue(evt).newValue).toEqual(51)
     });
-
-    wrapper.setProps({ value: 50 });
-
-    it('steps the value up on left/down keyDown', () => {
-      const thumb = wrapper.find('.bx--slider__thumb');
-      thumb.simulate('keydown', {which: 40});
-      expect(wrapper.state().value).toEqual(49);
+    it('returns correct value from event with a left/down keydown', () => {
+      const evt = {
+        type: 'keydown',
+        which: '40',
+      }
+      expect(wrapper.instance().calcValue(evt).newValue).toEqual(49)
     });
   });
 });
