@@ -7,7 +7,7 @@ import {
   StructuredListRow,
   StructuredListCell,
 } from '../StructuredList';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 
 describe('StructuredListWrapper', () => {
   describe('Renders as expected', () => {

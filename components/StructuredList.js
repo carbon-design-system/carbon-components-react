@@ -59,25 +59,20 @@ class StructuredListInput extends Component {
 
   static defaultProps = {
     onChange: () => {},
-    type: "radio"
+    value: 'value'
   };
 
   componentWillMount() {
     this.uid = this.props.id || uid();
   }
 
-  // handleChange = evt => {
-  //   this.props.onChange(this.props.value, this.props.name, evt);
-  // };
-
   render() {
-    const { className, type, value, name, title, ...other } = this.props;
+    const { className, value, name, title, ...other } = this.props;
     const classes = classNames("bx--structured-list-input", className);
     return (
       <input
         {...other}
-        type={type}
-        // onChange={this.handleChange}
+        type="radio"
         tabIndex={-1}
         id={this.uid}
         className={classes}
@@ -93,12 +88,8 @@ class StructuredListRow extends Component {
   static propTypes = {
     children: PropTypes.node,
     className: PropTypes.string,
-    value: PropTypes.string,
-    title: PropTypes.string,
-    name: PropTypes.string,
     head: PropTypes.bool,
     label: PropTypes.bool,
-    input: PropTypes.bool,
     htmlFor: PropTypes.string,
     tabIndex: PropTypes.number,
     onKeyDown: PropTypes.func
@@ -108,7 +99,6 @@ class StructuredListRow extends Component {
     htmlFor: "unique id",
     head: false,
     label: false,
-    input: false,
     tabIndex: 0,
     onKeyDown: () => {}
   };
@@ -122,10 +112,6 @@ class StructuredListRow extends Component {
       className,
       head,
       label,
-      input,
-      value,
-      title,
-      name,
       ...other
     } = this.props;
 
@@ -141,14 +127,6 @@ class StructuredListRow extends Component {
           htmlFor={htmlFor}
           onKeyDown={onKeyDown}
         >
-          {input
-            ? <StructuredListInput
-                id={htmlFor}
-                value={value}
-                title={title}
-                name={name}
-              />
-            : null}
           {children}
         </label>
       : <div {...other} className={classes}>
@@ -174,22 +152,10 @@ class StructuredListBody extends Component {
     rowSelected: 0
   };
 
-  handleKeyDown = evt => {
-    console.log("handleKeyDown");
-    this.props.onKeyDown(evt);
-  };
-
   render() {
     const { children, className, ...other } = this.props;
-    const childrenWithProps = React.Children.map(children, child => {
-      return child.type === StructuredListRow
-        ? React.cloneElement(child, {
-            onKeyDown: this.handleKeyDown
-          })
-        : child;
-    });
     const classes = classNames("bx--structured-list-tbody", className);
-    return <div className={classes} {...other}>{childrenWithProps}</div>;
+    return <div className={classes} {...other}>{children}</div>;
   }
 }
 
