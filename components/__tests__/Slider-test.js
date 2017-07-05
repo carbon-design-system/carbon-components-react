@@ -1,7 +1,7 @@
 import React from 'react';
 import Slider from '../Slider';
 import TextInput from '../TextInput';
-import { mount, shallow } from 'enzyme';
+import { mount } from 'enzyme';
 import 'requestanimationframe';
 
 describe('Slider', () => {
