@@ -87,6 +87,7 @@
   },
   "dependencies": {
     "classnames": "2.2.5",
+    "flatpickr": "^3.0.6",
     "lodash.debounce": "^4.0.8",
     "react-addons-css-transition-group": "^15.4.2",
     "warning": "3.0.0",
@@ -103,6 +104,7 @@
     "babel-preset-env": "^1.5.1",
     "babel-preset-react": "^6.11.1",
     "babel-preset-stage-1": "^6.16.0",
+    "bowser": "^1.7.0",
     "carbon-components": "^7.5.7",
     "carbon-icons": "^6.0.4",
     "commitizen": "^2.9.5",
