@@ -73,15 +73,14 @@ storiesOf("StructuredList", module)
           </StructuredListRow>
         </StructuredListHead>
         <StructuredListBody>
-          <StructuredListRow
-            label
-            input
-            htmlFor="apache-spark"
-            value="apache-spark"
-            title="apache-spark"
-            name="services"
-            defaultChecked
-          >
+          <StructuredListRow label htmlFor="apache-spark">
+            <StructuredListInput
+              id="apache-spark"
+              value="apache-spark"
+              title="apache-spark"
+              name="services"
+              defaultChecked
+            />
             <StructuredListCell>
               <Icon
                 className="bx--structured-list-svg"
@@ -102,13 +101,13 @@ storiesOf("StructuredList", module)
               for Apache Spark.
             </StructuredListCell>
           </StructuredListRow>
-          <StructuredListInput
-            id="cloudant"
-            value="cloudant"
-            title="cloudant"
-            name="services"
-          />
           <StructuredListRow label htmlFor="cloudant">
+            <StructuredListInput
+              id="cloudant"
+              value="cloudant"
+              title="cloudant"
+              name="services"
+            />
             <StructuredListCell>
               <Icon
                 className="bx--structured-list-svg"
