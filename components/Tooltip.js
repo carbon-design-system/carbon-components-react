@@ -39,6 +39,7 @@ class Tooltip extends Component {
 
   handleMouse = direction => {
     if (direction === 'over') {
+      this.getTriggerPosition();
       this.setState({ open: true });
     } else {
       this.setState({ open: false });
