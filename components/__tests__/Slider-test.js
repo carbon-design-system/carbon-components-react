@@ -17,7 +17,7 @@ describe('Slider', () => {
     });
 
     it('has the expected classes', () => {
-      expect(wrapper.hasClass('bx--slider-container')).toEqual(true);
+      expect(wrapper.find('.bx--slider').length).toBe(1);
     });
 
     it('renders extra classes passed in via className', () => {
