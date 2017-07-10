@@ -24,10 +24,7 @@ class Search extends Component {
 
   state = {
     format: 'list',
-  };
-
-  toggleClearIcon = evt => {
-    this.input.value = evt.target.value;
+    hasContent: this.props.value || this.props.defaultValue || false,
   };
 
   clearInput = () => {
@@ -44,6 +41,22 @@ class Search extends Component {
       this.setState({
         format: 'list',
       });
+    }
+  };
+
+  handleChange = evt => {
+    if (evt.target.value !== '') {
+      this.setState({
+        hasContent: true,
+      });
+    } else {
+      this.setState({
+        hasContent: false,
+      });
+    }
+
+    if (this.props.onChange) {
+      this.props.onChange();
     }
   };
 
@@ -107,6 +120,8 @@ class Search extends Component {
       ...other
     } = this.props;
 
+    const { hasContent } = this.state;
+
     const searchClasses = classNames({
       'bx--search bx--search-with-options': true,
       'bx--search--lg': !small,
@@ -114,11 +129,9 @@ class Search extends Component {
       [className]: className,
     });
 
-    const hasContent = Boolean(this.input) && Boolean(this.input.value);
-
     const clearClasses = classNames({
       'bx--search-close': true,
-      'bx--search-close--hidden': hasContent,
+      'bx--search-close--hidden': !hasContent,
     });
 
     return (
@@ -128,14 +141,16 @@ class Search extends Component {
           description="search"
           className="bx--search-magnifier"
         />
-        <label htmlFor={id} className="bx--label">{labelText}</label>
+        <label htmlFor={id} className="bx--label">
+          {labelText}
+        </label>
         <input
           {...other}
           type={type}
           className="bx--search-input"
           id={id}
           placeholder={placeHolderText}
-          onInput={this.toggleClearIcon}
+          onChange={this.handleChange}
           ref={input => {
             this.input = input;
           }}
