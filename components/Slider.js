@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import TextInput from './TextInput';
 
 class Slider extends Component {
   static propTypes = {
     className: PropTypes.string,
+    hideTextInput: PropTypes.bool,
     id: PropTypes.string,
     onChange: PropTypes.func,
     value: PropTypes.number.isRequired,
@@ -19,6 +21,7 @@ class Slider extends Component {
   };
 
   static defaultProps = {
+    hideTextInput: false,
     stepMuliplier: 4,
     disabled: false,
     minLabel: '',
@@ -46,8 +49,8 @@ class Slider extends Component {
       return;
     }
 
-    if(evt) {
-      if(evt.dispatchConfig) { evt.persist(); } // fix
+    if(evt && evt.dispatchConfig) {
+      evt.persist();
     }
 
     if (this.state.dragging) {
@@ -155,17 +158,15 @@ class Slider extends Component {
     this.element.ownerDocument.removeEventListener('touchcancel', this.handleTouchEnd);
   }
 
-  renderChildren() {
-    return React.Children.map(this.props.children, (child) => {
-      return React.cloneElement(child, {
-        value: this.state.value
-      })
-    });
+  handleChange = (evt) => {
+    this.setState({ value: evt.target.value });
+    this.updatePosition();
   }
 
   render() {
     const {
       className,
+      hideTextInput,
       id,
       onChange,
       min,
@@ -195,49 +196,59 @@ class Slider extends Component {
       left: `${left}%`,
     }
     return (
-      <div className="bx--slider-container">
-        <span className="bx--slider__range-label">{min}{minLabel}</span>
-        <div
-          id={id}
-          className={sliderClasses}
-          ref={node => {
-            this.element = node;
-          }}
-          onClick={(evt) => this.updatePosition(evt)}
-        >
+      <div className="bx--form-item">
+        <label htmlFor={id} className="bx--label">Slider Label</label>
+        <div className="bx--slider-container">
+          <span className="bx--slider__range-label">{min}{minLabel}</span>
           <div
-            className="bx--slider__track"
+            className={sliderClasses}
             ref={node => {
-              this.track = node;
+              this.element = node;
             }}
+            onClick={(evt) => this.updatePosition(evt)}
           >
+            <div
+              className="bx--slider__track"
+              ref={node => {
+                this.track = node;
+              }}
+            >
+            </div>
+            <div className="bx--slider__filled-track" style={filledTrackStyle}></div>
+            <div
+              className="bx--slider__thumb"
+              tabIndex="0"
+              style={thumbStyle}
+              onMouseDown={() => this.handleMouseStart()}
+              onTouchStart={() => this.handleTouchStart()}
+              onKeyDown={(evt) => this.updatePosition(evt)}
+            >
+            </div>
+            <input
+              id={id}
+              type="hidden"
+              value={value}
+              required={required}
+              min={min}
+              max={max}
+              step={step}
+              onChange={evt => {
+                if (!disabled) {
+                  onChange(evt);
+                }
+              }}
+            />
           </div>
-          <div className="bx--slider__filled-track" style={filledTrackStyle}></div>
-          <div
-            className="bx--slider__thumb"
-            tabIndex="0"
-            style={thumbStyle}
-            onMouseDown={() => this.handleMouseStart()}
-            onTouchStart={() => this.handleTouchStart()}
-            onKeyDown={(evt) => this.updatePosition(evt)}
-          >
-          </div>
-          <input
-            type="hidden"
-            value={value}
-            required={required}
-            min={min}
-            max={max}
-            step={step}
-            onChange={evt => {
-              if (!disabled) {
-                onChange(evt);
-              }
-            }}
-          />
+          <span className="bx--slider__range-label">{max}{maxLabel}</span>
+          {!hideTextInput ?
+            <TextInput
+              id="input-for-slider"
+              className="bx-slider-text-input"
+              value={value}
+              onChange={(evt) => this.handleChange(evt)}
+            />
+          : null }
         </div>
-        <span className="bx--slider__range-label">{max}{maxLabel}</span>
-        {this.renderChildren()}
       </div>
     );
   }
