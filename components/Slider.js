@@ -14,6 +14,7 @@ class Slider extends Component {
     minLabel: PropTypes.string,
     max: PropTypes.number.isRequired,
     maxLabel: PropTypes.string,
+    labelText: PropTypes.string,
     step: PropTypes.number,
     stepMuliplier: PropTypes.number,
     children: PropTypes.node,
@@ -173,6 +174,7 @@ class Slider extends Component {
       minLabel,
       max,
       maxLabel,
+      labelText, 
       step,
       required,
       disabled,
@@ -197,7 +199,7 @@ class Slider extends Component {
     }
     return (
       <div className="bx--form-item">
-        <label htmlFor={id} className="bx--label">Slider Label</label>
+        <label htmlFor={id} className="bx--label">{labelText}</label>
         <div className="bx--slider-container">
           <span className="bx--slider__range-label">{min}{minLabel}</span>
           <div
