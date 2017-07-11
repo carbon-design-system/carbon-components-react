@@ -59,19 +59,16 @@ class Search extends Component {
   };
 
   handleChange = evt => {
-    if (evt.target.value !== '') {
-      this.setState({
-        hasContent: true,
-      });
-    } else {
-      this.setState({
-        hasContent: false,
-      });
-    }
-
-    if (this.props.onChange) {
-      this.props.onChange(evt);
-    }
+    this.setState(
+      {
+        hasContent: evt.target.value !== '',
+      },
+      () => {
+        if (this.props.onChange) {
+          this.props.onChange(evt);
+        }
+      }
+    );
   };
 
   // eslint-disable-next-line consistent-return

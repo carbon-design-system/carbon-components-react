@@ -51,7 +51,7 @@ storiesOf('Search', module)
     () => {
       class ControlledSearch extends React.Component {
         state = {
-          searchValue: 'something',
+          searchValue: '',
         };
 
         handleChange = evt => {
