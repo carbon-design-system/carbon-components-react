@@ -16,11 +16,11 @@ storiesOf('Search', module)
     `,
     () =>
       <Search
+        key="normal"
         {...searchProps}
         className="some-class"
         id="search-1"
         labelText="Search"
-        defaultValue={'something'}
         placeHolderText="Search Bluemix Offerings"
       />
   )
@@ -34,6 +34,7 @@ storiesOf('Search', module)
     `,
     () =>
       <Search
+        key="small"
         {...searchProps}
         className="some-class"
         small
@@ -41,4 +42,39 @@ storiesOf('Search', module)
         labelText="Search"
         placeHolderText="Search Bluemix Offerings"
       />
+  )
+  .addWithInfo(
+    'Controlled',
+    `
+      You can control the Search input like you would with a normal input as well. See the Storybook source to see the source code behind this at https://github.com/carbon-design-system/carbon-components-react/blob/master/.storybook/components/SearchStory.js
+    `,
+    () => {
+      class ControlledSearch extends React.Component {
+        state = {
+          searchValue: 'something',
+        };
+
+        handleChange = evt => {
+          this.setState({
+            searchValue: evt.target.value,
+          });
+        };
+
+        render() {
+          return (
+            <Search
+              {...searchProps}
+              className="some-class"
+              id="search-1"
+              labelText="Search"
+              value={this.state.searchValue}
+              onChange={this.handleChange}
+              placeHolderText="Search Bluemix Offerings"
+            />
+          );
+        }
+      }
+
+      return <ControlledSearch />;
+    }
   );

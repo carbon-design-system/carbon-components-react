@@ -28,8 +28,22 @@ class Search extends Component {
   };
 
   clearInput = () => {
-    this.input.value = '';
-    this.input.focus();
+    if (this.props.value) {
+      this.props.onChange({
+        target: {
+          value: '',
+        },
+      });
+    } else {
+      this.input.value = '';
+    }
+
+    this.setState(
+      {
+        hasContent: false,
+      },
+      () => this.input.focus()
+    );
   };
 
   toggleLayout = () => {
@@ -56,7 +70,7 @@ class Search extends Component {
     }
 
     if (this.props.onChange) {
-      this.props.onChange();
+      this.props.onChange(evt);
     }
   };
 
