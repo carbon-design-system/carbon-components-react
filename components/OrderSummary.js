@@ -28,6 +28,10 @@ class OrderSummaryHeader extends Component {
     title: PropTypes.string,
   };
 
+  static defaultProps = {
+    title: 'Order Summary',
+  };
+
   render() {
     const { children, className, title, ...other } = this.props;
     const classes = classNames('bx--order-header', className);
@@ -61,14 +65,18 @@ class OrderSummaryList extends Component {
 
 class OrderSummaryListItem extends Component {
   static propTypes = {
-    children: PropTypes.node,
     className: PropTypes.string,
     text: PropTypes.string,
     price: PropTypes.string,
   };
 
+  static defaultProps = {
+    text: 'Detail 1',
+    price: '--',
+  };
+
   render() {
-    const { children, className, text, price, ...other } = this.props;
+    const { className, text, price, ...other } = this.props;
     const classes = classNames('bx--order-item', className);
 
     return (
@@ -87,6 +95,12 @@ class OrderSummaryTotal extends Component {
     summaryText: PropTypes.string,
     summaryPrice: PropTypes.string,
     summaryDetails: PropTypes.string,
+  };
+
+  static defaultProps = {
+    summaryText: 'Total due now:',
+    summaryPrice: '$0.00',
+    summaryDetails: 'estimated',
   };
 
   render() {
@@ -117,19 +131,17 @@ class OrderSummaryTotal extends Component {
 
 class OrderSummaryFooter extends Component {
   static propTypes = {
-    children: PropTypes.node,
     className: PropTypes.string,
   };
 
+  static defaultProps = {
+    footerText: 'Need Help?',
+    linkText: 'Contact Bluemix Sales',
+    href: '',
+  };
+
   render() {
-    const {
-      children,
-      className,
-      footerText,
-      linkText,
-      href,
-      ...other
-    } = this.props;
+    const { className, footerText, linkText, href, ...other } = this.props;
     const classes = classNames('bx--order-footer', className);
 
     return (

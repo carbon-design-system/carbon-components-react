@@ -31,9 +31,9 @@ storiesOf('OrderSummary', module).addWithInfo(
         </Dropdown>
       </OrderSummaryHeader>
       <OrderSummaryList>
-        <OrderSummaryListItem text="Detail One" price="$20.00" />
-        <OrderSummaryListItem text="Detail Two" price="$40.00" />
-        <OrderSummaryListItem text="Detail Three" price="--" />
+        <OrderSummaryListItem />
+        <OrderSummaryListItem text="Detail 2" price="$20.00" />
+        <OrderSummaryListItem text="Detail 3" price="$40.00" />
       </OrderSummaryList>
       <OrderSummaryTotal
         summaryText="Total due now:"
