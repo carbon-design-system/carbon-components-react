@@ -20,6 +20,7 @@ class Search extends Component {
     type: 'text',
     small: false,
     placeHolderText: '',
+    onChange: () => {},
   };
 
   state = {
@@ -63,9 +64,7 @@ class Search extends Component {
       hasContent: evt.target.value !== '',
     });
 
-    if (this.props.onChange) {
-      this.props.onChange(evt);
-    }
+    this.props.onChange(evt);
   };
 
   // eslint-disable-next-line consistent-return

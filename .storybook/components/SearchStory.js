@@ -16,7 +16,6 @@ storiesOf('Search', module)
     `,
     () =>
       <Search
-        key="normal"
         {...searchProps}
         className="some-class"
         id="search-1"
@@ -34,7 +33,6 @@ storiesOf('Search', module)
     `,
     () =>
       <Search
-        key="small"
         {...searchProps}
         className="some-class"
         small
