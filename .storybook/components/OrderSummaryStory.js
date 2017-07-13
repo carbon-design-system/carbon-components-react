@@ -1,0 +1,56 @@
+import React from 'react';
+import { storiesOf, action } from '@storybook/react';
+import {
+  OrderSummary,
+  OrderSummaryHeader,
+  OrderSummaryList,
+  OrderSummaryListItem,
+  OrderSummaryTotal,
+  OrderSummaryFooter,
+} from '../../components/OrderSummary';
+import Button from '../../components/Button';
+import Dropdown from '../../components/Dropdown';
+import DropdownItem from '../../components/DropdownItem';
+
+storiesOf('OrderSummary', module).addWithInfo(
+  'Simple',
+  `
+      description here
+    `,
+  () =>
+    <OrderSummary>
+      <OrderSummaryHeader title="Order Summary">
+        <Dropdown
+          onChange={selectedItemInfo => console.log(selectedItemInfo)}
+          defaultText="USD"
+        >
+          <DropdownItem itemText="USD" value="usd" />
+          <DropdownItem itemText="GBP" value="gbp" />
+          <DropdownItem itemText="NOK" value="nok" />
+          <DropdownItem itemText="EUR" value="eur" />
+        </Dropdown>
+      </OrderSummaryHeader>
+      <OrderSummaryList>
+        <OrderSummaryListItem text="Detail One" price="$20.00" />
+        <OrderSummaryListItem text="Detail Two" price="$40.00" />
+        <OrderSummaryListItem text="Detail Three" price="--" />
+      </OrderSummaryList>
+      <OrderSummaryTotal
+        summaryText="Total due now:"
+        summaryPrice="$0.00"
+        summaryDetails="estimated"
+      >
+        <Button>
+          Primary Button
+        </Button>
+        <Button kind="secondary">
+          Primary Button
+        </Button>
+      </OrderSummaryTotal>
+      <OrderSummaryFooter
+        footerText="Need Help?"
+        linkText="Contact Bluemix Sales"
+        href="www.google.com"
+      />
+    </OrderSummary>
+);
