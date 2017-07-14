@@ -63,6 +63,32 @@ class OrderSummaryList extends Component {
   }
 }
 
+class OrderSummaryCategory extends Component {
+  static propTypes = {
+    children: PropTypes.node,
+    className: PropTypes.string,
+    categoryText: PropTypes.string,
+  };
+
+  static defaultProps = {
+    categoryText: 'Category Label',
+  };
+
+  render() {
+    const { children, className, categoryText, ...other } = this.props;
+    const classes = classNames('bx--order-category', className);
+
+    return (
+      <li className={classes} {...other}>
+        <p className="bx--order-category-title">{categoryText}</p>
+        <ul>
+          {children}
+        </ul>
+      </li>
+    );
+  }
+}
+
 class OrderSummaryListItem extends Component {
   static propTypes = {
     className: PropTypes.string,
@@ -157,6 +183,7 @@ class OrderSummaryFooter extends Component {
 export {
   OrderSummary,
   OrderSummaryHeader,
+  OrderSummaryCategory,
   OrderSummaryList,
   OrderSummaryListItem,
   OrderSummaryTotal,

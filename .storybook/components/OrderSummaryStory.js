@@ -3,6 +3,7 @@ import { storiesOf, action } from '@storybook/react';
 import {
   OrderSummary,
   OrderSummaryHeader,
+  OrderSummaryCategory,
   OrderSummaryList,
   OrderSummaryListItem,
   OrderSummaryTotal,
@@ -12,45 +13,101 @@ import Button from '../../components/Button';
 import Dropdown from '../../components/Dropdown';
 import DropdownItem from '../../components/DropdownItem';
 
-storiesOf('OrderSummary', module).addWithInfo(
-  'Simple',
-  `
+storiesOf('OrderSummary', module)
+  .addWithInfo(
+    'Simple',
+    `
       description here
     `,
-  () =>
-    <OrderSummary>
-      <OrderSummaryHeader title="Order Summary">
-        <Dropdown
-          onChange={selectedItemInfo => console.log(selectedItemInfo)}
-          defaultText="USD"
+    () =>
+      <OrderSummary>
+        <OrderSummaryHeader title="Order Summary">
+          <Dropdown
+            onChange={selectedItemInfo => console.log(selectedItemInfo)}
+            defaultText="USD"
+          >
+            <DropdownItem itemText="USD" value="usd" />
+            <DropdownItem itemText="GBP" value="gbp" />
+            <DropdownItem itemText="NOK" value="nok" />
+            <DropdownItem itemText="EUR" value="eur" />
+          </Dropdown>
+        </OrderSummaryHeader>
+        <OrderSummaryList>
+          <OrderSummaryListItem />
+          <OrderSummaryListItem text="Detail 2" price="$20.00" />
+          <OrderSummaryListItem text="Detail 3" price="$40.00" />
+        </OrderSummaryList>
+        <OrderSummaryTotal
+          summaryText="Total due now:"
+          summaryPrice="$0.00"
+          summaryDetails="estimated"
         >
-          <DropdownItem itemText="USD" value="usd" />
-          <DropdownItem itemText="GBP" value="gbp" />
-          <DropdownItem itemText="NOK" value="nok" />
-          <DropdownItem itemText="EUR" value="eur" />
-        </Dropdown>
-      </OrderSummaryHeader>
-      <OrderSummaryList>
-        <OrderSummaryListItem />
-        <OrderSummaryListItem text="Detail 2" price="$20.00" />
-        <OrderSummaryListItem text="Detail 3" price="$40.00" />
-      </OrderSummaryList>
-      <OrderSummaryTotal
-        summaryText="Total due now:"
-        summaryPrice="$0.00"
-        summaryDetails="estimated"
-      >
-        <Button>
-          Primary Button
-        </Button>
-        <Button kind="secondary">
-          Primary Button
-        </Button>
-      </OrderSummaryTotal>
-      <OrderSummaryFooter
-        footerText="Need Help?"
-        linkText="Contact Bluemix Sales"
-        href="www.google.com"
-      />
-    </OrderSummary>
-);
+          <Button>
+            Primary Button
+          </Button>
+          <Button kind="secondary">
+            Primary Button
+          </Button>
+        </OrderSummaryTotal>
+        <OrderSummaryFooter
+          footerText="Need Help?"
+          linkText="Contact Bluemix Sales"
+          href="www.google.com"
+        />
+      </OrderSummary>
+  )
+  .addWithInfo(
+    'Category',
+    `
+      description here
+    `,
+    () =>
+      <OrderSummary>
+        <OrderSummaryHeader title="Order Summary">
+          <Dropdown
+            onChange={selectedItemInfo => console.log(selectedItemInfo)}
+            defaultText="USD"
+          >
+            <DropdownItem itemText="USD" value="usd" />
+            <DropdownItem itemText="GBP" value="gbp" />
+            <DropdownItem itemText="NOK" value="nok" />
+            <DropdownItem itemText="EUR" value="eur" />
+          </Dropdown>
+        </OrderSummaryHeader>
+
+        <OrderSummaryList>
+          <OrderSummaryCategory>
+            <OrderSummaryListItem />
+            <OrderSummaryListItem text="Detail 2" price="$20.00" />
+            <OrderSummaryListItem text="Detail 3" price="$40.00" />
+          </OrderSummaryCategory>
+          <OrderSummaryCategory>
+            <OrderSummaryListItem />
+            <OrderSummaryListItem text="Detail 2" price="$20.00" />
+            <OrderSummaryListItem text="Detail 3" price="$40.00" />
+          </OrderSummaryCategory>
+          <OrderSummaryCategory>
+            <OrderSummaryListItem />
+            <OrderSummaryListItem text="Detail 2" price="$20.00" />
+            <OrderSummaryListItem text="Detail 3" price="$40.00" />
+          </OrderSummaryCategory>
+        </OrderSummaryList>
+        <OrderSummaryTotal
+          summaryText="Total due now:"
+          summaryPrice="$0.00"
+          summaryDetails="estimated"
+        >
+          <Button>
+            Primary Button
+          </Button>
+          <Button kind="secondary">
+            Primary Button
+          </Button>
+        </OrderSummaryTotal>
+        <OrderSummaryFooter
+          footerText="Need Help?"
+          linkText="Contact Bluemix Sales"
+          href="www.google.com"
+        />
+      </OrderSummary>
+  );
