@@ -1,5 +1,5 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
+import { storiesOf, action } from '@storybook/react';
 import Search from '../../components/Search';
 
 const searchProps = {
@@ -21,6 +21,7 @@ storiesOf('Search', module)
         id="search-1"
         labelText="Search"
         placeHolderText="Search Bluemix Offerings"
+        onSearchCloseButtonClick={action('onSearchCloseButtonClick')}
       />
   )
   .addWithInfo(
@@ -39,6 +40,7 @@ storiesOf('Search', module)
         id="search-2"
         labelText="Search"
         placeHolderText="Search Bluemix Offerings"
+        onSearchCloseButtonClick={action('onSearchCloseButtonClick')}
       />
   )
   .addWithInfo(
@@ -53,10 +55,12 @@ storiesOf('Search', module)
         };
 
         handleChange = evt => {
-          this.setState({
-            searchValue: evt.target.value,
-          });
+          this.setState({ searchValue: evt.target.value });
         };
+
+        handleSearchCloseButtonClick = evt => {
+          this.setState({ searchValue: '' });
+        }
 
         render() {
           return (
@@ -68,6 +72,7 @@ storiesOf('Search', module)
               value={this.state.searchValue}
               onChange={this.handleChange}
               placeHolderText="Search Bluemix Offerings"
+              onSearchCloseButtonClick={this.handleSearchCloseButtonClick}
             />
           );
         }
