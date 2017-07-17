@@ -21,7 +21,7 @@ storiesOf('Search', module)
         id="search-1"
         labelText="Search"
         placeHolderText="Search Bluemix Offerings"
-        onSearchCloseButtonClick={action('onSearchCloseButtonClick')}
+        onChange={action('onChange')}
       />
   )
   .addWithInfo(
@@ -40,7 +40,7 @@ storiesOf('Search', module)
         id="search-2"
         labelText="Search"
         placeHolderText="Search Bluemix Offerings"
-        onSearchCloseButtonClick={action('onSearchCloseButtonClick')}
+        onChange={action('onChange')}
       />
   )
   .addWithInfo(
@@ -55,12 +55,9 @@ storiesOf('Search', module)
         };
 
         handleChange = evt => {
+          action('onChange');
           this.setState({ searchValue: evt.target.value });
         };
-
-        handleSearchCloseButtonClick = evt => {
-          this.setState({ searchValue: '' });
-        }
 
         render() {
           return (
@@ -72,7 +69,6 @@ storiesOf('Search', module)
               value={this.state.searchValue}
               onChange={this.handleChange}
               placeHolderText="Search Bluemix Offerings"
-              onSearchCloseButtonClick={this.handleSearchCloseButtonClick}
             />
           );
         }

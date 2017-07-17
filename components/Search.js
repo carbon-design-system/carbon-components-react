@@ -2,7 +2,6 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import classNames from 'classnames';
 import Icon from './Icon';
-import Button from './Button';
 
 class Search extends Component {
   static propTypes = {
@@ -23,7 +22,6 @@ class Search extends Component {
     small: false,
     placeHolderText: '',
     onChange: () => {},
-    onSearchCloseButtonClick: () => {},
   };
 
   state = {
@@ -48,7 +46,7 @@ class Search extends Component {
       },
       () => this.input.focus()
     );
-    this.props.onSearchCloseButtonClick(evt);
+    this.props.onChange(evt);
   };
 
   toggleLayout = () => {
@@ -128,7 +126,6 @@ class Search extends Component {
       placeHolderText,
       labelText,
       small,
-      onSearchCloseButtonClick, // eslint-disable-line
       ...other
     } = this.props;
 
