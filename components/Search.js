@@ -14,6 +14,7 @@ class Search extends Component {
     id: PropTypes.string,
     searchButtonLabelText: PropTypes.string,
     layoutButtonLabelText: PropTypes.string,
+    onSearchCloseButtonClick: PropTypes.func,
   };
 
   static defaultProps = {
@@ -21,6 +22,7 @@ class Search extends Component {
     small: false,
     placeHolderText: '',
     onChange: () => {},
+    onSearchCloseButtonClick: () => {},
   };
 
   state = {
@@ -28,7 +30,7 @@ class Search extends Component {
     hasContent: this.props.value || this.props.defaultValue || false,
   };
 
-  clearInput = () => {
+  clearInput = evt => {
     if (this.props.value) {
       this.props.onChange({
         target: {
@@ -45,6 +47,7 @@ class Search extends Component {
       },
       () => this.input.focus()
     );
+    this.props.onSearchCloseButtonClick(evt);
   };
 
   toggleLayout = () => {
