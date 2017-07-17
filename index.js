@@ -6,6 +6,7 @@ export {
 export {
   OrderSummary,
   OrderSummaryHeader,
+  OrderSummaryCategory,
   OrderSummaryList,
   OrderSummaryListItem,
   OrderSummaryTotal,

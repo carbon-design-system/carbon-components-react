@@ -4,7 +4,7 @@ import Dropdown from '../Dropdown';
 import DropdownItem from '../DropdownItem';
 import { mount } from 'enzyme';
 
-describe('OrderSummary', () => {
+describe('OrderSummaryHeader', () => {
   describe('Renders as expected', () => {
     const orderSummaryHeader = mount(
       <OrderSummaryHeader className="some-class" title="Order Summary">

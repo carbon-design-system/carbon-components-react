@@ -2,13 +2,13 @@ import React from 'react';
 import { OrderSummaryList, OrderSummaryListItem } from '../OrderSummary';
 import { shallow } from 'enzyme';
 
-describe('OrderSummary', () => {
+describe('OrderSummaryList', () => {
   describe('Renders as expected', () => {
     const orderSummaryList = shallow(
       <OrderSummaryList className="some-class">
         <OrderSummaryListItem />
-        <OrderSummaryListItem text="Detail 2" price="$20.00" />
-        <OrderSummaryListItem text="Detail 3" price="$40.00" />
+        <OrderSummaryListItem />
+        <OrderSummaryListItem />
       </OrderSummaryList>
     );
 
