@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import classNames from 'classnames';
 import Icon from './Icon';
+import Button from './Button';
 
 class Search extends Component {
   static propTypes = {
@@ -127,6 +128,7 @@ class Search extends Component {
       placeHolderText,
       labelText,
       small,
+      onSearchCloseButtonClick, // eslint-disable-line
       ...other
     } = this.props;
 
