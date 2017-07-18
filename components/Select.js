@@ -50,7 +50,7 @@ const Select = ({
         <select {...other} id={id} className="bx--select-input" disabled={disabled}>
           {children}
         </select>
-        <Icon name="caret--down" className="bx--select__arrow" description={iconDescription} />
+        <Icon name="caret--down" className="bx--select__arrow" description={iconDescription} alt={iconDescription}/>
       </div>
     </div>
   );
