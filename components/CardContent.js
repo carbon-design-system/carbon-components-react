@@ -10,10 +10,14 @@ const propTypes = {
   cardLink: PropTypes.node,
   cardInfo: PropTypes.array,
   className: PropTypes.string,
+  iconDescription: PropTypes.string,
 };
 
 const defaultProps = {
+  iconDescription: 'card icon',
   cardIcon: 'app-services',
+  cardTitle: 'card title',
+  cardInfo: ['info']
 };
 
 const CardContent = ({
@@ -23,6 +27,7 @@ const CardContent = ({
   cardTitle,
   cardLink,
   cardInfo,
+  iconDescription,
   ...other
 }) => {
   const cardContentClasses = classNames({
@@ -53,7 +58,7 @@ const CardContent = ({
           <Icon
             className="bx--about__icon--img"
             name={cardIcon}
-            description="About"
+            description={iconDescription}
           />
         </div>
         <div className="bx--about__title">
