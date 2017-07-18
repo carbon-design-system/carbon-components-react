@@ -81,6 +81,7 @@ class Modal extends Component {
                 name="close"
                 className="bx--modal-close__icon"
                 description={iconDescription}
+                alt={iconDescription}
               />
             </button>
             {modalLabelContent}
@@ -107,6 +108,7 @@ class Modal extends Component {
                 name="close"
                 className="bx--modal-close__icon"
                 description={iconDescription}
+                alt={iconDescription}
               />
             </button>
           </div>
