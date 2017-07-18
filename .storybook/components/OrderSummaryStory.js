@@ -17,7 +17,7 @@ storiesOf('OrderSummary', module)
   .addWithInfo(
     'Simple',
     `
-      description here
+      This component is used to display the items a user will be purchasing. This version does not include OrderSummaryCategory.
     `,
     () =>
       <OrderSummary>
@@ -59,7 +59,7 @@ storiesOf('OrderSummary', module)
   .addWithInfo(
     'Category',
     `
-      description here
+      This component is used to display the items a user will be purchasing. The category version of OrderSummary can break the items being purchased into categories.
     `,
     () =>
       <OrderSummary>

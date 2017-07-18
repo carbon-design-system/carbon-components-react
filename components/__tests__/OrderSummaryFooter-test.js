@@ -1,7 +1,7 @@
 import React from 'react';
 import { OrderSummaryFooter } from '../OrderSummary';
 import Link from '../Link';
-import { shallow, mount } from 'enzyme';
+import { mount } from 'enzyme';
 
 describe('OrderSummaryFooter', () => {
   describe('Renders as expected', () => {

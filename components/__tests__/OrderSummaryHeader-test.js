@@ -8,10 +8,7 @@ describe('OrderSummaryHeader', () => {
   describe('Renders as expected', () => {
     const orderSummaryHeader = mount(
       <OrderSummaryHeader className="some-class" title="Order Summary">
-        <Dropdown
-          onChange={selectedItemInfo => console.log(selectedItemInfo)}
-          defaultText="USD"
-        >
+        <Dropdown defaultText="USD">
           <DropdownItem itemText="USD" value="usd" />
           <DropdownItem itemText="GBP" value="gbp" />
           <DropdownItem itemText="NOK" value="nok" />
