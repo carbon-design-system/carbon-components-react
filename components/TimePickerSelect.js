@@ -7,7 +7,7 @@ export default class TimePickerSelect extends Component {
   static propTypes = {
     children: PropTypes.node,
     className: PropTypes.string,
-    id: PropTypes.string,
+    id: PropTypes.string.isRequired,
     inline: PropTypes.bool,
     disabled: PropTypes.bool,
     defaultValue: PropTypes.any,

@@ -4,6 +4,7 @@ import classNames from 'classnames';
 
 class DatePickerInput extends Component {
   static propTypes = {
+    id: PropTypes.string.isRequired,
     children: PropTypes.node,
   };
 
