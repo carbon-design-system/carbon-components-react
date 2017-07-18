@@ -30,13 +30,7 @@ class Search extends Component {
   };
 
   clearInput = evt => {
-    if (this.props.value) {
-      this.props.onChange({
-        target: {
-          value: '',
-        },
-      });
-    } else {
+    if (!this.props.value) {
       this.input.value = '';
     }
 
@@ -46,7 +40,14 @@ class Search extends Component {
       },
       () => this.input.focus()
     );
-    this.props.onChange(evt);
+
+    const clearedEvt = Object.assign({}, evt, {
+      target: {
+        value: '',
+      },
+    });
+
+    this.props.onChange(clearedEvt);
   };
 
   toggleLayout = () => {
