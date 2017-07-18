@@ -12,12 +12,15 @@ export default class TimePickerSelect extends Component {
     disabled: PropTypes.bool,
     defaultValue: PropTypes.any,
     iconDescription: PropTypes.string,
+    hideLabel: PropTypes.bool,
+    labelText: PropTypes.string,
   };
 
   static defaultProps = {
     disabled: false,
     inline: true,
     iconDescription: 'open list of options',
+    hideLabel: true,
   };
 
   render() {
@@ -27,6 +30,8 @@ export default class TimePickerSelect extends Component {
       children,
       iconDescription,
       className,
+      hideLabel,
+      labelText,
       inline, // eslint-disable-line
       ...other
     } = this.props;
@@ -38,8 +43,19 @@ export default class TimePickerSelect extends Component {
       [className]: className,
     });
 
+    const labelClasses = classNames('bx--label', {
+      'bx--visually-hidden': hideLabel,
+    });
+
+    const label = labelText
+      ? <label htmlFor={id} className={labelClasses}>
+          {labelText}
+        </label>
+      : null;
+
     return (
       <div className={selectClasses}>
+        {label}
         <select
           {...other}
           id={id}
