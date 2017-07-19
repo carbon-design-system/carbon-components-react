@@ -21,6 +21,7 @@ export default class TimePickerSelect extends Component {
     inline: true,
     iconDescription: 'open list of options',
     hideLabel: true,
+    labelText: 'Provide label text'
   };
 
   render() {
