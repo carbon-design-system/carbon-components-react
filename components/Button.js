@@ -22,14 +22,6 @@ const propTypes = {
     }
     return undefined;
   },
-  iconAlt:  props => {
-    if (props.icon && !props.iconAlt) {
-      return new Error(
-        'icon property specified without also providing an iconAlt property.'
-      );
-    }
-    return undefined;
-  },
 };
 
 const defaultProps = {
@@ -51,7 +43,6 @@ const Button = ({
   type,
   icon,
   iconDescription,
-  iconAlt,
   ...other
 }) => {
   const buttonClasses = classNames(className, {
@@ -69,7 +60,7 @@ const Button = ({
   };
 
   const buttonImage = icon
-    ? <Icon name={icon} description={iconDescription} alt={iconAlt} className="bx--btn__icon" />
+    ? <Icon name={icon} description={iconDescription} alt={iconDescription} className="bx--btn__icon" />
     : null;
 
   const button = (

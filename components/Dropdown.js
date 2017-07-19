@@ -109,7 +109,7 @@ class Dropdown extends PureComponent {
               name="caret--down"
               className="bx--dropdown__arrow"
               description={iconDescription}
-              alt="dropdown"
+              alt={iconDescription}
             />
           </li>
           <li>
