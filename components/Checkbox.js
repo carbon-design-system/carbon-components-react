@@ -41,6 +41,7 @@ const Checkbox = ({ className, id, labelText, onChange, ...other }) => {
           <Icon
             className="bx--checkbox-checkmark"
             description="checkmark"
+            alt="checkmark"
             name="checkmark"
           />
         </span>

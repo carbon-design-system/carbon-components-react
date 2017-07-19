@@ -135,6 +135,7 @@ class Pagination extends Component {
             disabled={this.props.disabled || page === 1}
           >
             <Icon
+              alt={backwardText}
               className="bx--pagination__button-icon"
               name="chevron--left"
               description={backwardText}
@@ -156,6 +157,7 @@ class Pagination extends Component {
             }
           >
             <Icon
+              alt={forwardText}
               className="bx--pagination__button-icon"
               name="chevron--right"
               description={forwardText}

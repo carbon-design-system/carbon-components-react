@@ -148,6 +148,7 @@ class OverflowMenu extends Component {
             className={overflowMenuIconClasses}
             name={iconName}
             description={iconDescription}
+            alt={iconDescription}
             style={{ width: '100%' }}
           />
           {floatingMenu
