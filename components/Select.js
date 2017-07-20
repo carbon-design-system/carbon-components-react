@@ -13,6 +13,7 @@ const propTypes = {
   disabled: PropTypes.bool,
   defaultValue: PropTypes.any,
   iconDescription: PropTypes.string,
+  iconAlt: PropTypes.string,
   hideLabel: PropTypes.bool,
 };
 
@@ -31,6 +32,7 @@ const Select = ({
   disabled,
   children,
   iconDescription,
+  iconAlt,
   hideLabel,
   ...other
 }) => {
@@ -50,7 +52,7 @@ const Select = ({
         <select {...other} id={id} className="bx--select-input" disabled={disabled}>
           {children}
         </select>
-        <Icon name="caret--down" className="bx--select__arrow" description={iconDescription} alt={iconDescription}/>
+        <Icon name="caret--down" className="bx--select__arrow" description={iconDescription} alt={iconAlt}/>
       </div>
     </div>
   );
