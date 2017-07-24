@@ -114,39 +114,45 @@ class Filename extends Component {
   };
 
   render() {
-    const { iconDescription, status, style, tabIndex, onKeyDown, ...other } = this.props;
-    const tempStyle = Object.assign(style, { marginRight: '-1px' }); // temp style correction for loading component position
-    return (
-      <span>
-        {status === 'uploading'
-          ? <div className="bx--loading" style={tempStyle} {...other}>
-              <svg className="bx--loading__svg" viewBox="-42 -42 84 84">
-                <circle cx="0" cy="0" r="37.5" />
-              </svg>
-            </div>
-          : null}
-        {status === 'edit'
-          ? <Icon
-              className="bx--file-close"
-              name="close--glyph"
-              description={iconDescription}
-              style={style}
-              tabIndex={tabIndex}
-              onKeyDown={onKeyDown}
-              {...other}
-            />
-          : null}
-        {status === 'complete'
-          ? <Icon
-              className="bx--file-complete"
-              name="checkmark--glyph"
-              description={iconDescription}
-              style={style}
-              {...other}
-            />
-          : null}
-      </span>
-    );
+    const { iconDescription, name, status, style, ...other } = this.props;
+
+    if (status === 'uploading') {
+      return (
+        <div
+          className="bx--loading"
+          style={Object.assign(style, { width: '1rem', height: '1rem' })}
+          {...other}
+        >
+          <svg className="bx--loading__svg" viewBox="-42 -42 84 84">
+            <circle cx="0" cy="0" r="37.5" />
+          </svg>
+        </div>
+      );
+    } else if (status === 'edit') {
+      return (
+        <Icon
+          iconDescription={iconDescription}
+          className="bx--file-close"
+          name="close--glyph"
+          description={`Remove the file named: ${name}`}
+          style={style}
+          {...other}
+        />
+      );
+    } else if (status === 'complete') {
+      return (
+        <Icon
+          iconDescription={iconDescription}
+          className="bx--file-complete"
+          name="checkmark--glyph"
+          description={`The file named, ${name}, has been uploaded.`}
+          style={style}
+          {...other}
+        />
+      );
+    } else {
+      return null;
+    }
   }
 }
 
@@ -238,7 +244,11 @@ class FileUploader extends Component {
                   <span className="bx--file__state-container">
                     <Filename
                       status={filenameStatus}
-                      onClick={evt => this.handleClick(evt, index)}
+                      onClick={evt => {
+                        if (filenameStatus === 'edit') {
+                          this.handleClick(evt, index);
+                        }
+                      }}
                       iconDescription={iconDescription}
                       onKeyDown={evt => {
                         if (evt.which === 13 || evt.which === 32) {
