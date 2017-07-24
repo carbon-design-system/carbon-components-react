@@ -14,17 +14,17 @@ class FileUploaderButton extends Component {
     listFiles: PropTypes.bool,
     multiple: PropTypes.bool,
     onChange: PropTypes.func,
-    role: PropTypes.string,
+    role: PropTypes.string
   };
   static defaultProps = {
     disableLabelChanges: false,
     labelText: 'Add file',
     multiple: false,
     onChange: () => {},
-    role: 'button',
+    role: 'button'
   };
   state = {
-    labelText: this.props.labelText,
+    labelText: this.props.labelText
   };
   componentWillMount() {
     this.uid = this.props.id || uid();
@@ -59,12 +59,17 @@ class FileUploaderButton extends Component {
     } = this.props;
     const classes = classNames({
       'bx--file': true,
-      [className]: className,
+      [className]: className
     });
 
     return (
       <div className={classes}>
-        <label className="bx--btn bx--btn--primary" htmlFor={this.uid} role={role} {...other}>
+        <label
+          className="bx--btn bx--btn--primary"
+          htmlFor={this.uid}
+          role={role}
+          {...other}
+        >
           {this.state.labelText}
         </label>
         <input
@@ -84,15 +89,25 @@ class Filename extends Component {
     name: PropTypes.string,
     style: PropTypes.object,
     status: PropTypes.oneOf(['edit', 'complete', 'uploading']),
+    editIconDescrition: PropTypes.string,
+    completeIconDescrition: PropTypes.string
   };
 
   static defaultProps = {
+    completeIconDescrition: 'File has been uploaded',
+    editIconDescrition: 'Remove file',
     status: 'uploading',
-    style: {},
+    style: {}
   };
 
   render() {
-    const { name, status, style, ...other } = this.props;
+    const {
+      status,
+      style,
+      editIconDescrition,
+      completeIconDescrition,
+      ...other
+    } = this.props;
     const tempStyle = Object.assign(style, { marginRight: '-1px' }); // temp style correction for loading component position
     return (
       <span>
@@ -107,7 +122,7 @@ class Filename extends Component {
           ? <Icon
               className="bx--file-close"
               name="close--glyph"
-              description={`Remove the file named: ${name}`}
+              description={editIconDescrition}
               style={style}
               {...other}
             />
@@ -116,7 +131,7 @@ class Filename extends Component {
           ? <Icon
               className="bx--file-complete"
               name="checkmark--glyph"
-              description={`The file named, ${name}, has been uploaded.`}
+              description={completeIconDescrition}
               style={style}
               {...other}
             />
@@ -135,7 +150,7 @@ class FileUploader extends Component {
     multiple: PropTypes.bool,
     onChange: PropTypes.func,
     onClick: PropTypes.func,
-    className: PropTypes.string,
+    className: PropTypes.string
   };
 
   static defaultProps = {
@@ -143,12 +158,12 @@ class FileUploader extends Component {
     buttonLabel: 'Add file',
     multiple: false,
     onChange: () => {},
-    onClick: () => {},
+    onClick: () => {}
   };
 
   state = {
     filenames: [],
-    filenameStatus: '',
+    filenameStatus: ''
   };
 
   componentWillReceiveProps(nextProps) {
@@ -183,7 +198,7 @@ class FileUploader extends Component {
 
     const classes = classNames({
       'bx--form-item': true,
-      [className]: className,
+      [className]: className
     });
 
     return (
@@ -199,7 +214,7 @@ class FileUploader extends Component {
         <div className="bx--file-container">
           {this.state.filenames.length === 0
             ? null
-            : this.state.filenames.map((name, index) => (
+            : this.state.filenames.map((name, index) =>
                 <span
                   key={index}
                   className="bx--file__selected-file"
@@ -214,7 +229,7 @@ class FileUploader extends Component {
                     />
                   </span>
                 </span>
-              ))}
+              )}
         </div>
       </div>
     );
