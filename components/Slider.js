@@ -198,8 +198,6 @@ class Slider extends Component {
       left: `${left}%`,
     }
 
-    const textInputValue = value === 0 ? '' : value;
-
     return (
       <div className="bx--form-item">
         <label htmlFor={id} className="bx--label">{labelText}</label>
@@ -249,7 +247,7 @@ class Slider extends Component {
             <TextInput
               id="input-for-slider"
               className="bx-slider-text-input"
-              value={textInputValue}
+              value={value}
               onChange={(evt) => this.handleChange(evt)}
             />
           : null }
