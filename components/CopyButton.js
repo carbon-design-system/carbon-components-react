@@ -13,7 +13,7 @@ export default class CopyButton extends Component {
     onClick: PropTypes.func,
   };
   static defaultProps = {
-    iconDescription: 'Provide an icon description',
+    iconDescription: 'Copy to clipboard',
     feedback: 'Copied!',
     feedbackTimeout: 2000,
     onClick: () => {},
