@@ -255,6 +255,11 @@ class FileUploader extends Component {
                           this.handleClick(evt, index);
                         }
                       }}
+                      onClick={evt => {
+                        if (filenameStatus === 'edit') {
+                          this.handleClick(evt, index);
+                        }
+                      }}
                     />
                   </span>
                 </span>
