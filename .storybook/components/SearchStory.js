@@ -55,7 +55,6 @@ storiesOf('Search', module)
         };
 
         handleChange = evt => {
-          action('onChange');
           this.setState({ searchValue: evt.target.value });
         };
 
