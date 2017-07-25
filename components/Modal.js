@@ -19,6 +19,7 @@ class Modal extends Component {
     onRequestSubmit: PropTypes.func,
     onKeyDown: PropTypes.func,
     iconDescription: PropTypes.string,
+    iconAlt: PropTypes.string,
     primaryButtonDisabled: PropTypes.bool,
   };
   static defaultProps = {
@@ -54,6 +55,7 @@ class Modal extends Component {
       onRequestClose,
       onRequestSubmit,
       iconDescription,
+      iconAlt,
       primaryButtonDisabled,
       ...other
     } = this.props;
@@ -81,6 +83,7 @@ class Modal extends Component {
                 name="close"
                 className="bx--modal-close__icon"
                 description={iconDescription}
+                alt={iconAlt}
               />
             </button>
             {modalLabelContent}
@@ -107,6 +110,7 @@ class Modal extends Component {
                 name="close"
                 className="bx--modal-close__icon"
                 description={iconDescription}
+                alt={iconAlt}
               />
             </button>
           </div>

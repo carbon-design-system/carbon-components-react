@@ -21,6 +21,7 @@ class OverflowMenu extends Component {
     onKeyDown: PropTypes.func,
     handleClick: PropTypes.func,
     iconDescription: PropTypes.string.isRequired,
+    iconAlt: PropTypes.string,
     iconName: PropTypes.string,
     menuOffset: PropTypes.object,
     menuOffsetFlip: PropTypes.object,
@@ -96,6 +97,7 @@ class OverflowMenu extends Component {
       ariaLabel,
       children,
       iconDescription,
+      iconAlt,
       iconName,
       flipped,
       floatingMenu,
@@ -148,6 +150,7 @@ class OverflowMenu extends Component {
             className={overflowMenuIconClasses}
             name={iconName}
             description={iconDescription}
+            alt={iconAlt}
             style={{ width: '100%' }}
           />
           {floatingMenu
