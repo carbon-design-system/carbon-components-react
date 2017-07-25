@@ -40,6 +40,9 @@ class OverflowMenu extends Component {
     menuOffsetFlip: { top: 0, left: -60.5 },
   };
 
+  // needed to allow DetailPageHeader to identify this when minified
+  static displayName = 'OverflowMenu';
+
   state = {
     open: this.props.open,
   };

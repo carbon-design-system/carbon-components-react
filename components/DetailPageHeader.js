@@ -110,19 +110,19 @@ class DetailPageHeader extends Component {
     let icon;
 
     Children.map(children, child => {
-      if (child.type.name === 'Breadcrumb') {
+      if (child.type.displayName === 'Breadcrumb') {
         breadcrumb = child;
       }
 
-      if (child.type.name === 'Tabs') {
+      if (child.type.displayName === 'Tabs') {
         tabs = child;
       }
 
-      if (child.type.name === 'OverflowMenu') {
+      if (child.type.displayName === 'OverflowMenu') {
         overflow = child;
       }
 
-      if (child.type.name === 'Icon') {
+      if (child.type.displayName === 'Icon') {
         icon = child;
       }
 

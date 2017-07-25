@@ -24,6 +24,9 @@ class Tabs extends React.Component {
     selected: 0,
   };
 
+  // needed to allow DetailPageHeader to identify this when minified
+  static displayName = 'Tabs';
+
   state = {
     dropdownHidden: true,
     selected: this.props.selected,
