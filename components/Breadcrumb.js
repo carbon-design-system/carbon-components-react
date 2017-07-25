@@ -16,6 +16,9 @@ const Breadcrumb = ({ children, className, ...other }) => {
   );
 };
 
+// needed to allow DetailPageHeader to identify this when minified
+Breadcrumb.displayName = 'Breadcrumb';
+
 Breadcrumb.propTypes = propTypes;
 
 export default Breadcrumb;

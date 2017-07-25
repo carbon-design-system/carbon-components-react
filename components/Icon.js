@@ -129,6 +129,8 @@ const Icon = ({
 
 Icon.propTypes = propTypes;
 Icon.defaultProps = defaultProps;
+// needed to allow DetailPageHeader to identify this when minified
+Icon.displayName = 'Icon';
 
 export { icons };
 
