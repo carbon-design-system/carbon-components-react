@@ -17,8 +17,9 @@ const propTypes = {
 
 const defaultProps = {
   onChange: () => {},
-  iconDescription: 'checkmark',
-  iconAlt: 'checkmark',
+  labelText: 'Provide checkbox label text',
+  iconDescription: 'Provide icon description for a11y',
+  iconAlt: 'Provide icon alt for a11y',
 };
 
 const Checkbox = ({ className, id, labelText, onChange, iconDescription, iconAlt, ...other }) => {
