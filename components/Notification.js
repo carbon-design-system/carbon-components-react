@@ -26,17 +26,18 @@ class NotificationButton extends Component {
       notificationType,
       ...other
     } = this.props;
+
     const buttonClasses = classNames(
       {
         'bx--toast-notification__close-button': notificationType === 'toast',
-        'bx--inline-notification__close-button': notificationType === 'inine'
+        'bx--inline-notification__close-button': notificationType === 'inline'
       },
       className
     );
 
     const iconClasses = classNames({
       'bx--toast-notification__icon': notificationType === 'toast',
-      'bx--inline-notification__close-icon': notificationType === 'inine'
+      'bx--inline-notification__close-icon': notificationType === 'inline'
     });
     return (
       <button {...other} type={type} className={buttonClasses}>
