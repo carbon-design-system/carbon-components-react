@@ -86,7 +86,6 @@ class FileUploaderButton extends Component {
 
 class Filename extends Component {
   static propTypes = {
-    name: PropTypes.string,
     style: PropTypes.object,
     status: PropTypes.oneOf(['edit', 'complete', 'uploading']),
     editIconDescrition: PropTypes.string,
