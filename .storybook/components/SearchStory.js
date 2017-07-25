@@ -3,7 +3,7 @@ import { storiesOf, action } from '@storybook/react';
 import Search from '../../components/Search';
 
 const searchProps = {
-  className: 'some-class',
+  className: 'some-class'
 };
 
 storiesOf('Search', module)
@@ -21,7 +21,10 @@ storiesOf('Search', module)
         id="search-1"
         labelText="Search"
         placeHolderText="Search Bluemix Offerings"
-        onChange={action('onChange')}
+        onChange={() => {
+          console.log('onChange');
+          action('onChange');
+        }}
       />
   )
   .addWithInfo(
@@ -40,7 +43,10 @@ storiesOf('Search', module)
         id="search-2"
         labelText="Search"
         placeHolderText="Search Bluemix Offerings"
-        onChange={action('onChange')}
+        onChange={() => {
+          console.log('onChange');
+          action('onChange');
+        }}
       />
   )
   .addWithInfo(
@@ -51,10 +57,11 @@ storiesOf('Search', module)
     () => {
       class ControlledSearch extends React.Component {
         state = {
-          searchValue: '',
+          searchValue: ''
         };
 
         handleChange = evt => {
+          console.log('handleChange');
           this.setState({ searchValue: evt.target.value });
         };
 

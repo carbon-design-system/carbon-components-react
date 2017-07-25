@@ -32,6 +32,7 @@ class Search extends Component {
   clearInput = evt => {
     if (!this.props.value) {
       this.input.value = '';
+      this.props.onChange(evt);
     } else {
       const clearedEvt = Object.assign({}, evt.target, {
         target: {
