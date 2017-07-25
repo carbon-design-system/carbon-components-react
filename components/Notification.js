@@ -19,8 +19,7 @@ class Notification extends Component {
     onCloseButtonClick: () => {},
     iconDescription: 'closes notification',
     title: 'Provide a title',
-    subtitle: 'Provide a subtitle',
-    caption: 'Provide a caption'
+    subtitle: 'Provide a subtitle'
   };
 
   state = {
