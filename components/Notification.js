@@ -3,6 +3,54 @@ import React, { Component } from 'react';
 import classNames from 'classnames';
 import Icon from './Icon';
 
+class NotificationButton extends Component {
+  static propTypes = {
+    className: PropTypes.string,
+    type: PropTypes.string,
+    iconDescription: PropTypes.string,
+    name: PropTypes.string,
+    notificationType: PropTypes.PropTypes.oneOf(['toast', 'inline'])
+  };
+  static defaultProps = {
+    notificationType: 'toast',
+    type: 'button',
+    iconDescription: 'close icon',
+    name: 'close'
+  };
+  render() {
+    const {
+      className,
+      iconDescription,
+      type,
+      name,
+      notificationType,
+      ...other
+    } = this.props;
+    const buttonClasses = classNames(
+      {
+        'bx--toast-notification__close-button': notificationType === 'toast',
+        'bx--inline-notification__close-button': notificationType === 'inine'
+      },
+      className
+    );
+
+    const iconClasses = classNames({
+      'bx--toast-notification__icon': notificationType === 'toast',
+      'bx--inline-notification__close-icon': notificationType === 'inine'
+    });
+    return (
+      <button {...other} type={type} className={buttonClasses}>
+        <Icon
+          description={iconDescription}
+          className={iconClasses}
+          aria-label="close"
+          name={name}
+        />
+      </button>
+    );
+  }
+}
+
 class Notification extends Component {
   static propTypes = {
     children: PropTypes.node,
@@ -65,37 +113,22 @@ class Notification extends Component {
       )
     };
 
-    const commonProps = {
-      alert: {
-        role: 'alert',
-        kind
-      },
-      button: {
-        type: 'button',
-        onClick: this.handleCloseButtonClick
-      }
-    };
-
     const toastHTML = (
-      <div {...other} {...commonProps.alert} className={notificationClasses.toast}>
+      <div {...other} role="alert" kind={kind} className={notificationClasses.toast}>
         <div className="bx--toast-notification__details">
           <h3 className="bx--toast-notification__title">{title}</h3>
           <p className="bx--toast-notification__subtitle">{subtitle}</p>
           <p className="bx--toast-notification__caption">{caption}</p>
         </div>
-        <button {...commonProps.button} className="bx--toast-notification__close-button">
-          <Icon
-            description={this.props.iconDescription}
-            className="bx--toast-notification__icon"
-            aria-label="close"
-            name="close"
-          />
-        </button>
+        <NotificationButton
+          notificationType="toast"
+          onClick={this.handleCloseButtonClick}
+        />
       </div>
     );
 
     const inlineHTML = (
-      <div {...other} {...commonProps.alert} className={notificationClasses.inline}>
+      <div {...other} role="alert" kind={kind} className={notificationClasses.inline}>
         <div className="bx--inline-notification__details">
           <Icon
             description={this.props.iconDescription}
@@ -108,14 +141,10 @@ class Notification extends Component {
             <p className="bx--inline-notification__subtitle">{subtitle}</p>
           </div>
         </div>
-        <button {...commonProps.button} className="bx--inline-notification__close-button">
-          <Icon
-            description={this.props.iconDescription}
-            className="bx--inline-notification__close-icon"
-            aria-label="close"
-            name="close"
-          />
-        </button>
+        <NotificationButton
+          notificationType="inline"
+          onClick={this.handleCloseButtonClick}
+        />
       </div>
     );
 
@@ -124,3 +153,4 @@ class Notification extends Component {
 }
 
 export default Notification;
+export { NotificationButton };
