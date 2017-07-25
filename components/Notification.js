@@ -9,7 +9,7 @@ class NotificationButton extends Component {
     type: PropTypes.string,
     iconDescription: PropTypes.string,
     name: PropTypes.string,
-    notificationType: PropTypes.PropTypes.oneOf(['toast', 'inline'])
+    notificationType: PropTypes.oneOf(['toast', 'inline'])
   };
   static defaultProps = {
     notificationType: 'toast',
@@ -49,6 +49,45 @@ class NotificationButton extends Component {
         />
       </button>
     );
+  }
+}
+
+class NotificationTextDetails extends Component {
+  static propTypes = {
+    title: PropTypes.string,
+    subtitle: PropTypes.string,
+    caption: PropTypes.string,
+    notificationType: PropTypes.oneOf(['toast', 'inline'])
+  };
+
+  static defaultProps = {
+    title: 'title',
+    subtitle: 'subtitle',
+    caption: 'caption',
+    notificationType: 'toast'
+  };
+
+  render() {
+    const { title, subtitle, caption, notificationType, ...other } = this.props;
+
+    if (notificationType === 'toast') {
+      return (
+        <div {...other} className="bx--toast-notification__details">
+          <h3 className="bx--toast-notification__title">{title}</h3>
+          <p className="bx--toast-notification__subtitle">{subtitle}</p>
+          <p className="bx--toast-notification__caption">{caption}</p>
+        </div>
+      );
+    }
+
+    if (notificationType === 'inline') {
+      return (
+        <div {...other} className="bx--inline-notification__text-wrapper">
+          <p className="bx--inline-notification__title">{title}</p>
+          <p className="bx--inline-notification__subtitle">{subtitle}</p>
+        </div>
+      );
+    }
   }
 }
 
@@ -116,11 +155,12 @@ class Notification extends Component {
 
     const toastHTML = (
       <div {...other} role="alert" kind={kind} className={notificationClasses.toast}>
-        <div className="bx--toast-notification__details">
-          <h3 className="bx--toast-notification__title">{title}</h3>
-          <p className="bx--toast-notification__subtitle">{subtitle}</p>
-          <p className="bx--toast-notification__caption">{caption}</p>
-        </div>
+        <NotificationTextDetails
+          title={title}
+          subtitle={subtitle}
+          caption={caption}
+          notificationType="toast"
+        />
         <NotificationButton
           notificationType="toast"
           onClick={this.handleCloseButtonClick}
@@ -137,10 +177,11 @@ class Notification extends Component {
             aria-label="close"
             name={this.useIconName(kind)}
           />
-          <div className="bx--inline-notification__text-wrapper">
-            <p className="bx--inline-notification__title">{title}</p>
-            <p className="bx--inline-notification__subtitle">{subtitle}</p>
-          </div>
+          <NotificationTextDetails
+            title={title}
+            subtitle={subtitle}
+            notificationType="inline"
+          />
         </div>
         <NotificationButton
           notificationType="inline"
@@ -154,4 +195,4 @@ class Notification extends Component {
 }
 
 export default Notification;
-export { NotificationButton };
+export { NotificationButton, NotificationTextDetails };
