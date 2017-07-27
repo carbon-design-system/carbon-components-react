@@ -91,6 +91,166 @@ class NotificationTextDetails extends Component {
   }
 }
 
+class ToastNotification extends Component {
+  static propTypes = {
+    children: PropTypes.node,
+    className: PropTypes.string,
+    kind: PropTypes.oneOf(['error', 'info', 'success', 'warning']).isRequired,
+    title: PropTypes.string.isRequired,
+    subtitle: PropTypes.string.isRequired,
+    role: PropTypes.string.isRequired,
+    caption: PropTypes.string,
+    onCloseButtonClick: PropTypes.func,
+    iconDescription: PropTypes.string.isRequired,
+    notificationType: PropTypes.string
+  };
+
+  static defaultProps = {
+    role: 'alert',
+    notificationType: 'toast',
+    iconDescription: 'closes notification',
+    onCloseButtonClick: () => {}
+  };
+
+  state = {
+    open: true
+  };
+
+  handleCloseButtonClick = evt => {
+    this.setState({ open: false });
+    this.props.onCloseButtonClick(evt);
+  };
+
+  useIconName = kindProp => {
+    const isSuccess = kindProp === 'success';
+    return isSuccess ? 'checkmark--glyph' : `${kindProp}--glyph`;
+  };
+
+  render() {
+    if (!this.state.open) {
+      return null;
+    }
+
+    const {
+      role,
+      notificationType,
+      onCloseButtonClick, // eslint-disable-line
+      iconDescription, // eslint-disable-line
+      className,
+      caption,
+      subtitle,
+      title,
+      kind,
+      ...other
+    } = this.props;
+
+    const classes = classNames(
+      'bx--toast-notification',
+      { [`bx--toast-notification--${this.props.kind}`]: this.props.kind },
+      className
+    );
+
+    return (
+      <div {...other} role={role} kind={kind} className={classes}>
+        <NotificationTextDetails
+          title={title}
+          subtitle={subtitle}
+          caption={caption}
+          notificationType={notificationType}
+        />
+        <NotificationButton
+          iconDescription={iconDescription}
+          notificationType={notificationType}
+          onClick={this.handleCloseButtonClick}
+        />
+      </div>
+    );
+  }
+}
+
+class InlineNotification extends Component {
+  static propTypes = {
+    children: PropTypes.node,
+    className: PropTypes.string,
+    kind: PropTypes.oneOf(['error', 'info', 'success', 'warning']).isRequired,
+    title: PropTypes.string.isRequired,
+    subtitle: PropTypes.string.isRequired,
+    role: PropTypes.string.isRequired,
+    onCloseButtonClick: PropTypes.func,
+    iconDescription: PropTypes.string.isRequired,
+    notificationType: PropTypes.string
+  };
+
+  static defaultProps = {
+    role: 'alert',
+    notificationType: 'inline',
+    iconDescription: 'closes notification',
+    onCloseButtonClick: () => {}
+  };
+
+  state = {
+    open: true
+  };
+
+  handleCloseButtonClick = evt => {
+    this.setState({ open: false });
+    this.props.onCloseButtonClick(evt);
+  };
+
+  useIconName = kindProp => {
+    const isSuccess = kindProp === 'success';
+    return isSuccess ? 'checkmark--glyph' : `${kindProp}--glyph`;
+  };
+
+  render() {
+    if (!this.state.open) {
+      return null;
+    }
+
+    const {
+      role,
+      notificationType,
+      onCloseButtonClick, // eslint-disable-line
+      iconDescription, // eslint-disable-line
+      className,
+      subtitle,
+      title,
+      kind,
+      ...other
+    } = this.props;
+
+    const classes = classNames(
+      'bx--inline-notification',
+      { [`bx--inline-notification--${this.props.kind}`]: this.props.kind },
+      className
+    );
+
+    return (
+      <div {...other} role={role} kind={kind} className={classes}>
+        <div className="bx--inline-notification__details">
+          <Icon
+            description={this.props.iconDescription}
+            className="bx--inline-notification__icon"
+            aria-label="close"
+            name={this.useIconName(kind)}
+          />
+          <NotificationTextDetails
+            title={title}
+            subtitle={subtitle}
+            notificationType={notificationType}
+          />
+        </div>
+        <NotificationButton
+          notificationType={notificationType}
+          onClick={this.handleCloseButtonClick}
+        />
+      </div>
+    );
+  }
+}
+
+// Deprecated
+
 class Notification extends Component {
   static propTypes = {
     children: PropTypes.node,
@@ -195,4 +355,9 @@ class Notification extends Component {
 }
 
 export default Notification;
-export { NotificationButton, NotificationTextDetails };
+export {
+  ToastNotification,
+  InlineNotification,
+  NotificationButton,
+  NotificationTextDetails
+};
