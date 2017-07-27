@@ -52,6 +52,8 @@ export Loading from './components/Loading';
 export Modal from './components/Modal';
 export ModalWrapper from './components/ModalWrapper';
 export Notification, {
+  ToastNotification,
+  InlineNotification,
   NotificationButton,
   NotificationTextDetails
 } from './components/Notification';
