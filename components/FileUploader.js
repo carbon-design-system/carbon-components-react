@@ -107,17 +107,19 @@ class Filename extends Component {
   static propTypes = {
     style: PropTypes.object,
     status: PropTypes.oneOf(['edit', 'complete', 'uploading']),
-    iconDescription: PropTypes.string
+    tabIndex: PropTypes.number,
+    onKeyDown: PropTypes.func
   };
 
   static defaultProps = {
-    iconDescription: 'Provide icon description',
+    onKeyDown: () => {},
     status: 'uploading',
-    style: {}
+    style: {},
+    tabIndex: 0
   };
 
   render() {
-    const { status, style, iconDescription, ...other } = this.props;
+    const { name, status, style, tabIndex, onKeyDown, ...other } = this.props;
     const tempStyle = Object.assign(style, { marginRight: '-1px' }); // temp style correction for loading component position
     return (
       <span>
@@ -134,6 +136,8 @@ class Filename extends Component {
               name="close--glyph"
               description={iconDescription}
               style={style}
+              tabIndex={tabIndex}
+              onKeyDown={onKeyDown}
               {...other}
             />
           : null}
@@ -241,6 +245,11 @@ class FileUploader extends Component {
                       status={filenameStatus}
                       onClick={evt => this.handleClick(evt, index)}
                       iconDescription={iconDescription}
+                      onKeyDown={evt => {
+                        if (evt.which === 13 || evt.which === 32) {
+                          this.handleClick(evt, index);
+                        }
+                      }}
                     />
                   </span>
                 </span>
