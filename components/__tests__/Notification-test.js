@@ -1,7 +1,76 @@
 import React from 'react';
 import Icon from '../Icon';
-import Notification from '../Notification';
+import Notification, {
+  NotificationButton,
+  NotificationTextDetails,
+  ToastNotification,
+  InlineNotification
+} from '../Notification';
 import { shallow, mount } from 'enzyme';
+
+describe('NotificationButton', () => {
+  describe('Renders as expected', () => {
+    const wrapper = shallow(<NotificationButton className="some-class" />);
+
+    it('renders given className', () => {
+      expect(wrapper.hasClass('some-class')).toBe(true);
+    });
+
+    it('renders only one Icon', () => {
+      const icon = wrapper.find('Icon');
+      expect(icon.length).toEqual(1);
+    });
+
+    it('renders correct Icon', () => {
+      const icon = wrapper.find('Icon');
+      expect(icon.props().name).toEqual('close');
+    });
+
+    describe('When notificationType equals "toast"', () => {
+      it('button should have correct className by default', () => {
+        expect(wrapper.hasClass('bx--toast-notification__close-button')).toBe(true);
+      });
+
+      it('icon should have correct className by default', () => {
+        const icon = wrapper.find('Icon');
+        expect(icon.hasClass('bx--toast-notification__icon')).toBe(true);
+      });
+    });
+
+    describe('When notificationType equals "inline"', () => {
+      it('button should have correct className', () => {
+        wrapper.setProps({ notificationType: 'inline' });
+        expect(wrapper.hasClass('bx--inline-notification__close-button')).toBe(true);
+      });
+
+      it('icon should have correct className', () => {
+        const icon = wrapper.find('Icon');
+        expect(icon.hasClass('bx--inline-notification__close-icon')).toBe(true);
+      });
+    });
+  });
+});
+
+describe('NotificationTextDetails', () => {
+  describe('Renders as expected', () => {
+    const wrapper = shallow(<NotificationTextDetails />);
+
+    describe('When notificationType equals "toast"', () => {
+      it('div shoudld have correct className by default', () => {
+        expect(wrapper.hasClass('bx--toast-notification__details')).toBe(true);
+      });
+    });
+
+    describe('When notificationType equals "inline"', () => {
+      it('div shoudld have correct className', () => {
+        wrapper.setProps({ notificationType: 'inline' });
+        expect(wrapper.hasClass('bx--inline-notification__text-wrapper')).toBe(true);
+      });
+    });
+  });
+});
+
+// Deprecated
 
 const props = {
   kind: 'success',
@@ -10,7 +79,7 @@ const props = {
   iconDescription: 'description'
 };
 
-describe('Notification', () => {
+describe('[Deprecated]: Notification', () => {
   describe('Renders as expected', () => {
     const toast = shallow(<Notification {...props} caption="caption" />);
     const inline = shallow(<Notification {...props} />);
@@ -24,7 +93,6 @@ describe('Notification', () => {
       });
 
       xit('renders toast notification with one <Icon>', () => {
-        console.log(mountetoast.debug());
         expect(toast.find(Icon).length).toEqual(1);
       });
 
