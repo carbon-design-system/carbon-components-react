@@ -19,6 +19,7 @@ class Slider extends Component {
     stepMuliplier: PropTypes.number,
     children: PropTypes.node,
     disabled: PropTypes.bool,
+    name: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -178,6 +179,8 @@ class Slider extends Component {
       step,
       required,
       disabled,
+      name,
+      ...other
     } = this.props;
 
     const {
@@ -209,6 +212,7 @@ class Slider extends Component {
               this.element = node;
             }}
             onClick={(evt) => this.updatePosition(evt)}
+            {...other}
           >
             <div
               className="bx--slider__track"
@@ -230,6 +234,7 @@ class Slider extends Component {
             <input
               id={id}
               type="hidden"
+              name={name}
               value={value}
               required={required}
               min={min}
