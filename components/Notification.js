@@ -6,12 +6,14 @@ import Icon from './Icon';
 class NotificationButton extends Component {
   static propTypes = {
     className: PropTypes.string,
+    ariaLabel: PropTypes.string,
     type: PropTypes.string,
     iconDescription: PropTypes.string,
     name: PropTypes.string,
     notificationType: PropTypes.oneOf(['toast', 'inline'])
   };
   static defaultProps = {
+    ariaLabel: 'close notificaion',
     notificationType: 'toast',
     type: 'button',
     iconDescription: 'close icon',
@@ -19,6 +21,7 @@ class NotificationButton extends Component {
   };
   render() {
     const {
+      ariaLabel,
       className,
       iconDescription,
       type,
@@ -39,12 +42,13 @@ class NotificationButton extends Component {
       'bx--toast-notification__icon': notificationType === 'toast',
       'bx--inline-notification__close-icon': notificationType === 'inline'
     });
+
     return (
       <button {...other} type={type} className={buttonClasses}>
         <Icon
           description={iconDescription}
           className={iconClasses}
-          aria-label="close"
+          aria-label={ariaLabel}
           name={name}
         />
       </button>

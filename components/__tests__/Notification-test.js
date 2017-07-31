@@ -59,6 +59,8 @@ describe('NotificationTextDetails', () => {
       it('div shoudld have correct className by default', () => {
         expect(wrapper.hasClass('bx--toast-notification__details')).toBe(true);
       });
+
+      it('should have a caption prop');
     });
 
     describe('When notificationType equals "inline"', () => {
