@@ -110,6 +110,10 @@ class ToastNotification extends Component {
   };
 
   static defaultProps = {
+    kind: 'error',
+    title: 'provide a title',
+    subtitle: 'provide a subtitle',
+    caption: 'provide a caption',
     role: 'alert',
     notificationType: 'toast',
     iconDescription: 'closes notification',
