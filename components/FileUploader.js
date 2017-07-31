@@ -14,13 +14,17 @@ class FileUploaderButton extends Component {
     listFiles: PropTypes.bool,
     multiple: PropTypes.bool,
     onChange: PropTypes.func,
-    role: PropTypes.string
+    onClick: PropTypes.func,
+    role: PropTypes.string,
+    tabIndex: PropTypes.number
   };
   static defaultProps = {
+    tabIndex: 0,
     disableLabelChanges: false,
     labelText: 'Add file',
     multiple: false,
     onChange: () => {},
+    onClick: () => {},
     role: 'button'
   };
   state = {
@@ -34,6 +38,11 @@ class FileUploaderButton extends Component {
       this.setState({ labelText: nextProps.labelText });
     }
   }
+
+  handleClick = evt => {
+    console.log('click');
+    // this.props.onClick(evt);
+  };
 
   handleChange = evt => {
     const files = evt.target.files;
@@ -55,6 +64,7 @@ class FileUploaderButton extends Component {
       labelText, // eslint-disable-line
       multiple,
       role,
+      tabIndex,
       ...other
     } = this.props;
     const classes = classNames({
@@ -63,7 +73,15 @@ class FileUploaderButton extends Component {
     });
 
     return (
-      <div className={classes}>
+      <div
+        className={classes}
+        tabIndex={tabIndex}
+        onKeyDown={evt => {
+          if (evt.which === 13 || evt.which === 32) {
+            this.input.click();
+          }
+        }}
+      >
         <label
           className="bx--btn bx--btn--primary"
           htmlFor={this.uid}
@@ -74,6 +92,7 @@ class FileUploaderButton extends Component {
         </label>
         <input
           hidden
+          ref={input => (this.input = input)}
           id={this.uid}
           type="file"
           multiple={multiple}
