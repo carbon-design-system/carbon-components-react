@@ -59,8 +59,6 @@ describe('NotificationTextDetails', () => {
       it('div shoudld have correct className by default', () => {
         expect(wrapper.hasClass('bx--toast-notification__details')).toBe(true);
       });
-
-      it('should have a caption prop');
     });
 
     describe('When notificationType equals "inline"', () => {
@@ -68,6 +66,189 @@ describe('NotificationTextDetails', () => {
         wrapper.setProps({ notificationType: 'inline' });
         expect(wrapper.hasClass('bx--inline-notification__text-wrapper')).toBe(true);
       });
+    });
+  });
+});
+
+describe('ToastNotification', () => {
+  describe('Renders as expected', () => {
+    const toast = shallow(
+      <ToastNotification
+        kind="error"
+        title="this is a title"
+        subtitle="this is a subtitle"
+        caption="this is a caption"
+      />
+    );
+    it('renders itself', () => {
+      expect(toast.length).toEqual(1);
+    });
+
+    it('renders HTML for toast notifications when caption exists', () => {
+      expect(toast.hasClass('bx--toast-notification')).toBe(true);
+    });
+
+    it('adds extra classes via className', () => {
+      toast.setProps({ className: 'extra-class' });
+
+      expect(toast.hasClass('extra-class')).toBe(true);
+    });
+
+    it('interpolates matching className based on kind prop', () => {
+      const kinds = ['error', 'info', 'success', 'warning'];
+
+      kinds.forEach(kind => {
+        toast.setProps({ kind });
+        expect(toast.hasClass(`bx--toast-notification--${kind}`)).toEqual(true);
+      });
+    });
+
+    it('has [role="alert"] on wrapping <div>', () => {
+      expect(toast.props().role).toEqual('alert');
+    });
+
+    it('sets a new kind when passed in via props', () => {
+      toast.setProps({ kind: 'success' });
+      expect(toast.props().kind).toEqual('success');
+    });
+  });
+  describe('events and state', () => {
+    it('initial open state set to true', () => {
+      const mountedToast = mount(
+        <ToastNotification
+          kind="error"
+          title="this is a title"
+          subtitle="this is a subtitle"
+          caption="this is a caption"
+        />
+      );
+
+      expect(mountedToast.state().open).toBe(true);
+    });
+
+    it('sets open state to false when close button is clicked', () => {
+      const mountedToast = mount(
+        <ToastNotification
+          kind="error"
+          title="this is a title"
+          subtitle="this is a subtitle"
+          caption="this is a caption"
+        />
+      );
+
+      mountedToast.find('button').simulate('click');
+      expect(mountedToast.state().open).toEqual(false);
+    });
+
+    it('renders null when open state is false', () => {
+      const mountedToast = mount(
+        <ToastNotification
+          kind="error"
+          title="this is a title"
+          subtitle="this is a subtitle"
+          caption="this is a caption"
+        />
+      );
+
+      mountedToast.setState({ open: false });
+      expect(mountedToast.html()).toBeNull();
+    });
+  });
+});
+
+describe('InlineNotification', () => {
+  describe('Renders as expected', () => {
+    const inline = shallow(
+      <InlineNotification
+        title="this is a title"
+        subtitle="this is a subtitle"
+        kind="error"
+      />
+    );
+
+    it('renders itself', () => {
+      expect(inline.length).toEqual(1);
+    });
+
+    it('renders success notification with matching kind and <icon name=""> values', () => {
+      inline.setProps({ kind: 'success' });
+      expect(inline.find(Icon).some('[name="checkmark--glyph"]')).toBe(true);
+    });
+
+    it('renders error notification with matching kind and <icon name=""> values', () => {
+      inline.setProps({ kind: 'error' });
+      expect(inline.find(Icon).some('[name="error--glyph"]')).toBe(true);
+    });
+
+    it('renders warning notification with matching kind and <icon name=""> values', () => {
+      inline.setProps({ kind: 'warning' });
+      expect(inline.find(Icon).some('[name="warning--glyph"]')).toBe(true);
+    });
+
+    it('renders info notification with matching kind and <icon name=""> values', () => {
+      inline.setProps({ kind: 'info' });
+      expect(inline.find(Icon).some('[name="info--glyph"]')).toBe(true);
+    });
+
+    it('renders HTML for inline notifications when caption does not exist', () => {
+      expect(inline.hasClass('bx--inline-notification')).toBe(true);
+    });
+
+    it('adds extra classes via className', () => {
+      inline.setProps({ className: 'extra-class' });
+      expect(inline.hasClass('extra-class')).toBe(true);
+    });
+
+    it('interpolates matching className based on kind prop', () => {
+      const kinds = ['error', 'info', 'success', 'warning'];
+
+      kinds.forEach(kind => {
+        inline.setProps({ kind });
+        expect(inline.hasClass(`bx--inline-notification--${kind}`)).toEqual(true);
+      });
+    });
+
+    it('has [role="alert"] on wrapping <div>', () => {
+      expect(inline.props().role).toEqual('alert');
+    });
+
+    it('sets a new kind when passed in via props', () => {
+      inline.setProps({ kind: 'success' });
+      expect(inline.props().kind).toEqual('success');
+    });
+  });
+
+  describe('events and state', () => {
+    it('initial open state set to true', () => {
+      const mountedInline = mount(
+        <InlineNotification
+          title="this is a title"
+          subtitle="this is a subtitle"
+          kind="error"
+        />
+      );
+
+      expect(mountedInline.state().open).toBe(true);
+    });
+
+    it('sets open state to false when close button is clicked', () => {
+      const mountedInline = mount(<Notification {...props} />);
+
+      mountedInline.find('button').simulate('click');
+      expect(mountedInline.state().open).toEqual(false);
+    });
+
+    it('renders null when open state is false', () => {
+      const mountedInline = mount(
+        <InlineNotification
+          title="this is a title"
+          subtitle="this is a subtitle"
+          kind="error"
+        />
+      );
+
+      mountedInline.setState({ open: false });
+      expect(mountedInline.html()).toBeNull();
     });
   });
 });
