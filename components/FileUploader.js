@@ -39,11 +39,6 @@ class FileUploaderButton extends Component {
     }
   }
 
-  handleClick = evt => {
-    console.log('click');
-    // this.props.onClick(evt);
-  };
-
   handleChange = evt => {
     const files = evt.target.files;
     const length = evt.target.files.length;
