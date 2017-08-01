@@ -62,33 +62,31 @@ class Tab extends React.Component {
       className
     );
 
-    const props = {
-      li: {
-        className: classes,
-        onClick: evt => {
+    return (
+      <li
+        {...other}
+        className={classes}
+        onClick={evt => {
           handleTabClick(index, label, evt);
           onClick(evt);
-        },
-        onKeyDown: evt => {
+        }}
+        onKeyDown={evt => {
           this.setTabFocus(evt);
           handleTabKeyDown(index, label, evt);
           onKeyDown(evt);
-        },
-        role,
-        selected
-      },
-      anchor: {
-        className: 'bx--tabs__nav-link',
-        href,
-        ref: 'tabAnchor',
-        role: 'tab',
-        tabIndex
-      }
-    };
-
-    return (
-      <li {...other} {...props.li}>
-        <a {...props.anchor}>{label}</a>
+        }}
+        role={role}
+        selected={selected}
+      >
+        <a
+          className="bx--tabs__nav-link"
+          href={href}
+          role="tab"
+          tabIndex={tabIndex}
+          ref="tabAnchor"
+        >
+          {label}
+        </a>
       </li>
     );
   }
