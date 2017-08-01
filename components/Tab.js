@@ -14,15 +14,17 @@ class Tab extends React.Component {
     onClick: PropTypes.func,
     onKeyDown: PropTypes.func,
     selected: PropTypes.bool,
-    tabIndex: PropTypes.number,
+    tabIndex: PropTypes.number
   };
 
   static defaultProps = {
+    role: 'presentation',
+    label: 'provide a label',
     tabIndex: 0,
     href: '#',
     selected: false,
     onClick: () => {},
-    onKeyDown: () => {},
+    onKeyDown: () => {}
   };
 
   setTabFocus(evt) {
@@ -46,6 +48,7 @@ class Tab extends React.Component {
       href,
       index,
       label,
+      role,
       selected,
       tabIndex,
       onClick,
@@ -71,16 +74,16 @@ class Tab extends React.Component {
           handleTabKeyDown(index, label, evt);
           onKeyDown(evt);
         },
-        role: 'presentation',
-        selected,
+        role,
+        selected
       },
       anchor: {
         className: 'bx--tabs__nav-link',
         href,
         ref: 'tabAnchor',
         role: 'tab',
-        tabIndex,
-      },
+        tabIndex
+      }
     };
 
     return (
