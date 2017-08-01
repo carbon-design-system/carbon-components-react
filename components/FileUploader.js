@@ -88,25 +88,17 @@ class Filename extends Component {
   static propTypes = {
     style: PropTypes.object,
     status: PropTypes.oneOf(['edit', 'complete', 'uploading']),
-    editIconDescrition: PropTypes.string,
-    completeIconDescrition: PropTypes.string
+    iconDescription: PropTypes.string
   };
 
   static defaultProps = {
-    completeIconDescrition: 'File has been uploaded',
-    editIconDescrition: 'Remove file',
+    iconDescription: 'Provide icon description',
     status: 'uploading',
     style: {}
   };
 
   render() {
-    const {
-      status,
-      style,
-      editIconDescrition,
-      completeIconDescrition,
-      ...other
-    } = this.props;
+    const { status, style, iconDescription, ...other } = this.props;
     const tempStyle = Object.assign(style, { marginRight: '-1px' }); // temp style correction for loading component position
     return (
       <span>
@@ -121,7 +113,7 @@ class Filename extends Component {
           ? <Icon
               className="bx--file-close"
               name="close--glyph"
-              description={editIconDescrition}
+              description={iconDescription}
               style={style}
               {...other}
             />
@@ -130,7 +122,7 @@ class Filename extends Component {
           ? <Icon
               className="bx--file-complete"
               name="checkmark--glyph"
-              description={completeIconDescrition}
+              description={iconDescription}
               style={style}
               {...other}
             />
@@ -142,6 +134,7 @@ class Filename extends Component {
 
 class FileUploader extends Component {
   static propTypes = {
+    iconDescription: PropTypes.string,
     buttonLabel: PropTypes.string,
     filenameStatus: PropTypes.oneOf(['edit', 'complete', 'uploading']).isRequired,
     labelDescription: PropTypes.string,
@@ -153,6 +146,7 @@ class FileUploader extends Component {
   };
 
   static defaultProps = {
+    iconDescription: 'Provide icon description',
     filenameStatus: 'uploading',
     buttonLabel: 'Add file',
     multiple: false,
@@ -165,12 +159,13 @@ class FileUploader extends Component {
     filenameStatus: ''
   };
 
+  nodes = [];
+
   componentWillReceiveProps(nextProps) {
     if (nextProps.filenameStatus !== this.props.filenameStatus) {
       this.setState({ filenameStatus: nextProps.filenameStatus });
     }
   }
-  nodes = [];
   handleChange = evt => {
     this.setState({ filenames: [...evt.target.files].map(file => file.name) });
     this.props.onChange(evt);
@@ -186,6 +181,7 @@ class FileUploader extends Component {
 
   render() {
     const {
+      iconDescription,
       buttonLabel,
       filenameStatus,
       labelDescription,
@@ -225,6 +221,7 @@ class FileUploader extends Component {
                     <Filename
                       status={filenameStatus}
                       onClick={evt => this.handleClick(evt, index)}
+                      iconDescription={iconDescription}
                     />
                   </span>
                 </span>
