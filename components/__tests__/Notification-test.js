@@ -275,14 +275,6 @@ describe('[Deprecated]: Notification', () => {
         expect(inline.length).toEqual(1);
       });
 
-      xit('renders toast notification with one <Icon>', () => {
-        expect(toast.find(Icon).length).toEqual(1);
-      });
-
-      xit('Renders inline notifications with two <Icon>', () => {
-        expect(inline.find(Icon).length).toEqual(2);
-      });
-
       it('renders checkmark--glyph icon for success inline notification', () => {
         const icon = inline.find('[name="checkmark--glyph"]');
         expect(icon.props().name).toEqual('checkmark--glyph');
@@ -337,11 +329,6 @@ describe('[Deprecated]: Notification', () => {
       it('has [role="alert"] on wrapping <div>', () => {
         expect(toast.props().role).toEqual('alert');
         expect(inline.props().role).toEqual('alert');
-      });
-
-      xit('has close button with [type="button"] by default', () => {
-        expect(toast.find('button').props().type).toEqual('button');
-        expect(inline.find('button').props().type).toEqual('button');
       });
 
       it('sets a new kind when passed in via props', () => {
