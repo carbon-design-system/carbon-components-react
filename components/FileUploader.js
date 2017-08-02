@@ -114,7 +114,7 @@ class Filename extends Component {
   };
 
   render() {
-    const { name, status, style, tabIndex, onKeyDown, ...other } = this.props;
+    const { iconDescription, status, style, tabIndex, onKeyDown, ...other } = this.props;
     const tempStyle = Object.assign(style, { marginRight: '-1px' }); // temp style correction for loading component position
     return (
       <span>
