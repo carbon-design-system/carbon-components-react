@@ -134,7 +134,7 @@ class Filename extends Component {
           iconDescription={iconDescription}
           className="bx--file-close"
           name="close--glyph"
-          description={`Remove the file named: ${name}`}
+          iconDescription={iconDescription}
           style={style}
           {...other}
         />
@@ -145,7 +145,7 @@ class Filename extends Component {
           iconDescription={iconDescription}
           className="bx--file-complete"
           name="checkmark--glyph"
-          description={`The file named, ${name}, has been uploaded.`}
+          iconDescription={iconDescription}
           style={style}
           {...other}
         />
@@ -243,6 +243,7 @@ class FileUploader extends Component {
                   <p className="bx--file-filename">{name}</p>
                   <span className="bx--file__state-container">
                     <Filename
+                      iconDescription={iconDescription}
                       status={filenameStatus}
                       onClick={evt => {
                         if (filenameStatus === 'edit') {
