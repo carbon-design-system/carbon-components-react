@@ -64,10 +64,8 @@ class OverflowMenu extends Component {
   }
 
   getMenuPosition = () => {
-    if (this.menuEl) {
-      const menuPosition = this.menuEl.getBoundingClientRect();
-      this.setState({ menuPosition });
-    }
+    const menuPosition = this.menuEl.getBoundingClientRect();
+    this.setState({ menuPosition });
   };
 
   handleClick = evt => {
@@ -89,6 +87,10 @@ class OverflowMenu extends Component {
 
   closeMenu = () => {
     this.setState({ open: false });
+  };
+
+  bindMenuEl = menuEl => {
+    this.menuEl = menuEl;
   };
 
   render() {
@@ -141,9 +143,7 @@ class OverflowMenu extends Component {
           aria-label={ariaLabel}
           id={id}
           tabIndex={tabIndex}
-          ref={node => {
-            this.menuEl = node;
-          }}
+          ref={this.bindMenuEl}
         >
           <Icon
             onClick={this.handleClick}
