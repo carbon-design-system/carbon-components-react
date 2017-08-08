@@ -2,6 +2,8 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import classNames from 'classnames';
 import Flatpickr from 'flatpickr';
+import rangePlugin from 'flatpickr/dist/plugins/rangePlugin'
+import ReactDOM from 'react-dom';
 import DatePickerInput from './DatePickerInput';
 
 // Weekdays shorthand for english locale
@@ -85,6 +87,7 @@ class DatePicker extends Component {
       mode: this.props.datePickerType,
       allowInput: true,
       dateFormat: this.props.dateFormat,
+      // plugins: [new rangePlugin()],
       onClose: selectedDates => {
         this.updateClassNames(calendar);
         this.updateInputFields(selectedDates);
@@ -108,6 +111,7 @@ class DatePicker extends Component {
             toInputField.classList.remove('bx--focused');
           }
         }
+        this.props.onChange();
       },
       onMonthChange: () => {
         this.updateClassNames(calendar);
@@ -119,17 +123,18 @@ class DatePicker extends Component {
         this.updateClassNames(calendar);
       },
       nextArrow: this.rightArrowHTML(),
-      prevArrow: this.leftArrowHTML(),
     });
-    if (this.props.datePickerType === 'range') {
-      const toInputField = this.toInputField;
-      toInputField.addEventListener('click', () => {
-        toInputField.focus();
-        calendar.open();
-        this.updateClassNames(calendar);
-      });
-      this.addInputLogic(toInputField);
-    }
+    // if (this.props.datePickerType === 'range') {
+    //   const toInputField = ReactDOM.findDOMNode(
+    //     this.toInputField
+    //   ).querySelector('.bx--date-picker__input');
+    //   toInputField.addEventListener('click', () => {
+    //     toInputField.focus();
+    //     calendar.open();
+    //     this.updateClassNames(calendar);
+    //   });
+    //   this.addInputLogic(toInputField);
+    // }
     this.setState({
       cal: calendar,
     });
