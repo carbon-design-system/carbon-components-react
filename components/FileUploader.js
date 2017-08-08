@@ -114,7 +114,7 @@ class Filename extends Component {
   };
 
   render() {
-    const { iconDescription, name, status, style, ...other } = this.props;
+    const { iconDescription, status, style, ...other } = this.props;
 
     if (status === 'uploading') {
       return (
