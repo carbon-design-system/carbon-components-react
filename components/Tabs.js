@@ -11,12 +11,13 @@ class Tabs extends React.Component {
     className: PropTypes.string,
     firstSelectedLabel: PropTypes.string,
     hidden: PropTypes.bool,
-    href: PropTypes.string,
+    href: PropTypes.string.isRequired,
+    role: PropTypes.string.isRequired,
     onClick: PropTypes.func,
     onKeyDown: PropTypes.func,
-    triggerHref: PropTypes.string,
+    triggerHref: PropTypes.string.isRequired,
     selected: PropTypes.number,
-    iconDescription: PropTypes.string
+    iconDescription: PropTypes.string.isRequired
   };
 
   static defaultProps = {
