@@ -8,13 +8,14 @@ class Tab extends React.Component {
     handleTabClick: PropTypes.func,
     handleTabAnchorFocus: PropTypes.func,
     handleTabKeyDown: PropTypes.func,
-    href: PropTypes.string,
+    href: PropTypes.string.isRequired,
     index: PropTypes.number,
     label: PropTypes.string.isRequired,
-    onClick: PropTypes.func,
-    onKeyDown: PropTypes.func,
-    selected: PropTypes.bool,
-    tabIndex: PropTypes.number
+    role: PropTypes.string.isRequired,
+    onClick: PropTypes.func.isRequired,
+    onKeyDown: PropTypes.func.isRequired,
+    selected: PropTypes.bool.isRequired,
+    tabIndex: PropTypes.number.isRequired
   };
 
   static defaultProps = {
