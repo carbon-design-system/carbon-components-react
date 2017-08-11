@@ -134,7 +134,6 @@ class Filename extends Component {
           iconDescription={iconDescription}
           className="bx--file-close"
           name="close--glyph"
-          iconDescription={iconDescription}
           style={style}
           {...other}
         />
