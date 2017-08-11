@@ -145,7 +145,6 @@ class Filename extends Component {
           iconDescription={iconDescription}
           className="bx--file-complete"
           name="checkmark--glyph"
-          iconDescription={iconDescription}
           style={style}
           {...other}
         />
@@ -222,8 +221,12 @@ class FileUploader extends Component {
 
     return (
       <div className={classes} {...other}>
-        <strong className="bx--label">{labelTitle}</strong>
-        <p className="bx--label-description">{labelDescription}</p>
+        <strong className="bx--label">
+          {labelTitle}
+        </strong>
+        <p className="bx--label-description">
+          {labelDescription}
+        </p>
         <FileUploaderButton
           labelText={buttonLabel}
           multiple={multiple}
@@ -240,7 +243,9 @@ class FileUploader extends Component {
                   ref={node => (this.nodes[index] = node)} // eslint-disable-line
                   {...other}
                 >
-                  <p className="bx--file-filename">{name}</p>
+                  <p className="bx--file-filename">
+                    {name}
+                  </p>
                   <span className="bx--file__state-container">
                     <Filename
                       iconDescription={iconDescription}
