@@ -59,6 +59,12 @@ class OverflowMenu extends Component {
     }
   }
 
+  componentWillUpdate(nextProps, nextState) {
+    if (nextState.open) {
+      this.getMenuPosition();
+    }
+  }
+
   componentWillUnmount() {
     this.hResize.release();
   }
