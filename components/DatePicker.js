@@ -82,144 +82,105 @@ class DatePicker extends Component {
   }
 
   initDatePickerCalendar = () => {
-    // const input = ReactDOM.findDOMNode(this.inputField).querySelector(
-    //   '.bx--date-picker__input'
-    // );
-    // const calendar = flatpickr(input, {
-    //   mode: this.props.datePickerType,
-    //   allowInput: true,
-    //   dateFormat: this.props.dateFormat,
-    //   plugins: [new rangePlugin({ input: '.bx--date-picker__input' })],
-    //   onClose: selectedDates => {
-    //     this.updateClassNames(calendar);
-    //     this.updateInputFields(selectedDates);
-    //     if (this.props.datePickerType === 'range') {
-    //       const toInputField = ReactDOM.findDOMNode(
-    //         this.toInputField
-    //       ).querySelector('.bx--date-picker__input');
-    //       if (calendar.selectedDates.length === 1) {
-    //         input.focus();
-    //       } else {
-    //         toInputField.focus();
-    //       }
-    //       toInputField.classList.remove('bx--focused');
-    //     }
-    //   },
-    //   onChange: () => {
-    //     this.updateClassNames(calendar);
-    //     if (this.props.datePickerType === 'range') {
-    //       const toInputField = ReactDOM.findDOMNode(
-    //         this.toInputField
-    //       ).querySelector('.bx--date-picker__input');
-    //       if (calendar.selectedDates.length === 1 && calendar.isOpen) {
-    //         toInputField.classList.add('bx--focused');
-    //       } else {
-    //         toInputField.classList.remove('bx--focused');
-    //       }
-    //     }
-    //     this.props.onChange();
-    //   },
-    //   onMonthChange: () => {
-    //     this.updateClassNames(calendar);
-    //   },
-    //   onYearChange: () => {
-    //     this.updateClassNames(calendar);
-    //   },
-    //   onOpen: () => {
-    //     this.updateClassNames(calendar);
-    //   },
-    //   nextArrow: this.rightArrowHTML(),
-    // });
-    // if (this.props.datePickerType === 'range') {
-    //   const toInputField = ReactDOM.findDOMNode(
-    //     this.toInputField
-    //   ).querySelector('.bx--date-picker__input');
-    //   toInputField.addEventListener('click', () => {
-    //     toInputField.focus();
-    //     calendar.open();
-    //     this.updateClassNames(calendar);
-    //   });
-    //   this.addInputLogic(toInputField);
-    // }
-    // this.setState({
-    //   cal: calendar,
-    // });
-    // this.addKeyboardEvents(calendar);
-    // this.updateClassNames(calendar);
-    // this.addInputLogic(input);
+    const calendar = flatpickr(this.inputField, {
+      mode: this.props.datePickerType,
+      allowInput: true,
+      dateFormat: this.props.dateFormat,
+      plugins: [new rangePlugin({ input: this.toInputField })],
+      altInput: true,
+      onClose: selectedDates => {
+        this.updateClassNames(calendar);
+        this.updateInputFields(selectedDates);
+      },
+      onChange: (selectedDates, dateStr, instance) => {
+        this.updateClassNames(instance);
+      },
+      onMonthChange: () => {
+        this.updateClassNames(calendar);
+      },
+      onYearChange: () => {
+        this.updateClassNames(calendar);
+      },
+      onOpen: () => {
+        this.updateClassNames(calendar);
+      },
+      nextArrow: this.rightArrowHTML(),
+      leftArrow: this.leftArrowHTML()
+    });
+    this.updateClassNames(calendar);
+    this.setState({
+      cal: calendar,
+    });
+
+    this.addKeyboardEvents(calendar);
+    this.addInputLogic(this.inputField);
   };
 
-  // addInputLogic = input => {
-  //   const inputField = input;
-  //   inputField.addEventListener('change', () => {
-  //     const inputDate = this.state.cal.parseDate(new Date(inputField.value));
-  //     if (!isNaN(inputDate.valueOf())) {
-  //       this.state.cal.setDate(inputDate);
-  //     }
-  //     this.updateClassNames(this.state.cal);
-  //   });
-  // };
+  addInputLogic = input => {
+    const inputField = input;
+    inputField.addEventListener('change', () => {
+      const inputDate = this.state.cal.parseDate(new Date(inputField.value));
+      if (!isNaN(inputDate.valueOf())) {
+        this.state.cal.setDate(inputDate);
+      }
+      this.updateClassNames(this.state.cal);
+    });
+  };
 
-  // openCalendar = () => {
-  //   this.state.cal.open();
-  // };
+  openCalendar = () => {
+    this.state.cal.open();
+  };
 
-  // updateClassNames = calendar => {
-  //   const calendarContainer = calendar.calendarContainer;
-  //   calendarContainer.classList.add('bx--date-picker__calendar');
-  //   calendarContainer
-  //     .querySelector('.flatpickr-month')
-  //     .classList.add('bx--date-picker__month');
-  //   calendarContainer
-  //     .querySelector('.flatpickr-weekdays')
-  //     .classList.add('bx--date-picker__weekdays');
-  //   calendarContainer
-  //     .querySelector('.flatpickr-days')
-  //     .classList.add('bx--date-picker__days');
-  //   [
-  //     ...calendarContainer.querySelectorAll('.flatpickr-weekday'),
-  //   ].forEach(item => {
-  //     const currentItem = item;
-  //     currentItem.innerHTML = currentItem.innerHTML.replace(/\s+/g, '');
-  //     currentItem.classList.add('bx--date-picker__weekday');
-  //   });
-  //   [...calendarContainer.querySelectorAll('.flatpickr-day')].forEach(item => {
-  //     item.classList.add('bx--date-picker__day');
-  //     if (
-  //       item.classList.contains('today') &&
-  //       calendar.selectedDates.length > 0
-  //     ) {
-  //       item.classList.add('no-border');
-  //     } else if (
-  //       item.classList.contains('today') &&
-  //       calendar.selectedDates.length === 0
-  //     ) {
-  //       item.classList.remove('no-border');
-  //     }
-  //   });
-  // };
+  updateClassNames = calendar => {
+    const calendarContainer = calendar.calendarContainer;
+    calendarContainer.classList.add('bx--date-picker__calendar');
+    calendarContainer
+      .querySelector('.flatpickr-month')
+      .classList.add('bx--date-picker__month');
+    calendarContainer
+      .querySelector('.flatpickr-weekdays')
+      .classList.add('bx--date-picker__weekdays');
+    calendarContainer
+      .querySelector('.flatpickr-days')
+      .classList.add('bx--date-picker__days');
+    [
+      ...calendarContainer.querySelectorAll('.flatpickr-weekday'),
+    ].forEach(item => {
+      const currentItem = item;
+      currentItem.innerHTML = currentItem.innerHTML.replace(/\s+/g, '');
+      currentItem.classList.add('bx--date-picker__weekday');
+    });
+    [...calendarContainer.querySelectorAll('.flatpickr-day')].forEach(item => {
+      item.classList.add('bx--date-picker__day');
+      if (
+        item.classList.contains('today') &&
+        calendar.selectedDates.length > 0
+      ) {
+        item.classList.add('no-border');
+      } else if (
+        item.classList.contains('today') &&
+        calendar.selectedDates.length === 0
+      ) {
+        item.classList.remove('no-border');
+      }
+    });
+  };
 
-  // updateInputFields = selectedDates => {
-  //   const input = ReactDOM.findDOMNode(this.inputField).querySelector(
-  //     '.bx--date-picker__input'
-  //   );
-  //   if (this.props.datePickerType === 'range') {
-  //     const toInput = ReactDOM.findDOMNode(this.toInputField).querySelector(
-  //       '.bx--date-picker__input'
-  //     );
-  //     if (selectedDates.length === 2) {
-  //       input.value = this.formatDate(selectedDates[0]);
-  //       toInput.value = this.formatDate(selectedDates[1]);
-  //     } else if (selectedDates.length === 1) {
-  //       input.value = this.formatDate(selectedDates[0]);
-  //     }
-  //   } else if (selectedDates.length === 1) {
-  //     input.value = this.formatDate(selectedDates[0]);
-  //   }
-  //   this.updateClassNames(this.state.cal);
-  // };
+  updateInputFields = selectedDates => {
+    if (this.props.datePickerType === 'range') {
+      if (selectedDates.length === 2) {
+        this.inputField.value = this.formatDate(selectedDates[0]);
+        this.toInputField.value = this.formatDate(selectedDates[1]);
+      } else if (selectedDates.length === 1) {
+        this.inputField.value = this.formatDate(selectedDates[0]);
+      }
+    } else if (selectedDates.length === 1) {
+      this.inputField.value = this.formatDate(selectedDates[0]);
+    }
+    this.updateClassNames(this.state.cal);
+  };
 
-  // formatDate = date => this.state.cal.formatDate(date, this.props.dateFormat);
+  formatDate = date => this.state.cal.formatDate(date, this.props.dateFormat);
 
   assignInputFieldRef = (node) => {
     this.inputField = !node ? null :
