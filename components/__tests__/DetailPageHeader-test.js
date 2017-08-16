@@ -9,6 +9,8 @@ import OverflowMenu from '../OverflowMenu';
 import OverflowMenuItem from '../OverflowMenuItem';
 import Tab from '../Tab';
 import Tabs from '../Tabs';
+import Tag from '../../components/Tag';
+import Link from '../../components/Link';
 
 describe('DetailPageHeader', () => {
   describe('component is rendered correctly without tabs', () => {
@@ -27,6 +29,12 @@ describe('DetailPageHeader', () => {
           <OverflowMenuItem itemText="Edit Routes and Access" />
           <OverflowMenuItem itemText="Delete App" isDelete />
         </OverflowMenu>
+        <Tag type="ibm">
+          Language
+        </Tag>
+        <Link href="www.example.com">
+          View demo
+        </Link>
       </DetailPageHeader>
     );
 
@@ -86,6 +94,16 @@ describe('DetailPageHeader', () => {
     it('should render the correct status color', () => {
       expect(wrapper.props().statusColor).toEqual('#BADA55');
     });
+
+    it('should render the Tag', () => {
+      const hasTag = wrapper.find('.bx--detail-page-header-tag').length === 1;
+      expect(hasTag).toEqual(true);
+    });
+
+    it('should render the Link', () => {
+      const hasTag = wrapper.find('.bx--detail-page-header-link').length === 1;
+      expect(hasTag).toEqual(true);
+    });
   });
 
   describe('component is rendered correctly with tabs', () => {
@@ -110,6 +128,12 @@ describe('DetailPageHeader', () => {
           <Tab label="Banana" />
           <Tab label="Orange" />
         </Tabs>
+        <Tag type="ibm">
+          Language
+        </Tag>
+        <Link href="www.example.com">
+          View demo
+        </Link>
       </DetailPageHeader>
     );
 

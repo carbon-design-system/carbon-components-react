@@ -7,6 +7,8 @@ import Breadcrumb from './Breadcrumb';
 import Tabs from './Tabs';
 import OverflowMenu from './OverflowMenu';
 import Icon from './Icon';
+import Tag from './Tag';
+import Link from './Link';
 
 class DetailPageHeader extends Component {
   static propTypes = {
@@ -111,24 +113,32 @@ class DetailPageHeader extends Component {
     let tabs;
     let overflow;
     let icon;
+    let tag;
+    let link;
 
     Children.map(children, child => {
-      if (child.type === Breadcrumb) {
-        breadcrumb = child;
+      if (child != null && child.type != null) {
+        switch (child.type) {
+          case Breadcrumb:
+            breadcrumb = child;
+            break;
+          case Tabs:
+            tabs = child;
+            break;
+          case OverflowMenu:
+            overflow = child;
+            break;
+          case Icon:
+            icon = child;
+            break;
+          case Tag:
+            tag = child;
+            break;
+          case Link:
+            link = child;
+            break;
+        }
       }
-
-      if (child.type === Tabs) {
-        tabs = child;
-      }
-
-      if (child.type === OverflowMenu) {
-        overflow = child;
-      }
-
-      if (child.type === Icon) {
-        icon = child;
-      }
-
       return null;
     });
 
@@ -152,6 +162,12 @@ class DetailPageHeader extends Component {
               {' '}
               <span className="bx--detail-page-header-status-text">
                 {statusText}{statusContent}
+                <span className="bx--detail-page-header-tag">
+                  {' '}{tag}
+                </span>
+                <span className="bx--detail-page-header-link">
+                  {' '}{link}
+                </span>
               </span>
             </div>
           </div>

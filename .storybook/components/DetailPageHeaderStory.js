@@ -8,6 +8,8 @@ import DetailPageHeader from '../../components/DetailPageHeader';
 import Tabs from '../../components/Tabs';
 import Tab from '../../components/Tab';
 import Icon from '../../components/Icon';
+import Tag from '../../components/Tag';
+import Link from '../../components/Link';
 
 const detailPageHeaderProps = {
   title: 'Detail Page Header',
@@ -51,9 +53,14 @@ storiesOf('DetailPageHeader', module)
           {...overflowMenuItemProps}
           itemText="Delete App"
           isDelete
-          isLastItem
         />
       </OverflowMenu>
+      <Tag type="ibm">
+        Language
+      </Tag>
+      <Link href="#">
+        View demo
+      </Link>
     </DetailPageHeader>
   ))
   .addWithInfo('with tabs', () => (
@@ -85,5 +92,11 @@ storiesOf('DetailPageHeader', module)
         <Tab label="Banana" />
         <Tab label="Orange" />
       </Tabs>
+      <Tag type="ibm">
+        Language
+      </Tag>
+      <Link href="#">
+        View demo
+      </Link>
     </DetailPageHeader>
   ));
