@@ -64,7 +64,7 @@ storiesOf('DatePicker', module)
     `,
     () =>
       <DatePicker id="date-picker" datePickerType="range" dateFormat="m/d/Y">
-        <DatePickerInput {...datePickerInputProps} />
+        <DatePickerInput {...datePickerInputProps} id="date-picker-input-id" />
         <DatePickerInput {...datePickerInputProps} id="date-picker-input-id-2" />
       </DatePicker>,
   );
