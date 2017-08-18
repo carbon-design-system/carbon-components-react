@@ -10,7 +10,7 @@ const datePickerEvents = {
 
 const datePickerProps = {
   id: 'date-picker',
-  onChange: action('onChange')
+  onChange: action('onChange'),
 }
 
 const datePickerInputProps = {
@@ -58,7 +58,7 @@ storiesOf('DatePicker', module)
       A single Date Picker consists of an input field and a calendar.
     `,
     () =>
-      <DatePicker id="date-picker" datePickerType="single" dateFormat="m/d/Y">
+      <DatePicker {... datePickerProps} datePickerType="single" dateFormat="m/d/Y">
         <DatePickerInput {...datePickerInputProps} />
       </DatePicker>,
   )
