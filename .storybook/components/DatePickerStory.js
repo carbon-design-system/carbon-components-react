@@ -8,6 +8,11 @@ const datePickerEvents = {
   className: 'some-class',
 };
 
+const datePickerProps = {
+  id: 'date-picker',
+  onChange: action('onChange')
+}
+
 const datePickerInputProps = {
   className: 'some-class',
   labelText: 'Select a date',
@@ -30,7 +35,7 @@ storiesOf('DatePicker', module)
       A simple Date Picker consists of an input field and no calendar.
     `,
     () =>
-      <DatePicker id="date-picker" short datePickerType="simple">
+      <DatePicker {... datePickerProps} short datePickerType="simple">
         <DatePickerInput
           {...datePickerInputProps}
           {...simpleShortDatePickerInputProps}
@@ -63,7 +68,7 @@ storiesOf('DatePicker', module)
       A range Date Picker consists of two input fields and a calendar.
     `,
     () =>
-      <DatePicker id="date-picker" datePickerType="range" dateFormat="m/d/Y">
+      <DatePicker {... datePickerProps} datePickerType="range" dateFormat="m/d/Y">
         <DatePickerInput {...datePickerInputProps} id="date-picker-input-id" />
         <DatePickerInput {...datePickerInputProps} id="date-picker-input-id-2" />
       </DatePicker>,
