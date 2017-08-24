@@ -27,7 +27,26 @@ describe('<ModalFooter />', () => {
     });
   });
 
-  describe('Should render props only if passed in', () => {
-    
-  })
+  describe('Should render buttons only if appropriate prop passed in in', () => {
+    const wrapper = shallow(
+      <ModalFooter className="extra-class">
+        <p>Test</p>
+      </ModalFooter>
+    );
+
+    const primaryWrapper = shallow(<ModalFooter primaryButtonText="test" />);
+
+    it('does not render primary button if no primary text', () => {
+      expect(wrapper.find('.bx--btn--primary').exists()).toBe(false);
+    });
+
+    it('does not render secondary button if no secondary text', () => {
+      expect(wrapper.find('.bx--btn--secondary').exists()).toBe(false);
+    });
+
+    it('renders primary button if primary text', () => {
+      console.log(primaryWrapper.find('button').exists());
+      expect(primaryWrapper.find('.bx--btn--primary').exists()).toBe(true);
+    });
+  });
 });
