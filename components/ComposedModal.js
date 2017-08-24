@@ -5,14 +5,38 @@ import Icon from './Icon';
 import classNames from 'classnames';
 
 export default class ComposedModal extends Component {
+  static defaultProps = {
+    onKeyDown: () => {},
+  };
+
+  static propTypes = {
+    className: PropTypes.string,
+    containerClassName: PropTypes.string,
+    onKeyDown: PropTypes.func,
+  };
+
   state = {
     open: this.props.open,
   };
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.open !== this.state.open) {
+  handleKeyDown = evt => {
+    if (evt.which === 27) {
+      this.closeModal();
+    }
+
+    this.props.onKeyDown(evt);
+  };
+
+  componentDidMount() {
+    if (this.modal) {
+      this.modal.focus();
+    }
+  }
+
+  componentWillReceiveProps({ open }) {
+    if (open !== this.state.open) {
       this.setState({
-        open: nextProps.open,
+        open,
       });
     }
   }
@@ -43,10 +67,25 @@ export default class ComposedModal extends Component {
       [containerClassName]: containerClassName,
     });
 
+    const childrenWithProps = React.Children.toArray(children).map(child => {
+      if (child.type === ModalHeader || child.type === ModalFooter) {
+        return React.cloneElement(child, {
+          closeModal: this.closeModal,
+        });
+      }
+
+      return child;
+    });
+
     return (
-      <div className={modalClass} {...other}>
+      <div
+        ref={modal => (this.modal = modal)}
+        onKeyDown={this.handleKeyDown}
+        className={modalClass}
+        {...other}
+      >
         <div className={containerClass}>
-          {children}
+          {childrenWithProps}
         </div>
       </div>
     );
@@ -56,6 +95,26 @@ export default class ComposedModal extends Component {
 export class ModalHeader extends Component {
   static defaultProps = {
     iconDescription: 'Close the modal',
+    buttonOnClick: () => {},
+  };
+
+  static propTypes = {
+    className: PropTypes.string,
+    labelClassName: PropTypes.string,
+    titleClassName: PropTypes.string,
+    closeClassName: PropTypes.string,
+    closeIconClassName: PropTypes.string,
+    label: PropTypes.string,
+    title: PropTypes.string,
+    children: PropTypes.node,
+    iconDescription: PropTypes.string,
+    closeModal: PropTypes.func,
+    buttonOnClick: PropTypes.func,
+  };
+
+  handleCloseButtonClick = () => {
+    this.props.closeModal();
+    this.props.buttonOnClick();
   };
 
   render() {
@@ -69,6 +128,8 @@ export class ModalHeader extends Component {
       title,
       children,
       iconDescription,
+      closeModal, // eslint-disable-line
+      buttonOnClick, // eslint-disable-line
       ...other
     } = this.props;
 
@@ -111,7 +172,11 @@ export class ModalHeader extends Component {
 
         {children}
 
-        <button className={closeClass} type="button">
+        <button
+          onClick={this.handleCloseButtonClick}
+          className={closeClass}
+          type="button"
+        >
           <Icon
             name="close"
             className={closeIconClass}
@@ -124,6 +189,10 @@ export class ModalHeader extends Component {
 }
 
 export class ModalBody extends Component {
+  static propTypes = {
+    className: PropTypes.string,
+  };
+
   render() {
     const { className, children, ...other } = this.props;
 
@@ -141,6 +210,28 @@ export class ModalBody extends Component {
 }
 
 export class ModalFooter extends Component {
+  static propTypes = {
+    className: PropTypes.string,
+    primaryClassName: PropTypes.string,
+    secondaryClassName: PropTypes.string,
+    secondaryButtonText: PropTypes.string,
+    primaryButtonText: PropTypes.string,
+    primaryButtonDisabled: PropTypes.bool,
+    onRequestClose: PropTypes.func,
+    onRequestSubmit: PropTypes.func,
+    children: PropTypes.node,
+  };
+
+  static defaultProps = {
+    onRequestClose: () => {},
+    onRequestSubmit: () => {},
+  };
+
+  handleRequestClose = evt => {
+    this.props.closeModal();
+    this.props.onRequestClose(evt);
+  };
+
   render() {
     const {
       className,
@@ -149,6 +240,8 @@ export class ModalFooter extends Component {
       secondaryButtonText,
       primaryButtonText,
       primaryButtonDisabled,
+      onRequestClose, // eslint-disable-line
+      onRequestSubmit, // eslint-disable-line
       children,
       ...other
     } = this.props;
@@ -169,12 +262,21 @@ export class ModalFooter extends Component {
     return (
       <div className={footerClass} {...other}>
         {secondaryButtonText &&
-          <Button kind="secondary">
+          <Button
+            className={secondaryClass}
+            onClick={this.handleRequestClose}
+            kind="secondary"
+          >
             {secondaryButtonText}
           </Button>}
 
         {primaryButtonText &&
-          <Button disabled={primaryButtonDisabled} kind="primary">
+          <Button
+            onClick={this.onRequestSubmit}
+            className={primaryClass}
+            disabled={primaryButtonDisabled}
+            kind="primary"
+          >
             {primaryButtonText}
           </Button>}
 
