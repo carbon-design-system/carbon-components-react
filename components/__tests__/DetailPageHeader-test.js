@@ -96,13 +96,15 @@ describe('DetailPageHeader', () => {
     });
 
     it('should render the Tag', () => {
-      const hasTag = wrapper.find('.bx--detail-page-header-tag').length === 1;
-      expect(hasTag).toEqual(true);
+      const tag = wrapper.find(Tag).node.props.children;
+      expect(tag).toEqual('Language');
     });
 
     it('should render the Link', () => {
-      const hasTag = wrapper.find('.bx--detail-page-header-link').length === 1;
-      expect(hasTag).toEqual(true);
+      const extraLink = wrapper.find(Link).nodes.filter(node =>
+        node.props.children === 'View demo'
+      );
+      expect(extraLink.length).toEqual(1);
     });
   });
 

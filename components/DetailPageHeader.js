@@ -7,8 +7,6 @@ import Breadcrumb from './Breadcrumb';
 import Tabs from './Tabs';
 import OverflowMenu from './OverflowMenu';
 import Icon from './Icon';
-import Tag from './Tag';
-import Link from './Link';
 
 class DetailPageHeader extends Component {
   static propTypes = {
@@ -113,33 +111,24 @@ class DetailPageHeader extends Component {
     let tabs;
     let overflow;
     let icon;
-    let tag;
-    let link;
 
-    Children.map(children, child => {
-      if (child != null && child.type != null) {
-        switch (child.type) {
-          case Breadcrumb:
-            breadcrumb = child;
-            break;
-          case Tabs:
-            tabs = child;
-            break;
-          case OverflowMenu:
-            overflow = child;
-            break;
-          case Icon:
-            icon = child;
-            break;
-          case Tag:
-            tag = child;
-            break;
-          case Link:
-            link = child;
-            break;
-        }
+    let extraElements = Children.toArray(children).filter(child => {
+      switch (child.type) {
+        case Breadcrumb:
+          breadcrumb = child;
+          return false;
+        case Tabs:
+          tabs = child;
+          return false;
+        case OverflowMenu:
+          overflow = child;
+          return false;
+        case Icon:
+          icon = child;
+          return false;
+        default:
+          return true;
       }
-      return null;
     });
 
     const statusStyles = {
@@ -161,13 +150,9 @@ class DetailPageHeader extends Component {
               <div style={statusStyles} className="bx--detail-page-header-status-icon" />
               {' '}
               <span className="bx--detail-page-header-status-text">
-                {statusText}{statusContent}
-                <span className="bx--detail-page-header-tag">
-                  {' '}{tag}
-                </span>
-                <span className="bx--detail-page-header-link">
-                  {' '}{link}
-                </span>
+                {statusText}
+                {statusContent}
+                {extraElements}
               </span>
             </div>
           </div>
