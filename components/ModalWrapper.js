@@ -51,6 +51,7 @@ class ModalWrapper extends React.Component {
       passiveModal,
       primaryButtonText,
       secondaryButtonText,
+      handleSubmit,
       ...other
     } = this.props;
 
