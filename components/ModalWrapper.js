@@ -19,6 +19,7 @@ class ModalWrapper extends React.Component {
     primaryButtonText: PropTypes.string,
     secondaryButtonText: PropTypes.string,
     handleSubmit: PropTypes.func,
+    closeAfterSubmit : PropTypes.bool,
   };
 
   static defaultProps = {
@@ -42,6 +43,7 @@ class ModalWrapper extends React.Component {
     });
   };
 
+
   render() {
     const {
       id,
@@ -52,6 +54,7 @@ class ModalWrapper extends React.Component {
       primaryButtonText,
       secondaryButtonText,
       handleSubmit,
+      closeAfterSubmit,
       ...other
     } = this.props;
 
@@ -64,7 +67,7 @@ class ModalWrapper extends React.Component {
       secondaryButtonText,
       open: this.state.open,
       onRequestClose: this.handleClose,
-      onRequestSubmit: handleSubmit,
+      onRequestSubmit: closeAfterSubmit ? ()=>{ if( handleSubmit() == true ) this.handleClose() } : handleSubmit,
     };
 
     return (
