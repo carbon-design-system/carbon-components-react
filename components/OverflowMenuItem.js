@@ -16,11 +16,14 @@ const propTypes = {
   onMouseEnter: PropTypes.func,
   onMouseLeave: PropTypes.func,
   onMouseUp: PropTypes.func,
+  closeMenu: PropTypes.func
 };
 
 const defaultProps = {
   hasDivider: false,
   isDelete: false,
+  itemText: 'Provide itemText',
+  onClick: () => {}
 };
 
 const OverflowMenuItem = ({
@@ -28,6 +31,8 @@ const OverflowMenuItem = ({
   itemText,
   hasDivider,
   isDelete,
+  closeMenu,
+  onClick,
   ...other
 }) => {
   const overflowMenuBtnClasses = classNames(
@@ -35,17 +40,24 @@ const OverflowMenuItem = ({
     'bx--overflow-menu-options__btn'
   );
 
-  const overflowMenuItemClasses = classNames(
-    'bx--overflow-menu-options__option',
-    {
-      'bx--overflow-menu--divider': hasDivider,
-      'bx--overflow-menu-options__option--danger': isDelete,
-    }
-  );
+  const overflowMenuItemClasses = classNames('bx--overflow-menu-options__option', {
+    'bx--overflow-menu--divider': hasDivider,
+    'bx--overflow-menu-options__option--danger': isDelete
+  });
+
+  const handleClick = evt => {
+    onClick(evt);
+    closeMenu();
+  };
 
   const item = (
     <li className={overflowMenuItemClasses}>
-      <button {...other} type="button" className={overflowMenuBtnClasses}>
+      <button
+        {...other}
+        type="button"
+        className={overflowMenuBtnClasses}
+        onClick={handleClick}
+      >
         {itemText}
       </button>
     </li>

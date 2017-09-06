@@ -45,7 +45,9 @@ class OverflowMenu extends Component {
   };
 
   componentDidMount() {
-    this.getMenuPosition();
+    requestAnimationFrame(() => {
+      this.getMenuPosition();
+    });
     this.hResize = OptimizedResize.add(() => {
       this.getMenuPosition();
     });
@@ -62,8 +64,10 @@ class OverflowMenu extends Component {
   }
 
   getMenuPosition = () => {
-    const menuPosition = this.menuEl.getBoundingClientRect();
-    this.setState({ menuPosition });
+    if (this.menuEl) {
+      const menuPosition = this.menuEl.getBoundingClientRect();
+      this.setState({ menuPosition });
+    }
   };
 
   handleClick = evt => {
@@ -80,13 +84,15 @@ class OverflowMenu extends Component {
   };
 
   handleClickOutside = () => {
+    this.closeMenu();
+  };
+
+  closeMenu = () => {
     this.setState({ open: false });
   };
 
-  handleBlur = evt => {
-    if (!this.menuEl.contains(evt.relatedTarget)) {
-      this.setState({ open: false });
-    }
+  bindMenuEl = menuEl => {
+    this.menuEl = menuEl;
   };
 
   render() {
@@ -102,6 +108,7 @@ class OverflowMenu extends Component {
       menuOffset,
       menuOffsetFlip,
       iconClass,
+      onClick, // eslint-disable-line
       ...other
     } = this.props;
 
@@ -123,22 +130,25 @@ class OverflowMenu extends Component {
       iconClass
     );
 
+    const childrenWithProps = React.Children.toArray(children).map(child =>
+      React.cloneElement(child, {
+        closeMenu: this.closeMenu,
+      })
+    );
+
     return (
       <ClickListener onClickOutside={this.handleClickOutside}>
         <div
           {...other}
           className={overflowMenuClasses}
-          onClick={this.handleClick}
           onKeyDown={this.handleKeyPress}
-          onBlur={this.handleBlur}
           aria-label={ariaLabel}
           id={id}
           tabIndex={tabIndex}
-          ref={node => {
-            this.menuEl = node;
-          }}
+          ref={this.bindMenuEl}
         >
           <Icon
+            onClick={this.handleClick}
             className={overflowMenuIconClasses}
             name={iconName}
             description={iconDescription}
@@ -151,11 +161,11 @@ class OverflowMenu extends Component {
                 menuOffset={flipped ? menuOffsetFlip : menuOffset}
               >
                 <ul className={overflowMenuOptionsClasses}>
-                  {children}
+                  {childrenWithProps}
                 </ul>
               </FloatingMenu>
             : <ul className={overflowMenuOptionsClasses}>
-                {children}
+                {childrenWithProps}
               </ul>}
         </div>
       </ClickListener>

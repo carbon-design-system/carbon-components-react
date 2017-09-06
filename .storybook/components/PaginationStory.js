@@ -10,15 +10,40 @@ const props = {
 };
 
 storiesOf('Pagination', module)
-  .addDecorator(story => (
+  .addDecorator(story =>
     <div style={{ width: '800px' }}>
       {story()}
     </div>
-  ))
+  )
   .addWithInfo(
-    'Default',
+    'with known total number of items',
     `
-      Description coming soon.
+      The pagination component is used to paginate through items with known total.
     `,
     () => <Pagination {...props} totalItems={103} />
+  )
+  .addWithInfo(
+    'with unknown total number of items',
+    `
+      The pagination component is used to paginate through items with unknown total.
+    `,
+    () =>
+      <Pagination
+        {...props}
+        pagesUnknown={true}
+        isLastPage={false}
+        pageInputDisabled={true}
+      />
+  )
+  .addWithInfo(
+    'multipe pagination components',
+    `Showcasing unique ids for each pagination component`,
+    () => {
+      return (
+        <div>
+          <Pagination {...props} totalItems={103} />
+          <Pagination {...props} totalItems={103} />
+        </div>
+      );
+    }
   );

@@ -3,6 +3,10 @@ import React, { Component, Children } from 'react';
 import classnames from 'classnames';
 import debounce from 'lodash.debounce';
 import window from 'window-or-global';
+import Breadcrumb from './Breadcrumb';
+import Tabs from './Tabs';
+import OverflowMenu from './OverflowMenu';
+import Icon from './Icon';
 
 class DetailPageHeader extends Component {
   static propTypes = {
@@ -14,24 +18,25 @@ class DetailPageHeader extends Component {
     statusText: PropTypes.string,
     hasTabs: PropTypes.bool,
     isScrolled: PropTypes.bool,
-    isScrollingDownward: PropTypes.bool,
+    isScrollingDownward: PropTypes.bool
   };
 
   static defaultProps = {
+    title: 'Provide a title',
     statusText: 'Running',
     role: 'banner', // a11y compliance
-    hasTabs: false,
+    hasTabs: false
   };
 
   state = {
     isScrolled: this.props.isScrolled || false,
     isScrollingDownward: this.props.isScrollingDownward || false,
-    lastPosition: 0,
+    lastPosition: 0
   };
 
   componentDidMount() {
-    const debouncedScroll = debounce(this.handleScroll, 25);
-    window.addEventListener('scroll', debouncedScroll);
+    this._debouncedScroll = debounce(this.handleScroll, 25);
+    window.addEventListener('scroll', this._debouncedScroll);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -45,7 +50,7 @@ class DetailPageHeader extends Component {
   }
 
   componentWillUnmount() {
-    window.removeEventListener('scroll', this.handleScroll);
+    window.removeEventListener('scroll', this._debouncedScroll);
   }
 
   handleScroll = () => {
@@ -58,20 +63,20 @@ class DetailPageHeader extends Component {
         this.setState({
           isScrolled: true,
           isScrollingDownward: true,
-          lastPosition: currentPosition,
+          lastPosition: currentPosition
         });
       } else {
         this.setState({
           isScrolled: true,
           isScrollingDownward: false,
-          lastPosition: currentPosition,
+          lastPosition: currentPosition
         });
       }
     } else {
       this.setState({
         isScrolled: false,
         isScrollingDownward: false,
-        lastPosition: currentPosition,
+        lastPosition: currentPosition
       });
     }
   };
@@ -98,9 +103,7 @@ class DetailPageHeader extends Component {
       ? 'bx--detail-page-header--with-tabs'
       : 'bx--detail-page-header--no-tabs';
 
-    const scrolled = isScrollingDownward
-      ? 'bx--detail-page-header--scroll'
-      : null;
+    const scrolled = isScrollingDownward ? 'bx--detail-page-header--scroll' : null;
 
     const classNames = classnames('bx--detail-page-header', withTabs, scrolled);
 
@@ -110,19 +113,19 @@ class DetailPageHeader extends Component {
     let icon;
 
     Children.map(children, child => {
-      if (child.type.name === 'Breadcrumb') {
+      if (child.type === Breadcrumb) {
         breadcrumb = child;
       }
 
-      if (child.type.name === 'Tabs') {
+      if (child.type === Tabs) {
         tabs = child;
       }
 
-      if (child.type.name === 'OverflowMenu') {
+      if (child.type === OverflowMenu) {
         overflow = child;
       }
 
-      if (child.type.name === 'Icon') {
+      if (child.type === Icon) {
         icon = child;
       }
 
@@ -130,7 +133,7 @@ class DetailPageHeader extends Component {
     });
 
     const statusStyles = {
-      backgroundColor: statusColor,
+      backgroundColor: statusColor
     };
 
     icon = icon === undefined ? defaultIcon : icon;
@@ -145,10 +148,8 @@ class DetailPageHeader extends Component {
             </div>
             <h1 className="bx--detail-page-header-title">{title}</h1>
             <div className="bx--detail-page-header-status-container">
-              <div
-                style={statusStyles}
-                className="bx--detail-page-header-status-icon"
-              />
+              <div style={statusStyles} className="bx--detail-page-header-status-icon" />
+              {' '}
               <span className="bx--detail-page-header-status-text">
                 {statusText}{statusContent}
               </span>
