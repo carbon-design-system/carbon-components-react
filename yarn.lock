@@ -1654,19 +1654,15 @@ caniuse-lite@^1.0.30000697, caniuse-lite@^1.0.30000704:
   version "1.0.30000709"
   resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30000709.tgz#e027c7a0dfd5ada58f931a1080fc71965375559b"
 
-carbon-components@^7.13.0:
-  version "7.17.1"
-  resolved "https://registry.yarnpkg.com/carbon-components/-/carbon-components-7.17.1.tgz#34e5c6446e63c57806e92f5f417ee77f8d252976"
+carbon-components@^7.21.1:
+  version "7.21.1"
+  resolved "https://registry.yarnpkg.com/carbon-components/-/carbon-components-7.21.1.tgz#e05460fa0843c3ef8a049929364e16388cf1e536"
   dependencies:
     carbon-icons "^6.0.4"
     flatpickr "2.6.3"
     lodash.debounce "^4.0.8"
 
-carbon-icons@^6.0.4:
-  version "6.0.6"
-  resolved "https://registry.yarnpkg.com/carbon-icons/-/carbon-icons-6.0.6.tgz#63e72520e7f1c0fe2c3da716dd36cd84ef90cb9c"
-
-carbon-icons@^6.1.0:
+carbon-icons@^6.0.4, carbon-icons@^6.1.0:
   version "6.1.0"
   resolved "https://registry.yarnpkg.com/carbon-icons/-/carbon-icons-6.1.0.tgz#012951c20ee978060818a034099c163a9086d50e"
 
