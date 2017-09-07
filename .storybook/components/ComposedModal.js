@@ -33,7 +33,7 @@ storiesOf('ComposedModal', module)
             functionality.
           </p>
         </ModalBody>
-        <ModalFooter primaryButtonText="save" secondaryButtonText="cancel" />
+        <ModalFooter primaryButtonText="save" />
       </ComposedModal>
   )
   .addWithInfo(
