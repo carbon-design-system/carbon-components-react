@@ -19,7 +19,7 @@ storiesOf('Slider', module)
     .addWithInfo(
     'hide Label',
     `
-      Sliders provide a visual indication of adjustable content, where the user can move the handle along a horizontal track to increase or decrease the value.
+       Label for TextInput can be hidden using the prop 'hideTextInputLabel' with 'labelForTextInput'. 
     `,
     () => (
       <div style={{ marginTop: '2rem' }}>
