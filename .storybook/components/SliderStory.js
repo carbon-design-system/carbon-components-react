@@ -12,7 +12,18 @@ storiesOf('Slider', module)
     `,
     () => (
       <div style={{ marginTop: '2rem' }}>
-        <Slider id="slider" value={50} min={0} max={100} step={1} labelText="Slider Label" onChange={mock} labelForTextInput="size" hideTextInputLabel />
+        <Slider id="slider" value={50} min={0} max={100} step={1} labelText="Slider Label" onChange={mock} labelForTextInput="Enter value"  />
+      </div>
+    )
+  )
+    .addWithInfo(
+    'hide Label',
+    `
+      Sliders provide a visual indication of adjustable content, where the user can move the handle along a horizontal track to increase or decrease the value.
+    `,
+    () => (
+      <div style={{ marginTop: '2rem' }}>
+        <Slider id="slider" value={50} min={0} max={100} step={1} labelText="Slider Label" onChange={mock} labelForTextInput="Enter a value" hideTextInputLabel />
       </div>
     )
   )
