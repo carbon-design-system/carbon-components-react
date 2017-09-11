@@ -104,33 +104,6 @@ const allProps = {
   ...extraProps,
 };
 
-const storyRender = component =>
-  <div>
-    <div style={{
-      color: '#fff',
-      width: '100%',
-      backgroundColor: 'black',
-      height: '86px',
-      padding: '1rem',
-      position: 'fixed',
-      top: '0',
-      left: '0',
-      zIndex: '9999',
-    }}>Header to simulate Bluemix top nav</div>
-    {component}
-    <h1 style={{
-      marginTop: '10rem',
-      marginBottom: '1rem',
-    }}>This is sample content to test the page</h1>
-    <div style={{
-      backgroundColor: 'rgba(61, 112, 178, 0.1)',
-      height: '30rem',
-      padding: '1rem',
-    }}>
-      <p>Sample content to test scrolling</p>
-    </div>
-  </div>;
-
 storiesOf('DetailPageHeaderCustom', module)
   .addDecorator(story => (
     <div style={{ minWidth: '60em' }}>
@@ -138,83 +111,63 @@ storiesOf('DetailPageHeaderCustom', module)
     </div>
   ))
   .addWithInfo('Default', () => (
-    storyRender(
-      <DetailPageHeaderCustom
-        {...defaultProps}
-      />
-    )
+    <DetailPageHeaderCustom
+      {...defaultProps}
+    />
   ))
   .addWithInfo('With Top', () => (
-    storyRender(
-      <DetailPageHeaderCustom
-        {...topProps}
-      />
-    )
+    <DetailPageHeaderCustom
+      {...topProps}
+    />
   ))
   .addWithInfo('With Bottom', () => (
-    storyRender(
-      <DetailPageHeaderCustom
-        {...bottomProps}
-      />
-    )
+    <DetailPageHeaderCustom
+      {...bottomProps}
+    />
   ))
   .addWithInfo('With Side', () => (
-    storyRender(
-      <DetailPageHeaderCustom
-        {...sideProps}
-      />
-    )
+    <DetailPageHeaderCustom
+      {...sideProps}
+    />
   ))
   .addWithInfo('With Extra', () => (
-    storyRender(
-      <DetailPageHeaderCustom
-        {...extraProps}
-      />
-    )
+    <DetailPageHeaderCustom
+      {...extraProps}
+    />
   ))
   .addWithInfo('With Bottom and Side', () => (
-    storyRender(
-      <DetailPageHeaderCustom
-        {...{
-          ...bottomProps,
-          ...sideProps,
-        }}
-      />
-    )
+    <DetailPageHeaderCustom
+      {...{
+        ...bottomProps,
+        ...sideProps,
+      }}
+    />
   ))
   .addWithInfo('With Top and Side', () => (
-    storyRender(
-      <DetailPageHeaderCustom
-        {...{
-          ...topProps,
-          ...sideProps,
-        }}
-      />
-    )
+    <DetailPageHeaderCustom
+      {...{
+        ...topProps,
+        ...sideProps,
+      }}
+    />
   ))
   .addWithInfo('With Everything', () => (
-    storyRender(
-      <DetailPageHeaderCustom
-        {...allProps}
-      />
-    )
+    <DetailPageHeaderCustom
+      {...allProps}
+    />
   ))
   .addWithInfo('Lock Expanded', () => (
-    storyRender(
-      <DetailPageHeaderCustom
-        {...{
-          ...allProps,
-          lockState: 'expanded',
-        }}
-      />
-    )
+    <DetailPageHeaderCustom
+      {...{
+        ...allProps,
+        lockState: 'expanded',
+      }}
+    />
   )).addWithInfo('Lock Collapsed', () => (
-    storyRender(
-      <DetailPageHeaderCustom
-        {...{
-          ...allProps,
-          lockState: 'collapsed',
-        }}
-      />
-    )
+    <DetailPageHeaderCustom
+      {...{
+        ...allProps,
+        lockState: 'collapsed',
+      }}
+    />
   ));

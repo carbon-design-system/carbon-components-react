@@ -63,47 +63,10 @@ storiesOf('DetailPageHeader', module)
           View demo
         </Link>
       </DetailPageHeader>
-      <p>Hello sjdfl ksajfkl ;sjaf ;jdksl;f jak ;sjdklf;jdsklafjdsaf;jdskfl;sjf</p>
-      <p>Hello sjdfl ksajfkl ;sjaf ;jdksl;f jak ;sjdklf;jdsklafjdsaf;jdskfl;sjf</p>
-      <p>Hello sjdfl ksajfkl ;sjaf ;jdksl;f jak ;sjdklf;jdsklafjdsaf;jdskfl;sjf</p>
-      <p>Hello sjdfl ksajfkl ;sjaf ;jdksl;f jak ;sjdklf;jdsklafjdsaf;jdskfl;sjf</p>
-      <p>Hello sjdfl ksajfkl ;sjaf ;jdksl;f jak ;sjdklf;jdsklafjdsaf;jdskfl;sjf</p>
-      <p>Hello sjdfl ksajfkl ;sjaf ;jdksl;f jak ;sjdklf;jdsklafjdsaf;jdskfl;sjf</p>
-      <p>Hello sjdfl ksajfkl ;sjaf ;jdksl;f jak ;sjdklf;jdsklafjdsaf;jdskfl;sjf</p>
-      <p>Hello sjdfl ksajfkl ;sjaf ;jdksl;f jak ;sjdklf;jdsklafjdsaf;jdskfl;sjf</p>
-      <p>Hello sjdfl ksajfkl ;sjaf ;jdksl;f jak ;sjdklf;jdsklafjdsaf;jdskfl;sjf</p>
-      <p>Hello sjdfl ksajfkl ;sjaf ;jdksl;f jak ;sjdklf;jdsklafjdsaf;jdskfl;sjf</p>
-      <p>Hello sjdfl ksajfkl ;sjaf ;jdksl;f jak ;sjdklf;jdsklafjdsaf;jdskfl;sjf</p>
-      <p>Hello sjdfl ksajfkl ;sjaf ;jdksl;f jak ;sjdklf;jdsklafjdsaf;jdskfl;sjf</p>
-      <p>Hello sjdfl ksajfkl ;sjaf ;jdksl;f jak ;sjdklf;jdsklafjdsaf;jdskfl;sjf</p>
-      <p>Hello sjdfl ksajfkl ;sjaf ;jdksl;f jak ;sjdklf;jdsklafjdsaf;jdskfl;sjf</p>
-      <p>Hello sjdfl ksajfkl ;sjaf ;jdksl;f jak ;sjdklf;jdsklafjdsaf;jdskfl;sjf</p>
-      <p>Hello sjdfl ksajfkl ;sjaf ;jdksl;f jak ;sjdklf;jdsklafjdsaf;jdskfl;sjf</p>
-      <p>Hello sjdfl ksajfkl ;sjaf ;jdksl;f jak ;sjdklf;jdsklafjdsaf;jdskfl;sjf</p>
-      <p>Hello sjdfl ksajfkl ;sjaf ;jdksl;f jak ;sjdklf;jdsklafjdsaf;jdskfl;sjf</p>
-      <p>Hello sjdfl ksajfkl ;sjaf ;jdksl;f jak ;sjdklf;jdsklafjdsaf;jdskfl;sjf</p>
-      <p>Hello sjdfl ksajfkl ;sjaf ;jdksl;f jak ;sjdklf;jdsklafjdsaf;jdskfl;sjf</p>
-      <p>Hello sjdfl ksajfkl ;sjaf ;jdksl;f jak ;sjdklf;jdsklafjdsaf;jdskfl;sjf</p>
-      <p>Hello sjdfl ksajfkl ;sjaf ;jdksl;f jak ;sjdklf;jdsklafjdsaf;jdskfl;sjf</p>
-      <p>Hello sjdfl ksajfkl ;sjaf ;jdksl;f jak ;sjdklf;jdsklafjdsaf;jdskfl;sjf</p>
-      <p>Hello sjdfl ksajfkl ;sjaf ;jdksl;f jak ;sjdklf;jdsklafjdsaf;jdskfl;sjf</p>
-      <p>Hello sjdfl ksajfkl ;sjaf ;jdksl;f jak ;sjdklf;jdsklafjdsaf;jdskfl;sjf</p>
-      <p>Hello sjdfl ksajfkl ;sjaf ;jdksl;f jak ;sjdklf;jdsklafjdsaf;jdskfl;sjf</p>
-      <p>Hello sjdfl ksajfkl ;sjaf ;jdksl;f jak ;sjdklf;jdsklafjdsaf;jdskfl;sjf</p>
-      <p>Hello sjdfl ksajfkl ;sjaf ;jdksl;f jak ;sjdklf;jdsklafjdsaf;jdskfl;sjf</p>
     </div>
   ))
   .addWithInfo('with tabs', () => (
     <div>
-      <div style={{
-        width: '100%',
-        backgroundColor: 'black',
-        height: '86px',
-        position: 'fixed',
-        top: '0',
-        left: '0',
-        zIndex: '9999',
-      }}></div>
       <DetailPageHeader {...detailPageHeaderProps} hasTabs>
         <Icon name="watson" />
         <Breadcrumb>
@@ -139,33 +102,5 @@ storiesOf('DetailPageHeader', module)
           View demo
         </Link>
       </DetailPageHeader>
-      <p>Hello sjdfl ksajfkl ;sjaf ;jdksl;f jak ;sjdklf;jdsklafjdsaf;jdskfl;sjf</p>
-      <p>Hello sjdfl ksajfkl ;sjaf ;jdksl;f jak ;sjdklf;jdsklafjdsaf;jdskfl;sjf</p>
-      <p>Hello sjdfl ksajfkl ;sjaf ;jdksl;f jak ;sjdklf;jdsklafjdsaf;jdskfl;sjf</p>
-      <p>Hello sjdfl ksajfkl ;sjaf ;jdksl;f jak ;sjdklf;jdsklafjdsaf;jdskfl;sjf</p>
-      <p>Hello sjdfl ksajfkl ;sjaf ;jdksl;f jak ;sjdklf;jdsklafjdsaf;jdskfl;sjf</p>
-      <p>Hello sjdfl ksajfkl ;sjaf ;jdksl;f jak ;sjdklf;jdsklafjdsaf;jdskfl;sjf</p>
-      <p>Hello sjdfl ksajfkl ;sjaf ;jdksl;f jak ;sjdklf;jdsklafjdsaf;jdskfl;sjf</p>
-      <p>Hello sjdfl ksajfkl ;sjaf ;jdksl;f jak ;sjdklf;jdsklafjdsaf;jdskfl;sjf</p>
-      <p>Hello sjdfl ksajfkl ;sjaf ;jdksl;f jak ;sjdklf;jdsklafjdsaf;jdskfl;sjf</p>
-      <p>Hello sjdfl ksajfkl ;sjaf ;jdksl;f jak ;sjdklf;jdsklafjdsaf;jdskfl;sjf</p>
-      <p>Hello sjdfl ksajfkl ;sjaf ;jdksl;f jak ;sjdklf;jdsklafjdsaf;jdskfl;sjf</p>
-      <p>Hello sjdfl ksajfkl ;sjaf ;jdksl;f jak ;sjdklf;jdsklafjdsaf;jdskfl;sjf</p>
-      <p>Hello sjdfl ksajfkl ;sjaf ;jdksl;f jak ;sjdklf;jdsklafjdsaf;jdskfl;sjf</p>
-      <p>Hello sjdfl ksajfkl ;sjaf ;jdksl;f jak ;sjdklf;jdsklafjdsaf;jdskfl;sjf</p>
-      <p>Hello sjdfl ksajfkl ;sjaf ;jdksl;f jak ;sjdklf;jdsklafjdsaf;jdskfl;sjf</p>
-      <p>Hello sjdfl ksajfkl ;sjaf ;jdksl;f jak ;sjdklf;jdsklafjdsaf;jdskfl;sjf</p>
-      <p>Hello sjdfl ksajfkl ;sjaf ;jdksl;f jak ;sjdklf;jdsklafjdsaf;jdskfl;sjf</p>
-      <p>Hello sjdfl ksajfkl ;sjaf ;jdksl;f jak ;sjdklf;jdsklafjdsaf;jdskfl;sjf</p>
-      <p>Hello sjdfl ksajfkl ;sjaf ;jdksl;f jak ;sjdklf;jdsklafjdsaf;jdskfl;sjf</p>
-      <p>Hello sjdfl ksajfkl ;sjaf ;jdksl;f jak ;sjdklf;jdsklafjdsaf;jdskfl;sjf</p>
-      <p>Hello sjdfl ksajfkl ;sjaf ;jdksl;f jak ;sjdklf;jdsklafjdsaf;jdskfl;sjf</p>
-      <p>Hello sjdfl ksajfkl ;sjaf ;jdksl;f jak ;sjdklf;jdsklafjdsaf;jdskfl;sjf</p>
-      <p>Hello sjdfl ksajfkl ;sjaf ;jdksl;f jak ;sjdklf;jdsklafjdsaf;jdskfl;sjf</p>
-      <p>Hello sjdfl ksajfkl ;sjaf ;jdksl;f jak ;sjdklf;jdsklafjdsaf;jdskfl;sjf</p>
-      <p>Hello sjdfl ksajfkl ;sjaf ;jdksl;f jak ;sjdklf;jdsklafjdsaf;jdskfl;sjf</p>
-      <p>Hello sjdfl ksajfkl ;sjaf ;jdksl;f jak ;sjdklf;jdsklafjdsaf;jdskfl;sjf</p>
-      <p>Hello sjdfl ksajfkl ;sjaf ;jdksl;f jak ;sjdklf;jdsklafjdsaf;jdskfl;sjf</p>
-      <p>Hello sjdfl ksajfkl ;sjaf ;jdksl;f jak ;sjdklf;jdsklafjdsaf;jdskfl;sjf</p>
     </div>
   ));
