@@ -11,10 +11,11 @@ class Tile extends Component {
   };
 
   render() {
-    const { children, ...other } = this.props;
+    const { children, className, ...other } = this.props;
+    const tileClasses = classNames('bx--tile', className);
 
     return (
-      <div className="bx--tile" {...other}>
+      <div className={tileClasses} {...other}>
         {children}
       </div>
     );
@@ -47,12 +48,12 @@ class ClickableTile extends Component {
   }
 
   render() {
-    const { children, href, ...other } = this.props;
+    const { children, href, className, ...other } = this.props;
     const { clicked } = this.state;
 
     const classes = classNames('bx--tile', 'bx--tile--clickable', {
       'bx--tile--is-clicked': clicked
-    });
+    }, className);
 
     return (
       <a href={href} className={classes} {...other} onClick={this.handleClick} onKeyDown={this.handleKeyDown}>
@@ -101,11 +102,11 @@ class SelectableTile extends Component {
   }
 
   render() {
-    const { children, id, tabIndex, value, name, title, ...other } = this.props;
+    const { children, id, tabIndex, value, name, title, className, ...other } = this.props;
 
     const classes = classNames('bx--tile', 'bx--tile--selectable', {
       'bx--tile--is-selected': this.state.selected
-    });
+    }, className);
 
     return (
       <label htmlFor={id} className={classes} tabIndex={tabIndex} {...other} onClick={this.handleClick} onKeyDown={this.handleKeyDown}>
@@ -170,12 +171,12 @@ class ExpandableTile extends Component {
   }
 
   render() {
-    const { tabIndex, ...other } = this.props;
+    const { tabIndex, className, ...other } = this.props;
     const { expanded } = this.state;
 
     const classes = classNames('bx--tile', 'bx--tile--expandable', {
       'bx--tile--is-expanded': expanded
-    });
+    }, className);
     const tileStyle = {
       'maxHeight': this.state.tileMaxHeight
     };
