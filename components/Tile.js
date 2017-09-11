@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import Icon from './Icon';
-// import uid from '../lib/uniqueId';
 
 class Tile extends Component {
   static propTypes = {
@@ -123,29 +123,54 @@ class SelectableTile extends Component {
 
 class ExpandableTile extends Component {
   state = {
-    expanded: this.props.expanded,
+    expanded: false,
     tileMaxHeight: '0'
   }
 
   static propTypes = {
     children: PropTypes.node,
     className: PropTypes.string,
-    expanded: PropTypes.bool
+    expanded: PropTypes.bool,
+    tabIndex: PropTypes.number
   };
 
-  handleClick = () => {
+  static defaultProps = {
+    tabIndex: 0
+  }
+
+  componentDidMount = () => {
+    this.aboveTheFold = ReactDOM.findDOMNode(this.refs[0]); // eslint-disable-line
     this.setState({
-      expanded: !this.state.expanded
-    });
+      tileMaxHeight: this.aboveTheFold.getBoundingClientRect().height
+    })
+  }
+
+  setMaxHeight = () => {
     if (this.state.expanded) {
       this.setState({
-        tileMaxHeight: this.tile.getBoundingClientRect().height
+        tileMaxHeight: this.tileContent.getBoundingClientRect().height
+      });
+    } else {
+      this.setState({
+        tileMaxHeight: this.aboveTheFold.getBoundingClientRect().height
       });
     }
   }
 
+  handleClick = () => {
+    this.setState({
+      expanded: !this.state.expanded
+    }, () => {
+      this.setMaxHeight();
+    });
+  }
+
+  getChildren = () => {
+    return React.Children.map(this.props.children, child => child);
+  }
+
   render() {
-    const { children, ...other } = this.props;
+    const { tabIndex, ...other } = this.props;
     const { expanded } = this.state;
 
     const classes = classNames('bx--tile', 'bx--tile--expandable', {
@@ -154,15 +179,24 @@ class ExpandableTile extends Component {
     const tileStyle = {
       'maxHeight': this.state.tileMaxHeight
     };
-
+    const content = this.getChildren().map((child, index) => {
+      return React.cloneElement(child, { ref: index });
+    });
     return (
-      <div ref={tile => { this.tile = tile; }} style={tileStyle} className={classes} {...other} onClick={this.handleClick}>
+      <div
+        ref={tile => { this.tile = tile; }}
+        style={tileStyle}
+        className={classes}
+        {...other}
+        role="button"
+        onClick={this.handleClick}
+        tabIndex={tabIndex}
+      >
         <button className="bx--tile__chevron">
           <Icon name="chevron--down" description="Tile chevron" />
         </button>
-        <div className="bx--tile-content">
-          {children[0]}
-          {children[1]}
+        <div ref={tileContent => { this.tileContent = tileContent; }} className="bx--tile-content">
+          {content}
         </div>
       </div>
     );
@@ -179,7 +213,7 @@ class TileAboveTheFoldContent extends Component {
     const { children } = this.props;
 
     return (
-      <span ref={aboveTheFold => this.aboveTheFold = aboveTheFold} className="bx--tile-content__above-the-fold">
+      <span className="bx--tile-content__above-the-fold">
         {children}
       </span>
     )
