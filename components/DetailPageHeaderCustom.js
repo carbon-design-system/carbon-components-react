@@ -83,20 +83,20 @@ class DetailPageHeaderCustom extends Component {
         this.setState({
           isScrolled: true,
           isScrollingDownward: true,
-          lastPosition: currentPosition
+          lastPosition: currentPosition,
         });
       } else {
         this.setState({
           isScrolled: true,
           isScrollingDownward: false,
-          lastPosition: currentPosition
+          lastPosition: currentPosition,
         });
       }
     } else {
       this.setState({
         isScrolled: false,
         isScrollingDownward: false,
-        lastPosition: currentPosition
+        lastPosition: currentPosition,
       });
     }
   };
@@ -117,7 +117,7 @@ class DetailPageHeaderCustom extends Component {
 
     // const scrolled = isScrollingDownward ? 'bx--detail-page-header-custom--scroll' : null;
 
-    const getExpansionState = (lockState, isScrollingDownward) => {
+    const getExpansionState = () => {
       switch (lockState) {
         case 'expanded':
           return null;
@@ -125,6 +125,8 @@ class DetailPageHeaderCustom extends Component {
           return 'bx--detail-page-header-custom--collapsed';
         case 'unlocked':
           return isScrollingDownward ? 'bx--detail-page-header-custom--collapsed' : null;
+        default:
+          return null;
       }
     };
 
