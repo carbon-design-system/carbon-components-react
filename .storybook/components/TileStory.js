@@ -35,10 +35,14 @@ storiesOf("Tile", module)
     () =>
       <ExpandableTile>
         <TileAboveTheFoldContent>
-          Above the fold content here
+          <div style={{ height: '200px' }}>
+            Above the fold content here
+          </div>
         </TileAboveTheFoldContent>
         <TileBelowTheFoldContent>
-          Below the fold content here
+          <div style={{ height: '400px' }}>
+            Below the fold content here
+          </div>
         </TileBelowTheFoldContent>
       </ExpandableTile>
   )
