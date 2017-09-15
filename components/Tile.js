@@ -24,7 +24,7 @@ class Tile extends Component {
 
 class ClickableTile extends Component {
   state = {
-    clicked: false
+    clicked: this.props.clicked
   }
 
   static propTypes = {
@@ -33,10 +33,17 @@ class ClickableTile extends Component {
     href: PropTypes.string,
   };
 
+  static defaultProps = {
+    clicked: false,
+    handleClick: () => {},
+    handleKeyDown: () => {}
+  }
+
   handleClick = () => {
     this.setState({
       clicked: !this.state.clicked
     });
+    this.props.handleClick();
   }
 
   handleKeyDown = evt => {
@@ -45,6 +52,7 @@ class ClickableTile extends Component {
         clicked: !this.state.clicked
       });
     }
+    this.props.handleKeyDown();
   }
 
   render() {
@@ -81,7 +89,9 @@ class SelectableTile extends Component {
   static defaultProps = {
     value: 'value',
     title: 'title',
-    selected: false
+    selected: false,
+    handleClick: () => {},
+    handleKeyDown: () => {}
   };
 
   handleClick = evt => {
@@ -91,6 +101,7 @@ class SelectableTile extends Component {
         selected: !this.state.selected
       });
     }
+    this.props.handleClick();
   }
 
   handleKeyDown = evt => {
@@ -99,6 +110,7 @@ class SelectableTile extends Component {
         selected: !this.state.selected
       });
     }
+    this.props.handleKeyDown();
   }
 
   render() {
@@ -124,8 +136,8 @@ class SelectableTile extends Component {
 
 class ExpandableTile extends Component {
   state = {
-    expanded: false,
-    tileMaxHeight: '0'
+    expanded: this.props.expanded,
+    tileMaxHeight: this.props.tileMaxHeight
   }
 
   static propTypes = {
@@ -136,7 +148,10 @@ class ExpandableTile extends Component {
   };
 
   static defaultProps = {
-    tabIndex: 0
+    tabIndex: 0,
+    expanded: false,
+    tileMaxHeight: '0',
+    handleClick: () => {},
   }
 
   componentDidMount = () => {
@@ -164,6 +179,7 @@ class ExpandableTile extends Component {
     }, () => {
       this.setMaxHeight();
     });
+    this.props.handleClick();
   }
 
   getChildren = () => {
