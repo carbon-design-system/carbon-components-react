@@ -25,7 +25,6 @@ storiesOf('OrderSummary', module)
           <Dropdown
             onChange={selectedItemInfo => console.log(selectedItemInfo)}
             defaultText="USD"
-            selectedText="USD"
           >
             <DropdownItem itemText="USD" value="usd" />
             <DropdownItem itemText="GBP" value="gbp" />
