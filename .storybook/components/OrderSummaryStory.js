@@ -25,6 +25,7 @@ storiesOf('OrderSummary', module)
           <Dropdown
             onChange={selectedItemInfo => console.log(selectedItemInfo)}
             defaultText="USD"
+            selectedText="USD"
           >
             <DropdownItem itemText="USD" value="usd" />
             <DropdownItem itemText="GBP" value="gbp" />
@@ -50,7 +51,7 @@ storiesOf('OrderSummary', module)
           linkText="Contact Bluemix Sales"
           href="www.google.com"
         />
-      </OrderSummary>
+      </OrderSummary>,
   )
   .addWithInfo(
     'Category',
@@ -101,5 +102,5 @@ storiesOf('OrderSummary', module)
           linkText="Contact Bluemix Sales"
           href="www.google.com"
         />
-      </OrderSummary>
+      </OrderSummary>,
   );
