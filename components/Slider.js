@@ -15,8 +15,6 @@ class Slider extends PureComponent {
     max: PropTypes.number.isRequired,
     maxLabel: PropTypes.string,
     labelText: PropTypes.string,
-    labelForTextInput: PropTypes.string,
-    hideTextInputLabel: PropTypes.bool,
     step: PropTypes.number,
     stepMuliplier: PropTypes.number,
     children: PropTypes.node,
@@ -180,8 +178,6 @@ class Slider extends PureComponent {
       max,
       maxLabel,
       labelText,
-      labelForTextInput,
-      hideTextInputLabel,
       step,
       stepMuliplier, // eslint-disable-line no-unused-vars
       required,
@@ -257,8 +253,6 @@ class Slider extends PureComponent {
               className="bx-slider-text-input"
               value={value}
               onChange={this.handleChange}
-              labelText={labelForTextInput}
-              hideLabel={hideTextInputLabel}
             />
           : null }
         </div>
