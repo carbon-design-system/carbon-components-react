@@ -20,6 +20,6 @@ require('whatwg-fetch');
 Object.assign = require('object-assign');
 
 // Starting with React 16, we'll have to polyfill this in test environments.
-global.requestAnimationFrame = function (callback) {
+global.requestAnimationFrame = function(callback) {
   callback();
 };

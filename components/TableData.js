@@ -25,14 +25,16 @@ const TableData = props => {
 
   return (
     <td {...other} className={tableDataClasses}>
-      {expanded === undefined
-        ? children
-        : <Icon
-            className={iconClasses}
-            name="chevron--right"
-            description="expand row"
-            style={style}
-          />}
+      {expanded === undefined ? (
+        children
+      ) : (
+        <Icon
+          className={iconClasses}
+          name="chevron--right"
+          description="expand row"
+          style={style}
+        />
+      )}
     </td>
   );
 };
