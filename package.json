@@ -4,19 +4,19 @@
   "main": "cjs/index.js",
   "module": "es/index.js",
   "scripts": {
+    "build": "node scripts/build.js",
+    "build-storybook": "build-storybook",
     "check": "npm run lint && npm run test",
+    "commit": "git cz",
+    "commitmsg": "validate-commit-msg",
     "lint": "eslint {components,internal}/**",
-    "test": "jest '/(__tests__|components|lib|internal)/' && npm run test-ssr",
-    "test-watch": "jest '/(__tests__|components|lib|internal)/' --watch",
+    "test": "jest",
     "test-ssr": "npm run build && node server-side-rendering-tests/*.js",
     "prepublish": "npm run build",
-    "build": "node scripts/build.js",
-    "commitmsg": "validate-commit-msg",
-    "commit": "git cz",
-    "storybook": "start-storybook -p 9000",
-    "build-storybook": "build-storybook",
+    "prettier": "prettier --write **/*.js",
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post",
     "start": "npm run storybook",
-    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
+    "storybook": "start-storybook -p 9000"
   },
   "keywords": [
     "react",
@@ -112,7 +112,9 @@
     "commitizen": "^2.9.5",
     "css-loader": "^0.28.4",
     "cz-conventional-changelog-components": "^1.0.0",
-    "enzyme": "^2.6.0",
+    "enzyme": "^3.1.0",
+    "enzyme-adapter-react-15": "^1.0.1",
+    "enzyme-to-json": "^3.1.1",
     "eslint": "^3.0.0",
     "eslint-plugin-jsx-a11y": "^2.0.0",
     "eslint-plugin-react": "^6.0.0",
@@ -122,8 +124,10 @@
     "lcov2badge": "^0.1.0",
     "lint-staged": "^3.4.0",
     "node-sass": "3.8.0",
+    "object-assign": "^4.1.1",
     "postcss-loader": "^2.0.5",
-    "prettier": "^1.2.2",
+    "prettier": "^1.7.0",
+    "promise": "^8.0.1",
     "prop-types": "^15.5.8",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
@@ -134,22 +138,8 @@
     "semantic-release": "^6.3.6",
     "shelljs": "^0.7.5",
     "storybook-addon-a11y": "^3.0.0",
-    "validate-commit-msg": "^2.10.1"
-  },
-  "jest": {
-    "coverageDirectory": "./coverage",
-    "moduleNameMapper": {
-      "^.+\\.(scss)$": "<rootDir>/lib/styleMock.js"
-    },
-    "setupFiles": [
-      "<rootDir>/setup-jest.js"
-    ]
-  },
-  "lint-staged": {
-    "*.js": [
-      "prettier --trailing-comma es5 --single-quote --write",
-      "git add"
-    ]
+    "validate-commit-msg": "^2.10.1",
+    "whatwg-fetch": "^2.0.3"
   },
   "config": {
     "validate-commit-msg": {
@@ -172,6 +162,51 @@
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog-components"
     }
+  },
+  "lint-staged": {
+    "*.js": [
+      "prettier",
+      "git add"
+    ]
+  },
+  "prettier": {
+    "jsxBracketSameLine": true,
+    "printWidth": 80,
+    "singleQuote": true,
+    "trailingComma": "es5"
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "components/**/*.js"
+    ],
+    "setupFiles": [
+      "<rootDir>/config/polyfills.js",
+      "<rootDir>/config/jest/setup.js"
+    ],
+    "testMatch": [
+      "<rootDir>/**/__tests__/**/*.js?(x)",
+      "<rootDir>/**/?(*.)(spec|test).js?(x)"
+    ],
+    "testURL": "http://localhost",
+    "transform": {
+      "^.+\\.(js|jsx)$": "<rootDir>/config/jest/jsTransform.js",
+      "^.+\\.css$": "<rootDir>/config/jest/cssTransform.js",
+      "^(?!.*\\.(js|jsx|css|json)$)": "<rootDir>/config/jest/fileTransform.js"
+    },
+    "testPathIgnorePatterns": [
+      "/config/",
+      "/lib/"
+    ],
+    "transformIgnorePatterns": [
+      "[/\\\\]node_modules[/\\\\].+\\.(js|jsx)$"
+    ],
+    "moduleFileExtensions": [
+      "js",
+      "json"
+    ],
+    "snapshotSerializers": [
+      "enzyme-to-json/serializer"
+    ]
   },
   "repository": {
     "type": "git",
