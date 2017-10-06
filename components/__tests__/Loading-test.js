@@ -1,7 +1,7 @@
 
 import React from 'react';
 import Loading from '../Loading';
-import { shallow, mount } from 'enzyme';
+import { mount } from 'enzyme';
 
 describe('Loading', () => {
   describe('Renders as expected', () => {
