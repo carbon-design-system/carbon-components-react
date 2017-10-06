@@ -51,7 +51,7 @@ class Slider extends PureComponent {
       return;
     }
 
-    if(evt && evt.dispatchConfig) {
+    if (evt && evt.dispatchConfig) {
       evt.persist();
     }
 
