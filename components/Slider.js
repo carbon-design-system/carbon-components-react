@@ -1,4 +1,3 @@
-
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
@@ -210,8 +209,8 @@ class Slider extends PureComponent {
         <label htmlFor={id} className="bx--label">{labelText}</label>
         <div className="bx--slider-container">
           <span className="bx--slider__range-label">
-          <span>{min}</span>
-          <span>{minLabel}</span>
+            <span>{min}</span>
+            <span>{minLabel}</span>
           </span>
           <div
             className={sliderClasses}
