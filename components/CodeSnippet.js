@@ -15,9 +15,8 @@ const defaultProps = {
 };
 
 const CodeSnippet = ({ className, type, children, onClick, ...other }) => {
-  const snippetType = type === 'terminal'
-    ? 'bx--snippet--terminal'
-    : 'bx--snippet--code';
+  const snippetType =
+    type === 'terminal' ? 'bx--snippet--terminal' : 'bx--snippet--code';
   const wrapperClasses = classNames('bx--snippet', className, snippetType);
   return (
     <div className={wrapperClasses} {...other}>

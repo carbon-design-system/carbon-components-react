@@ -103,34 +103,35 @@ describe('Dropdown', () => {
 
     it('should add the open dropdown class on click', () => {
       dropdown.simulate('click');
-      expect(dropdown.hasClass('bx--dropdown--open')).toEqual(true);
+      expect(wrapper.find('.bx--dropdown').hasClass('bx--dropdown--open')).toEqual(true);
     });
 
     it('should toggle the open dropdown class on Enter', () => {
       wrapper.setState({ open: false });
       dropdown.simulate('keypress', { which: 13 });
-      expect(dropdown.hasClass('bx--dropdown--open')).toEqual(true);
+      expect(wrapper.find('.bx--dropdown').hasClass('bx--dropdown--open')).toEqual(true);
       dropdown.simulate('keypress', { which: 13 });
-      expect(dropdown.hasClass('bx--dropdown--open')).toEqual(false);
+      expect(wrapper.find('.bx--dropdown').hasClass('bx--dropdown--open')).toEqual(false);
     });
 
     it('should toggle the open dropdown class on Space', () => {
       wrapper.setState({ open: false });
       dropdown.simulate('keypress', { which: 32 });
-      expect(dropdown.hasClass('bx--dropdown--open')).toEqual(true);
+      expect(wrapper.find('.bx--dropdown').hasClass('bx--dropdown--open')).toEqual(true);
       dropdown.simulate('keypress', { which: 32 });
-      expect(dropdown.hasClass('bx--dropdown--open')).toEqual(false);
+      expect(wrapper.find('.bx--dropdown').hasClass('bx--dropdown--open')).toEqual(false);
     });
 
     it('should update data value state when child item is clicked', () => {
-      child.simulate('click');
-      expect(dropdown.props().value).toEqual('test-child');
+      child.last().simulate('click');
+      expect(wrapper.find('.bx--dropdown').props().value).toEqual('test-child');
     });
 
     it('should update selected text when child item is clicked', () => {
-      child.simulate('click');
+      child.last().simulate('click');
       expect(wrapper.state().selectedText).toEqual('test-child');
     });
+
     it('should close dropdown on click outside', () => {
       wrapper.setState({ open: true });
       const listener = wrapper.find(ClickListener);
