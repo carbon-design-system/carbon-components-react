@@ -120,8 +120,8 @@ class Slider extends PureComponent {
       if (type === 'mousemove' || type === 'click' || type === 'touchmove') {
         const clientX = evt.touches ? evt.touches[0].clientX : evt.clientX;
         const track = this.track.getBoundingClientRect();
-        const unrounded = ((clientX - track.left) / track.width);
-        const rounded = Math.round(((range * unrounded) / step)) * step;
+        const ratio = ((clientX - track.left) / track.width);
+        const rounded = min + (Math.round(((range * ratio) / step)) * step);
         left = (((rounded - min) / range) * 100);
         newValue = rounded;
       }
@@ -208,7 +208,10 @@ class Slider extends PureComponent {
       <div className="bx--form-item">
         <label htmlFor={id} className="bx--label">{labelText}</label>
         <div className="bx--slider-container">
-          <span className="bx--slider__range-label">{min}{minLabel}</span>
+          <span className="bx--slider__range-label">
+            <span>{min}</span>
+            <span>{minLabel}</span>
+          </span>
           <div
             className={sliderClasses}
             ref={node => {
@@ -246,7 +249,10 @@ class Slider extends PureComponent {
               onChange={this.handleChange}
             />
           </div>
-          <span className="bx--slider__range-label">{max}{maxLabel}</span>
+          <span className="bx--slider__range-label">
+            <span>{max}</span>
+            <span>{maxLabel}</span>
+          </span>
           {!hideTextInput ?
             <TextInput
               id="input-for-slider"
