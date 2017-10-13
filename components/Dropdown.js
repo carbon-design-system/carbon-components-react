@@ -29,14 +29,14 @@ class Dropdown extends PureComponent {
 
   constructor(props) {
     super(props);
-    this.state = this.getInitialState(props);
+    this.state = this.resetState(props);
   }
 
   componentWillReceiveProps(nextProps) {
-    this.setState(this.getInitialState(nextProps));
+    this.setState(this.resetState(nextProps));
   }
 
-  getInitialState(props) {
+  resetState(props) {
     const { children, selectedText, value, defaultText, open } = props;
 
     let matchingChild;
