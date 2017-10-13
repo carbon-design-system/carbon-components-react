@@ -229,13 +229,8 @@ class Slider extends PureComponent {
         </label>
         <div className="bx--slider-container">
           <span className="bx--slider__range-label">
-<<<<<<< HEAD
             <span>{min}</span>
             <span>{minLabel}</span>
-=======
-            {min}
-            {minLabel}
->>>>>>> chore(prettier): run prettier on existing files
           </span>
           <div
             className={sliderClasses}
@@ -278,14 +273,14 @@ class Slider extends PureComponent {
             <span>{max}</span>
             <span>{maxLabel}</span>
           </span>
-          {!hideTextInput ?
-            <TextInput
-              id="input-for-slider"
-              className="bx-slider-text-input"
-              value={value}
-              onChange={this.handleChange}
-            />
-          ) : null}
+          {!hideTextInput
+            ? <TextInput
+                id="input-for-slider"
+                className="bx-slider-text-input"
+                value={value}
+                onChange={this.handleChange}
+              />
+            : null}
         </div>
       </div>
     );
