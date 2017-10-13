@@ -1,17 +1,25 @@
 language: node_js
-cache:
-  directories:
-    - node_modules
-notifications:
-  email: false
+
 node_js:
   - '6'
+
+cache:
+  yarn: true
+  directories:
+    - node_modules
+
+notifications:
+  email: false
+
 before_script:
-  - npm prune
+  - yarn prune
+
 script:
-  - npm run check
+  - yarn check
+
 after_success:
-  - npm run semantic-release
+  - yarn semantic-release
+
 branches:
   on:
     branch: master
