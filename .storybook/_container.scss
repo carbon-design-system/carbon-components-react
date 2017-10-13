@@ -2,3 +2,120 @@ $css--font-face: true;
 $css--reset: true;
 
 @import '~carbon-components/scss/globals/scss/styles.scss';
+
+$bx--detail-page-header-custom__transition: $transition--base $bx--standard-easing $transition-time / 2;
+
+.bx--detail-page-header-custom {
+  @include detail-page-header;
+  background-color: $ui-01;
+  display: flex;
+  left: 0;
+  padding: .875rem 0 .875rem 3%;
+  width: 100%;
+
+  @include breakpoint(bp--sm--major) {
+    padding: .75rem 0 .75rem 5%;
+  }
+
+  &__content {
+    flex-grow: 2;
+  }
+
+  &__middle {
+    align-items: center;
+    display: flex;
+    flex-direction: right;
+
+    > * {
+      margin-right: .625rem;
+    }
+
+    > *:last-child {
+      margin-right: 0rem;
+    }
+  }
+
+  &__top {
+    height: rem(15px) + 1rem;
+    transition: height $bx--detail-page-header-custom__transition,
+      opacity $bx--detail-page-header-custom__transition,
+      padding-bottom $bx--detail-page-header-custom__transition,
+      visibility $bx--detail-page-header-custom__transition;
+    transition-delay: 0s;
+    margin-bottom: 0;
+    will-change: height, opacity, padding-bottom, visibility;
+
+    .bx--detail-page-header-custom--collapsed & {
+      height: 0;
+      opacity: 0;
+      overflow: hidden;
+      margin-bottom: 0;
+      visibility: hidden;
+    }
+  }
+
+  &__bottom {
+    height: rem(15px) + 1rem;
+    transition: height $bx--detail-page-header-custom__transition,
+      opacity $bx--detail-page-header-custom__transition;
+    transition-delay: 0s;
+    margin-bottom: 0;
+
+    .bx--detail-page-header-custom--collapsed & {
+      height: 0;
+      opacity: 0;
+      overflow: hidden;
+      visibility: hidden;
+    }
+  }
+
+  &__side {
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: center;
+  }
+
+  &__title {
+    @include font-size('29');
+    color: $text-02;
+    font-weight: 300;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  &__icon-container {
+    border: 1px solid $ui-05;
+    border-radius: 50%;
+    display: flex;
+    height: 2.25rem;
+    overflow: hidden;
+    position: relative;
+    width: 2.25rem;
+
+    > * {
+      bottom: -9999px;
+      left: -9999px;
+      margin: auto;
+      max-width: 100%;
+      max-height: 100%;
+      position: absolute;
+      right: -9999px;
+      top: -9999px;
+    }
+  }
+
+  &__extra {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+
+    > * {
+      margin-right: .625rem;
+    }
+
+    > *:last-child {
+      margin-right: 0rem;
+    }
+  }
+}

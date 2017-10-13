@@ -8,6 +8,8 @@ import DetailPageHeader from '../../components/DetailPageHeader';
 import Tabs from '../../components/Tabs';
 import Tab from '../../components/Tab';
 import Icon from '../../components/Icon';
+import Tag from '../../components/Tag';
+import Link from '../../components/Link';
 
 const detailPageHeaderProps = {
   title: 'Detail Page Header',
@@ -32,58 +34,73 @@ storiesOf('DetailPageHeader', module)
     </div>
   ))
   .addWithInfo('without tabs', () => (
-    <DetailPageHeader {...detailPageHeaderProps}>
-      <Icon name="watson" />
-      <Breadcrumb>
-        <BreadcrumbItem href="www.google.com">Breadcrumb 1</BreadcrumbItem>
-        <BreadcrumbItem href="www.google.com">Breadcrumb 2</BreadcrumbItem>
-        <BreadcrumbItem href="www.google.com">Breadcrumb 3</BreadcrumbItem>
-      </Breadcrumb>
-      <OverflowMenu {...overflowMenuProps}>
-        <OverflowMenuItem {...overflowMenuItemProps} itemText="Stop App" />
-        <OverflowMenuItem {...overflowMenuItemProps} itemText="Restart App" />
-        <OverflowMenuItem {...overflowMenuItemProps} itemText="Rename App" />
-        <OverflowMenuItem
-          {...overflowMenuItemProps}
-          itemText="Edit Routes and Access"
-        />
-        <OverflowMenuItem
-          {...overflowMenuItemProps}
-          itemText="Delete App"
-          isDelete
-          isLastItem
-        />
-      </OverflowMenu>
-    </DetailPageHeader>
+    <div>
+      <DetailPageHeader {...detailPageHeaderProps}>
+        <Icon name="watson" />
+        <Breadcrumb>
+          <BreadcrumbItem href="www.google.com">Breadcrumb 1</BreadcrumbItem>
+          <BreadcrumbItem href="www.google.com">Breadcrumb 2</BreadcrumbItem>
+          <BreadcrumbItem href="www.google.com">Breadcrumb 3</BreadcrumbItem>
+        </Breadcrumb>
+        <OverflowMenu {...overflowMenuProps}>
+          <OverflowMenuItem {...overflowMenuItemProps} itemText="Stop App" />
+          <OverflowMenuItem {...overflowMenuItemProps} itemText="Restart App" />
+          <OverflowMenuItem {...overflowMenuItemProps} itemText="Rename App" />
+          <OverflowMenuItem
+            {...overflowMenuItemProps}
+            itemText="Edit Routes and Access"
+          />
+          <OverflowMenuItem
+            {...overflowMenuItemProps}
+            itemText="Delete App"
+            isDelete
+          />
+        </OverflowMenu>
+        <Tag type="ibm">
+          Language
+        </Tag>
+        <Link href="#">
+          View demo
+        </Link>
+      </DetailPageHeader>
+    </div>
   ))
   .addWithInfo('with tabs', () => (
-    <DetailPageHeader {...detailPageHeaderProps} hasTabs>
-      <Icon name="watson" />
-      <Breadcrumb>
-        <BreadcrumbItem href="www.google.com">Breadcrumb 1</BreadcrumbItem>
-        <BreadcrumbItem href="www.google.com">Breadcrumb 2</BreadcrumbItem>
-        <BreadcrumbItem href="www.google.com">Breadcrumb 3</BreadcrumbItem>
-      </Breadcrumb>
-      <OverflowMenu {...overflowMenuProps}>
-        <OverflowMenuItem {...overflowMenuItemProps} itemText="Stop App" />
-        <OverflowMenuItem {...overflowMenuItemProps} itemText="Restart App" />
-        <OverflowMenuItem {...overflowMenuItemProps} itemText="Rename App" />
-        <OverflowMenuItem
-          {...overflowMenuItemProps}
-          itemText="Edit Routes and Access"
-        />
-        <OverflowMenuItem
-          {...overflowMenuItemProps}
-          itemText="Delete App"
-          isDelete
-          isLastItem
-        />
-      </OverflowMenu>
-      <Tabs>
-        <Tab label="Overview" />
-        <Tab label="Apple" />
-        <Tab label="Banana" />
-        <Tab label="Orange" />
-      </Tabs>
-    </DetailPageHeader>
+    <div>
+      <DetailPageHeader {...detailPageHeaderProps} hasTabs>
+        <Icon name="watson" />
+        <Breadcrumb>
+          <BreadcrumbItem href="www.google.com">Breadcrumb 1</BreadcrumbItem>
+          <BreadcrumbItem href="www.google.com">Breadcrumb 2</BreadcrumbItem>
+          <BreadcrumbItem href="www.google.com">Breadcrumb 3</BreadcrumbItem>
+        </Breadcrumb>
+        <OverflowMenu {...overflowMenuProps}>
+          <OverflowMenuItem {...overflowMenuItemProps} itemText="Stop App" />
+          <OverflowMenuItem {...overflowMenuItemProps} itemText="Restart App" />
+          <OverflowMenuItem {...overflowMenuItemProps} itemText="Rename App" />
+          <OverflowMenuItem
+            {...overflowMenuItemProps}
+            itemText="Edit Routes and Access"
+          />
+          <OverflowMenuItem
+            {...overflowMenuItemProps}
+            itemText="Delete App"
+            isDelete
+            isLastItem
+          />
+        </OverflowMenu>
+        <Tabs>
+          <Tab label="Overview" />
+          <Tab label="Apple" />
+          <Tab label="Banana" />
+          <Tab label="Orange" />
+        </Tabs>
+        <Tag type="ibm">
+          Language
+        </Tag>
+        <Link href="#">
+          View demo
+        </Link>
+      </DetailPageHeader>
+    </div>
   ));

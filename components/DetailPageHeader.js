@@ -112,24 +112,23 @@ class DetailPageHeader extends Component {
     let overflow;
     let icon;
 
-    Children.map(children, child => {
-      if (child.type === Breadcrumb) {
-        breadcrumb = child;
+    let extraElements = Children.toArray(children).filter(child => {
+      switch (child.type) {
+        case Breadcrumb:
+          breadcrumb = child;
+          return false;
+        case Tabs:
+          tabs = child;
+          return false;
+        case OverflowMenu:
+          overflow = child;
+          return false;
+        case Icon:
+          icon = child;
+          return false;
+        default:
+          return true;
       }
-
-      if (child.type === Tabs) {
-        tabs = child;
-      }
-
-      if (child.type === OverflowMenu) {
-        overflow = child;
-      }
-
-      if (child.type === Icon) {
-        icon = child;
-      }
-
-      return null;
     });
 
     const statusStyles = {
@@ -151,7 +150,9 @@ class DetailPageHeader extends Component {
               <div style={statusStyles} className="bx--detail-page-header-status-icon" />
               {' '}
               <span className="bx--detail-page-header-status-text">
-                {statusText}{statusContent}
+                {statusText}
+                {statusContent}
+                {extraElements}
               </span>
             </div>
           </div>
