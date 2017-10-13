@@ -2,7 +2,7 @@ import React from 'react';
 import InteriorLeftNav from '../InteriorLeftNav';
 import InteriorLeftNavList from '../InteriorLeftNavList';
 import InteriorLeftNavItem from '../InteriorLeftNavItem';
-import { shallow, mount } from 'enzyme';
+import { mount } from 'enzyme';
 
 describe('InteriorLeftNav', () => {
   describe('Renders as expected', () => {

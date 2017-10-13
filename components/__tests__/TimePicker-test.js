@@ -7,14 +7,12 @@ describe('TimePicker', () => {
     describe('input', () => {
       let wrapper;
       let timePicker;
-      let label;
       let textInput;
 
       beforeEach(() => {
         wrapper = mount(<TimePicker id="test" className="extra-class" />);
 
         timePicker = () => wrapper.find('.bx--time-picker');
-        label = () => wrapper.find('label');
         textInput = () => wrapper.find('input');
       });
 
@@ -50,16 +48,12 @@ describe('TimePicker', () => {
 
     describe('label', () => {
       let wrapper;
-      let timePicker;
       let label;
-      let textInput;
 
       beforeEach(() => {
         wrapper = mount(<TimePicker id="test" className="extra-class" />);
 
-        timePicker = () => wrapper.find('.bx--time-picker');
         label = () => wrapper.find('label');
-        textInput = () => wrapper.find('input');
       });
 
       it('does not render a label by default', () => {
