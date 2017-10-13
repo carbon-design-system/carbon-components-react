@@ -11,9 +11,6 @@ cache:
 notifications:
   email: false
 
-before_script:
-  - yarn prune
-
 script:
   - yarn check
 
