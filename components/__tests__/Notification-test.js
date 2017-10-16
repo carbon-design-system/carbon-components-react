@@ -111,6 +111,11 @@ describe('ToastNotification', () => {
       toast.setProps({ kind: 'success' });
       expect(toast.props().kind).toEqual('success');
     });
+
+    it('can render elements for the subtitle and caption', () => {
+      toast.setProps({ subtitle: <button />, caption: <button /> });
+      expect(toast.length).toEqual(1);
+    });
   });
   describe('events and state', () => {
     it('initial open state set to true', () => {
