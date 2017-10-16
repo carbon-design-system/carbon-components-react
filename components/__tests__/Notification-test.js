@@ -216,6 +216,11 @@ describe('InlineNotification', () => {
       inline.setProps({ kind: 'success' });
       expect(inline.props().kind).toEqual('success');
     });
+
+    it('can render an element for the subtitle', () => {
+      inline.setProps({ subtitle: <button /> });
+      expect(inline.length).toEqual(1);
+    });
   });
 
   describe('events and state', () => {
