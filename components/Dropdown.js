@@ -29,6 +29,14 @@ class Dropdown extends PureComponent {
 
   constructor(props) {
     super(props);
+    this.state = this.resetState(props);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.setState(this.resetState(nextProps));
+  }
+
+  resetState(props) {
     const { children, selectedText, value, defaultText, open } = props;
 
     let matchingChild;
@@ -42,18 +50,17 @@ class Dropdown extends PureComponent {
     });
 
     if (matchingChild) {
-      this.state = {
+      return {
         open,
         selectedText: matchingChild.props.itemText,
         value: matchingChild.props.value,
       };
-    } else {
-      this.state = {
-        open,
-        selectedText: defaultText,
-        value: '',
-      };
     }
+    return {
+      open,
+      selectedText: defaultText,
+      value: '',
+    };
   }
 
   close = () => {
@@ -91,7 +98,10 @@ class Dropdown extends PureComponent {
 
     const children = React.Children.map(this.props.children, child =>
       React.cloneElement(child, {
-        onClick: this.handleItemClick,
+        onClick: (...args) => {
+          child.props.onClick && child.props.onClick(...args);
+          this.handleItemClick(...args);
+        },
       }),
     );
 
@@ -110,11 +120,8 @@ class Dropdown extends PureComponent {
           onKeyPress={this.toggle}
           value={this.state.value}
           className={dropdownClasses}
-          tabIndex={tabIndex}
-        >
-          <li className="bx--dropdown-text">
-            {this.state.selectedText}
-          </li>
+          tabIndex={tabIndex}>
+          <li className="bx--dropdown-text">{this.state.selectedText}</li>
           <li>
             <Icon
               name="caret--down"
@@ -123,9 +130,7 @@ class Dropdown extends PureComponent {
             />
           </li>
           <li>
-            <ul className="bx--dropdown-list">
-              {children}
-            </ul>
+            <ul className="bx--dropdown-list">{children}</ul>
           </li>
         </ul>
       </ClickListener>

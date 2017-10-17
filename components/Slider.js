@@ -29,7 +29,7 @@ class Slider extends PureComponent {
     disabled: false,
     minLabel: '',
     maxLabel: '',
-    inputType: 'text'
+    inputType: 'text',
   };
 
   state = {
