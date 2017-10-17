@@ -12,9 +12,8 @@ const notificationProps = {
     className: 'some-class',
     title: 'this is a title',
     subtitle: 'subtitle',
-    subtitleLink: <Link href="#">the subtitle can be an element</Link>,
     caption: 'caption',
-    captionLink: <Link href="#">the caption can be an element</Link>,
+    captionNode: <Link href="#">the caption can be any node</Link>,
     iconDescription: 'describes the close button',
     style: { minWidth: '30rem', marginBottom: '.5rem' }
   },
@@ -23,9 +22,9 @@ const notificationProps = {
     className: 'some-class',
     title: 'this is a title',
     subtitle: 'subtitle',
-    subtitleLink: <Link href="#">the subtitle can be an element</Link>,
     iconDescription: 'describes the close button'
   },
+  subtitleNode: <Link href="#">the subtitle can be any node</Link>,
 };
 
 storiesOf('Notifications', module)
@@ -60,7 +59,7 @@ storiesOf('Notifications', module)
           <ToastNotification {...toast} kind="info" />
           <ToastNotification {...toast} kind="success" />
           <ToastNotification {...toast} kind="warning" />
-          <ToastNotification {...{ ...toast, subtitle: toast.subtitleLink, caption: toast.captionLink}} kind="info" />
+          <ToastNotification {...{ ...toast, subtitle: notificationProps.subtitleNode, caption: toast.captionNode}} kind="info" />
         </div>
       )
     }
@@ -76,6 +75,6 @@ storiesOf('Notifications', module)
         <InlineNotification {...notificationProps.inline} kind="info" />
         <InlineNotification {...notificationProps.inline} kind="success" />
         <InlineNotification {...notificationProps.inline} kind="warning" />
-        <InlineNotification {...{ ...notificationProps.inline, subtitle: notificationProps.inline.subtitleLink}} kind="info" />
+        <InlineNotification {...{ ...notificationProps.inline, subtitle: notificationProps.subtitleNode}} kind="info" />
       </div>
   );

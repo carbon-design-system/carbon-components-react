@@ -59,8 +59,8 @@ class NotificationButton extends Component {
 class NotificationTextDetails extends Component {
   static propTypes = {
     title: PropTypes.string,
-    subtitle: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
-    caption: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
+    subtitle: PropTypes.node,
+    caption: PropTypes.node,
     notificationType: PropTypes.oneOf(['toast', 'inline']),
   };
 
@@ -101,9 +101,9 @@ class ToastNotification extends Component {
     className: PropTypes.string,
     kind: PropTypes.oneOf(['error', 'info', 'success', 'warning']).isRequired,
     title: PropTypes.string.isRequired,
-    subtitle: PropTypes.oneOfType([PropTypes.string, PropTypes.element]).isRequired,
+    subtitle: PropTypes.node.isRequired,
     role: PropTypes.string.isRequired,
-    caption: PropTypes.oneOfType([PropTypes.string, PropTypes.element]).isRequired,
+    caption: PropTypes.node.isRequired,
     onCloseButtonClick: PropTypes.func,
     iconDescription: PropTypes.string.isRequired,
     notificationType: PropTypes.string,
@@ -182,7 +182,7 @@ class InlineNotification extends Component {
     className: PropTypes.string,
     kind: PropTypes.oneOf(['error', 'info', 'success', 'warning']).isRequired,
     title: PropTypes.string.isRequired,
-    subtitle: PropTypes.oneOfType([PropTypes.string, PropTypes.element]).isRequired,
+    subtitle: PropTypes.node.isRequired,
     role: PropTypes.string.isRequired,
     onCloseButtonClick: PropTypes.func,
     iconDescription: PropTypes.string.isRequired,
