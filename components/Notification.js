@@ -103,7 +103,7 @@ class ToastNotification extends Component {
     title: PropTypes.string.isRequired,
     subtitle: PropTypes.node.isRequired,
     role: PropTypes.string.isRequired,
-    caption: PropTypes.node.isRequired,
+    caption: PropTypes.node,
     onCloseButtonClick: PropTypes.func,
     iconDescription: PropTypes.string.isRequired,
     notificationType: PropTypes.string,
