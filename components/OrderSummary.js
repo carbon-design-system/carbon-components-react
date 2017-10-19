@@ -81,9 +81,7 @@ class OrderSummaryCategory extends Component {
     return (
       <li className={classes} {...other}>
         <p className="bx--order-category-title">{categoryText}</p>
-        <ul>
-          {children}
-        </ul>
+        <ul>{children}</ul>
       </li>
     );
   }
@@ -158,23 +156,39 @@ class OrderSummaryTotal extends Component {
 class OrderSummaryFooter extends Component {
   static propTypes = {
     className: PropTypes.string,
+    linkText: PropTypes.string,
+    href: PropTypes.string,
+    target: PropTypes.string,
+    rel: PropTypes.string,
   };
 
   static defaultProps = {
     footerText: 'Need Help?',
     linkText: 'Contact Bluemix Sales',
     href: '',
+    target: '_blank',
+    rel: 'noreferrer noopener',
   };
 
   render() {
-    const { className, footerText, linkText, href, ...other } = this.props;
+    const {
+      className,
+      footerText,
+      linkText,
+      href,
+      target,
+      rel,
+      ...other
+    } = this.props;
     const classes = classNames('bx--order-footer', className);
 
     return (
       <section className={classes} {...other}>
         <p className="bx--order-footer-text">{footerText}</p>
         &nbsp;
-        <Link href={href}>{linkText}</Link>
+        <Link href={href} target={target} rel={rel}>
+          {linkText}
+        </Link>
       </section>
     );
   }

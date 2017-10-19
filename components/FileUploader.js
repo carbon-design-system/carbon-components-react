@@ -16,19 +16,21 @@ class FileUploaderButton extends Component {
     onChange: PropTypes.func,
     onClick: PropTypes.func,
     role: PropTypes.string,
-    tabIndex: PropTypes.number
+    tabIndex: PropTypes.number,
+    buttonKind: PropTypes.oneOf(['primary', 'secondary']),
   };
   static defaultProps = {
     tabIndex: 0,
     disableLabelChanges: false,
     labelText: 'Add file',
+    buttonKind: 'primary',
     multiple: false,
     onChange: () => {},
     onClick: () => {},
-    role: 'button'
+    role: 'button',
   };
   state = {
-    labelText: this.props.labelText
+    labelText: this.props.labelText,
   };
   componentWillMount() {
     this.uid = this.props.id || uid();
@@ -60,11 +62,12 @@ class FileUploaderButton extends Component {
       multiple,
       role,
       tabIndex,
+      buttonKind,
       ...other
     } = this.props;
     const classes = classNames({
       'bx--file': true,
-      [className]: className
+      [className]: className,
     });
 
     return (
@@ -75,14 +78,12 @@ class FileUploaderButton extends Component {
           if (evt.which === 13 || evt.which === 32) {
             this.input.click();
           }
-        }}
-      >
+        }}>
         <label
-          className="bx--btn bx--btn--primary"
+          className={`bx--btn bx--btn--${buttonKind}`}
           htmlFor={this.uid}
           role={role}
-          {...other}
-        >
+          {...other}>
           {this.state.labelText}
         </label>
         <input
@@ -103,50 +104,53 @@ class Filename extends Component {
     style: PropTypes.object,
     status: PropTypes.oneOf(['edit', 'complete', 'uploading']),
     tabIndex: PropTypes.number,
-    onKeyDown: PropTypes.func
+    onKeyDown: PropTypes.func,
   };
 
   static defaultProps = {
     onKeyDown: () => {},
     status: 'uploading',
     style: {},
-    tabIndex: 0
+    tabIndex: 0,
   };
 
   render() {
-    const { iconDescription, status, style, tabIndex, onKeyDown, ...other } = this.props;
-    const tempStyle = Object.assign(style, { marginRight: '-1px' }); // temp style correction for loading component position
-    return (
-      <span>
-        {status === 'uploading'
-          ? <div className="bx--loading" style={tempStyle} {...other}>
-              <svg className="bx--loading__svg" viewBox="-42 -42 84 84">
-                <circle cx="0" cy="0" r="37.5" />
-              </svg>
-            </div>
-          : null}
-        {status === 'edit'
-          ? <Icon
-              className="bx--file-close"
-              name="close--glyph"
-              description={iconDescription}
-              style={style}
-              tabIndex={tabIndex}
-              onKeyDown={onKeyDown}
-              {...other}
-            />
-          : null}
-        {status === 'complete'
-          ? <Icon
-              className="bx--file-complete"
-              name="checkmark--glyph"
-              description={iconDescription}
-              style={style}
-              {...other}
-            />
-          : null}
-      </span>
-    );
+    const { iconDescription, status, style, ...other } = this.props;
+
+    if (status === 'uploading') {
+      return (
+        <div
+          className="bx--loading"
+          style={Object.assign(style, { width: '1rem', height: '1rem' })}
+          {...other}>
+          <svg className="bx--loading__svg" viewBox="-42 -42 84 84">
+            <circle cx="0" cy="0" r="37.5" />
+          </svg>
+        </div>
+      );
+    } else if (status === 'edit') {
+      return (
+        <Icon
+          description={iconDescription}
+          className="bx--file-close"
+          name="close--glyph"
+          style={style}
+          {...other}
+        />
+      );
+    } else if (status === 'complete') {
+      return (
+        <Icon
+          description={iconDescription}
+          className="bx--file-complete"
+          name="checkmark--glyph"
+          style={style}
+          {...other}
+        />
+      );
+    } else {
+      return null;
+    }
   }
 }
 
@@ -154,27 +158,30 @@ class FileUploader extends Component {
   static propTypes = {
     iconDescription: PropTypes.string,
     buttonLabel: PropTypes.string,
-    filenameStatus: PropTypes.oneOf(['edit', 'complete', 'uploading']).isRequired,
+    buttonKind: PropTypes.oneOf(['primary', 'secondary']),
+    filenameStatus: PropTypes.oneOf(['edit', 'complete', 'uploading'])
+      .isRequired,
     labelDescription: PropTypes.string,
     labelTitle: PropTypes.string,
     multiple: PropTypes.bool,
     onChange: PropTypes.func,
     onClick: PropTypes.func,
-    className: PropTypes.string
+    className: PropTypes.string,
   };
 
   static defaultProps = {
     iconDescription: 'Provide icon description',
     filenameStatus: 'uploading',
     buttonLabel: 'Add file',
+    buttonKind: 'primary',
     multiple: false,
     onChange: () => {},
-    onClick: () => {}
+    onClick: () => {},
   };
 
   state = {
     filenames: [],
-    filenameStatus: ''
+    filenameStatus: '',
   };
 
   nodes = [];
@@ -201,6 +208,7 @@ class FileUploader extends Component {
     const {
       iconDescription,
       buttonLabel,
+      buttonKind,
       filenameStatus,
       labelDescription,
       labelTitle,
@@ -211,7 +219,7 @@ class FileUploader extends Component {
 
     const classes = classNames({
       'bx--form-item': true,
-      [className]: className
+      [className]: className,
     });
 
     return (
@@ -221,34 +229,44 @@ class FileUploader extends Component {
         <FileUploaderButton
           labelText={buttonLabel}
           multiple={multiple}
+          buttonKind={buttonKind}
           onChange={this.handleChange}
           disableLabelChanges
         />
         <div className="bx--file-container">
           {this.state.filenames.length === 0
             ? null
-            : this.state.filenames.map((name, index) =>
+            : this.state.filenames.map((name, index) => (
                 <span
                   key={index}
                   className="bx--file__selected-file"
                   ref={node => (this.nodes[index] = node)} // eslint-disable-line
-                  {...other}
-                >
+                  {...other}>
                   <p className="bx--file-filename">{name}</p>
                   <span className="bx--file__state-container">
                     <Filename
+                      iconDescription={iconDescription}
                       status={filenameStatus}
-                      onClick={evt => this.handleClick(evt, index)}
+                      onClick={evt => {
+                        if (filenameStatus === 'edit') {
+                          this.handleClick(evt, index);
+                        }
+                      }}
                       iconDescription={iconDescription}
                       onKeyDown={evt => {
                         if (evt.which === 13 || evt.which === 32) {
                           this.handleClick(evt, index);
                         }
                       }}
+                      onClick={evt => {
+                        if (filenameStatus === 'edit') {
+                          this.handleClick(evt, index);
+                        }
+                      }}
                     />
                   </span>
                 </span>
-              )}
+              ))}
         </div>
       </div>
     );

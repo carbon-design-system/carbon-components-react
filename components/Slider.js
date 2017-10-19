@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import TextInput from './TextInput';
 
-class Slider extends Component {
+class Slider extends PureComponent {
   static propTypes = {
     className: PropTypes.string,
     hideTextInput: PropTypes.bool,
@@ -20,6 +20,7 @@ class Slider extends Component {
     children: PropTypes.node,
     disabled: PropTypes.bool,
     name: PropTypes.bool,
+    inputType: PropTypes.string,
   };
 
   static defaultProps = {
@@ -28,7 +29,8 @@ class Slider extends Component {
     disabled: false,
     minLabel: '',
     maxLabel: '',
-  }
+    inputType: 'text',
+  };
 
   state = {
     dragging: false,
@@ -37,21 +39,21 @@ class Slider extends Component {
   };
 
   componentDidMount() {
-    this.updatePosition()
+    this.updatePosition();
   }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps !== this.props) {
-      this.updatePosition()
+      this.updatePosition();
     }
   }
 
-  updatePosition = (evt) => {
+  updatePosition = evt => {
     if (evt && this.props.disabled) {
       return;
     }
 
-    if(evt && evt.dispatchConfig) {
+    if (evt && evt.dispatchConfig) {
       evt.persist();
     }
 
@@ -62,31 +64,26 @@ class Slider extends Component {
     this.setState({ dragging: true });
 
     requestAnimationFrame(() => {
-      this.setState({ dragging: false });
-      const {
-        left,
-        newValue,
-      } = this.calcValue(evt);
+      this.setState((prevState, props) => {
+        const { left, newValue } = this.calcValue(evt, prevState, props);
 
-      this.setState({
-        left,
-        value: newValue,
-       });
+        props.onChange({ value: newValue });
+        return {
+          dragging: false,
+          left,
+          value: newValue,
+        };
+      });
     });
-  }
+  };
 
-  calcValue = (evt) => {
-    const {
-      min,
-      max,
-      step,
-      stepMuliplier,
-    } = this.props;
+  calcValue = (evt, prevState, props) => {
+    const { min, max, step, stepMuliplier } = props;
 
-    const { value } = this.state;
+    const { value } = prevState;
 
     const range = max - min;
-    const valuePercentage = (((value - min) / range) * 100);
+    const valuePercentage = (value - min) / range * 100;
 
     let left;
     let newValue;
@@ -105,21 +102,20 @@ class Slider extends Component {
         }[evt.which];
 
         if (direction !== undefined) {
-          const multiplier = evt.shiftKey === true
-            ? (range / step) / stepMuliplier
-            : 1;
+          const multiplier =
+            evt.shiftKey === true ? range / step / stepMuliplier : 1;
           const stepMultiplied = step * multiplier;
-          const stepSize = (stepMultiplied / range) * 100;
-          left = valuePercentage + (stepSize * direction);
-          newValue = Number(value) + (stepMultiplied * direction);
+          const stepSize = stepMultiplied / range * 100;
+          left = valuePercentage + stepSize * direction;
+          newValue = Number(value) + stepMultiplied * direction;
         }
       }
       if (type === 'mousemove' || type === 'click' || type === 'touchmove') {
         const clientX = evt.touches ? evt.touches[0].clientX : evt.clientX;
         const track = this.track.getBoundingClientRect();
-        const unrounded = ((clientX - track.left) / track.width);
-        const rounded = Math.round(((range * unrounded) / step)) * step;
-        left = (((rounded - min) / range) * 100);
+        const ratio = (clientX - track.left) / track.width;
+        const rounded = min + Math.round(range * ratio / step) * step;
+        left = (rounded - min) / range * 100;
         newValue = rounded;
       }
     }
@@ -134,103 +130,136 @@ class Slider extends Component {
     }
 
     return { left, newValue };
-  }
+  };
 
   handleMouseStart = () => {
-    this.element.ownerDocument.addEventListener('mousemove', this.updatePosition)
-    this.element.ownerDocument.addEventListener('mouseup', this.handleMouseEnd)
-  }
+    this.element.ownerDocument.addEventListener(
+      'mousemove',
+      this.updatePosition
+    );
+    this.element.ownerDocument.addEventListener('mouseup', this.handleMouseEnd);
+  };
 
   handleMouseEnd = () => {
-    this.element.ownerDocument.removeEventListener('mousemove', this.updatePosition)
-    this.element.ownerDocument.removeEventListener('mouseup', this.handleMouseEnd)
-  }
+    this.element.ownerDocument.removeEventListener(
+      'mousemove',
+      this.updatePosition
+    );
+    this.element.ownerDocument.removeEventListener(
+      'mouseup',
+      this.handleMouseEnd
+    );
+  };
 
   handleTouchStart = () => {
-    this.element.ownerDocument.addEventListener('touchmove', this.updatePosition);
+    this.element.ownerDocument.addEventListener(
+      'touchmove',
+      this.updatePosition
+    );
     this.element.ownerDocument.addEventListener('touchup', this.handleTouchEnd);
-    this.element.ownerDocument.addEventListener('touchend', this.handleTouchEnd);
-    this.element.ownerDocument.addEventListener('touchcancel', this.handleTouchEnd);
-  }
+    this.element.ownerDocument.addEventListener(
+      'touchend',
+      this.handleTouchEnd
+    );
+    this.element.ownerDocument.addEventListener(
+      'touchcancel',
+      this.handleTouchEnd
+    );
+  };
 
   handleTouchEnd = () => {
-    this.element.ownerDocument.removeEventListener('touchmove', this.updatePosition);
-    this.element.ownerDocument.removeEventListener('touchup', this.handleTouchEnd);
-    this.element.ownerDocument.removeEventListener('touchend', this.handleTouchEnd);
-    this.element.ownerDocument.removeEventListener('touchcancel', this.handleTouchEnd);
-  }
+    this.element.ownerDocument.removeEventListener(
+      'touchmove',
+      this.updatePosition
+    );
+    this.element.ownerDocument.removeEventListener(
+      'touchup',
+      this.handleTouchEnd
+    );
+    this.element.ownerDocument.removeEventListener(
+      'touchend',
+      this.handleTouchEnd
+    );
+    this.element.ownerDocument.removeEventListener(
+      'touchcancel',
+      this.handleTouchEnd
+    );
+  };
 
-  handleChange = (evt) => {
+  handleChange = evt => {
     this.setState({ value: evt.target.value });
-    this.updatePosition();
-  }
+    this.updatePosition(evt);
+  };
 
   render() {
     const {
       className,
       hideTextInput,
       id,
-      onChange,
       min,
       minLabel,
       max,
       maxLabel,
-      labelText, 
+      labelText,
       step,
+      stepMuliplier, // eslint-disable-line no-unused-vars
+      inputType,
       required,
       disabled,
       name,
       ...other
     } = this.props;
 
-    const {
-      value,
-      left,
-    } = this.state;
+    const { value, left } = this.state;
 
     const sliderClasses = classNames(
       'bx--slider',
       { 'bx--slider--disabled': disabled },
-      className,
+      className
     );
 
     const filledTrackStyle = {
       transform: `translate(0%, -50%) scaleX(${left / 100})`,
-    }
+    };
     const thumbStyle = {
       left: `${left}%`,
-    }
+    };
 
     return (
       <div className="bx--form-item">
-        <label htmlFor={id} className="bx--label">{labelText}</label>
+        <label htmlFor={id} className="bx--label">
+          {labelText}
+        </label>
         <div className="bx--slider-container">
-          <span className="bx--slider__range-label">{min}{minLabel}</span>
+          <span className="bx--slider__range-label">
+            <span>{min}</span>
+            <span>{minLabel}</span>
+          </span>
           <div
             className={sliderClasses}
             ref={node => {
               this.element = node;
             }}
-            onClick={(evt) => this.updatePosition(evt)}
-            {...other}
-          >
+            onClick={this.updatePosition}
+            {...other}>
             <div
               className="bx--slider__track"
               ref={node => {
                 this.track = node;
               }}
-            >
-            </div>
-            <div className="bx--slider__filled-track" style={filledTrackStyle}></div>
+            />
+            <div
+              className="bx--slider__filled-track"
+              style={filledTrackStyle}
+            />
             <div
               className="bx--slider__thumb"
               tabIndex="0"
               style={thumbStyle}
-              onMouseDown={() => this.handleMouseStart()}
-              onTouchStart={() => this.handleTouchStart()}
-              onKeyDown={(evt) => this.updatePosition(evt)}
-            >
-            </div>
+              onMouseDown={this.handleMouseStart}
+              onTouchStart={this.handleTouchStart}
+              onKeyDown={this.updatePosition}
+            />
             <input
               id={id}
               type="hidden"
@@ -240,22 +269,22 @@ class Slider extends Component {
               min={min}
               max={max}
               step={step}
-              onChange={evt => {
-                if (!disabled) {
-                  onChange(evt);
-                }
-              }}
+              onChange={this.handleChange}
             />
           </div>
-          <span className="bx--slider__range-label">{max}{maxLabel}</span>
-          {!hideTextInput ?
-            <TextInput
-              id="input-for-slider"
-              className="bx-slider-text-input"
-              value={value}
-              onChange={(evt) => this.handleChange(evt)}
-            />
-          : null }
+          <span className="bx--slider__range-label">
+            <span>{max}</span>
+            <span>{maxLabel}</span>
+          </span>
+          {!hideTextInput
+            ? <TextInput
+                type={inputType}
+                id="input-for-slider"
+                className="bx-slider-text-input"
+                value={value}
+                onChange={this.handleChange}
+              />
+            : null}
         </div>
       </div>
     );

@@ -20,7 +20,8 @@ class InteriorLeftNav extends Component {
   };
 
   state = {
-    activeHref: this.props.activeHref || (window.location && window.location.pathname),
+    activeHref:
+      this.props.activeHref || (window.location && window.location.pathname),
     open: true,
   };
 
@@ -120,9 +121,8 @@ class InteriorLeftNav extends Component {
         role="navigation"
         aria-label="Interior Left Navigation"
         className={classNames}
-        onClick={!this.state.open && this.toggle}
-        {...other}
-      >
+        onClick={!this.state.open ? this.toggle : () => {}}
+        {...other}>
         <ul key="main_list" className="left-nav-list" role="menubar">
           {newChildren}
         </ul>

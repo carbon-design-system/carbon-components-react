@@ -1,8 +1,5 @@
 export { Module, ModuleBody, ModuleHeader } from './components/Module';
-export {
-  ProgressIndicator,
-  ProgressStep,
-} from './components/ProgressIndicator';
+export { ProgressIndicator, ProgressStep } from './components/ProgressIndicator';
 export {
   OrderSummary,
   OrderSummaryHeader,
@@ -18,7 +15,7 @@ export {
   StructuredListBody,
   StructuredListRow,
   StructuredListInput,
-  StructuredListCell,
+  StructuredListCell
 } from './components/StructuredList';
 export Accordion from './components/Accordion';
 export AccordionItem from './components/AccordionItem';
@@ -41,10 +38,7 @@ export DatePickerInput from './components/DatePickerInput';
 export DetailPageHeader from './components/DetailPageHeader';
 export Dropdown from './components/Dropdown';
 export DropdownItem from './components/DropdownItem';
-export FileUploader, {
-  Filename,
-  FileUploaderButton,
-} from './components/FileUploader';
+export FileUploader, { Filename, FileUploaderButton } from './components/FileUploader';
 export Footer from './components/Footer';
 export Form from './components/Form';
 export FormGroup from './components/FormGroup';
@@ -57,7 +51,12 @@ export ListItem from './components/ListItem';
 export Loading from './components/Loading';
 export Modal from './components/Modal';
 export ModalWrapper from './components/ModalWrapper';
-export Notification from './components/Notification';
+export Notification, {
+  ToastNotification,
+  InlineNotification,
+  NotificationButton,
+  NotificationTextDetails
+} from './components/Notification';
 export NumberInput from './components/NumberInput';
 export OrderedList from './components/OrderedList';
 export OverflowMenu from './components/OverflowMenu';
@@ -86,6 +85,14 @@ export Tag, { types } from './components/Tag';
 export Tabs from './components/Tabs';
 export TextArea from './components/TextArea';
 export TextInput from './components/TextInput';
+export {
+  Tile,
+  ClickableTile,
+  SelectableTile,
+  ExpandableTile,
+  TileAboveTheFoldContent,
+  TileBelowTheFoldContent
+} from './components/Tile';
 export TimePicker from './components/TimePicker';
 export TimePickerSelect from './components/TimePickerSelect';
 export Toggle from './components/Toggle';
@@ -93,7 +100,7 @@ export Toolbar, {
   ToolbarItem,
   ToolbarTitle,
   ToolbarOption,
-  ToolbarDivider,
+  ToolbarDivider
 } from './components/Toolbar';
 export ToolbarSearch from './components/ToolbarSearch';
 export Tooltip from './components/Tooltip';

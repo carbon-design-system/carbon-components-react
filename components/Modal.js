@@ -19,8 +19,10 @@ class Modal extends Component {
     onRequestSubmit: PropTypes.func,
     onKeyDown: PropTypes.func,
     iconDescription: PropTypes.string,
-    primaryButtonDisabled: PropTypes.bool
+    primaryButtonDisabled: PropTypes.bool,
+    onSecondarySubmit: PropTypes.func,
   };
+
   static defaultProps = {
     onRequestClose: () => {},
     onRequestSubmit: () => {},
@@ -29,7 +31,7 @@ class Modal extends Component {
     passiveModal: false,
     iconDescription: 'close the modal',
     modalHeading: 'Provide a heading',
-    modalLabel: 'Provide a label'
+    modalLabel: 'Provide a label',
   };
 
   handleKeyDown = evt => {
@@ -39,12 +41,11 @@ class Modal extends Component {
   };
 
   handleClick = evt => {
-    const innerModal = this.refs.modalInner;
-    const isTarget = innerModal.contains(evt.target);
-    if (!isTarget) {
+    if (this.innerModal && !this.innerModal.contains(evt.target)) {
       this.props.onRequestClose();
     }
   };
+
   render() {
     const {
       modalHeading,
@@ -55,61 +56,55 @@ class Modal extends Component {
       open,
       onRequestClose,
       onRequestSubmit,
+      onSecondarySubmit,
       iconDescription,
       primaryButtonDisabled,
       ...other
     } = this.props;
 
+    const onSecondaryButtonClick = onSecondarySubmit
+      ? onSecondarySubmit
+      : onRequestClose;
+
     const modalClasses = classNames({
       'bx--modal': true,
       'bx--modal-tall': !passiveModal,
       'is-visible': open,
-      [this.props.className]: this.props.className
+      [this.props.className]: this.props.className,
     });
 
-    const modalLabelContent = modalLabel
-      ? <h4 className="bx--modal-header__label">{modalLabel}</h4>
-      : '';
+    const modalButton = (
+      <button className="bx--modal-close" type="button" onClick={onRequestClose}>
+        <Icon
+          name="close"
+          className="bx--modal-close__icon"
+          description={iconDescription}
+        />
+      </button>
+    );
 
-    const modalBody = passiveModal
-      ? <div ref="modalInner" className="bx--modal-container">
-          <div className="bx--modal-header">
-            <button className="bx--modal-close" type="button" onClick={onRequestClose}>
-              <Icon
-                name="close"
-                className="bx--modal-close__icon"
-                description={iconDescription}
-              />
-            </button>
-            {modalLabelContent}
-            <h2 className="bx--modal-header__heading">
-              {modalHeading}
-            </h2>
-          </div>
-          <div className="bx--modal-content">
-            {this.props.children}
-          </div>
+    const modalBody = (
+      <div
+        ref={(modal) => {this.innerModal = modal;}}
+        className="bx--modal-container"
+      >
+        <div className="bx--modal-header">
+          {passiveModal && modalButton}
+          {modalLabel && (
+            <h4 className="bx--modal-header__label">{modalLabel}</h4>
+          )}
+          <h2 className="bx--modal-header__heading">
+            {modalHeading}
+          </h2>
+          {!passiveModal && modalButton}
         </div>
-      : <div ref="modalInner" className="bx--modal-container">
-          <div className="bx--modal-header">
-            {modalLabelContent}
-            <h2 className="bx--modal-header__heading">
-              {modalHeading}
-            </h2>
-            <button className="bx--modal-close" type="button" onClick={onRequestClose}>
-              <Icon
-                name="close"
-                className="bx--modal-close__icon"
-                description={iconDescription}
-              />
-            </button>
-          </div>
-          <div className="bx--modal-content">
-            {this.props.children}
-          </div>
+        <div className="bx--modal-content">
+          {this.props.children}
+        </div>
+        {!passiveModal && (
           <div className="bx--modal-footer">
             <div className="bx--modal__buttons-container">
-              <Button kind="secondary" onClick={onRequestClose}>
+              <Button kind="secondary" onClick={onSecondaryButtonClick}>
                 {secondaryButtonText}
               </Button>
               <Button
@@ -121,21 +116,20 @@ class Modal extends Component {
               </Button>
             </div>
           </div>
-        </div>;
+        )}
+      </div>
+    );
 
-    const modal = (
+    return (
       <div
         {...other}
         onKeyDown={this.handleKeyDown}
         onClick={this.handleClick}
         className={modalClasses}
-        tabIndex={-1}
-      >
+        tabIndex={-1}>
         {modalBody}
       </div>
     );
-
-    return modal;
   }
 }
 
