@@ -26,7 +26,7 @@ describe('RadioButtonGroup', () => {
 
       it('sets disabled attribute if disabled prop is set', () => {
         wrapper.setProps({ disabled: true });
-        expect(wrapper.first('dev').props().disabled).toEqual(true);
+        expect(wrapper.first().props().disabled).toEqual(true);
       });
     });
 
