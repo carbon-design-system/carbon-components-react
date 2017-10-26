@@ -150,8 +150,8 @@ describe('ProgressIndicator', () => {
             list
               .find(ProgressStep)
               .at(5)
-              .props().incomplete
-          ).toBe(true);
+              .props().complete
+          ).toBe(false);
         });
       });
     });
