@@ -16,7 +16,7 @@ export const ProgressStep = ({ ...props }) => {
     'bx--progress-step': true,
     'bx--progress-step--current': current,
     'bx--progress-step--complete': complete,
-    'bx--progress-step--incomplete': incomplete,
+    'bx--progress-step--incomplete': !complete,
     [className]: className,
   });
 
@@ -42,8 +42,11 @@ export const ProgressStep = ({ ...props }) => {
             <circle cx="12" cy="12" r="12" />
             <polygon points="10.3 13.6 7.7 11 6.3 12.4 10.3 16.4 17.8 9 16.4 7.6" />
           </g>
-        ) : null}
-        {incomplete ? <circle cx="12" cy="12" r="12" /> : null}
+        ) : (
+          <g>
+            <circle cx="12" cy="12" r="12" />
+          </g>
+        )}
       </svg>
       <p className="bx--progress-label">{label}</p>
       <span className="bx--progress-line" />
@@ -97,7 +100,7 @@ export class ProgressIndicator extends Component {
         });
       } else if (index > this.state.currentIndex) {
         return React.cloneElement(child, {
-          incomplete: true,
+          complete: false,
         });
       }
       return null;
