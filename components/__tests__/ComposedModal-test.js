@@ -1,6 +1,6 @@
 import React from 'react';
-import { render, shallow, mount } from 'enzyme';
-import ComposedModal, {
+import { shallow } from 'enzyme';
+import {
   ModalHeader,
   ModalBody,
   ModalFooter,
@@ -8,12 +8,6 @@ import ComposedModal, {
 
 describe('<ModalHeader />', () => {
   describe('Renders as expected', () => {
-    const wrapper = shallow(
-      <ModalHeader className="extra-class">
-        <p>Test</p>
-      </ModalHeader>
-    );
-
     const titleWrapper = shallow(<ModalHeader title="Something" />);
     const labelWrapper = shallow(<ModalHeader label="Something" />);
 
