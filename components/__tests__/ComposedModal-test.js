@@ -1,11 +1,10 @@
 import React from 'react';
-import { render, shallow } from 'enzyme';
+import { render, shallow, mount } from 'enzyme';
 import ComposedModal, {
   ModalHeader,
   ModalBody,
   ModalFooter,
 } from '../../components/ComposedModal';
-import Button from '../../components/Button';
 
 describe('<ModalHeader />', () => {
   describe('Renders as expected', () => {
@@ -15,17 +14,17 @@ describe('<ModalHeader />', () => {
       </ModalHeader>
     );
 
-    const titleWrapper = <ModalHeader title="Something" />;
-    const labelWrapper = <ModalHeader label="Something" />;
+    const titleWrapper = shallow(<ModalHeader title="Something" />);
+    const labelWrapper = shallow(<ModalHeader label="Something" />);
 
     it('does not render title if no title', () => {
-      expect(titleWrapper.find('.bx--modal-header__heading').exists()).toBe(
+      expect(labelWrapper.find('.bx--modal-header__heading').exists()).toBe(
         false
       );
     });
 
     it('does not render label if no label', () => {
-      expect(labelWrapper.find('.bx--modal-header__label').exists()).toBe(
+      expect(titleWrapper.find('.bx--modal-header__label').exists()).toBe(
         false
       );
     });
