@@ -77,12 +77,12 @@ Textarea.defaultProps = {
   disabled: false,
   onChange: () => {},
   onClick: () => {},
-  placeholder: 'Hint text here',
+  placeholder: '',
   rows: 4,
   cols: 50,
   invalid: false,
-  labelText: 'Provide labelText',
-  invalidText: 'Provide invalidText',
+  labelText: '',
+  invalidText: '',
 };
 
 export default Textarea;

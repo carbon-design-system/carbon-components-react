@@ -37,7 +37,9 @@ const Checkbox = ({
             name="checkmark"
           />
         </span>
-        <span className="bx--checkbox-label-text">{labelText}</span>
+        {labelText && (
+          <span className="bx--checkbox-label-text">{labelText}</span>
+        )}
       </label>
     </div>
   );
@@ -56,7 +58,7 @@ Checkbox.propTypes = {
 
 Checkbox.defaultProps = {
   onChange: () => {},
-  labelText: 'Provide checkbox label text',
+  labelText: '',
   iconDescription: 'Provide icon description for a11y',
 };
 

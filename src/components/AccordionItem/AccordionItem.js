@@ -14,7 +14,7 @@ export default class AccordionItem extends Component {
   };
 
   static defaultProps = {
-    title: 'title',
+    title: '',
     open: false,
     onClick: () => {},
     onHeadingClick: () => {},
@@ -81,7 +81,9 @@ export default class AccordionItem extends Component {
             name="chevron--right"
             description="Expand/Collapse"
           />
-          <p className="bx--accordion__title">{title}</p>
+          {title && (
+            <p className="bx--accordion__title">{title}</p>
+          )}
         </div>
         <div className="bx--accordion__content">{children}</div>
       </li>

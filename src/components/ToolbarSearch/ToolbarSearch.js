@@ -18,8 +18,8 @@ export default class ToolbarSearch extends Component {
   static defaultProps = {
     type: 'search',
     id: 'search__input',
-    labelText: 'Provide labelText',
-    placeHolderText: 'Provide placeHolderText',
+    labelText: '',
+    placeHolderText: '',
     role: 'search',
   };
 
@@ -60,9 +60,11 @@ export default class ToolbarSearch extends Component {
     return (
       <ClickListener onClickOutside={this.handleClickOutside}>
         <div className={searchClasses} role={role}>
-          <label htmlFor={id} className="bx--label">
-            {labelText}
-          </label>
+          {labelText && (
+            <label htmlFor={id} className="bx--label">
+              {labelText}
+            </label>
+          )}
           <input
             {...other}
             type={type}

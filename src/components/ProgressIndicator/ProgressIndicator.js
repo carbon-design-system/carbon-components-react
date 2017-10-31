@@ -45,7 +45,9 @@ export const ProgressStep = ({ ...props }) => {
         ) : null}
         {incomplete ? <circle cx="12" cy="12" r="12" /> : null}
       </svg>
-      <p className="bx--progress-label">{label}</p>
+      {label && (
+        <p className="bx--progress-label">{label}</p>
+      )}
       <span className="bx--progress-line" />
     </li>
   );
@@ -61,7 +63,7 @@ ProgressStep.propTypes = {
 };
 
 ProgressStep.defaultProps = {
-  label: 'Provide label',
+  label: '',
 };
 
 export class ProgressIndicator extends Component {

@@ -122,4 +122,16 @@ describe('AccordionItem', () => {
       expect(toggler.state().open).toEqual(true);
     });
   });
+
+  describe('Check that defaults are working properly', () => {
+    const wrapper = shallow(
+      <AccordionItem className="extra-class">
+        Lorem ipsum.
+      </AccordionItem>
+    );
+
+    it('should not have a title attached', () => {
+      expect(wrapper.find('.bx--accordion__title').length).toBe(0);
+    });
+  });
 });

@@ -59,6 +59,10 @@ describe('RadioButton', () => {
         expect(span.hasClass('bx--radio-button__appearance')).toEqual(true);
       });
 
+      it('should use default blank label', () => {
+        expect(label.text()).toBe('');
+      })
+
       it('should render label text', () => {
         wrapper.setProps({ labelText: 'test label text' });
         expect(label.text()).toMatch(/test label text/);

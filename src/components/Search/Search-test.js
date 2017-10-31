@@ -204,4 +204,14 @@ describe('Search', () => {
       });
     });
   });
+
+  describe('uses default props', () => {
+    const wrapper = mount(
+      <Search id="test" className="extra-class" />
+    );
+
+    it('does not attach a label', () => {
+      expect(wrapper.find('.bx--label').length).toBe(0);
+    });
+  })
 });

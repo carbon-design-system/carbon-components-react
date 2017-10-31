@@ -61,6 +61,20 @@ describe('Toolbar', () => {
       rootWrapper.props().onClickOutside();
       expect(rootWrapper.state().expanded).toEqual(false);
     });
+
+    describe('should use default props', () => {
+      const defaultToolbarSearch = shallow(
+        <ToolbarSearch />
+      );
+
+      it('should use default blank placeholder text', () => {
+        expect(defaultToolbarSearch.find('.bx--search-input').props().placeholder).toBe('');
+      });
+
+      it('should not attach a label', () => {
+        expect(defaultToolbarSearch.find('label').length).toBe(0);
+      });
+    });
   });
 
   describe('ToolbarItem with an overflow menu', () => {
