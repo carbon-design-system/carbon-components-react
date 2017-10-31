@@ -42,19 +42,15 @@ storiesOf('OrderSummary', module)
           summaryPrice="$0.00"
           summaryDetails="estimated"
         >
-          <Button>
-            Primary Button
-          </Button>
-          <Button kind="secondary">
-            Primary Button
-          </Button>
+          <Button>Primary Button</Button>
+          <Button kind="secondary">Primary Button</Button>
         </OrderSummaryTotal>
         <OrderSummaryFooter
           footerText="Need Help?"
           linkText="Contact Bluemix Sales"
           href="www.google.com"
         />
-      </OrderSummary>
+      </OrderSummary>,
   )
   .addWithInfo(
     'Category',
@@ -97,17 +93,13 @@ storiesOf('OrderSummary', module)
           summaryPrice="$0.00"
           summaryDetails="estimated"
         >
-          <Button>
-            Primary Button
-          </Button>
-          <Button kind="secondary">
-            Primary Button
-          </Button>
+          <Button>Primary Button</Button>
+          <Button kind="secondary">Primary Button</Button>
         </OrderSummaryTotal>
         <OrderSummaryFooter
           footerText="Need Help?"
           linkText="Contact Bluemix Sales"
           href="www.google.com"
         />
-      </OrderSummary>
+      </OrderSummary>,
   );

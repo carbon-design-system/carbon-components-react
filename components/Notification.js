@@ -10,14 +10,14 @@ class NotificationButton extends Component {
     type: PropTypes.string,
     iconDescription: PropTypes.string,
     name: PropTypes.string,
-    notificationType: PropTypes.oneOf(['toast', 'inline'])
+    notificationType: PropTypes.oneOf(['toast', 'inline']),
   };
   static defaultProps = {
     ariaLabel: 'close notificaion',
     notificationType: 'toast',
     type: 'button',
     iconDescription: 'close icon',
-    name: 'close'
+    name: 'close',
   };
   render() {
     const {
@@ -33,14 +33,14 @@ class NotificationButton extends Component {
     const buttonClasses = classNames(
       {
         'bx--toast-notification__close-button': notificationType === 'toast',
-        'bx--inline-notification__close-button': notificationType === 'inline'
+        'bx--inline-notification__close-button': notificationType === 'inline',
       },
       className
     );
 
     const iconClasses = classNames({
       'bx--toast-notification__icon': notificationType === 'toast',
-      'bx--inline-notification__close-icon': notificationType === 'inline'
+      'bx--inline-notification__close-icon': notificationType === 'inline',
     });
 
     return (
@@ -59,16 +59,16 @@ class NotificationButton extends Component {
 class NotificationTextDetails extends Component {
   static propTypes = {
     title: PropTypes.string,
-    subtitle: PropTypes.string,
-    caption: PropTypes.string,
-    notificationType: PropTypes.oneOf(['toast', 'inline'])
+    subtitle: PropTypes.node,
+    caption: PropTypes.node,
+    notificationType: PropTypes.oneOf(['toast', 'inline']),
   };
 
   static defaultProps = {
     title: 'title',
     subtitle: 'subtitle',
     caption: 'caption',
-    notificationType: 'toast'
+    notificationType: 'toast',
   };
 
   render() {
@@ -78,8 +78,8 @@ class NotificationTextDetails extends Component {
       return (
         <div {...other} className="bx--toast-notification__details">
           <h3 className="bx--toast-notification__title">{title}</h3>
-          <p className="bx--toast-notification__subtitle">{subtitle}</p>
-          <p className="bx--toast-notification__caption">{caption}</p>
+          <div className="bx--toast-notification__subtitle">{subtitle}</div>
+          <div className="bx--toast-notification__caption">{caption}</div>
         </div>
       );
     }
@@ -88,7 +88,7 @@ class NotificationTextDetails extends Component {
       return (
         <div {...other} className="bx--inline-notification__text-wrapper">
           <p className="bx--inline-notification__title">{title}</p>
-          <p className="bx--inline-notification__subtitle">{subtitle}</p>
+          <div className="bx--inline-notification__subtitle">{subtitle}</div>
         </div>
       );
     }
@@ -101,12 +101,12 @@ class ToastNotification extends Component {
     className: PropTypes.string,
     kind: PropTypes.oneOf(['error', 'info', 'success', 'warning']).isRequired,
     title: PropTypes.string.isRequired,
-    subtitle: PropTypes.string.isRequired,
+    subtitle: PropTypes.node.isRequired,
     role: PropTypes.string.isRequired,
-    caption: PropTypes.string,
+    caption: PropTypes.node,
     onCloseButtonClick: PropTypes.func,
     iconDescription: PropTypes.string.isRequired,
-    notificationType: PropTypes.string
+    notificationType: PropTypes.string,
   };
 
   static defaultProps = {
@@ -117,11 +117,11 @@ class ToastNotification extends Component {
     role: 'alert',
     notificationType: 'toast',
     iconDescription: 'closes notification',
-    onCloseButtonClick: () => {}
+    onCloseButtonClick: () => {},
   };
 
   state = {
-    open: true
+    open: true,
   };
 
   handleCloseButtonClick = evt => {
@@ -182,22 +182,22 @@ class InlineNotification extends Component {
     className: PropTypes.string,
     kind: PropTypes.oneOf(['error', 'info', 'success', 'warning']).isRequired,
     title: PropTypes.string.isRequired,
-    subtitle: PropTypes.string.isRequired,
+    subtitle: PropTypes.node.isRequired,
     role: PropTypes.string.isRequired,
     onCloseButtonClick: PropTypes.func,
     iconDescription: PropTypes.string.isRequired,
-    notificationType: PropTypes.string
+    notificationType: PropTypes.string,
   };
 
   static defaultProps = {
     role: 'alert',
     notificationType: 'inline',
     iconDescription: 'closes notification',
-    onCloseButtonClick: () => {}
+    onCloseButtonClick: () => {},
   };
 
   state = {
-    open: true
+    open: true,
   };
 
   handleCloseButtonClick = evt => {
@@ -268,18 +268,18 @@ class Notification extends Component {
     subtitle: PropTypes.string.isRequired,
     caption: PropTypes.string,
     onCloseButtonClick: PropTypes.func,
-    iconDescription: PropTypes.string.isRequired
+    iconDescription: PropTypes.string.isRequired,
   };
 
   static defaultProps = {
     onCloseButtonClick: () => {},
     iconDescription: 'closes notification',
     title: 'Provide a title',
-    subtitle: 'Provide a subtitle'
+    subtitle: 'Provide a subtitle',
   };
 
   state = {
-    open: true
+    open: true,
   };
 
   handleCloseButtonClick = evt => {
@@ -318,11 +318,15 @@ class Notification extends Component {
         'bx--inline-notification',
         { [`bx--inline-notification--${this.props.kind}`]: this.props.kind },
         className
-      )
+      ),
     };
 
     const toastHTML = (
-      <div {...other} role="alert" kind={kind} className={notificationClasses.toast}>
+      <div
+        {...other}
+        role="alert"
+        kind={kind}
+        className={notificationClasses.toast}>
         <NotificationTextDetails
           title={title}
           subtitle={subtitle}
@@ -337,7 +341,11 @@ class Notification extends Component {
     );
 
     const inlineHTML = (
-      <div {...other} role="alert" kind={kind} className={notificationClasses.inline}>
+      <div
+        {...other}
+        role="alert"
+        kind={kind}
+        className={notificationClasses.inline}>
         <div className="bx--inline-notification__details">
           <Icon
             description={this.props.iconDescription}
@@ -367,5 +375,5 @@ export {
   ToastNotification,
   InlineNotification,
   NotificationButton,
-  NotificationTextDetails
+  NotificationTextDetails,
 };
