@@ -19,6 +19,10 @@
     "test": "jest",
     "test-ssr": "yarn build && node ssr-tests/*.js"
   },
+  "engines": {
+    "node": "^8.8.1",
+    "yarn": "^1.2.1"
+  },
   "keywords": [
     "react",
     "carbon",
