@@ -1,7 +1,7 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import Breadcrumb from '../../components/Breadcrumb';
-import BreadcrumbItem from '../../components/BreadcrumbItem';
+import Breadcrumb from '../Breadcrumb';
+import BreadcrumbItem from '../BreadcrumbItem';
 
 const additionalProps = {
   onClick: () => {

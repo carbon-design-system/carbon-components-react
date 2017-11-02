@@ -5,11 +5,11 @@ import Toolbar, {
   ToolbarTitle,
   ToolbarOption,
   ToolbarDivider,
-} from '../../components/Toolbar';
-import OverflowMenu from '../../components/OverflowMenu';
-import OverflowMenuItem from '../../components/OverflowMenuItem';
-import Checkbox from '../../components/Checkbox';
-import RadioButton from '../../components/RadioButton';
+} from '../Toolbar';
+import OverflowMenu from '../OverflowMenu';
+import OverflowMenuItem from '../OverflowMenuItem';
+import Checkbox from '../Checkbox';
+import RadioButton from '../RadioButton';
 
 const toolbarProps = {
   className: 'some-class',

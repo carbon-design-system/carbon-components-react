@@ -1,6 +1,6 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import TooltipSimple from '../../components/TooltipSimple';
+import TooltipSimple from '../TooltipSimple';
 
 storiesOf('TooltipSimple', module)
   .addWithInfo(

@@ -1,6 +1,6 @@
 import React from "react";
 import { storiesOf, action } from "@storybook/react";
-import Icon from "../../components/Icon";
+import Icon from "../Icon";
 import {
   StructuredListWrapper,
   StructuredListHead,
@@ -8,7 +8,7 @@ import {
   StructuredListRow,
   StructuredListInput,
   StructuredListCell
-} from "../../components/StructuredList";
+} from "../StructuredList";
 
 storiesOf("StructuredList", module)
   .addWithInfo(

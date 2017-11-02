@@ -1,7 +1,7 @@
 import React from 'react';
 import { storiesOf, action } from '@storybook/react';
-import OverflowMenu from '../../components/OverflowMenu';
-import OverflowMenuItem from '../../components/OverflowMenuItem';
+import OverflowMenu from '../OverflowMenu';
+import OverflowMenuItem from '../OverflowMenuItem';
 
 const overflowMenuEvents = {
   onClick: action('onClick'),

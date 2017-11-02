@@ -1,6 +1,6 @@
 import React from 'react';
 import { storiesOf, action } from '@storybook/react';
-import CodeSnippet from '../../components/CodeSnippet';
+import CodeSnippet from '../CodeSnippet';
 
 const copyProps = {
   onClick: action('onClick'),

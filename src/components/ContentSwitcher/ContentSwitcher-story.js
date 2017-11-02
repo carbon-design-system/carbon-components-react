@@ -1,7 +1,7 @@
 import React from 'react';
 import { storiesOf, action } from '@storybook/react';
-import ContentSwitcher from '../../components/ContentSwitcher';
-import Switch from '../../components/Switch';
+import ContentSwitcher from '../ContentSwitcher';
+import Switch from '../Switch';
 
 storiesOf('ContentSwitcher', module)
   .addWithInfo(

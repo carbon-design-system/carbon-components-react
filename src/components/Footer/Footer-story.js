@@ -1,7 +1,7 @@
 import React from 'react';
 import { storiesOf, action } from '@storybook/react';
-import Footer from '../../components/Footer';
-import Checkbox from '../../components/Checkbox';
+import Footer from '../Footer';
+import Checkbox from '../Checkbox';
 
 const additionalProps = {
   onClick: action('onClick'),

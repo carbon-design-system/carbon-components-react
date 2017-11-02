@@ -1,8 +1,8 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import InteriorLeftNav from '../../components/InteriorLeftNav';
-import InteriorLeftNavItem from '../../components/InteriorLeftNavItem';
-import InteriorLeftNavList from '../../components/InteriorLeftNavList';
+import InteriorLeftNav from '../InteriorLeftNav';
+import InteriorLeftNavItem from '../InteriorLeftNavItem';
+import InteriorLeftNavList from '../InteriorLeftNavList';
 
 storiesOf('InteriorLeftNav', module).addWithInfo(
   'Default',

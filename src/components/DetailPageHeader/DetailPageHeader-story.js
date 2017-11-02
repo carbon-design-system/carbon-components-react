@@ -1,13 +1,13 @@
 import React from 'react';
 import { action, storiesOf } from '@storybook/react';
-import Breadcrumb from '../../components/Breadcrumb';
-import BreadcrumbItem from '../../components/BreadcrumbItem';
-import OverflowMenu from '../../components/OverflowMenu';
-import OverflowMenuItem from '../../components/OverflowMenuItem';
-import DetailPageHeader from '../../components/DetailPageHeader';
-import Tabs from '../../components/Tabs';
-import Tab from '../../components/Tab';
-import Icon from '../../components/Icon';
+import Breadcrumb from '../Breadcrumb';
+import BreadcrumbItem from '../BreadcrumbItem';
+import OverflowMenu from '../OverflowMenu';
+import OverflowMenuItem from '../OverflowMenuItem';
+import DetailPageHeader from '../DetailPageHeader';
+import Tabs from '../Tabs';
+import Tab from '../Tab';
+import Icon from '../Icon';
 
 const detailPageHeaderProps = {
   title: 'Detail Page Header',

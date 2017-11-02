@@ -4,9 +4,9 @@ import Toolbar, {
   ToolbarTitle,
   ToolbarOption,
   ToolbarDivider,
-} from '../../components/Toolbar';
-import OverflowMenu from '../../components/OverflowMenu';
-import ToolbarSearch from '../../components/ToolbarSearch';
+} from '../Toolbar';
+import OverflowMenu from '../OverflowMenu';
+import ToolbarSearch from '../ToolbarSearch';
 import { shallow, mount } from 'enzyme';
 
 describe('Toolbar', () => {

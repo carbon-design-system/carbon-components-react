@@ -3,8 +3,8 @@ import { action, storiesOf } from '@storybook/react';
 import Notification, {
   ToastNotification,
   InlineNotification
-} from '../../components/Notification';
-import Link from '../../components/Link';
+} from '../Notification';
+import Link from '../Link';
 
 const notificationProps = {
   toast: {

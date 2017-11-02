@@ -3,7 +3,7 @@ import { storiesOf } from '@storybook/react';
 import FileUploader, {
   FileUploaderButton,
   Filename,
-} from '../../components/FileUploader';
+} from '../FileUploader';
 
 const fileUploaderEvents = {
   className: 'some-class',

@@ -1,6 +1,6 @@
 import React from "react";
 import { storiesOf, action } from "@storybook/react";
-import { Tile, ClickableTile, SelectableTile, ExpandableTile, TileAboveTheFoldContent, TileBelowTheFoldContent } from "../../components/Tile";
+import { Tile, ClickableTile, SelectableTile, ExpandableTile, TileAboveTheFoldContent, TileBelowTheFoldContent } from "../Tile";
 
 storiesOf("Tile", module)
   .addWithInfo(

@@ -1,6 +1,6 @@
 import React from 'react';
 import { action, storiesOf } from '@storybook/react';
-import NumberInput from '../../components/NumberInput';
+import NumberInput from '../NumberInput';
 
 const numberInputProps = {
   className: 'some-class',

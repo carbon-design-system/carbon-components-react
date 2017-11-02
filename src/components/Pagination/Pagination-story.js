@@ -1,6 +1,6 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import Pagination from '../../components/Pagination';
+import Pagination from '../Pagination';
 
 const props = {
   onChange: ({ page, pageSize }) => {

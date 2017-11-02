@@ -1,6 +1,6 @@
 import React from 'react';
 import { action, storiesOf } from '@storybook/react';
-import RadioButton from '../../components/RadioButton';
+import RadioButton from '../RadioButton';
 
 const radioProps = {
   className: 'some-class',

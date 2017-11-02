@@ -1,6 +1,6 @@
 import React from 'react';
 import { storiesOf, action } from '@storybook/react';
-import Modal from '../../components/Modal';
+import Modal from '../Modal';
 
 const modalProps = {
   onBlur: action('onBlur'),

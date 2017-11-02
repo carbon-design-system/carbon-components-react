@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { storiesOf } from '@storybook/react';
-import Card from '../../components/Card';
-import OverflowMenu from '../../components/OverflowMenu';
-import OverflowMenuItem from '../../components/OverflowMenuItem';
-import CardFooter from '../../components/CardFooter';
-import CardContent from '../../components/CardContent';
-import CardStatus from '../../components/CardStatus';
-import CardActions from '../../components/CardActions';
-import CardActionItem from '../../components/CardActionItem';
-import Button from '../../components/Button';
-import Link from '../../components/Link';
+import Card from '../Card';
+import OverflowMenu from '../OverflowMenu';
+import OverflowMenuItem from '../OverflowMenuItem';
+import CardFooter from '../CardFooter';
+import CardContent from '../CardContent';
+import CardStatus from '../CardStatus';
+import CardActions from '../CardActions';
+import CardActionItem from '../CardActionItem';
+import Button from '../Button';
+import Link from '../Link';
 
 const cardProps = {
   onClick: () => { console.log('click'); }, // eslint-disable-line no-console

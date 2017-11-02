@@ -1,6 +1,6 @@
 import React from 'react';
 import { storiesOf, action } from '@storybook/react';
-import Toggle from '../../components/Toggle';
+import Toggle from '../Toggle';
 
 const toggleProps = {
   onToggle: action('toggle'),

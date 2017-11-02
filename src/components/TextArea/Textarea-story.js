@@ -1,6 +1,6 @@
 import React from 'react';
 import { action, storiesOf } from '@storybook/react';
-import Textarea from '../../components/TextArea';
+import Textarea from '../TextArea';
 
 const textareaProps = {
   labelText: 'This is a Label',

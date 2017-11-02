@@ -1,6 +1,6 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import Link from '../../components/Link';
+import Link from '../Link';
 
 const additionalProps = {
   onClick: () => {

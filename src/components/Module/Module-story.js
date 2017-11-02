@@ -1,6 +1,6 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import { Module, ModuleHeader, ModuleBody } from '../../components/Module';
+import { Module, ModuleHeader, ModuleBody } from '../Module';
 
 storiesOf('Module', module)
   .addWithInfo(

@@ -1,6 +1,6 @@
 import React from 'react';
 import { storiesOf, action } from '@storybook/react';
-import Slider from '../../components/Slider';
+import Slider from '../Slider';
 
 const mock = action('onChange');
 

@@ -8,10 +8,10 @@ import {
   OrderSummaryListItem,
   OrderSummaryTotal,
   OrderSummaryFooter,
-} from '../../components/OrderSummary';
-import Button from '../../components/Button';
-import Dropdown from '../../components/Dropdown';
-import DropdownItem from '../../components/DropdownItem';
+} from '../OrderSummary';
+import Button from '../Button';
+import Dropdown from '../Dropdown';
+import DropdownItem from '../DropdownItem';
 
 storiesOf('OrderSummary', module)
   .addWithInfo(

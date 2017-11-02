@@ -1,6 +1,6 @@
 import React from 'react';
 import { storiesOf, action } from '@storybook/react';
-import Button from '../../components/Button';
+import Button from '../Button';
 
 const buttonEvents = {
   onClick: action('onClick'),

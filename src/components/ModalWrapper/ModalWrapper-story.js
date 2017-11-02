@@ -1,11 +1,11 @@
 import React from 'react';
 import { storiesOf, action } from '@storybook/react';
-import ModalWrapper from '../../components/ModalWrapper';
-import TextInput from '../../components/TextInput';
-import Select from '../../components/Select';
-import SelectItem from '../../components/SelectItem';
-import RadioButtonGroup from '../../components/RadioButtonGroup';
-import RadioButton from '../../components/RadioButton';
+import ModalWrapper from '../ModalWrapper';
+import TextInput from '../TextInput';
+import Select from '../Select';
+import SelectItem from '../SelectItem';
+import RadioButtonGroup from '../RadioButtonGroup';
+import RadioButton from '../RadioButton';
 
 const modalProps = {
   onBlur: action('onBlur'),

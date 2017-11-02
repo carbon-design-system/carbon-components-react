@@ -1,6 +1,6 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import Icon from '../../components/Icon';
+import Icon from '../Icon';
 
 const props = {
   style: {

@@ -1,9 +1,9 @@
 import React from 'react';
 import { storiesOf, action } from '@storybook/react';
-import Accordion from '../../components/Accordion';
-import AccordionItem from '../../components/AccordionItem';
-import Select from '../../components/Select';
-import SelectItem from '../../components/SelectItem';
+import Accordion from '../Accordion';
+import AccordionItem from '../AccordionItem';
+import Select from '../Select';
+import SelectItem from '../SelectItem';
 
 const props = {
   onHeadingClick: ({ isOpen }) => {

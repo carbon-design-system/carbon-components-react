@@ -1,7 +1,7 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import Dropdown from '../../components/Dropdown';
-import DropdownItem from '../../components/DropdownItem';
+import Dropdown from '../Dropdown';
+import DropdownItem from '../DropdownItem';
 
 const dropdownEvents = {
   onBlur: () => { console.log('blur'); }, // eslint-disable-line no-console

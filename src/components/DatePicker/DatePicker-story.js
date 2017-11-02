@@ -1,7 +1,7 @@
 import React from 'react';
 import { storiesOf, action } from '@storybook/react';
-import DatePicker from '../../components/DatePicker';
-import DatePickerInput from '../../components/DatePickerInput';
+import DatePicker from '../DatePicker';
+import DatePickerInput from '../DatePickerInput';
 
 const datePickerEvents = {
   onClick: action('onClick'),

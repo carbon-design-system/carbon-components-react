@@ -4,8 +4,8 @@ import ComposedModal, {
   ModalHeader,
   ModalBody,
   ModalFooter,
-} from '../../components/ComposedModal';
-import Button from '../../components/Button';
+} from '../ComposedModal';
+import Button from '../Button';
 
 const modalProps = {
   onBlur: action('onBlur'),

@@ -3,7 +3,7 @@ import { storiesOf } from '@storybook/react';
 import {
   ProgressIndicator,
   ProgressStep,
-} from '../../components/ProgressIndicator';
+} from '../ProgressIndicator';
 
 storiesOf('Progress Indicator', module).addWithInfo(
   'Default',

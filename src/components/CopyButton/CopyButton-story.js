@@ -1,6 +1,6 @@
 import React from 'react';
 import { action, storiesOf } from '@storybook/react';
-import CopyButton from '../../components/CopyButton';
+import CopyButton from '../CopyButton';
 
 storiesOf('CopyButton', module).addWithInfo(
   'Default',

@@ -1,8 +1,8 @@
 import React from 'react';
 import { action, storiesOf } from '@storybook/react';
-import TimePicker from '../../components/TimePicker';
-import TimePickerSelect from '../../components/TimePickerSelect';
-import SelectItem from '../../components/SelectItem';
+import TimePicker from '../TimePicker';
+import TimePickerSelect from '../TimePickerSelect';
+import SelectItem from '../SelectItem';
 
 storiesOf('TimePicker', module).addWithInfo(
   'Default',

@@ -1,8 +1,8 @@
 import React from 'react';
 import { storiesOf, action } from '@storybook/react';
-import Select from '../../components/Select';
-import SelectItem from '../../components/SelectItem';
-import SelectItemGroup from '../../components/SelectItemGroup';
+import Select from '../Select';
+import SelectItem from '../SelectItem';
+import SelectItemGroup from '../SelectItemGroup';
 
 const selectProps = {
   onChange: action('onChange'),

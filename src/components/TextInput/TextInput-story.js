@@ -1,6 +1,6 @@
 import React from 'react';
 import { action, storiesOf } from '@storybook/react';
-import TextInput from '../../components/TextInput';
+import TextInput from '../TextInput';
 
 const TextInputProps = {
   className: 'some-class',

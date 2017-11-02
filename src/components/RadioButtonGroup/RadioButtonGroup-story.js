@@ -1,8 +1,8 @@
 import React from 'react';
 import { action, storiesOf } from '@storybook/react';
-import RadioButtonGroup from '../../components/RadioButtonGroup';
-import RadioButton from '../../components/RadioButton';
-import FormGroup from '../../components/FormGroup';
+import RadioButtonGroup from '../RadioButtonGroup';
+import RadioButton from '../RadioButton';
+import FormGroup from '../FormGroup';
 
 const radioProps = {
   className: 'some-class',

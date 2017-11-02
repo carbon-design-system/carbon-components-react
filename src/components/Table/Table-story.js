@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { storiesOf, action } from '@storybook/react';
-import Table from '../../components/Table';
-import TableHead from '../../components/TableHead'
-import TableHeader from '../../components/TableHeader';
-import TableBody from '../../components/TableBody';
-import TableRow from '../../components/TableRow';
-import TableRowExpanded from '../../components/TableRowExpanded';
-import TableData from '../../components/TableData';
+import Table from '../Table';
+import TableHead from '../TableHead'
+import TableHeader from '../TableHeader';
+import TableBody from '../TableBody';
+import TableRow from '../TableRow';
+import TableRowExpanded from '../TableRowExpanded';
+import TableData from '../TableData';
 
 class NestedTable extends Component {
   state = {

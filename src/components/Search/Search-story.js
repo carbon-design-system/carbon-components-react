@@ -1,6 +1,6 @@
 import React from 'react';
 import { storiesOf, action } from '@storybook/react';
-import Search from '../../components/Search';
+import Search from '../Search';
 
 const searchProps = {
   className: 'some-class'

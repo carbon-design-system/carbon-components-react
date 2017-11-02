@@ -1,6 +1,6 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import Tag, { types } from '../../components/Tag';
+import Tag, { types } from '../Tag';
 
 storiesOf('Tag', module).addWithInfo(
   'Default',

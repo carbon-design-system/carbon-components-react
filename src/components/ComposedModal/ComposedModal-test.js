@@ -4,7 +4,7 @@ import {
   ModalHeader,
   ModalBody,
   ModalFooter,
-} from '../../components/ComposedModal';
+} from '../ComposedModal';
 
 describe('<ModalHeader />', () => {
   describe('Renders as expected', () => {

@@ -1,7 +1,7 @@
 import React from 'react';
 import { storiesOf, action } from '@storybook/react';
-import Tabs from '../../components/Tabs';
-import Tab from '../../components/Tab';
+import Tabs from '../Tabs';
+import Tab from '../Tab';
 
 const props = {
   tabs: {

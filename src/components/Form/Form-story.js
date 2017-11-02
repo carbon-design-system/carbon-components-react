@@ -1,19 +1,19 @@
 import React from 'react';
 import { action, storiesOf } from '@storybook/react';
-import Checkbox from '../../components/Checkbox';
-import Form from '../../components/Form';
-import FormGroup from '../../components/FormGroup';
-import FileUploader from '../../components/FileUploader';
-import NumberInput from '../../components/NumberInput';
-import RadioButton from '../../components/RadioButton';
-import RadioButtonGroup from '../../components/RadioButtonGroup';
-import Button from '../../components/Button';
-import Search from '../../components/Search';
-import Select from '../../components/Select';
-import SelectItem from '../../components/SelectItem';
-import Textarea from '../../components/TextArea';
-import TextInput from '../../components/TextInput';
-import Toggle from '../../components/Toggle';
+import Checkbox from '../Checkbox';
+import Form from '../Form';
+import FormGroup from '../FormGroup';
+import FileUploader from '../FileUploader';
+import NumberInput from '../NumberInput';
+import RadioButton from '../RadioButton';
+import RadioButtonGroup from '../RadioButtonGroup';
+import Button from '../Button';
+import Search from '../Search';
+import Select from '../Select';
+import SelectItem from '../SelectItem';
+import Textarea from '../TextArea';
+import TextInput from '../TextInput';
+import Toggle from '../Toggle';
 
 const additionalProps = {
   className: 'some-class',
