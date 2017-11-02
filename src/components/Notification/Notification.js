@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import classNames from 'classnames';
-import Icon from './Icon';
+import Icon from '../Icon';
 
 class NotificationButton extends Component {
   static propTypes = {

@@ -1,2 +1,5 @@
-import ComposedModal from './ComposedModal';
-export default ComposedModal;
+export {
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+} from './ComposedModal';

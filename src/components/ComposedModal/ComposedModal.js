@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Button from './Button';
-import Icon from './Icon';
+import Button from '../Button';
+import Icon from '../Icon';
 import classNames from 'classnames';
 
 export default class ComposedModal extends Component {

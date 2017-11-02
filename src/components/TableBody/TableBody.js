@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import classNames from 'classnames';
-import TableRow from './TableRow';
+import TableRow from '../TableRow';
 
 const propTypes = {
   children: PropTypes.node,

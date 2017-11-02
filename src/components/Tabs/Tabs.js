@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import classNames from 'classnames';
-import Icon from './Icon';
-import TabContent from './TabContent';
+import Icon from '../Icon';
+import TabContent from '../TabContent';
 
 class Tabs extends React.Component {
   static propTypes = {

@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import classNames from 'classnames';
 import flatpickr from 'flatpickr';
 import rangePlugin from 'flatpickr/dist/plugins/rangePlugin';
-import DatePickerInput from './DatePickerInput';
+import DatePickerInput from '../DatePickerInput';
 
 // Weekdays shorthand for english locale
 flatpickr.l10ns.en.weekdays.shorthand.forEach((day, index) => {

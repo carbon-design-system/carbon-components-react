@@ -1,2 +1,9 @@
-import OrderSummary from './OrderSummary';
-export default OrderSummary;
+export {
+  OrderSummary,
+  OrderSummaryHeader,
+  OrderSummaryCategory,
+  OrderSummaryTotal,
+  OrderSummaryFooter,
+  OrderSummaryList,
+  OrderSummaryListItem,
+} from './OrderSummary';

@@ -1,2 +1,8 @@
-import Tile from './Tile';
-export default Tile;
+export {
+  Tile,
+  ClickableTile,
+  SelectableTile,
+  ExpandableTile,
+  TileAboveTheFoldContent,
+  TileBelowTheFoldContent,
+} from './Tile';

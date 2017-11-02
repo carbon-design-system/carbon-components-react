@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import classNames from 'classnames';
-import Icon from './Icon';
-import Button from './Button';
+import Icon from '../Icon';
+import Button from '../Button';
 
 class Modal extends Component {
   static propTypes = {

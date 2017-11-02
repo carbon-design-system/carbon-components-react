@@ -3,10 +3,10 @@ import React, { Component, Children } from 'react';
 import classnames from 'classnames';
 import debounce from 'lodash.debounce';
 import window from 'window-or-global';
-import Breadcrumb from './Breadcrumb';
-import Tabs from './Tabs';
-import OverflowMenu from './OverflowMenu';
-import Icon from './Icon';
+import Breadcrumb from '../Breadcrumb';
+import Tabs from '../Tabs';
+import OverflowMenu from '../OverflowMenu';
+import Icon from '../Icon';
 
 class DetailPageHeader extends Component {
   static propTypes = {

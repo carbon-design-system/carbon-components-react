@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import Icon from './Icon';
+import Icon from '../Icon';
 import classNames from 'classnames';
 
 class NumberInput extends Component {

@@ -1,11 +1,11 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import classnames from 'classnames';
-import Icon from './Icon';
-import Select from './Select';
-import SelectItem from './SelectItem';
-import TextInput from './TextInput';
-import { equals } from '../tools/array';
+import Icon from '../Icon';
+import Select from '../Select';
+import SelectItem from '../SelectItem';
+import TextInput from '../TextInput';
+import { equals } from '../../tools/array';
 
 class Pagination extends Component {
   static propTypes = {

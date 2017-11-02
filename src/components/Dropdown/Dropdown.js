@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 import React, { PureComponent } from 'react';
 import classNames from 'classnames';
-import ClickListener from '../internal/ClickListener';
-import Icon from './Icon';
+import ClickListener from '../../internal/ClickListener';
+import Icon from '../Icon';
 
 class Dropdown extends PureComponent {
   static propTypes = {

@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import RadioButton from './RadioButton';
+import RadioButton from '../RadioButton';
 import warning from 'warning';
 
 class RadioButtonGroup extends React.Component {

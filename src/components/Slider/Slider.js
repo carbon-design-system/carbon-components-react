@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import TextInput from './TextInput';
+import TextInput from '../TextInput';
 
 class Slider extends PureComponent {
   static propTypes = {

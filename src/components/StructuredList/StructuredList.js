@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import uid from '../tools/uniqueId';
+import uid from '../../tools/uniqueId';
 
 class StructuredListWrapper extends Component {
   static propTypes = {

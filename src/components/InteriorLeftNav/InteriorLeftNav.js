@@ -3,9 +3,9 @@ import React, { Component } from 'react';
 import classnames from 'classnames';
 import window from 'window-or-global';
 
-import InteriorLeftNavList from './InteriorLeftNavList';
-import InteriorLeftNavItem from './InteriorLeftNavItem';
-import Icon from './Icon';
+import InteriorLeftNavList from '../InteriorLeftNavList';
+import InteriorLeftNavItem from '../InteriorLeftNavItem';
+import Icon from '../Icon';
 
 class InteriorLeftNav extends Component {
   static propTypes = {

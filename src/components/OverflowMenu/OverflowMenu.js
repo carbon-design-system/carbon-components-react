@@ -1,10 +1,10 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import classNames from 'classnames';
-import ClickListener from '../internal/ClickListener';
-import FloatingMenu from '../internal/FloatingMenu';
-import OptimizedResize from '../internal/OptimizedResize';
-import Icon from './Icon';
+import ClickListener from '../../internal/ClickListener';
+import FloatingMenu from '../../internal/FloatingMenu';
+import OptimizedResize from '../../internal/OptimizedResize';
+import Icon from '../Icon';
 
 class OverflowMenu extends Component {
   static propTypes = {

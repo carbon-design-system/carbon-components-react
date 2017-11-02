@@ -1,2 +1,1 @@
-import Module from './Module';
-export default Module;
+export { Module, ModuleBody, ModuleHeader } from './Module';

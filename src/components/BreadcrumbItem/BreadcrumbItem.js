@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import classnames from 'classnames';
-import Link from './Link';
+import Link from '../Link';
 
 const propTypes = {
   children: PropTypes.node,

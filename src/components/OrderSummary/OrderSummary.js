@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import Link from './Link';
+import Link from '../Link';
 
 class OrderSummary extends Component {
   static propTypes = {

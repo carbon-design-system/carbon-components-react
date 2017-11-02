@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import classnames from 'classnames';
-import InteriorLeftNavItem from './InteriorLeftNavItem';
-import Icon from './Icon';
+import InteriorLeftNavItem from '../InteriorLeftNavItem';
+import Icon from '../Icon';
 
 class InteriorLeftNavList extends Component {
   static propTypes = {

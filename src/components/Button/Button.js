@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import Icon from '../components/Icon';
+import Icon from '../Icon';
 import classNames from 'classnames';
 
 const propTypes = {

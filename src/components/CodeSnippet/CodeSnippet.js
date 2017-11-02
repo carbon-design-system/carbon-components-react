@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import classNames from 'classnames';
-import CopyButton from './CopyButton';
+import CopyButton from '../CopyButton';
 
 const propTypes = {
   type: PropTypes.string,

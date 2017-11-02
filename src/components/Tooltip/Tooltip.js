@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Icon from './Icon';
+import Icon from '../Icon';
 import classNames from 'classnames';
-import FloatingMenu from '../internal/FloatingMenu';
+import FloatingMenu from '../../internal/FloatingMenu';
 
 class Tooltip extends Component {
   static propTypes = {

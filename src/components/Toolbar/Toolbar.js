@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ToolbarSearch from './ToolbarSearch';
+import ToolbarSearch from '../ToolbarSearch';
 import classNames from 'classnames';
 
 const propTypes = {

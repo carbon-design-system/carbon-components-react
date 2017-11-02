@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import Icon from './Icon';
-import ClickListener from '../internal/ClickListener';
+import Icon from '../Icon';
+import ClickListener from '../../internal/ClickListener';
 
 class ToolbarSearch extends Component {
   static propTypes = {

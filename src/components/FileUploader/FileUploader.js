@@ -2,8 +2,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import Icon from './Icon';
-import uid from '../tools/uniqueId';
+import Icon from '../Icon';
+import uid from '../../tools/uniqueId';
 
 class FileUploaderButton extends Component {
   static propTypes = {
