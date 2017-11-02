@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import classNames from 'classnames';
-import uid from '../lib/uniqueId';
+import uid from '../tools/uniqueId';
 
 class RadioButton extends React.Component {
   static propTypes = {

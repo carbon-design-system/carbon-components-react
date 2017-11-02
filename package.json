@@ -2,22 +2,22 @@
   "name": "carbon-components-react",
   "description": "A React wrapper for carbon-components",
   "license": "Apache-2",
-  "main": "cjs/index.js",
+  "main": "lib/index.js",
   "module": "es/index.js",
   "scripts": {
-    "ci-check": "npm run lint && npm run test && npm run test-ssr",
-    "lint": "eslint {components,internal}/**",
-    "test": "jest",
-    "test-ssr": "npm run build && node server-side-rendering-tests/*.js",
-    "prepublish": "npm run build",
     "build": "node scripts/build.js",
-    "commitmsg": "validate-commit-msg",
-    "commit": "git cz",
-    "storybook": "start-storybook -p 9000",
     "build-storybook": "build-storybook",
-    "start": "npm run storybook",
+    "ci-check": "yarn lint && yarn test && yarn test-ssr",
+    "commit": "git cz",
+    "commitmsg": "validate-commit-msg",
+    "lint": "eslint src/**",
+    "prepublish": "yarn build",
+    "prettier": "prettier --write **/*.js",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
-    "prettier": "prettier --write **/*.js"
+    "start": "yarn storybook",
+    "storybook": "start-storybook -p 9000",
+    "test": "jest",
+    "test-ssr": "yarn build && node ssr-tests/*.js"
   },
   "keywords": [
     "react",
@@ -25,7 +25,7 @@
     "carbon-components"
   ],
   "files": [
-    "cjs/**/*",
+    "lib/**/*",
     "es/**/*"
   ],
   "contributors": [
@@ -92,7 +92,7 @@
     "flatpickr": "3.0.7",
     "lodash.debounce": "^4.0.8",
     "react-addons-css-transition-group": "^15.4.2",
-    "warning": "3.0.0",
+    "warning": "^3.0.0",
     "window-or-global": "^1.0.1"
   },
   "devDependencies": {
@@ -140,6 +140,16 @@
     "storybook-addon-a11y": "^3.0.0",
     "validate-commit-msg": "^2.10.1",
     "whatwg-fetch": "^2.0.3"
+  },
+  "babel": {
+    "presets": [
+      "./scripts/env",
+      "react",
+      "stage-1"
+    ],
+    "plugins": [
+      "transform-object-assign"
+    ]
   },
   "prettier": {
     "jsxBracketSameLine": true,

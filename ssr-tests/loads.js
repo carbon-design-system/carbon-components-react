@@ -4,6 +4,6 @@
 'use strict';
 
 var assert = require('assert');
-var carbonComponentsReact = require('../cjs/index');
+var carbonComponentsReact = require('../lib');
 assert(carbonComponentsReact);
 console.log('server-side-rendering load test passed'); // eslint-disable-line no-console

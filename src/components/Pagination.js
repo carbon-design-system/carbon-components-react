@@ -5,7 +5,7 @@ import Icon from './Icon';
 import Select from './Select';
 import SelectItem from './SelectItem';
 import TextInput from './TextInput';
-import { equals } from '../lib/array';
+import { equals } from '../tools/array';
 
 class Pagination extends Component {
   static propTypes = {
