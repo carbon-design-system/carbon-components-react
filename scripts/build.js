@@ -11,7 +11,8 @@ if (inInstall()) {
 }
 
 const rootDir = path.resolve(__dirname, '../');
-const babelPath = path.resolve(__dirname, '../node_modules/.bin/babel')
+const babelPath = path
+  .resolve(__dirname, '../node_modules/.bin/babel')
   .replace(/ /g, '\\ ');
 const rimrafAsync = promisify(rimraf);
 
@@ -22,10 +23,7 @@ const exec = (command, extraEnv) =>
   });
 
 console.log('Deleting old build folders...');
-Promise.all([
-  rimrafAsync(`${rootDir}/cjs`),
-  rimrafAsync(`${rootDir}/es`),
-])
+Promise.all([rimrafAsync(`${rootDir}/cjs`), rimrafAsync(`${rootDir}/es`)])
   .then(() => {
     exec(`${babelPath} src -q -d es --ignore __tests__`, {
       BABEL_ENV: 'es',
