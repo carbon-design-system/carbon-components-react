@@ -1,5 +1,5 @@
 import React from "react";
-import { storiesOf, action } from "@storybook/react";
+import { storiesOf } from "@storybook/react";
 import Icon from "../Icon";
 import {
   StructuredListWrapper,

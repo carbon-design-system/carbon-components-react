@@ -3,11 +3,6 @@ import { storiesOf, action } from '@storybook/react';
 import DatePicker from '../DatePicker';
 import DatePickerInput from '../DatePickerInput';
 
-const datePickerEvents = {
-  onClick: action('onClick'),
-  className: 'some-class',
-};
-
 const datePickerProps = {
   id: 'date-picker',
   onChange: action('onChange'),

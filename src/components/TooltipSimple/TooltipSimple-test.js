@@ -7,7 +7,7 @@ describe('TooltipSimple', () => {
   describe('Renders as expected with defaults', () => {
     const wrapper = mount(
       <TooltipSimple text="Basic TooltipSimple Text" className="extra-class">
-        <a href="#">A Link</a>
+        <a href="/">A Link</a>
       </TooltipSimple>
     );
     const tooltipWrapper = wrapper.find('.bx--tooltip--simple').first();
@@ -48,7 +48,7 @@ describe('TooltipSimple', () => {
         position="bottom"
         showIcon={false}
       >
-        <a href="#">A Link</a>
+        <a href="/">A Link</a>
       </TooltipSimple>
     );
     const tooltip = wrapper.find('.bx--tooltip--simple__bottom').first();

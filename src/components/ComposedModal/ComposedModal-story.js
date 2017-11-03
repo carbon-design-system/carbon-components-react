@@ -1,18 +1,11 @@
 import React from 'react';
-import { storiesOf, action } from '@storybook/react';
+import { storiesOf } from '@storybook/react';
 import ComposedModal, {
   ModalHeader,
   ModalBody,
   ModalFooter,
 } from '../ComposedModal';
 import Button from '../Button';
-
-const modalProps = {
-  onBlur: action('onBlur'),
-  onClick: action('onClick'),
-  onFocus: action('onFocus'),
-  className: 'some-class',
-};
 
 storiesOf('ComposedModal', module)
   .addWithInfo(

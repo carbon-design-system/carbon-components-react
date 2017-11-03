@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { storiesOf, action } from '@storybook/react';
+import { storiesOf } from '@storybook/react';
 import Table from '../Table';
 import TableHead from '../TableHead'
 import TableHeader from '../TableHeader';

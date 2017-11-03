@@ -154,6 +154,7 @@ class SelectableTile extends Component {
     );
 
     return (
+      // eslint-disable-next-line jsx-a11y/no-static-element-interactions,jsx-a11y/onclick-has-role
       <label
         htmlFor={id}
         className={classes}
@@ -265,6 +266,7 @@ class ExpandableTile extends Component {
       return React.cloneElement(child, { ref: index });
     });
     return (
+      // eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions
       <div
         ref={tile => {
           this.tile = tile;

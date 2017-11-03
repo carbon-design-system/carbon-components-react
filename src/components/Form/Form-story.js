@@ -79,21 +79,11 @@ const selectProps = {
   className: 'some-class',
 };
 
-const fieldsetSelectProps = {
-  className: 'some-class',
-  legendText: 'Search',
-};
-
 const TextInputProps = {
   className: 'some-class',
   id: 'test2',
   labelText: 'Text Input',
   placeholder: 'Hint text here',
-};
-
-const fieldsetTextInputProps = {
-  className: 'some-class',
-  legendText: 'Text Input',
 };
 
 const PasswordProps = {
@@ -119,11 +109,6 @@ const textareaProps = {
   id: 'test2',
   cols: 50,
   rows: 4,
-};
-
-const fieldsetTextareaProps = {
-  className: 'some-class',
-  legendText: 'Text Area',
 };
 
 const buttonEvents = {

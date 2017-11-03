@@ -8,6 +8,7 @@ jest.useFakeTimers();
 describe('CopyButton', () => {
   describe('Renders common props as expected', () => {
     const wrapper = shallow(
+      // eslint-disable-next-line jsx-a11y/tabindex-no-positive
       <CopyButton tabIndex={2} className="extra-class" />,
     );
 

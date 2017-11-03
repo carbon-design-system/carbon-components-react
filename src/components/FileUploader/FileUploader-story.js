@@ -1,13 +1,10 @@
+/* eslint-disable no-console */
+
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import FileUploader, {
   FileUploaderButton,
-  Filename,
 } from '../FileUploader';
-
-const fileUploaderEvents = {
-  className: 'some-class',
-};
 
 storiesOf('FileUploader', module)
   .addWithInfo(
@@ -19,7 +16,7 @@ storiesOf('FileUploader', module)
       <FileUploaderButton
         labelText="Add files"
         className="bob"
-        onChange={evt => console.log('hi')}
+        onChange={() => console.log('hi')}
         multiple
       />
     )

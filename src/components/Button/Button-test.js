@@ -5,6 +5,7 @@ import { shallow, mount } from 'enzyme';
 describe('Button', () => {
   describe('Renders common props as expected', () => {
     const wrapper = shallow(
+      // eslint-disable-next-line jsx-a11y/tabindex-no-positive
       <Button tabIndex={2} className="extra-class">
         <div className="child">child</div>
         <div className="child">child</div>
@@ -12,6 +13,7 @@ describe('Button', () => {
     );
 
     const wrapperHref = shallow(
+      // eslint-disable-next-line jsx-a11y/tabindex-no-positive
       <Button tabIndex={2} className="extra-class" href="/home">
         <div className="child">child</div>
         <div className="child">child</div>
@@ -36,6 +38,7 @@ describe('Button', () => {
 
   describe('Renders <button> props as expected', () => {
     const wrapper = shallow(
+      // eslint-disable-next-line jsx-a11y/tabindex-no-positive
       <Button tabIndex={2}>
         <div className="child">child</div>
         <div className="child">child</div>
@@ -69,6 +72,7 @@ describe('Button', () => {
 
   describe('Renders <a> props as expected', () => {
     const wrapper = shallow(
+      // eslint-disable-next-line jsx-a11y/tabindex-no-positive
       <Button href="#" tabIndex={2}>
         <div className="child">child</div>
         <div className="child">child</div>

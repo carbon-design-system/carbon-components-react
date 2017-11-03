@@ -1,3 +1,5 @@
+/* eslint-disable no-console */
+
 import React from 'react';
 import { storiesOf, action } from '@storybook/react';
 import Search from '../Search';

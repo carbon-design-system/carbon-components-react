@@ -1,5 +1,5 @@
 import React from 'react';
-import { action, storiesOf } from '@storybook/react';
+import { storiesOf } from '@storybook/react';
 import TimePicker from '../TimePicker';
 import TimePickerSelect from '../TimePickerSelect';
 import SelectItem from '../SelectItem';
