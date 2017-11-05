@@ -130,7 +130,7 @@ describe('ProgressIndicator', () => {
             list
               .find(ProgressStep)
               .at(0)
-              .props().complete
+              .prop('complete')
           ).toBe(true);
         });
       });
