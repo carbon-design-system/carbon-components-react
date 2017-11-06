@@ -129,4 +129,20 @@ describe('InteriorLeftNavList', () => {
       expect(list.state().open).toEqual(false);
     });
   });
+
+  describe('Test lockOpen=true, open=true', () => {
+    const wrapper = shallow(<InteriorLeftNavList open lockOpen/>);
+
+    it('chevron down should be absent', () => {
+      expect(wrapper.find('.left-nav-list__item-icon').length).toEqual(0);
+    });
+  });
+
+  describe('Test lockOpen=false, open=true', () => {
+    const wrapper = shallow(<InteriorLeftNavList open/>);
+
+    it('chevron down should be present', () => {
+      expect(wrapper.find('.bx--interior-left-nav__icon').length).toEqual(1);
+    });
+  });
 });
