@@ -174,7 +174,7 @@ storiesOf('Buttons', module)
     () =>
       <div>
         <Button kind="danger" {...buttonEvents} className="some-class">
-          Danger nutton
+          Danger button
         </Button>
         &nbsp;
         <Button kind="danger" {...buttonEvents} href="#" className="some-class">
