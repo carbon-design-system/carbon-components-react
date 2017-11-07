@@ -28,7 +28,8 @@
     border: 0;
   }
 
-  .bx--typeahead-menu, .bx--typeahead-clear {
+  .bx--typeahead-menu,
+  .bx--typeahead-clear {
     padding: 0;
   }
 
@@ -51,7 +52,7 @@
   // Let's manually specify both the focus state and aria-expanded. In Firefox,
   // it seems like `focus` isn't triggered the same way as in other browsers.
   .bx--typeahead-menu:focus::before,
-  [aria-expanded=true].bx--typeahead-menu::before {
+  [aria-expanded='true'].bx--typeahead-menu::before {
     position: absolute;
     content: '';
     top: 1px;
@@ -70,7 +71,8 @@
     transform: rotate(180deg);
   }
 
-  .bx--typeahead-menu-icon, .bx--typeahead-clear-icon {
+  .bx--typeahead-menu-icon,
+  .bx--typeahead-clear-icon {
     height: 100%;
   }
 

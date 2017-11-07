@@ -66,4 +66,4 @@ storiesOf('Combobox', module)
       items={items}
       disabled={true}
     />
-  ))
+  ));

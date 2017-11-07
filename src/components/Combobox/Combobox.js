@@ -5,17 +5,20 @@ import React from 'react';
 
 export default class Combobox extends React.Component {
   static propTypes = {
-    placeholder: PropTypes.string.isRequired,
+    disabled: PropTypes.bool,
     onChange: PropTypes.func,
+    placeholder: PropTypes.string.isRequired,
+    options: PropTypes.array,
   };
 
   static defaultProps = {
+    disabled: false,
     startsWith: false,
   };
 
   state = {
     isMenuClick: false,
-  }
+  };
 
   handleOnChange = event => {
     this.props.onChange && this.props.onChange(event);
@@ -27,7 +30,7 @@ export default class Combobox extends React.Component {
     if (this.state.isMenuClick) {
       this.setState({ isMenuClick: false });
     }
-  }
+  };
 
   // Invoked whenever a user clicks on the Menu Target. This should guarantee
   // that `isMenuClick` is set to true in order to be used in the `filter`
@@ -36,7 +39,7 @@ export default class Combobox extends React.Component {
     if (!this.state.isMenuClick) {
       this.setState({ isMenuClick: true });
     }
-  }
+  };
 
   itemToString = item => (item ? item.label : '');
 
@@ -53,7 +56,8 @@ export default class Combobox extends React.Component {
 
   render() {
     const {
-      items, placeholder,
+      options,
+      placeholder,
       disabled,
       startsWith,
       id,
@@ -65,8 +69,7 @@ export default class Combobox extends React.Component {
         onChange={this.handleOnChange}
         onInputValueChange={this.handleOnInputValueChange}
         itemToString={this.itemToString}
-        {...other}
-      >
+        {...other}>
         {({
           getInputProps,
           getItemProps,
@@ -130,20 +133,18 @@ export default class Combobox extends React.Component {
           'aria-label': isOpen ? 'close.menu' : 'open.menu',
           onClick: this.handleOnClick,
           disabled: this.props.disabled,
-        })}
-      >
+        })}>
         <svg
           className={iconMenuClass}
           width="10"
           height="5"
           viewBox="0 0 10 5"
-          fillRule="evenodd"
-        >
+          fillRule="evenodd">
           <path d="M10 0L5 5 0 0z" />
         </svg>
       </button>
     );
-  }
+  };
 
   renderClear = (inputValue, clearSelection) => {
     if (!inputValue) {
@@ -159,13 +160,12 @@ export default class Combobox extends React.Component {
           width="16"
           height="16"
           viewBox="0 0 16 16"
-          fillRule="evenodd"
-        >
+          fillRule="evenodd">
           <path d="M8 0C3.6 0 0 3.6 0 8s3.6 8 8 8 8-3.6 8-8-3.6-8-8-8zm3.5 10.1l-1.4 1.4L8 9.4l-2.1 2.1-1.4-1.4L6.6 8 4.5 5.9l1.4-1.4L8 6.6l2.1-2.1 1.4 1.4L9.4 8l2.1 2.1z" />
         </svg>
       </button>
     );
-  }
+  };
 
   renderItems = ({
     items,
@@ -206,17 +206,12 @@ export default class Combobox extends React.Component {
           <div
             {...getItemProps({ item })}
             key={item.value}
-            className={itemClass}
-          >
+            className={itemClass}>
             {itemToString(item)}
           </div>
         );
       });
 
-    return (
-      <div className={itemsClassName}>
-        {children}
-      </div>
-    );
-  }
+    return <div className={itemsClassName}>{children}</div>;
+  };
 }
