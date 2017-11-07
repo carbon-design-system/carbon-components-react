@@ -80,7 +80,7 @@ class InteriorLeftNavList extends Component {
       'left-nav-list__item',
       'left-nav-list__item--has-children',
       {
-        'left-nav-list__item--expanded': lockOpen || this.state.open,
+        'left-nav-list__item--expanded': this.state.open,
       },
       className
     );
