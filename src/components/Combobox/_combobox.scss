@@ -1,0 +1,129 @@
+@import 'carbon-components/scss/globals/scss/colors';
+@import 'carbon-components/scss/globals/scss/import-once';
+@import 'carbon-components/scss/globals/scss/css--helpers';
+@import 'carbon-components/scss/globals/scss/vars';
+
+@include exports('typeahead') {
+  .bx--typeahead {
+    position: relative;
+  }
+
+  .bx--typeahead__input {
+    padding-right: rem(70px);
+  }
+
+  // Apparently, in IE10+ there is a "clear" icon added to inputs that we
+  // need manually hide since we use our own icon to clear.
+  .bx--typeahead__input::-ms-clear {
+    display: none;
+    visibility: hidden;
+  }
+
+  .bx--typeahead__input:disabled ~ .bx--typeahead-menu,
+  .bx--typeahead__input:disabled ~ .bx--typeahead-clear {
+    pointer-events: none;
+  }
+
+  .bx--typeahead__input:focus ~ .bx--typeahead-menu::before {
+    border: 0;
+  }
+
+  .bx--typeahead-menu, .bx--typeahead-clear {
+    padding: 0;
+  }
+
+  .bx--typeahead-menu {
+    @include button-reset(false);
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 40px;
+    border-left: 1px solid rgba($ui-05, 0.5);
+    border-radius: 0;
+    height: 100%;
+    cursor: pointer;
+  }
+
+  .bx--typeahead-menu:focus {
+    outline: 0;
+  }
+
+  // Let's manually specify both the focus state and aria-expanded. In Firefox,
+  // it seems like `focus` isn't triggered the same way as in other browsers.
+  .bx--typeahead-menu:focus::before,
+  [aria-expanded=true].bx--typeahead-menu::before {
+    position: absolute;
+    content: '';
+    top: 1px;
+    left: 0px;
+    right: 1px;
+    bottom: 1px;
+    border: 1px solid $brand-01;
+  }
+
+  .bx--typeahead-menu-icon {
+    fill: $brand-01;
+    transition: transform 200ms $bx--standard-easing;
+  }
+
+  .bx--typeahead-menu-icon--active {
+    transform: rotate(180deg);
+  }
+
+  .bx--typeahead-menu-icon, .bx--typeahead-clear-icon {
+    height: 100%;
+  }
+
+  .bx--typeahead-clear {
+    @include button-reset(false);
+    position: absolute;
+    top: 0;
+    right: rem(45px);
+    height: 100%;
+    width: 30px;
+    cursor: pointer;
+  }
+
+  .bx--typeahead-clear:focus {
+    outline: 0;
+  }
+
+  .bx--typeahead-clear:active svg,
+  .bx--typeahead-clear:focus svg {
+    fill: $brand-01;
+  }
+
+  .bx--typeahead-clear-icon {
+    fill: $ui-05;
+  }
+
+  .bx--typeahead-items {
+    @include box-shadow;
+    position: absolute;
+    top: rem(40px);
+    left: 0;
+    right: 0;
+    max-height: rem(160px);
+    height: 0;
+    overflow-y: auto;
+    background-color: #fff;
+  }
+
+  .bx--typeahead-items--expanded {
+    height: auto;
+  }
+
+  .bx--typeahead__item {
+    cursor: pointer;
+    font-size: 14px;
+    padding: rem(13px) 1rem;
+  }
+
+  .bx--typeahead__item--highlighted {
+    background-color: rgba($brand-01, 0.1);
+  }
+
+  .bx--typeahead__item--active {
+    font-weight: 700;
+  }
+}
