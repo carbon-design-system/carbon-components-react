@@ -8,17 +8,6 @@
     // position: relative;
   }
 
-  .bx--combobox__input {
-    padding-right: rem(70px);
-  }
-
-  // Apparently, in IE10+ there is a "clear" icon added to inputs that we
-  // need manually hide since we use our own icon to clear.
-  .bx--combobox__input::-ms-clear {
-    display: none;
-    visibility: hidden;
-  }
-
   // .bx--typeahead__input:disabled ~ .bx--typeahead-menu,
   // .bx--typeahead__input:disabled ~ .bx--typeahead-clear {
     // pointer-events: none;

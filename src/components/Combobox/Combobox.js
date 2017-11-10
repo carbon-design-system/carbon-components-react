@@ -3,6 +3,7 @@ import Downshift from 'downshift';
 import PropTypes from 'prop-types';
 import React from 'react';
 import warning from 'warning';
+import ListBoxInput from '../ListBoxInput';
 
 const defaultItemToString = item => item.label;
 
@@ -72,8 +73,7 @@ export default class Combobox extends React.Component {
     });
     return (
       <div className={containerClassName}>
-        <input
-          className="bx--combobox__input bx--text-input"
+        <ListBoxInput
           {...getInputProps({
             disabled,
             id,

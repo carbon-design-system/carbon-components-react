@@ -1,0 +1,21 @@
+@import 'carbon-components/scss/globals/scss/import-once';
+@import 'carbon-components/scss/globals/scss/css--helpers';
+
+@include exports('ListBoxInput') {
+  .bx--listbox__input {
+    padding-right: rem(70px);
+  }
+
+  // Apparently, in IE10+ there is a "clear" icon added to inputs that we
+  // need manually hide since we use our own icon to clear.
+  .bx--listbox__input::-ms-clear {
+    display: none;
+    visibility: hidden;
+  }
+
+  // .bx--listbox__input:disabled ~ .bx--listbox-menu,
+  // .bx--listbox__input:disabled ~ .bx--listbox-clear {
+    // pointer-events: none;
+  // }
+
+}
