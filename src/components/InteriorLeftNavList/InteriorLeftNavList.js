@@ -16,6 +16,7 @@ export default class InteriorLeftNavList extends Component {
     activeHref: PropTypes.string,
     iconDescription: PropTypes.string,
     id: PropTypes.string,
+    lockOpen: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -26,6 +27,7 @@ export default class InteriorLeftNavList extends Component {
     iconDescription: 'display sub navigation items',
     onListClick: /* istanbul ignore next */ () => {},
     onItemClick: /* istanbul ignore next */ () => {},
+    lockOpen: false,
   };
 
   state = {
@@ -33,7 +35,7 @@ export default class InteriorLeftNavList extends Component {
   };
 
   toggle = evt => {
-    if (evt.which === 13 || evt.which === 32 || evt.type === 'click') {
+    if ( (evt.which === 13 || evt.which === 32 || evt.type === 'click') && !this.props.lockOpen) {
       if (!this.state.open) {
         this.props.onListClick(this.props.id);
       }
@@ -41,7 +43,9 @@ export default class InteriorLeftNavList extends Component {
     }
   };
 
-  close = () => this.state.open && this.setState({ open: false });
+  close = () => {
+    !this.props.lockOpen && this.state.open && this.setState({ open: false });
+  }
 
   buildNewItemChild = (child, index) => {
     const { onItemClick, activeHref } = this.props;
@@ -68,6 +72,7 @@ export default class InteriorLeftNavList extends Component {
       onListClick, // eslint-disable-line no-unused-vars
       onItemClick, // eslint-disable-line no-unused-vars
       activeHref, // eslint-disable-line no-unused-vars
+      lockOpen,
       ...other
     } = this.props;
 
@@ -94,13 +99,15 @@ export default class InteriorLeftNavList extends Component {
         {...other}>
         <a className="left-nav-list__item-link">
           {title}
-          <div className="left-nav-list__item-icon">
-            <Icon
-              name="chevron--down"
-              description={iconDescription}
-              className="left-nav-list__item-icon bx--interior-left-nav__icon"
-            />
-          </div>
+          { lockOpen ? null :
+            <div className="left-nav-list__item-icon">
+              <Icon
+                name="chevron--down"
+                description={iconDescription}
+                className="left-nav-list__item-icon bx--interior-left-nav__icon"
+              />
+            </div>
+          }
         </a>
         <ul
           role="menu"

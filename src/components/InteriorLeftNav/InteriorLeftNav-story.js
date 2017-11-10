@@ -40,5 +40,13 @@ storiesOf('InteriorLeftNav', module).addWithInfo(
       </InteriorLeftNavList>
       <InteriorLeftNavItem href="#example-item-3" label="Link Label" />
       <InteriorLeftNavItem href="#example-item-4" label="Link Label" />
+      <InteriorLeftNavList title="Example Item 5" open lockOpen>
+        <InteriorLeftNavItem href="#example-item-5A">
+          <a href="#">Link Child</a>
+        </InteriorLeftNavItem>
+        <InteriorLeftNavItem href="#example-item-5B">
+          <a href="#">Link Child</a>
+        </InteriorLeftNavItem>
+      </InteriorLeftNavList>
     </InteriorLeftNav>
 );
