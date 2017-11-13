@@ -1,0 +1,77 @@
+@import 'carbon-components/scss/globals/scss/colors';
+@import 'carbon-components/scss/globals/scss/import-once';
+@import 'carbon-components/scss/globals/scss/css--helpers';
+@import 'carbon-components/scss/globals/scss/vars';
+
+@include exports('MultiSelect') {
+  .bx--multiselect {
+    position: relative;
+    padding: 0;
+    width: rem(300px);
+  }
+
+  .bx--multiselect__input {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+    padding: 0 1rem;
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .bx--multiselect__badge {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: rem(18px);
+    height: rem(18px);
+    color: white;
+    background-color: $brand-01;
+    margin-right: 0.5rem;
+    border-radius: 50%;
+    font-size: 12px;
+  }
+
+  .bx--multiselect__label {
+    display: flex;
+    align-items: center;
+    font-weight: 600;
+  }
+
+  .bx--multiselect__menu {
+    @include box-shadow;
+
+    position: absolute;
+    top: rem(40px);
+    left: 0;
+    right: 0;
+    max-height: rem(120px);
+    // height: 0;
+    overflow-y: auto;
+    background-color: white;
+  }
+
+  .bx--multiselect__item {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    font-size: 14px;
+    padding: 0 1rem;
+    height: 40px;
+    user-select: none;
+  }
+
+  .bx--multiselect__item:hover {
+    background-color: rgba($field-01, 0.1);
+  }
+
+  .bx--multiselect__menu-icon {
+    fill: $brand-01;
+    transition: transform 200ms $bx--standard-easing;
+  }
+
+  .bx--multiselect__menu-icon--open {
+    transform: rotate(180deg);
+  }
+}
