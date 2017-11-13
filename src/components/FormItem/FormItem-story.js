@@ -3,10 +3,6 @@ import { storiesOf } from '@storybook/react';
 import FormItem from './FormItem';
 import NumberInput from '../NumberInput';
 
-const additionalProps = {
-  className: 'some-class',
-};
-
 storiesOf('FormItem', module).addWithInfo(
   'Default',
   `
@@ -14,8 +10,8 @@ storiesOf('FormItem', module).addWithInfo(
 
   `,
   () => (
-    <FormItem {...additionalProps}>
-      <NumberInput />
+    <FormItem>
+      <NumberInput id="number-input-1" />
     </FormItem>
   )
 );
