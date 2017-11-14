@@ -31,7 +31,35 @@ storiesOf('MultiSelect', module)
       <MultiSelect
         items={items}
         itemToString={i => i.text}
-        label="MultiSelect label"
+        label="Label"
+      />
+    )
+  )
+  .addWithInfo(
+    'inline',
+    `
+      Inline MultiSelect
+    `,
+    () => (
+      <MultiSelect
+        type="inline"
+        items={items}
+        itemToString={i => i.text}
+        label="Label"
+      />
+    )
+  )
+  .addWithInfo(
+    'with pre-selected items',
+    `
+      MultiSelect with pre-selected items
+    `,
+    () => (
+      <MultiSelect
+        label="Label"
+        items={items}
+        initialSelectedItems={[0, 1]}
+        itemToString={i => i.text}
       />
     )
   )

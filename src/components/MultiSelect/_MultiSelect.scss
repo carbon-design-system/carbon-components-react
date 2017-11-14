@@ -28,15 +28,16 @@
     height: rem(18px);
     color: white;
     background-color: $brand-01;
-    margin-right: 0.5rem;
     border-radius: 50%;
     font-size: 12px;
+    font-weight: 200;
   }
 
   .bx--multiselect__label {
     display: flex;
     align-items: center;
     font-weight: 600;
+    height: 100%;
   }
 
   .bx--multiselect__menu {
@@ -73,5 +74,29 @@
 
   .bx--multiselect__menu-icon--open {
     transform: rotate(180deg);
+  }
+
+  // Inline
+  .bx--multiselect--inline {
+    background: none;
+  }
+
+  .bx--multiselect__input--inline {
+    justify-content: normal;
+    color: $brand-01;
+  }
+
+  .bx--multiselect__input--inline > .bx--multiselect__label {
+    margin-right: rem(10px);
+  }
+
+  .bx--multiselect__badge, .bx--multiselect__clear {
+    margin-right: 0.5rem;
+  }
+
+  .bx--multiselect__clear {
+    width: rem(18px);
+    height: rem(18px);
+    fill: $brand-02;
   }
 }

@@ -1,88 +1,91 @@
-import cx from 'classnames';
-import Downshift from 'downshift';
-import PropTypes from 'prop-types';
+// import cx from 'classnames';
+// import Downshift from 'downshift';
+// import PropTypes from 'prop-types';
 import React from 'react';
-import warning from 'warning';
-import ListBoxInput from '../ListBoxInput';
+// import warning from 'warning';
+// import ListBoxInput from '../ListBoxInput';
 
-const defaultItemToString = item => item.label;
+// const defaultItemToString = item => item.label;
 
 export default class Combobox extends React.Component {
-  static propTypes = {
-    className: PropTypes.string,
-    disabled: PropTypes.bool,
-    onChange: PropTypes.func,
-    placeholder: PropTypes.string,
-    id: PropTypes.string,
-    items: PropTypes.array,
-    itemToString: PropTypes.func,
-    initialSelectedItemIndex: PropTypes.number,
-  }
+  // static propTypes = {
+    // className: PropTypes.string,
+    // disabled: PropTypes.bool,
+    // onChange: PropTypes.func,
+    // placeholder: PropTypes.string,
+    // id: PropTypes.string,
+    // items: PropTypes.array,
+    // itemToString: PropTypes.func,
+    // initialSelectedItemIndex: PropTypes.number,
+  // }
 
-  static defaultProps = {
-    disabled: false,
-    itemToString: defaultItemToString,
-  }
+  // static defaultProps = {
+    // disabled: false,
+    // itemToString: defaultItemToString,
+  // }
 
-  componentDidMount() {
-    // TODO: warn if items config is not expected and no custom
-    // itemToString is provided
-  }
+  // componentDidMount() {
+    // // TODO: warn if items config is not expected and no custom
+    // // itemToString is provided
+  // }
 
-  handleOnChange = event => {
-    this.props.onChange && this.props.onChange(event);
-  }
+  // handleOnChange = event => {
+    // this.props.onChange && this.props.onChange(event);
+  // }
 
-  handleOnInputValueChange = () => {
-  }
+  // handleOnInputValueChange = () => {
+  // }
 
+  // render() {
+    // return (
+      // // TODO: document note that we accept all props into Downshift _except_
+      // // the following ones that we need to hook into:
+      // <Downshift
+        // onChange={this.handleOnChange}
+        // onInputValueChange={this.handleOnInputValueChange}
+        // itemToString={this.props.itemToString}>
+        // {this.renderCombobox}
+      // </Downshift>
+    // );
+  // }
+
+  // renderCombobox = ({
+    // getInputProps,
+    // getItemProps,
+    // getButtonProps,
+    // itemToString,
+    // isOpen,
+    // inputValue,
+    // selectedItem,
+    // highlightedIndex,
+    // clearSelection,
+  // }) => {
+    // const {
+      // id,
+      // className,
+      // disabled,
+      // placeholder,
+    // } = this.props;
+    // const containerClassName = cx({
+      // 'bx--typeahead': true,
+      // 'bx--form-item': true,
+      // [className]: !!className,
+    // });
+    // return (
+      // <div className={containerClassName}>
+        // <ListBoxInput
+          // {...getInputProps({
+            // disabled,
+            // id,
+            // placeholder,
+            // onChange: this.handleOnInputValueChange,
+          // })}
+        // />
+      // </div>
+    // );
+  // }
   render() {
-    return (
-      // TODO: document note that we accept all props into Downshift _except_
-      // the following ones that we need to hook into:
-      <Downshift
-        onChange={this.handleOnChange}
-        onInputValueChange={this.handleOnInputValueChange}
-        itemToString={this.props.itemToString}>
-        {this.renderCombobox}
-      </Downshift>
-    );
-  }
-
-  renderCombobox = ({
-    getInputProps,
-    getItemProps,
-    getButtonProps,
-    itemToString,
-    isOpen,
-    inputValue,
-    selectedItem,
-    highlightedIndex,
-    clearSelection,
-  }) => {
-    const {
-      id,
-      className,
-      disabled,
-      placeholder,
-    } = this.props;
-    const containerClassName = cx({
-      'bx--typeahead': true,
-      'bx--form-item': true,
-      [className]: !!className,
-    });
-    return (
-      <div className={containerClassName}>
-        <ListBoxInput
-          {...getInputProps({
-            disabled,
-            id,
-            placeholder,
-            onChange: this.handleOnInputValueChange,
-          })}
-        />
-      </div>
-    );
+    return null;
   }
 }
 

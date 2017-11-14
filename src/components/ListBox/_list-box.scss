@@ -1,0 +1,153 @@
+@import 'carbon-components/scss/globals/scss/colors';
+@import 'carbon-components/scss/globals/scss/import-once';
+@import 'carbon-components/scss/globals/scss/css--helpers';
+@import 'carbon-components/scss/globals/scss/vars';
+
+$list-box-width: rem(300px);
+$list-box-height: rem(40px);
+
+@include exports('list-box') {
+  .bx--list-box {
+    background-color: $field-01;
+    width: $list-box-width;
+    height: $list-box-height;
+  }
+
+  .bx--list-box--inline {
+    background-color: inherit;
+  }
+
+  .bx--list-box__field {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: $list-box-height;
+    cursor: pointer;
+    user-select: none;
+    padding: 0 1rem;
+    font-size: rem(14px);
+    font-weight: 600;
+    color: $text-01;
+  }
+
+  .bx--list-box__field:focus {
+    outline: 1px solid $brand-01;
+  }
+
+  .bx--list-box__field:focus ~ .bx--list-box__menu {
+    box-shadow: 0 1px 0 0 $brand-01, 1px 0 0 0 $brand-01, -1px 0 0 0 $brand-01;
+  }
+
+  .bx--list-box__field--inline {
+    display: inline-flex;
+    justify-content: normal;
+    color: $brand-01;
+  }
+
+  .bx--list-box__field--inline:focus {
+    outline: 1px solid $brand-01;
+  }
+
+  .bx--list-box__field--inline:focus ~ .bx--list-box__menu {
+    outline: 1px solid $brand-01;
+  }
+
+  .bx--list-box__field--inline > .bx--list-box__label {
+    margin-right: rem(10px);
+  }
+
+  .bx--list-box__field--inline.bx--list-box__field--open {
+    outline: 1px solid transparent;
+  }
+
+  .bx--list-box__label {
+    display: flex;
+    align-items: center;
+    height: 100%;
+  }
+
+  .bx--list-box__badge {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    // TODO: sync with margin
+    left: -0.25rem;
+    width: rem(18px);
+    height: rem(18px);
+    // TODO: is this what we use for white?
+    color: $ui-01;
+    background-color: $brand-01;
+    border-radius: 50%;
+    // TODO: typography helpers?
+    font-size: rem(12px);
+    font-weight: 200;
+    margin: 0.5em;
+  }
+
+  .bx--list-box__badge:focus {
+    outline: 1px solid $brand-01;
+    outline-offset: 0.25rem;
+  }
+
+  .bx--list-box__badge > .bx--list-box__clear {
+    display: none;
+    visibility: hidden;
+  }
+
+  .bx--list-box__badge:focus > .bx--list-box__clear,
+  .bx--list-box__badge:hover > .bx--list-box__clear {
+    display: block;
+    visibility: visible;
+  }
+
+  .bx--list-box__badge:focus > .bx--list-box__badge-text,
+  .bx--list-box__badge:hover > .bx--list-box__badge-text {
+    display: none;
+    visibility: hidden;
+  }
+
+  .bx--list-box__menu {
+    @include box-shadow();
+
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: $list-box-height;
+    background-color: $ui-01;
+    max-height: rem(120px);
+    overflow-y: auto;
+  }
+
+  .bx--list-box__menu-item {
+    display: flex;
+    align-items: center;
+    height: rem(40px);
+    padding: 0 1rem;
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .bx--list-box__menu-item:hover,
+  .bx--list-box__menu-item--highlighted {
+    background-color: rgba($field-01, 0.1);
+  }
+
+  .bx--list-box__menu-icon {
+    fill: $brand-01;
+    transition: transform 200ms $bx--standard-easing;
+  }
+
+  .bx--list-box__menu-icon--open {
+    transform: rotate(180deg);
+  }
+
+  .bx--list-box__clear {
+    display: block;
+    width: rem(18px);
+    height: rem(18px);
+    fill: $brand-02;
+    background-color: white;
+    border-radius: 50%;
+  }
+}
