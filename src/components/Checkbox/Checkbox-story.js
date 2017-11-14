@@ -19,11 +19,16 @@ storiesOf('Checkbox', module)
     `,
     () => (
       <fieldset className="bx--fieldset">
-        <legend className="bx--label">Checkbox heading</legend>
-        <Checkbox defaultChecked {...checkboxEvents} id="checkbox-label-1" labelText="Checkbox label 1" />
-        <Checkbox defaultChecked {...checkboxEvents} id="checkbox-label-2" labelText="Checkbox label 2" />
+        <legend className="bx--label">Favorite Colors</legend>
+        <Checkbox defaultChecked {...checkboxEvents} id="red" labelText="Red" />
+        <Checkbox
+          defaultChecked
+          {...checkboxEvents}
+          id="blue"
+          labelText="Blue"
+        />
       </fieldset>
-    ),
+    )
   )
   .addWithInfo(
     'enabled unchecked',
@@ -52,4 +57,5 @@ storiesOf('Checkbox', module)
         <Checkbox {...checkboxEvents} id="checkbox-label-1" labelText="Checkbox label 1" />
         <Checkbox {...checkboxEvents} id="checkbox-label-2" labelText="Checkbox label 2" />
       </fieldset>
-  ));
+    )
+  );

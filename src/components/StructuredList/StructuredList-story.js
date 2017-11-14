@@ -1,22 +1,22 @@
-import React from "react";
-import { storiesOf } from "@storybook/react";
-import Icon from "../Icon";
+import React from 'react';
+import { storiesOf } from '@storybook/react';
+import Icon from '../Icon';
 import {
   StructuredListWrapper,
   StructuredListHead,
   StructuredListBody,
   StructuredListRow,
   StructuredListInput,
-  StructuredListCell
-} from "../StructuredList";
+  StructuredListCell,
+} from '../StructuredList';
 
-storiesOf("StructuredList", module)
+storiesOf('StructuredList', module)
   .addWithInfo(
-    "Simple",
+    'Simple',
     `
       description here
     `,
-    () =>
+    () => (
       <StructuredListWrapper>
         <StructuredListHead>
           <StructuredListRow head>
@@ -27,41 +27,41 @@ storiesOf("StructuredList", module)
         </StructuredListHead>
         <StructuredListBody>
           <StructuredListRow>
-            <StructuredListCell noWrap>
-              Row 1
-            </StructuredListCell>
-            <StructuredListCell>Row 1</StructuredListCell>
+            <StructuredListCell noWrap>Apache Spark</StructuredListCell>
+            <StructuredListCell>IBM</StructuredListCell>
             <StructuredListCell>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc dui magna, finibus id tortor sed, aliquet bibendum augue. Aenean posuere sem vel euismod dignissim. Nulla ut cursus dolor. Pellentesque vulputate nisl a porttitor interdum.
+              Apache Spark is an open source cluster computing framework
+              optimized for extremely fast and large scale data processing,
+              which you can access via the newly integrated notebook interface
+              IBM Analytics for Apache Spark.
             </StructuredListCell>
           </StructuredListRow>
           <StructuredListRow>
-            <StructuredListCell noWrap>
-              Row 2
-            </StructuredListCell>
+            <StructuredListCell noWrap>Cloudant</StructuredListCell>
+            <StructuredListCell>IBM</StructuredListCell>
             <StructuredListCell>
-              Row 2
-            </StructuredListCell>
-            <StructuredListCell>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc dui magna, finibus id tortor sed, aliquet bibendum augue. Aenean posuere sem vel euismod dignissim. Nulla ut cursus dolor. Pellentesque vulputate nisl a porttitor interdum.
+              Cloudant NoSQL DB is a fully managed data layer designed for
+              modern web and mobile applications that leverages a flexible JSON
+              schema.
             </StructuredListCell>
           </StructuredListRow>
         </StructuredListBody>
       </StructuredListWrapper>
+    )
   )
   .addWithInfo(
-    "Selection",
+    'Selection',
     `
       description here
     `,
-    () =>
+    () => (
       <StructuredListWrapper selection border>
         <StructuredListHead>
           <StructuredListRow head>
-            <StructuredListCell head>{""}</StructuredListCell>
-            <StructuredListCell head>ColumnA</StructuredListCell>
-            <StructuredListCell head>ColumnB</StructuredListCell>
-            <StructuredListCell head>ColumnC</StructuredListCell>
+            <StructuredListCell head>{''}</StructuredListCell>
+            <StructuredListCell head>service</StructuredListCell>
+            <StructuredListCell head>type</StructuredListCell>
+            <StructuredListCell head>description</StructuredListCell>
           </StructuredListRow>
         </StructuredListHead>
         <StructuredListBody>
@@ -80,12 +80,13 @@ storiesOf("StructuredList", module)
                 description="select an option"
               />
             </StructuredListCell>
+            <StructuredListCell>Apache Spark</StructuredListCell>
+            <StructuredListCell>IBM</StructuredListCell>
             <StructuredListCell>
-              Row 1
-            </StructuredListCell>
-            <StructuredListCell>Row 1</StructuredListCell>
-            <StructuredListCell>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc dui magna, finibus id tortor sed, aliquet bibendum augue. Aenean posuere sem vel euismod dignissim. Nulla ut cursus dolor. Pellentesque vulputate nisl a porttitor interdum.
+              Apache Spark is an open source cluster computing framework
+              optimized for extremely fast and large scale data processing,
+              which you can access via the newly integrated notebook interface
+              IBM Analytics for Apache Spark.
             </StructuredListCell>
           </StructuredListRow>
           <StructuredListRow label htmlFor="Row2">
@@ -102,16 +103,15 @@ storiesOf("StructuredList", module)
                 description="select an option"
               />
             </StructuredListCell>
+            <StructuredListCell>Cloudant</StructuredListCell>
+            <StructuredListCell>IBM</StructuredListCell>
             <StructuredListCell>
-              Row 2
-            </StructuredListCell>
-            <StructuredListCell>
-              Row 2
-            </StructuredListCell>
-            <StructuredListCell>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc dui magna, finibus id tortor sed, aliquet bibendum augue. Aenean posuere sem vel euismod dignissim. Nulla ut cursus dolor. Pellentesque vulputate nisl a porttitor interdum.
+              Cloudant NoSQL DB is a fully managed data layer designed for
+              modern web and mobile applications that leverages a flexible JSON
+              schema.
             </StructuredListCell>
           </StructuredListRow>
         </StructuredListBody>
       </StructuredListWrapper>
+    )
   );
