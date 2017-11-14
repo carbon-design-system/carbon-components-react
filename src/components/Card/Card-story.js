@@ -1,3 +1,5 @@
+/* eslint-disable no-console */
+
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { storiesOf } from '@storybook/react';
@@ -15,27 +17,27 @@ import Link from '../Link';
 const cardProps = {
   onClick: () => {
     console.log('click');
-  }, // eslint-disable-line no-console
+  },
   onFocus: () => {
     console.log('focus');
-  }, // eslint-disable-line no-console
+  },
   className: 'some-class',
 };
 
 const overflowMenuProps = {
   onClick: () => {
     console.log('click');
-  }, // eslint-disable-line no-console
+  },
   onFocus: () => {
     console.log('focus');
-  }, // eslint-disable-line no-console
+  },
   className: 'some-class',
 };
 
 const overflowMenuItemProps = {
   onFocus: () => {
     console.log('focus');
-  }, // eslint-disable-line no-console
+  },
   className: 'some-class',
 };
 
@@ -71,19 +73,19 @@ class ControlledCard extends Component {
   };
 
   deleteApp = () => {
-    console.log('Example function deleteApp() is triggered'); // eslint-disable-line no-console
+    console.log('Example function deleteApp() is triggered');
   };
 
   renameApp = () => {
-    console.log('Example function renameApp() is triggered'); // eslint-disable-line no-console
+    console.log('Example function renameApp() is triggered');
   };
 
   goToApp = () => {
-    console.log('Example function goToApp() is triggered'); // eslint-disable-line no-console
+    console.log('Example function goToApp() is triggered');
   };
 
   favoriteApp = () => {
-    console.log('Example function favoriteApp() is triggered'); // eslint-disable-line no-console
+    console.log('Example function favoriteApp() is triggered');
   };
 
   render() {
