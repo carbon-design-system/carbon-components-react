@@ -1,35 +1,32 @@
 import React from 'react';
 import { mount } from 'enzyme';
 import MultiSelect from '../MultiSelect';
-import { generateItems, generateGenericItem, generateCustomItem, customItemToString } from '../../tools/testing/items';
+import {
+  generateItems,
+  generateGenericItem,
+  generateCustomItem,
+  customItemToString,
+} from '../../tools/testing/items';
 
 describe('MultiSelect', () => {
   it('should initialize with no selected items if no `initialSelectedItems` are given', () => {
     const items = generateItems(5, generateGenericItem);
-    const wrapper = mount(
-      <MultiSelect label="Field" items={items} />
-    );
+    const wrapper = mount(<MultiSelect label="Field" items={items} />);
     expect(wrapper.state('selectedItems')).toEqual([]);
   });
 
   it('should initialize with the menu not open', () => {
     const items = generateItems(5, generateGenericItem);
-    const wrapper = mount(
-      <MultiSelect label="Field" items={items} />
-    );
+    const wrapper = mount(<MultiSelect label="Field" items={items} />);
     expect(wrapper.state('isOpen')).toEqual(false);
   });
 
   describe('#handleOnAddItem', () => {
     it('should add the given item to the collection of selected items', () => {
       const items = generateItems(5, generateGenericItem);
-      const wrapper = mount(
-        <MultiSelect label="Field" items={items} />
-      );
+      const wrapper = mount(<MultiSelect label="Field" items={items} />);
       wrapper.instance().handleOnAddItem(items[0]);
-      expect(wrapper.state('selectedItems')).toEqual([
-        items[0],
-      ]);
+      expect(wrapper.state('selectedItems')).toEqual([items[0]]);
     });
   });
 
@@ -44,18 +41,14 @@ describe('MultiSelect', () => {
         />
       );
       wrapper.instance().handleOnRemoveItem(0);
-      expect(wrapper.state('selectedItems')).toEqual([
-        items[1],
-      ]);
+      expect(wrapper.state('selectedItems')).toEqual([items[1]]);
     });
   });
 
   describe('#handleOnToggleMenu', () => {
     it('should toggle the boolean `isOpen` field', () => {
       const items = generateItems(5, generateGenericItem);
-      const wrapper = mount(
-        <MultiSelect label="Field" items={items} />
-      );
+      const wrapper = mount(<MultiSelect label="Field" items={items} />);
       expect(wrapper.state('isOpen')).toBe(false);
 
       wrapper.instance().handleOnToggleMenu();
@@ -115,10 +108,7 @@ describe('MultiSelect', () => {
           initialSelectedItems={[items[0], items[1]]}
         />
       );
-      expect(wrapper.state('selectedItems')).toEqual([
-        items[0],
-        items[1],
-      ]);
+      expect(wrapper.state('selectedItems')).toEqual([items[0], items[1]]);
     });
 
     it('should initialize `selectedItems` with the given selected item indices', () => {
@@ -130,20 +120,13 @@ describe('MultiSelect', () => {
           initialSelectedItems={[0, 1]}
         />
       );
-      expect(wrapper.state('selectedItems')).toEqual([
-        items[0],
-        items[1],
-      ]);
+      expect(wrapper.state('selectedItems')).toEqual([items[0], items[1]]);
     });
 
     it('should initialize an empty `selectedItems` array if `initialSelectedItems` is an empty array', () => {
       const items = generateItems(5, generateGenericItem);
       const wrapper = mount(
-        <MultiSelect
-          label="Field"
-          items={items}
-          initialSelectedItems={[]}
-        />
+        <MultiSelect label="Field" items={items} initialSelectedItems={[]} />
       );
       expect(wrapper.state('selectedItems')).toEqual([]);
     });

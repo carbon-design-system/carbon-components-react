@@ -11,7 +11,7 @@ const ListBoxField = ({
   clearSelection,
   isOpen,
   // `rest` here should correspond with `getButtonProps` from `downshift`
-  ...rest,
+  ...rest
 }) => {
   const className = cx({
     'bx--list-box__field': true,

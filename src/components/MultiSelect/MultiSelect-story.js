@@ -27,13 +27,7 @@ storiesOf('MultiSelect', module)
     `
       MultiSelect
     `,
-    () => (
-      <MultiSelect
-        items={items}
-        itemToString={i => i.text}
-        label="Label"
-      />
-    )
+    () => <MultiSelect items={items} itemToString={i => i.text} label="Label" />
   )
   .addWithInfo(
     'inline',
@@ -62,4 +56,4 @@ storiesOf('MultiSelect', module)
         itemToString={i => i.text}
       />
     )
-  )
+  );

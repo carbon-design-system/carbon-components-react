@@ -83,7 +83,9 @@ describe('ListBoxMenu', () => {
           {...mockProps}
         />
       );
-      expect(wrapper.find('.bx--list-box__menu-item--highlighted').length).toBe(1);
+      expect(wrapper.find('.bx--list-box__menu-item--highlighted').length).toBe(
+        1
+      );
     });
   });
 });

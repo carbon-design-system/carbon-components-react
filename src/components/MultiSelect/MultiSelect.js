@@ -28,15 +28,15 @@ export default class MultiSelect extends React.Component {
     // Generic `label` that will be used as the textual representation of what
     // this field is for
     label: PropTypes.node.isRequired,
-  }
+  };
 
   static defaultProps = {
     type: 'default',
-  }
+  };
 
   static defaultProps = {
     itemToString: ({ label }) => label,
-  }
+  };
 
   constructor(props) {
     super(props);
@@ -58,10 +58,10 @@ export default class MultiSelect extends React.Component {
   componentWillReceiveProps(nextProps) {
     // TODO: check for `initialSelectedItems`
     // this.setState({
-      // selectedItems: getSelectedItemsFrom(
-        // nextProps.items,
-        // nextProps.initialSelectedItems,
-      // )
+    // selectedItems: getSelectedItemsFrom(
+    // nextProps.items,
+    // nextProps.initialSelectedItems,
+    // )
     // });
     // TODO: check if new initialSelectedItems don't exist in new list
     // TODO: check if selectedItems don't appear in the new list
@@ -77,37 +77,37 @@ export default class MultiSelect extends React.Component {
     }
 
     this.handleOnRemoveItem(selectedIndex);
-  }
+  };
 
   handleOnAddItem = item => {
     this.setState(state => ({
       selectedItems: state.selectedItems.concat(item),
     }));
-  }
+  };
 
-  handleOnRemoveItem = (index) => {
+  handleOnRemoveItem = index => {
     this.setState(state => ({
       selectedItems: removeAtIndex(state.selectedItems, index),
     }));
-  }
+  };
 
   handleOnToggleMenu = () => {
     this.setState(state => ({
       isOpen: !state.isOpen,
     }));
-  }
+  };
 
   handleOnOuterClick = () => {
     this.setState({
       isOpen: false,
     });
-  }
+  };
 
   handleClearSelection = () => {
     this.setState({
       selectedItems: [],
     });
-  }
+  };
 
   handleOnStateChange = changes => {
     const { type } = changes;
@@ -120,7 +120,7 @@ export default class MultiSelect extends React.Component {
         this.handleOnToggleMenu();
         break;
     }
-  }
+  };
 
   render() {
     const { selectedItems, isOpen } = this.state;

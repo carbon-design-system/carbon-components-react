@@ -16,6 +16,8 @@ export const generateCustomItem = index => ({
 });
 
 export const generateItems = (amount, generator) =>
-  Array(amount).fill(null).map((_, i) => generator(i));
+  Array(amount)
+    .fill(null)
+    .map((_, i) => generator(i));
 
 export const customItemToString = ({ field }) => field;

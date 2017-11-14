@@ -8,9 +8,7 @@ const ListBoxMenuIcon = ({ isOpen }) => {
     'bx--list-box__menu-icon': true,
     'bx--list-box__menu-icon--open': isOpen,
   });
-  const description = isOpen
-    ? 'Close menu'
-    : 'Open menu'
+  const description = isOpen ? 'Close menu' : 'Open menu';
   return (
     <Icon className={className} name="caret--down" description={description} />
   );

@@ -27,6 +27,5 @@ describe('Combobox', () => {
     it('should not display the dropdown list');
   });
 
-  describe('with pre-selected item', () => {
-  });
+  describe('with pre-selected item', () => {});
 });

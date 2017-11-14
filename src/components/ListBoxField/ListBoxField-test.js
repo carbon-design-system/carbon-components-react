@@ -15,34 +15,21 @@ describe('ListBoxField', () => {
 
   it('should render', () => {
     const wrapper = shallow(
-      <ListBoxField
-        label="Label"
-        isOpen={false}
-        {...mockProps}
-      />
+      <ListBoxField label="Label" isOpen={false} {...mockProps} />
     );
     expect(wrapper).toMatchSnapshot();
   });
 
   it('should be focus-able', () => {
     const wrapper = shallow(
-      <ListBoxField
-        label="Label"
-        isOpen={false}
-        {...mockProps}
-      />
+      <ListBoxField label="Label" isOpen={false} {...mockProps} />
     );
     expect(wrapper.prop('tabIndex')).toBe('0');
   });
 
   it('should add an inline class if `type="inline"` is provided', () => {
     const wrapper = shallow(
-      <ListBoxField
-        type="inline"
-        label="Label"
-        isOpen={false}
-        {...mockProps}
-      />
+      <ListBoxField type="inline" label="Label" isOpen={false} {...mockProps} />
     );
     expect(wrapper.find('.bx--list-box__field--inline').length).toBe(1);
   });

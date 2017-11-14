@@ -2,10 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import ListBox from '../ListBox';
 import ListBoxMenu from '../ListBoxMenu';
-import {
-  generateItems,
-  generateGenericItem,
-} from '../../tools/testing/items';
+import { generateItems, generateGenericItem } from '../../tools/testing/items';
 
 describe('ListBox', () => {
   let mockProps;
@@ -26,42 +23,24 @@ describe('ListBox', () => {
   });
 
   it('should render', () => {
-    const wrapper = shallow(
-      <ListBox
-        {...mockProps}
-      />
-    );
+    const wrapper = shallow(<ListBox {...mockProps} />);
     expect(wrapper).toMatchSnapshot();
   });
 
   it('should call `getButtonProps` to set downshift props', () => {
-    const wrapper = shallow(
-      <ListBox
-        {...mockProps}
-      />
-    );
+    const wrapper = shallow(<ListBox {...mockProps} />);
     expect(mockProps.getButtonProps).toHaveBeenCalledWith({
       onClick: mockProps.onToggleMenu,
     });
   });
 
   it('should display a `ListBoxMenu` if `isOpen` is true', () => {
-    const wrapper = shallow(
-      <ListBox
-        {...mockProps}
-        isOpen={true}
-      />
-    );
+    const wrapper = shallow(<ListBox {...mockProps} isOpen={true} />);
     expect(wrapper.find(ListBoxMenu).length).toBe(1);
   });
 
   it('should set an inline class if `type="inline"`', () => {
-    const wrapper = shallow(
-      <ListBox
-        {...mockProps}
-        type="inline"
-      />
-    );
+    const wrapper = shallow(<ListBox {...mockProps} type="inline" />);
     expect(wrapper.find('.bx--list-box--inline').length).toBe(1);
   });
 });
