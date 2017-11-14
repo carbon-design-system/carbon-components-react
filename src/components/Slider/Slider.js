@@ -277,7 +277,7 @@ export default class Slider extends PureComponent {
             <span>{max}</span>
             <span>{maxLabel}</span>
           </span>
-          {!hideTextInput ? (
+          {!hideTextInput && (
             <TextInput
               type={inputType}
               id="input-for-slider"
@@ -285,7 +285,7 @@ export default class Slider extends PureComponent {
               value={value}
               onChange={this.handleChange}
             />
-          ) : null}
+          )}
         </div>
       </div>
     );
