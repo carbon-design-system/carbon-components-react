@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ListBoxBadge component should render 1`] = `
+<div
+  className="bx--list-box__badge"
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  tabIndex="0"
+  title="Clear all selected items"
+>
+  <Icon
+    className="bx--list-box__clear"
+    description="Clear all selected items"
+    fillRule="evenodd"
+    name="close--glyph"
+    role="img"
+  />
+  <span
+    className="bx--list-box__badge-text"
+  >
+    5
+  </span>
+</div>
+`;

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Icon from '../Icon';
 
 const ListBoxBadge = ({ clearSelection, count }) => {
@@ -7,7 +8,14 @@ const ListBoxBadge = ({ clearSelection, count }) => {
     return null;
   }
 
+  const handleOnClick = event => {
+    // Stopping the propogation here allows us to not trigger any
+    // downshift-related events
+    event.stopPropagation();
+    clearSelection();
+  };
   const handleOnKeyDown = event => {
+    // When a user hits ENTER, we'll clear the selection
     if (event.keyCode === 13) {
       clearSelection();
     }
@@ -18,7 +26,7 @@ const ListBoxBadge = ({ clearSelection, count }) => {
       className="bx--list-box__badge"
       title="Clear all selected items"
       tabIndex="0"
-      onClick={clearSelection}
+      onClick={handleOnClick}
       onKeyDown={handleOnKeyDown}>
       <Icon
         name="close--glyph"
@@ -30,6 +38,11 @@ const ListBoxBadge = ({ clearSelection, count }) => {
       </span>
     </div>
   );
+};
+
+ListBoxBadge.propTypes = {
+  count: PropTypes.number.isRequired,
+  clearSelection: PropTypes.func.isRequired,
 };
 
 export default ListBoxBadge;
