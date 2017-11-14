@@ -2,46 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 import ListBoxMenu from '../ListBoxMenu';
-import ListBoxBadge from '../ListBoxBadge';
-import ListBoxMenuIcon from '../ListBoxMenuIcon';
-
-const ListBoxLabel = ({ label, count, clearSelection }) => (
-  <div className="bx--list-box__label">
-    <ListBoxBadge count={count} clearSelection={clearSelection} />
-    {label}
-  </div>
-);
-
-ListBoxLabel.propTypes = {
-  label: PropTypes.node.isRequired,
-  count: PropTypes.number.isRequired,
-  clearSelection: PropTypes.func.isRequired,
-};
-
-const ListBoxField = ({
-  type = 'default',
-  label,
-  selectedItem,
-  clearSelection,
-  isOpen,
-  ...rest,
-}) => {
-  const className = cx({
-    'bx--list-box__field': true,
-    'bx--list-box__field--inline': type === 'inline',
-    'bx--list-box__field--open': isOpen,
-  });
-  return (
-    <div className={className} tabIndex="0" {...rest}>
-      <ListBoxLabel
-        label={label}
-        count={selectedItem.length}
-        clearSelection={clearSelection}
-      />
-      <ListBoxMenuIcon isOpen={isOpen} />
-    </div>
-  );
-};
+import ListBoxField from '../ListBoxField';
 
 const ListBox = ({
   type = 'default',
@@ -53,8 +14,6 @@ const ListBox = ({
   onToggleMenu,
   itemToString,
   highlightedIndex,
-
-  getRootProps,
   getItemProps,
   getButtonProps,
   innerRef,
@@ -89,6 +48,16 @@ const ListBox = ({
 
 ListBox.propTypes = {
   type: PropTypes.oneOf(['default', 'inline']),
+  items: PropTypes.array.isRequired,
+  label: PropTypes.string.isRequired,
+  selectedItem: PropTypes.array.isRequired,
+  isOpen: PropTypes.bool.isRequired,
+  itemToString: PropTypes.func.isRequired,
+  clearSelection: PropTypes.func.isRequired,
+  onToggleMenu: PropTypes.func.isRequired,
+  getItemProps: PropTypes.func.isRequired,
+  getButtonProps: PropTypes.func.isRequired,
+  innerRef: PropTypes.func.isRequired,
 };
 
 export default ListBox;

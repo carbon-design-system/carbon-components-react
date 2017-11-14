@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ListBoxField should render 1`] = `
+<div
+  className="bx--list-box__field"
+  tabIndex="0"
+>
+  <ListBoxLabel
+    clearSelection={[Function]}
+    count={5}
+    label="Label"
+  />
+  <ListBoxMenuIcon
+    isOpen={false}
+  />
+</div>
+`;
