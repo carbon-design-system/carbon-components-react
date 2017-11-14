@@ -1,0 +1,153 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ListBoxMenu should render 1`] = `
+<div
+  className="bx--list-box__menu"
+>
+  <div
+    className="bx--list-box__menu-item"
+    key="id-0"
+  >
+    <input
+      checked={false}
+      className="bx--checkbox"
+      id="id-0"
+      name="Item 0"
+      readOnly={true}
+      type="checkbox"
+    />
+    <label
+      className="bx--checkbox-label"
+    >
+      <span
+        className="bx--checkbox-appearance"
+      >
+        <Icon
+          className="bx--checkbox-checkmark"
+          description="Provide a description that will be used as the title"
+          fillRule="evenodd"
+          name="checkmark"
+          role="img"
+        />
+      </span>
+      Item 0
+    </label>
+  </div>
+  <div
+    className="bx--list-box__menu-item"
+    key="id-1"
+  >
+    <input
+      checked={false}
+      className="bx--checkbox"
+      id="id-1"
+      name="Item 1"
+      readOnly={true}
+      type="checkbox"
+    />
+    <label
+      className="bx--checkbox-label"
+    >
+      <span
+        className="bx--checkbox-appearance"
+      >
+        <Icon
+          className="bx--checkbox-checkmark"
+          description="Provide a description that will be used as the title"
+          fillRule="evenodd"
+          name="checkmark"
+          role="img"
+        />
+      </span>
+      Item 1
+    </label>
+  </div>
+  <div
+    className="bx--list-box__menu-item"
+    key="id-2"
+  >
+    <input
+      checked={false}
+      className="bx--checkbox"
+      id="id-2"
+      name="Item 2"
+      readOnly={true}
+      type="checkbox"
+    />
+    <label
+      className="bx--checkbox-label"
+    >
+      <span
+        className="bx--checkbox-appearance"
+      >
+        <Icon
+          className="bx--checkbox-checkmark"
+          description="Provide a description that will be used as the title"
+          fillRule="evenodd"
+          name="checkmark"
+          role="img"
+        />
+      </span>
+      Item 2
+    </label>
+  </div>
+  <div
+    className="bx--list-box__menu-item"
+    key="id-3"
+  >
+    <input
+      checked={false}
+      className="bx--checkbox"
+      id="id-3"
+      name="Item 3"
+      readOnly={true}
+      type="checkbox"
+    />
+    <label
+      className="bx--checkbox-label"
+    >
+      <span
+        className="bx--checkbox-appearance"
+      >
+        <Icon
+          className="bx--checkbox-checkmark"
+          description="Provide a description that will be used as the title"
+          fillRule="evenodd"
+          name="checkmark"
+          role="img"
+        />
+      </span>
+      Item 3
+    </label>
+  </div>
+  <div
+    className="bx--list-box__menu-item"
+    key="id-4"
+  >
+    <input
+      checked={false}
+      className="bx--checkbox"
+      id="id-4"
+      name="Item 4"
+      readOnly={true}
+      type="checkbox"
+    />
+    <label
+      className="bx--checkbox-label"
+    >
+      <span
+        className="bx--checkbox-appearance"
+      >
+        <Icon
+          className="bx--checkbox-checkmark"
+          description="Provide a description that will be used as the title"
+          fillRule="evenodd"
+          name="checkmark"
+          role="img"
+        />
+      </span>
+      Item 4
+    </label>
+  </div>
+</div>
+`;

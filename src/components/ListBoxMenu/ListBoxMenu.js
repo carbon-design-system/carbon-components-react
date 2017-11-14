@@ -42,26 +42,12 @@ const ListBoxMenu = ({
   </div>
 );
 
-  // <div className="bx--list-box__menu">
-    // {items.map((item, i) => (
-      // <div
-        // key={item.id}
-        // className={cx({
-          // 'bx--list-box__menu-item': true,
-          // 'bx--list-box__menu-item--highlighted': highlightedIndex === i,
-          // 'bx--list-box__menu-item--active': selectedItem.indexOf(item) !== -1,
-        // })}
-        // {...getItemProps({
-          // item,
-          // index: i,
-        // })}>
-        // <CheckboxReadOnly
-          // id={item.id}
-          // isChecked={selectedItem.indexOf(item) !== -1}
-          // label={itemToString(item)}
-          // name={itemToString(item)}
-        // />
-      // </div>
-    // ))}
-  // </div>
+ListBoxMenu.propTypes = {
+  items: PropTypes.array.isRequired,
+  selectedItem: PropTypes.array.isRequired,
+  highlightedIndex: PropTypes.number,
+  itemToString: PropTypes.func.isRequired,
+  getItemProps: PropTypes.func.isRequired,
+};
+
 export default ListBoxMenu;
