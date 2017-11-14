@@ -1,11 +1,8 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import classNames from 'classnames';
 
 const DataTableHeader = props => {
-  const { children, className, iconClassName, sortDir, ...other } = props;
-
-  const iconClasses = classNames(iconClassName, 'bx--table-sort-v2__icon');
+  const { children, className, ...other } = props;
 
   return (
     <th {...other} className={className}>
