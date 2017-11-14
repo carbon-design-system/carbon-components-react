@@ -87,11 +87,6 @@ const TextInputProps = {
   placeholder: 'Placeholder text',
 };
 
-const fieldsetTextInputProps = {
-  className: 'some-class',
-  legendText: 'Text Input label',
-};
-
 const PasswordProps = {
   className: 'some-class',
   id: 'test2',
