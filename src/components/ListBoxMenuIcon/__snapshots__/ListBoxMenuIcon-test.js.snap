@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ListBoxMenuIcon component should render 1`] = `
+<Icon
+  className="bx--list-box__menu-icon bx--list-box__menu-icon--open"
+  description="Close menu"
+  fillRule="evenodd"
+  name="caret--down"
+  role="img"
+/>
+`;
+
+exports[`ListBoxMenuIcon component should render 2`] = `
+<Icon
+  className="bx--list-box__menu-icon"
+  description="Open menu"
+  fillRule="evenodd"
+  name="caret--down"
+  role="img"
+/>
+`;
