@@ -3,14 +3,7 @@ import React, { Component } from 'react';
 import classnames from 'classnames';
 
 export const ProgressStep = ({ ...props }) => {
-  const {
-    label,
-    description,
-    className,
-    current,
-    complete,
-    incomplete,
-  } = props;
+  const { label, description, className, current, complete } = props;
 
   const classes = classnames({
     'bx--progress-step': true,
