@@ -37,7 +37,7 @@ storiesOf('Accordion', module).addWithInfo(
           aliquip ex ea commodo consequat.
         </p>
       </AccordionItem>
-      <AccordionItem title="Label with form" {...props}>
+      <AccordionItem title="Section 3 title" {...props}>
         <Select
           onChange={action('onChange')}
           id="select-1"
@@ -46,7 +46,7 @@ storiesOf('Accordion', module).addWithInfo(
             disabled
             hidden
             value="placeholder-item"
-            text="Pick an option"
+            text="Choose an option"
           />
           <SelectItem value="option-1" text="Option 1" />
           <SelectItem value="option-2" text="Option 2" />

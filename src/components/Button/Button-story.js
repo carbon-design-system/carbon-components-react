@@ -32,7 +32,7 @@ storiesOf('Buttons', module)
         </Button>
         &nbsp;
         <Button {...buttonEvents} href="#" className="some-class">
-          Primary Link
+          Primary link
         </Button>
         &nbsp;
       </div>
@@ -57,7 +57,7 @@ storiesOf('Buttons', module)
           {...buttonEvents}
           href="#"
           className="some-class">
-          Secondary Link
+          Secondary link
         </Button>
       </div>
     )
@@ -75,7 +75,7 @@ storiesOf('Buttons', module)
         </Button>
         &nbsp;
         <Button small {...buttonEvents} kind="secondary">
-          Small Secondary Button
+          Small secondary Button
         </Button>
         &nbsp;
         <Button
@@ -84,11 +84,11 @@ storiesOf('Buttons', module)
           kind="ghost"
           icon="add--glyph"
           iconDescription="Add">
-          Small Ghost Button
+          Small ghost Button
         </Button>
         &nbsp;
         <Button small {...buttonEvents} kind="danger">
-          Small Danger Button
+          Small danger Button
         </Button>
         &nbsp;
         <Button small {...buttonEvents} href="#" className="some-class">
@@ -105,7 +105,7 @@ storiesOf('Buttons', module)
     () => (
       <div>
         <Button {...buttonEvents} disabled>
-          Disabled
+          Disabled button
         </Button>
       </div>
     )
@@ -127,7 +127,7 @@ storiesOf('Buttons', module)
           icon="search--glyph"
           iconDescription="Search"
           {...buttonEvents}>
-          With an Icon
+          Secondary with icon
         </Button>
         &nbsp;
         <Button
@@ -136,7 +136,7 @@ storiesOf('Buttons', module)
           icon="search--glyph"
           iconDescription="Search"
           {...buttonEvents}>
-          With an Icon
+          Small primary with icon
         </Button>
         &nbsp;
         <Button
@@ -145,7 +145,7 @@ storiesOf('Buttons', module)
           icon="search--glyph"
           iconDescription="Search"
           {...buttonEvents}>
-          With an Icon
+          Small secondary with icon
         </Button>
       </div>
     )
@@ -166,7 +166,7 @@ storiesOf('Buttons', module)
           icon="add--glyph"
           iconDescription="Add"
           {...buttonEvents}>
-          Ghost Button
+          Ghost button
         </Button>
         &nbsp;
         <Button
@@ -176,7 +176,7 @@ storiesOf('Buttons', module)
           icon="add--glyph"
           iconDescription="Add"
           {...buttonEvents}>
-          Ghost Link
+          Ghost link
         </Button>
       </div>
     )
@@ -209,10 +209,10 @@ storiesOf('Buttons', module)
     () => (
       <div>
         <Button kind="secondary" {...buttonEvents} className="some-class">
-          Negative
+          Secondary button
         </Button>
         <Button kind="primary" {...buttonEvents} className="some-class">
-          Positive
+          Primary button
         </Button>
       </div>
     )

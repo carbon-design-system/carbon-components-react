@@ -53,7 +53,7 @@ storiesOf('Select', module)
           disabled
           hidden
           value="placeholder-item"
-          text="Pick an option"
+          text="Choose an option"
         />
         <SelectItemGroup label="Starter">
           <SelectItem value="option-1" text="Option 1" />

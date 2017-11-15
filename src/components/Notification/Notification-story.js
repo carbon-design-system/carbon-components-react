@@ -21,8 +21,8 @@ const notificationProps = {
   inline: {
     onCloseButtonClick: action('onCloseButtonClick'),
     className: 'some-class',
-    title: 'this is a title',
-    subtitle: 'subtitle',
+    title: 'Notification title',
+    subtitle: 'Subtitle text goes here.',
     iconDescription: 'describes the close button',
   },
   subtitleNode: <Link href="#">The subtitle can be any node.</Link>,

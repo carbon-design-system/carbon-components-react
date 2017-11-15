@@ -27,22 +27,23 @@ storiesOf('StructuredList', module)
         </StructuredListHead>
         <StructuredListBody>
           <StructuredListRow>
-            <StructuredListCell noWrap>Apache Spark</StructuredListCell>
-            <StructuredListCell>IBM</StructuredListCell>
+            <StructuredListCell noWrap>Row 1</StructuredListCell>
+            <StructuredListCell>Row 1</StructuredListCell>
             <StructuredListCell>
-              Apache Spark is an open source cluster computing framework
-              optimized for extremely fast and large scale data processing,
-              which you can access via the newly integrated notebook interface
-              IBM Analytics for Apache Spark.
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc dui
+              magna, finibus id tortor sed, aliquet bibendum augue. Aenean
+              posuere sem vel euismod dignissim. Nulla ut cursus dolor.
+              Pellentesque vulputate nisl a porttitor interdum.
             </StructuredListCell>
           </StructuredListRow>
           <StructuredListRow>
-            <StructuredListCell noWrap>Cloudant</StructuredListCell>
-            <StructuredListCell>IBM</StructuredListCell>
+            <StructuredListCell noWrap>Row 2</StructuredListCell>
+            <StructuredListCell>Row 2</StructuredListCell>
             <StructuredListCell>
-              Cloudant NoSQL DB is a fully managed data layer designed for
-              modern web and mobile applications that leverages a flexible JSON
-              schema.
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc dui
+              magna, finibus id tortor sed, aliquet bibendum augue. Aenean
+              posuere sem vel euismod dignissim. Nulla ut cursus dolor.
+              Pellentesque vulputate nisl a porttitor interdum.
             </StructuredListCell>
           </StructuredListRow>
         </StructuredListBody>
@@ -59,9 +60,9 @@ storiesOf('StructuredList', module)
         <StructuredListHead>
           <StructuredListRow head>
             <StructuredListCell head>{''}</StructuredListCell>
-            <StructuredListCell head>service</StructuredListCell>
-            <StructuredListCell head>type</StructuredListCell>
-            <StructuredListCell head>description</StructuredListCell>
+            <StructuredListCell head>ColumnA</StructuredListCell>
+            <StructuredListCell head>ColumnB</StructuredListCell>
+            <StructuredListCell head>ColumnC</StructuredListCell>
           </StructuredListRow>
         </StructuredListHead>
         <StructuredListBody>
@@ -80,13 +81,13 @@ storiesOf('StructuredList', module)
                 description="select an option"
               />
             </StructuredListCell>
-            <StructuredListCell>Apache Spark</StructuredListCell>
-            <StructuredListCell>IBM</StructuredListCell>
+            <StructuredListCell>Row 1</StructuredListCell>
+            <StructuredListCell>Row 1</StructuredListCell>
             <StructuredListCell>
-              Apache Spark is an open source cluster computing framework
-              optimized for extremely fast and large scale data processing,
-              which you can access via the newly integrated notebook interface
-              IBM Analytics for Apache Spark.
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc dui
+              magna, finibus id tortor sed, aliquet bibendum augue. Aenean
+              posuere sem vel euismod dignissim. Nulla ut cursus dolor.
+              Pellentesque vulputate nisl a porttitor interdum.
             </StructuredListCell>
           </StructuredListRow>
           <StructuredListRow label htmlFor="Row2">
@@ -103,12 +104,13 @@ storiesOf('StructuredList', module)
                 description="select an option"
               />
             </StructuredListCell>
-            <StructuredListCell>Cloudant</StructuredListCell>
-            <StructuredListCell>IBM</StructuredListCell>
+            <StructuredListCell>Row 2</StructuredListCell>
+            <StructuredListCell>Row 2</StructuredListCell>
             <StructuredListCell>
-              Cloudant NoSQL DB is a fully managed data layer designed for
-              modern web and mobile applications that leverages a flexible JSON
-              schema.
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc dui
+              magna, finibus id tortor sed, aliquet bibendum augue. Aenean
+              posuere sem vel euismod dignissim. Nulla ut cursus dolor.
+              Pellentesque vulputate nisl a porttitor interdum.
             </StructuredListCell>
           </StructuredListRow>
         </StructuredListBody>
