@@ -102,6 +102,7 @@
     "babel-cli": "^6.24.1",
     "babel-eslint": "^8.0.2",
     "babel-jest": "^21.2.0",
+    "babel-plugin-dev-expression": "^0.2.1",
     "babel-plugin-transform-object-assign": "^6.22.0",
     "babel-preset-env": "^1.5.1",
     "babel-preset-react": "^6.11.1",
@@ -142,8 +143,20 @@
     "whatwg-fetch": "^2.0.3"
   },
   "babel": {
+<<<<<<< HEAD
     "presets": ["./scripts/env", "react", "stage-1"],
     "plugins": ["transform-object-assign"]
+=======
+    "presets": [
+      "./scripts/env",
+      "react",
+      "stage-1"
+    ],
+    "plugins": [
+      "transform-object-assign",
+      "dev-expression"
+    ]
+>>>>>>> test(MultiSelect): add e2e scenarios and dev-transform babel plugin
   },
   "prettier": {
     "jsxBracketSameLine": true,
@@ -182,8 +195,20 @@
     "url": "https://github.com/carbon-design-system/carbon-components-react.git"
   },
   "jest": {
+<<<<<<< HEAD
     "collectCoverageFrom": ["components/**/*.js"],
     "setupFiles": ["<rootDir>/config/jest/setup.js"],
+=======
+    "globals": {
+      "__DEV__": true
+    },
+    "collectCoverageFrom": [
+      "components/**/*.js"
+    ],
+    "setupFiles": [
+      "<rootDir>/config/jest/setup.js"
+    ],
+>>>>>>> test(MultiSelect): add e2e scenarios and dev-transform babel plugin
     "testMatch": [
       "<rootDir>/**/__tests__/**/*.js?(x)",
       "<rootDir>/**/?(*-)(spec|test).js?(x)"

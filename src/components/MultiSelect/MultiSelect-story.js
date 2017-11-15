@@ -1,5 +1,5 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
+import { storiesOf, action } from '@storybook/react';
 import MultiSelect from './MultiSelect';
 
 const items = [
@@ -27,7 +27,14 @@ storiesOf('MultiSelect', module)
     `
       MultiSelect
     `,
-    () => <MultiSelect items={items} itemToString={i => i.text} label="Label" />
+    () => (
+      <MultiSelect
+        items={items}
+        itemToString={i => i.text}
+        label="Label"
+        onChange={action('onChange')}
+      />
+    )
   )
   .addWithInfo(
     'inline',
@@ -40,6 +47,7 @@ storiesOf('MultiSelect', module)
         items={items}
         itemToString={i => i.text}
         label="Label"
+        onChange={action('onChange')}
       />
     )
   )
@@ -54,6 +62,7 @@ storiesOf('MultiSelect', module)
         items={items}
         initialSelectedItems={[0, 1]}
         itemToString={i => i.text}
+        onChange={action('onChange')}
       />
     )
   );
