@@ -28,7 +28,7 @@ describe('ListBox', () => {
   });
 
   it('should call `getButtonProps` to set downshift props', () => {
-    const wrapper = shallow(<ListBox {...mockProps} />);
+    shallow(<ListBox {...mockProps} />);
     expect(mockProps.getButtonProps).toHaveBeenCalledWith({
       onClick: mockProps.onToggleMenu,
     });

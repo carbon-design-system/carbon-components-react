@@ -31,7 +31,7 @@ const ListBoxMenu = ({
           checked={selectedItem.indexOf(item) !== -1}
           readOnly={true}
         />
-        <label className="bx--checkbox-label">
+        <label htmlFor={item.id} className="bx--checkbox-label">
           <span className="bx--checkbox-appearance">
             <Icon className="bx--checkbox-checkmark" name="checkmark" />
           </span>

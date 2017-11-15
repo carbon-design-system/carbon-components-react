@@ -78,6 +78,9 @@
       "es6": true,
       "jest": true,
       "jasmine": true
+    },
+    "globals": {
+      "__DEV__": true
     }
   },
   "peerDependencies": {

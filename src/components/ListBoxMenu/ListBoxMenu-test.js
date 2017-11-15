@@ -3,9 +3,7 @@ import { shallow } from 'enzyme';
 import ListBoxMenu from '../ListBoxMenu';
 import {
   generateItems,
-  generateCustomItem,
   generateGenericItem,
-  customItemToString,
 } from '../../tools/testing/items';
 
 describe('ListBoxMenu', () => {
@@ -32,7 +30,7 @@ describe('ListBoxMenu', () => {
 
   it('should call `getItemProps` for each item that is generated', () => {
     const itemsCount = 5;
-    const wrapper = shallow(
+    shallow(
       <ListBoxMenu
         items={generateItems(itemsCount, generateGenericItem)}
         selectedItem={[]}

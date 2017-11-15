@@ -4,8 +4,6 @@ import MultiSelect from '../MultiSelect';
 import {
   generateItems,
   generateGenericItem,
-  generateCustomItem,
-  customItemToString,
 } from '../../tools/testing/items';
 
 const mouseDownAndUp = (node) => {

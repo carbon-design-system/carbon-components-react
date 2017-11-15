@@ -1,9 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Downshift from 'downshift';
-import cx from 'classnames';
 import warning from 'warning';
-import Icon from '../Icon';
 import ListBox from '../ListBox';
 
 export default class MultiSelect extends React.Component {
