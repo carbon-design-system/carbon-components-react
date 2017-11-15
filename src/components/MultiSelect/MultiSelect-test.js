@@ -1,15 +1,12 @@
 import React from 'react';
 import { mount } from 'enzyme';
 import MultiSelect from '../MultiSelect';
-import {
-  generateItems,
-  generateGenericItem,
-} from '../../tools/testing/items';
+import { generateItems, generateGenericItem } from '../../tools/testing/items';
 
-const mouseDownAndUp = (node) => {
-  node.dispatchEvent(new window.MouseEvent('mousedown', {bubbles: true}))
-  node.dispatchEvent(new window.MouseEvent('mouseup', {bubbles: true}))
-}
+const mouseDownAndUp = node => {
+  node.dispatchEvent(new window.MouseEvent('mousedown', { bubbles: true }));
+  node.dispatchEvent(new window.MouseEvent('mouseup', { bubbles: true }));
+};
 
 describe('MultiSelect', () => {
   it('should initialize with no selected items if no `initialSelectedItems` are given', () => {
@@ -150,14 +147,16 @@ describe('MultiSelect', () => {
 
     it('should warn in __DEV__ if an item in `initialSelectedItems` is falsey');
 
-    it('should warn in __DEV__ if a given item index in `initialSelectedItems` is out of bounds');
+    it(
+      'should warn in __DEV__ if a given item index in `initialSelectedItems` is out of bounds'
+    );
 
-    it('should warn in __DEV__ if a given item in `initialSelectedItems` does not exist in `items`');
+    it(
+      'should warn in __DEV__ if a given item in `initialSelectedItems` does not exist in `items`'
+    );
 
     it('should open the menu when a user clicks on the ListBox field', () => {
-      const wrapper = mount(
-        <MultiSelect {...mockProps} />
-      );
+      const wrapper = mount(<MultiSelect {...mockProps} />);
       wrapper.find('.bx--list-box__field').simulate('click');
       expect(wrapper.find('.bx--list-box__menu').length).toBe(1);
       expect(wrapper.find('.bx--list-box__menu-item').length).toBe(
@@ -166,13 +165,10 @@ describe('MultiSelect', () => {
     });
 
     it('should open the menu when a user focuses and hits space on the ListBox field', () => {
-      const wrapper = mount(
-        <MultiSelect {...mockProps} />
-      );
-      wrapper.find('.bx--list-box__field')
-        .simulate('keydown', {
-          key: ' '
-        });
+      const wrapper = mount(<MultiSelect {...mockProps} />);
+      wrapper.find('.bx--list-box__field').simulate('keydown', {
+        key: ' ',
+      });
       expect(wrapper.find('.bx--list-box__menu').length).toBe(1);
       expect(wrapper.find('.bx--list-box__menu-item').length).toBe(
         mockProps.items.length
@@ -180,58 +176,50 @@ describe('MultiSelect', () => {
     });
 
     it('should select an item when a user clicks on an item', () => {
-      const wrapper = mount(
-        <MultiSelect {...mockProps} />
-      );
+      const wrapper = mount(<MultiSelect {...mockProps} />);
       wrapper.find('.bx--list-box__field').simulate('click');
-      wrapper.find('.bx--list-box__menu-item').first().simulate('click');
+      wrapper
+        .find('.bx--list-box__menu-item')
+        .first()
+        .simulate('click');
       expect(wrapper.state('selectedItems')).toEqual([mockProps.items[0]]);
     });
 
     it('should allow a user to highlight items with the up and down arrow keys', () => {
-      const wrapper = mount(
-        <MultiSelect {...mockProps} />
-      );
+      const wrapper = mount(<MultiSelect {...mockProps} />);
       wrapper.find('.bx--list-box__field').simulate('click');
-      const simulateArrowDown = () => wrapper.find('.bx--list-box__field')
-        .simulate('keydown', {
+      const simulateArrowDown = () =>
+        wrapper.find('.bx--list-box__field').simulate('keydown', {
           key: 'ArrowDown',
         });
-      const simulateArrowUp = () => wrapper.find('.bx--list-box__field')
-        .simulate('keydown', {
+      const simulateArrowUp = () =>
+        wrapper.find('.bx--list-box__field').simulate('keydown', {
           key: 'ArrowUp',
         });
-      const getHighlightedId = () => wrapper
-        .find('.bx--list-box__menu-item--highlighted')
-        .prop('id');
+      const getHighlightedId = () =>
+        wrapper.find('.bx--list-box__menu-item--highlighted').prop('id');
 
       simulateArrowDown();
-      expect(getHighlightedId())
-        .toBe('downshift-1-item-0');
+      expect(getHighlightedId()).toBe('downshift-1-item-0');
 
       simulateArrowDown();
-      expect(getHighlightedId())
-        .toBe('downshift-1-item-1');
+      expect(getHighlightedId()).toBe('downshift-1-item-1');
 
       // Simulate "wrap" behavior
       simulateArrowDown();
       simulateArrowDown();
       simulateArrowDown();
       simulateArrowDown();
-      expect(getHighlightedId())
-        .toBe('downshift-1-item-0');
+      expect(getHighlightedId()).toBe('downshift-1-item-0');
 
       simulateArrowUp();
-      expect(getHighlightedId())
-        .toBe('downshift-1-item-4');
+      expect(getHighlightedId()).toBe('downshift-1-item-4');
     });
 
     it('should select an item when a user focuses on an item and hits enter');
 
     it('should close the menu when a user clicks outside of the control', () => {
-      const wrapper = mount(
-        <MultiSelect {...mockProps} />
-      );
+      const wrapper = mount(<MultiSelect {...mockProps} />);
       wrapper.find('.bx--list-box__field').simulate('click');
       mouseDownAndUp(document.body);
       expect(wrapper.state('isOpen')).toBe(false);
@@ -240,47 +228,74 @@ describe('MultiSelect', () => {
     it('should close the menu when a user hits the ESC key on their keyboard');
 
     it('should show a badge that mirrors the number of selected items', () => {
-      const wrapper = mount(
-        <MultiSelect {...mockProps} />
-      );
+      const wrapper = mount(<MultiSelect {...mockProps} />);
       wrapper.find('.bx--list-box__field').simulate('click');
-      wrapper.find('.bx--list-box__menu-item').at(0).simulate('click');
-      wrapper.find('.bx--list-box__menu-item').at(1).simulate('click');
+      wrapper
+        .find('.bx--list-box__menu-item')
+        .at(0)
+        .simulate('click');
+      wrapper
+        .find('.bx--list-box__menu-item')
+        .at(1)
+        .simulate('click');
       expect(wrapper.find('.bx--list-box__badge-text').text()).toBe('2');
 
-      wrapper.find('.bx--list-box__menu-item').at(2).simulate('click');
-      wrapper.find('.bx--list-box__menu-item').at(3).simulate('click');
+      wrapper
+        .find('.bx--list-box__menu-item')
+        .at(2)
+        .simulate('click');
+      wrapper
+        .find('.bx--list-box__menu-item')
+        .at(3)
+        .simulate('click');
       expect(wrapper.find('.bx--list-box__badge-text').text()).toBe('4');
 
-      wrapper.find('.bx--list-box__menu-item').at(0).simulate('click');
-      wrapper.find('.bx--list-box__menu-item').at(1).simulate('click');
-      wrapper.find('.bx--list-box__menu-item').at(2).simulate('click');
-      wrapper.find('.bx--list-box__menu-item').at(3).simulate('click');
+      wrapper
+        .find('.bx--list-box__menu-item')
+        .at(0)
+        .simulate('click');
+      wrapper
+        .find('.bx--list-box__menu-item')
+        .at(1)
+        .simulate('click');
+      wrapper
+        .find('.bx--list-box__menu-item')
+        .at(2)
+        .simulate('click');
+      wrapper
+        .find('.bx--list-box__menu-item')
+        .at(3)
+        .simulate('click');
       expect(wrapper.find('.bx--list-box__badge-text').length).toBe(0);
     });
 
     it('should allow a user to de-select an item by clicking on a selected item', () => {
-      const wrapper = mount(
-        <MultiSelect {...mockProps} />
-      );
+      const wrapper = mount(<MultiSelect {...mockProps} />);
       wrapper.find('.bx--list-box__field').simulate('click');
-      wrapper.find('.bx--list-box__menu-item').at(0).simulate('click');
+      wrapper
+        .find('.bx--list-box__menu-item')
+        .at(0)
+        .simulate('click');
       expect(wrapper.find('.bx--list-box__menu-item--active').length).toBe(1);
 
-      wrapper.find('.bx--list-box__menu-item').at(0).simulate('click');
+      wrapper
+        .find('.bx--list-box__menu-item')
+        .at(0)
+        .simulate('click');
       expect(wrapper.find('.bx--list-box__menu-item--active').length).toBe(0);
     });
 
     it('should allow a user to de-select an item by hitting enter on a selected item', () => {
-      const wrapper = mount(
-        <MultiSelect {...mockProps} />
-      );
-      const simulateArrowDown = () => wrapper.find('.bx--list-box__field')
-        .simulate('keydown', {
+      const wrapper = mount(<MultiSelect {...mockProps} />);
+      const simulateArrowDown = () =>
+        wrapper.find('.bx--list-box__field').simulate('keydown', {
           key: 'ArrowDown',
         });
       wrapper.find('.bx--list-box__field').simulate('click');
-      wrapper.find('.bx--list-box__menu-item').at(0).simulate('click');
+      wrapper
+        .find('.bx--list-box__menu-item')
+        .at(0)
+        .simulate('click');
       expect(wrapper.find('.bx--list-box__menu-item--active').length).toBe(1);
 
       simulateArrowDown();
@@ -291,11 +306,12 @@ describe('MultiSelect', () => {
     });
 
     it('should allow a user to click on the clear icon to clear all selected items', () => {
-      const wrapper = mount(
-        <MultiSelect {...mockProps} />
-      );
+      const wrapper = mount(<MultiSelect {...mockProps} />);
       wrapper.find('.bx--list-box__field').simulate('click');
-      wrapper.find('.bx--list-box__menu-item').at(0).simulate('click');
+      wrapper
+        .find('.bx--list-box__menu-item')
+        .at(0)
+        .simulate('click');
       expect(wrapper.state('selectedItems')).toEqual([mockProps.items[0]]);
 
       wrapper.find('.bx--list-box__badge').simulate('click');
@@ -303,11 +319,12 @@ describe('MultiSelect', () => {
     });
 
     it('should allow a user to focus the clear icon and hit enter to clear all selected items', () => {
-      const wrapper = mount(
-        <MultiSelect {...mockProps} />
-      );
+      const wrapper = mount(<MultiSelect {...mockProps} />);
       wrapper.find('.bx--list-box__field').simulate('click');
-      wrapper.find('.bx--list-box__menu-item').at(0).simulate('click');
+      wrapper
+        .find('.bx--list-box__menu-item')
+        .at(0)
+        .simulate('click');
       expect(wrapper.state('selectedItems')).toEqual([mockProps.items[0]]);
 
       wrapper.find('.bx--list-box__badge').simulate('keydown', {

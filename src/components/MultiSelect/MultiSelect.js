@@ -62,25 +62,26 @@ export default class MultiSelect extends React.Component {
       nextState.selectedItems = getSelectedItemsFrom(
         nextProps.items,
         nextProps.initialSelectedItems
-      )
+      );
     } else {
       nextState.selectedItems = getSelectedItemsFrom(
         nextProps.items,
         this.props.selectedItems
-      )
+      );
     }
 
     this.internalSetState(nextState);
   }
 
-  internalSetState = (stateToSet, callback) => this.setState(stateToSet, () => {
-    if (callback) {
-      callback();
-    }
-    if (this.props.onChange) {
-      this.props.onChange(this.state);
-    }
-  });
+  internalSetState = (stateToSet, callback) =>
+    this.setState(stateToSet, () => {
+      if (callback) {
+        callback();
+      }
+      if (this.props.onChange) {
+        this.props.onChange(this.state);
+      }
+    });
 
   handleOnChange = selectedItem => {
     const { selectedItems } = this.state;
@@ -196,15 +197,15 @@ export const getSelectedItemsFrom = (items, initialSelectedItems) => {
           warning(
             item >= 0 && item < items.length,
             `[MultiSelect] expected an index in \`initialSelectedItems\` to ` +
-            `exist in \`items\`, however the index: \`${item}\` is not ` +
-            `present in \`items\`.`
+              `exist in \`items\`, however the index: \`${item}\` is not ` +
+              `present in \`items\`.`
           );
         } else {
           warning(
             items.indexOf(item) !== -1,
             `[MultiSelect] expected an item in \`initialSelectedItems\` to ` +
-            `exist in the given \`items\` array, however ` +
-            `\`initialSelectedItems[${index}]\ does not exist in \`items\`.`
+              `exist in the given \`items\` array, however ` +
+              `\`initialSelectedItems[${index}]\ does not exist in \`items\`.`
           );
         }
       });

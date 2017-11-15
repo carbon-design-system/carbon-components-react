@@ -1,10 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import ListBoxMenu from '../ListBoxMenu';
-import {
-  generateItems,
-  generateGenericItem,
-} from '../../tools/testing/items';
+import { generateItems, generateGenericItem } from '../../tools/testing/items';
 
 describe('ListBoxMenu', () => {
   let mockProps;
