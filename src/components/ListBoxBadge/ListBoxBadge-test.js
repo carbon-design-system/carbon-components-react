@@ -43,9 +43,9 @@ describe('ListBoxBadge component', () => {
     const wrapper = shallow(
       <ListBoxBadge clearSelection={mockClearSelection} count={5} />
     );
-    wrapper.simulate('keyDown', { keyCode: 8 });
+    wrapper.simulate('keyDown', { keyCode: 8, stopPropagation: () => {} });
     expect(mockClearSelection).not.toHaveBeenCalled();
-    wrapper.simulate('keyDown', { keyCode: 13 });
+    wrapper.simulate('keyDown', { keyCode: 13, stopPropagation: () => {} });
     expect(mockClearSelection).toHaveBeenCalledTimes(1);
   });
 });

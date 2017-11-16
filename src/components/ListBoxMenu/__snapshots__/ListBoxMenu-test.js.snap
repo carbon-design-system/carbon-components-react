@@ -6,19 +6,22 @@ exports[`ListBoxMenu should render 1`] = `
 >
   <div
     className="bx--list-box__menu-item"
-    key="id-0"
+    id={0}
+    key="0"
   >
     <input
       checked={false}
       className="bx--checkbox"
-      id="id-0"
+      id={0}
       name="Item 0"
+      onClick={[Function]}
       readOnly={true}
+      tabIndex="-1"
       type="checkbox"
     />
     <label
       className="bx--checkbox-label"
-      htmlFor="id-0"
+      htmlFor={0}
     >
       <span
         className="bx--checkbox-appearance"
@@ -36,19 +39,22 @@ exports[`ListBoxMenu should render 1`] = `
   </div>
   <div
     className="bx--list-box__menu-item"
-    key="id-1"
+    id={1}
+    key="1"
   >
     <input
       checked={false}
       className="bx--checkbox"
-      id="id-1"
+      id={1}
       name="Item 1"
+      onClick={[Function]}
       readOnly={true}
+      tabIndex="-1"
       type="checkbox"
     />
     <label
       className="bx--checkbox-label"
-      htmlFor="id-1"
+      htmlFor={1}
     >
       <span
         className="bx--checkbox-appearance"
@@ -66,19 +72,22 @@ exports[`ListBoxMenu should render 1`] = `
   </div>
   <div
     className="bx--list-box__menu-item"
-    key="id-2"
+    id={2}
+    key="2"
   >
     <input
       checked={false}
       className="bx--checkbox"
-      id="id-2"
+      id={2}
       name="Item 2"
+      onClick={[Function]}
       readOnly={true}
+      tabIndex="-1"
       type="checkbox"
     />
     <label
       className="bx--checkbox-label"
-      htmlFor="id-2"
+      htmlFor={2}
     >
       <span
         className="bx--checkbox-appearance"
@@ -96,19 +105,22 @@ exports[`ListBoxMenu should render 1`] = `
   </div>
   <div
     className="bx--list-box__menu-item"
-    key="id-3"
+    id={3}
+    key="3"
   >
     <input
       checked={false}
       className="bx--checkbox"
-      id="id-3"
+      id={3}
       name="Item 3"
+      onClick={[Function]}
       readOnly={true}
+      tabIndex="-1"
       type="checkbox"
     />
     <label
       className="bx--checkbox-label"
-      htmlFor="id-3"
+      htmlFor={3}
     >
       <span
         className="bx--checkbox-appearance"
@@ -126,19 +138,22 @@ exports[`ListBoxMenu should render 1`] = `
   </div>
   <div
     className="bx--list-box__menu-item"
-    key="id-4"
+    id={4}
+    key="4"
   >
     <input
       checked={false}
       className="bx--checkbox"
-      id="id-4"
+      id={4}
       name="Item 4"
+      onClick={[Function]}
       readOnly={true}
+      tabIndex="-1"
       type="checkbox"
     />
     <label
       className="bx--checkbox-label"
-      htmlFor="id-4"
+      htmlFor={4}
     >
       <span
         className="bx--checkbox-appearance"

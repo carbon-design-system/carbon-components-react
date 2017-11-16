@@ -5,11 +5,15 @@ import { generateItems, generateGenericItem } from '../../tools/testing/items';
 
 describe('ListBoxMenu', () => {
   let mockProps;
+  let id;
 
   beforeEach(() => {
+    id = 0;
     mockProps = {
       itemToString: jest.fn(({ label }) => label),
-      getItemProps: jest.fn(() => ({})),
+      getItemProps: jest.fn(() => ({
+        id: id++,
+      })),
     };
   });
 

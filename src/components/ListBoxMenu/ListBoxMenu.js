@@ -4,54 +4,49 @@ import cx from 'classnames';
 import Icon from '../Icon';
 
 const handleOnClick = event => {
-  // Prevent default interaction here so that the event bubblers up to
+  // Prevent default interaction here so that the event bubbles up to
   // the `onClick` handler supplied by `getItemProps`
   event.preventDefault();
 };
 
 const ListBoxMenu = ({
   items,
-  selectItem,
   selectedItem,
   highlightedIndex,
   itemToString,
   getItemProps,
 }) => (
   <div className="bx--list-box__menu">
-    {items.map((item, i) => (
-      <div
-        key={item.id}
-        className={cx({
-          'bx--list-box__menu-item': true,
-          'bx--list-box__menu-item--highlighted': highlightedIndex === i,
-          'bx--list-box__menu-item--active': selectedItem.indexOf(item) !== -1,
-        })}
-        {...getItemProps({
-          item,
-          index: i,
-        })}>
-        <input
-          id={item.id}
-          name={itemToString(item)}
-          className="bx--checkbox"
-          type="checkbox"
-          checked={selectedItem.indexOf(item) !== -1}
-          readOnly={true}
-          onClick={handleOnClick}
-          onKeyDown={event => {
-            if (event.keyCode === 32) {
-              selectItem(item);
-            }
-          }}
-        />
-        <label htmlFor={item.id} className="bx--checkbox-label">
-          <span className="bx--checkbox-appearance">
-            <Icon className="bx--checkbox-checkmark" name="checkmark" />
-          </span>
-          {itemToString(item)}
-        </label>
-      </div>
-    ))}
+    {items.map((item, i) => {
+      const itemProps = getItemProps({ item, index: i });
+      return (
+        <div
+          key={itemProps.id}
+          className={cx({
+            'bx--list-box__menu-item': true,
+            'bx--list-box__menu-item--highlighted': highlightedIndex === i,
+            'bx--list-box__menu-item--active': selectedItem.indexOf(item) !== -1,
+          })}
+          {...itemProps}>
+          <input
+            id={itemProps.id}
+            name={itemToString(item)}
+            className="bx--checkbox"
+            type="checkbox"
+            checked={selectedItem.indexOf(item) !== -1}
+            readOnly={true}
+            tabIndex="-1"
+            onClick={handleOnClick}
+          />
+          <label htmlFor={itemProps.id} className="bx--checkbox-label">
+            <span className="bx--checkbox-appearance">
+              <Icon className="bx--checkbox-checkmark" name="checkmark" />
+            </span>
+            {itemToString(item)}
+          </label>
+        </div>
+      );
+    })}
   </div>
 );
 
