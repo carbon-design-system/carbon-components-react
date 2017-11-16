@@ -13,10 +13,12 @@ export default class InteriorLeftNav extends Component {
     className: PropTypes.string,
     activeHref: PropTypes.string,
     onToggle: PropTypes.func,
+    isAccordion: PropTypes.bool,
   };
 
   static defaultProps = {
     onToggle: () => {},
+    isAccordion: false,
   };
 
   state = {
@@ -47,7 +49,7 @@ export default class InteriorLeftNav extends Component {
     this.props.children.forEach((child, index) => {
       if (child.type === InteriorLeftNavList) {
         const childId = `list-${index}`;
-        if (childId !== id) {
+        if (childId !== id && !this.props.isAccordion) {
           this.refs[childId].close();
         }
       }
@@ -93,7 +95,6 @@ export default class InteriorLeftNav extends Component {
       children,
       activeHref, // eslint-disable-line no-unused-vars
       onToggle, // eslint-disable-line no-unused-vars
-      ...other
     } = this.props;
 
     const newChildren = React.Children.map(children, (child, index) => {
@@ -122,7 +123,7 @@ export default class InteriorLeftNav extends Component {
         aria-label="Interior Left Navigation"
         className={classNames}
         onClick={!this.state.open ? this.toggle : () => {}}
-        {...other}>
+      >
         <ul key="main_list" className="left-nav-list" role="menubar">
           {newChildren}
         </ul>

@@ -100,4 +100,24 @@ describe('InteriorLeftNav', () => {
       expect(interiorLeftNav.state().open).toBe(false);
     });
   });
+
+  describe('check accordion behaviour', () => {
+    const twoLists = mount(
+      <InteriorLeftNav isAccordion>
+        <InteriorLeftNavList className="first"/>
+        <InteriorLeftNavList className="second" open />
+      </InteriorLeftNav>
+    );
+
+    const first = () => twoLists.find('li.first');
+    const second = () => twoLists.find('li.second');
+
+    it('should keep the second list open when the first is clicked', () => {
+      expect(first().hasClass('left-nav-list__item--expanded')).toBe(false);
+      expect(second().hasClass('left-nav-list__item--expanded')).toBe(true);
+      first().simulate('click');
+      expect(first().hasClass('left-nav-list__item--expanded')).toBe(true);
+      expect(second().hasClass('left-nav-list__item--expanded')).toBe(true);
+    });
+  })
 });
