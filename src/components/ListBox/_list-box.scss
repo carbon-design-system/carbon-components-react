@@ -13,10 +13,6 @@ $list-box-height: rem(40px);
     height: $list-box-height;
   }
 
-  .bx--list-box--inline {
-    background-color: inherit;
-  }
-
   .bx--list-box__field {
     display: flex;
     align-items: center;
@@ -35,7 +31,10 @@ $list-box-height: rem(40px);
   }
 
   .bx--list-box__field:focus ~ .bx--list-box__menu {
-    box-shadow: 0 1px 0 0 $brand-01, 1px 0 0 0 $brand-01, -1px 0 0 0 $brand-01;
+    box-shadow: 0 1px 0 0 $brand-01,
+      1px 0 0 0 $brand-01,
+      -1px 0 0 0 $brand-01,
+      0 4px 8px 0 rgba(0, 0, 0, .1);
   }
 
   .bx--list-box__field--inline {
@@ -64,47 +63,6 @@ $list-box-height: rem(40px);
     display: flex;
     align-items: center;
     height: 100%;
-  }
-
-  .bx--list-box__badge {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    // TODO: sync with margin
-    left: -0.25rem;
-    width: rem(18px);
-    height: rem(18px);
-    // TODO: is this what we use for white?
-    color: $ui-01;
-    background-color: $brand-01;
-    border-radius: 50%;
-    // TODO: typography helpers?
-    font-size: rem(12px);
-    font-weight: 200;
-    margin: 0.5em;
-  }
-
-  .bx--list-box__badge:focus {
-    outline: 1px solid $brand-01;
-    outline-offset: 0.25rem;
-  }
-
-  .bx--list-box__badge > .bx--list-box__clear {
-    display: none;
-    visibility: hidden;
-  }
-
-  .bx--list-box__badge:focus > .bx--list-box__clear,
-  .bx--list-box__badge:hover > .bx--list-box__clear {
-    display: block;
-    visibility: visible;
-  }
-
-  .bx--list-box__badge:focus > .bx--list-box__badge-text,
-  .bx--list-box__badge:hover > .bx--list-box__badge-text {
-    display: none;
-    visibility: hidden;
   }
 
   .bx--list-box__menu {
@@ -142,12 +100,48 @@ $list-box-height: rem(40px);
     transform: rotate(180deg);
   }
 
-  .bx--list-box__clear {
-    display: block;
-    width: rem(18px);
+  .bx--list-box__badge {
+    display: flex;
+    align-items: center;
     height: rem(18px);
-    fill: $brand-02;
-    background-color: white;
-    border-radius: 50%;
+    margin-right: rem(10px);
+    color: white;
+    background-color: $brand-01;
+    padding: 0 rem(5px);
+    border-radius: rem(13px);
+  }
+
+  .bx--list-box__badge:focus {
+    outline: 1px solid $brand-01;
+    outline-offset: rem(5px);
+  }
+
+  .bx--list-box__badge:hover {
+    background-color: $brand-02;
+  }
+
+  .bx--list-box__badge-text {
+    margin-right: rem(5px);
+    font-size: rem(12px);
+    font-weight: 200;
+  }
+
+  .bx--list-box__clear {
+    width: rem(8px);
+    height: rem(8px);
+    fill: white;
+  }
+
+  .bx--list-box--inline {
+    background-color: inherit;
+  }
+
+  .bx--list-box--inline  > .bx--list-box__field {
+    height: rem(32px);
+    padding: 0 rem(10px);
+  }
+
+  .bx--list-box--inline  > .bx--list-box__menu {
+    top: rem(32px);
   }
 }

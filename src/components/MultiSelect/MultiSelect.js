@@ -6,34 +6,42 @@ import ListBox from '../ListBox';
 
 export default class MultiSelect extends React.Component {
   static propTypes = {
-    // We try to stay as generic as possible here to allow individuals to pass
-    // in a collection of whatever kind of data structure they prefer
+    /**
+     * We try to stay as generic as possible here to allow individuals to pass
+     * in a collection of whatever kind of data structure they prefer
+     */
     items: PropTypes.array.isRequired,
 
-    // Allow users to pass in arbitrary items from their collection that are
-    // pre-selected
+    /**
+     * Allow users to pass in arbitrary items from their collection that are
+     * pre-selected
+     */
     initialSelectedItems: PropTypes.array,
 
-    // Helper function passed to downshift that allows the library to render a
-    // given item to a string label. By default, it extracts the `label` field
-    // from a given item to serve as the item label in the list.
+    /**
+     * Helper function passed to downshift that allows the library to render a
+     * given item to a string label. By default, it extracts the `label` field
+     * from a given item to serve as the item label in the list.
+     */
     itemToString: PropTypes.func,
 
-    // `onChange` is a utility for this controlled component to communicate to a
-    // consuming component what kind of internal state changes are occuring.
+    /**
+     * `onChange` is a utility for this controlled component to communicate to a
+     * consuming component what kind of internal state changes are occuring.
+     */
     onChange: PropTypes.func,
 
-    // Generic `label` that will be used as the textual representation of what
-    // this field is for
+    /**
+     * Generic `label` that will be used as the textual representation of what
+     * this field is for
+     */
     label: PropTypes.node.isRequired,
   };
 
   static defaultProps = {
     type: 'default',
-  };
-
-  static defaultProps = {
     itemToString: ({ label }) => label,
+    initialSelectedItems: [],
   };
 
   constructor(props) {
@@ -129,11 +137,10 @@ export default class MultiSelect extends React.Component {
     const { type } = changes;
     // Opt-in to some cases where we should be toggling the menu based on
     // a given key press or mouse handler
+    // Reference: https://github.com/paypal/downshift/issues/206
     switch (type) {
       case Downshift.stateChangeTypes.mouseUp:
-        if (!this.state.isOpen) {
-          this.handleOnToggleMenu();
-        }
+        this.setState({ isOpen: false });
         break;
       case Downshift.stateChangeTypes.keyDownEscape:
       case Downshift.stateChangeTypes.keyDownSpaceButton:

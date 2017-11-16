@@ -8,6 +8,7 @@ const ListBox = ({
   type = 'default',
   items,
   selectedItem,
+  selectItem,
   label,
   clearSelection,
   isOpen,
@@ -36,6 +37,7 @@ const ListBox = ({
       {isOpen && (
         <ListBoxMenu
           items={items}
+          selectItem={selectItem}
           selectedItem={selectedItem}
           itemToString={itemToString}
           getItemProps={getItemProps}

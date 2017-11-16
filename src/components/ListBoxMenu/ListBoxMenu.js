@@ -3,8 +3,15 @@ import PropTypes from 'prop-types';
 import cx from 'classnames';
 import Icon from '../Icon';
 
+const handleOnClick = event => {
+  // Prevent default interaction here so that the event bubblers up to
+  // the `onClick` handler supplied by `getItemProps`
+  event.preventDefault();
+};
+
 const ListBoxMenu = ({
   items,
+  selectItem,
   selectedItem,
   highlightedIndex,
   itemToString,
@@ -30,6 +37,12 @@ const ListBoxMenu = ({
           type="checkbox"
           checked={selectedItem.indexOf(item) !== -1}
           readOnly={true}
+          onClick={handleOnClick}
+          onKeyDown={event => {
+            if (event.keyCode === 32) {
+              selectItem(item);
+            }
+          }}
         />
         <label htmlFor={item.id} className="bx--checkbox-label">
           <span className="bx--checkbox-appearance">
