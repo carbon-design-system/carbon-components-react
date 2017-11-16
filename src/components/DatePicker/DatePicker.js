@@ -22,12 +22,26 @@ export default class DatePicker extends Component {
     short: PropTypes.bool,
     datePickerType: PropTypes.string,
     dateFormat: PropTypes.string,
+    value: PropTypes.string,
   };
 
   static defaultProps = {
     short: false,
     dateFormat: 'm/d/Y',
   };
+
+  componentWillUpdate(nextProps) {
+    if (nextProps.value !== this.props.value) {
+      if ( this.props.datePickerType === 'single' ||
+            this.props.datePickerType === 'range'
+      ) {
+        this.cal.setDate( nextProps.value );
+        this.updateClassNames(this.cal);
+      } else {
+        this.inputField = nextProps.value;
+      }
+    }
+  }
 
   componentDidMount() {
     if (
