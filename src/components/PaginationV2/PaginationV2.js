@@ -78,6 +78,10 @@ export default class PaginationV2 extends Component {
     this.props.onChange({ page: 1, pageSize });
   };
 
+  handlePageChange = evt => {
+    this.setState({ page: evt.target.value });
+  };
+
   handlePageInputChange = evt => {
     const page = Number(evt.target.value);
     if (
@@ -128,7 +132,8 @@ export default class PaginationV2 extends Component {
     const statePageSize = this.state.pageSize;
     const classNames = classnames('bx--pagination', className);
     const inputId = id || this.uniqueId;
-    let currentPage = pageNumber;
+    const itemsPerPage = Math.ceil(totalItems/statePageSize);
+    let counter = 1;
     return (
       <div className={classNames} {...other}>
         <div className="bx--pagination__left">
@@ -184,12 +189,11 @@ export default class PaginationV2 extends Component {
             labelText={itemsPerPageText}
             hideLabel
             inline
-            onChange={this.handleSizeChange}
-            value={currentPage}>
-            {pageSizes.map(size => {
-              return <SelectItem key={size} value={currentPage} text={String(currentPage++)} />
-            }
-            )}
+            onChange={this.handlePageChange}
+            value={statePage}>
+            {for (let i = 0; i < itemsPerPage; i++) {
+              return <SelectItem key={size} value={currentPage} text={String(currentPage)} />
+            }}
             </Select>
           )}
           <button
