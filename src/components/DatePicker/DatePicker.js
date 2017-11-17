@@ -38,7 +38,9 @@ export default class DatePicker extends Component {
         this.cal.setDate( nextProps.value );
         this.updateClassNames(this.cal);
       } else {
-        this.inputField = nextProps.value;
+        if (this.inputField) {
+          this.inputField.value = nextProps.value;
+        }
       }
     }
   }
