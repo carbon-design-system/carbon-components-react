@@ -103,7 +103,7 @@ describe('InteriorLeftNav', () => {
 
   describe('check accordion behaviour', () => {
     const twoLists = mount(
-      <InteriorLeftNav isAccordion>
+      <InteriorLeftNav isExpanded>
         <InteriorLeftNavList className="first"/>
         <InteriorLeftNavList className="second" open />
       </InteriorLeftNav>

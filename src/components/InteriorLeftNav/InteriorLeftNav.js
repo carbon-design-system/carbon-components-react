@@ -13,12 +13,12 @@ export default class InteriorLeftNav extends Component {
     className: PropTypes.string,
     activeHref: PropTypes.string,
     onToggle: PropTypes.func,
-    isAccordion: PropTypes.bool,
+    isExpanded: PropTypes.bool,
   };
 
   static defaultProps = {
     onToggle: () => {},
-    isAccordion: false,
+    isExpanded: false,
   };
 
   state = {
@@ -49,7 +49,7 @@ export default class InteriorLeftNav extends Component {
     this.props.children.forEach((child, index) => {
       if (child.type === InteriorLeftNavList) {
         const childId = `list-${index}`;
-        if (childId !== id && !this.props.isAccordion) {
+        if (childId !== id && !this.props.isExpanded) {
           this.refs[childId].close();
         }
       }
