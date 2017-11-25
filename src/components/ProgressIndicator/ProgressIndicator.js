@@ -9,7 +9,7 @@ export const ProgressStep = ({ ...props }) => {
     'bx--progress-step': true,
     'bx--progress-step--current': current,
     'bx--progress-step--complete': complete,
-    'bx--progress-step--incomplete': !complete,
+    'bx--progress-step--incomplete': !complete && !current,
     [className]: className,
   });
 
@@ -29,8 +29,7 @@ export const ProgressStep = ({ ...props }) => {
             />
             <circle fill="#3d70b2" cx="12" cy="12" r="6" />
           </g>
-        ) : null}
-        {complete ? (
+        ) : complete ? (
           <g>
             <circle cx="12" cy="12" r="12" />
             <polygon points="10.3 13.6 7.7 11 6.3 12.4 10.3 16.4 17.8 9 16.4 7.6" />
@@ -52,7 +51,6 @@ ProgressStep.propTypes = {
   className: PropTypes.string,
   current: PropTypes.bool,
   complete: PropTypes.bool,
-  incomplete: PropTypes.bool,
   description: PropTypes.string,
 };
 
