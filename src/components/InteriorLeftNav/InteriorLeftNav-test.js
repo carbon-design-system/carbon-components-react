@@ -27,10 +27,11 @@ describe('InteriorLeftNav', () => {
         <InteriorLeftNav>
           <InteriorLeftNavList className="test-child" />
           <InteriorLeftNavItem
-            href="#"
+            href=""
             title="test-title"
-            className="test-child">
-            <a href="#">test-title</a>
+            className="test-child"
+          >
+            <a href="">test-title</a>
           </InteriorLeftNavItem>
         </InteriorLeftNav>
       );
@@ -104,8 +105,8 @@ describe('InteriorLeftNav', () => {
   describe('check accordion behaviour', () => {
     const twoLists = mount(
       <InteriorLeftNav>
-        <InteriorLeftNavList className="first" isExpanded/>
-        <InteriorLeftNavList className="second" isExpanded open/>
+        <InteriorLeftNavList className="first" isExpanded />
+        <InteriorLeftNavList className="second" isExpanded open />
       </InteriorLeftNav>
     );
 
@@ -119,5 +120,5 @@ describe('InteriorLeftNav', () => {
       expect(first().hasClass('left-nav-list__item--expanded')).toBe(true);
       expect(second().hasClass('left-nav-list__item--expanded')).toBe(true);
     });
-  })
+  });
 });

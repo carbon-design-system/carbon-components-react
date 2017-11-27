@@ -118,7 +118,8 @@ export default class Tabs extends React.Component {
         <TabContent
           className="tab-content"
           hidden={!selected}
-          selected={selected}>
+          selected={selected}
+        >
           {children}
         </TabContent>
       );
@@ -134,11 +135,19 @@ export default class Tabs extends React.Component {
     return (
       <div>
         <nav {...other} className={classes.tabs} role={role}>
-          <div className="bx--tabs-trigger" onClick={this.handleDropdownClick}>
+          <div
+            role="listbox"
+            tabIndex={0}
+            className="bx--tabs-trigger"
+            onClick={this.handleDropdownClick}
+            onKeyPress={this.handleDropdownClick}
+          >
             <a
+              tabIndex={-1}
               className="bx--tabs-trigger-text"
               href={triggerHref}
-              onClick={this.handleDropdownClick}>
+              onClick={this.handleDropdownClick}
+            >
               {this.state.selectedLabel}
             </a>
             <Icon description={iconDescription} name="caret--down" />

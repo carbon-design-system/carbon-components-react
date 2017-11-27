@@ -71,18 +71,21 @@ export default class AccordionItem extends Component {
         className={classNames}
         onClick={this.handleClick}
         onKeyPress={this.handleKeyPress}
+        role="button"
         {...other}
-        tabIndex="0">
-        <div
+        tabIndex="0"
+      >
+        <button
           className="bx--accordion__heading"
-          onClick={this.handleHeadingClick}>
+          onClick={this.handleHeadingClick}
+        >
           <Icon
             className="bx--accordion__arrow"
             name="chevron--right"
             description="Expand/Collapse"
           />
           <p className="bx--accordion__title">{title}</p>
-        </div>
+        </button>
         <div className="bx--accordion__content">{children}</div>
       </li>
     );

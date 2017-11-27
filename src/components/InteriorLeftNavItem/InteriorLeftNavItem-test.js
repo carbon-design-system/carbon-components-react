@@ -8,7 +8,8 @@ describe('InteriorLeftNavItem', () => {
       <InteriorLeftNavItem
         className="extra-class"
         href="test-href"
-        activeHref="test-href">
+        activeHref="test-href"
+      >
         <a href="test-href">link</a>
       </InteriorLeftNavItem>
     );
@@ -67,8 +68,8 @@ describe('InteriorLeftNavItem', () => {
     const onClick = jest.fn();
 
     const wrapper = shallow(
-      <InteriorLeftNavItem onClick={onClick} href="#">
-        <a href="#">test-title</a>
+      <InteriorLeftNavItem onClick={onClick} href="">
+        <a href="">test-title</a>
       </InteriorLeftNavItem>
     );
 

@@ -120,7 +120,9 @@ export default class Dropdown extends PureComponent {
           onKeyPress={this.toggle}
           value={this.state.value}
           className={dropdownClasses}
-          tabIndex={tabIndex}>
+          tabIndex={tabIndex}
+          role="list"
+        >
           <li className="bx--dropdown-text">{this.state.selectedText}</li>
           <li>
             <Icon
