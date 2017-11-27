@@ -7,7 +7,7 @@
   "scripts": {
     "build": "node scripts/build.js",
     "build-storybook": "build-storybook",
-    "ci-check": "yarn lint && yarn test && yarn test-ssr",
+    "ci-check": "yarn lint && yarn test --runInBand && yarn test-ssr",
     "commit": "git cz",
     "commitmsg": "validate-commit-msg",
     "lint": "eslint src/**",
