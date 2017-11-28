@@ -33,5 +33,4 @@ deploy:
   organization: carbon-design-system
   space: production
   on:
-    branch: feat/continuous-delivery-storybook
-    # branch: master
+    branch: master
