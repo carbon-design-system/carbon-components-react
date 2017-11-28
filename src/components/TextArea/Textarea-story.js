@@ -1,13 +1,14 @@
 import React from 'react';
-import { action, storiesOf } from '@storybook/react';
+import { storiesOf } from '@storybook/react';
+import { action } from '@storybook/addon-actions';
 import Textarea from '../TextArea';
 
 const textareaProps = {
-  labelText: 'This is a Label',
+  labelText: 'Text Area label',
   className: 'some-class',
   onChange: action('onChange'),
   onClick: action('onClick'),
-  placeholder: 'Hint text here',
+  placeholder: 'Placeholder text.',
   id: 'test2',
   cols: 50,
   rows: 4,
@@ -21,9 +22,8 @@ storiesOf('TextArea', module)
       anticipate the user to input more than 1 sentence. The example belows shows an enabled
       Text Area component.
     `,
-    () => (
-      <Textarea {...textareaProps} />
-  ))
+    () => <Textarea {...textareaProps} />
+  )
   .addWithInfo(
     'disabled',
     `
@@ -31,6 +31,5 @@ storiesOf('TextArea', module)
       anticipate the user to input more than 1 sentence. The example belows shows an disabled
       Text Area component.
     `,
-    () => (
-      <Textarea disabled {...textareaProps} placeholder={'Disabled'} />
-  ));
+    () => <Textarea disabled {...textareaProps} placeholder={'Disabled'} />
+  );

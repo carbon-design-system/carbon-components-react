@@ -1,5 +1,6 @@
 import React from 'react';
-import { action, storiesOf } from '@storybook/react';
+import { storiesOf } from '@storybook/react';
+import { action } from '@storybook/addon-actions';
 import Breadcrumb from '../Breadcrumb';
 import BreadcrumbItem from '../BreadcrumbItem';
 import OverflowMenu from '../OverflowMenu';
@@ -26,11 +27,7 @@ const overflowMenuItemProps = {
 };
 
 storiesOf('DetailPageHeader', module)
-  .addDecorator(story => (
-    <div style={{ minWidth: '60em' }}>
-      {story()}
-    </div>
-  ))
+  .addDecorator(story => <div style={{ minWidth: '60em' }}>{story()}</div>)
   .addWithInfo('without tabs', () => (
     <DetailPageHeader {...detailPageHeaderProps}>
       <Icon name="watson" />

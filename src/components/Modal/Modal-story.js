@@ -1,5 +1,6 @@
 import React from 'react';
-import { storiesOf, action } from '@storybook/react';
+import { storiesOf } from '@storybook/react';
+import { action } from '@storybook/addon-actions';
 import Modal from '../Modal';
 
 const modalProps = {
@@ -20,13 +21,13 @@ storiesOf('Modal', module)
       <Modal
         {...modalProps}
         open
-        modalHeading="Modal Example"
-        modalLabel="Optional Label"
+        modalHeading="Modal heading"
+        modalLabel="Optional label"
         primaryButtonText="Primary Button"
-        secondaryButtonText="Secondary Button"
-      >
+        secondaryButtonText="Secondary Button">
         <p className="bx--modal-content__text">
-          Please see ModalWrapper for more examples and demo of the functionality.
+          Please see ModalWrapper for more examples and demo of the
+          functionality.
         </p>
       </Modal>
     )
@@ -41,13 +42,13 @@ storiesOf('Modal', module)
         {...modalProps}
         open
         passiveModal
-        modalHeading="Modal Example"
-        modalLabel="Optional Label"
+        modalHeading="Modal heading"
+        modalLabel="Optional label"
         primaryButtonText="Primary Button"
-        secondaryButtonText="Secondary Button"
-      >
+        secondaryButtonText="Secondary Button">
         <p className="bx--modal-content__text">
-          Please see ModalWrapper for more examples and demo of the functionality.
+          Please see ModalWrapper for more examples and demo of the
+          functionality.
         </p>
       </Modal>
     )

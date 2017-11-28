@@ -47,7 +47,7 @@ export default class InteriorLeftNav extends Component {
     this.props.children.forEach((child, index) => {
       if (child.type === InteriorLeftNavList) {
         const childId = `list-${index}`;
-        if (childId !== id) {
+        if (childId !== id && !child.props.isExpanded) {
           this.refs[childId].close();
         }
       }

@@ -1,5 +1,6 @@
 import React from 'react';
-import { storiesOf, action } from '@storybook/react';
+import { storiesOf } from '@storybook/react';
+import { action } from '@storybook/addon-actions';
 import OverflowMenu from '../OverflowMenu';
 import OverflowMenuItem from '../OverflowMenuItem';
 
@@ -22,16 +23,13 @@ storiesOf('OverflowMenu', module)
     `,
     () => (
       <OverflowMenu {...overflowMenuEvents}>
-        <OverflowMenuItem {...overflowMenuItemEvents} itemText="Stop App" />
-        <OverflowMenuItem {...overflowMenuItemEvents} itemText="Restart App" />
-        <OverflowMenuItem {...overflowMenuItemEvents} itemText="Rename App" />
+        <OverflowMenuItem {...overflowMenuItemEvents} itemText="Option 1" />
+        <OverflowMenuItem {...overflowMenuItemEvents} itemText="Option 2" />
+        <OverflowMenuItem {...overflowMenuItemEvents} itemText="Option 3" />
+        <OverflowMenuItem {...overflowMenuItemEvents} itemText="Option 4" />
         <OverflowMenuItem
           {...overflowMenuItemEvents}
-          itemText="Edit Routes and Access"
-        />
-        <OverflowMenuItem
-          {...overflowMenuItemEvents}
-          itemText="Delete App"
+          itemText="Danger option"
           hasDivider
           isDelete
         />
@@ -46,16 +44,13 @@ storiesOf('OverflowMenu', module)
     `,
     () => (
       <OverflowMenu {...overflowMenuEvents} floatingMenu>
-        <OverflowMenuItem {...overflowMenuItemEvents} itemText="Stop App" />
-        <OverflowMenuItem {...overflowMenuItemEvents} itemText="Restart App" />
-        <OverflowMenuItem {...overflowMenuItemEvents} itemText="Rename App" />
+        <OverflowMenuItem {...overflowMenuItemEvents} itemText="Option 1" />
+        <OverflowMenuItem {...overflowMenuItemEvents} itemText="Option 2" />
+        <OverflowMenuItem {...overflowMenuItemEvents} itemText="Option 3" />
+        <OverflowMenuItem {...overflowMenuItemEvents} itemText="Option 4" />
         <OverflowMenuItem
           {...overflowMenuItemEvents}
-          itemText="Edit Routes and Access"
-        />
-        <OverflowMenuItem
-          {...overflowMenuItemEvents}
-          itemText="Delete App"
+          itemText="Danger option"
           hasDivider
           isDelete
         />

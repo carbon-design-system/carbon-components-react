@@ -1,5 +1,6 @@
 import React from 'react';
-import { storiesOf, action } from '@storybook/react';
+import { storiesOf } from '@storybook/react';
+import { action } from '@storybook/addon-actions';
 import Slider from '../Slider';
 
 const mock = action('onChange');
@@ -12,7 +13,15 @@ storiesOf('Slider', module)
     `,
     () => (
       <div style={{ marginTop: '2rem' }}>
-        <Slider id="slider" value={50} min={0} max={100} step={1} labelText="Slider Label" onChange={mock} />
+        <Slider
+          id="slider"
+          value={50}
+          min={0}
+          max={100}
+          step={1}
+          labelText="Slider Label"
+          onChange={() => {}}
+        />
       </div>
     )
   )
@@ -23,7 +32,16 @@ storiesOf('Slider', module)
     `,
     () => (
       <div style={{ marginTop: '2rem' }}>
-        <Slider id="slider" value={50} min={0} max={100} step={1} labelText="Slider Label" hideTextInput={true} onChange={mock}/>
+        <Slider
+          id="slider"
+          value={50}
+          min={0}
+          max={100}
+          step={1}
+          labelText="Slider Label"
+          hideTextInput={true}
+          onChange={mock}
+        />
       </div>
     )
   )
@@ -34,7 +52,16 @@ storiesOf('Slider', module)
     `,
     () => (
       <div style={{ marginTop: '2rem' }}>
-        <Slider id="slider" value={50} min={0} max={100} step={1} labelText="Slider Label" onChange={mock} disabled/>
+        <Slider
+          id="slider"
+          value={50}
+          min={0}
+          max={100}
+          step={1}
+          labelText="Slider Label"
+          onChange={mock}
+          disabled
+        />
       </div>
     )
   );

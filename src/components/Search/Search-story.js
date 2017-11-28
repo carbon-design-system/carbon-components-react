@@ -1,11 +1,12 @@
 /* eslint-disable no-console */
 
 import React from 'react';
-import { storiesOf, action } from '@storybook/react';
+import { storiesOf } from '@storybook/react';
+import { action } from '@storybook/addon-actions';
 import Search from '../Search';
 
 const searchProps = {
-  className: 'some-class'
+  className: 'some-class',
 };
 
 storiesOf('Search', module)
@@ -16,18 +17,19 @@ storiesOf('Search', module)
       without the use of navigation. Search can be used as the primary means of discovering content,
       or as a filter to aid the user in finding content.
     `,
-    () =>
+    () => (
       <Search
         {...searchProps}
         className="some-class"
         id="search-1"
         labelText="Search"
-        placeHolderText="Search Bluemix Offerings"
+        placeHolderText="Search"
         onChange={() => {
           console.log('onChange');
           action('onChange');
         }}
       />
+    )
   )
   .addWithInfo(
     'small',
@@ -37,19 +39,20 @@ storiesOf('Search', module)
       or as a filter to aid the user in finding content. With the small property, the search field will be
       more compact.
     `,
-    () =>
+    () => (
       <Search
         {...searchProps}
         className="some-class"
         small
         id="search-2"
         labelText="Search"
-        placeHolderText="Search Bluemix Offerings"
+        placeHolderText="Search"
         onChange={() => {
           console.log('onChange');
           action('onChange');
         }}
       />
+    )
   )
   .addWithInfo(
     'Controlled',
@@ -59,7 +62,7 @@ storiesOf('Search', module)
     () => {
       class ControlledSearch extends React.Component {
         state = {
-          searchValue: ''
+          searchValue: '',
         };
 
         handleChange = evt => {
@@ -76,7 +79,7 @@ storiesOf('Search', module)
               labelText="Search"
               value={this.state.searchValue}
               onChange={this.handleChange}
-              placeHolderText="Search Bluemix Offerings"
+              placeHolderText="Search"
             />
           );
         }

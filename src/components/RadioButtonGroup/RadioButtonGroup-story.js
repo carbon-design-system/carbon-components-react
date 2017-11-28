@@ -1,5 +1,6 @@
 import React from 'react';
-import { action, storiesOf } from '@storybook/react';
+import { storiesOf } from '@storybook/react';
+import { action } from '@storybook/addon-actions';
 import RadioButtonGroup from '../RadioButtonGroup';
 import RadioButton from '../RadioButton';
 import FormGroup from '../FormGroup';
@@ -20,22 +21,21 @@ storiesOf('RadioButtonGroup', module).addWithInfo(
        at a later time. If you do need to set it dynamically at a later time, then use the valueSelected property instead.
     `,
   () => (
-    <FormGroup legendText="Radio Group">
+    <FormGroup legendText="Radio Button heading">
       <RadioButtonGroup
         onChange={action('onChange')}
         name="radio-button-group"
         defaultSelected="default-selected"
-        legend="Group Legend"
-      >
+        legend="Group Legend">
         <RadioButton
           value="standard"
           id="radio-1"
-          labelText="Standard Radio Button"
+          labelText="Standard Radio Button label"
           {...radioProps}
         />
         <RadioButton
           value="default-selected"
-          labelText="Default Selected Radio Button"
+          labelText="Default selected Radio Button"
           id="radio-2"
           {...radioProps}
         />

@@ -1,5 +1,6 @@
 import React from 'react';
-import { storiesOf, action } from '@storybook/react';
+import { storiesOf } from '@storybook/react';
+import { action } from '@storybook/addon-actions';
 import Footer from '../Footer';
 
 const additionalProps = {
@@ -20,16 +21,12 @@ storiesOf('Footer', module)
     `
       Footer is used on configuration screens.
     `,
-    () => <Footer {...additionalProps} />,
+    () => <Footer {...additionalProps} />
   )
   .addWithInfo(
     'Custom',
     `
       This footer allows custom elements to be placed inside.
     `,
-    () => (
-      <Footer className="some-class">
-        This is a test Footer.
-      </Footer>
-    ),
+    () => <Footer className="some-class">This is a test Footer.</Footer>
   );

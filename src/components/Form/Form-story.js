@@ -1,5 +1,6 @@
 import React from 'react';
-import { action, storiesOf } from '@storybook/react';
+import { storiesOf } from '@storybook/react';
+import { action } from '@storybook/addon-actions';
 import Checkbox from '../Checkbox';
 import Form from '../Form';
 import FormGroup from '../FormGroup';
@@ -17,21 +18,25 @@ import Toggle from '../Toggle';
 
 const additionalProps = {
   className: 'some-class',
+  onSubmit: (e) => {
+    e.preventDefault()
+    action('FormSubmitted')(e)
+  }
 };
 
 const checkboxEvents = {
   className: 'some-class',
-  labelText: 'Checkbox',
+  labelText: 'Checkbox label',
 };
 
 const fieldsetCheckboxProps = {
   className: 'some-class',
-  legendText: 'Checkbox',
+  legendText: 'Checkbox heading',
 };
 
 const numberInputProps = {
   className: 'some-class',
-  id: 'tj-input',
+  id: 'number-input-1',
   label: 'Number Input',
   min: 0,
   max: 100,
@@ -45,7 +50,7 @@ const toggleProps = {
 
 const fieldsetToggleProps = {
   className: 'some-class',
-  legendText: 'Toggle',
+  legendText: 'Toggle heading',
 };
 
 const fileUploaderEvents = {
@@ -63,7 +68,7 @@ const radioProps = {
 
 const fieldsetRadioProps = {
   className: 'some-class',
-  legendText: 'Radio Button',
+  legendText: 'Radio Button heading',
 };
 
 const searchProps = {
@@ -82,30 +87,29 @@ const selectProps = {
 const TextInputProps = {
   className: 'some-class',
   id: 'test2',
-  labelText: 'Text Input',
-  placeholder: 'Hint text here',
+  labelText: 'Text Input label',
+  placeholder: 'Placeholder text',
 };
 
 const PasswordProps = {
   className: 'some-class',
   id: 'test2',
   labelText: 'Password',
-  placeholder: 'Password',
 };
 
 const InvalidPasswordProps = {
   className: 'some-class',
   id: 'test2',
-  labelText: 'Password (invalid)',
-  placeholder: 'Password',
+  labelText: 'Password',
   invalid: true,
-  invalidText: 'Your password must be at least 6 characters as well as contain at least one uppercase, one lowercase, and one number.',
+  invalidText:
+    'Your password must be at least 6 characters as well as contain at least one uppercase, one lowercase, and one number.',
 };
 
 const textareaProps = {
-  labelText: 'Text Area',
+  labelText: 'Text Area label',
   className: 'some-class',
-  placeholder: 'Hint text here',
+  placeholder: 'Placeholder text',
   id: 'test2',
   cols: 50,
   rows: 4,
@@ -151,8 +155,7 @@ storiesOf('Form', module).addWithInfo(
         <RadioButtonGroup
           onChange={action('onChange')}
           name="radio-button-group"
-          defaultSelected="default-selected"
-        >
+          defaultSelected="default-selected">
           <RadioButton
             value="standard"
             id="radio-1"
@@ -180,7 +183,7 @@ storiesOf('Form', module).addWithInfo(
           {...searchProps}
           id="search-1"
           labelText="Search"
-          placeHolderText="Search Bluemix Offerings"
+          placeHolderText="Search"
         />
       </FormGroup>
 
@@ -189,7 +192,7 @@ storiesOf('Form', module).addWithInfo(
           disabled
           hidden
           value="placeholder-item"
-          text="Pick an option"
+          text="Choose an option"
         />
         <SelectItem value="option-1" text="Option 1" />
         <SelectItem value="option-2" text="Option 2" />
