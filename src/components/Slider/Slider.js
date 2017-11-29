@@ -241,8 +241,7 @@ export default class Slider extends PureComponent {
               this.element = node;
             }}
             onClick={this.updatePosition}
-            {...other}
-          >
+            {...other}>
             <div
               className="bx--slider__track"
               ref={node => {
