@@ -40,8 +40,8 @@ FormGroup.propTypes = {
 FormGroup.defaultProps = {
   invalid: false,
   message: false,
-  messageText: 'Provide message text',
-  legendText: 'Provide legend text',
+  messageText: '',
+  legendText: '',
 };
 
 export default FormGroup;

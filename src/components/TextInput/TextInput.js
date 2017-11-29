@@ -90,7 +90,7 @@ TextInput.defaultProps = {
   onClick: () => {},
   invalid: false,
   labelText: '',
-  invalidText: 'Provide invalidText',
+  invalidText: '',
 };
 
 export default TextInput;

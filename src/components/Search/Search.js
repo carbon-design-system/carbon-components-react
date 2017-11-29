@@ -21,7 +21,7 @@ export default class Search extends Component {
     small: false,
     placeHolderText: '',
     onChange: () => {},
-    labelText: 'Provide labelText',
+    labelText: '',
   };
 
   state = {

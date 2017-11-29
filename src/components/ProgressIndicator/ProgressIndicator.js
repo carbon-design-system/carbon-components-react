@@ -61,7 +61,7 @@ ProgressStep.propTypes = {
 };
 
 ProgressStep.defaultProps = {
-  label: 'Provide label',
+  label: '',
 };
 
 export class ProgressIndicator extends Component {

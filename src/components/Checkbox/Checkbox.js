@@ -56,7 +56,7 @@ Checkbox.propTypes = {
 
 Checkbox.defaultProps = {
   onChange: () => {},
-  labelText: 'Provide checkbox label text',
+  labelText: '',
   iconDescription: 'Provide icon description for a11y',
 };
 
