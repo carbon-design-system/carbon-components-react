@@ -5,7 +5,12 @@ import classnames from 'classnames';
 const Accordion = ({ children, className, ...other }) => {
   const classNames = classnames('bx--accordion', className);
   return (
-    <ul className={classNames} {...other}>
+    <ul
+      className={classNames}
+      role="tablist"
+      aria-multiselectable="true"
+      {...other}
+    >
       {children}
     </ul>
   );

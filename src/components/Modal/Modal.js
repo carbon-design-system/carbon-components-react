@@ -128,7 +128,7 @@ export default class Modal extends Component {
         onKeyDown={this.handleKeyDown}
         onClick={this.handleClick}
         className={modalClasses}
-        role="dialog"
+        role="presentation"
         tabIndex={-1}
       >
         {modalBody}

@@ -49,7 +49,6 @@ export default class Tab extends React.Component {
       href,
       index,
       label,
-      role,
       selected,
       tabIndex,
       onClick,
@@ -77,7 +76,7 @@ export default class Tab extends React.Component {
           handleTabKeyDown(index, label, evt);
           onKeyDown(evt);
         }}
-        role={role}
+        role="presentation"
         selected={selected}
       >
         <a

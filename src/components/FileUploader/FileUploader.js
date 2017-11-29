@@ -72,18 +72,21 @@ export class FileUploaderButton extends Component {
 
     return (
       <div
+        role="button"
         className={classes}
         tabIndex={tabIndex}
         onKeyDown={evt => {
           if (evt.which === 13 || evt.which === 32) {
             this.input.click();
           }
-        }}>
+        }}
+      >
         <label
           className={`bx--btn bx--btn--${buttonKind}`}
           htmlFor={this.uid}
           role={role}
-          {...other}>
+          {...other}
+        >
           {this.state.labelText}
         </label>
         <input
@@ -122,7 +125,8 @@ export class Filename extends Component {
         <div
           className="bx--loading"
           style={Object.assign(style, { width: '1rem', height: '1rem' })}
-          {...other}>
+          {...other}
+        >
           <svg className="bx--loading__svg" viewBox="-42 -42 84 84">
             <circle cx="0" cy="0" r="37.5" />
           </svg>
@@ -241,7 +245,8 @@ export default class FileUploader extends Component {
                   key={index}
                   className="bx--file__selected-file"
                   ref={node => (this.nodes[index] = node)} // eslint-disable-line
-                  {...other}>
+                  {...other}
+                >
                   <p className="bx--file-filename">{name}</p>
                   <span className="bx--file__state-container">
                     <Filename

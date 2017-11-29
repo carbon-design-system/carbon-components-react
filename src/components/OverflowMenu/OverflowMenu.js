@@ -140,12 +140,14 @@ export default class OverflowMenu extends Component {
       <ClickListener onClickOutside={this.handleClickOutside}>
         <div
           {...other}
+          role="button"
           className={overflowMenuClasses}
           onKeyDown={this.handleKeyPress}
           aria-label={ariaLabel}
           id={id}
           tabIndex={tabIndex}
-          ref={this.bindMenuEl}>
+          ref={this.bindMenuEl}
+        >
           <Icon
             onClick={this.handleClick}
             className={overflowMenuIconClasses}
@@ -157,7 +159,8 @@ export default class OverflowMenu extends Component {
             <FloatingMenu
               menuPosition={this.state.menuPosition}
               menuDirection="bottom"
-              menuOffset={flipped ? menuOffsetFlip : menuOffset}>
+              menuOffset={flipped ? menuOffsetFlip : menuOffset}
+            >
               <ul className={overflowMenuOptionsClasses}>
                 {childrenWithProps}
               </ul>

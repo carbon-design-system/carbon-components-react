@@ -81,7 +81,8 @@ export class ClickableTile extends Component {
         className={classes}
         {...other}
         onClick={this.handleClick}
-        onKeyDown={this.handleKeyDown}>
+        onKeyDown={this.handleKeyDown}
+      >
         {children}
       </a>
     );
@@ -161,7 +162,9 @@ export class SelectableTile extends Component {
         tabIndex={tabIndex}
         {...other}
         onClick={this.handleClick}
-        onKeyDown={this.handleKeyDown}>
+        onKeyDown={this.handleKeyDown}
+        role="presentation"
+      >
         <input
           ref={input => {
             this.input = input;
@@ -276,7 +279,8 @@ export class ExpandableTile extends Component {
         {...other}
         role="button"
         onClick={this.handleClick}
-        tabIndex={tabIndex}>
+        tabIndex={tabIndex}
+      >
         <button className="bx--tile__chevron">
           <Icon name="chevron--down" description="Tile chevron" />
         </button>
@@ -284,7 +288,8 @@ export class ExpandableTile extends Component {
           ref={tileContent => {
             this.tileContent = tileContent;
           }}
-          className="bx--tile-content">
+          className="bx--tile-content"
+        >
           {content}
         </div>
       </div>

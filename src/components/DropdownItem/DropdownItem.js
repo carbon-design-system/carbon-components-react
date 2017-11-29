@@ -39,8 +39,8 @@ const DropdownItem = ({
       className={dropdownItemClasses}
       onClick={handleClick}
       onKeyPress={handleKeypress}
-      role="listitem"
       tabIndex={-1}
+      role="menuitem"
     >
       <a
         href={href}

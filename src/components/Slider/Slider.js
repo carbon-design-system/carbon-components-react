@@ -242,11 +242,8 @@ export default class Slider extends PureComponent {
             }}
             onClick={this.updatePosition}
             onKeyPress={this.updatePosition}
-            role="slider"
+            role="presentation"
             tabIndex={-1}
-            aria-valuemax={max}
-            aria-valuemin={min}
-            aria-valuenow={value}
             {...other}
           >
             <div
@@ -261,7 +258,11 @@ export default class Slider extends PureComponent {
             />
             <div
               className="bx--slider__thumb"
+              role="slider"
               tabIndex={0}
+              aria-valuemax={max}
+              aria-valuemin={min}
+              aria-valuenow={value}
               style={thumbStyle}
               onMouseDown={this.handleMouseStart}
               onTouchStart={this.handleTouchStart}

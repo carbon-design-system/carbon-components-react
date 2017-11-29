@@ -81,11 +81,13 @@ export default class Tooltip extends Component {
               onMouseOver={() => this.handleMouse('over')}
               onMouseOut={() => this.handleMouse('out')}
               onFocus={() => this.handleMouse('over')}
-              onBlur={() => this.handleMouse('out')}>
+              onBlur={() => this.handleMouse('out')}
+            >
               <Icon
+                role="button"
+                tabIndex="0"
                 name={iconName}
                 description={iconDescription}
-                tabIndex="0"
               />
             </div>
           </div>
@@ -98,18 +100,21 @@ export default class Tooltip extends Component {
             onMouseOver={() => this.handleMouse('over')}
             onMouseOut={() => this.handleMouse('out')}
             onFocus={() => this.handleMouse('over')}
-            onBlur={() => this.handleMouse('out')}>
+            onBlur={() => this.handleMouse('out')}
+          >
             {triggerText}
           </div>
         )}
         <FloatingMenu
           menuPosition={this.state.triggerPosition}
           menuDirection={direction}
-          menuOffset={menuOffset}>
+          menuOffset={menuOffset}
+        >
           <div
             className={tooltipClasses}
             {...other}
-            data-floating-menu-direction={direction}>
+            data-floating-menu-direction={direction}
+          >
             {children}
           </div>
         </FloatingMenu>
