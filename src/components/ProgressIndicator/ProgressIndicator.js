@@ -52,7 +52,7 @@ export const ProgressStep = ({ ...props }) => {
 };
 
 ProgressStep.propTypes = {
-  label: PropTypes.string,
+  label: PropTypes.string.isRequired,
   className: PropTypes.string,
   current: PropTypes.bool,
   complete: PropTypes.bool,

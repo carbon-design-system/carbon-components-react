@@ -49,9 +49,9 @@ Checkbox.propTypes = {
   className: PropTypes.string,
   disabled: PropTypes.bool,
   id: PropTypes.string.isRequired,
-  labelText: PropTypes.node,
+  labelText: PropTypes.node.isRequired,
   onChange: PropTypes.func,
-  iconDescription: PropTypes.string,
+  iconDescription: PropTypes.string.isRequired,
 };
 
 Checkbox.defaultProps = {

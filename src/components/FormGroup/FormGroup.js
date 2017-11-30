@@ -30,7 +30,7 @@ const FormGroup = ({
 
 FormGroup.propTypes = {
   children: PropTypes.node,
-  legendText: PropTypes.string,
+  legendText: PropTypes.string.isRequired,
   className: PropTypes.string,
   invalid: PropTypes.bool,
   message: PropTypes.bool,
