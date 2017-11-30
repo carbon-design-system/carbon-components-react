@@ -1,6 +1,6 @@
 import React from 'react';
 import Checkbox from '../Checkbox';
-import { mount } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 
 describe('Checkbox', () => {
   describe('Renders as expected', () => {
@@ -102,6 +102,20 @@ describe('Checkbox', () => {
       expect(call[0]).toEqual(true);
       expect(call[1]).toEqual(id);
       expect(call[2].target).toBe(inputElement);
+    });
+  });
+
+  describe('Uses default props', () => {
+    const wrapper = shallow(
+      <Checkbox id="test" />
+    );
+
+    it('should not have a label attached', () => {
+      expect(wrapper.find('.bx--checkbox-label-text').length).toBe(0);
+    });
+
+    it('uses default icon description', () => {
+      expect(wrapper.find('.bx--checkbox-checkmark').props().description).toBe('Provide icon description for a11y');
     });
   });
 });

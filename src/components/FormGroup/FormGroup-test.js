@@ -43,5 +43,11 @@ describe('FormGroup', () => {
       );
       expect(formGroup1.find('.test-child').length).toBe(2);
     });
+    it('should not attach a message', () => {
+      expect(wrapper.find('.bx--form__requirements').length).toBe(0);
+    });
+    it('should not attach a label', () => {
+      expect(wrapper.find('label').length).toBe(0);
+    });
   });
 });

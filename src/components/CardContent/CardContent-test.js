@@ -94,4 +94,24 @@ describe('CardContent', () => {
       });
     });
   });
+
+  describe('Uses default props', () => {
+    const wrapper = shallow(
+      <CardContent>
+        <div className="child">Test</div>
+      </CardContent>
+    );
+
+    it('should not have a title attached', () => {
+      expect(wrapper.find('#card-app-title').length).toBe(0);
+    });
+
+    it('uses default card icon title', () => {
+      expect(wrapper.find('.bx--about__icon--img').props().name).toBe('app-services');
+    });
+
+    it('uses default card icon description', () => {
+      expect(wrapper.find('.bx--about__icon--img').props().description).toBe('card icon');
+    });
+  });
 });

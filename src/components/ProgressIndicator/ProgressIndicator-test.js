@@ -26,10 +26,7 @@ describe('ProgressIndicator', () => {
           label="label"
           description="Step 5: Getting Started with Node.js"
         />
-        <ProgressStep
-          label="label"
-          description="Step 6: Getting Started with Node.js"
-        />
+        <ProgressStep description="Step 6: Getting Started with Node.js" />
       </ProgressIndicator>
     );
     const list = shallow(progress);
@@ -75,6 +72,10 @@ describe('ProgressIndicator', () => {
             .prop('label')
         ).toEqual('label');
       });
+
+      it('should use default blank label', () => {
+        expect(mountedList.find(ProgressStep).at(5).props().label).toBe('');
+      })
 
       it('should render with a description', () => {
         expect(

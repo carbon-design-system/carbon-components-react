@@ -46,7 +46,9 @@ export const ProgressStep = ({ ...props }) => {
         <title>{description}</title>
         {currentSvg || completeSvg || incompleteSvg}
       </svg>
-      <p className="bx--progress-label">{label}</p>
+      {label && (
+        <p className="bx--progress-label">{label}</p>
+      )}
       <span className="bx--progress-line" />
     </li>
   );
@@ -61,7 +63,7 @@ ProgressStep.propTypes = {
 };
 
 ProgressStep.defaultProps = {
-  label: 'Provide label',
+  label: '',
 };
 
 export class ProgressIndicator extends Component {

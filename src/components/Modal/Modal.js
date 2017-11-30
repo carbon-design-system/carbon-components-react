@@ -30,8 +30,8 @@ export default class Modal extends Component {
     onKeyDown: () => {},
     passiveModal: false,
     iconDescription: 'close the modal',
-    modalHeading: 'Provide a heading',
-    modalLabel: 'Provide a label',
+    modalHeading: '',
+    modalLabel: '',
   };
 
   handleKeyDown = evt => {
@@ -97,7 +97,11 @@ export default class Modal extends Component {
           {modalLabel && (
             <h4 className="bx--modal-header__label">{modalLabel}</h4>
           )}
-          <h2 className="bx--modal-header__heading">{modalHeading}</h2>
+          {modalHeading && (
+            <h2 className="bx--modal-header__heading">
+              {modalHeading}
+            </h2>
+          )}
           {!passiveModal && modalButton}
         </div>
         <div className="bx--modal-content">{this.props.children}</div>

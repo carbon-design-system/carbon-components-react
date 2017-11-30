@@ -49,9 +49,11 @@ const CardContent = ({
           />
         </div>
         <div className="bx--about__title">
-          <p id="card-app-title" className="bx--about__title--name">
+          {cardTitle && (
+            <p id="card-app-title" className="bx--about__title--name">
             {cardTitle}
           </p>
+          )}
           {cardLinkContentArray.map((info, key) => cardLinkContent[key])}
           {cardInfoContentArray.map((info, key) => cardInfoContent[key])}
         </div>
@@ -73,7 +75,7 @@ CardContent.propTypes = {
 CardContent.defaultProps = {
   iconDescription: 'card icon',
   cardIcon: 'app-services',
-  cardTitle: 'card title',
+  cardTitle: '',
 };
 
 export default CardContent;

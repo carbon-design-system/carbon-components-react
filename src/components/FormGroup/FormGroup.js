@@ -19,9 +19,11 @@ const FormGroup = ({
       {...invalid && { 'data-invalid': '' }}
       className={classNamesFieldset}
       {...other}>
-      <legend className={classNamesLegend}>{legendText}</legend>
+      {legendText && (
+        <legend className={classNamesLegend}>{legendText}</legend>
+      )}
       {children}
-      {message ? (
+      {message && messageText ? (
         <div className="bx--form__requirements">{messageText}</div>
       ) : null}
     </fieldset>

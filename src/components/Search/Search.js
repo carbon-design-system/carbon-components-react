@@ -21,7 +21,7 @@ export default class Search extends Component {
     small: false,
     placeHolderText: '',
     onChange: () => {},
-    labelText: 'Provide labelText',
+    labelText: '',
   };
 
   state = {
@@ -146,9 +146,11 @@ export default class Search extends Component {
           description="search"
           className="bx--search-magnifier"
         />
-        <label htmlFor={id} className="bx--label">
-          {labelText}
-        </label>
+        {this.props.label && (
+          <label htmlFor={id} className="bx--label">
+            {labelText}
+          </label>
+        )}
         <input
           {...other}
           type={type}

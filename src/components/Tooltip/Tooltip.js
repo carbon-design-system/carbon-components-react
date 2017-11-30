@@ -22,7 +22,7 @@ export default class Tooltip extends Component {
     showIcon: true,
     iconName: 'info--glyph',
     iconDescription: 'tooltip',
-    triggerText: 'Provide triggerText',
+    triggerText: '',
   };
 
   state = {

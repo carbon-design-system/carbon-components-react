@@ -61,6 +61,14 @@ describe('Modal', () => {
         .at(1);
       expect(primaryButton.props().disabled).toEqual(true);
     });
+
+    it('does not have a heading attached', () => {
+      expect(wrapper.find('.bx--modal-header__heading').length).toBe(0);
+    });
+
+    it('does not have label attached', () => {
+      expect(wrapper.find('.bx--modal-header__label').length).toBe(0);
+    })
   });
 
   describe('Adds props as expected to the right children', () => {
