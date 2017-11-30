@@ -40,7 +40,6 @@ describe('TextArea', () => {
       });
 
       it('should set placeholder as expected', () => {
-        expect(textarea().props().placeholder).toEqual('Hint text here');
         wrapper.setProps({ placeholder: 'Type here' });
         expect(textarea().props().placeholder).toEqual('Type here');
       });

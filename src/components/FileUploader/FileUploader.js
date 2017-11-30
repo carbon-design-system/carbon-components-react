@@ -22,7 +22,7 @@ export class FileUploaderButton extends Component {
   static defaultProps = {
     tabIndex: 0,
     disableLabelChanges: false,
-    labelText: '',
+    labelText: 'Add file',
     buttonKind: 'primary',
     multiple: false,
     onChange: () => {},
