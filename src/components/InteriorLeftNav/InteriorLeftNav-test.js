@@ -27,10 +27,10 @@ describe('InteriorLeftNav', () => {
         <InteriorLeftNav>
           <InteriorLeftNavList className="test-child" />
           <InteriorLeftNavItem
-            href="#"
+            href=""
             title="test-title"
             className="test-child">
-            <a href="#">test-title</a>
+            <a href="">test-title</a>
           </InteriorLeftNavItem>
         </InteriorLeftNav>
       );
