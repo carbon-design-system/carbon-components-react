@@ -22,8 +22,7 @@ storiesOf('Dropdown', module)
       <Dropdown
         {...dropdownEvents}
         onChange={action('onChange')}
-        defaultText="Dropdown label"
-      >
+        defaultText="Dropdown label">
         <DropdownItem itemText="Option 1" value="option1" />
         <DropdownItem itemText="Option 2" value="option2" />
         <DropdownItem itemText="Option 3" value="option3" />
@@ -43,8 +42,7 @@ storiesOf('Dropdown', module)
         {...dropdownEvents}
         onChange={selectedItemInfo => console.log(selectedItemInfo)}
         defaultText="Option 1"
-        value="all"
-      >
+        value="all">
         <DropdownItem itemText="Option 1" value="option1" />
         <DropdownItem itemText="Option 2" value="option2" />
         <DropdownItem itemText="Option 3" value="option3" />
@@ -64,8 +62,7 @@ storiesOf('Dropdown', module)
         {...dropdownEvents}
         onChange={selectedItemInfo => console.log(selectedItemInfo)}
         defaultText="Dropdown label"
-        disabled
-      >
+        disabled>
         <DropdownItem itemText="Option 1" value="option1" />
         <DropdownItem itemText="Option 2" value="option2" />
         <DropdownItem itemText="Option 3" value="option3" />
@@ -86,8 +83,7 @@ storiesOf('Dropdown', module)
         onChange={selectedItemInfo => console.log(selectedItemInfo)}
         defaultText="Dropdown label"
         value="all"
-        selectedText="Option 4"
-      >
+        selectedText="Option 4">
         <DropdownItem itemText="Option 1" value="option1" />
         <DropdownItem itemText="Option 2" value="option2" />
         <DropdownItem itemText="Option 3" value="option3" />

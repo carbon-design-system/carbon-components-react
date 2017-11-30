@@ -83,8 +83,7 @@ export default class ModalWrapper extends React.Component {
             this.handleClose();
             this.props.onKeyDown(evt);
           }
-        }}
-      >
+        }}>
         <Button kind={triggerButtonkind} onClick={this.handleOpen}>
           {buttonTriggerText}
         </Button>

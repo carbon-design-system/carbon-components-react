@@ -83,8 +83,7 @@ export default class ComposedModal extends Component {
         ref={modal => (this.modal = modal)}
         onKeyDown={this.handleKeyDown}
         className={modalClass}
-        {...other}
-      >
+        {...other}>
         <div className={containerClass}>{childrenWithProps}</div>
       </div>
     );
@@ -168,8 +167,7 @@ export class ModalHeader extends Component {
         <button
           onClick={this.handleCloseButtonClick}
           className={closeClass}
-          type="button"
-        >
+          type="button">
           <Icon
             name="close"
             className={closeIconClass}
@@ -260,8 +258,7 @@ export class ModalFooter extends Component {
           <Button
             className={secondaryClass}
             onClick={this.handleRequestClose}
-            kind="secondary"
-          >
+            kind="secondary">
             {secondaryButtonText}
           </Button>
         )}
@@ -271,8 +268,7 @@ export class ModalFooter extends Component {
             onClick={this.onRequestSubmit}
             className={primaryClass}
             disabled={primaryButtonDisabled}
-            kind="primary"
-          >
+            kind="primary">
             {primaryButtonText}
           </Button>
         )}

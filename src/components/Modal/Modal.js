@@ -77,8 +77,7 @@ export default class Modal extends Component {
       <button
         className="bx--modal-close"
         type="button"
-        onClick={onRequestClose}
-      >
+        onClick={onRequestClose}>
         <Icon
           name="close"
           className="bx--modal-close__icon"
@@ -92,8 +91,7 @@ export default class Modal extends Component {
         ref={modal => {
           this.innerModal = modal;
         }}
-        className="bx--modal-container"
-      >
+        className="bx--modal-container">
         <div className="bx--modal-header">
           {passiveModal && modalButton}
           {modalLabel && (
@@ -112,8 +110,7 @@ export default class Modal extends Component {
               <Button
                 kind="primary"
                 disabled={primaryButtonDisabled}
-                onClick={onRequestSubmit}
-              >
+                onClick={onRequestSubmit}>
                 {primaryButtonText}
               </Button>
             </div>
@@ -129,8 +126,7 @@ export default class Modal extends Component {
         onClick={this.handleClick}
         className={modalClasses}
         role="presentation"
-        tabIndex={-1}
-      >
+        tabIndex={-1}>
         {modalBody}
       </div>
     );

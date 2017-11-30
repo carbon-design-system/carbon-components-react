@@ -131,8 +131,7 @@ export class StructuredListRow extends Component {
         className={classes}
         htmlFor={htmlFor}
         onKeyDown={onKeyDown}
-        role="presentation"
-      >
+        role="presentation">
         {children}
       </label>
     ) : (

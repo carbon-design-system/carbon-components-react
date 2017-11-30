@@ -40,13 +40,11 @@ const DropdownItem = ({
       onClick={handleClick}
       onKeyPress={handleKeypress}
       tabIndex={-1}
-      role="menuitem"
-    >
+      role="menuitem">
       <a
         href={href}
         onClick={/* istanbul ignore next */ evt => evt.preventDefault()}
-        className="bx--dropdown-link"
-      >
+        className="bx--dropdown-link">
         {itemText}
       </a>
     </li>

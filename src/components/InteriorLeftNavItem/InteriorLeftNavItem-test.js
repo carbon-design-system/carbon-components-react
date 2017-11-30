@@ -8,8 +8,7 @@ describe('InteriorLeftNavItem', () => {
       <InteriorLeftNavItem
         className="extra-class"
         href="test-href"
-        activeHref="test-href"
-      >
+        activeHref="test-href">
         <a href="test-href">link</a>
       </InteriorLeftNavItem>
     );

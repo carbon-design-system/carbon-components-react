@@ -121,8 +121,7 @@ export default class Dropdown extends PureComponent {
           value={this.state.value}
           className={dropdownClasses}
           tabIndex={tabIndex}
-          role="presentation"
-        >
+          role="presentation">
           <li className="bx--dropdown-text">{this.state.selectedText}</li>
           <li>
             <Icon

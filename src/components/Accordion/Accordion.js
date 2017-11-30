@@ -9,8 +9,7 @@ const Accordion = ({ children, className, ...other }) => {
       className={classNames}
       role="tablist"
       aria-multiselectable="true"
-      {...other}
-    >
+      {...other}>
       {children}
     </ul>
   );

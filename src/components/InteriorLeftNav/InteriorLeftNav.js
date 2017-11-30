@@ -128,16 +128,14 @@ export default class InteriorLeftNav extends Component {
         className={classNames}
         onClick={!this.state.open ? this.toggle : () => {}}
         onKeyPress={!this.state.open ? this.toggle : () => {}}
-        {...other}
-      >
+        {...other}>
         <ul key="main_list" className="left-nav-list" role="menubar">
           {newChildren}
         </ul>
         <button
           className="bx--interior-left-nav-collapse"
           onClick={this.toggle}
-          style={buttonStyles}
-        >
+          style={buttonStyles}>
           <a className="bx--interior-left-nav-collapse__link">
             <Icon
               name="chevron--left"

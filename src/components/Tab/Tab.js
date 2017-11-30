@@ -77,15 +77,13 @@ export default class Tab extends React.Component {
           onKeyDown(evt);
         }}
         role="presentation"
-        selected={selected}
-      >
+        selected={selected}>
         <a
           className="bx--tabs__nav-link"
           href={href}
           role="tab"
           tabIndex={tabIndex}
-          ref="tabAnchor"
-        >
+          ref="tabAnchor">
           {label}
         </a>
       </li>

@@ -29,8 +29,7 @@ describe('InteriorLeftNav', () => {
           <InteriorLeftNavItem
             href=""
             title="test-title"
-            className="test-child"
-          >
+            className="test-child">
             <a href="">test-title</a>
           </InteriorLeftNavItem>
         </InteriorLeftNav>

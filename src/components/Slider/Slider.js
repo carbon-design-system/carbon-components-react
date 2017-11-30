@@ -244,8 +244,7 @@ export default class Slider extends PureComponent {
             onKeyPress={this.updatePosition}
             role="presentation"
             tabIndex={-1}
-            {...other}
-          >
+            {...other}>
             <div
               className="bx--slider__track"
               ref={node => {
