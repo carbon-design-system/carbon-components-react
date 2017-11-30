@@ -1,25 +1,22 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { Component } from 'react';
 import classNames from 'classnames';
 
-const DataTable = props => {
-  const { children, className, ...other } = props;
-
-  const tableClasses = classNames(className, 'bx--data-table-v2');
-
-  return (
-    <table
-      {...other}
-      className={tableClasses}
-    >
-    {children}
-    </table>
-  )
+export default class DataTable extends Component {
+  render() {
+    const {
+      className,
+      children,
+      ...other
+    } = this.props;
+    const tableClasses = classNames(className, 'bx--data-table-v2');
+    return (
+      <table
+        {...other}
+        className={tableClasses}
+      >
+      {children}
+      </table>
+    )
+  }
 }
-
-DataTable.propTypes = {
-  children: PropTypes.node,
-  className: PropTypes.string,
-}
-
-export default DataTable;

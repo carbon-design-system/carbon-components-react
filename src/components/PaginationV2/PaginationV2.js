@@ -191,9 +191,6 @@ export default class PaginationV2 extends Component {
             inline
             onChange={this.handlePageChange}
             value={statePage}>
-            {for (let i = 0; i < itemsPerPage; i++) {
-              return <SelectItem key={size} value={currentPage} text={String(currentPage)} />
-            }}
             </Select>
           )}
           <button

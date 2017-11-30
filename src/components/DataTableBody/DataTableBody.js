@@ -1,19 +1,14 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { Component } from 'react';
 
-const DataTableBody = props => {
-  const { className, children, ...other } = props;
+export default class DataTableBody extends Component {
 
-  return (
-    <tbody {...other} className={className}>
-      {children}
-    </tbody>
-  )
+  render() {
+    const { className, children, ...other } = this.props;
+    return (
+      <tbody {...other} className={className}>
+        {children}
+      </tbody>
+    )
+  }
 }
-
-DataTableBody.propTypes = {
-  children: PropTypes.node,
-  className: PropTypes.string,
-}
-
-export default DataTableBody;

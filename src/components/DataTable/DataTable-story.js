@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { storiesOf } from '@storybook/react';
 import DataTableContainer from '../DataTableContainer';
 import DataTable from './DataTable';
@@ -20,20 +20,63 @@ import DataTableExpandableRow from '../DataTableExpandableRow';
 import DataTableRowExpand from '../DataTableRowExpand';
 import DataTableExpandableRowContent from '../DataTableExpandableRowContent';
 
-storiesOf('DataTable', module)
-  .addWithInfo(
-    'Data Table',
-    `
-      Data table
-    `,
-    () => (
+class BasicDataTable extends Component {
+  state = {
+    selectAll: false,
+    selectedRow: false
+  }
+
+  componentWillMount = () => {
+    this.selectedRows = new Set();
+  }
+
+  selectAll = () => {
+    this.setState({
+      selectAll: !this.state.selectAll,
+    })
+    if (this.state.selectAll) {
+      this.tableContainer.props.children.forEach(child => {
+        this.selectedRows.clear();
+        this.selectedRows.add(child);
+      })
+    }
+  }
+
+  selectRow = (label) => {
+    if (this.selectedRows.has(label)) {
+      this.selectedRows.delete(label);
+    } else {
+      this.selectedRows.add(label);
+    }
+    if (this.selectedRows.size > 0) {
+      this.setState({
+        selectedRow: true
+      });
+    } else {
+      this.setState({
+        selectedRow: false
+      })
+    }
+  }
+
+  handleSelectRow = (allSelected, individualSelected, selectedRow, checked) => {
+    console.log(allSelected);
+    console.log(individualSelected);
+    console.log(selectedRow);
+    console.log(checked);
+  }
+
+  render() {
+    const showBatchActions = this.state.selectAll || this.state.selectedRow;
+    // TODO: Figure out how to tell if a checkbox is checked
+    return (
       <DataTableContainer>
         <DataTableToolbar>
-          <DataTableBatchActions>
+          <DataTableBatchActions totalSelected={this.selectedRows.size} showBatchActions={showBatchActions}>
             <DataTableActionList>
-              <DataTableBatchAction />
-              <DataTableBatchAction />
-              <DataTableBatchAction />
+              <DataTableBatchAction>Ghost</DataTableBatchAction>
+              <DataTableBatchAction>Ghost</DataTableBatchAction>
+              <DataTableBatchAction>Ghost</DataTableBatchAction>
             </DataTableActionList>
           </DataTableBatchActions>
           <DataTableSearch />
@@ -45,8 +88,8 @@ storiesOf('DataTable', module)
         </DataTableToolbar>
         <DataTable>
           <DataTableHead>
-            <DataTableRow>
-              <DataTableSelectAll />
+            <DataTableRow ref={test => this.test = test}>
+              <DataTableSelectAll onClick={this.selectAll} />
               <DataTableHeader>Name</DataTableHeader>
               <DataTableHeader>Protocol</DataTableHeader>
               <DataTableHeader>Something</DataTableHeader>
@@ -55,9 +98,9 @@ storiesOf('DataTable', module)
               <DataTableHeader>Status</DataTableHeader>
             </DataTableRow>
           </DataTableHead>
-          <DataTableBody>
+          <DataTableBody ref={tableContainer => this.tableContainer = tableContainer}>
             <DataTableRow>
-              <DataTableRowSelect />
+              <DataTableRowSelect handleChange={this.handleSelectRow} id="row-select-1" value="Load Balancer" selected={this.state.selectAll} />
               <DataTableData>Load Balancer 1</DataTableData>
               <DataTableData>HTTP</DataTableData>
               <DataTableData>80</DataTableData>
@@ -66,7 +109,7 @@ storiesOf('DataTable', module)
               <DataTableData>Active</DataTableData>
             </DataTableRow>
             <DataTableRow>
-              <DataTableRowSelect />
+              <DataTableRowSelect handleChange={this.handleSelectRow} id="row-select-2" value="Load Balancer 2" selected={this.state.selectAll} />
               <DataTableData>Load Balancer 1</DataTableData>
               <DataTableData>HTTP</DataTableData>
               <DataTableData>80</DataTableData>
@@ -75,7 +118,7 @@ storiesOf('DataTable', module)
               <DataTableData>Active</DataTableData>
             </DataTableRow>
             <DataTableRow>
-              <DataTableRowSelect />
+              <DataTableRowSelect handleChange={this.handleSelectRow} id="row-select-3" value="Load Balancer 3" selected={this.state.selectAll} />
               <DataTableData>Load Balancer 1</DataTableData>
               <DataTableData>HTTP</DataTableData>
               <DataTableData>80</DataTableData>
@@ -86,7 +129,17 @@ storiesOf('DataTable', module)
           </DataTableBody>
         </DataTable>
       </DataTableContainer>
-    )
+    );
+  }
+}
+
+storiesOf('DataTable', module)
+  .addWithInfo(
+    'Data Table',
+    `
+      Data table
+    `,
+    () => <BasicDataTable />
   )
   .addWithInfo(
     'Expandable table',
@@ -184,5 +237,5 @@ storiesOf('DataTable', module)
         </DataTable>
       </DataTableContainer>
     )
-  )
-  ;
+  );
+

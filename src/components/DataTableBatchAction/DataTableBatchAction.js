@@ -3,10 +3,10 @@ import React from 'react';
 import Button from '../Button';
 
 const DataTableBatchAction = props => {
-  const { className, children,...other } = props;
+  const { className, children, ...other } = props;
 
   return (
-    <Button kind="ghost" className={className} icon="add--glyph" iconDescription="Add" {...other}>
+    <Button small kind="ghost" className={className} icon="add--glyph" iconDescription="Add" {...other}>
       {children}
     </Button>
   )
