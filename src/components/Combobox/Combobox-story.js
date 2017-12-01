@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 
 import React from 'react';
-import { storiesOf } from '@storybook/react';
+import { storiesOf, action } from '@storybook/react';
 import Combobox from './Combobox';
 
 const items = [
@@ -31,41 +31,58 @@ const items = [
   },
 ];
 
-const onChange = evt => {
-  console.log(evt);
-};
-
 storiesOf('Combobox', module)
-  .addWithInfo('Default', `Combobox`, () => (
-    <Combobox
-      id="test"
-      placeholder="Filter..."
-      onChange={onChange}
-      items={items}
-    />
-  ))
-  .addWithInfo('Pre-selected', `Combobox`, () => (
-    <Combobox
-      id="test"
-      placeholder="Filter..."
-      selectedItem={{
-        label: 'Banana',
-        value: 'banana',
-      }}
-      onChange={onChange}
-      items={items}
-    />
-  ))
-  .addWithInfo('Disabled', 'Combobox', () => (
-    <Combobox
-      id="test"
-      placeholder="Filter..."
-      selectedItem={{
-        label: 'Banana',
-        value: 'banana',
-      }}
-      onChange={onChange}
-      items={items}
-      disabled={true}
-    />
-  ));
+  .addWithInfo(
+    'default',
+    `
+      Combobox
+    `,
+    () => (
+      <Combobox
+        id="test"
+        placeholder="Filter..."
+        items={items}
+        onChange={action('onChange')}
+      />
+    )
+  )
+  .addWithInfo(
+    'inline',
+    `
+      Inline Combobox
+    `,
+    () => (
+      <Combobox
+        id="test"
+        type="inline"
+        placeholder="Filter..."
+        items={items}
+        onChange={action('onChange')}
+      />
+    )
+  )
+  // .addWithInfo('Pre-selected', `Combobox`, () => (
+    // <Combobox
+      // id="test"
+      // placeholder="Filter..."
+      // selectedItem={{
+        // label: 'Banana',
+        // value: 'banana',
+      // }}
+      // onChange={onChange}
+      // items={items}
+    // />
+  // ))
+  // .addWithInfo('Disabled', 'Combobox', () => (
+    // <Combobox
+      // id="test"
+      // placeholder="Filter..."
+      // selectedItem={{
+        // label: 'Banana',
+        // value: 'banana',
+      // }}
+      // onChange={onChange}
+      // items={items}
+      // disabled={true}
+    // />
+  // ));

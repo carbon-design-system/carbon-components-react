@@ -23,10 +23,9 @@ const ListBoxBadge = ({ clearSelection, count }) => {
   };
 
   return (
-    <div
+    <button
       className="bx--list-box__badge"
       title="Clear all selected items"
-      tabIndex="0"
       onClick={handleOnClick}
       onKeyDown={handleOnKeyDown}>
       <span className="bx--list-box__badge-text">{count}</span>
@@ -35,7 +34,7 @@ const ListBoxBadge = ({ clearSelection, count }) => {
         className="bx--list-box__clear"
         description="Clear all selected items"
       />
-    </div>
+    </button>
   );
 };
 

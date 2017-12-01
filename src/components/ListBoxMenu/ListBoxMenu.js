@@ -9,6 +9,13 @@ const handleOnClick = event => {
   event.preventDefault();
 };
 
+const isActiveItem = (item, selectedItem) => {
+  if (Array.isArray(selectedItem)) {
+    return selectedItem.indexOf(item) !== -1;
+  }
+  return item === selectedItem;
+};
+
 const ListBoxMenu = ({
   items,
   selectedItem,
@@ -25,7 +32,22 @@ const ListBoxMenu = ({
           className={cx({
             'bx--list-box__menu-item': true,
             'bx--list-box__menu-item--highlighted': highlightedIndex === i,
-            'bx--list-box__menu-item--active': selectedItem.indexOf(item) !== -1,
+            // 'bx--list-box__menu-item--active': selectedItem.indexOf(item) !== -1,
+            'bx--list-box__menu-item--active': isActiveItem(item, selectedItem),
+          })}
+          {...itemProps}>
+          {itemToString(item)}
+        </div>
+      );
+
+      return (
+        <div
+          key={itemProps.id}
+          className={cx({
+            'bx--list-box__menu-item': true,
+            'bx--list-box__menu-item--highlighted': highlightedIndex === i,
+            // 'bx--list-box__menu-item--active': selectedItem.indexOf(item) !== -1,
+            'bx--list-box__menu-item--active': isActiveItem(item, selectedItem),
           })}
           {...itemProps}>
           <input
@@ -33,7 +55,7 @@ const ListBoxMenu = ({
             name={itemToString(item)}
             className="bx--checkbox"
             type="checkbox"
-            checked={selectedItem.indexOf(item) !== -1}
+            checked={Array.isArray(selectedItem) && selectedItem.indexOf(item) !== -1}
             readOnly={true}
             tabIndex="-1"
             onClick={handleOnClick}

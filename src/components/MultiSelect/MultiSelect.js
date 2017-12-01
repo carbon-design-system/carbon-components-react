@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import Downshift from 'downshift';
 import warning from 'warning';
 import ListBox from '../ListBox';
+import ListBoxField from '../ListBoxField';
+import ListBoxMenu from '../ListBoxMenu';
 
 export default class MultiSelect extends React.Component {
   static propTypes = {
@@ -63,7 +65,7 @@ export default class MultiSelect extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     const nextState = {
-      isOpen: this.props.isOpen,
+      isOpen: this.state.isOpen,
     };
 
     if (nextProps.initialSelectedItems) {
@@ -140,7 +142,7 @@ export default class MultiSelect extends React.Component {
     // Reference: https://github.com/paypal/downshift/issues/206
     switch (type) {
       case Downshift.stateChangeTypes.mouseUp:
-        this.setState({ isOpen: false });
+        this.internalSetState({ isOpen: false });
         break;
       case Downshift.stateChangeTypes.keyDownEscape:
       case Downshift.stateChangeTypes.keyDownSpaceButton:
@@ -161,17 +163,36 @@ export default class MultiSelect extends React.Component {
         onStateChange={this.handleOnStateChange}
         onOuterClick={this.handleOnOuterClick}
         selectedItem={selectedItems}>
-        {({ getRootProps, ...props }) => (
-          <ListBox
-            {...getRootProps({ refKey: 'innerRef' })}
-            {...props}
-            type={type}
-            label={label}
-            items={items}
-            itemToString={itemToString}
-            clearSelection={this.handleClearSelection}
-            onToggleMenu={this.handleOnToggleMenu}
-          />
+        {({
+          getRootProps,
+          selectedItem,
+          selectItem,
+          isOpen,
+          itemToString,
+          highlightedIndex,
+          getItemProps,
+          getButtonProps,
+        }) => (
+          <ListBox type={type} {...getRootProps({ refKey: 'innerRef' })}>
+            <ListBoxField
+              type={type}
+              label={label}
+              selectedItem={selectedItem}
+              clearSelection={this.handleClearSelection}
+              isOpen={isOpen}
+              {...getButtonProps({ onClick: this.handleOnToggleMenu })}
+            />
+            {isOpen && (
+              <ListBoxMenu
+                items={items}
+                selectItem={selectItem}
+                selectedItem={selectedItem}
+                itemToString={itemToString}
+                getItemProps={getItemProps}
+                highlightedIndex={highlightedIndex}
+              />
+            )}
+          </ListBox>
         )}
       </Downshift>
     );
@@ -212,7 +233,7 @@ export const getSelectedItemsFrom = (items, initialSelectedItems) => {
             items.indexOf(item) !== -1,
             `[MultiSelect] expected an item in \`initialSelectedItems\` to ` +
               `exist in the given \`items\` array, however ` +
-              `\`initialSelectedItems[${index}]\ does not exist in \`items\`.`
+              `\`initialSelectedItems[${index}]\` does not exist in \`items\`.`
           );
         }
       });

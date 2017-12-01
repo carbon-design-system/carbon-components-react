@@ -10,6 +10,8 @@ const ListBoxField = ({
   selectedItem,
   clearSelection,
   isOpen,
+  children,
+  getButtonProps,
   // `rest` here should correspond with `getButtonProps` from `downshift`
   ...rest
 }) => {
@@ -20,11 +22,14 @@ const ListBoxField = ({
   });
   return (
     <div className={className} tabIndex="0" {...rest}>
-      <ListBoxLabel
-        label={label}
-        count={selectedItem.length}
-        clearSelection={clearSelection}
-      />
+      {selectedItem && (
+        <ListBoxLabel
+          label={label}
+          count={selectedItem.length}
+          clearSelection={clearSelection}
+        />
+      )}
+      {children}
       <ListBoxMenuIcon isOpen={isOpen} />
     </div>
   );
@@ -33,8 +38,8 @@ const ListBoxField = ({
 ListBoxField.propTypes = {
   type: PropTypes.oneOf(['default', 'inline']),
   label: PropTypes.string.isRequired,
-  selectedItem: PropTypes.array.isRequired,
-  clearSelection: PropTypes.func.isRequired,
+  selectedItem: PropTypes.array,
+  clearSelection: PropTypes.func,
   isOpen: PropTypes.bool.isRequired,
 };
 

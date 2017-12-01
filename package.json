@@ -146,20 +146,8 @@
     "whatwg-fetch": "^2.0.3"
   },
   "babel": {
-<<<<<<< HEAD
     "presets": ["./scripts/env", "react", "stage-1"],
-    "plugins": ["transform-object-assign"]
-=======
-    "presets": [
-      "./scripts/env",
-      "react",
-      "stage-1"
-    ],
-    "plugins": [
-      "transform-object-assign",
-      "dev-expression"
-    ]
->>>>>>> test(MultiSelect): add e2e scenarios and dev-transform babel plugin
+    "plugins": ["transform-object-assign", "dev-expression"]
   },
   "prettier": {
     "jsxBracketSameLine": true,
@@ -198,20 +186,11 @@
     "url": "https://github.com/carbon-design-system/carbon-components-react.git"
   },
   "jest": {
-<<<<<<< HEAD
-    "collectCoverageFrom": ["components/**/*.js"],
-    "setupFiles": ["<rootDir>/config/jest/setup.js"],
-=======
     "globals": {
       "__DEV__": true
     },
-    "collectCoverageFrom": [
-      "components/**/*.js"
-    ],
-    "setupFiles": [
-      "<rootDir>/config/jest/setup.js"
-    ],
->>>>>>> test(MultiSelect): add e2e scenarios and dev-transform babel plugin
+    "collectCoverageFrom": ["components/**/*.js"],
+    "setupFiles": ["<rootDir>/config/jest/setup.js"],
     "testMatch": [
       "<rootDir>/**/__tests__/**/*.js?(x)",
       "<rootDir>/**/?(*-)(spec|test).js?(x)"

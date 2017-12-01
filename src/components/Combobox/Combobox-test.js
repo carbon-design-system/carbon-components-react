@@ -1,5 +1,6 @@
 describe('Combobox', () => {
-  it('should render');
+  it('should render', () => {
+  });
 
   describe('with no input', () => {
     it('should display the given placeholder');
