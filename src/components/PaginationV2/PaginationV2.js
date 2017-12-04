@@ -132,7 +132,7 @@ export default class PaginationV2 extends Component {
     const statePageSize = this.state.pageSize;
     const classNames = classnames('bx--pagination', className);
     const inputId = id || this.uniqueId;
-    const itemsPerPage = Math.ceil(totalItems/statePageSize);
+    const itemsPerPage = Math.ceil(totalItems / statePageSize);
     let counter = 1;
     return (
       <div className={classNames} {...other}>
@@ -185,13 +185,13 @@ export default class PaginationV2 extends Component {
             <span className="bx--pagination__text">|</span>
           ) : (
             <Select
-            id={`bx-pagination-select-${inputId+2}`}
-            labelText={itemsPerPageText}
-            hideLabel
-            inline
-            onChange={this.handlePageChange}
-            value={statePage}>
-            </Select>
+              id={`bx-pagination-select-${inputId + 2}`}
+              labelText={itemsPerPageText}
+              hideLabel
+              inline
+              onChange={this.handlePageChange}
+              value={statePage}
+            />
           )}
           <button
             className="bx--pagination__button bx--pagination__button--forward"

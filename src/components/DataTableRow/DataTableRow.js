@@ -8,13 +8,13 @@ const DataTableRow = props => {
     <tr {...other} className={className}>
       {children}
     </tr>
-  )
-}
+  );
+};
 
 DataTableRow.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
-  containerClassName: PropTypes.string
-}
+  containerClassName: PropTypes.string,
+};
 
 export default DataTableRow;

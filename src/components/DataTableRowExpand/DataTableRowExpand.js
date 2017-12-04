@@ -10,15 +10,19 @@ const DataTableRowExpand = props => {
   return (
     <td className={rowExpandClasses}>
       <button className="bx--table-expand-v2__button">
-        <Icon className="bx--table-expand-v2__svg" name="chevron--right" description="Expand icon" />
+        <Icon
+          className="bx--table-expand-v2__svg"
+          name="chevron--right"
+          description="Expand icon"
+        />
       </button>
     </td>
-  )
-}
+  );
+};
 
 DataTableRowExpand.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
-}
+};
 
 export default DataTableRowExpand;

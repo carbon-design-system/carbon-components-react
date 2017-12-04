@@ -1,1 +1,1 @@
-export default from './DataTableExpandableRow';
+export * from './DataTableExpandableRow';
