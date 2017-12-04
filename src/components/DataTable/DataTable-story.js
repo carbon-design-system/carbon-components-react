@@ -142,8 +142,7 @@ class BasicDataTable extends Component {
           <DataTableBatchActions
             totalSelected={checkedItems}
             showBatchActions={showBatchActions}
-            handleClick={this.clearAll}
-          >
+            handleClick={this.clearAll}>
             <DataTableActionList>
               <DataTableBatchAction>Ghost</DataTableBatchAction>
               <DataTableBatchAction>Ghost</DataTableBatchAction>
@@ -192,8 +191,7 @@ class BasicDataTable extends Component {
             </DataTableRow>
           </DataTableHead>
           <DataTableBody
-            ref={tableContainer => (this.tableContainer = tableContainer)}
-          >
+            ref={tableContainer => (this.tableContainer = tableContainer)}>
             {createTableBody}
           </DataTableBody>
         </DataTable>
