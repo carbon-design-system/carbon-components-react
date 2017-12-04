@@ -41,7 +41,6 @@ FormGroup.defaultProps = {
   invalid: false,
   message: false,
   messageText: '',
-  legendText: '',
 };
 
 export default FormGroup;

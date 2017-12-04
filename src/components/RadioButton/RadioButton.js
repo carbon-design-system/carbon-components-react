@@ -17,7 +17,6 @@ export default class RadioButton extends React.Component {
   };
 
   static defaultProps = {
-    labelText: '',
     onChange: () => {},
   };
 

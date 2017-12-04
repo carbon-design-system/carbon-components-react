@@ -89,7 +89,6 @@ TextInput.defaultProps = {
   onChange: () => {},
   onClick: () => {},
   invalid: false,
-  labelText: '',
   invalidText: '',
 };
 

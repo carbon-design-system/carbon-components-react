@@ -60,10 +60,6 @@ ProgressStep.propTypes = {
   description: PropTypes.string,
 };
 
-ProgressStep.defaultProps = {
-  label: '',
-};
-
 export class ProgressIndicator extends Component {
   static propTypes = {
     children: PropTypes.node,

@@ -81,7 +81,6 @@ Textarea.defaultProps = {
   rows: 4,
   cols: 50,
   invalid: false,
-  labelText: '',
   invalidText: '',
 };
 
