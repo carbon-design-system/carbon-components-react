@@ -9,7 +9,8 @@ export default class Tooltip extends Component {
     open: PropTypes.bool,
     children: PropTypes.node,
     className: PropTypes.string,
-    direction: PropTypes.oneOf(['bottom', 'top']),
+    direction: PropTypes.oneOf(['bottom', 'top', 'left', 'right']),
+    menuOffset: PropTypes.obj,
     triggerText: PropTypes.string,
     showIcon: PropTypes.bool,
     iconName: PropTypes.string,
@@ -23,6 +24,10 @@ export default class Tooltip extends Component {
     iconName: 'info--glyph',
     iconDescription: 'tooltip',
     triggerText: 'Provide triggerText',
+    menuOffset: {
+      left: 5,
+      top: 10,
+    },
   };
 
   state = {
@@ -58,6 +63,7 @@ export default class Tooltip extends Component {
       showIcon,
       iconName,
       iconDescription,
+      menuOffset,
       ...other
     } = this.props;
 
@@ -66,8 +72,6 @@ export default class Tooltip extends Component {
       { 'bx--tooltip--shown': this.state.open },
       className
     );
-
-    const menuOffset = { left: 5, top: 10 };
 
     return (
       <div>
