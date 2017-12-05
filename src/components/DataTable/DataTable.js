@@ -114,7 +114,6 @@ export const DataTableToolbarContent = ({ ...props }) => {
   return (
     <div className={toolbarContentClasses} {...other}>
       {children}
-      <Button kind="primary">Add new</Button>
     </div>
   );
 };

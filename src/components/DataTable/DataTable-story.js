@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { storiesOf } from '@storybook/react';
+import { action } from '@storybook/addon-actions';
 import DataTableRow from '../DataTableRow';
 import DataTableData from '../DataTableData';
 import DataTableRowExpand from '../DataTableRowExpand'; // eslint-disable-line
@@ -23,11 +24,10 @@ import {
   DataTableSelectAll,
 } from '../DataTable';
 import PaginationV2 from '../PaginationV2';
+import Button from '../Button';
 
+// Move this somewhere else?
 const paginationProps = {
-  onChange: ({ page, pageSize }) => {
-    console.log(`Page: ${page}`, `Page Size: ${pageSize}`); // eslint-disable-line no-console
-  },
   pageSizes: [10, 20, 30, 40, 50],
 };
 
@@ -153,9 +153,15 @@ class BasicDataTable extends Component {
               showBatchActions={showBatchActions}
               handleClick={this.clearAll}>
               <DataTableActionList>
-                <DataTableBatchAction>Ghost</DataTableBatchAction>
-                <DataTableBatchAction>Ghost</DataTableBatchAction>
-                <DataTableBatchAction>Ghost</DataTableBatchAction>
+                <DataTableBatchAction onClick={action('Batch Action 1')}>
+                  Ghost
+                </DataTableBatchAction>
+                <DataTableBatchAction onClick={action('Batch Action 2')}>
+                  Ghost
+                </DataTableBatchAction>
+                <DataTableBatchAction onClick={action('Batch Action 3')}>
+                  Ghost
+                </DataTableBatchAction>
               </DataTableActionList>
             </DataTableBatchActions>
             <DataTableSearch />
@@ -163,12 +169,21 @@ class BasicDataTable extends Component {
               <DataTableToolbarAction
                 iconName="download"
                 iconDescription="Download"
+                onClick={action('Toolbar Action 1')}
               />
-              <DataTableToolbarAction iconName="edit" iconDescription="Edit" />
+              <DataTableToolbarAction
+                iconName="edit"
+                iconDescription="Edit"
+                onClick={action('Toolbar Action 1')}
+              />
               <DataTableToolbarAction
                 iconName="settings"
                 iconDescription="Settings"
+                onClick={action('Toolbar Action 1')}
               />
+              <Button onClick={action('Add new row')} kind="primary">
+                Add new
+              </Button>
             </DataTableToolbarContent>
           </DataTableToolbar>
           <DataTable>
