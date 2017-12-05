@@ -105,6 +105,18 @@ export default class PaginationV2 extends Component {
     this.props.onChange({ page, pageSize: this.state.pageSize });
   };
 
+  renderSelectItems = total => {
+    let counter = 1;
+    let itemArr = [];
+    while (counter <= total) {
+      itemArr.push(
+        <SelectItem key={counter} value={counter} text={String(counter)} />
+      );
+      counter++;
+    }
+    return itemArr;
+  };
+
   render() {
     const {
       backwardText,
@@ -132,8 +144,9 @@ export default class PaginationV2 extends Component {
     const statePageSize = this.state.pageSize;
     const classNames = classnames('bx--pagination', className);
     const inputId = id || this.uniqueId;
-    const itemsPerPage = Math.ceil(totalItems / statePageSize);
-    let counter = 1;
+    const totalPages = Math.ceil(totalItems / statePageSize);
+    const selectItems = this.renderSelectItems(totalPages);
+
     return (
       <div className={classNames} {...other}>
         <div className="bx--pagination__left">
@@ -189,9 +202,10 @@ export default class PaginationV2 extends Component {
               labelText={itemsPerPageText}
               hideLabel
               inline
-              onChange={this.handlePageChange}
-              value={statePage}
-            />
+              onChange={this.handlePageInputChange}
+              value={statePage}>
+              {selectItems}
+            </Select>
           )}
           <button
             className="bx--pagination__button bx--pagination__button--forward"

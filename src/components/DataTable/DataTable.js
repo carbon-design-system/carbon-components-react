@@ -42,14 +42,14 @@ export class DataTableHeader extends Component {
   };
 
   render() {
-    const { children, className, sort, onClick, ...other } = this.props;
+    const { children, className, sortable, ...other } = this.props;
     const tableSortClasses = classNames('bx--table-sort-v2', {
       'bx--table-sort-v2--active': this.state.active,
       'bx--table-sort-v2--ascending': this.state.sorted,
     });
     return (
       <th {...other} className={className}>
-        {sort ? (
+        {sortable ? (
           <button
             onFocus={this.setActive}
             onClick={this.handleClick}
@@ -72,7 +72,7 @@ export class DataTableHeader extends Component {
 DataTableHeader.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
-  sort: PropTypes.bool,
+  sortable: PropTypes.bool,
   onClick: PropTypes.func,
 };
 
