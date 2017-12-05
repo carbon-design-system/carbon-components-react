@@ -10,7 +10,7 @@ export default class Tooltip extends Component {
     children: PropTypes.node,
     className: PropTypes.string,
     direction: PropTypes.oneOf(['bottom', 'top', 'left', 'right']),
-    menuOffset: PropTypes.obj,
+    menuOffset: PropTypes.object,
     triggerText: PropTypes.string,
     showIcon: PropTypes.bool,
     iconName: PropTypes.string,
