@@ -143,7 +143,8 @@ class BasicDataTable extends Component {
     const createTableBody = createRows.map(data => [data]);
     const checkedItems = this.getCheckedItems();
     const showBatchActions = checkedItems > 0;
-
+    // items to figure out:
+    // batch actions inside toolbar?
     return (
       <div>
         <DataTableContainer title="Table title">

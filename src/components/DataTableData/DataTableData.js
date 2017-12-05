@@ -57,7 +57,7 @@ const DataTableData = props => {
     );
   } else if (overflow !== undefined) {
     content = (
-      <OverflowMenu>
+      <OverflowMenu floatingMenu>
         <OverflowMenuItem itemText="Option 1" />
         <OverflowMenuItem itemText="Option 2" />
         <OverflowMenuItem itemText="Option 3" />
