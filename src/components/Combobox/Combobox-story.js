@@ -46,43 +46,27 @@ storiesOf('Combobox', module)
       />
     )
   )
+  .addWithInfo('pre-selected', `Combobox`, () => (
+    <Combobox
+      id="test"
+      placeholder="Filter..."
+      items={items}
+      initialSelectedItem={items[0]}
+      onChange={action('onChange')}
+    />
+  ))
   .addWithInfo(
-    'inline',
+    'disabled',
     `
-      Inline Combobox
+      Disabled Combobox
     `,
     () => (
       <Combobox
         id="test"
-        type="inline"
         placeholder="Filter..."
         items={items}
         onChange={action('onChange')}
+        disabled={true}
       />
     )
   )
-  // .addWithInfo('Pre-selected', `Combobox`, () => (
-    // <Combobox
-      // id="test"
-      // placeholder="Filter..."
-      // selectedItem={{
-        // label: 'Banana',
-        // value: 'banana',
-      // }}
-      // onChange={onChange}
-      // items={items}
-    // />
-  // ))
-  // .addWithInfo('Disabled', 'Combobox', () => (
-    // <Combobox
-      // id="test"
-      // placeholder="Filter..."
-      // selectedItem={{
-        // label: 'Banana',
-        // value: 'banana',
-      // }}
-      // onChange={onChange}
-      // items={items}
-      // disabled={true}
-    // />
-  // ));

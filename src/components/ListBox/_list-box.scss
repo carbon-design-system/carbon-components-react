@@ -7,9 +7,18 @@ $list-box-width: rem(300px);
 $list-box-height: rem(40px);
 
 @include exports('list-box') {
+  * {
+    box-sizing: border-box;
+  }
+
   .bx--list-box {
     width: $list-box-width;
     height: $list-box-height;
+  }
+
+  .bx--list-box--disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
   }
 
   .bx--list-box .bx--text-input {
@@ -27,14 +36,20 @@ $list-box-height: rem(40px);
   }
 
   .bx--list-box__field:focus {
+    outline: none;
+  }
+
+  .bx--list-box__field[aria-expanded="true"] > .bx--text-input {
     outline: 1px solid $brand-01;
   }
 
-  .bx--list-box__field:focus ~ .bx--list-box__menu {
-    box-shadow: 0 1px 0 0 $brand-01,
-      1px 0 0 0 $brand-01,
-      -1px 0 0 0 $brand-01,
-      0 4px 8px 0 rgba(0, 0, 0, .1);
+  .bx--list-box__field:focus ~ .bx--list-box__menu,
+  .bx--list-box__field[aria-expanded="true"] ~ .bx--list-box__menu {
+    outline: 1px solid $brand-01;
+    // box-shadow: 0 1px 0 0 $brand-01,
+      // 1px 0 0 0 $brand-01,
+      // -1px 0 0 0 $brand-01,
+      // 0 4px 8px 0 rgba(0, 0, 0, .1);
   }
 
   .bx--list-box__menu {
@@ -52,6 +67,7 @@ $list-box-height: rem(40px);
   .bx--list-box__menu-item {
     display: flex;
     align-items: center;
+    font-size: rem(14px);
     height: rem(40px);
     padding: 0 1rem;
     cursor: pointer;
@@ -60,6 +76,12 @@ $list-box-height: rem(40px);
 
   .bx--list-box__menu-item:hover,
   .bx--list-box__menu-item--highlighted {
+    background-color: $brand-01;
+    color: white;
+  }
+
+  .bx--list-box--multiselect .bx--list-box__menu-item:hover,
+  .bx--list-box--multiselect .bx--list-box__menu-item--highlighted {
     background-color: rgba($field-01, 0.1);
   }
 
@@ -102,6 +124,15 @@ $list-box-height: rem(40px);
 
   .bx--list-box__clear:focus {
     outline: 1px solid $brand-01;
+  }
+
+  .bx--list-box--disabled .bx--text-input {
+    opacity: 1;
+    cursor: inherit;
+  }
+
+  .bx--list-box--disabled > .bx--list-box__field {
+    outline: none;
   }
 
   // .bx--list-box--inline {

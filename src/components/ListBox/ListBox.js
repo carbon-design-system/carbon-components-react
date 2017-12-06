@@ -7,10 +7,14 @@ const ListBox = ({
   innerRef,
   children,
   className: containerClassName,
+  disabled,
+  selectionType,
 }) => {
   const className = cx(containerClassName, {
     'bx--list-box': true,
     'bx--list-box--inline': type === 'inline',
+    'bx--list-box--disabled': disabled,
+    'bx--list-box--multiselect': selectionType === 'multiselect',
   });
   return (
     <div className={className} ref={innerRef}>
