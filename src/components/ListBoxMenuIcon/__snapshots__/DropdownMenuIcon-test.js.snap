@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ListBoxMenuIcon component should render 1`] = `
+exports[`DropdownMenuIcon component should render 1`] = `
 <Icon
   className="bx--list-box__menu-icon bx--list-box__menu-icon--open"
   description="Close menu"
@@ -10,7 +10,7 @@ exports[`ListBoxMenuIcon component should render 1`] = `
 />
 `;
 
-exports[`ListBoxMenuIcon component should render 2`] = `
+exports[`DropdownMenuIcon component should render 2`] = `
 <Icon
   className="bx--list-box__menu-icon"
   description="Open menu"

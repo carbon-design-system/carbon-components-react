@@ -3,5 +3,8 @@
 @import 'carbon-components/scss/globals/scss/css--helpers';
 @import 'carbon-components/scss/globals/scss/vars';
 
-@include exports('combobox') {
+$combo-box-width: rem(300px);
+$combo-box-height: rem(40px);
+
+@include exports('combo-box') {
 }

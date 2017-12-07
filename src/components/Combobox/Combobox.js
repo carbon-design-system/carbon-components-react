@@ -21,10 +21,6 @@ const ListBoxField = ({ children, ...other }) => (
   </div>
 );
 
-const ListBoxInput = ({ readOnly, ...rest }) => {
-  return <input className="bx--text-input" readOnly={readOnly} {...rest} />;
-};
-
 const ListBoxSelection = ({ clearSelection, selectedItem, shouldDisplay }) => {
   const handleOnKeyDown = event => {
     // When a user hits ENTER, we'll clear the selection
@@ -34,34 +30,27 @@ const ListBoxSelection = ({ clearSelection, selectedItem, shouldDisplay }) => {
   };
   return (
     <div
-      className="bx--list-box__clear"
+      className="bx--list-box__selection"
       tabIndex="0"
       onClick={clearSelection}
       onKeyDown={handleOnKeyDown}>
       <Icon name="close" description="Clear current selection" />
     </div>
   );
-  // if (selectedItem) {
-  // if (Array.isArray(selectedItem)) {
-  // }
-  // }
 };
 
-// Responsible for figuring out when to render a list of items and how
-const ListBoxMenu = ({ isOpen, items, renderItem }) => {
-  if (!isOpen) {
-    return null;
-  }
+const ListBoxMenu = ({ items, renderItem }) => {
   return <div className="bx--list-box__menu">{items.map(renderItem)}</div>;
 };
 
-const ListBoxMenuItem = ({ children, isActive, isHighlighted, ...other }) => {
-  const className = cx('bx--list-box__menu-item', {
+const ListBoxMenuItem = ({ children, isActive, isHighlighted, ...rest }) => {
+  const className = cx({
+    'bx--list-box__menu-item': true,
     'bx--list-box__menu-item--active': isActive,
     'bx--list-box__menu-item--highlighted': isHighlighted,
   });
   return (
-    <div className={className} {...other}>
+    <div className={className} {...rest}>
       {children}
     </div>
   );
@@ -79,7 +68,7 @@ const getInputValue = (props, state) => {
   return '';
 };
 
-export default class Combobox extends React.Component {
+export default class ComboBox extends React.Component {
   static propTypes = {
     /**
      * An optional className to add to the container node
@@ -193,7 +182,7 @@ export default class Combobox extends React.Component {
 
   render() {
     const {
-      className,
+      className: containerClassName,
       disabled,
       id,
       items,
@@ -203,6 +192,9 @@ export default class Combobox extends React.Component {
       type,
       initialSelectedItem,
     } = this.props;
+    const className = cx('bx--list-box', containerClassName, {
+      'bx--list-box--disabled': disabled,
+    });
 
     return (
       <Downshift
@@ -222,14 +214,10 @@ export default class Combobox extends React.Component {
           highlightedIndex,
           clearSelection,
         }) => (
-          <ListBox
-            type={type}
-            className={className}
-            disabled={disabled}
-            selectionType="single"
-            {...getRootProps({ refKey: 'innerRef' })}>
+          <div className={className}>
             <ListBoxField {...getButtonProps({ disabled })}>
-              <ListBoxInput
+              <input
+                className="bx--text-input"
                 {...getInputProps({
                   disabled,
                   id,
@@ -245,20 +233,21 @@ export default class Combobox extends React.Component {
               )}
               <ListBoxMenuIcon isOpen={isOpen} />
             </ListBoxField>
-            <ListBoxMenu
-              isOpen={isOpen}
-              items={this.filterItems(items, itemToString, inputValue)}
-              renderItem={(item, index) => (
-                <ListBoxMenuItem
-                  key={itemToString(item)}
-                  isActive={selectedItem === item}
-                  isHighlighted={highlightedIndex === index}
-                  {...getItemProps({ item, index })}>
-                  {itemToString(item)}
-                </ListBoxMenuItem>
-              )}
-            />
-          </ListBox>
+            {isOpen && (
+              <ListBoxMenu
+                items={this.filterItems(items, itemToString, inputValue)}
+                renderItem={(item, index) => (
+                  <ListBoxMenuItem
+                    key={itemToString(item)}
+                    isActive={selectedItem === item}
+                    isHighlighted={highlightedIndex === index}
+                    {...getItemProps({ item, index })}>
+                    {itemToString(item)}
+                  </ListBoxMenuItem>
+                )}
+              />
+            )}
+          </div>
         )}
       </Downshift>
     );

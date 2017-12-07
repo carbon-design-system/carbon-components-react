@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import cx from 'classnames';
 import Icon from '../Icon';
 
-const ListBoxMenuIcon = ({ isOpen }) => {
+const DropdownMenuIcon = ({ isOpen }) => {
   const className = cx({
-    'bx--list-box__menu-icon': true,
-    'bx--list-box__menu-icon--open': isOpen,
+    'bx--dropdown__menu-icon': true,
+    'bx--dropdown__menu-icon--open': isOpen,
   });
   const description = isOpen ? 'Close menu' : 'Open menu';
   return (
@@ -16,8 +16,8 @@ const ListBoxMenuIcon = ({ isOpen }) => {
   );
 };
 
-ListBoxMenuIcon.propTypes = {
+DropdownMenuIcon.propTypes = {
   isOpen: PropTypes.bool.isRequired,
 };
 
-export default ListBoxMenuIcon;
+export default DropdownMenuIcon;

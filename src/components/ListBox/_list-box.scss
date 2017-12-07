@@ -7,10 +7,6 @@ $list-box-width: rem(300px);
 $list-box-height: rem(40px);
 
 @include exports('list-box') {
-  * {
-    box-sizing: border-box;
-  }
-
   .bx--list-box {
     width: $list-box-width;
     height: $list-box-height;
@@ -18,40 +14,17 @@ $list-box-height: rem(40px);
 
   .bx--list-box--disabled {
     opacity: 0.5;
-    cursor: not-allowed;
   }
 
-  .bx--list-box .bx--text-input {
-    background-color: $field-01;
-    font-weight: 600;
+  .bx--list-box input[role='combobox'] {
+    outline-offset: 0;
   }
 
-  .bx--list-box .bx--text-input::placeholder {
-    color: $text-02;
-    font-weight: 400;
+  .bx--list-box--disabled input[role='combobox'] {
+    opacity: 1;
   }
 
-  .bx--list-box__field {
-    position: relative;
-  }
-
-  .bx--list-box__field:focus {
-    outline: none;
-  }
-
-  .bx--list-box__field[aria-expanded="true"] > .bx--text-input {
-    outline: 1px solid $brand-01;
-  }
-
-  .bx--list-box__field:focus ~ .bx--list-box__menu,
-  .bx--list-box__field[aria-expanded="true"] ~ .bx--list-box__menu {
-    outline: 1px solid $brand-01;
-    // box-shadow: 0 1px 0 0 $brand-01,
-      // 1px 0 0 0 $brand-01,
-      // -1px 0 0 0 $brand-01,
-      // 0 4px 8px 0 rgba(0, 0, 0, .1);
-  }
-
+  // list-boxMenu
   .bx--list-box__menu {
     @include box-shadow();
 
@@ -64,6 +37,7 @@ $list-box-height: rem(40px);
     overflow-y: auto;
   }
 
+  // list-boxMenuItem
   .bx--list-box__menu-item {
     display: flex;
     align-items: center;
@@ -80,11 +54,7 @@ $list-box-height: rem(40px);
     color: white;
   }
 
-  .bx--list-box--multiselect .bx--list-box__menu-item:hover,
-  .bx--list-box--multiselect .bx--list-box__menu-item--highlighted {
-    background-color: rgba($field-01, 0.1);
-  }
-
+  // list-boxMenuIcon --------------------------
   .bx--list-box__menu-icon {
     display: inline-block;
     position: absolute;
@@ -106,7 +76,8 @@ $list-box-height: rem(40px);
     transform: rotate(180deg);
   }
 
-  .bx--list-box__clear {
+  // list-boxSelection
+  .bx--list-box__selection {
     display: inline-block;
     position: absolute;
     top: 0;
@@ -115,101 +86,236 @@ $list-box-height: rem(40px);
     height: rem(40px);
     padding: 0 1rem;
     cursor: pointer;
+    // TODO: do we have a scale for this?
+    z-index: 100;
   }
 
-  .bx--list-box__clear > svg {
+  .bx--list-box__selection > svg {
     fill: $ui-05;
     height: 100%;
   }
 
-  .bx--list-box__clear:focus {
+  .bx--list-box__selection:focus {
     outline: 1px solid $brand-01;
   }
 
-  .bx--list-box--disabled .bx--text-input {
-    opacity: 1;
-    cursor: inherit;
+  // list-boxField
+  .bx--list-box__field {
+    position: relative;
   }
 
-  .bx--list-box--disabled > .bx--list-box__field {
+  .bx--list-box__field:focus,
+  .bx--list-box__field[aria-expanded='true'] {
+    outline: 1px solid $brand-01;
+  }
+
+  .bx--list-box__field[disabled] {
     outline: none;
   }
 
-  // .bx--list-box--inline {
-    // width: auto;
-    // height: rem(32px);
-  // }
-
-  // .bx--list-box--inline .bx--text-input {
-    // display: inline-block;
-    // height: rem(32px);
-    // background: none;
-    // padding: 0 rem(10px);
-    // width: auto;
-    // min-width: auto;
-  // }
-
-  // .bx--list-box__field--inline:focus ~ .bx--list-box__menu {
-    // outline: 1px solid $brand-01;
-  // }
-
-  // .bx--list-box__field--inline > .bx--list-box__label {
-    // margin-right: rem(10px);
-  // }
-
-  // .bx--list-box__field--inline.bx--list-box__field--open {
-    // outline: 1px solid transparent;
-  // }
-
-  // .bx--list-box__label {
-    // display: flex;
-    // align-items: center;
-    // height: 100%;
-  // }
-
-  // .bx--list-box__badge {
-    // display: flex;
-    // align-items: center;
-    // height: rem(18px);
-    // margin-right: rem(10px);
-    // color: white;
-    // cursor: pointer;
-    // background-color: $brand-01;
-    // padding: 0 rem(5px);
-    // border-radius: rem(13px);
-  // }
-
-  // .bx--list-box__badge:focus {
-    // outline: 1px solid $brand-01;
-    // outline-offset: rem(5px);
-  // }
-
-  // .bx--list-box__badge:hover {
-    // background-color: $brand-02;
-  // }
-
-  // .bx--list-box__badge-text {
-    // margin-right: rem(5px);
-    // font-size: rem(12px);
-    // font-weight: 200;
-  // }
-
-  // .bx--list-box__clear {
-    // width: rem(8px);
-    // height: rem(8px);
-    // fill: white;
-  // }
-
-  // .bx--list-box--inline {
-    // background-color: inherit;
-  // }
-
-  // .bx--list-box--inline  > .bx--list-box__field {
-    // height: rem(32px);
-    // padding: 0 rem(10px);
-  // }
-
-  // .bx--list-box--inline  > .bx--list-box__menu {
-    // top: rem(32px);
-  // }
+  .bx--list-box__field[aria-expanded='true'] ~ .bx--list-box__menu {
+    box-shadow: 0 1px 0 0 $brand-01, 1px 0 0 0 $brand-01, -1px 0 0 0 $brand-01,
+      0 4px 8px 0 rgba(0, 0, 0, 0.1);
+  }
 }
+
+// @include exports('list-box') {
+// // .bx--list-box {
+// // width: $list-box-width;
+// // height: $list-box-height;
+// // }
+
+// // .bx--list-box--disabled {
+// // opacity: 0.5;
+// // cursor: not-allowed;
+// // }
+
+// // .bx--list-box .bx--text-input {
+// // background-color: $field-01;
+// // font-weight: 600;
+// // }
+
+// // .bx--list-box .bx--text-input::placeholder {
+// // color: $text-02;
+// // font-weight: 400;
+// // }
+
+// // .bx--list-box__field {
+// // position: relative;
+// // }
+
+// // .bx--list-box__field:focus {
+// // outline: none;
+// // }
+
+// // .bx--list-box__field[aria-expanded='true'] > .bx--text-input {
+// // outline: 1px solid $brand-01;
+// // }
+
+// // .bx--list-box__field:focus ~ .bx--list-box__menu,
+// // .bx--list-box__field[aria-expanded='true'] ~ .bx--list-box__menu {
+// // box-shadow: 0 1px 0 0 $brand-01, 1px 0 0 0 $brand-01, -1px 0 0 0 $brand-01,
+// // 0 4px 8px 0 rgba(0, 0, 0, 0.1);
+// // }
+
+// // .bx--list-box__menu {
+// // @include box-shadow();
+
+// // position: absolute;
+// // left: 0;
+// // right: 0;
+// // top: $list-box-height;
+// // background-color: $ui-01;
+// // max-height: rem(120px);
+// // overflow-y: auto;
+// // }
+
+// // .bx--list-box__menu-item {
+// // display: flex;
+// // align-items: center;
+// // font-size: rem(14px);
+// // height: rem(40px);
+// // padding: 0 1rem;
+// // cursor: pointer;
+// // user-select: none;
+// // }
+
+// // .bx--list-box__menu-item:hover,
+// // .bx--list-box__menu-item--highlighted {
+// // background-color: $brand-01;
+// // color: white;
+// // }
+
+// // .bx--list-box--multiselect .bx--list-box__menu-item:hover,
+// // .bx--list-box--multiselect .bx--list-box__menu-item--highlighted {
+// // background-color: rgba($field-01, 0.1);
+// // }
+
+// // .bx--list-box__menu-icon {
+// // display: inline-block;
+// // position: absolute;
+// // top: 0;
+// // right: 0;
+// // bottom: 0;
+// // height: 100%;
+// // padding: 0 1rem;
+// // transition: transform 200ms $bx--standard-easing;
+// // cursor: pointer;
+// // }
+
+// // .bx--list-box__menu-icon > svg {
+// // fill: $brand-01;
+// // height: 100%;
+// // }
+
+// // .bx--list-box__menu-icon--open {
+// // transform: rotate(180deg);
+// // }
+
+// // .bx--list-box__clear {
+// // display: inline-block;
+// // position: absolute;
+// // top: 0;
+// // right: rem(26px);
+// // bottom: 0;
+// // height: rem(40px);
+// // padding: 0 1rem;
+// // cursor: pointer;
+// // }
+
+// // .bx--list-box__clear > svg {
+// // fill: $ui-05;
+// // height: 100%;
+// // }
+
+// // .bx--list-box__clear:focus {
+// // outline: 1px solid $brand-01;
+// // }
+
+// // .bx--list-box--disabled .bx--text-input {
+// // opacity: 1;
+// // cursor: inherit;
+// // }
+
+// // .bx--list-box--disabled > .bx--list-box__field {
+// // outline: none;
+// // }
+
+// // .bx--list-box--inline {
+// // width: auto;
+// // height: rem(32px);
+// // }
+
+// // .bx--list-box--inline .bx--text-input {
+// // display: inline-block;
+// // height: rem(32px);
+// // background: none;
+// // padding: 0 rem(10px);
+// // width: auto;
+// // min-width: auto;
+// // }
+
+// // .bx--list-box__field--inline:focus ~ .bx--list-box__menu {
+// // outline: 1px solid $brand-01;
+// // }
+
+// // .bx--list-box__field--inline > .bx--list-box__label {
+// // margin-right: rem(10px);
+// // }
+
+// // .bx--list-box__field--inline.bx--list-box__field--open {
+// // outline: 1px solid transparent;
+// // }
+
+// // .bx--list-box__label {
+// // display: flex;
+// // align-items: center;
+// // height: 100%;
+// // }
+
+// // .bx--list-box__badge {
+// // display: flex;
+// // align-items: center;
+// // height: rem(18px);
+// // margin-right: rem(10px);
+// // color: white;
+// // cursor: pointer;
+// // background-color: $brand-01;
+// // padding: 0 rem(5px);
+// // border-radius: rem(13px);
+// // }
+
+// // .bx--list-box__badge:focus {
+// // outline: 1px solid $brand-01;
+// // outline-offset: rem(5px);
+// // }
+
+// // .bx--list-box__badge:hover {
+// // background-color: $brand-02;
+// // }
+
+// // .bx--list-box__badge-text {
+// // margin-right: rem(5px);
+// // font-size: rem(12px);
+// // font-weight: 200;
+// // }
+
+// // .bx--list-box__clear {
+// // width: rem(8px);
+// // height: rem(8px);
+// // fill: white;
+// // }
+
+// // .bx--list-box--inline {
+// // background-color: inherit;
+// // }
+
+// // .bx--list-box--inline  > .bx--list-box__field {
+// // height: rem(32px);
+// // padding: 0 rem(10px);
+// // }
+
+// // .bx--list-box--inline  > .bx--list-box__menu {
+// // top: rem(32px);
+// // }
+// }
