@@ -2,12 +2,22 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Downshift from 'downshift';
 import warning from 'warning';
-import ListBox from '../ListBox';
-import ListBoxField from '../ListBoxField';
-import ListBoxMenu from '../ListBoxMenu';
+import {
+  ListBox,
+  ListBoxField,
+  ListBoxMenu,
+  ListBoxMenuItem,
+  ListBoxMenuIcon,
+  ListBoxSelection,
+} from '../ListBox';
 
 export default class MultiSelect extends React.Component {
   static propTypes = {
+    /**
+     * Disable the control
+     */
+    disabled: PropTypes.bool,
+
     /**
      * We try to stay as generic as possible here to allow individuals to pass
      * in a collection of whatever kind of data structure they prefer
@@ -41,8 +51,9 @@ export default class MultiSelect extends React.Component {
   };
 
   static defaultProps = {
+    disabled: false,
     type: 'default',
-    itemToString: ({ label }) => label,
+    itemToString: item => (item ? item.label : ''),
     initialSelectedItems: [],
   };
 
@@ -144,6 +155,7 @@ export default class MultiSelect extends React.Component {
       case Downshift.stateChangeTypes.mouseUp:
         this.internalSetState({ isOpen: false });
         break;
+      case Downshift.stateChangeTypes.clickButton:
       case Downshift.stateChangeTypes.keyDownEscape:
       case Downshift.stateChangeTypes.keyDownSpaceButton:
         this.handleOnToggleMenu();
@@ -153,8 +165,14 @@ export default class MultiSelect extends React.Component {
 
   render() {
     const { selectedItems, isOpen } = this.state;
-    const { items, itemToString, label, type } = this.props;
-
+    const {
+      className,
+      items,
+      itemToString,
+      label,
+      type,
+      disabled,
+    } = this.props;
     return (
       <Downshift
         isOpen={isOpen}
@@ -172,25 +190,30 @@ export default class MultiSelect extends React.Component {
           highlightedIndex,
           getItemProps,
           getButtonProps,
+          getLabelProps,
+          clearSelection,
         }) => (
-          <ListBox type={type} {...getRootProps({ refKey: 'innerRef' })}>
-            <ListBoxField
-              type={type}
-              label={label}
-              selectedItem={selectedItem}
-              clearSelection={this.handleClearSelection}
-              isOpen={isOpen}
-              {...getButtonProps({ onClick: this.handleOnToggleMenu })}
-            />
+          <ListBox
+            className={className}
+            isDisabled={disabled}
+            {...getRootProps({ refKey: 'innerRef' })}>
+            <ListBoxField {...getButtonProps({ disabled })}>
+              {selectedItem.length !== 0 && <span>Selected Item</span>}
+              <span className="bx--list-box__label">{label}</span>
+              <ListBoxMenuIcon isOpen={isOpen} />
+            </ListBoxField>
             {isOpen && (
-              <ListBoxMenu
-                items={items}
-                selectItem={selectItem}
-                selectedItem={selectedItem}
-                itemToString={itemToString}
-                getItemProps={getItemProps}
-                highlightedIndex={highlightedIndex}
-              />
+              <ListBoxMenu>
+                {items.map((item, index) => (
+                  <ListBoxMenuItem
+                    key={itemToString(item)}
+                    isActive={selectedItem === item}
+                    isHighlighted={highlightedIndex === index}
+                    {...getItemProps({ item, index })}>
+                    {itemToString(item)}
+                  </ListBoxMenuItem>
+                ))}
+              </ListBoxMenu>
             )}
           </ListBox>
         )}

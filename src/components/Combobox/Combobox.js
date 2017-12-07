@@ -2,11 +2,15 @@ import cx from 'classnames';
 import Downshift from 'downshift';
 import PropTypes from 'prop-types';
 import React from 'react';
-import ListBox from '../ListBox';
-import ListBoxMenuIcon from '../ListBoxMenuIcon';
-// import ListBoxField from '../ListBoxField';
-// import ListBoxMenu from '../ListBoxMenu';
 import Icon from '../Icon';
+import {
+  ListBox,
+  ListBoxField,
+  ListBoxSelection,
+  ListBoxMenu,
+  ListBoxMenuItem,
+  ListBoxMenuIcon,
+} from '../ListBox';
 
 const defaultItemToString = item => item && item.label;
 const defaultShouldFilterItem = ({ inputValue, item, itemToString }) =>
@@ -15,60 +19,15 @@ const defaultShouldFilterItem = ({ inputValue, item, itemToString }) =>
     .toLowerCase()
     .includes(inputValue.toLowerCase());
 
-const ListBoxField = ({ children, ...other }) => (
-  <div className="bx--list-box__field" tabIndex="0" {...other}>
-    {children}
-  </div>
-);
-
-const ListBoxSelection = ({ clearSelection, selectedItem, shouldDisplay }) => {
-  const handleOnKeyDown = event => {
-    // When a user hits ENTER, we'll clear the selection
-    if (event.keyCode === 13) {
-      clearSelection();
-    }
-  };
-  return (
-    <div
-      className="bx--list-box__selection"
-      tabIndex="0"
-      onClick={clearSelection}
-      onKeyDown={handleOnKeyDown}>
-      <Icon name="close" description="Clear current selection" />
-    </div>
-  );
-};
-
-const ListBoxMenu = ({ items, renderItem }) => {
-  return <div className="bx--list-box__menu">{items.map(renderItem)}</div>;
-};
-
-const ListBoxMenuItem = ({ children, isActive, isHighlighted, ...rest }) => {
-  const className = cx({
-    'bx--list-box__menu-item': true,
-    'bx--list-box__menu-item--active': isActive,
-    'bx--list-box__menu-item--highlighted': isHighlighted,
-  });
-  return (
-    <div className={className} {...rest}>
-      {children}
-    </div>
-  );
-};
-
 const getInputValue = (props, state) => {
   if (props.initialSelectedItem) {
     return props.itemToString(props.initialSelectedItem);
   }
 
-  if (state.inputValue !== '') {
-    return state.inputValue;
-  }
-
-  return '';
+  return state.inputValue || '';
 };
 
-export default class ComboBox extends React.Component {
+export default class Combobox extends React.Component {
   static propTypes = {
     /**
      * An optional className to add to the container node
@@ -192,10 +151,7 @@ export default class ComboBox extends React.Component {
       type,
       initialSelectedItem,
     } = this.props;
-    const className = cx('bx--list-box', containerClassName, {
-      'bx--list-box--disabled': disabled,
-    });
-
+    const className = cx('bx--combo-box', containerClassName);
     return (
       <Downshift
         onChange={this.handleOnChange}
@@ -214,7 +170,10 @@ export default class ComboBox extends React.Component {
           highlightedIndex,
           clearSelection,
         }) => (
-          <div className={className}>
+          <ListBox
+            className={className}
+            isDisabled={disabled}
+            {...getRootProps({ refKey: 'innerRef' })}>
             <ListBoxField {...getButtonProps({ disabled })}>
               <input
                 className="bx--text-input"
@@ -234,9 +193,12 @@ export default class ComboBox extends React.Component {
               <ListBoxMenuIcon isOpen={isOpen} />
             </ListBoxField>
             {isOpen && (
-              <ListBoxMenu
-                items={this.filterItems(items, itemToString, inputValue)}
-                renderItem={(item, index) => (
+              <ListBoxMenu>
+                {this.filterItems(
+                  items,
+                  itemToString,
+                  inputValue
+                ).map((item, index) => (
                   <ListBoxMenuItem
                     key={itemToString(item)}
                     isActive={selectedItem === item}
@@ -244,10 +206,10 @@ export default class ComboBox extends React.Component {
                     {...getItemProps({ item, index })}>
                     {itemToString(item)}
                   </ListBoxMenuItem>
-                )}
-              />
+                ))}
+              </ListBoxMenu>
             )}
-          </div>
+          </ListBox>
         )}
       </Downshift>
     );
