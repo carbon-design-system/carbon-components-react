@@ -2,9 +2,11 @@
 @import 'carbon-components/scss/globals/scss/import-once';
 @import 'carbon-components/scss/globals/scss/css--helpers';
 @import 'carbon-components/scss/globals/scss/vars';
+@import 'carbon-components/scss/globals/scss/layout';
 
 $list-box-width: rem(300px);
 $list-box-height: rem(40px);
+$list-box-inline-height: rem(32px);
 
 @include exports('list-box') {
   .bx--list-box {
@@ -30,7 +32,6 @@ $list-box-height: rem(40px);
     opacity: 1;
   }
 
-  // list-boxMenu
   .bx--list-box__menu {
     @include box-shadow();
 
@@ -41,9 +42,9 @@ $list-box-height: rem(40px);
     background-color: $ui-01;
     max-height: rem(120px);
     overflow-y: auto;
+    z-index: z('dropdown');
   }
 
-  // list-boxMenuItem
   .bx--list-box__menu-item {
     display: flex;
     align-items: center;
@@ -60,7 +61,6 @@ $list-box-height: rem(40px);
     color: white;
   }
 
-  // list-boxMenuIcon --------------------------
   .bx--list-box__menu-icon {
     display: inline-block;
     position: absolute;
@@ -82,7 +82,6 @@ $list-box-height: rem(40px);
     transform: rotate(180deg);
   }
 
-  // list-boxSelection
   .bx--list-box__selection {
     display: inline-block;
     position: absolute;
@@ -92,8 +91,8 @@ $list-box-height: rem(40px);
     height: rem(40px);
     padding: 0 1rem;
     cursor: pointer;
-    // TODO: do we have a scale for this?
-    z-index: 100;
+    z-index: z('overlay');
+    user-select: none;
   }
 
   .bx--list-box__selection > svg {
@@ -105,7 +104,35 @@ $list-box-height: rem(40px);
     outline: 1px solid $brand-01;
   }
 
-  // list-boxField
+  .bx--list-box__selection--multi {
+    position: static;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    background-color: $brand-01;
+    height: rem(18px);
+    color: white;
+    font-size: 12px;
+    font-weight: 200;
+    padding: rem(5px);
+    margin-right: rem(10px);
+    border-radius: rem(13px);
+  }
+
+  .bx--list-box__selection--multi > svg {
+    fill: white;
+    width: 0.5rem;
+    height: 0.5rem;
+    margin-left: rem(5px);
+  }
+
+  .bx--list-box__selection--multi:focus,
+  .bx--list-box__selection--multi:hover {
+    background-color: $brand-02;
+    outline: none;
+  }
+
   .bx--list-box__field {
     position: relative;
     display: flex;
@@ -134,10 +161,56 @@ $list-box-height: rem(40px);
     padding: 0;
   }
 
-  // ListBoxLabel
   .bx--list-box__label {
     color: $text-01;
     font-size: 14px;
     font-weight: 600;
+    user-select: none;
+  }
+
+  .bx--list-box__menu-item:hover,
+  .bx--list-box__menu-item--highlighted {
+    background-color: rgba($field-01, 0.1);
+    color: $text-01;
+  }
+
+  .bx--list-box--inline {
+    background-color: inherit;
+    width: auto;
+    height: $list-box-inline-height;
+  }
+
+  .bx--list-box--inline .bx--list-box__label {
+    color: $brand-01;
+  }
+
+  .bx--list-box--inline .bx--list-box__field {
+    padding: 0 0 0 rem(10px);
+  }
+
+  .bx--list-box--inline .bx--list-box__menu-icon {
+    position: static;
+    padding: 0 rem(10px) 0 rem(12px);
+  }
+
+  .bx--list-box--inline > .bx--list-box__menu {
+    top: $list-box-inline-height;
+    width: $list-box-width;
+  }
+
+  .bx--list-box--inline
+    > .bx--list-box__field[aria-expanded='true']
+    ~ .bx--list-box__menu {
+    outline: 1px solid $brand-01;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1);
+  }
+
+  .bx--list-box--inline > .bx--list-box__field[aria-expanded='true'] {
+    outline: none;
+  }
+
+  .bx--dropdown-v2.bx--list-box--inline .bx--list-box__selection {
+    position: static;
+    padding: 0 rem(10px);
   }
 }

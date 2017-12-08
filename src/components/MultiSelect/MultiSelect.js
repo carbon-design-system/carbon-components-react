@@ -1,3 +1,4 @@
+import cx from 'classnames';
 import React from 'react';
 import PropTypes from 'prop-types';
 import Downshift from 'downshift';
@@ -10,6 +11,7 @@ import {
   ListBoxMenuIcon,
   ListBoxSelection,
 } from '../ListBox';
+import Icon from '../Icon';
 
 export default class MultiSelect extends React.Component {
   static propTypes = {
@@ -60,8 +62,9 @@ export default class MultiSelect extends React.Component {
   constructor(props) {
     super(props);
     const state = {
-      selectedItems: [],
+      highlightedIndex: null,
       isOpen: false,
+      selectedItems: [],
     };
 
     if (props.initialSelectedItems) {
@@ -148,13 +151,18 @@ export default class MultiSelect extends React.Component {
 
   handleOnStateChange = changes => {
     const { type } = changes;
-    // Opt-in to some cases where we should be toggling the menu based on
-    // a given key press or mouse handler
-    // Reference: https://github.com/paypal/downshift/issues/206
     switch (type) {
+      case Downshift.stateChangeTypes.keyDownArrowDown:
+      case Downshift.stateChangeTypes.keyDownArrowUp:
+      case Downshift.stateChangeTypes.itemMouseEnter:
+        this.setState({ highlightedIndex: changes.highlightedIndex });
+        break;
       case Downshift.stateChangeTypes.mouseUp:
         this.internalSetState({ isOpen: false });
         break;
+      // Opt-in to some cases where we should be toggling the menu based on
+      // a given key press or mouse handler
+      // Reference: https://github.com/paypal/downshift/issues/206
       case Downshift.stateChangeTypes.clickButton:
       case Downshift.stateChangeTypes.keyDownEscape:
       case Downshift.stateChangeTypes.keyDownSpaceButton:
@@ -164,17 +172,19 @@ export default class MultiSelect extends React.Component {
   };
 
   render() {
-    const { selectedItems, isOpen } = this.state;
+    const { highlightedIndex, isOpen, selectedItems } = this.state;
     const {
-      className,
+      className: containerClassName,
       items,
       itemToString,
       label,
       type,
       disabled,
     } = this.props;
+    const className = cx('bx--multi-select', containerClassName);
     return (
       <Downshift
+        highlightedIndex={highlightedIndex}
         isOpen={isOpen}
         itemToString={itemToString}
         onChange={this.handleOnChange}
@@ -191,28 +201,57 @@ export default class MultiSelect extends React.Component {
           getItemProps,
           getButtonProps,
           getLabelProps,
-          clearSelection,
         }) => (
           <ListBox
+            type={type}
             className={className}
             isDisabled={disabled}
             {...getRootProps({ refKey: 'innerRef' })}>
             <ListBoxField {...getButtonProps({ disabled })}>
-              {selectedItem.length !== 0 && <span>Selected Item</span>}
+              {selectedItem.length > 0 && (
+                <ListBoxSelection
+                  clearSelection={this.handleClearSelection}
+                  selectionCount={selectedItem.length}
+                />
+              )}
               <span className="bx--list-box__label">{label}</span>
               <ListBoxMenuIcon isOpen={isOpen} />
             </ListBoxField>
             {isOpen && (
               <ListBoxMenu>
-                {items.map((item, index) => (
-                  <ListBoxMenuItem
-                    key={itemToString(item)}
-                    isActive={selectedItem === item}
-                    isHighlighted={highlightedIndex === index}
-                    {...getItemProps({ item, index })}>
-                    {itemToString(item)}
-                  </ListBoxMenuItem>
-                ))}
+                {items.map((item, index) => {
+                  const itemProps = getItemProps({ item, index });
+                  const itemText = itemToString(item);
+                  const isChecked = selectedItem.indexOf(item) !== -1;
+                  return (
+                    <ListBoxMenuItem
+                      key={itemProps.id}
+                      isActive={selectedItem === item}
+                      isHighlighted={highlightedIndex === index}
+                      {...itemProps}>
+                      <input
+                        checked={isChecked}
+                        className="bx--checkbox"
+                        id={itemProps.id}
+                        name={itemText}
+                        readOnly={true}
+                        tabIndex="-1"
+                        type="checkbox"
+                      />
+                      <label
+                        className="bx--checkbox-label"
+                        htmlFor={itemProps.id}>
+                        <span className="bx--checkbox-appearance">
+                          <Icon
+                            className="bx--checkbox-checkmark"
+                            name="checkmark"
+                          />
+                        </span>
+                        {itemText}
+                      </label>
+                    </ListBoxMenuItem>
+                  );
+                })}
               </ListBoxMenu>
             )}
           </ListBox>

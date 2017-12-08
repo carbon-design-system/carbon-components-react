@@ -185,10 +185,7 @@ export default class Combobox extends React.Component {
                 })}
               />
               {inputValue && (
-                <ListBoxSelection
-                  clearSelection={clearSelection}
-                  selectedItem={selectedItem}
-                />
+                <ListBoxSelection clearSelection={clearSelection} />
               )}
               <ListBoxMenuIcon isOpen={isOpen} />
             </ListBoxField>

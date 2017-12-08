@@ -1,6 +1,7 @@
 import React from 'react';
 import { storiesOf, action } from '@storybook/react';
 import Combobox from '../Combobox';
+import Dropdown from '../DropdownV2';
 import MultiSelect from '../MultiSelect';
 
 const items = [
@@ -28,20 +29,49 @@ storiesOf('ListBox', module).addWithInfo(
     MultiSelect and Combobox
   `,
   () => (
-    <div style={{ display: 'flex', alignItems: 'center' }}>
-      <Combobox
-        items={items}
-        itemToString={item => (item ? item.text : '')}
-        onChange={action('Combobox - onChange')}
-        placeholder="Filter..."
-      />
-      <div style={{ marginRight: '2rem' }} />
-      <MultiSelect
-        label="Label"
-        items={items}
-        itemToString={item => (item ? item.text : '')}
-        onChange={action('MultiSelect - onChange')}
-      />
+    <div>
+      <div style={{ display: 'flex', alignItems: 'center' }}>
+        <Combobox
+          items={items}
+          itemToString={item => (item ? item.text : '')}
+          onChange={action('onChange - Combobox')}
+          placeholder="Filter..."
+        />
+      </div>
+      <div style={{ marginBottom: '2rem' }} />
+      <div style={{ display: 'flex', alignItems: 'center' }}>
+        <Dropdown
+          label="Label"
+          items={items}
+          itemToString={item => (item ? item.text : '')}
+          onChange={action('onChange - Dropdown')}
+        />
+        <div style={{ marginRight: '2rem' }} />
+        <Dropdown
+          type="inline"
+          label="Label"
+          items={items}
+          itemToString={item => (item ? item.text : '')}
+          onChange={action('onChange - Dropdown')}
+        />
+      </div>
+      <div style={{ marginBottom: '2rem' }} />
+      <div style={{ display: 'flex', alignItems: 'center' }}>
+        <MultiSelect
+          label="Label"
+          items={items}
+          itemToString={item => (item ? item.text : '')}
+          onChange={action('onChange - MultiSelect')}
+        />
+        <div style={{ marginRight: '2rem' }} />
+        <MultiSelect
+          type="inline"
+          label="Label"
+          items={items}
+          itemToString={item => (item ? item.text : '')}
+          onChange={action('onChange - Inline MultiSelect')}
+        />
+      </div>
     </div>
   )
 );

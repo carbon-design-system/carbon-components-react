@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ListBox should render 1`] = `
+<ListBox
+  className="bx--list-box__container"
+  innerRef={[Function]}
+  isDisabled={false}
+  type="default"
+>
+  <div
+    className="bx--list-box bx--list-box__container"
+  >
+    <span>
+      Hello
+    </span>
+  </div>
+</ListBox>
+`;

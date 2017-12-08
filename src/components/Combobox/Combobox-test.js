@@ -1,36 +1,20 @@
 import React from 'react';
 import Downshift from 'downshift';
-import { mount, shallow } from 'enzyme';
+import { mount } from 'enzyme';
 import {
+  findMenuNode,
+  findMenuItemNode,
+  findMenuIconNode,
+  findFieldNode,
+  openMenu,
+  assertMenuOpen,
   generateItems,
   generateGenericItem,
-} from '../../tools/testing/items';
+} from '../Listbox/test-helpers';
 import Combobox from '../Combobox';
 
-// Finding nodes in the Combobox
 const findInputNode = wrapper => wrapper.find('.bx--text-input');
-const findMenuNode = wrapper => wrapper.find('.bx--list-box__menu');
-const findMenuIconNode = wrapper => wrapper.find('.bx--list-box__menu-icon');
-const findFieldNode = wrapper => wrapper.find('.bx--list-box__field');
-
-// Actions
-const openMenu = wrapper => findFieldNode(wrapper).simulate('click');
 const clearInput = wrapper => wrapper.instance().handleOnInputValueChange('');
-
-// Common assertions, useful for validating a11y props are set when needed
-const assertMenuOpen = (wrapper, mockProps) => {
-  expect(findMenuNode(wrapper).children().length).toBe(mockProps.items.length);
-  expect(findMenuIconNode(wrapper).prop('className')).toEqual(
-    expect.stringContaining('bx--list-box__menu-icon--open')
-  );
-  expect(findFieldNode(wrapper).props()).toEqual(expect.objectContaining({
-    'aria-expanded': true,
-    'aria-haspopup': true,
-    'aria-label': 'close menu',
-  }));
-};
-const assertClearSelectionHidden = wrapper => {
-};
 
 describe('Combobox', () => {
   let mockProps;
@@ -47,7 +31,9 @@ describe('Combobox', () => {
   it('should display the placeholder text when no items are selected and the control is not focused', () => {
     const wrapper = mount(<Combobox {...mockProps} />);
     expect(findInputNode(wrapper).prop('value')).toBe('');
-    expect(findInputNode(wrapper).prop('placeholder')).toBe(mockProps.placeholder);
+    expect(findInputNode(wrapper).prop('placeholder')).toBe(
+      mockProps.placeholder
+    );
   });
 
   it('should display the menu of items when a user clicks on the input', () => {
@@ -73,7 +59,7 @@ describe('Combobox', () => {
     for (let i = 0; i < mockProps.items.length; i++) {
       clearInput(wrapper);
       openMenu(wrapper);
-      wrapper.find('ListBoxMenuItem').at(i).simulate('click');
+      findMenuItemNode(wrapper, i).simulate('click');
       expect(mockProps.onChange).toHaveBeenCalledTimes(i + 1);
       expect(mockProps.onChange).toHaveBeenCalledWith({
         selectedItem: mockProps.items[i],
@@ -82,9 +68,25 @@ describe('Combobox', () => {
   });
 
   describe('when disabled', () => {
-    it('should not let the user edit the input node');
+    it('should not let the user edit the input node', () => {
+      const wrapper = mount(<Combobox {...mockProps} disabled={true} />);
+      expect(findInputNode(wrapper).prop('disabled')).toBe(true);
+      expect(findInputNode(wrapper).prop('value')).toBe('');
 
-    it('should not let the user expand the menu');
+      findInputNode(wrapper).simulate('change', {
+        target: {
+          value: 'a',
+        },
+      });
+
+      expect(findInputNode(wrapper).prop('value')).toBe('');
+    });
+
+    it('should not let the user expand the menu', () => {
+      const wrapper = mount(<Combobox {...mockProps} disabled={true} />);
+      openMenu(wrapper);
+      expect(findMenuNode(wrapper).length).toBe(0);
+    });
   });
 
   describe('downshift quirks', () => {
