@@ -184,23 +184,19 @@ class FloatingMenu extends React.Component {
       top: 10,
     };
     const adjustedOffsets = Object.assign({}, defaultOffsets);
-
     adjustedOffsets.left += newOffsets.left || 0;
     adjustedOffsets.top += newOffsets.top || 0;
-
     switch (menuDirection) {
+      case 'right':
+        adjustedOffsets.left += 8;
+        adjustedOffsets.top += 4;
+        break;
       case 'left':
         adjustedOffsets.top += 4;
-        return adjustedOffsets;
-
-      case 'right':
-        adjustedOffsets.top += 4;
-        adjustedOffsets.left += 8;
-        return adjustedOffsets;
-
-      default:
-        return adjustedOffsets;
+        break;
     }
+
+    return adjustedOffsets;
   }
 
   renderLayer = () => {
