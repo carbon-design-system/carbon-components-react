@@ -238,9 +238,7 @@ class BasicDataTable extends Component {
                     <DataTableHeader />
                   </DataTableRow>
                 </DataTableHead>
-                <DataTableBody
-                  ref={tableContainer =>
-                    (this.tableContainer = tableContainer)}>
+                <DataTableBody>
                   {rows.map((row, i) => {
                     return (
                       <DataTableRow key={`row${i}`}>
@@ -373,10 +371,7 @@ class ExpandableDataTable extends Component {
                 </DataTableHeader>
               </DataTableRow>
             </DataTableHead>
-            <DataTableBody
-              ref={tableContainer => (this.tableContainer = tableContainer)}>
-              {createTableBody}
-            </DataTableBody>
+            <DataTableBody>{createTableBody}</DataTableBody>
           </DataTable>
         </DataTableContainer>
         <PaginationV2 totalItems={50} {...paginationProps} />

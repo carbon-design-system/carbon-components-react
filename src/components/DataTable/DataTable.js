@@ -62,7 +62,13 @@ export class DataTableHeader extends Component {
   };
 
   render() {
-    const { children, className, sortable, ...other } = this.props;
+    const {
+      children,
+      className,
+      sortable,
+      sortBy, // eslint-disable-line
+      ...other
+    } = this.props;
     const tableSortClasses = classNames('bx--table-sort-v2', {
       'bx--table-sort-v2--active': this.state.active,
       'bx--table-sort-v2--ascending': this.state.sorted,
