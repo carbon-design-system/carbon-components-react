@@ -126,8 +126,7 @@ class BasicDataTable extends Component {
             <DataTableBatchActions
               totalSelected={checkedItems}
               showBatchActions={showBatchActions}
-              handleClick={this.clearAll}
-            >
+              handleClick={this.clearAll}>
               <DataTableActionList>
                 <DataTableBatchAction onClick={action('Batch Action 1')}>
                   Ghost
@@ -174,46 +173,40 @@ class BasicDataTable extends Component {
                     />
                     <DataTableHeader
                       sortable
-                      handleClick={this.sortRow('name')}
-                    >
+                      handleClick={this.sortRow('name')}>
                       Name
                     </DataTableHeader>
                     <DataTableHeader
                       sortable
-                      handleClick={this.sortRow('protocol')}
-                    >
+                      handleClick={this.sortRow('protocol')}>
                       Protocol
                     </DataTableHeader>
                     <DataTableHeader
                       sortable
-                      handleClick={this.sortRow('something')}
-                    >
+                      handleClick={this.sortRow('something')}>
                       Something
                     </DataTableHeader>
                     <DataTableHeader
                       sortable
-                      handleClick={this.sortRow('rule')}
-                    >
+                      handleClick={this.sortRow('rule')}>
                       Rule
                     </DataTableHeader>
                     <DataTableHeader
                       sortable
-                      handleClick={this.sortRow('attached_groups')}
-                    >
+                      handleClick={this.sortRow('attached_groups')}>
                       Attached Groups
                     </DataTableHeader>
                     <DataTableHeader
                       sortable
-                      handleClick={this.sortRow('status')}
-                    >
+                      handleClick={this.sortRow('status')}>
                       Status
                     </DataTableHeader>
                     <DataTableHeader />
                   </DataTableRow>
                 </DataTableHead>
                 <DataTableBody
-                  ref={tableContainer => (this.tableContainer = tableContainer)}
-                >
+                  ref={tableContainer =>
+                    (this.tableContainer = tableContainer)}>
                   {rows.map((row, i) => {
                     return (
                       <DataTableRow key={`row${i}`}>
@@ -347,8 +340,7 @@ class ExpandableDataTable extends Component {
               </DataTableRow>
             </DataTableHead>
             <DataTableBody
-              ref={tableContainer => (this.tableContainer = tableContainer)}
-            >
+              ref={tableContainer => (this.tableContainer = tableContainer)}>
               {createTableBody}
             </DataTableBody>
           </DataTable>
