@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
+import classNames from 'classnames';
 import DataTableRow from '../DataTableRow';
 import DataTableData from '../DataTableData';
 import DataTableRowExpand from '../DataTableRowExpand'; // eslint-disable-line
@@ -42,6 +43,7 @@ class BasicDataTable extends Component {
   }
 
   static defaultProps = {
+    zebra: true,
     rows: [
       {
         name: 'Load Balancer 3',
@@ -72,7 +74,7 @@ class BasicDataTable extends Component {
 
   selectAll = () => {
     const checked = this.state.checked;
-    this.rows.forEach((row, index) => {
+    this.state.rows.forEach((row, index) => {
       if (this.state.selectAll) {
         checked[index] = false;
       } else {
@@ -96,7 +98,7 @@ class BasicDataTable extends Component {
 
   clearAll = () => {
     const checked = this.state.checked;
-    this.rows.forEach((row, index) => {
+    this.state.rows.forEach((row, index) => {
       checked[index] = checked[index] ? !checked[index] : false;
     });
     this.setState({
@@ -146,7 +148,10 @@ class BasicDataTable extends Component {
   render() {
     const checkedItems = this.getCheckedItems();
     const showBatchActions = checkedItems > 0;
-
+    const tableClasses = classNames({
+      'bx--data-table-v2': true,
+      'bx--data-table-v2--zebra': this.props.zebra,
+    });
     return (
       <div>
         <DataTableContainer title="Table title">
@@ -192,7 +197,7 @@ class BasicDataTable extends Component {
           <DataTable
             initialRows={this.state.rows}
             render={({ rows }) => (
-              <table className="bx--data-table-v2 bx--data-table-v2--zebra">
+              <table className={tableClasses}>
                 <DataTableHead>
                   <DataTableRow>
                     <DataTableSelectAll
