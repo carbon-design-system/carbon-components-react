@@ -5,16 +5,32 @@ import Button from '../Button';
 import Icon from '../Icon';
 import Search from '../Search';
 
-export const DataTable = ({ ...props }) => {
-  const { className, children, ...other } = props;
-  const tableClasses = classNames(className, 'bx--data-table-v2');
+export class DataTable extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      rows: props.initialRows,
+    };
+  }
 
-  return (
-    <table {...other} className={tableClasses}>
-      {children}
-    </table>
-  );
-};
+  render() {
+    const renderProps = {
+      rows: this.state.rows,
+    };
+
+    const { render, children } = this.props;
+
+    if (render !== undefined) {
+      return render(renderProps);
+    }
+
+    if (children !== undefined) {
+      return children(renderProps);
+    }
+
+    return null;
+  }
+}
 
 export class DataTableHeader extends Component {
   state = {
@@ -38,7 +54,7 @@ export class DataTableHeader extends Component {
     this.setState({
       sorted: !this.state.sorted,
     });
-    this.props.onClick();
+    this.props.handleClick();
   };
 
   render() {
@@ -53,7 +69,8 @@ export class DataTableHeader extends Component {
           <button
             onFocus={this.setActive}
             onClick={this.handleClick}
-            className={tableSortClasses}>
+            className={tableSortClasses}
+          >
             {children}
             <Icon
               className="bx--table-sort-v2__icon"
@@ -190,7 +207,8 @@ export const DataTableBatchAction = ({ ...props }) => {
       className={className}
       icon="add--glyph"
       iconDescription="Add"
-      {...other}>
+      {...other}
+    >
       {children}
     </Button>
   );
@@ -243,20 +261,21 @@ DataTableBatchAction.propTypes = {
   handleClick: PropTypes.func,
 };
 
-export const DataTableContainer = props => {
-  const { children, className, title, ...other } = props;
-  const tableContainerClasses = classNames(
-    className,
-    'bx--data-table-v2-container'
-  );
-
-  return (
-    <div className={tableContainerClasses} {...other}>
-      <h4 className="bx--data-table-v2-header">{title}</h4>
-      {children}
-    </div>
-  );
-};
+export class DataTableContainer extends Component {
+  render() {
+    const tableContainerClasses = classNames(
+      className,
+      'bx--data-table-v2-container'
+    );
+    const { children, className, title, ...other } = this.props;
+    return (
+      <div className={tableContainerClasses} {...other}>
+        <h4 className="bx--data-table-v2-header">{title}</h4>
+        {children}
+      </div>
+    );
+  }
+}
 
 DataTableContainer.propTypes = {
   children: PropTypes.node,
@@ -319,7 +338,8 @@ export const DataTableSelectAll = props => {
             width="12"
             height="9"
             viewBox="0 0 12 9"
-            fillRule="evenodd">
+            fillRule="evenodd"
+          >
             <path d="M4.1 6.1L1.4 3.4 0 4.9 4.1 9l7.6-7.6L10.3 0z" />
           </svg>
         </span>

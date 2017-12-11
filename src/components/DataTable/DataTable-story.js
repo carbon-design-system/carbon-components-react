@@ -83,8 +83,8 @@ class BasicDataTable extends Component {
     return checkedItems;
   };
 
-  sortRow = () => {
-    // TODO: Figure out how to sort
+  sortRow = sortQuery => {
+    console.log(sortQuery);
   };
 
   render() {
@@ -116,35 +116,9 @@ class BasicDataTable extends Component {
     ];
     this.rows = rows;
 
-    const rowData = rows.map((data, index) => {
-      const selectedState = this.state.checked[index]
-        ? this.state.checked[index]
-        : false;
-      const dataArray = Object.keys(data).map((content, rowIndex) => {
-        return (
-          <DataTableData key={`d${rowIndex}`}>{data[content]}</DataTableData>
-        );
-      });
-      return [
-        <DataTableData
-          onClick={() => this.selectRow(index)}
-          key={`a${index}`}
-          checked={selectedState}
-        />,
-        ...dataArray,
-        <DataTableData key={`c${index}`} overflow />,
-      ];
-    });
-
-    const createRows = rowData.map((row, index) => (
-      <DataTableRow key={`b${index}`}>{row}</DataTableRow>
-    ));
-
-    const createTableBody = createRows.map(data => [data]);
     const checkedItems = this.getCheckedItems();
     const showBatchActions = checkedItems > 0;
-    // items to figure out:
-    // batch actions inside toolbar?
+
     return (
       <div>
         <DataTableContainer title="Table title">
@@ -152,7 +126,8 @@ class BasicDataTable extends Component {
             <DataTableBatchActions
               totalSelected={checkedItems}
               showBatchActions={showBatchActions}
-              handleClick={this.clearAll}>
+              handleClick={this.clearAll}
+            >
               <DataTableActionList>
                 <DataTableBatchAction onClick={action('Batch Action 1')}>
                   Ghost
@@ -187,39 +162,85 @@ class BasicDataTable extends Component {
               </Button>
             </DataTableToolbarContent>
           </DataTableToolbar>
-          <DataTable>
-            <DataTableHead>
-              <DataTableRow>
-                <DataTableSelectAll
-                  checked={this.state.selectAll}
-                  onClick={this.selectAll}
-                />
-                <DataTableHeader sortable onClick={this.sortRow}>
-                  Name
-                </DataTableHeader>
-                <DataTableHeader sortable onClick={this.sortRow}>
-                  Protocol
-                </DataTableHeader>
-                <DataTableHeader sortable onClick={this.sortRow}>
-                  Something
-                </DataTableHeader>
-                <DataTableHeader sortable onClick={this.sortRow}>
-                  Rule
-                </DataTableHeader>
-                <DataTableHeader sortable onClick={this.sortRow}>
-                  Attached Groups
-                </DataTableHeader>
-                <DataTableHeader sortable onClick={this.sortRow}>
-                  Status
-                </DataTableHeader>
-                <DataTableHeader />
-              </DataTableRow>
-            </DataTableHead>
-            <DataTableBody
-              ref={tableContainer => (this.tableContainer = tableContainer)}>
-              {createTableBody}
-            </DataTableBody>
-          </DataTable>
+          <DataTable
+            initialRows={rows}
+            render={({ rows }) => (
+              <table className="bx--data-table-v2 bx--data-table-v2--zebra">
+                <DataTableHead>
+                  <DataTableRow>
+                    <DataTableSelectAll
+                      checked={this.state.selectAll}
+                      onClick={this.selectAll}
+                    />
+                    <DataTableHeader
+                      sortable
+                      handleClick={this.sortRow('name')}
+                    >
+                      Name
+                    </DataTableHeader>
+                    <DataTableHeader
+                      sortable
+                      handleClick={this.sortRow('protocol')}
+                    >
+                      Protocol
+                    </DataTableHeader>
+                    <DataTableHeader
+                      sortable
+                      handleClick={this.sortRow('something')}
+                    >
+                      Something
+                    </DataTableHeader>
+                    <DataTableHeader
+                      sortable
+                      handleClick={this.sortRow('rule')}
+                    >
+                      Rule
+                    </DataTableHeader>
+                    <DataTableHeader
+                      sortable
+                      handleClick={this.sortRow('attached_groups')}
+                    >
+                      Attached Groups
+                    </DataTableHeader>
+                    <DataTableHeader
+                      sortable
+                      handleClick={this.sortRow('status')}
+                    >
+                      Status
+                    </DataTableHeader>
+                    <DataTableHeader />
+                  </DataTableRow>
+                </DataTableHead>
+                <DataTableBody
+                  ref={tableContainer => (this.tableContainer = tableContainer)}
+                >
+                  {rows.map((row, i) => {
+                    return (
+                      <DataTableRow key={`row${i}`}>
+                        <DataTableData
+                          onClick={() => this.selectRow(i)}
+                          key={`a${i}`}
+                          checked={
+                            this.state.checked[i]
+                              ? this.state.checked[i]
+                              : false
+                          }
+                        />
+                        {Object.keys(row).map((rowData, j) => {
+                          return (
+                            <DataTableData key={`rowdata${j}`}>
+                              {row[rowData]}
+                            </DataTableData>
+                          );
+                        })}
+                        <DataTableData key={`c${i}`} overflow />
+                      </DataTableRow>
+                    );
+                  })}
+                </DataTableBody>
+              </table>
+            )}
+          />
         </DataTableContainer>
         <PaginationV2 totalItems={50} {...paginationProps} />
       </div>
@@ -326,7 +347,8 @@ class ExpandableDataTable extends Component {
               </DataTableRow>
             </DataTableHead>
             <DataTableBody
-              ref={tableContainer => (this.tableContainer = tableContainer)}>
+              ref={tableContainer => (this.tableContainer = tableContainer)}
+            >
               {createTableBody}
             </DataTableBody>
           </DataTable>
