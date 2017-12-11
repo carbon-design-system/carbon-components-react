@@ -32,9 +32,42 @@ const paginationProps = {
 };
 
 class BasicDataTable extends Component {
-  state = {
-    checked: [],
-    selectAll: false,
+  constructor(props) {
+    super(props);
+    this.state = {
+      checked: [],
+      selectAll: false,
+      rows: this.props.rows,
+    };
+  }
+
+  static defaultProps = {
+    rows: [
+      {
+        name: 'Load Balancer 3',
+        protocol: 'HTTP',
+        something: '80',
+        rule: 'Round Robin',
+        attached_groups: 'Kevins VM Groups',
+        status: 'Active',
+      },
+      {
+        name: 'Load Balancer 1',
+        protocol: 'HTTP',
+        something: '80',
+        rule: 'Round Robin',
+        attached_groups: 'Maureens VM Groups',
+        status: 'Active',
+      },
+      {
+        name: 'Load Balancer 2',
+        protocol: 'HTTP',
+        something: '80',
+        rule: 'Round Robin',
+        attached_groups: 'Andrews VM Groups',
+        status: 'Active',
+      },
+    ],
   };
 
   selectAll = () => {
@@ -83,39 +116,34 @@ class BasicDataTable extends Component {
     return checkedItems;
   };
 
-  sortRow = sortQuery => {
-    console.log(sortQuery);
+  compareVals = (key, order = 'asc') => {
+    return function(a, b) {
+      if (!a.hasOwnProperty(key) || !b.hasOwnProperty(key)) {
+        return 0;
+      }
+
+      const varA = typeof a[key] === 'string' ? a[key].toUpperCase() : a[key];
+      const varB = typeof b[key] === 'string' ? b[key].toUpperCase() : b[key];
+
+      let comparison = 0;
+      if (varA > varB) {
+        comparison = 1;
+      } else if (varA < varB) {
+        comparison = -1;
+      }
+
+      return order === 'desc' ? comparison * -1 : comparison;
+    };
+  };
+
+  sortRow = (query, dir) => {
+    const newRows = this.state.rows.sort(this.compareVals(query, dir));
+    this.setState({
+      rows: newRows,
+    });
   };
 
   render() {
-    const rows = [
-      {
-        name: 'Load Balancer 1',
-        protocol: 'HTTP',
-        something: '80',
-        rule: 'Round Robin',
-        attached_groups: 'Maureens VM Groups',
-        status: 'Active',
-      },
-      {
-        name: 'Load Balancer 1',
-        protocol: 'HTTP',
-        something: '80',
-        rule: 'Round Robin',
-        attached_groups: 'Maureens VM Groups',
-        status: 'Active',
-      },
-      {
-        name: 'Load Balancer 1',
-        protocol: 'HTTP',
-        something: '80',
-        rule: 'Round Robin',
-        attached_groups: 'Maureens VM Groups',
-        status: 'Active',
-      },
-    ];
-    this.rows = rows;
-
     const checkedItems = this.getCheckedItems();
     const showBatchActions = checkedItems > 0;
 
@@ -162,7 +190,7 @@ class BasicDataTable extends Component {
             </DataTableToolbarContent>
           </DataTableToolbar>
           <DataTable
-            initialRows={rows}
+            initialRows={this.state.rows}
             render={({ rows }) => (
               <table className="bx--data-table-v2 bx--data-table-v2--zebra">
                 <DataTableHead>
@@ -172,33 +200,39 @@ class BasicDataTable extends Component {
                       onClick={this.selectAll}
                     />
                     <DataTableHeader
+                      onClick={this.sortRow}
                       sortable
-                      handleClick={this.sortRow('name')}>
+                      sortBy="name">
                       Name
                     </DataTableHeader>
                     <DataTableHeader
+                      onClick={this.sortRow}
                       sortable
-                      handleClick={this.sortRow('protocol')}>
+                      sortBy="protocol">
                       Protocol
                     </DataTableHeader>
                     <DataTableHeader
+                      onClick={this.sortRow}
                       sortable
-                      handleClick={this.sortRow('something')}>
+                      sortBy="something">
                       Something
                     </DataTableHeader>
                     <DataTableHeader
+                      onClick={this.sortRow}
                       sortable
-                      handleClick={this.sortRow('rule')}>
+                      sortBy="rule">
                       Rule
                     </DataTableHeader>
                     <DataTableHeader
+                      onClick={this.sortRow}
                       sortable
-                      handleClick={this.sortRow('attached_groups')}>
+                      sortBy="attached_groups">
                       Attached Groups
                     </DataTableHeader>
                     <DataTableHeader
+                      onClick={this.sortRow}
                       sortable
-                      handleClick={this.sortRow('status')}>
+                      sortBy="status">
                       Status
                     </DataTableHeader>
                     <DataTableHeader />

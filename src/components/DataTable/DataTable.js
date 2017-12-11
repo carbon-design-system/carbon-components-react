@@ -33,10 +33,13 @@ export class DataTable extends Component {
 }
 
 export class DataTableHeader extends Component {
-  state = {
-    sorted: false,
-    active: false,
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      sorted: false,
+      active: false,
+    };
+  }
 
   setActive = () => {
     this.setState({
@@ -54,7 +57,8 @@ export class DataTableHeader extends Component {
     this.setState({
       sorted: !this.state.sorted,
     });
-    this.props.handleClick();
+    const direction = this.state.sorted ? 'desc' : 'asc';
+    this.props.onClick(this.props.sortBy, direction);
   };
 
   render() {
