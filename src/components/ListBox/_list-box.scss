@@ -134,6 +134,7 @@ $list-box-inline-height: rem(32px);
   }
 
   .bx--list-box__field {
+    @include button-reset;
     position: relative;
     display: flex;
     align-items: center;

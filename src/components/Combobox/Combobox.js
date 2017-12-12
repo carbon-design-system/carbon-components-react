@@ -2,7 +2,6 @@ import cx from 'classnames';
 import Downshift from 'downshift';
 import PropTypes from 'prop-types';
 import React from 'react';
-import Icon from '../Icon';
 import {
   ListBox,
   ListBoxField,
@@ -146,9 +145,7 @@ export default class Combobox extends React.Component {
       id,
       items,
       itemToString,
-      onChange,
       placeholder,
-      type,
       initialSelectedItem,
     } = this.props;
     const className = cx('bx--combo-box', containerClassName);

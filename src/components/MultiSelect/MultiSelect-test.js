@@ -296,14 +296,13 @@ describe('MultiSelect', () => {
         .find('.bx--list-box__menu-item')
         .at(0)
         .simulate('click');
-      console.log(wrapper.debug());
-      // expect(wrapper.find('.bx--list-box__menu-item--active').length).toBe(1);
+      expect(wrapper.find('.bx--list-box__menu-item--active').length).toBe(1);
 
-      // simulateArrowDown();
-      // wrapper.find('.bx--list-box__field').simulate('keydown', {
-      // key: 'Enter',
-      // });
-      // expect(wrapper.find('.bx--list-box__menu-item--active').length).toBe(0);
+      simulateArrowDown();
+      wrapper.find('.bx--list-box__field').simulate('keydown', {
+        key: 'Enter',
+      });
+      expect(wrapper.find('.bx--list-box__menu-item--active').length).toBe(0);
     });
 
     it('should allow a user to click on the clear icon to clear all selected items', () => {

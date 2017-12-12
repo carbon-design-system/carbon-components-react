@@ -1,11 +1,8 @@
 import React from 'react';
-import Downshift from 'downshift';
 import { mount } from 'enzyme';
 import {
   findMenuNode,
   findMenuItemNode,
-  findMenuIconNode,
-  findFieldNode,
   openMenu,
   assertMenuOpen,
   generateItems,

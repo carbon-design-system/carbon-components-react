@@ -21,6 +21,7 @@ const ListBoxSelection = ({
   const description = selectionCount ? t('clear.all') : t('clear.selection');
   return (
     <div
+      role="button"
       className={className}
       tabIndex="0"
       onClick={clearSelection}

@@ -69,7 +69,6 @@ export default class Dropdown extends React.Component {
       items,
       label,
       itemToString,
-      onChange,
       type,
       initialSelectedItem,
     } = this.props;

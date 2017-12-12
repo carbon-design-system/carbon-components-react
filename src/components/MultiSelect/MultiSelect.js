@@ -194,13 +194,11 @@ export default class MultiSelect extends React.Component {
         {({
           getRootProps,
           selectedItem,
-          selectItem,
           isOpen,
           itemToString,
           highlightedIndex,
           getItemProps,
           getButtonProps,
-          getLabelProps,
         }) => (
           <ListBox
             type={type}
