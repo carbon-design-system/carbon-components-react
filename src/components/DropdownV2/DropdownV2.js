@@ -97,9 +97,6 @@ export default class Dropdown extends React.Component {
               <span className="bx--list-box__label">
                 {selectedItem ? itemToString(selectedItem) : label}
               </span>
-              {selectedItem && (
-                <ListBoxSelection clearSelection={clearSelection} />
-              )}
               <ListBoxMenuIcon isOpen={isOpen} />
             </ListBoxField>
             {isOpen && (

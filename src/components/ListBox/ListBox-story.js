@@ -37,6 +37,14 @@ storiesOf('ListBox', module).addWithInfo(
           onChange={action('onChange - Combobox')}
           placeholder="Filter..."
         />
+        <div style={{ marginRight: '2rem' }} />
+        <Combobox
+          items={items}
+          itemToString={item => (item ? item.text : '')}
+          onChange={action('onChange - Combobox')}
+          placeholder="Filter..."
+          disabled
+        />
       </div>
       <div style={{ marginBottom: '2rem' }} />
       <div style={{ display: 'flex', alignItems: 'center' }}>
@@ -53,6 +61,15 @@ storiesOf('ListBox', module).addWithInfo(
           items={items}
           itemToString={item => (item ? item.text : '')}
           onChange={action('onChange - Dropdown')}
+        />
+        <div style={{ marginRight: '2rem' }} />
+        <Dropdown
+          type="inline"
+          label="Label"
+          items={items}
+          itemToString={item => (item ? item.text : '')}
+          onChange={action('onChange - Dropdown')}
+          disabled
         />
       </div>
       <div style={{ marginBottom: '2rem' }} />
@@ -70,6 +87,15 @@ storiesOf('ListBox', module).addWithInfo(
           items={items}
           itemToString={item => (item ? item.text : '')}
           onChange={action('onChange - Inline MultiSelect')}
+        />
+        <div style={{ marginRight: '2rem' }} />
+        <MultiSelect
+          type="inline"
+          label="Label"
+          items={items}
+          itemToString={item => (item ? item.text : '')}
+          onChange={action('onChange - Inline MultiSelect')}
+          disabled
         />
       </div>
     </div>

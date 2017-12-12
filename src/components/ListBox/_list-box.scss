@@ -20,6 +20,12 @@ $list-box-inline-height: rem(32px);
     opacity: 0.5;
   }
 
+  .bx--list-box--disabled,
+  .bx--list-box--disabled .bx--list-box__field,
+  .bx--list-box--disabled .bx--list-box__menu-icon {
+    cursor: not-allowed;
+  }
+
   .bx--list-box input[role='combobox'] {
     background-color: inherit;
   }
@@ -114,7 +120,7 @@ $list-box-inline-height: rem(32px);
     height: rem(18px);
     color: white;
     font-size: 12px;
-    font-weight: 200;
+    line-height: 0;
     padding: rem(5px);
     margin-right: rem(10px);
     border-radius: rem(13px);
