@@ -27,7 +27,6 @@ import {
 import PaginationV2 from '../PaginationV2';
 import Button from '../Button';
 
-// Move this somewhere else?
 const paginationProps = {
   pageSizes: [10, 20, 30, 40, 50],
 };
@@ -282,105 +281,254 @@ class ExpandableDataTable extends Component {
   state = {
     expanded: [],
     selectAll: false,
+    rows: this.props.rows,
   };
 
-  expandRow = index => {
+  static defaultProps = {
+    zebra: true,
+    rows: [
+      {
+        rowContent: {
+          name: 'Load Balancer 3',
+          protocol: 'HTTP',
+          something: '80',
+          rule: 'Round Robin',
+          attached_groups: 'Kevins VM Groups',
+          status: 'Active',
+        },
+        expandedRowContent: {
+          html: `<div>
+          <h1>Hello there!</h1>
+          <p>This is cool!</p>
+        </div>`,
+        },
+      },
+      {
+        rowContent: {
+          name: 'Load Balancer 1',
+          protocol: 'HTTP',
+          something: '80',
+          rule: 'Round Robin',
+          attached_groups: 'Maureens VM Groups',
+          status: 'Active',
+        },
+        expandedRowContent: {
+          html: `<div>
+          <h1>Hi!</h1>
+          <p>Woah!</p>
+        </div>`,
+        },
+      },
+      {
+        rowContent: {
+          name: 'Load Balancer 2',
+          protocol: 'HTTP',
+          something: '80',
+          rule: 'Round Robin',
+          attached_groups: 'Andrews VM Groups',
+          status: 'Active',
+        },
+        expandedRowContent: {
+          html: `<div>
+          <h1>Aloha!</h1>
+          <p>Wii!</p>
+        </div>`,
+        },
+      },
+    ],
+  };
+
+  compareVals = (key, order = 'asc') => {
+    return function(a, b) {
+      if (
+        !a.rowContent.hasOwnProperty(key) ||
+        !b.rowContent.hasOwnProperty(key)
+      ) {
+        return 0;
+      }
+
+      const varA =
+        typeof a.rowContent[key] === 'string'
+          ? a.rowContent[key].toUpperCase()
+          : a.rowContent[key];
+      const varB =
+        typeof b.rowContent[key] === 'string'
+          ? b.rowContent[key].toUpperCase()
+          : b.rowContent[key];
+
+      let comparison = 0;
+      if (varA > varB) {
+        comparison = 1;
+      } else if (varA < varB) {
+        comparison = -1;
+      }
+
+      return order === 'desc' ? comparison * -1 : comparison;
+    };
+  };
+
+  sortRow = (query, dir) => {
+    const newRows = this.state.rows.sort(this.compareVals(query, dir));
+    this.setState({
+      rows: newRows,
+    });
+  };
+
+  createNewRow = (content, parent) => {
+    parent.dataset.parentRow = '';
+    const newRow = document.createElement('tr');
+    newRow.classList.add('bx--expandable-row-v2');
+    newRow.dataset.childRow = '';
+    newRow.innerHTML = `
+      <td colspan="8">
+        ${content}
+      </td>
+    `; // need to make colspan a prop
+    Object.keys(parent.parentElement.children).map(child => {
+      if (parent.parentElement.children[child] === parent) {
+        parent.parentElement.insertBefore(
+          newRow,
+          parent.parentElement.childNodes[+child + 1]
+        );
+        newRow.addEventListener('mouseover', () => {
+          parent.classList.add('bx--expandable-row--hover-v2');
+        });
+        newRow.addEventListener('mouseout', () => {
+          parent.classList.remove('bx--expandable-row--hover-v2');
+        });
+      }
+    });
+  };
+
+  removeRow = parent => {
+    Object.keys(parent.parentElement.children).map(child => {
+      if (parent.parentElement.children[child] === parent) {
+        parent.parentElement.removeChild(
+          parent.parentElement.children[+child + 1]
+        );
+      }
+    });
+  };
+
+  expandRow = (index, evt) => {
+    const parent = evt.currentTarget.parentElement;
     const expanded = this.state.expanded;
-    expanded[index] = expanded[index] ? !expanded[index] : true;
+    const rows = this.state.rows;
+    if (expanded[index] === true) {
+      expanded[index] = false;
+    } else {
+      expanded[index] = expanded[index] ? !expanded[index] : true;
+    }
     this.setState({
       expanded,
     });
+    if (this.state.expanded[index]) {
+      this.createNewRow(rows[index].expandedRowContent.html, parent);
+    } else {
+      this.removeRow(parent);
+    }
+  };
+
+  rowHover = evt => {
+    evt.currentTarget.classList.add('bx--expandable-row--hover-v2');
+  };
+
+  removeRowHover = evt => {
+    evt.currentTarget.classList.remove('bx--expandable-row--hover-v2');
   };
 
   render() {
-    const rows = [
-      {
-        name: 'Load Balancer 1',
-        protocol: 'HTTP',
-        something: '80',
-        rule: 'Round Robin',
-        attached_groups: 'Maureens VM Groups',
-        status: 'Active',
-      },
-      {
-        name: 'Load Balancer 1',
-        protocol: 'HTTP',
-        something: '80',
-        rule: 'Round Robin',
-        attached_groups: 'Maureens VM Groups',
-        status: 'Active',
-      },
-      {
-        name: 'Load Balancer 1',
-        protocol: 'HTTP',
-        something: '80',
-        rule: 'Round Robin',
-        attached_groups: 'Maureens VM Groups',
-        status: 'Active',
-      },
-    ];
-    this.rows = rows;
-
-    const rowData = rows.map((data, index) => {
-      const expandedState = this.state.expanded[index]
-        ? this.state.expanded[index]
-        : false;
-      const dataArray = Object.keys(data).map((content, rowIndex) => {
-        return (
-          <DataTableData key={`d${rowIndex}`}>{data[content]}</DataTableData>
-        );
-      });
-      return [
-        <DataTableData
-          onClick={() => this.expandRow(index)}
-          key={`a${index}`}
-          expanded={expandedState}
-        />,
-        ...dataArray,
-      ];
+    const tableClasses = classNames({
+      'bx--data-table-v2': true,
+      'bx--data-table-v2--zebra': false,
     });
 
-    const createRows = rowData.map((row, index) => (
-      <DataTableRow key={`b${index}`}>{row}</DataTableRow>
-    ));
-
-    const createTableBody = createRows.map(data => [data]);
-
     return (
-      <div>
-        <DataTableContainer title="Table title">
-          <DataTableToolbar>
-            <DataTableSearch />
-          </DataTableToolbar>
-          <DataTable>
-            <DataTableHead>
-              <DataTableRow>
-                <DataTableHeader />
-                <DataTableHeader sortable onClick={this.sortRow}>
-                  Name
-                </DataTableHeader>
-                <DataTableHeader sortable onClick={this.sortRow}>
-                  Protocol
-                </DataTableHeader>
-                <DataTableHeader sortable onClick={this.sortRow}>
-                  Something
-                </DataTableHeader>
-                <DataTableHeader sortable onClick={this.sortRow}>
-                  Rule
-                </DataTableHeader>
-                <DataTableHeader sortable onClick={this.sortRow}>
-                  Attached Groups
-                </DataTableHeader>
-                <DataTableHeader sortable onClick={this.sortRow}>
-                  Status
-                </DataTableHeader>
-              </DataTableRow>
-            </DataTableHead>
-            <DataTableBody>{createTableBody}</DataTableBody>
-          </DataTable>
-        </DataTableContainer>
-        <PaginationV2 totalItems={50} {...paginationProps} />
-      </div>
+      <DataTableContainer title="Table title">
+        <DataTableToolbar>
+          <DataTableSearch />
+        </DataTableToolbar>
+        <DataTable
+          initialRows={this.state.rows}
+          render={({ rows }) => (
+            <table className={tableClasses}>
+              <DataTableHead>
+                <DataTableRow>
+                  <DataTableHeader />
+                  <DataTableHeader
+                    onClick={this.sortRow}
+                    sortable
+                    sortBy="name">
+                    Name
+                  </DataTableHeader>
+                  <DataTableHeader
+                    onClick={this.sortRow}
+                    sortable
+                    sortBy="protocol">
+                    Protocol
+                  </DataTableHeader>
+                  <DataTableHeader
+                    onClick={this.sortRow}
+                    sortable
+                    sortBy="something">
+                    Something
+                  </DataTableHeader>
+                  <DataTableHeader
+                    onClick={this.sortRow}
+                    sortable
+                    sortBy="rule">
+                    Rule
+                  </DataTableHeader>
+                  <DataTableHeader
+                    onClick={this.sortRow}
+                    sortable
+                    sortBy="attached_groups">
+                    Attached Groups
+                  </DataTableHeader>
+                  <DataTableHeader
+                    onClick={this.sortRow}
+                    sortable
+                    sortBy="status">
+                    Status
+                  </DataTableHeader>
+                  <DataTableHeader />
+                </DataTableRow>
+              </DataTableHead>
+              <DataTableBody>
+                {rows.map((row, i) => {
+                  return (
+                    <DataTableRow
+                      className={classNames({
+                        'bx--parent-row-v2': true,
+                        'bx--expandable-row-v2': this.state.expanded[i],
+                      })}>
+                      <DataTableData
+                        onClick={evt => {
+                          this.expandRow(i, evt);
+                        }}
+                        key={`a${i}`}
+                        expanded={
+                          this.state.expanded[i]
+                            ? this.state.expanded[i]
+                            : false
+                        }
+                      />
+                      {Object.keys(row.rowContent).map((content, j) => {
+                        return (
+                          <DataTableData key={`rowdata${j}`}>
+                            {row.rowContent[content]}
+                          </DataTableData>
+                        );
+                      })}
+                      <DataTableData key={`c${i}`} overflow />
+                    </DataTableRow>
+                  );
+                })}
+              </DataTableBody>
+            </table>
+          )}
+        />
+      </DataTableContainer>
     );
   }
 }

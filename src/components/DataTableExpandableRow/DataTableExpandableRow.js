@@ -21,17 +21,17 @@ DataTableExpandableRow.propTypes = {
 };
 
 export const DataTableExpandableRowContent = props => {
-  const { className, children, ...other } = props;
+  const { className, children, colspan, ...other } = props;
 
   const expandableRowContentClasses = classNames(
     className,
-    'bx--expandable-row-v2',
-    'bx--expandable-row--hidden-v2'
+    'bx--expandable-row-v2'
+    // 'bx--expandable-row--hidden-v2'
   );
 
   return (
     <tr {...other} className={expandableRowContentClasses}>
-      <td colSpan="7">{children}</td>
+      <td colSpan={colspan}>{children}</td>
     </tr>
   );
 };
