@@ -11,7 +11,6 @@ import {
   ListBoxMenuIcon,
   ListBoxSelection,
 } from '../ListBox';
-import Icon from '../Icon';
 import Checkbox from '../Checkbox';
 import Selection from '../../internal/Selection';
 
@@ -190,14 +189,6 @@ export default class MultiSelect extends React.Component {
     );
   }
 }
-
-// Generic utility for safely removing an element at a given index from an
-// array.
-const removeAtIndex = (array, index) => {
-  const result = array.slice();
-  result.splice(index, 1);
-  return result;
-};
 
 export const getSelectedItemsFrom = (items, initialSelectedItems) => {
   if (initialSelectedItems.length > 0) {

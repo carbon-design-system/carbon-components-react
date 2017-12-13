@@ -5,7 +5,6 @@ import React from 'react';
 import {
   ListBox,
   ListBoxField,
-  ListBoxSelection,
   ListBoxMenu,
   ListBoxMenuItem,
   ListBoxMenuIcon,
@@ -86,7 +85,6 @@ export default class Dropdown extends React.Component {
           getRootProps,
           getButtonProps,
           getItemProps,
-          clearSelection,
         }) => (
           <ListBox
             type={type}
