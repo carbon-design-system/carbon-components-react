@@ -293,7 +293,7 @@ DataTableContainer.propTypes = {
 };
 
 export const DataTableSearch = props => {
-  const { className, searchContainerClass, ...other } = props;
+  const { className, searchContainerClass, onChange, ...other } = props;
 
   const searchContainerClasses = classNames(
     searchContainerClass,
@@ -309,6 +309,7 @@ export const DataTableSearch = props => {
         id="search-2"
         labelText="Filter table"
         placeHolderText="Search"
+        onChange={onChange}
       />
     </div>
   );

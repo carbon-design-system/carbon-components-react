@@ -38,6 +38,7 @@ class BasicDataTable extends Component {
       checked: [],
       selectAll: false,
       rows: this.props.rows,
+      filteredRows: this.props.rows,
     };
   }
 
@@ -119,12 +120,20 @@ class BasicDataTable extends Component {
 
   compareVals = (key, order = 'asc') => {
     return function(a, b) {
-      if (!a.hasOwnProperty(key) || !b.hasOwnProperty(key)) {
+      const aContent = a.rowContent ? a.rowContent : a;
+      const bContent = b.rowContent ? b.rowContent : b;
+      if (!aContent.hasOwnProperty(key) || !bContent.hasOwnProperty(key)) {
         return 0;
       }
 
-      const varA = typeof a[key] === 'string' ? a[key].toUpperCase() : a[key];
-      const varB = typeof b[key] === 'string' ? b[key].toUpperCase() : b[key];
+      const varA =
+        typeof aContent[key] === 'string'
+          ? aContent[key].toUpperCase()
+          : aContent[key];
+      const varB =
+        typeof bContent[key] === 'string'
+          ? bContent[key].toUpperCase()
+          : bContent[key];
 
       let comparison = 0;
       if (varA > varB) {
@@ -141,6 +150,25 @@ class BasicDataTable extends Component {
     const newRows = this.state.rows.sort(this.compareVals(query, dir));
     this.setState({
       rows: newRows,
+    });
+  };
+
+  searchTable = evt => {
+    let newRows = [];
+    this.state.rows.map(obj => {
+      Object.keys(obj).forEach(key => {
+        if (
+          obj[key]
+            .toUpperCase()
+            .includes(evt.currentTarget.value.toUpperCase()) &&
+          !newRows.includes(obj)
+        ) {
+          newRows.push(obj);
+        }
+      });
+    });
+    this.setState({
+      filteredRows: newRows,
     });
   };
 
@@ -171,7 +199,10 @@ class BasicDataTable extends Component {
                 </DataTableBatchAction>
               </DataTableActionList>
             </DataTableBatchActions>
-            <DataTableSearch />
+            <DataTableSearch
+              onInput={this.searchTable}
+              onChange={this.searchTable}
+            />
             <DataTableToolbarContent>
               <DataTableToolbarAction
                 iconName="download"
@@ -195,7 +226,7 @@ class BasicDataTable extends Component {
           </DataTableToolbar>
           <DataTable
             initialRows={this.state.rows}
-            render={({ rows }) => (
+            render={() => (
               <table className={tableClasses}>
                 <DataTableHead>
                   <DataTableRow>
@@ -243,7 +274,7 @@ class BasicDataTable extends Component {
                   </DataTableRow>
                 </DataTableHead>
                 <DataTableBody>
-                  {rows.map((row, i) => {
+                  {this.state.filteredRows.map((row, i) => {
                     return (
                       <DataTableRow key={`row${i}`}>
                         <DataTableData
@@ -340,21 +371,20 @@ class ExpandableDataTable extends Component {
 
   compareVals = (key, order = 'asc') => {
     return function(a, b) {
-      if (
-        !a.rowContent.hasOwnProperty(key) ||
-        !b.rowContent.hasOwnProperty(key)
-      ) {
+      const aContent = a.rowContent ? a.rowContent : a;
+      const bContent = b.rowContent ? b.rowContent : b;
+      if (!aContent.hasOwnProperty(key) || !bContent.hasOwnProperty(key)) {
         return 0;
       }
 
       const varA =
-        typeof a.rowContent[key] === 'string'
-          ? a.rowContent[key].toUpperCase()
-          : a.rowContent[key];
+        typeof aContent[key] === 'string'
+          ? aContent[key].toUpperCase()
+          : aContent[key];
       const varB =
-        typeof b.rowContent[key] === 'string'
-          ? b.rowContent[key].toUpperCase()
-          : b.rowContent[key];
+        typeof bContent[key] === 'string'
+          ? bContent[key].toUpperCase()
+          : bContent[key];
 
       let comparison = 0;
       if (varA > varB) {
