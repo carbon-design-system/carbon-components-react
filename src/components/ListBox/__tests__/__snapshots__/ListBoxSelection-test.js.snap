@@ -9,6 +9,7 @@ exports[`ListBoxSelection should render 1`] = `
     className="bx--list-box__selection"
     onClick={[Function]}
     onKeyDown={[Function]}
+    role="button"
     tabIndex="0"
     title="translation"
   >
@@ -53,6 +54,7 @@ exports[`ListBoxSelection should render 2`] = `
     className="bx--list-box__selection bx--list-box__selection--multi"
     onClick={[Function]}
     onKeyDown={[Function]}
+    role="button"
     tabIndex="0"
     title="translation"
   >

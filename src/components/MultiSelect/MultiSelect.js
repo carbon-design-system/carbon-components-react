@@ -2,7 +2,6 @@ import cx from 'classnames';
 import React from 'react';
 import PropTypes from 'prop-types';
 import Downshift from 'downshift';
-import warning from 'warning';
 import {
   ListBox,
   ListBoxField,
@@ -117,11 +116,13 @@ export default class MultiSelect extends React.Component {
       label,
       type,
       disabled,
+      initialSelectedItems,
     } = this.props;
     const className = cx('bx--multi-select', containerClassName);
     return (
       <Selection
         onChange={this.handleOnChange}
+        initialSelectedItems={initialSelectedItems}
         render={({ selectedItems, onItemChange, clearSelection }) => (
           <Downshift
             highlightedIndex={highlightedIndex}
@@ -164,7 +165,7 @@ export default class MultiSelect extends React.Component {
                       return (
                         <ListBoxMenuItem
                           key={itemProps.id}
-                          isActive={selectedItem === item}
+                          isActive={selectedItem.indexOf(item) !== -1}
                           isHighlighted={highlightedIndex === index}
                           {...itemProps}>
                           <Checkbox
@@ -189,43 +190,3 @@ export default class MultiSelect extends React.Component {
     );
   }
 }
-
-export const getSelectedItemsFrom = (items, initialSelectedItems) => {
-  if (initialSelectedItems.length > 0) {
-    if (__DEV__) {
-      initialSelectedItems.forEach((item, index) => {
-        const isIndex = typeof item === 'number';
-        const value = isIndex ? items[item] : item;
-
-        warning(
-          !!value,
-          '[MultiSelect] expected `initialSelectedItems` to include an array ' +
-            `of non-null items, however the item at ` +
-            `\`initialSelectedItems[${index}]\` has a false-y value.`
-        );
-
-        if (isIndex) {
-          warning(
-            item >= 0 && item < items.length,
-            `[MultiSelect] expected an index in \`initialSelectedItems\` to ` +
-              `exist in \`items\`, however the index: \`${item}\` is not ` +
-              `present in \`items\`.`
-          );
-        } else {
-          warning(
-            items.indexOf(item) !== -1,
-            `[MultiSelect] expected an item in \`initialSelectedItems\` to ` +
-              `exist in the given \`items\` array, however ` +
-              `\`initialSelectedItems[${index}]\` does not exist in \`items\`.`
-          );
-        }
-      });
-    }
-    // Support for index in `initialSelectedItems`
-    if (typeof initialSelectedItems[0] === 'number') {
-      return initialSelectedItems.map(index => items[index]);
-    }
-    return initialSelectedItems.slice();
-  }
-  return [];
-};
