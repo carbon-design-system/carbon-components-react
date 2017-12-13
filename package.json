@@ -94,6 +94,7 @@
     "downshift": "^1.22.1",
     "flatpickr": "4.0.7",
     "lodash.debounce": "^4.0.8",
+    "lodash.isequal": "^4.5.0",
     "warning": "3.0.0",
     "window-or-global": "^1.0.1"
   },
