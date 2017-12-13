@@ -12,6 +12,7 @@ import {
   ListBoxSelection,
 } from '../ListBox';
 import Icon from '../Icon';
+import Checkbox from '../Checkbox';
 import Selection from '../../internal/Selection';
 
 export default class MultiSelect extends React.Component {
@@ -167,26 +168,15 @@ export default class MultiSelect extends React.Component {
                           isActive={selectedItem === item}
                           isHighlighted={highlightedIndex === index}
                           {...itemProps}>
-                          <input
-                            checked={isChecked}
-                            className="bx--checkbox"
+                          <Checkbox
                             id={itemProps.id}
                             name={itemText}
+                            checked={isChecked}
                             readOnly={true}
                             tabIndex="-1"
-                            type="checkbox"
+                            labelText={itemText}
+                            iconDescription="Select this item"
                           />
-                          <label
-                            className="bx--checkbox-label"
-                            htmlFor={itemProps.id}>
-                            <span className="bx--checkbox-appearance">
-                              <Icon
-                                className="bx--checkbox-checkmark"
-                                name="checkmark"
-                              />
-                            </span>
-                            {itemText}
-                          </label>
                         </ListBoxMenuItem>
                       );
                     })}
