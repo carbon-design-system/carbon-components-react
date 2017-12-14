@@ -11,7 +11,7 @@ import SelectItem from '../SelectItem';
 const props = {
   onHeadingClick: ({ isOpen }) => {
     console.log(`Is open: ${isOpen}`);
-  }, // eslint-disable-line no-console
+  },
 };
 
 storiesOf('Accordion', module).addWithInfo(
