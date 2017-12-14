@@ -15,7 +15,7 @@ import {
   DataTableToolbarContent,
   DataTableToolbarAction,
   DataTableHead,
-  DataTableHeader,
+  DataTableColumnHeader,
   DataTableBody,
   DataTableBatchActions,
   DataTableActionList,
@@ -234,43 +234,43 @@ class BasicDataTable extends Component {
                       checked={this.state.selectAll}
                       onClick={this.selectAll}
                     />
-                    <DataTableHeader
+                    <DataTableColumnHeader
                       onClick={this.sortRow}
                       sortable
                       sortBy="name">
                       Name
-                    </DataTableHeader>
-                    <DataTableHeader
+                    </DataTableColumnHeader>
+                    <DataTableColumnHeader
                       onClick={this.sortRow}
                       sortable
                       sortBy="protocol">
                       Protocol
-                    </DataTableHeader>
-                    <DataTableHeader
+                    </DataTableColumnHeader>
+                    <DataTableColumnHeader
                       onClick={this.sortRow}
                       sortable
                       sortBy="something">
                       Something
-                    </DataTableHeader>
-                    <DataTableHeader
+                    </DataTableColumnHeader>
+                    <DataTableColumnHeader
                       onClick={this.sortRow}
                       sortable
                       sortBy="rule">
                       Rule
-                    </DataTableHeader>
-                    <DataTableHeader
+                    </DataTableColumnHeader>
+                    <DataTableColumnHeader
                       onClick={this.sortRow}
                       sortable
                       sortBy="attached_groups">
                       Attached Groups
-                    </DataTableHeader>
-                    <DataTableHeader
+                    </DataTableColumnHeader>
+                    <DataTableColumnHeader
                       onClick={this.sortRow}
                       sortable
                       sortBy="status">
                       Status
-                    </DataTableHeader>
-                    <DataTableHeader />
+                    </DataTableColumnHeader>
+                    <DataTableColumnHeader />
                   </DataTableRow>
                 </DataTableHead>
                 <DataTableBody>
@@ -302,7 +302,7 @@ class BasicDataTable extends Component {
             )}
           />
         </DataTableContainer>
-        <PaginationV2 totalItems={50} {...paginationProps} />
+        <PaginationV2 {...paginationProps} totalItems={50} />
       </div>
     );
   }
@@ -484,44 +484,44 @@ class ExpandableDataTable extends Component {
             <table className={tableClasses}>
               <DataTableHead>
                 <DataTableRow>
-                  <DataTableHeader />
-                  <DataTableHeader
+                  <DataTableColumnHeader />
+                  <DataTableColumnHeader
                     onClick={this.sortRow}
                     sortable
                     sortBy="name">
                     Name
-                  </DataTableHeader>
-                  <DataTableHeader
+                  </DataTableColumnHeader>
+                  <DataTableColumnHeader
                     onClick={this.sortRow}
                     sortable
                     sortBy="protocol">
                     Protocol
-                  </DataTableHeader>
-                  <DataTableHeader
+                  </DataTableColumnHeader>
+                  <DataTableColumnHeader
                     onClick={this.sortRow}
                     sortable
                     sortBy="something">
                     Something
-                  </DataTableHeader>
-                  <DataTableHeader
+                  </DataTableColumnHeader>
+                  <DataTableColumnHeader
                     onClick={this.sortRow}
                     sortable
                     sortBy="rule">
                     Rule
-                  </DataTableHeader>
-                  <DataTableHeader
+                  </DataTableColumnHeader>
+                  <DataTableColumnHeader
                     onClick={this.sortRow}
                     sortable
                     sortBy="attached_groups">
                     Attached Groups
-                  </DataTableHeader>
-                  <DataTableHeader
+                  </DataTableColumnHeader>
+                  <DataTableColumnHeader
                     onClick={this.sortRow}
                     sortable
                     sortBy="status">
                     Status
-                  </DataTableHeader>
-                  <DataTableHeader />
+                  </DataTableColumnHeader>
+                  <DataTableColumnHeader />
                 </DataTableRow>
               </DataTableHead>
               <DataTableBody>

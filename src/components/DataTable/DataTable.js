@@ -32,7 +32,7 @@ export class DataTable extends Component {
   }
 }
 
-export class DataTableHeader extends Component {
+export class DataTableColumnHeader extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -54,11 +54,15 @@ export class DataTableHeader extends Component {
   };
 
   handleClick = () => {
-    this.setState({
-      sorted: !this.state.sorted,
-    });
-    const direction = this.state.sorted ? 'desc' : 'asc';
-    this.props.onClick(this.props.sortBy, direction);
+    this.setState(
+      state => ({
+        sorted: !state.sorted,
+      }),
+      () => {
+        const direction = this.state.sorted ? 'desc' : 'asc';
+        this.props.onClick(this.props.sortBy, direction);
+      }
+    );
   };
 
   render() {
@@ -95,7 +99,7 @@ export class DataTableHeader extends Component {
   }
 }
 
-DataTableHeader.propTypes = {
+DataTableColumnHeader.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
   sortable: PropTypes.bool,
