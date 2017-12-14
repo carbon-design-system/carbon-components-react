@@ -27,11 +27,18 @@ $list-box-inline-height: rem(32px);
   }
 
   .bx--list-box input[role='combobox'] {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
     background-color: inherit;
+    font-weight: 600;
+    outline-offset: 0;
   }
 
-  .bx--list-box input[role='combobox'] {
-    outline-offset: 0;
+  .bx--list-box input[role='combobox']::placeholder {
+    font-weight: 400;
   }
 
   .bx--list-box--disabled input[role='combobox'] {
@@ -97,8 +104,8 @@ $list-box-inline-height: rem(32px);
     height: rem(40px);
     padding: 0 1rem;
     cursor: pointer;
-    z-index: z('overlay');
     user-select: none;
+    transition: background-color 200ms $bx--standard-easing;
   }
 
   .bx--list-box__selection > svg {

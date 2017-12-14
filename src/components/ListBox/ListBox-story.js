@@ -3,6 +3,7 @@ import { storiesOf, action } from '@storybook/react';
 import Combobox from '../Combobox';
 import Dropdown from '../DropdownV2';
 import MultiSelect from '../MultiSelect';
+import FilterableMultiSelect from '../FilterableMultiSelect';
 
 const items = [
   {
@@ -91,6 +92,23 @@ storiesOf('ListBox', module).addWithInfo(
         />
         <div style={{ marginRight: '2rem' }} />
         <Combobox
+          items={items}
+          itemToString={item => (item ? item.text : '')}
+          onChange={action('onChange - Combobox')}
+          placeholder="Filter..."
+          disabled
+        />
+      </div>
+      <div style={{ marginBottom: '2rem' }} />
+      <div style={{ display: 'flex', alignItems: 'center' }}>
+        <FilterableMultiSelect
+          items={items}
+          itemToString={item => (item ? item.text : '')}
+          onChange={action('onChange - Combobox')}
+          placeholder="Filter..."
+        />
+        <div style={{ marginRight: '2rem' }} />
+        <FilterableMultiSelect
           items={items}
           itemToString={item => (item ? item.text : '')}
           onChange={action('onChange - Combobox')}
