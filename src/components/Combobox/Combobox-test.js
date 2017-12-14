@@ -7,7 +7,7 @@ import {
   assertMenuOpen,
   generateItems,
   generateGenericItem,
-} from '../Listbox/test-helpers';
+} from '../ListBox/test-helpers';
 import Combobox from '../Combobox';
 
 const findInputNode = wrapper => wrapper.find('.bx--text-input');

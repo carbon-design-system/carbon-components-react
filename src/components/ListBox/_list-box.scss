@@ -220,4 +220,8 @@ $list-box-inline-height: rem(32px);
     position: static;
     padding: 0 rem(10px);
   }
+
+  .bx--list-box__menu-item > .bx--form-item.bx--checkbox-wrapper {
+    margin: 0;
+  }
 }

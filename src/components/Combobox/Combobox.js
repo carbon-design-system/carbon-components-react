@@ -10,6 +10,7 @@ import {
   ListBoxMenuItem,
   ListBoxMenuIcon,
 } from '../ListBox';
+import { ListBoxType } from '../ListBox/ListBoxPropTypes';
 
 const defaultItemToString = item => item && item.label;
 const defaultShouldFilterItem = ({ inputValue, item, itemToString }) =>
@@ -47,12 +48,7 @@ export default class Combobox extends React.Component {
      * Allow users to pass in arbitrary items from their collection that are
      * pre-selected
      */
-    initialSelectedItem: PropTypes.oneOfType([
-      // Object in array
-      PropTypes.object,
-      // Index of item
-      PropTypes.number,
-    ]),
+    initialSelectedItem: PropTypes.arrayOf(PropTypes.object),
 
     /**
      * We try to stay as generic as possible here to allow individuals to pass
@@ -89,7 +85,7 @@ export default class Combobox extends React.Component {
     /**
      * Currently supports either the default type, or an inline variant
      */
-    type: PropTypes.oneOf(['default', 'inline']),
+    type: ListBoxType,
   };
 
   static defaultProps = {

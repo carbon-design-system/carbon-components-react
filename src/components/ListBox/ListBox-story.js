@@ -31,23 +31,6 @@ storiesOf('ListBox', module).addWithInfo(
   () => (
     <div>
       <div style={{ display: 'flex', alignItems: 'center' }}>
-        <Combobox
-          items={items}
-          itemToString={item => (item ? item.text : '')}
-          onChange={action('onChange - Combobox')}
-          placeholder="Filter..."
-        />
-        <div style={{ marginRight: '2rem' }} />
-        <Combobox
-          items={items}
-          itemToString={item => (item ? item.text : '')}
-          onChange={action('onChange - Combobox')}
-          placeholder="Filter..."
-          disabled
-        />
-      </div>
-      <div style={{ marginBottom: '2rem' }} />
-      <div style={{ display: 'flex', alignItems: 'center' }}>
         <Dropdown
           label="Label"
           items={items}
@@ -95,6 +78,23 @@ storiesOf('ListBox', module).addWithInfo(
           items={items}
           itemToString={item => (item ? item.text : '')}
           onChange={action('onChange - Inline MultiSelect')}
+          disabled
+        />
+      </div>
+      <div style={{ marginBottom: '2rem' }} />
+      <div style={{ display: 'flex', alignItems: 'center' }}>
+        <Combobox
+          items={items}
+          itemToString={item => (item ? item.text : '')}
+          onChange={action('onChange - Combobox')}
+          placeholder="Filter..."
+        />
+        <div style={{ marginRight: '2rem' }} />
+        <Combobox
+          items={items}
+          itemToString={item => (item ? item.text : '')}
+          onChange={action('onChange - Combobox')}
+          placeholder="Filter..."
           disabled
         />
       </div>
