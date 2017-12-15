@@ -71,10 +71,12 @@ export default class FilterableMultiSelect extends React.Component {
 
   handleOnStateChange = changes => {
     const { type } = changes;
+    console.log(changes);
     switch (type) {
       case Downshift.stateChangeTypes.keyDownArrowDown:
       case Downshift.stateChangeTypes.keyDownArrowUp:
       case Downshift.stateChangeTypes.itemMouseEnter:
+        // console.log(changes);
         this.setState({ highlightedIndex: changes.highlightedIndex });
         break;
       case Downshift.stateChangeTypes.keyDownEscape:
@@ -156,7 +158,7 @@ export default class FilterableMultiSelect extends React.Component {
               isOpen,
               inputValue,
               selectedItem,
-              highlightedIndex,
+              highlightedItem,
             }) => (
               <ListBox
                 className={className}
@@ -187,32 +189,21 @@ export default class FilterableMultiSelect extends React.Component {
                 </ListBoxField>
                 {isOpen && (
                   <ListBoxMenu>
-                    {this.filterItems(
-                      items,
-                      itemToString,
-                      inputValue
-                    ).map((item, index) => {
-                      const itemProps = getItemProps({ item, index });
-                      const itemText = itemToString(item);
-                      const isChecked = selectedItem.indexOf(item) !== -1;
-                      return (
-                        <ListBoxMenuItem
-                          key={itemProps.id}
-                          isActive={selectedItem.indexOf(item) !== -1}
-                          isHighlighted={highlightedIndex === index}
-                          {...itemProps}>
-                          <Checkbox
-                            id={itemProps.id}
-                            name={itemText}
-                            checked={isChecked}
-                            readOnly={true}
-                            tabIndex="-1"
-                            labelText={itemText}
-                            iconDescription="Select this item"
-                          />
-                        </ListBoxMenuItem>
-                      );
-                    })}
+                    {[
+                      ...selectedItem,
+                      ...this.filterItems(
+                        items,
+                        itemToString,
+                        inputValue
+                      ).filter(item => selectedItem.indexOf(item) === -1),
+                    ].map((item, index) =>
+                      this.renderMenuItem({
+                        itemProps: getItemProps({ item, index }),
+                        itemText: itemToString(item),
+                        isChecked: selectedItem.indexOf(item) !== -1,
+                        isHighlighted: highlightedIndex === index,
+                      })
+                    )}
                   </ListBoxMenu>
                 )}
               </ListBox>
@@ -222,4 +213,21 @@ export default class FilterableMultiSelect extends React.Component {
       />
     );
   }
+
+  renderMenuItem = ({ itemProps, itemText, isChecked, isHighlighted }) => (
+    <ListBoxMenuItem
+      key={itemProps.id}
+      isHighlighted={isHighlighted}
+      {...itemProps}>
+      <Checkbox
+        id={itemProps.id}
+        name={itemText}
+        checked={isChecked}
+        readOnly={true}
+        tabIndex="-1"
+        labelText={itemText}
+        iconDescription="Select this item"
+      />
+    </ListBoxMenuItem>
+  );
 }
