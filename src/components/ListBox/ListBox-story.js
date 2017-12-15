@@ -104,14 +104,14 @@ storiesOf('ListBox', module).addWithInfo(
         <FilterableMultiSelect
           items={items}
           itemToString={item => (item ? item.text : '')}
-          onChange={action('onChange - Combobox')}
+          onChange={action('onChange - Filter MultiSelect')}
           placeholder="Filter..."
         />
         <div style={{ marginRight: '2rem' }} />
         <FilterableMultiSelect
           items={items}
           itemToString={item => (item ? item.text : '')}
-          onChange={action('onChange - Combobox')}
+          onChange={action('onChange - Filter MultiSelect')}
           placeholder="Filter..."
           disabled
         />

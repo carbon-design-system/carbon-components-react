@@ -27,11 +27,6 @@ $list-box-inline-height: rem(32px);
   }
 
   .bx--list-box input[role='combobox'] {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
     background-color: inherit;
     font-weight: 600;
     outline-offset: 0;
@@ -230,5 +225,14 @@ $list-box-inline-height: rem(32px);
 
   .bx--list-box__menu-item > .bx--form-item.bx--checkbox-wrapper {
     margin: 0;
+  }
+
+  .bx--multi-select.bx--combo-box > .bx--list-box__field {
+    padding: 0 1rem;
+  }
+
+  .bx--multi-select.bx--combo-box input[role='combobox'] {
+    padding: 0;
+    outline: none;
   }
 }

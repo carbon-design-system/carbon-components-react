@@ -93,6 +93,7 @@ export default class MultiSelect extends React.Component {
       case Downshift.stateChangeTypes.itemMouseEnter:
         this.setState({ highlightedIndex: changes.highlightedIndex });
         break;
+      case Downshift.stateChangeTypes.keyDownEscape:
       case Downshift.stateChangeTypes.mouseUp:
         this.setState({ isOpen: false });
         break;
@@ -100,7 +101,6 @@ export default class MultiSelect extends React.Component {
       // a given key press or mouse handler
       // Reference: https://github.com/paypal/downshift/issues/206
       case Downshift.stateChangeTypes.clickButton:
-      case Downshift.stateChangeTypes.keyDownEscape:
       case Downshift.stateChangeTypes.keyDownSpaceButton:
         this.handleOnToggleMenu();
         break;

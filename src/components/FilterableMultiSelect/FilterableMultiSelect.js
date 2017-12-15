@@ -77,6 +77,7 @@ export default class FilterableMultiSelect extends React.Component {
       case Downshift.stateChangeTypes.itemMouseEnter:
         this.setState({ highlightedIndex: changes.highlightedIndex });
         break;
+      case Downshift.stateChangeTypes.keyDownEscape:
       case Downshift.stateChangeTypes.mouseUp:
         this.setState({ isOpen: false });
         break;
@@ -84,7 +85,6 @@ export default class FilterableMultiSelect extends React.Component {
       // a given key press or mouse handler
       // Reference: https://github.com/paypal/downshift/issues/206
       case Downshift.stateChangeTypes.clickButton:
-      case Downshift.stateChangeTypes.keyDownEscape:
       case Downshift.stateChangeTypes.keyDownSpaceButton:
         this.handleOnToggleMenu();
         break;
@@ -100,6 +100,12 @@ export default class FilterableMultiSelect extends React.Component {
       // Default to empty string if we have a false-y `inputValue`
       inputValue: inputValue || '',
     }));
+  };
+
+  clearInputValue = event => {
+    event.stopPropagation();
+    this.setState({ inputValue: '' });
+    this.inputNode && this.inputNode.focus && this.inputNode.focus();
   };
 
   filterItems = (items, itemToString, inputValue) =>
@@ -151,10 +157,8 @@ export default class FilterableMultiSelect extends React.Component {
               inputValue,
               selectedItem,
               highlightedIndex,
-              clearSelection,
             }) => (
               <ListBox
-                type="default"
                 className={className}
                 isDisabled={disabled}
                 {...getRootProps({ refKey: 'innerRef' })}>
@@ -167,6 +171,7 @@ export default class FilterableMultiSelect extends React.Component {
                   )}
                   <input
                     className="bx--text-input"
+                    ref={el => (this.inputNode = el)}
                     {...getInputProps({
                       disabled,
                       id,
@@ -176,7 +181,7 @@ export default class FilterableMultiSelect extends React.Component {
                   />
                   {inputValue &&
                     isOpen && (
-                      <ListBoxSelection clearSelection={clearSelection} />
+                      <ListBoxSelection clearSelection={this.clearInputValue} />
                     )}
                   <ListBoxMenuIcon isOpen={isOpen} />
                 </ListBoxField>

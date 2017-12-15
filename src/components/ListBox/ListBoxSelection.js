@@ -19,12 +19,12 @@ const ListBoxSelection = ({
     if (selectionCount) {
       event.stopPropagation();
     }
-    clearSelection();
+    clearSelection(event);
   };
   const handleOnKeyDown = event => {
     // When a user hits ENTER, we'll clear the selection
     if (event.keyCode === 13) {
-      clearSelection();
+      clearSelection(event);
     }
   };
   const description = selectionCount ? t('clear.all') : t('clear.selection');
