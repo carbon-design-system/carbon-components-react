@@ -23,11 +23,13 @@ export default class DatePicker extends Component {
     datePickerType: PropTypes.string,
     dateFormat: PropTypes.string,
     value: PropTypes.string,
+    onChange: PropTypes.func,
   };
 
   static defaultProps = {
     short: false,
     dateFormat: 'm/d/Y',
+    onChange: () => {},
   };
 
   componentWillUpdate(nextProps) {
@@ -60,9 +62,7 @@ export default class DatePicker extends Component {
             ? [new rangePlugin({ input: this.toInputField })]
             : '',
         clickOpens: true,
-        onChange: () => {
-          this.props.onChange();
-        },
+        onChange: this.props.onChange,
         onReady: (selectedDates, dateStr, instance) => {
           this.updateClassNames(instance);
         },
