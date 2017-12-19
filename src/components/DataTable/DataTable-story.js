@@ -127,6 +127,7 @@ class BasicDataTable extends Component {
   static defaultProps = {
     zebra: true,
     rows: initialRows,
+    isSelectable: true,
   };
 
   selectAll = () => {
@@ -201,6 +202,7 @@ class BasicDataTable extends Component {
       'bx--data-table-v2': true,
       'bx--data-table-v2--zebra': this.props.zebra,
     });
+    const { isSelectable } = this.props;
     return (
       <div>
         <DataTableContainer title="Table title">
@@ -253,10 +255,12 @@ class BasicDataTable extends Component {
               <table className={tableClasses}>
                 <DataTableHead>
                   <DataTableRow>
-                    <DataTableSelectAll
-                      checked={this.state.selectAll}
-                      onClick={this.selectAll}
-                    />
+                    {isSelectable && (
+                      <DataTableSelectAll
+                        checked={this.state.selectAll}
+                        onClick={this.selectAll}
+                      />
+                    )}
                     {headers.map(header => (
                       <DataTableColumnHeader
                         key={header.key}
