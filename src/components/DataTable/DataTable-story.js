@@ -3,6 +3,7 @@ import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import classNames from 'classnames';
 import sentenceCase from 'sentence-case';
+import PropTypes from 'prop-types';
 
 import DataTableRow from '../DataTableRow';
 import DataTableData from '../DataTableData';
@@ -123,6 +124,12 @@ class BasicDataTable extends Component {
       filteredRows: this.props.rows,
     };
   }
+
+  static propTypes = {
+    zebra: PropTypes.bool,
+    rows: PropTypes.array,
+    isSelectable: PropTypes.bool,
+  };
 
   static defaultProps = {
     zebra: true,
@@ -328,15 +335,20 @@ class ExpandableDataTable extends Component {
     rows: this.props.rows,
   };
 
+  static propTypes = {
+    zebra: PropTypes.bool,
+    rows: PropTypes.array,
+  };
+
   static defaultProps = {
     zebra: true,
     rows: initialExpandedRows,
   };
 
   createNewRow = (content, parent) => {
-    parent.dataset.parentRow = '';
     const newRow = document.createElement('tr');
     const colspan = Object.keys(this.state.rows[0].rowContent).length + 2;
+    parent.dataset.parentRow = '';
     newRow.classList.add('bx--expandable-row-v2');
     newRow.dataset.childRow = '';
     newRow.innerHTML = `
