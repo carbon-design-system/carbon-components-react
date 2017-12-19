@@ -1,34 +1,11 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import classNames from 'classnames';
-import OverflowMenu from '../OverflowMenu';
-import OverflowMenuItem from '../OverflowMenuItem';
 
 const DataTableData = props => {
-  const {
-    className,
-    children,
-    checked,
-    value,
-    id,
-    overflow,
-    expanded,
-    ...other
-  } = props;
-
-  const tableDataClasses = classNames(
-    {
-      'bx--table-overflow': overflow,
-    },
-    className
-  );
+  const { children, className, checked, value, id, expanded, ...other } = props;
 
   let content;
-  if (
-    !(checked === undefined) &&
-    !(overflow === undefined) &&
-    !(expanded === undefined)
-  ) {
+  if (!(checked === undefined) && !(expanded === undefined)) {
     content = '';
   } else if (checked !== undefined) {
     content = (
@@ -55,16 +32,6 @@ const DataTableData = props => {
         </label>
       </span>
     );
-  } else if (overflow !== undefined) {
-    content = (
-      <OverflowMenu floatingMenu>
-        <OverflowMenuItem itemText="Option 1" />
-        <OverflowMenuItem itemText="Option 2" />
-        <OverflowMenuItem itemText="Option 3" />
-        <OverflowMenuItem itemText="Option 4" />
-        <OverflowMenuItem itemText="Danger option" hasDivider isDelete />
-      </OverflowMenu>
-    );
   } else if (expanded !== undefined) {
     content = (
       <button className="bx--table-expand-v2__button">
@@ -81,7 +48,7 @@ const DataTableData = props => {
   }
 
   return (
-    <td {...other} className={tableDataClasses}>
+    <td className={className} {...other}>
       {content}
       {children}
     </td>

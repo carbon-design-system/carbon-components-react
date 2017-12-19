@@ -23,6 +23,8 @@ import {
 } from '../DataTable';
 import PaginationV2 from '../PaginationV2';
 import Button from '../Button';
+import OverflowMenu from '../OverflowMenu';
+import OverflowMenuItem from '../OverflowMenuItem';
 
 const paginationProps = {
   pageSizes: [10, 20, 30, 40, 50],
@@ -256,9 +258,14 @@ class BasicDataTable extends Component {
                       onClick={this.selectAll}
                     />
                     {headers.map(header => (
-                      <th {...getHeaderProps(header)}>{header.title}</th>
+                      <DataTableColumnHeader
+                        key={header.key}
+                        sortable={true}
+                        {...getHeaderProps(header)}>
+                        {header.title}
+                      </DataTableColumnHeader>
                     ))}
-                    <th />
+                    <DataTableColumnHeader />
                   </DataTableRow>
                 </DataTableHead>
                 <DataTableBody>
@@ -281,7 +288,21 @@ class BasicDataTable extends Component {
                             </DataTableData>
                           );
                         })}
-                        <DataTableData key={`c${i}`} overflow />
+                        <DataTableData
+                          className="bx--table-overflow"
+                          key={`c${i}`}>
+                          <OverflowMenu flipped floatingMenu>
+                            <OverflowMenuItem itemText="Option 1" />
+                            <OverflowMenuItem itemText="Option 2" />
+                            <OverflowMenuItem itemText="Option 3" />
+                            <OverflowMenuItem itemText="Option 4" />
+                            <OverflowMenuItem
+                              itemText="Danger option"
+                              hasDivider
+                              isDelete
+                            />
+                          </OverflowMenu>
+                        </DataTableData>
                       </DataTableRow>
                     );
                   })}
@@ -308,48 +329,14 @@ class ExpandableDataTable extends Component {
     rows: initialExpandedRows,
   };
 
-  compareVals = (key, order = 'asc') => {
-    return function(a, b) {
-      const aContent = a.rowContent ? a.rowContent : a;
-      const bContent = b.rowContent ? b.rowContent : b;
-      if (!aContent.hasOwnProperty(key) || !bContent.hasOwnProperty(key)) {
-        return 0;
-      }
-
-      const varA =
-        typeof aContent[key] === 'string'
-          ? aContent[key].toUpperCase()
-          : aContent[key];
-      const varB =
-        typeof bContent[key] === 'string'
-          ? bContent[key].toUpperCase()
-          : bContent[key];
-
-      let comparison = 0;
-      if (varA > varB) {
-        comparison = 1;
-      } else if (varA < varB) {
-        comparison = -1;
-      }
-
-      return order === 'desc' ? comparison * -1 : comparison;
-    };
-  };
-
-  sortRow = (query, dir) => {
-    const newRows = this.state.rows.sort(this.compareVals(query, dir));
-    this.setState({
-      rows: newRows,
-    });
-  };
-
   createNewRow = (content, parent) => {
     parent.dataset.parentRow = '';
     const newRow = document.createElement('tr');
+    const colspan = Object.keys(this.state.rows[0].rowContent).length + 2;
     newRow.classList.add('bx--expandable-row-v2');
     newRow.dataset.childRow = '';
     newRow.innerHTML = `
-      <td colspan="8">
+      <td colspan=${colspan}>
         ${content}
       </td>
     `;
@@ -415,49 +402,17 @@ class ExpandableDataTable extends Component {
     return (
       <DataTableContainer title="Table title">
         <DataTable
-          initialRows={this.state.rows}
-          render={({ rows }) => (
+          initialRows={initialExpandedRows}
+          headers={headers}
+          render={({ rows, headers }) => (
             <table className={tableClasses}>
               <DataTableHead>
                 <DataTableRow>
-                  <DataTableColumnHeader />
-                  <DataTableColumnHeader
-                    onClick={this.sortRow}
-                    sortable
-                    sortBy="name">
-                    Name
-                  </DataTableColumnHeader>
-                  <DataTableColumnHeader
-                    onClick={this.sortRow}
-                    sortable
-                    sortBy="protocol">
-                    Protocol
-                  </DataTableColumnHeader>
-                  <DataTableColumnHeader
-                    onClick={this.sortRow}
-                    sortable
-                    sortBy="something">
-                    Something
-                  </DataTableColumnHeader>
-                  <DataTableColumnHeader
-                    onClick={this.sortRow}
-                    sortable
-                    sortBy="rule">
-                    Rule
-                  </DataTableColumnHeader>
-                  <DataTableColumnHeader
-                    onClick={this.sortRow}
-                    sortable
-                    sortBy="attached_groups">
-                    Attached Groups
-                  </DataTableColumnHeader>
-                  <DataTableColumnHeader
-                    onClick={this.sortRow}
-                    sortable
-                    sortBy="status">
-                    Status
-                  </DataTableColumnHeader>
-                  <DataTableColumnHeader />
+                  <th />
+                  {headers.map(header => (
+                    <th key={header.key}>{header.title}</th>
+                  ))}
+                  <th />
                 </DataTableRow>
               </DataTableHead>
               <DataTableBody>
@@ -486,7 +441,21 @@ class ExpandableDataTable extends Component {
                           </DataTableData>
                         );
                       })}
-                      <DataTableData key={`c${i}`} overflow />
+                      <DataTableData
+                        className="bx--table-overflow"
+                        key={`c${i}`}>
+                        <OverflowMenu flipped floatingMenu>
+                          <OverflowMenuItem itemText="Option 1" />
+                          <OverflowMenuItem itemText="Option 2" />
+                          <OverflowMenuItem itemText="Option 3" />
+                          <OverflowMenuItem itemText="Option 4" />
+                          <OverflowMenuItem
+                            itemText="Danger option"
+                            hasDivider
+                            isDelete
+                          />
+                        </OverflowMenu>
+                      </DataTableData>
                     </DataTableRow>
                   );
                 })}

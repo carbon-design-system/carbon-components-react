@@ -102,25 +102,13 @@ export class DataTableColumnHeader extends Component {
   };
 
   handleClick = () => {
-    this.setState(
-      state => ({
-        sorted: !state.sorted,
-      }),
-      () => {
-        const direction = this.state.sorted ? 'desc' : 'asc';
-        this.props.onClick(this.props.sortBy, direction);
-      }
-    );
+    this.setState(state => ({
+      sorted: !state.sorted,
+    }));
   };
 
   render() {
-    const {
-      children,
-      className,
-      sortable,
-      sortBy, // eslint-disable-line
-      ...other
-    } = this.props;
+    const { children, className, sortable, ...other } = this.props;
     const tableSortClasses = classNames('bx--table-sort-v2', {
       'bx--table-sort-v2--active': this.state.active,
       'bx--table-sort-v2--ascending': this.state.sorted,
