@@ -7,8 +7,7 @@
   "scripts": {
     "build": "node scripts/build.js",
     "build-storybook": "build-storybook",
-    "ci-check":
-      "yarn prettier:diff && yarn lint && yarn test --runInBand && yarn test-ssr",
+    "ci-check": "yarn prettier:diff && yarn lint && yarn test --runInBand && yarn test-ssr",
     "commitmsg": "validate-commit-msg",
     "lint": "eslint src",
     "precommit": "lint-staged",
@@ -110,6 +109,7 @@
     "flatpickr": "4.0.7",
     "lodash.debounce": "^4.0.8",
     "lodash.isequal": "^4.5.0",
+    "sentence-case": "^2.1.1",
     "warning": "3.0.0",
     "window-or-global": "^1.0.1"
   },

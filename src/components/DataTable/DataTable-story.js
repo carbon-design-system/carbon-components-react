@@ -2,13 +2,10 @@ import React, { Component } from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import classNames from 'classnames';
+import sentenceCase from 'sentence-case';
+
 import DataTableRow from '../DataTableRow';
 import DataTableData from '../DataTableData';
-import DataTableRowExpand from '../DataTableRowExpand'; // eslint-disable-line
-import {
-  DataTableExpandableRow, // eslint-disable-line
-  DataTableExpandableRowContent, // eslint-disable-line
-} from '../DataTableExpandableRow';
 import {
   DataTable,
   DataTableToolbar,
@@ -31,6 +28,89 @@ const paginationProps = {
   pageSizes: [10, 20, 30, 40, 50],
 };
 
+const initialRows = [
+  {
+    name: 'Load Balancer 3',
+    protocol: 'HTTP',
+    something: '80',
+    rule: 'Round Robin',
+    attached_groups: 'Kevins VM Groups',
+    status: 'Active',
+  },
+  {
+    name: 'Load Balancer 1',
+    protocol: 'HTTP',
+    something: '80',
+    rule: 'Round Robin',
+    attached_groups: 'Maureens VM Groups',
+    status: 'Active',
+  },
+  {
+    name: 'Load Balancer 2',
+    protocol: 'HTTP',
+    something: '80',
+    rule: 'Round Robin',
+    attached_groups: 'Andrews VM Groups',
+    status: 'Active',
+  },
+];
+
+const initialExpandedRows = [
+  {
+    rowContent: {
+      name: 'Load Balancer 3',
+      protocol: 'HTTP',
+      something: '80',
+      rule: 'Round Robin',
+      attached_groups: 'Kevins VM Groups',
+      status: 'Active',
+    },
+    expandedRowContent: {
+      html: `<div>
+      <h1>Expandable Row Content 1</h1>
+      <p>Description here.</p>
+    </div>`,
+    },
+  },
+  {
+    rowContent: {
+      name: 'Load Balancer 1',
+      protocol: 'HTTP',
+      something: '80',
+      rule: 'Round Robin',
+      attached_groups: 'Maureens VM Groups',
+      status: 'Active',
+    },
+    expandedRowContent: {
+      html: `<div>
+      <h1>Expandable Row Content 2</h1>
+      <p>Description here.</p>
+    </div>`,
+    },
+  },
+  {
+    rowContent: {
+      name: 'Load Balancer 2',
+      protocol: 'HTTP',
+      something: '80',
+      rule: 'Round Robin',
+      attached_groups: 'Andrews VM Groups',
+      status: 'Active',
+    },
+    expandedRowContent: {
+      html: `<div>
+      <h1>Expandable Row Content 3</h1>
+      <p>Description here.</p>
+    </div>`,
+    },
+  },
+];
+
+const headers = Object.keys(initialRows[0]).map(key => ({
+  key,
+  title: sentenceCase(key),
+}));
+
 class BasicDataTable extends Component {
   constructor(props) {
     super(props);
@@ -44,32 +124,7 @@ class BasicDataTable extends Component {
 
   static defaultProps = {
     zebra: true,
-    rows: [
-      {
-        name: 'Load Balancer 3',
-        protocol: 'HTTP',
-        something: '80',
-        rule: 'Round Robin',
-        attached_groups: 'Kevins VM Groups',
-        status: 'Active',
-      },
-      {
-        name: 'Load Balancer 1',
-        protocol: 'HTTP',
-        something: '80',
-        rule: 'Round Robin',
-        attached_groups: 'Maureens VM Groups',
-        status: 'Active',
-      },
-      {
-        name: 'Load Balancer 2',
-        protocol: 'HTTP',
-        something: '80',
-        rule: 'Round Robin',
-        attached_groups: 'Andrews VM Groups',
-        status: 'Active',
-      },
-    ],
+    rows: initialRows,
   };
 
   selectAll = () => {
@@ -116,41 +171,6 @@ class BasicDataTable extends Component {
       }
     });
     return checkedItems;
-  };
-
-  compareVals = (key, order = 'asc') => {
-    return function(a, b) {
-      const aContent = a.rowContent ? a.rowContent : a;
-      const bContent = b.rowContent ? b.rowContent : b;
-      if (!aContent.hasOwnProperty(key) || !bContent.hasOwnProperty(key)) {
-        return 0;
-      }
-
-      const varA =
-        typeof aContent[key] === 'string'
-          ? aContent[key].toUpperCase()
-          : aContent[key];
-      const varB =
-        typeof bContent[key] === 'string'
-          ? bContent[key].toUpperCase()
-          : bContent[key];
-
-      let comparison = 0;
-      if (varA > varB) {
-        comparison = 1;
-      } else if (varA < varB) {
-        comparison = -1;
-      }
-
-      return order === 'desc' ? comparison * -1 : comparison;
-    };
-  };
-
-  sortRow = (query, dir) => {
-    const newRows = this.state.rows.sort(this.compareVals(query, dir));
-    this.setState({
-      rows: newRows,
-    });
   };
 
   searchTable = evt => {
@@ -225,8 +245,9 @@ class BasicDataTable extends Component {
             </DataTableToolbarContent>
           </DataTableToolbar>
           <DataTable
-            initialRows={this.state.rows}
-            render={() => (
+            initialRows={initialRows}
+            headers={headers}
+            render={({ headers, getHeaderProps }) => (
               <table className={tableClasses}>
                 <DataTableHead>
                   <DataTableRow>
@@ -234,43 +255,10 @@ class BasicDataTable extends Component {
                       checked={this.state.selectAll}
                       onClick={this.selectAll}
                     />
-                    <DataTableColumnHeader
-                      onClick={this.sortRow}
-                      sortable
-                      sortBy="name">
-                      Name
-                    </DataTableColumnHeader>
-                    <DataTableColumnHeader
-                      onClick={this.sortRow}
-                      sortable
-                      sortBy="protocol">
-                      Protocol
-                    </DataTableColumnHeader>
-                    <DataTableColumnHeader
-                      onClick={this.sortRow}
-                      sortable
-                      sortBy="something">
-                      Something
-                    </DataTableColumnHeader>
-                    <DataTableColumnHeader
-                      onClick={this.sortRow}
-                      sortable
-                      sortBy="rule">
-                      Rule
-                    </DataTableColumnHeader>
-                    <DataTableColumnHeader
-                      onClick={this.sortRow}
-                      sortable
-                      sortBy="attached_groups">
-                      Attached Groups
-                    </DataTableColumnHeader>
-                    <DataTableColumnHeader
-                      onClick={this.sortRow}
-                      sortable
-                      sortBy="status">
-                      Status
-                    </DataTableColumnHeader>
-                    <DataTableColumnHeader />
+                    {headers.map(header => (
+                      <th {...getHeaderProps(header)}>{header.title}</th>
+                    ))}
+                    <th />
                   </DataTableRow>
                 </DataTableHead>
                 <DataTableBody>
@@ -317,56 +305,7 @@ class ExpandableDataTable extends Component {
 
   static defaultProps = {
     zebra: true,
-    rows: [
-      {
-        rowContent: {
-          name: 'Load Balancer 3',
-          protocol: 'HTTP',
-          something: '80',
-          rule: 'Round Robin',
-          attached_groups: 'Kevins VM Groups',
-          status: 'Active',
-        },
-        expandedRowContent: {
-          html: `<div>
-          <h1>Hello there!</h1>
-          <p>This is cool!</p>
-        </div>`,
-        },
-      },
-      {
-        rowContent: {
-          name: 'Load Balancer 1',
-          protocol: 'HTTP',
-          something: '80',
-          rule: 'Round Robin',
-          attached_groups: 'Maureens VM Groups',
-          status: 'Active',
-        },
-        expandedRowContent: {
-          html: `<div>
-          <h1>Hi!</h1>
-          <p>Woah!</p>
-        </div>`,
-        },
-      },
-      {
-        rowContent: {
-          name: 'Load Balancer 2',
-          protocol: 'HTTP',
-          something: '80',
-          rule: 'Round Robin',
-          attached_groups: 'Andrews VM Groups',
-          status: 'Active',
-        },
-        expandedRowContent: {
-          html: `<div>
-          <h1>Aloha!</h1>
-          <p>Wii!</p>
-        </div>`,
-        },
-      },
-    ],
+    rows: initialExpandedRows,
   };
 
   compareVals = (key, order = 'asc') => {
@@ -413,7 +352,7 @@ class ExpandableDataTable extends Component {
       <td colspan="8">
         ${content}
       </td>
-    `; // need to make colspan a prop
+    `;
     Object.keys(parent.parentElement.children).map(child => {
       if (parent.parentElement.children[child] === parent) {
         parent.parentElement.insertBefore(
@@ -475,9 +414,6 @@ class ExpandableDataTable extends Component {
 
     return (
       <DataTableContainer title="Table title">
-        <DataTableToolbar>
-          <DataTableSearch />
-        </DataTableToolbar>
         <DataTable
           initialRows={this.state.rows}
           render={({ rows }) => (

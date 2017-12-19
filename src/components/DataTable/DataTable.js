@@ -5,20 +5,68 @@ import Button from '../Button';
 import Icon from '../Icon';
 import Search from '../Search';
 
+const toggleSortDirection = direction => {
+  if (direction === 'DESC') {
+    return 'ASC';
+  }
+
+  return 'DESC';
+};
+
+const sortRow = (key, direction) => (a, b) => {
+  if (direction === 'DESC') {
+    return a[key].localeCompare(b[key]);
+  }
+
+  return b[key].localeCompare(a[key]);
+};
+
 export class DataTable extends Component {
   constructor(props) {
     super(props);
     this.state = {
       rows: props.initialRows,
+      sortKey: null,
+      sortDirection: null,
+    };
+    this.sortBy = this.sortBy.bind(this);
+    this.getHeaderProps = this.getHeaderProps.bind(this);
+  }
+
+  sortBy(key) {
+    return () => {
+      const direction =
+        this.state.sortKey === key
+          ? toggleSortDirection(this.state.sortDirection)
+          : 'DESC';
+
+      this.setState(state => {
+        return {
+          rows: state.rows.sort(sortRow(key, direction)),
+          sortKey: key,
+          sortDirection: direction,
+        };
+      });
+    };
+  }
+
+  getHeaderProps(header) {
+    return {
+      onClick: this.sortBy(header.key),
+      onKeyDown: () => {},
     };
   }
 
   render() {
-    const renderProps = {
-      rows: this.state.rows,
-    };
+    const { render, children, headers } = this.props;
+    const { rows } = this.state;
 
-    const { render, children } = this.props;
+    const renderProps = {
+      rows,
+      headers,
+      sortBy: this.sortBy,
+      getHeaderProps: this.getHeaderProps,
+    };
 
     if (render !== undefined) {
       return render(renderProps);
