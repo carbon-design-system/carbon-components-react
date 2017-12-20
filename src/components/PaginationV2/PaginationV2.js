@@ -6,6 +6,8 @@ import Select from '../Select';
 import SelectItem from '../SelectItem';
 import { equals } from '../../tools/array';
 
+let instanceId = 0;
+
 export default class PaginationV2 extends Component {
   static propTypes = {
     backwardText: PropTypes.string,
@@ -34,7 +36,6 @@ export default class PaginationV2 extends Component {
     itemRangeText: (min, max, total) => `${min}-${max} of ${total} items`,
     forwardText: 'Forward',
     itemsPerPageText: 'Items per page',
-    onChange: () => {},
     pageNumberText: 'Page Number',
     pageRangeText: (current, total) => `${current} of ${total} pages`,
     disabled: false,
@@ -55,7 +56,7 @@ export default class PaginationV2 extends Component {
   };
 
   componentWillMount() {
-    this.uniqueId = `${Math.floor(Math.random() * 0xffff)}`;
+    this.uniqueId = ++instanceId;
   }
 
   componentWillReceiveProps({ pageSizes, page, pageSize }) {

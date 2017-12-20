@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import classNames from 'classnames';
-import sentenceCase from 'sentence-case';
 import PropTypes from 'prop-types';
 
 import DataTableRow from '../DataTableRow';
@@ -111,7 +110,7 @@ const initialExpandedRows = [
 
 const headers = Object.keys(initialRows[0]).map(key => ({
   key,
-  title: sentenceCase(key),
+  title: key.charAt(0).toUpperCase() + key.substring(1),
 }));
 
 class BasicDataTable extends Component {
@@ -286,7 +285,8 @@ class BasicDataTable extends Component {
                         <DataTableData
                           onClick={() => this.selectRow(i)}
                           key={`a${i}`}
-                          checked={
+                          isSelectable={true}
+                          isSelected={
                             this.state.checked[i]
                               ? this.state.checked[i]
                               : false
@@ -444,7 +444,8 @@ class ExpandableDataTable extends Component {
                           this.expandRow(i, evt);
                         }}
                         key={`a${i}`}
-                        expanded={
+                        isExpandable={true}
+                        isExpanded={
                           this.state.expanded[i]
                             ? this.state.expanded[i]
                             : false

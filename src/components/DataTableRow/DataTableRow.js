@@ -14,7 +14,6 @@ const DataTableRow = props => {
 DataTableRow.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
-  containerClassName: PropTypes.string,
 };
 
 export default DataTableRow;

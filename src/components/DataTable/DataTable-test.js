@@ -3,17 +3,21 @@ import { DataTableContainer } from '../DataTable';
 import { shallow } from 'enzyme';
 
 describe('DataTable', () => {
-  describe('Renders as expected', () => {
-    const dataTableContainer = shallow(
+  it('should render', () => {
+    const wrapper = shallow(
       <DataTableContainer>
         <div>Children</div>
       </DataTableContainer>
     );
+    expect(wrapper).toMatchSnapshot();
+  });
 
-    it('has the expected classes', () => {
-      expect(
-        dataTableContainer.hasClass('bx--data-table-v2-container')
-      ).toEqual(true);
-    });
+  it('has the expected classes', () => {
+    const wrapper = shallow(
+      <DataTableContainer>
+        <div>Children</div>
+      </DataTableContainer>
+    );
+    expect(wrapper.hasClass('bx--data-table-v2-container')).toEqual(true);
   });
 });
