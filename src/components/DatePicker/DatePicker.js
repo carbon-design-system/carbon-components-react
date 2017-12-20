@@ -68,6 +68,16 @@ export default class DatePicker extends Component {
         },
         nextArrow: this.rightArrowHTML(),
         leftArrow: this.leftArrowHTML(),
+        onMonthChange: (electedDates, dateStr, instance) => {
+          this.updateClassNames(instance);
+        },
+        onYearChange: (electedDates, dateStr, instance) => {
+          this.updateClassNames(instance);
+        },
+        onOpen: (electedDates, dateStr, instance) => {
+          this.updateClassNames(instance);
+        },
+        appendTo: document.querySelector('#append-to-me'),
       });
       this.addKeyboardEvents(this.cal);
     }
