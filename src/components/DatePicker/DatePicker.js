@@ -77,7 +77,6 @@ export default class DatePicker extends Component {
         onOpen: (electedDates, dateStr, instance) => {
           this.updateClassNames(instance);
         },
-        appendTo: document.querySelector('#append-to-me'),
       });
       this.addKeyboardEvents(this.cal);
     }
