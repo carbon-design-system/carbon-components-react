@@ -3,15 +3,21 @@ import DataTableData from '../DataTableData';
 import { shallow } from 'enzyme';
 
 describe('DataTableData', () => {
-  describe('Renders as expected', () => {
-    const dataTableData = shallow(
+  it('should render', () => {
+    const wrapper = shallow(
       <DataTableData>
         <div>Children</div>
       </DataTableData>
     );
+    expect(wrapper).toMatchSnapshot();
+  });
 
-    it('should render children as expected', () => {
-      expect(dataTableData.find('div').length).toEqual(1);
-    });
+  it('should render children as expected', () => {
+    const wrapper = shallow(
+      <DataTableData>
+        <div>Children</div>
+      </DataTableData>
+    );
+    expect(wrapper.find('div').length).toEqual(1);
   });
 });
