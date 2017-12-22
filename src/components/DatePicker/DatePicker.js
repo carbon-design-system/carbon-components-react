@@ -53,6 +53,9 @@ export default class DatePicker extends Component {
       this.props.datePickerType === 'single' ||
       this.props.datePickerType === 'range'
     ) {
+      const onHook = (electedDates, dateStr, instance) => {
+        this.updateClassNames(instance);
+      };
       this.cal = flatpickr(this.inputField, {
         mode: this.props.datePickerType,
         allowInput: true,
@@ -62,21 +65,14 @@ export default class DatePicker extends Component {
             ? [new rangePlugin({ input: this.toInputField })]
             : '',
         clickOpens: true,
-        onChange: this.props.onChange,
-        onReady: (selectedDates, dateStr, instance) => {
-          this.updateClassNames(instance);
-        },
         nextArrow: this.rightArrowHTML(),
         leftArrow: this.leftArrowHTML(),
-        onMonthChange: (electedDates, dateStr, instance) => {
-          this.updateClassNames(instance);
-        },
-        onYearChange: (electedDates, dateStr, instance) => {
-          this.updateClassNames(instance);
-        },
-        onOpen: (electedDates, dateStr, instance) => {
-          this.updateClassNames(instance);
-        },
+        onChange: this.props.onChange,
+        onReady: onHook,
+        onMonthChange: onHook,
+        onYearChange: onHook,
+        onOpen: onHook,
+        onValueUpdate: onHook,
       });
       this.addKeyboardEvents(this.cal);
     }
