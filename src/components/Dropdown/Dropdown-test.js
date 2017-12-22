@@ -18,7 +18,7 @@ describe('Dropdown', () => {
       expect(wrapper.length).toEqual(1);
     });
 
-    it.only('has the expected classes', () => {
+    it('has the expected classes', () => {
       expect(wrapper.hasClass('bx--dropdown')).toEqual(true);
     });
 
