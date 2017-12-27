@@ -29,7 +29,6 @@ export default class DatePicker extends Component {
   static defaultProps = {
     short: false,
     dateFormat: 'm/d/Y',
-    onChange: () => {},
   };
 
   componentWillUpdate(nextProps) {
@@ -67,7 +66,11 @@ export default class DatePicker extends Component {
         clickOpens: true,
         nextArrow: this.rightArrowHTML(),
         leftArrow: this.leftArrowHTML(),
-        onChange: this.props.onChange,
+        onChange: (...args) => {
+          if (this.props.onChange) {
+            this.props.onChange(...args);
+          }
+        },
         onReady: onHook,
         onMonthChange: onHook,
         onYearChange: onHook,
