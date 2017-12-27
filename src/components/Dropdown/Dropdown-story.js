@@ -22,8 +22,7 @@ storiesOf('Dropdown', module)
       <Dropdown
         {...dropdownEvents}
         onChange={action('onChange')}
-        defaultText="Dropdown label"
-        className="xxxStuff">
+        defaultText="Dropdown label">
         <DropdownItem itemText="Option 1" value="option1" />
         <DropdownItem itemText="Option 2" value="option2" />
         <DropdownItem itemText="Option 3" value="option3" />

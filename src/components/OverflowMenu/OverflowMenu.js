@@ -92,11 +92,7 @@ export default class OverflowMenu extends Component {
   };
 
   bindMenuEl = menuEl => {
-    if (menuEl && menuEl.element) {
-      this.menuEl = menuEl.element;
-    } else {
-      this.menuEl = menuEl;
-    }
+    this.menuEl = menuEl;
   };
 
   render() {
