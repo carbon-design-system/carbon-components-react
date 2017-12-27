@@ -58,30 +58,31 @@ export default class ToolbarSearch extends Component {
     });
 
     return (
-      <ClickListener
-        onClickOutside={this.handleClickOutside}
-        className={searchClasses}
-        role={role}>
-        <label htmlFor={id} className="bx--label">
-          {labelText}
-        </label>
-        <input
-          {...other}
-          type={type}
-          className="bx--search-input"
-          id={id}
-          placeholder={placeHolderText}
-          ref={input => {
-            this.input = input;
-          }}
-        />
-        <button className="bx--toolbar-search__btn" onClick={this.expandSearch}>
-          <Icon
-            name="search--glyph"
-            description="search"
-            className="bx--search-magnifier"
+      <ClickListener onClickOutside={this.handleClickOutside}>
+        <div className={searchClasses} role={role}>
+          <label htmlFor={id} className="bx--label">
+            {labelText}
+          </label>
+          <input
+            {...other}
+            type={type}
+            className="bx--search-input"
+            id={id}
+            placeholder={placeHolderText}
+            ref={input => {
+              this.input = input;
+            }}
           />
-        </button>
+          <button
+            className="bx--toolbar-search__btn"
+            onClick={this.expandSearch}>
+            <Icon
+              name="search--glyph"
+              description="search"
+              className="bx--search-magnifier"
+            />
+          </button>
+        </div>
       </ClickListener>
     );
   }

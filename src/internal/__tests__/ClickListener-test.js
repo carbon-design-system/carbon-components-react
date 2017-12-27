@@ -10,12 +10,25 @@ describe('ClickListener', () => {
 
     const wrapper = shallow(
       <ClickListener onClickOutside={onClickOutside}>
-        <div className="child">Test</div>
-        <div className="child">Test</div>
+        <div>
+          <div className="child">Test</div>
+          <div className="child">Test</div>
+        </div>
       </ClickListener>
     );
 
     expect(wrapper.find('.child').length).toBe(2);
+  });
+
+  it('throws if too many children are provided', () => {
+    expect(() => {
+      shallow(
+        <ClickListener onClickOutside={() => {}}>
+          <div className="child">Test</div>
+          <div className="child">Test</div>
+        </ClickListener>
+      );
+    }).toThrow();
   });
 
   it('should invoke onClickOutside if click is outside of the component', () => {
@@ -23,8 +36,10 @@ describe('ClickListener', () => {
 
     mount(
       <ClickListener onClickOutside={onClickOutside}>
-        <div className="child">Test</div>
-        <div className="child">Test</div>
+        <div>
+          <div className="child">Test</div>
+          <div className="child">Test</div>
+        </div>
       </ClickListener>
     );
 

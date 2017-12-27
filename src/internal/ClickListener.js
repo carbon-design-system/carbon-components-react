@@ -1,17 +1,12 @@
 import PropTypes from 'prop-types';
 /* global document */
 
-import React from 'react';
+import React, { Children } from 'react';
 
 class ClickListener extends React.Component {
   static propTypes = {
     children: PropTypes.node.isRequired,
     onClickOutside: PropTypes.func.isRequired,
-    renderElement: PropTypes.node,
-  };
-
-  static defaultProps = {
-    renderElement: 'div',
   };
 
   componentDidMount() {
@@ -29,24 +24,21 @@ class ClickListener extends React.Component {
   };
 
   render() {
-    /* eslint-disable no-unused-vars */
-    const {
-      onClickOutside,
-      renderElement: RenderElement,
-      children,
-      ...otherProps
-    } = this.props;
-    /* eslint-enable */
+    const { children } = this.props;
 
-    return (
-      <RenderElement
-        {...otherProps}
-        ref={el => {
-          this.element = el;
-        }}>
-        {children}
-      </RenderElement>
-    );
+    if (Children.count(children) !== 1) {
+      throw new Error(
+        'ClickListener MUST be only given a single child element.'
+      );
+    }
+    return React.cloneElement(children, {
+      ref: el => {
+        this.element = el;
+        if (children.ref) {
+          children.ref(el);
+        }
+      },
+    });
   }
 }
 

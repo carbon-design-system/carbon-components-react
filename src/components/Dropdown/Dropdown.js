@@ -113,27 +113,27 @@ export default class Dropdown extends PureComponent {
     });
 
     const dropdown = (
-      <ClickListener
-        renderElement="ul"
-        onClickOutside={this.close}
-        {...other}
-        onClick={this.toggle}
-        onKeyPress={this.toggle}
-        value={this.state.value}
-        className={dropdownClasses}
-        tabIndex={tabIndex}
-        role="presentation">
-        <li className="bx--dropdown-text">{this.state.selectedText}</li>
-        <li>
-          <Icon
-            name="caret--down"
-            className="bx--dropdown__arrow"
-            description={iconDescription}
-          />
-        </li>
-        <li>
-          <ul className="bx--dropdown-list">{children}</ul>
-        </li>
+      <ClickListener onClickOutside={this.close}>
+        <ul
+          {...other}
+          onClick={this.toggle}
+          onKeyPress={this.toggle}
+          value={this.state.value}
+          className={dropdownClasses}
+          tabIndex={tabIndex}
+          role="presentation">
+          <li className="bx--dropdown-text">{this.state.selectedText}</li>
+          <li>
+            <Icon
+              name="caret--down"
+              className="bx--dropdown__arrow"
+              description={iconDescription}
+            />
+          </li>
+          <li>
+            <ul className="bx--dropdown-list">{children}</ul>
+          </li>
+        </ul>
       </ClickListener>
     );
 

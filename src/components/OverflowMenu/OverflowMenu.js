@@ -141,33 +141,36 @@ export default class OverflowMenu extends Component {
     );
 
     return (
-      <ClickListener
-        onClickOutside={this.handleClickOutside}
-        {...other}
-        role="button"
-        className={overflowMenuClasses}
-        onKeyDown={this.handleKeyPress}
-        aria-label={ariaLabel}
-        id={id}
-        tabIndex={tabIndex}
-        ref={this.bindMenuEl}>
-        <Icon
-          onClick={this.handleClick}
-          className={overflowMenuIconClasses}
-          name={iconName}
-          description={iconDescription}
-          style={{ width: '100%' }}
-        />
-        {floatingMenu ? (
-          <FloatingMenu
-            menuPosition={this.state.menuPosition}
-            menuDirection="bottom"
-            menuOffset={flipped ? menuOffsetFlip : menuOffset}>
+      <ClickListener onClickOutside={this.handleClickOutside}>
+        <div
+          {...other}
+          role="button"
+          className={overflowMenuClasses}
+          onKeyDown={this.handleKeyPress}
+          aria-label={ariaLabel}
+          id={id}
+          tabIndex={tabIndex}
+          ref={this.bindMenuEl}>
+          <Icon
+            onClick={this.handleClick}
+            className={overflowMenuIconClasses}
+            name={iconName}
+            description={iconDescription}
+            style={{ width: '100%' }}
+          />
+          {floatingMenu ? (
+            <FloatingMenu
+              menuPosition={this.state.menuPosition}
+              menuDirection="bottom"
+              menuOffset={flipped ? menuOffsetFlip : menuOffset}>
+              <ul className={overflowMenuOptionsClasses}>
+                {childrenWithProps}
+              </ul>
+            </FloatingMenu>
+          ) : (
             <ul className={overflowMenuOptionsClasses}>{childrenWithProps}</ul>
-          </FloatingMenu>
-        ) : (
-          <ul className={overflowMenuOptionsClasses}>{childrenWithProps}</ul>
-        )}
+          )}
+        </div>
       </ClickListener>
     );
   }

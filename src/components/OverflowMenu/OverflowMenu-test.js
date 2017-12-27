@@ -5,12 +5,13 @@ import { shallow, mount } from 'enzyme';
 
 describe('OverflowMenu', () => {
   describe('Renders as expected', () => {
-    const menu = shallow(
+    const rootWrapper = shallow(
       <OverflowMenu className="extra-class">
         <div className="test-child" />
         <div className="test-child" />
       </OverflowMenu>
     );
+    const menu = rootWrapper.childAt(0);
     const icon = menu.find(Icon);
 
     it('should render an Icon', () => {
@@ -43,19 +44,21 @@ describe('OverflowMenu', () => {
     });
 
     it('should set tabIndex if one is passed via props', () => {
-      menu.setProps({ tabIndex: 2 });
+      rootWrapper.setProps({ tabIndex: 2 });
 
-      expect(menu.props().tabIndex).toEqual(2);
+      expect(rootWrapper.childAt(0).props().tabIndex).toEqual(2);
     });
 
     it('should set ariaLabel if one is passed via props', () => {
-      menu.setProps({ ariaLabel: 'test label' });
-      expect(menu.props()['aria-label']).toEqual('test label');
+      rootWrapper.setProps({ ariaLabel: 'test label' });
+      expect(rootWrapper.childAt(0).props()['aria-label']).toEqual(
+        'test label'
+      );
     });
 
     it('should set id if one is passed via props', () => {
-      menu.setProps({ id: 'uniqueId' });
-      expect(menu.props().id).toEqual('uniqueId');
+      rootWrapper.setProps({ id: 'uniqueId' });
+      expect(rootWrapper.childAt(0).props().id).toEqual('uniqueId');
     });
 
     it('should apply a tabindex to the menu', () => {
@@ -63,7 +66,7 @@ describe('OverflowMenu', () => {
         <OverflowMenu>
           <div>Child</div>
         </OverflowMenu>
-      );
+      ).childAt(0);
       expect(defaultMenu.props().tabIndex).toBe(0);
     });
   });
@@ -86,24 +89,26 @@ describe('OverflowMenu', () => {
     });
 
     it('should be in an open state after icon is clicked', () => {
-      const menu = mount(<OverflowMenu />);
+      const rootWrapper = mount(<OverflowMenu />);
+      const menu = rootWrapper.childAt(0);
       const icon = menu.find(Icon);
 
       icon.simulate('click');
-      expect(menu.state().open).toEqual(true);
+      expect(rootWrapper.state().open).toEqual(true);
     });
 
     it('should toggle state in response to Enter or Space', () => {
       const enterKey = 13;
       const spaceKey = 32;
-      const menu = shallow(<OverflowMenu />);
+      const rootWrapper = shallow(<OverflowMenu />);
+      const menu = rootWrapper.childAt(0);
 
-      menu.setState({ open: true });
+      rootWrapper.setState({ open: true });
 
       menu.simulate('keydown', { which: spaceKey });
-      expect(menu.state().open).toEqual(false);
+      expect(rootWrapper.state().open).toEqual(false);
       menu.simulate('keydown', { which: enterKey });
-      expect(menu.state().open).toEqual(true);
+      expect(rootWrapper.state().open).toEqual(true);
     });
 
     // Removed until a better solution appears
