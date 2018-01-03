@@ -66,7 +66,11 @@ export default class Slider extends PureComponent {
 
     requestAnimationFrame(() => {
       this.setState((prevState, props) => {
-        if (evt && evt.target.classList.contains('bx-slider-text-input')) {
+        if (
+          evt &&
+          evt.target &&
+          evt.target.classList.contains('bx-slider-text-input')
+        ) {
           const { left } = this.calcValue(evt, prevState, props);
           return { left, value: evt.target.value, dragging: false };
         }
