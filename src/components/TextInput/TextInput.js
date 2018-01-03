@@ -31,7 +31,7 @@ const TextInput = ({
     type,
   };
 
-  const errorId = id + 'errormsg';
+  const errorId = id + '-error-msg';
   const textInputClasses = classNames('bx--text-input', className);
   const labelClasses = classNames('bx--label', {
     'bx--visually-hidden': hideLabel,
