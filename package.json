@@ -14,15 +14,21 @@
     "prepublish": "yarn build",
     "prettier": "prettier --write \"**/*.{scss,css,js}\"",
     "prettier:diff": "prettier --list-different \"**/*.{scss,css,js}\"",
-    "semantic-release":
-      "semantic-release pre && npm publish && semantic-release post",
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post",
     "start": "yarn storybook",
     "storybook": "start-storybook -p 9000",
     "test": "jest",
     "test-ssr": "yarn build && node ssr-tests/*.js"
   },
-  "keywords": ["react", "carbon", "carbon-components"],
-  "files": ["lib/**/*", "es/**/*"],
+  "keywords": [
+    "react",
+    "carbon",
+    "carbon-components"
+  ],
+  "files": [
+    "lib/**/*",
+    "es/**/*"
+  ],
   "contributors": [
     {
       "name": "Brian Han",
@@ -51,8 +57,14 @@
   ],
   "eslintConfig": {
     "parser": "babel-eslint",
-    "extends": ["eslint:recommended", "plugin:jsx-a11y/recommended"],
-    "plugins": ["react", "jsx-a11y"],
+    "extends": [
+      "eslint:recommended",
+      "plugin:jsx-a11y/recommended"
+    ],
+    "plugins": [
+      "react",
+      "jsx-a11y"
+    ],
     "rules": {
       "react/jsx-uses-vars": 1,
       "react/jsx-uses-react": 1,
@@ -65,8 +77,15 @@
       "jsx-a11y/label-has-for": [
         1,
         {
-          "components": ["Label"],
-          "required": { "some": ["nesting", "id"] },
+          "components": [
+            "Label"
+          ],
+          "required": {
+            "some": [
+              "nesting",
+              "id"
+            ]
+          },
           "allowChildren": false
         }
       ]
@@ -80,7 +99,7 @@
     }
   },
   "peerDependencies": {
-    "carbon-components": "^8.0.0",
+    "carbon-components": "^8.1.11",
     "carbon-icons": "^5.1.2 || ^6.0.0",
     "react": "^16.1.0",
     "react-dom": "^16.1.0"
@@ -89,17 +108,17 @@
     "classnames": "2.2.5",
     "flatpickr": "4.0.7",
     "lodash.debounce": "^4.0.8",
+    "lodash.isequal": "^4.5.0",
     "warning": "3.0.0",
     "window-or-global": "^1.0.1"
   },
   "devDependencies": {
     "@storybook/addon-actions": "^3.2.15",
-    "@storybook/addon-centered": "3.2.17",
     "@storybook/addon-info": "^3.2.13",
     "@storybook/react": "^3.2.13",
     "babel-cli": "^6.24.1",
     "babel-eslint": "^8.0.2",
-    "babel-jest": "^21.2.0",
+    "babel-jest": "^22.0.0",
     "babel-plugin-transform-object-assign": "^6.22.0",
     "babel-preset-env": "^1.5.1",
     "babel-preset-react": "^6.11.1",
@@ -118,7 +137,7 @@
     "eslint-plugin-react": "^7.4.0",
     "gh-pages": "1.0.0",
     "husky": "^0.14.3",
-    "jest": "^21.2.1",
+    "jest": "^22.0.0",
     "lcov2badge": "^0.1.0",
     "lint-staged": "^4.3.0",
     "node-sass": "4.6.0",
@@ -140,8 +159,14 @@
     "whatwg-fetch": "^2.0.3"
   },
   "babel": {
-    "presets": ["./scripts/env", "react", "stage-1"],
-    "plugins": ["transform-object-assign"]
+    "presets": [
+      "./scripts/env",
+      "react",
+      "stage-1"
+    ],
+    "plugins": [
+      "transform-object-assign"
+    ]
   },
   "prettier": {
     "jsxBracketSameLine": true,
@@ -150,8 +175,15 @@
     "trailingComma": "es5"
   },
   "lint-staged": {
-    "*.js": ["prettier", "lint", "git add"],
-    "*.{css,scss}": ["prettier", "git add"]
+    "*.js": [
+      "prettier",
+      "lint",
+      "git add"
+    ],
+    "*.{css,scss}": [
+      "prettier",
+      "git add"
+    ]
   },
   "config": {
     "validate-commit-msg": {
@@ -180,8 +212,12 @@
     "url": "https://github.com/carbon-design-system/carbon-components-react.git"
   },
   "jest": {
-    "collectCoverageFrom": ["components/**/*.js"],
-    "setupFiles": ["<rootDir>/config/jest/setup.js"],
+    "collectCoverageFrom": [
+      "components/**/*.js"
+    ],
+    "setupFiles": [
+      "<rootDir>/config/jest/setup.js"
+    ],
     "testMatch": [
       "<rootDir>/**/__tests__/**/*.js?(x)",
       "<rootDir>/**/?(*-)(spec|test).js?(x)"
@@ -199,8 +235,15 @@
       "/es/",
       "/cjs/"
     ],
-    "transformIgnorePatterns": ["[/\\\\]node_modules[/\\\\].+\\.(js|jsx)$"],
-    "moduleFileExtensions": ["js", "json"],
-    "snapshotSerializers": ["enzyme-to-json/serializer"]
+    "transformIgnorePatterns": [
+      "[/\\\\]node_modules[/\\\\].+\\.(js|jsx)$"
+    ],
+    "moduleFileExtensions": [
+      "js",
+      "json"
+    ],
+    "snapshotSerializers": [
+      "enzyme-to-json/serializer"
+    ]
   }
 }
