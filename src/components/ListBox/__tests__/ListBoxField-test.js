@@ -6,7 +6,7 @@ describe('ListBoxField', () => {
   it('should render', () => {
     const wrapper = mount(
       <ListBox.Field>
-        <span>Hello</span>
+        <ListBox.Selection clearSelection={jest.fn()} />
       </ListBox.Field>
     );
     expect(wrapper).toMatchSnapshot();
@@ -15,7 +15,7 @@ describe('ListBoxField', () => {
   it('should be focusable', () => {
     const wrapper = mount(
       <ListBox.Field>
-        <span>Hello</span>
+        <ListBox.Selection clearSelection={jest.fn()} />
       </ListBox.Field>
     );
     expect(wrapper.children().prop('tabIndex')).toBe('0');

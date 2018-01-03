@@ -8,7 +8,7 @@ describe('ListBox', () => {
   beforeEach(() => {
     mockProps = {
       type: 'default',
-      children: <span>Hello</span>,
+      children: <ListBox.Field />,
       className: 'bx--list-box__container',
       disabled: false,
       innerRef: jest.fn(),

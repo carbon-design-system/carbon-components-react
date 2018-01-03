@@ -11,9 +11,11 @@ exports[`ListBox should render 1`] = `
           <div
             class="bx--list-box__container bx--list-box"
           >
-            <span>
-              Hello
-            </span>
+            <div
+              class="bx--list-box__field"
+              role="button"
+              tabindex="0"
+            />
           </div>,
         ],
       ],
@@ -24,9 +26,13 @@ exports[`ListBox should render 1`] = `
   <div
     className="bx--list-box__container bx--list-box"
   >
-    <span>
-      Hello
-    </span>
+    <ListBoxField>
+      <div
+        className="bx--list-box__field"
+        role="button"
+        tabIndex="0"
+      />
+    </ListBoxField>
   </div>
 </ListBox>
 `;
