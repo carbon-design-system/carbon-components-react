@@ -116,25 +116,32 @@ export default class InteriorLeftNav extends Component {
       className
     );
 
+    const buttonStyles = {
+      border: 'none',
+    };
+
     return (
       <nav
-        role="navigation"
+        role="presentation"
+        tabIndex={-1}
         aria-label="Interior Left Navigation"
         className={classNames}
         onClick={!this.state.open ? this.toggle : () => {}}
+        onKeyPress={!this.state.open ? this.toggle : () => {}}
         {...other}>
         <ul key="main_list" className="left-nav-list" role="menubar">
           {newChildren}
         </ul>
-        <div className="bx--interior-left-nav-collapse" onClick={this.toggle}>
-          <a className="bx--interior-left-nav-collapse__link">
-            <Icon
-              name="chevron--left"
-              description="close/open iln"
-              className="bx--interior-left-nav-collapse__arrow"
-            />
-          </a>
-        </div>
+        <button
+          className="bx--interior-left-nav-collapse"
+          onClick={this.toggle}
+          style={buttonStyles}>
+          <Icon
+            name="chevron--left"
+            description="close/open iln"
+            className="bx--interior-left-nav-collapse__arrow"
+          />
+        </button>
       </nav>
     );
   }

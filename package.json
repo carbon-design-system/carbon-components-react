@@ -7,12 +7,13 @@
   "scripts": {
     "build": "node scripts/build.js",
     "build-storybook": "build-storybook",
-    "ci-check": "yarn lint && yarn test && yarn test-ssr",
-    "commit": "git cz",
+    "ci-check": "yarn prettier:diff && yarn lint && yarn test --runInBand && yarn test-ssr",
     "commitmsg": "validate-commit-msg",
-    "lint": "eslint src/**",
+    "lint": "eslint src",
+    "precommit": "lint-staged",
     "prepublish": "yarn build",
     "prettier": "prettier --write \"**/*.{scss,css,js}\"",
+    "prettier:diff": "prettier --list-different \"**/*.{scss,css,js}\"",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
     "start": "yarn storybook",
     "storybook": "start-storybook -p 9000",
@@ -68,10 +69,26 @@
       "react/jsx-uses-vars": 1,
       "react/jsx-uses-react": 1,
       "react/no-find-dom-node": 1,
-      "jsx-a11y/onclick-has-role": 1,
+      "jsx-a11y/no-static-element-interactions": 1,
+      "jsx-a11y/no-noninteractive-element-interactions": 1,
       "jsx-a11y/click-events-have-key-events": 1,
-      "jsx-a11y/href-no-hash": 1,
-      "jsx-a11y/onclick-has-focus": 1
+      "jsx-a11y/anchor-is-valid": 1,
+      "jsx-a11y/interactive-supports-focus": 1,
+      "jsx-a11y/label-has-for": [
+        1,
+        {
+          "components": [
+            "Label"
+          ],
+          "required": {
+            "some": [
+              "nesting",
+              "id"
+            ]
+          },
+          "allowChildren": false
+        }
+      ]
     },
     "env": {
       "node": true,
@@ -82,7 +99,7 @@
     }
   },
   "peerDependencies": {
-    "carbon-components": "^8.0.0",
+    "carbon-components": "^8.1.11",
     "carbon-icons": "^5.1.2 || ^6.0.0",
     "react": "^16.1.0",
     "react-dom": "^16.1.0"
@@ -91,17 +108,17 @@
     "classnames": "2.2.5",
     "flatpickr": "4.0.7",
     "lodash.debounce": "^4.0.8",
+    "lodash.isequal": "^4.5.0",
     "warning": "3.0.0",
     "window-or-global": "^1.0.1"
   },
   "devDependencies": {
     "@storybook/addon-actions": "^3.2.15",
-    "@storybook/addon-centered": "3.2.15",
     "@storybook/addon-info": "^3.2.13",
     "@storybook/react": "^3.2.13",
     "babel-cli": "^6.24.1",
     "babel-eslint": "^8.0.2",
-    "babel-jest": "^21.2.0",
+    "babel-jest": "^22.0.0",
     "babel-plugin-transform-object-assign": "^6.22.0",
     "babel-preset-env": "^1.5.1",
     "babel-preset-react": "^6.11.1",
@@ -116,11 +133,11 @@
     "enzyme-adapter-react-16": "^1.1.0",
     "enzyme-to-json": "^3.1.2",
     "eslint": "^4.11.0",
-    "eslint-plugin-jsx-a11y": "^2.0.0",
+    "eslint-plugin-jsx-a11y": "^6.0.2",
     "eslint-plugin-react": "^7.4.0",
     "gh-pages": "1.0.0",
     "husky": "^0.14.3",
-    "jest": "^21.2.1",
+    "jest": "^22.0.0",
     "lcov2badge": "^0.1.0",
     "lint-staged": "^4.3.0",
     "node-sass": "4.6.0",
@@ -161,6 +178,10 @@
     "*.js": [
       "prettier",
       "lint",
+      "git add"
+    ],
+    "*.{css,scss}": [
+      "prettier",
       "git add"
     ]
   },

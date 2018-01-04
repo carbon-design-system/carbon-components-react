@@ -9,7 +9,8 @@ export default class Tooltip extends Component {
     open: PropTypes.bool,
     children: PropTypes.node,
     className: PropTypes.string,
-    direction: PropTypes.oneOf(['bottom', 'top']),
+    direction: PropTypes.oneOf(['bottom', 'top', 'left', 'right']),
+    menuOffset: PropTypes.object,
     triggerText: PropTypes.string,
     showIcon: PropTypes.bool,
     iconName: PropTypes.string,
@@ -23,6 +24,7 @@ export default class Tooltip extends Component {
     iconName: 'info--glyph',
     iconDescription: 'tooltip',
     triggerText: 'Provide triggerText',
+    menuOffset: {},
   };
 
   state = {
@@ -36,8 +38,10 @@ export default class Tooltip extends Component {
   }
 
   getTriggerPosition = () => {
-    const triggerPosition = this.triggerEl.getBoundingClientRect();
-    this.setState({ triggerPosition });
+    if (this.triggerEl) {
+      const triggerPosition = this.triggerEl.getBoundingClientRect();
+      this.setState({ triggerPosition });
+    }
   };
 
   handleMouse = direction => {
@@ -58,6 +62,7 @@ export default class Tooltip extends Component {
       showIcon,
       iconName,
       iconDescription,
+      menuOffset,
       ...other
     } = this.props;
 
@@ -66,8 +71,6 @@ export default class Tooltip extends Component {
       { 'bx--tooltip--shown': this.state.open },
       className
     );
-
-    const menuOffset = { left: 5, top: 10 };
 
     return (
       <div>
@@ -83,9 +86,10 @@ export default class Tooltip extends Component {
               onFocus={() => this.handleMouse('over')}
               onBlur={() => this.handleMouse('out')}>
               <Icon
+                role="button"
+                tabIndex="0"
                 name={iconName}
                 description={iconDescription}
-                tabIndex="0"
               />
             </div>
           </div>

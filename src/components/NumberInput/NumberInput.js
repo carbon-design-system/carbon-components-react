@@ -16,6 +16,8 @@ export default class NumberInput extends Component {
     onClick: PropTypes.func,
     step: PropTypes.number,
     value: PropTypes.number,
+    invalid: PropTypes.bool,
+    invalidText: PropTypes.string,
   };
 
   static defaultProps = {
@@ -26,6 +28,8 @@ export default class NumberInput extends Component {
     onClick: () => {},
     step: 1,
     value: 0,
+    invalid: false,
+    invalidText: 'Provide invalidText',
   };
 
   constructor(props) {
@@ -49,12 +53,14 @@ export default class NumberInput extends Component {
 
   handleChange = evt => {
     if (!this.props.disabled) {
-      this.setState({
-        value: evt.target.value,
-      }, (evt) => {
-        this.props.onChange(evt);
-      });
-
+      this.setState(
+        {
+          value: evt.target.value,
+        },
+        () => {
+          this.props.onChange(evt);
+        }
+      );
     }
   };
 
@@ -72,12 +78,15 @@ export default class NumberInput extends Component {
     if (!disabled && conditional) {
       value = direction === 'down' ? value - step : value + step;
 
-      this.setState({
-        value,
-      }, (evt) => {
-        this.props.onClick(evt);
-        this.props.onChange(evt);
-      });
+      this.setState(
+        {
+          value,
+        },
+        () => {
+          this.props.onClick(evt, direction);
+          this.props.onChange(evt, direction);
+        }
+      );
     }
   };
 
@@ -91,6 +100,8 @@ export default class NumberInput extends Component {
       max,
       min,
       step,
+      invalid,
+      invalidText,
       ...other
     } = this.props;
 
@@ -106,16 +117,29 @@ export default class NumberInput extends Component {
       value: this.state.value,
     };
 
+    const buttonProps = {
+      disabled,
+      type: 'button',
+      className: 'bx--number__control-btn',
+    };
+
+    const inputWrapperProps = {};
+    let error = null;
+    if (invalid) {
+      inputWrapperProps['data-invalid'] = true;
+      error = <div className="bx--form-requirement">{invalidText}</div>;
+    }
+
     return (
       <div className="bx--form-item">
         <label htmlFor={id} className="bx--label">
           {label}
         </label>
-        <div className={numberInputClasses}>
+        <div className={numberInputClasses} {...inputWrapperProps}>
           <input type="number" pattern="[0-9]*" {...other} {...props} />
           <div className="bx--number__controls">
             <button
-              className="bx--number__control-btn"
+              {...buttonProps}
               onClick={evt => this.handleArrowClick(evt, 'up')}>
               <Icon
                 className="up-icon"
@@ -125,7 +149,7 @@ export default class NumberInput extends Component {
               />
             </button>
             <button
-              className="bx--number__control-btn"
+              {...buttonProps}
               onClick={evt => this.handleArrowClick(evt, 'down')}>
               <Icon
                 className="down-icon"
@@ -136,6 +160,7 @@ export default class NumberInput extends Component {
             </button>
           </div>
         </div>
+        {error}
       </div>
     );
   }

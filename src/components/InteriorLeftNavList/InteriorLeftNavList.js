@@ -91,9 +91,8 @@ export default class InteriorLeftNavList extends Component {
         tabIndex={tabIndex}
         onClick={this.toggle}
         onKeyPress={this.toggle}
-        role="menuitem"
-       >
-        <a className="left-nav-list__item-link">
+        role="menuitem">
+        <div className="left-nav-list__item-link">
           {title}
           <div className="left-nav-list__item-icon">
             <Icon
@@ -102,7 +101,7 @@ export default class InteriorLeftNavList extends Component {
               className="left-nav-list__item-icon bx--interior-left-nav__icon"
             />
           </div>
-        </a>
+        </div>
         <ul
           role="menu"
           className="left-nav-list left-nav-list--nested"

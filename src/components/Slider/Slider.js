@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import isEqual from 'lodash.isequal';
 import TextInput from '../TextInput';
 
 export default class Slider extends PureComponent {
@@ -43,7 +44,7 @@ export default class Slider extends PureComponent {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps !== this.props) {
+    if (!isEqual(nextProps, this.props)) {
       this.updatePosition();
     }
   }
@@ -66,6 +67,9 @@ export default class Slider extends PureComponent {
     requestAnimationFrame(() => {
       this.setState((prevState, props) => {
         const { left, newValue } = this.calcValue(evt, prevState, props);
+        if (prevState.left === left && prevState.value === newValue) {
+          return { dragging: false };
+        }
 
         props.onChange({ value: newValue });
         return {
@@ -241,8 +245,10 @@ export default class Slider extends PureComponent {
               this.element = node;
             }}
             onClick={this.updatePosition}
-            {...other}
-          >
+            onKeyPress={this.updatePosition}
+            role="presentation"
+            tabIndex={-1}
+            {...other}>
             <div
               className="bx--slider__track"
               ref={node => {
@@ -255,7 +261,11 @@ export default class Slider extends PureComponent {
             />
             <div
               className="bx--slider__thumb"
-              tabIndex="0"
+              role="slider"
+              tabIndex={0}
+              aria-valuemax={max}
+              aria-valuemin={min}
+              aria-valuenow={value}
               style={thumbStyle}
               onMouseDown={this.handleMouseStart}
               onTouchStart={this.handleTouchStart}
