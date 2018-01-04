@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 /* global document */
 
-import React from 'react';
+import React, { Children } from 'react';
 
 class ClickListener extends React.Component {
   static propTypes = {
@@ -26,14 +26,21 @@ class ClickListener extends React.Component {
   };
 
   render() {
-    return (
-      <div
-        ref={el => {
-          this.element = el;
-        }}>
-        {this.props.children}
-      </div>
-    );
+    const { children } = this.props;
+
+    if (Children.count(children) !== 1) {
+      throw new Error(
+        'ClickListener MUST be only given a single child element.'
+      );
+    }
+    return React.cloneElement(children, {
+      ref: el => {
+        this.element = el;
+        if (children.ref) {
+          children.ref(el);
+        }
+      },
+    });
   }
 }
 
