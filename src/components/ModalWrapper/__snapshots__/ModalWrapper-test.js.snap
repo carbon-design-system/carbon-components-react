@@ -4,7 +4,7 @@ exports[`ModalWrapper should render 1`] = `
 <ModalWrapper
   buttonTriggerText="Test Modal"
   disabled={false}
-  handleSubmit={[Function]}
+  handleSubmit={[MockFunction]}
   id="modal"
   modalHeading="Transactional Modal"
   primaryButtonText="Save"
