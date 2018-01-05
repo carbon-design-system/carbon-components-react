@@ -3576,9 +3576,9 @@ flatpickr@2.6.3:
   version "2.6.3"
   resolved "https://registry.yarnpkg.com/flatpickr/-/flatpickr-2.6.3.tgz#457357532deb135f3da64b425bf4435737961564"
 
-flatpickr@4.0.7:
-  version "4.0.7"
-  resolved "https://registry.yarnpkg.com/flatpickr/-/flatpickr-4.0.7.tgz#a73ea27abafb084c276569223ab6ff4fafe1cba0"
+flatpickr@4.2.1:
+  version "4.2.1"
+  resolved "https://registry.yarnpkg.com/flatpickr/-/flatpickr-4.2.1.tgz#72dda26a0db0456d19c4bf5c8430ebadf5d89cdc"
 
 flatten@^1.0.2:
   version "1.0.2"
