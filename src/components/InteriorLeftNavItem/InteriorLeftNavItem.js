@@ -16,10 +16,13 @@ const InteriorLeftNavItem = ({
   children,
   onClick,
   onKeyPress,
+  activeHref,
   ...other
 }) => {
+  const childHref =
+    children.props.href === undefined ? children.props.to : children.props.href;
   const classNames = classnames('left-nav-list__item', className, {
-    'left-nav-list__item--active': false,
+    'left-nav-list__item--active': activeHref === childHref,
   });
 
   return (
