@@ -4,6 +4,9 @@ import InteriorLeftNav from '../InteriorLeftNav';
 import InteriorLeftNavItem from '../InteriorLeftNavItem';
 import InteriorLeftNavList from '../InteriorLeftNavList';
 
+// For demo purposes
+import { BrowserRouter, Link } from 'react-router-dom';
+
 storiesOf('InteriorLeftNav', module).addWithInfo(
   'Default',
   `
@@ -12,34 +15,44 @@ storiesOf('InteriorLeftNav', module).addWithInfo(
       breadth of content and tasks users expect to see.
     `,
   () => (
-    <InteriorLeftNav>
-      <InteriorLeftNavList title="Example Item 1">
-        <InteriorLeftNavItem href="#example-item-1A">
-          <a href="http://www.carbondesignsystem.com">Link Child</a>
+    <BrowserRouter>
+      <InteriorLeftNav>
+        <InteriorLeftNavList title="Example Item 1">
+          <InteriorLeftNavItem>
+            <Link target="_blank" to="http://www.carbondesignsystem.com">
+              Link Child
+            </Link>
+          </InteriorLeftNavItem>
+          <InteriorLeftNavItem>
+            <a href="http://www.carbondesignsystem.com">Link Child</a>
+          </InteriorLeftNavItem>
+          <InteriorLeftNavItem>
+            <a href="http://www.carbondesignsystem.com">Link Child</a>
+          </InteriorLeftNavItem>
+        </InteriorLeftNavList>
+        <InteriorLeftNavList title="Example Item 2">
+          <InteriorLeftNavItem>
+            <a href="http://www.carbondesignsystem.com">Link Child</a>
+          </InteriorLeftNavItem>
+          <InteriorLeftNavItem>
+            <a href="http://www.carbondesignsystem.com">Link Child</a>
+          </InteriorLeftNavItem>
+          <InteriorLeftNavItem>
+            <a href="http://www.carbondesignsystem.com">Link Child</a>
+          </InteriorLeftNavItem>
+          <InteriorLeftNavItem>
+            <a href="http://www.carbondesignsystem.com">Link Child</a>
+          </InteriorLeftNavItem>
+        </InteriorLeftNavList>
+        <InteriorLeftNavItem>
+          <a href="#example-1">Link label</a>
         </InteriorLeftNavItem>
-        <InteriorLeftNavItem href="#example-item-1B">
-          <a href="http://www.carbondesignsystem.com">Link Child</a>
+        <InteriorLeftNavItem>
+          <a href="http://www.carbondesignsystem.com" target="_blank">
+            Link label 2
+          </a>
         </InteriorLeftNavItem>
-        <InteriorLeftNavItem href="#example-item-1C">
-          <a href="http://www.carbondesignsystem.com">Link Child</a>
-        </InteriorLeftNavItem>
-      </InteriorLeftNavList>
-      <InteriorLeftNavList title="Example Item 2">
-        <InteriorLeftNavItem href="#example-item-2A">
-          <a href="http://www.carbondesignsystem.com">Link Child</a>
-        </InteriorLeftNavItem>
-        <InteriorLeftNavItem href="#example-item-2B">
-          <a href="http://www.carbondesignsystem.com">Link Child</a>
-        </InteriorLeftNavItem>
-        <InteriorLeftNavItem href="#example-item-2C">
-          <a href="http://www.carbondesignsystem.com">Link Child</a>
-        </InteriorLeftNavItem>
-        <InteriorLeftNavItem href="#example-item-2D">
-          <a href="http://www.carbondesignsystem.com">Link Child</a>
-        </InteriorLeftNavItem>
-      </InteriorLeftNavList>
-      <InteriorLeftNavItem href="#example-item-3" label="Link Label" />
-      <InteriorLeftNavItem href="#example-item-4" label="Link Label" />
-    </InteriorLeftNav>
+      </InteriorLeftNav>
+    </BrowserRouter>
   )
 );
