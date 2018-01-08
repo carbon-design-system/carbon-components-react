@@ -20,50 +20,59 @@ export default class ModalWrapper extends React.Component {
     secondaryButtonText: PropTypes.string,
     handleSubmit: PropTypes.func,
     disabled: PropTypes.bool,
-    triggerButtonkind: PropTypes.oneOf([
+    triggerButtonKind: PropTypes.oneOf([
       'primary',
       'secondary',
       'danger',
       'ghost',
     ]),
+    shouldCloseAfterSubmit: PropTypes.bool,
   };
 
   static defaultProps = {
     primaryButtonText: 'Save',
     secondaryButtonText: 'Cancel',
-    triggerButtonkind: 'primary',
+    triggerButtonKind: 'primary',
     disabled: false,
   };
 
   state = {
-    open: false,
+    isOpen: false,
   };
 
   handleOpen = () => {
     this.setState({
-      open: true,
+      isOpen: true,
     });
   };
 
   handleClose = () => {
     this.setState({
-      open: false,
+      isOpen: false,
     });
+  };
+
+  handleOnRequestSubmit = () => {
+    const { handleSubmit, shouldCloseAfterSubmit } = this.props;
+
+    if (handleSubmit()) {
+      if (shouldCloseAfterSubmit) {
+        this.handleClose();
+      }
+    }
   };
 
   render() {
     const {
       id,
       buttonTriggerText,
-      triggerButtonkind,
+      triggerButtonKind,
       modalLabel,
       modalHeading,
       passiveModal,
       primaryButtonText,
       secondaryButtonText,
-      handleSubmit,
       disabled,
-      ...other
     } = this.props;
 
     const props = {
@@ -73,9 +82,9 @@ export default class ModalWrapper extends React.Component {
       passiveModal,
       primaryButtonText,
       secondaryButtonText,
-      open: this.state.open,
+      open: this.state.isOpen,
       onRequestClose: this.handleClose,
-      onRequestSubmit: handleSubmit,
+      onRequestSubmit: this.handleOnRequestSubmit,
     };
 
     return (
@@ -89,13 +98,11 @@ export default class ModalWrapper extends React.Component {
         }}>
         <Button
           disabled={disabled}
-          kind={triggerButtonkind}
+          kind={triggerButtonKind}
           onClick={this.handleOpen}>
           {buttonTriggerText}
         </Button>
-        <Modal {...props} {...other}>
-          {this.props.children}
-        </Modal>
+        <Modal {...props}>{this.props.children}</Modal>
       </div>
     );
   }
