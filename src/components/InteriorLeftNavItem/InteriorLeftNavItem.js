@@ -21,8 +21,10 @@ const InteriorLeftNavItem = ({
 }) => {
   const childHref =
     children.props.href === undefined ? children.props.to : children.props.href;
+  const activePath =
+    window.location && window.location.hash ? window.location.hash : activeHref;
   const classNames = classnames('left-nav-list__item', className, {
-    'left-nav-list__item--active': activeHref === childHref,
+    'left-nav-list__item--active': activePath === childHref,
   });
 
   return (
