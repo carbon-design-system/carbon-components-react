@@ -15,7 +15,6 @@ const InteriorLeftNavItem = ({
   tabIndex,
   children,
   onClick,
-  onKeyPress,
   activeHref,
   ...other
 }) => {
@@ -32,8 +31,8 @@ const InteriorLeftNavItem = ({
       tabIndex={children ? -1 : tabIndex}
       role="menuitem"
       className={classNames}
-      onClick={evt => onClick(evt)}
-      onKeyPress={evt => onKeyPress(evt)}
+      onClick={evt => onClick(evt, childHref)}
+      onKeyPress={evt => onClick(evt, childHref)}
       {...other}>
       {newChild(children, tabIndex)}
     </li>
