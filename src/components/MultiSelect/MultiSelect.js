@@ -151,28 +151,30 @@ export default class MultiSelect extends React.Component {
                 </ListBox.Field>
                 {isOpen && (
                   <ListBox.Menu>
-                    {items.map((item, index) => {
-                      const itemProps = getItemProps({ item, index });
-                      const itemText = itemToString(item);
-                      const isChecked = selectedItem.indexOf(item) !== -1;
-                      return (
-                        <ListBox.MenuItem
-                          key={itemProps.id}
-                          isActive={selectedItem.indexOf(item) !== -1}
-                          isHighlighted={highlightedIndex === index}
-                          {...itemProps}>
-                          <Checkbox
-                            id={itemProps.id}
-                            name={itemText}
-                            checked={isChecked}
-                            readOnly={true}
-                            tabIndex="-1"
-                            labelText={itemText}
-                            iconDescription="Select this item"
-                          />
-                        </ListBox.MenuItem>
-                      );
-                    })}
+                    {items
+                      .sort(sortSelectedItems(selectedItems, itemToString))
+                      .map((item, index) => {
+                        const itemProps = getItemProps({ item });
+                        const itemText = itemToString(item);
+                        const isChecked = selectedItem.indexOf(item) !== -1;
+                        return (
+                          <ListBox.MenuItem
+                            key={itemProps.id}
+                            isActive={selectedItem.indexOf(item) !== -1}
+                            isHighlighted={highlightedIndex === index}
+                            {...itemProps}>
+                            <Checkbox
+                              id={itemProps.id}
+                              name={itemText}
+                              checked={isChecked}
+                              readOnly={true}
+                              tabIndex="-1"
+                              labelText={itemText}
+                              iconDescription="Select this item"
+                            />
+                          </ListBox.MenuItem>
+                        );
+                      })}
                   </ListBox.Menu>
                 )}
               </ListBox>
@@ -183,3 +185,21 @@ export default class MultiSelect extends React.Component {
     );
   }
 }
+
+const sortSelectedItems = (selectedItems, itemToString) => (itemA, itemB) => {
+  const hasItemA = selectedItems.includes(itemA);
+  const hasItemB = selectedItems.includes(itemB);
+
+  // Prefer whichever item is in the `selectedItems` array first
+  if (hasItemA && !hasItemB) {
+    return -1;
+  }
+
+  if (hasItemB && !hasItemA) {
+    return 1;
+  }
+
+  // Otherwise, we either have two selected items, or two un-selected items, so
+  // we just do a string comparison to see which comes first.
+  return itemToString(itemA).localeCompare(itemToString(itemB));
+};
