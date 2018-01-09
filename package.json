@@ -112,8 +112,6 @@
     "flatpickr": "4.2.2",
     "lodash.debounce": "^4.0.8",
     "lodash.isequal": "^4.5.0",
-    "react-router": "^4.2.0",
-    "react-router-dom": "^4.2.2",
     "warning": "3.0.0",
     "window-or-global": "^1.0.1"
   },
