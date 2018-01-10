@@ -62,8 +62,8 @@ storiesOf('Checkbox', module)
     'enabled indeterminate',
     `
       Checkboxes are used when there is a list of options and the user may select multiple options, including all or none.
-      The example below shows how the Checkbox component can be used as an uncontrolled component that is initially
-      indeterminate. To use the component in a controlled way, you should set the checked property instead.
+      The example below shows how the Checkbox component can be used as a controlled component that is initially
+      indeterminate.
     `,
     () => (
       <fieldset className="bx--fieldset">

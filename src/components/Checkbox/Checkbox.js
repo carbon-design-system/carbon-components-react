@@ -50,6 +50,7 @@ Checkbox.propTypes = {
 
 Checkbox.defaultProps = {
   onChange: () => {},
+  indeterminate: false,
 };
 
 export default Checkbox;
