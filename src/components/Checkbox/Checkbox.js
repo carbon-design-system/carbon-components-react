@@ -1,14 +1,13 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import classNames from 'classnames';
-import Icon from '../Icon';
 
 const Checkbox = ({
   className,
   id,
   labelText,
   onChange,
-  iconDescription,
+  indeterminate,
   ...other
 }) => {
   let input;
@@ -27,17 +26,13 @@ const Checkbox = ({
           id={id}
           ref={el => {
             input = el;
+            if (input) {
+              input.indeterminate = indeterminate;
+            }
           }}
         />
 
-        <span className="bx--checkbox-appearance">
-          <Icon
-            className="bx--checkbox-checkmark"
-            description={iconDescription}
-            name="checkmark"
-          />
-        </span>
-        <span className="bx--checkbox-label-text">{labelText}</span>
+        {labelText}
       </label>
     </div>
   );
@@ -46,17 +41,16 @@ const Checkbox = ({
 Checkbox.propTypes = {
   checked: PropTypes.bool,
   defaultChecked: PropTypes.bool,
+  indeterminate: PropTypes.bool,
   className: PropTypes.string,
   disabled: PropTypes.bool,
   id: PropTypes.string.isRequired,
   labelText: PropTypes.node.isRequired,
   onChange: PropTypes.func,
-  iconDescription: PropTypes.string.isRequired,
 };
 
 Checkbox.defaultProps = {
   onChange: () => {},
-  iconDescription: 'Provide icon description for a11y',
 };
 
 export default Checkbox;
