@@ -1,6 +1,6 @@
 import React from 'react';
 import { storiesOf, action } from '@storybook/react';
-import Combobox from '../Combobox';
+import ComboBox from '../ComboBox';
 
 const items = [
   {
@@ -21,18 +21,18 @@ const items = [
   },
 ];
 
-storiesOf('Combobox', module)
+storiesOf('ComboBox', module)
   .addWithInfo(
     'default',
     `
-    Combobox
+    ComboBox
   `,
     () => (
       <div style={{ width: 300 }}>
-        <Combobox
+        <ComboBox
           items={items}
           itemToString={item => (item ? item.text : '')}
-          onChange={action('onChange - Combobox')}
+          onChange={action('onChange - ComboBox')}
           placeholder="Filter..."
         />
       </div>
@@ -41,14 +41,14 @@ storiesOf('Combobox', module)
   .addWithInfo(
     'disabled',
     `
-    Disabled Combobox
+    Disabled ComboBox
   `,
     () => (
       <div style={{ width: 300 }}>
-        <Combobox
+        <ComboBox
           items={items}
           itemToString={item => (item ? item.text : '')}
-          onChange={action('onChange - Combobox')}
+          onChange={action('onChange - ComboBox')}
           placeholder="Filter..."
           disabled
         />

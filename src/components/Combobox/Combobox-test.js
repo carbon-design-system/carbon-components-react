@@ -8,12 +8,12 @@ import {
   generateItems,
   generateGenericItem,
 } from '../ListBox/test-helpers';
-import Combobox from '../Combobox';
+import ComboBox from '../ComboBox';
 
 const findInputNode = wrapper => wrapper.find('.bx--text-input');
 const clearInput = wrapper => wrapper.instance().handleOnInputValueChange('');
 
-describe('Combobox', () => {
+describe('ComboBox', () => {
   let mockProps;
 
   beforeEach(() => {
@@ -26,7 +26,7 @@ describe('Combobox', () => {
   });
 
   it('should display the placeholder text when no items are selected and the control is not focused', () => {
-    const wrapper = mount(<Combobox {...mockProps} />);
+    const wrapper = mount(<ComboBox {...mockProps} />);
     expect(findInputNode(wrapper).prop('value')).toBe('');
     expect(findInputNode(wrapper).prop('placeholder')).toBe(
       mockProps.placeholder
@@ -34,7 +34,7 @@ describe('Combobox', () => {
   });
 
   it('should display the menu of items when a user clicks on the input', () => {
-    const wrapper = mount(<Combobox {...mockProps} />);
+    const wrapper = mount(<ComboBox {...mockProps} />);
     findInputNode(wrapper).simulate('click');
 
     assertMenuOpen(wrapper, mockProps);
@@ -42,7 +42,7 @@ describe('Combobox', () => {
 
   it('should display the initially selected item found in `initialSelectedItem`', () => {
     const wrapper = mount(
-      <Combobox {...mockProps} initialSelectedItem={mockProps.items[0]} />
+      <ComboBox {...mockProps} initialSelectedItem={mockProps.items[0]} />
     );
     expect(findInputNode(wrapper).prop('value')).toEqual(
       mockProps.items[0].label
@@ -50,7 +50,7 @@ describe('Combobox', () => {
   });
 
   it('should call `onChange` each time an item is selected', () => {
-    const wrapper = mount(<Combobox {...mockProps} />);
+    const wrapper = mount(<ComboBox {...mockProps} />);
     expect(mockProps.onChange).not.toHaveBeenCalled();
 
     for (let i = 0; i < mockProps.items.length; i++) {
@@ -66,7 +66,7 @@ describe('Combobox', () => {
 
   describe('when disabled', () => {
     it('should not let the user edit the input node', () => {
-      const wrapper = mount(<Combobox {...mockProps} disabled={true} />);
+      const wrapper = mount(<ComboBox {...mockProps} disabled={true} />);
       expect(findInputNode(wrapper).prop('disabled')).toBe(true);
       expect(findInputNode(wrapper).prop('value')).toBe('');
 
@@ -80,7 +80,7 @@ describe('Combobox', () => {
     });
 
     it('should not let the user expand the menu', () => {
-      const wrapper = mount(<Combobox {...mockProps} disabled={true} />);
+      const wrapper = mount(<ComboBox {...mockProps} disabled={true} />);
       openMenu(wrapper);
       expect(findMenuNode(wrapper).length).toBe(0);
     });
@@ -88,7 +88,7 @@ describe('Combobox', () => {
 
   describe('downshift quirks', () => {
     it('should not trigger the menu when typing a space in input', () => {
-      const wrapper = mount(<Combobox {...mockProps} />);
+      const wrapper = mount(<ComboBox {...mockProps} />);
 
       openMenu(wrapper);
       findInputNode(wrapper).simulate('change', {
@@ -101,7 +101,7 @@ describe('Combobox', () => {
     });
 
     it('should set `inputValue` to an empty string if a falsey-y value is given', () => {
-      const wrapper = mount(<Combobox {...mockProps} />);
+      const wrapper = mount(<ComboBox {...mockProps} />);
 
       wrapper.instance().handleOnInputValueChange('foo');
       expect(wrapper.state('inputValue')).toBe('foo');
