@@ -15,23 +15,22 @@ const Checkbox = ({
 
   return (
     <div className="bx--form-item bx--checkbox-wrapper">
+      <input
+        {...other}
+        type="checkbox"
+        onChange={evt => {
+          onChange(input.checked, id, evt);
+        }}
+        className="bx--checkbox"
+        id={id}
+        ref={el => {
+          input = el;
+          if (input) {
+            input.indeterminate = indeterminate;
+          }
+        }}
+      />
       <label htmlFor={id} className={wrapperClasses}>
-        <input
-          {...other}
-          type="checkbox"
-          onChange={evt => {
-            onChange(input.checked, id, evt);
-          }}
-          className="bx--checkbox"
-          id={id}
-          ref={el => {
-            input = el;
-            if (input) {
-              input.indeterminate = indeterminate;
-            }
-          }}
-        />
-
         {labelText}
       </label>
     </div>
