@@ -36,7 +36,7 @@ export default class Tabs extends React.Component {
   };
 
   componentWillReceiveProps({ selected }) {
-    this.changeSelection(selected);
+    this.selectTabAt(selected);
   }
 
   getTabs() {
@@ -46,7 +46,7 @@ export default class Tabs extends React.Component {
   // following functions (handle*) are Props on Tab.js, see Tab.js for parameters
   handleTabClick = (index, label, evt) => {
     evt.preventDefault();
-    this.changeSelection(index);
+    this.selectTabAt(index);
     this.setState({
       selectedLabel: label,
       dropdownHidden: !this.state.dropdownHidden,
@@ -57,7 +57,7 @@ export default class Tabs extends React.Component {
     const key = evt.key || evt.which;
 
     if (key === 'Enter' || key === 13 || key === ' ' || key === 32) {
-      this.changeSelection(index);
+      this.selectTabAt(index);
       this.setState({
         selectedLabel: label,
         dropdownHidden: !this.state.dropdownHidden,
@@ -71,15 +71,15 @@ export default class Tabs extends React.Component {
     if (index < 0) {
       const tab = this.refs[`tab${tabCount}`];
       tab.refs.tabAnchor.focus();
-      this.changeSelection(tabCount);
+      this.selectTabAt(tabCount);
     } else if (index > tabCount) {
       const tab = this.refs.tab0;
       tab.refs.tabAnchor.focus();
-      this.changeSelection(0);
+      this.selectTabAt(0);
     } else {
       const tab = this.refs[`tab${index}`];
       tab.refs.tabAnchor.focus();
-      this.changeSelection(index);
+      this.selectTabAt(index);
     }
   };
 
@@ -89,7 +89,7 @@ export default class Tabs extends React.Component {
     });
   };
 
-  changeSelection = index => {
+  selectTabAt = index => {
     if (this.state.selected !== index) {
       this.setState({
         selected: index,
