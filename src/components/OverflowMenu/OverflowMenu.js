@@ -147,6 +147,9 @@ export default class OverflowMenu extends Component {
         closeMenu: this.closeMenu,
       })
     );
+    const options = !open ? null : (
+      <ul className={overflowMenuOptionsClasses}>{childrenWithProps}</ul>
+    );
 
     return (
       <ClickListener onClickOutside={this.handleClickOutside}>
@@ -166,17 +169,15 @@ export default class OverflowMenu extends Component {
             description={iconDescription}
             style={{ width: '100%' }}
           />
-          {!open ? null : floatingMenu ? (
+          {!options || !floatingMenu ? (
+            options
+          ) : (
             <FloatingMenu
               menuPosition={this.state.menuPosition}
               menuDirection="bottom"
               menuOffset={flipped ? menuOffsetFlip : menuOffset}>
-              <ul className={overflowMenuOptionsClasses}>
-                {childrenWithProps}
-              </ul>
+              {options}
             </FloatingMenu>
-          ) : (
-            <ul className={overflowMenuOptionsClasses}>{childrenWithProps}</ul>
           )}
         </div>
       </ClickListener>
