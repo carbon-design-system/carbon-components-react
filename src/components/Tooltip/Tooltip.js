@@ -27,7 +27,6 @@ export default class Tooltip extends Component {
     iconDescription: 'tooltip',
     triggerText: 'Provide triggerText',
     menuOffset: {},
-    clickToOpen: false,
   };
 
   state = {
