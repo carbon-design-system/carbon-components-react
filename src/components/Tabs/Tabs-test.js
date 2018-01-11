@@ -290,3 +290,22 @@ describe('props update', () => {
     expect(wrapper.state().selected).toEqual(0);
   });
 });
+
+describe('selection change', () => {
+  const wrapper = mount(
+    <Tabs selected={0} onSelectionChange={jest.fn()}>
+      <Tab label="firstTab">content</Tab>
+      <Tab label="lastTab" className="secondTab">
+        content
+      </Tab>
+    </Tabs>
+  );
+
+  it('updates selected state when selected prop changes', () => {
+    wrapper
+      .find('.secondTab')
+      .last()
+      .simulate('click');
+    expect(wrapper.props().onSelectionChange).toHaveBeenCalledWith(1);
+  });
+});
