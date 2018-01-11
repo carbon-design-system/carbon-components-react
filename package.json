@@ -21,7 +21,6 @@
     "start": "yarn storybook",
     "storybook": "start-storybook -p 9000",
     "test": "jest",
-    "test-coverage": "jest --coverage",
     "test-ssr": "yarn build && node ssr-tests/*.js"
   },
   "keywords": [
