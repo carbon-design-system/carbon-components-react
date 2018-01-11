@@ -14,6 +14,8 @@ export default class Tabs extends React.Component {
     role: PropTypes.string.isRequired,
     onClick: PropTypes.func,
     onKeyDown: PropTypes.func,
+    /** Called whenever selection changes, with index of the tab that was selected */
+    onSelectionChange: PropTypes.func,
     triggerHref: PropTypes.string.isRequired,
     selected: PropTypes.number,
     iconDescription: PropTypes.string.isRequired,
@@ -34,9 +36,7 @@ export default class Tabs extends React.Component {
   };
 
   componentWillReceiveProps({ selected }) {
-    if (selected !== this.props.selected) {
-      this.setState({ selected });
-    }
+    this.changeSelection(selected);
   }
 
   getTabs() {
@@ -46,8 +46,8 @@ export default class Tabs extends React.Component {
   // following functions (handle*) are Props on Tab.js, see Tab.js for parameters
   handleTabClick = (index, label, evt) => {
     evt.preventDefault();
+    this.changeSelection(index);
     this.setState({
-      selected: index,
       selectedLabel: label,
       dropdownHidden: !this.state.dropdownHidden,
     });
@@ -57,8 +57,8 @@ export default class Tabs extends React.Component {
     const key = evt.key || evt.which;
 
     if (key === 'Enter' || key === 13 || key === ' ' || key === 32) {
+      this.changeSelection(index);
       this.setState({
-        selected: index,
         selectedLabel: label,
         dropdownHidden: !this.state.dropdownHidden,
       });
@@ -71,15 +71,15 @@ export default class Tabs extends React.Component {
     if (index < 0) {
       const tab = this.refs[`tab${tabCount}`];
       tab.refs.tabAnchor.focus();
-      this.setState({ selected: tabCount });
+      this.changeSelection(tabCount);
     } else if (index > tabCount) {
       const tab = this.refs.tab0;
       tab.refs.tabAnchor.focus();
-      this.setState({ selected: 0 });
+      this.changeSelection(0);
     } else {
       const tab = this.refs[`tab${index}`];
       tab.refs.tabAnchor.focus();
-      this.setState({ selected: index });
+      this.changeSelection(index);
     }
   };
 
@@ -87,6 +87,17 @@ export default class Tabs extends React.Component {
     this.setState({
       dropdownHidden: !this.state.dropdownHidden,
     });
+  };
+
+  changeSelection = index => {
+    if (this.state.selected !== index) {
+      this.setState({
+        selected: index,
+      });
+      if (this.props.onSelectionChange) {
+        this.props.onSelectionChange(index);
+      }
+    }
   };
 
   render() {
