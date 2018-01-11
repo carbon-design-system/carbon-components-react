@@ -21,6 +21,7 @@
     "start": "yarn storybook",
     "storybook": "start-storybook -p 9000",
     "test": "jest",
+    "test-coverage": "jest --coverage",
     "test-ssr": "yarn build && node ssr-tests/*.js"
   },
   "keywords": [
@@ -221,7 +222,13 @@
   },
   "jest": {
     "collectCoverageFrom": [
-      "components/**/*.js"
+      "src/components/**/*.js",
+      "!src/components/**/*-story.js"
+    ],
+    "coverageDirectory": "coverage",
+    "coverageReporters": [
+      "text",
+      "html"
     ],
     "setupFiles": [
       "<rootDir>/config/jest/setup.js"
