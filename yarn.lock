@@ -2040,15 +2040,9 @@ caniuse-lite@^1.0.30000715, caniuse-lite@^1.0.30000744, caniuse-lite@^1.0.300007
   version "1.0.30000749"
   resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30000749.tgz#2ff382865aead8cca35dacfbab04f58effa4c01c"
 
-<<<<<<< HEAD
-carbon-components@^8.2.2:
-  version "8.2.2"
-  resolved "https://registry.yarnpkg.com/carbon-components/-/carbon-components-8.2.2.tgz#592b4950670ab019e2a734bf25b9bb72579f978d"
-=======
 carbon-components@^8.4.0:
   version "8.4.0"
   resolved "https://registry.yarnpkg.com/carbon-components/-/carbon-components-8.4.0.tgz#08d229b6600197e20b3fd660e2216a7d69507534"
->>>>>>> chore: update carbon-components package version number
   dependencies:
     carbon-icons "^6.0.4"
     flatpickr "2.6.3"
@@ -4479,7 +4473,7 @@ into-stream@^3.1.0:
     from2 "^2.1.1"
     p-is-promise "^1.1.0"
 
-invariant@2.x.x, invariant@^2.2.0, invariant@^2.2.1, invariant@^2.2.2:
+invariant@2.x.x, invariant@^2.2.0, invariant@^2.2.2:
   version "2.2.2"
   resolved "https://registry.yarnpkg.com/invariant/-/invariant-2.2.2.tgz#9e1f56ac0acdb6bf303306f338be3b204ae60360"
   dependencies:
@@ -7761,7 +7755,15 @@ shelljs@0.7.6:
     interpret "^1.0.0"
     rechoir "^0.6.2"
 
-shelljs@^0.7.5, shelljs@^0.7.8:
+shelljs@0.8.0:
+  version "0.8.0"
+  resolved "https://registry.yarnpkg.com/shelljs/-/shelljs-0.8.0.tgz#12f561c52ec5d0d3315af15616c011a18ff80d59"
+  dependencies:
+    glob "^7.0.0"
+    interpret "^1.0.0"
+    rechoir "^0.6.2"
+
+shelljs@^0.7.8:
   version "0.7.8"
   resolved "https://registry.yarnpkg.com/shelljs/-/shelljs-0.7.8.tgz#decbcf874b0d1e5fb72e14b164a9683048e9acb3"
   dependencies:
