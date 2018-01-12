@@ -46,13 +46,13 @@ export default class Tooltip extends Component {
     }
   };
 
-  handleMouse = direction => {
+  handleMouse = state => {
     if (this.props.clickToOpen) {
-      if (direction === 'click') {
+      if (state === 'click') {
         this.setState({ open: !this.state.open });
       }
     } else {
-      if (direction === 'over') {
+      if (state === 'over') {
         this.getTriggerPosition();
         this.setState({ open: true });
       } else {
