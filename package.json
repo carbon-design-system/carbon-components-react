@@ -158,7 +158,7 @@
     "rimraf": "^2.6.1",
     "sass-loader": "^6.0.5",
     "semantic-release": "^11.0.2",
-    "shelljs": "^0.7.5",
+    "shelljs": "^0.8.0",
     "storybook-addon-a11y": "^3.0.0",
     "validate-commit-msg": "^2.10.1",
     "whatwg-fetch": "^2.0.3"
