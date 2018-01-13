@@ -157,14 +157,6 @@ describe('Tabs', () => {
           expect(wrapper.state().dropdownHidden).toEqual(true);
         });
       });
-
-      describe('state: selectedLabel', () => {
-        it('sets a new value for selectedLabel state when Tab is clicked', () => {
-          const lastTab = wrapper.find('.lastTab').last();
-          lastTab.simulate('click');
-          expect(wrapper.state().selectedLabel).toEqual('lastTab');
-        });
-      });
     });
 
     describe('keydown', () => {
@@ -235,17 +227,6 @@ describe('Tabs', () => {
     describe('selected', () => {
       it('should be 0', () => {
         expect(wrapper.state().selected).toEqual(0);
-      });
-    });
-
-    describe('selectedLabel', () => {
-      it('should be a string', () => {
-        const string = typeof wrapper.state().selectedLabel;
-        expect(string).toBe('string');
-      });
-
-      it('selectedLabel and firstTab label should be the same', () => {
-        expect(wrapper.state().selectedLabel).toEqual('firstTab');
       });
     });
   });

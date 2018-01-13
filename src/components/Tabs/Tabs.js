@@ -8,7 +8,6 @@ export default class Tabs extends React.Component {
   static propTypes = {
     children: PropTypes.node,
     className: PropTypes.string,
-    firstSelectedLabel: PropTypes.string,
     hidden: PropTypes.bool,
     href: PropTypes.string.isRequired,
     role: PropTypes.string.isRequired,
@@ -32,7 +31,6 @@ export default class Tabs extends React.Component {
   state = {
     dropdownHidden: true,
     selected: this.props.selected,
-    selectedLabel: React.Children.toArray(this.props.children)[0].props.label,
   };
 
   componentWillReceiveProps({ selected }) {
@@ -43,12 +41,18 @@ export default class Tabs extends React.Component {
     return React.Children.map(this.props.children, tab => tab);
   }
 
+  getSelectedLabel = () => {
+    return this.refs[`tab${this.state.selected}`]
+      ? this.refs[`tab${this.state.selected}`].props.label
+      : React.Children.toArray(this.props.children)[this.state.selected].props
+          .label;
+  };
+
   // following functions (handle*) are Props on Tab.js, see Tab.js for parameters
   handleTabClick = (index, label, evt) => {
     evt.preventDefault();
     this.selectTabAt(index);
     this.setState({
-      selectedLabel: label,
       dropdownHidden: !this.state.dropdownHidden,
     });
   };
@@ -59,7 +63,6 @@ export default class Tabs extends React.Component {
     if (key === 'Enter' || key === 13 || key === ' ' || key === 32) {
       this.selectTabAt(index);
       this.setState({
-        selectedLabel: label,
         dropdownHidden: !this.state.dropdownHidden,
       });
     }
@@ -156,7 +159,7 @@ export default class Tabs extends React.Component {
               className="bx--tabs-trigger-text"
               href={triggerHref}
               onClick={this.handleDropdownClick}>
-              {this.state.selectedLabel}
+              {this.getSelectedLabel()}
             </a>
             <Icon description={iconDescription} name="caret--down" />
           </div>
