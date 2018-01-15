@@ -7497,7 +7497,7 @@ scss-tokenizer@^0.2.3:
     js-base64 "^2.1.8"
     source-map "^0.4.2"
 
-semantic-release@12.2.2:
+semantic-release@^12.2.2:
   version "12.2.2"
   resolved "https://registry.yarnpkg.com/semantic-release/-/semantic-release-12.2.2.tgz#6f114c2e2cb55040b78f985e11b0aa7d8d2ee111"
   dependencies:
