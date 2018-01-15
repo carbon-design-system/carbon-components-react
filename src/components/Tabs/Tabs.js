@@ -41,11 +41,14 @@ export default class Tabs extends React.Component {
     return React.Children.map(this.props.children, tab => tab);
   }
 
-  getSelectedLabel = () => {
-    return this.refs[`tab${this.state.selected}`]
-      ? this.refs[`tab${this.state.selected}`].props.label
-      : React.Children.toArray(this.props.children)[this.state.selected].props
-          .label;
+  getTabAt = index => {
+    return (
+      this[`tab${index}`] || React.Children.toArray(this.props.children)[index]
+    );
+  };
+
+  setTabAt = (index, tabRef) => {
+    this[`tab${index}`] = tabRef;
   };
 
   // following functions (handle*) are Props on Tab.js, see Tab.js for parameters
@@ -70,20 +73,16 @@ export default class Tabs extends React.Component {
 
   handleTabAnchorFocus = index => {
     const tabCount = React.Children.count(this.props.children) - 1;
+    let tabIndex = index;
 
     if (index < 0) {
-      const tab = this.refs[`tab${tabCount}`];
-      tab.refs.tabAnchor.focus();
-      this.selectTabAt(tabCount);
+      tabIndex = tabCount;
     } else if (index > tabCount) {
-      const tab = this.refs.tab0;
-      tab.refs.tabAnchor.focus();
-      this.selectTabAt(0);
-    } else {
-      const tab = this.refs[`tab${index}`];
-      tab.refs.tabAnchor.focus();
-      this.selectTabAt(index);
+      tabIndex = 0;
     }
+
+    this.getTabAt(tabIndex).tabAnchor.focus();
+    this.selectTabAt(tabIndex);
   };
 
   handleDropdownClick = () => {
@@ -118,7 +117,9 @@ export default class Tabs extends React.Component {
         selected: index === this.state.selected,
         handleTabClick: this.handleTabClick,
         handleTabAnchorFocus: this.handleTabAnchorFocus,
-        ref: `tab${index}`,
+        ref: e => {
+          this.setTabAt(index, e);
+        },
         handleTabKeyDown: this.handleTabKeyDown,
       });
 
@@ -159,7 +160,7 @@ export default class Tabs extends React.Component {
               className="bx--tabs-trigger-text"
               href={triggerHref}
               onClick={this.handleDropdownClick}>
-              {this.getSelectedLabel()}
+              {this.getTabAt(this.state.selected).props.label}
             </a>
             <Icon description={iconDescription} name="caret--down" />
           </div>
