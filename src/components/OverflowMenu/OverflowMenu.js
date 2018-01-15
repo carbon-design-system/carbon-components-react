@@ -147,8 +147,19 @@ export default class OverflowMenu extends Component {
         closeMenu: this.closeMenu,
       })
     );
-    const options = !open ? null : (
+
+    const menuBody = (
       <ul className={overflowMenuOptionsClasses}>{childrenWithProps}</ul>
+    );
+    const wrappedMenuBody = !floatingMenu ? (
+      menuBody
+    ) : (
+      <FloatingMenu
+        menuPosition={this.state.menuPosition}
+        menuDirection="bottom"
+        menuOffset={flipped ? menuOffsetFlip : menuOffset}>
+        {menuBody}
+      </FloatingMenu>
     );
 
     return (
@@ -169,16 +180,7 @@ export default class OverflowMenu extends Component {
             description={iconDescription}
             style={{ width: '100%' }}
           />
-          {!options || !floatingMenu ? (
-            options
-          ) : (
-            <FloatingMenu
-              menuPosition={this.state.menuPosition}
-              menuDirection="bottom"
-              menuOffset={flipped ? menuOffsetFlip : menuOffset}>
-              {options}
-            </FloatingMenu>
-          )}
+          {open && wrappedMenuBody}
         </div>
       </ClickListener>
     );
