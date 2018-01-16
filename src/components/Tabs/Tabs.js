@@ -81,8 +81,14 @@ export default class Tabs extends React.Component {
       tabIndex = 0;
     }
 
-    this.getTabAt(tabIndex).tabAnchor.focus();
-    this.selectTabAt(tabIndex);
+    const tab = this.getTabAt(tabIndex);
+
+    if (tab) {
+      this.selectTabAt(tabIndex);
+      if (tab.tabAnchor) {
+        tab.tabAnchor.focus();
+      }
+    }
   };
 
   handleDropdownClick = () => {
@@ -146,6 +152,9 @@ export default class Tabs extends React.Component {
       }),
     };
 
+    const selectedTab = this.getTabAt(this.state.selected);
+    const selectedLabel = selectedTab ? selectedTab.props.label : '';
+
     return (
       <div>
         <nav {...other} className={classes.tabs} role={role}>
@@ -160,7 +169,7 @@ export default class Tabs extends React.Component {
               className="bx--tabs-trigger-text"
               href={triggerHref}
               onClick={this.handleDropdownClick}>
-              {this.getTabAt(this.state.selected).props.label}
+              {selectedLabel}
             </a>
             <Icon description={iconDescription} name="caret--down" />
           </div>
