@@ -64,7 +64,7 @@ storiesOf('MultiSelect', module)
           label="Label"
           items={items}
           itemToString={item => (item ? item.text : '')}
-          onChange={action('onChange - Inline MultiSelect')}
+          onChange={action('onChange')}
           disabled
         />
       </div>
@@ -81,8 +81,41 @@ storiesOf('MultiSelect', module)
         label="Label"
         items={items}
         itemToString={item => (item ? item.text : '')}
-        onChange={action('onChange - Inline MultiSelect')}
+        onChange={action('onChange')}
         disabled
       />
+    )
+  )
+  .addWithInfo(
+    'filterable',
+    `
+      Filterable version of our MultiSelect component
+    `,
+    () => (
+      <div style={{ width: 300 }}>
+        <MultiSelect.Filterable
+          items={items}
+          itemToString={item => (item ? item.text : '')}
+          onChange={action('onChange')}
+          placeholder="Placeholder..."
+        />
+      </div>
+    )
+  )
+  .addWithInfo(
+    'filterable - disabled',
+    `
+      Dislabed filterable version of our MultiSelect component
+    `,
+    () => (
+      <div style={{ width: 300 }}>
+        <MultiSelect.Filterable
+          items={items}
+          itemToString={item => (item ? item.text : '')}
+          onChange={action('onChange')}
+          placeholder="Placeholder..."
+          disabled
+        />
+      </div>
     )
   );
