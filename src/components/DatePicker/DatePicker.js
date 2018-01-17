@@ -97,11 +97,6 @@ export default class DatePicker extends Component {
         cal.calendarContainer.focus();
       }
     });
-    // input.addEventListener('input', () => {
-    //   if (input.value === '') {
-    //     cal.clear();
-    //   }
-    // });
     input.addEventListener('change', () => {
       if (input.value === '' && cal.selectedDates.length > 0) {
         cal.clear();
