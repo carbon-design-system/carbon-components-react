@@ -97,9 +97,28 @@ export default class DatePicker extends Component {
         cal.calendarContainer.focus();
       }
     });
+    // input.addEventListener('input', () => {
+    //   if (input.value === '') {
+    //     cal.clear();
+    //   }
+    // });
+    input.addEventListener('change', () => {
+      if (input.value === '' && cal.selectedDates.length > 0) {
+        cal.clear();
+      }
+    });
     if (this.toInputField) {
       this.toInputField.addEventListener('blur', () => {
         this.cal.close();
+      });
+      this.toInputField.addEventListener('input', () => {
+        if (
+          this.toInputField.value === '' &&
+          cal.selectedDates.length > 0 &&
+          !(input.value === '')
+        ) {
+          cal.clear();
+        }
       });
     }
   };
