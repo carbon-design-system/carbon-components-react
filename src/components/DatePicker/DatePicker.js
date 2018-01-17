@@ -106,7 +106,7 @@ export default class DatePicker extends Component {
       this.toInputField.addEventListener('blur', () => {
         this.cal.close();
       });
-      this.toInputField.addEventListener('input', () => {
+      this.toInputField.addEventListener('change', () => {
         if (
           this.toInputField.value === '' &&
           cal.selectedDates.length > 0 &&
