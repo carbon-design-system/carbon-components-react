@@ -121,12 +121,14 @@ exports[`MultiSelect.Filterable should render 1`] = `
                   className="bx--list-box__menu-icon"
                 >
                   <Icon
+                    alt="Open menu"
                     description="Open menu"
                     fillRule="evenodd"
                     name="caret--down"
                     role="img"
                   >
                     <svg
+                      alt="Open menu"
                       aria-label="Open menu"
                       className={undefined}
                       fill={undefined}
