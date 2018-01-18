@@ -34,26 +34,26 @@ const initialRows = [
   {
     name: 'Load Balancer 3',
     protocol: 'HTTP',
-    something: '80',
+    something: 80,
     rule: 'Round Robin',
     attached_groups: 'Kevins VM Groups',
-    status: 'Active',
+    status: true,
   },
   {
     name: 'Load Balancer 1',
     protocol: 'HTTP',
-    something: '80',
+    something: 79,
     rule: 'Round Robin',
     attached_groups: 'Maureens VM Groups',
-    status: 'Active',
+    status: false,
   },
   {
     name: 'Load Balancer 2',
     protocol: 'HTTP',
-    something: '80',
+    something: 42,
     rule: 'Round Robin',
     attached_groups: 'Andrews VM Groups',
-    status: 'Active',
+    status: true,
   },
 ];
 
@@ -270,7 +270,7 @@ class BasicDataTable extends Component {
                     {headers.map(header => (
                       <DataTableColumnHeader
                         key={header.key}
-                        sortable={true}
+                        sortable={header.key !== 'status'}
                         {...getHeaderProps(header)}>
                         {header.title}
                       </DataTableColumnHeader>
@@ -293,6 +293,13 @@ class BasicDataTable extends Component {
                           }
                         />
                         {Object.keys(row).map((rowData, j) => {
+                          if (rowData === 'status') {
+                            return (
+                              <DataTableData key={`rowdata${j}`}>
+                                {row[rowData] ? 'Active' : 'Inactive'}
+                              </DataTableData>
+                            );
+                          }
                           return (
                             <DataTableData key={`rowdata${j}`}>
                               {row[rowData]}

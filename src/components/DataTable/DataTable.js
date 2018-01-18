@@ -14,11 +14,23 @@ const toggleSortDirection = direction => {
 };
 
 const sortRow = (key, direction) => (a, b) => {
-  if (direction === 'DESC') {
-    return a[key].localeCompare(b[key]);
+  if (typeof a[key] === 'string' && typeof b[key] === 'string') {
+    if (direction === 'DESC') {
+      return a[key].localeCompare(b[key]);
+    }
+
+    return b[key].localeCompare(a[key]);
   }
 
-  return b[key].localeCompare(a[key]);
+  if (typeof a[key] === 'number' && typeof b[key] === 'number') {
+    if (direction === 'DESC') {
+      return a[key] > b[key];
+    }
+
+    return b[key] > a[key];
+  }
+
+  return null;
 };
 
 export class DataTable extends Component {
