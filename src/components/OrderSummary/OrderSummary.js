@@ -25,20 +25,24 @@ export class OrderSummaryHeader extends Component {
   static propTypes = {
     children: PropTypes.node,
     className: PropTypes.string,
+    id: PropTypes.string,
     title: PropTypes.string,
   };
 
   static defaultProps = {
+    id: 'order__summary__header__id',
     title: 'Order Summary',
   };
 
   render() {
-    const { children, className, title, ...other } = this.props;
+    const { children, className, id, title, ...other } = this.props;
     const classes = classNames('bx--order-header', className);
 
     return (
-      <section className={classes} {...other}>
-        <p className="bx--order-header-title">{title}</p>
+      <section className={classes} aria-labelledby={`${id}__title`} {...other}>
+        <p className="bx--order-header-title" id={`${id}__title`}>
+          {title}
+        </p>
         {children}
       </section>
     );
@@ -116,12 +120,14 @@ export class OrderSummaryTotal extends Component {
   static propTypes = {
     children: PropTypes.node,
     className: PropTypes.string,
+    id: PropTypes.string,
     summaryText: PropTypes.string,
     summaryPrice: PropTypes.string,
     summaryDetails: PropTypes.string,
   };
 
   static defaultProps = {
+    id: 'order__summary__total__id',
     summaryText: 'Total due now:',
     summaryPrice: '$0.00',
     summaryDetails: 'estimated',
@@ -131,6 +137,7 @@ export class OrderSummaryTotal extends Component {
     const {
       children,
       className,
+      id,
       summaryText,
       summaryPrice,
       summaryDetails,
@@ -139,9 +146,11 @@ export class OrderSummaryTotal extends Component {
     const classes = classNames('bx--order-total-container', className);
 
     return (
-      <section className={classes} {...other}>
+      <section className={classes} aria-labelledby={`${id}__title`} {...other}>
         <div className="bx--order-total">
-          <p className="bx--order-total-text">{summaryText}</p>
+          <p className="bx--order-total-text" id={`${id}__title`}>
+            {summaryText}
+          </p>
           <p className="bx--order-total-price">
             {summaryPrice}
             <span>{summaryDetails}</span>
@@ -156,6 +165,7 @@ export class OrderSummaryTotal extends Component {
 export class OrderSummaryFooter extends Component {
   static propTypes = {
     className: PropTypes.string,
+    id: PropTypes.string,
     linkText: PropTypes.string,
     href: PropTypes.string,
     target: PropTypes.string,
@@ -164,6 +174,7 @@ export class OrderSummaryFooter extends Component {
 
   static defaultProps = {
     footerText: 'Need Help?',
+    id: 'order__summary__footer__id',
     linkText: 'Contact Bluemix Sales',
     href: '',
     target: '_blank',
@@ -173,6 +184,7 @@ export class OrderSummaryFooter extends Component {
   render() {
     const {
       className,
+      id,
       footerText,
       linkText,
       href,
@@ -183,8 +195,10 @@ export class OrderSummaryFooter extends Component {
     const classes = classNames('bx--order-footer', className);
 
     return (
-      <section className={classes} {...other}>
-        <p className="bx--order-footer-text">{footerText}</p>
+      <section className={classes} aria-labelledby={`${id}__title`} {...other}>
+        <p className="bx--order-footer-text" id={`${id}__title`}>
+          {footerText}
+        </p>
         &nbsp;
         <Link href={href} target={target} rel={rel}>
           {linkText}
