@@ -129,7 +129,7 @@
     "babel-preset-react": "^6.11.1",
     "babel-preset-stage-1": "^6.16.0",
     "bowser": "^1.6.1",
-    "carbon-components": "^8.4.0",
+    "carbon-components": "^8.6.0",
     "carbon-icons": "^6.1.0",
     "commitizen": "^2.9.5",
     "css-loader": "^0.28.4",
@@ -144,7 +144,7 @@
     "husky": "^0.14.3",
     "jest": "^22.0.0",
     "lcov2badge": "^0.1.0",
-    "lint-staged": "^4.3.0",
+    "lint-staged": "^6.0.1",
     "node-sass": "4.6.0",
     "object-assign": "^4.1.1",
     "postcss-loader": "^2.0.5",
@@ -242,6 +242,7 @@
       "^(?!.*\\.(js|jsx|css|json)$)": "<rootDir>/config/jest/fileTransform.js"
     },
     "testPathIgnorePatterns": [
+      "/node_modules/",
       "/examples/",
       "/config/",
       "/lib/",
