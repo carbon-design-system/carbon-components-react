@@ -87,6 +87,23 @@ storiesOf('MultiSelect', module)
     )
   )
   .addWithInfo(
+    'with initial selected items',
+    `
+      Provide a set of items to initially select in the control
+    `,
+    () => (
+      <div style={{ width: 300 }}>
+        <MultiSelect
+          label="Label"
+          items={items}
+          itemToString={item => (item ? item.text : '')}
+          initialSelectedItems={[items[0], items[1]]}
+          onChange={action('onChange - Inline MultiSelect')}
+        />
+      </div>
+    )
+  )
+  .addWithInfo(
     'filterable',
     `
       Filterable version of our MultiSelect component
