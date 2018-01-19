@@ -30,7 +30,9 @@ export class OrderSummaryHeader extends Component {
   };
 
   static defaultProps = {
-    id: 'order__summary__header__id',
+    id: `order__summary__header__id_${Math.random()
+      .toString(36)
+      .substr(2)}`,
     title: 'Order Summary',
   };
 
@@ -127,7 +129,9 @@ export class OrderSummaryTotal extends Component {
   };
 
   static defaultProps = {
-    id: 'order__summary__total__id',
+    id: `order__summary__total__id_${Math.random()
+      .toString(36)
+      .substr(2)}`,
     summaryText: 'Total due now:',
     summaryPrice: '$0.00',
     summaryDetails: 'estimated',
@@ -174,7 +178,9 @@ export class OrderSummaryFooter extends Component {
 
   static defaultProps = {
     footerText: 'Need Help?',
-    id: 'order__summary__footer__id',
+    id: `order__summary__footer__id_${Math.random()
+      .toString(36)
+      .substr(2)}`,
     linkText: 'Contact Bluemix Sales',
     href: '',
     target: '_blank',
