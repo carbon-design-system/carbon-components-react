@@ -30,14 +30,19 @@ export class OrderSummaryHeader extends Component {
   };
 
   static defaultProps = {
-    id: `order__summary__header__id_${Math.random()
-      .toString(36)
-      .substr(2)}`,
     title: 'Order Summary',
   };
 
   render() {
-    const { children, className, id, title, ...other } = this.props;
+    const {
+      children,
+      className,
+      id = `order__summary__header__id_${Math.random()
+        .toString(36)
+        .substr(2)}`,
+      title,
+      ...other
+    } = this.props;
     const classes = classNames('bx--order-header', className);
 
     return (
@@ -129,9 +134,6 @@ export class OrderSummaryTotal extends Component {
   };
 
   static defaultProps = {
-    id: `order__summary__total__id_${Math.random()
-      .toString(36)
-      .substr(2)}`,
     summaryText: 'Total due now:',
     summaryPrice: '$0.00',
     summaryDetails: 'estimated',
@@ -141,7 +143,9 @@ export class OrderSummaryTotal extends Component {
     const {
       children,
       className,
-      id,
+      id = `order__summary__total__id_${Math.random()
+        .toString(36)
+        .substr(2)}`,
       summaryText,
       summaryPrice,
       summaryDetails,
@@ -178,9 +182,6 @@ export class OrderSummaryFooter extends Component {
 
   static defaultProps = {
     footerText: 'Need Help?',
-    id: `order__summary__footer__id_${Math.random()
-      .toString(36)
-      .substr(2)}`,
     linkText: 'Contact Bluemix Sales',
     href: '',
     target: '_blank',
@@ -190,7 +191,9 @@ export class OrderSummaryFooter extends Component {
   render() {
     const {
       className,
-      id,
+      id = `order__summary__footer__id_${Math.random()
+        .toString(36)
+        .substr(2)}`,
       footerText,
       linkText,
       href,
