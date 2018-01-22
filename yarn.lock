@@ -2009,9 +2009,9 @@ caniuse-lite@^1.0.30000791, caniuse-lite@^1.0.30000792:
   version "1.0.30000792"
   resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30000792.tgz#d0cea981f8118f3961471afbb43c9a1e5bbf0332"
 
-carbon-components@^8.6.0:
-  version "8.6.0"
-  resolved "https://registry.yarnpkg.com/carbon-components/-/carbon-components-8.6.0.tgz#736027d0b4cd51183d525405bef441109d1720e9"
+carbon-components@^8.7.0:
+  version "8.7.0"
+  resolved "https://registry.yarnpkg.com/carbon-components/-/carbon-components-8.7.0.tgz#5e6c6df70222b12cd9de60f10c70a4a9c60e5e92"
   dependencies:
     carbon-icons "^6.0.4"
     flatpickr "2.6.3"
@@ -6859,7 +6859,7 @@ preserve@^0.2.0:
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/preserve/-/preserve-0.2.0.tgz#815ed1f6ebc65926f865b310c0713bcb3315ce4b"
 
-prettier@^1.7.4:
+prettier@^1.10.0:
   version "1.10.2"
   resolved "https://registry.yarnpkg.com/prettier/-/prettier-1.10.2.tgz#1af8356d1842276a99a5b5529c82dd9e9ad3cc93"
 
