@@ -4,22 +4,25 @@ import MultiSelect from '../MultiSelect';
 
 const items = [
   {
-    id: 'option-1',
-    text: 'Option 1',
+    id: 'item-1',
+    text: 'Item 1',
   },
   {
-    id: 'option-2',
-    text: 'Option 2',
+    id: 'item-2',
+    text: 'Item 2',
   },
   {
-    id: 'option-3',
-    text: 'Option 3',
+    id: 'item-3',
+    text: 'Item 3',
   },
   {
-    id: 'option-4',
-    text: 'Option 4',
+    id: 'item-4',
+    text: 'Item 4',
   },
 ];
+
+const defaultLabel = 'MultiSelect Label';
+const defaultPlaceholder = 'Filter';
 
 storiesOf('MultiSelect', module)
   .addWithInfo(
@@ -30,10 +33,10 @@ storiesOf('MultiSelect', module)
     () => (
       <div style={{ width: 300 }}>
         <MultiSelect
-          label="Label"
+          label={defaultLabel}
           items={items}
           itemToString={item => (item ? item.text : '')}
-          onChange={action('onChange - MultiSelect')}
+          onChange={action('onChange')}
         />
       </div>
     )
@@ -46,10 +49,10 @@ storiesOf('MultiSelect', module)
     () => (
       <MultiSelect
         type="inline"
-        label="Label"
+        label={defaultLabel}
         items={items}
         itemToString={item => (item ? item.text : '')}
-        onChange={action('onChange - Inline MultiSelect')}
+        onChange={action('onChange')}
       />
     )
   )
@@ -61,7 +64,7 @@ storiesOf('MultiSelect', module)
     () => (
       <div style={{ width: 300 }}>
         <MultiSelect
-          label="Label"
+          label={defaultLabel}
           items={items}
           itemToString={item => (item ? item.text : '')}
           onChange={action('onChange')}
@@ -78,7 +81,7 @@ storiesOf('MultiSelect', module)
     () => (
       <MultiSelect
         type="inline"
-        label="Label"
+        label={defaultLabel}
         items={items}
         itemToString={item => (item ? item.text : '')}
         onChange={action('onChange')}
@@ -94,7 +97,7 @@ storiesOf('MultiSelect', module)
     () => (
       <div style={{ width: 300 }}>
         <MultiSelect
-          label="Label"
+          label={defaultLabel}
           items={items}
           itemToString={item => (item ? item.text : '')}
           initialSelectedItems={[items[0], items[1]]}
@@ -114,7 +117,7 @@ storiesOf('MultiSelect', module)
           items={items}
           itemToString={item => (item ? item.text : '')}
           onChange={action('onChange')}
-          placeholder="Placeholder..."
+          placeholder={defaultPlaceholder}
         />
       </div>
     )
@@ -130,7 +133,7 @@ storiesOf('MultiSelect', module)
           items={items}
           itemToString={item => (item ? item.text : '')}
           onChange={action('onChange')}
-          placeholder="Placeholder..."
+          placeholder={defaultPlaceholder}
           disabled
         />
       </div>
