@@ -102,7 +102,7 @@
     }
   },
   "peerDependencies": {
-    "carbon-components": "^8.4.0",
+    "carbon-components": "^8.7.1",
     "carbon-icons": "^5.1.2 || ^6.0.0",
     "react": "^15.3.2 || ^16.1.0",
     "react-dom": "^15.3.2 || ^16.1.0"
@@ -129,7 +129,7 @@
     "babel-preset-react": "^6.11.1",
     "babel-preset-stage-1": "^6.16.0",
     "bowser": "^1.6.1",
-    "carbon-components": "^8.4.0",
+    "carbon-components": "^8.7.1",
     "carbon-icons": "^6.1.0",
     "commitizen": "^2.9.5",
     "css-loader": "^0.28.4",
@@ -144,11 +144,11 @@
     "husky": "^0.14.3",
     "jest": "^22.0.0",
     "lcov2badge": "^0.1.0",
-    "lint-staged": "^4.3.0",
+    "lint-staged": "^6.0.1",
     "node-sass": "4.6.0",
     "object-assign": "^4.1.1",
     "postcss-loader": "^2.0.5",
-    "prettier": "^1.7.4",
+    "prettier": "^1.10.0",
     "promise": "^8.0.1",
     "prop-types": "^15.5.8",
     "react": "^16.1.0",
@@ -157,8 +157,7 @@
     "requestanimationframe": "^0.0.23",
     "rimraf": "^2.6.1",
     "sass-loader": "^6.0.5",
-    "semantic-release": "^11.0.2",
-    "shelljs": "^0.7.5",
+    "semantic-release": "^12.2.2",
     "storybook-addon-a11y": "^3.0.0",
     "validate-commit-msg": "^2.10.1",
     "whatwg-fetch": "^2.0.3"
@@ -243,6 +242,7 @@
       "^(?!.*\\.(js|jsx|css|json)$)": "<rootDir>/config/jest/fileTransform.js"
     },
     "testPathIgnorePatterns": [
+      "/node_modules/",
       "/examples/",
       "/config/",
       "/lib/",
