@@ -96,8 +96,7 @@ export default class Dropdown extends PureComponent {
       ...other
     } = this.props;
 
-    const children = React.Children
-      .toArray(this.props.children)
+    const children = React.Children.toArray(this.props.children)
       .filter(Boolean)
       .map(child =>
         React.cloneElement(child, {
