@@ -94,4 +94,53 @@ describe('CardContent', () => {
       });
     });
   });
+
+  describe('Supporting custom icon', () => {
+    it('supports rendering the given icon as-is', () => {
+      const props = {
+        cardIcon: (
+          <svg>
+            <title>foo</title>
+          </svg>
+        ),
+      };
+      const wrapper = shallow(<CardContent {...props} />);
+      expect(
+        wrapper.contains(
+          <svg>
+            <title>foo</title>
+          </svg>
+        )
+      ).toBe(true);
+    });
+
+    it('warns if icon description is given along with a custom icon', () => {
+      const spyWarn = jest.spyOn(console, 'warn');
+      try {
+        const props = {
+          cardIcon: (
+            <svg>
+              <title>foo</title>
+            </svg>
+          ),
+          iconDescription: 'icon-desc-foo',
+        };
+        const wrapper = shallow(<CardContent {...props} />);
+        expect(
+          wrapper.contains(
+            <svg>
+              <title>foo</title>
+            </svg>
+          )
+        ).toBe(true);
+        const message = [
+          'Specified a custom icon while the icon description is provided.',
+          "It'll be ignored as an icon description is only used for carbon-icons sprite.",
+        ].join('\n');
+        expect(spyWarn.mock.calls).toEqual([[message]]);
+      } finally {
+        spyWarn.mockRestore();
+      }
+    });
+  });
 });
