@@ -54,9 +54,12 @@ describe('defaultSortItems', () => {
   });
 
   it('should sort un-selected alpha-numeric sequences with increasing order', () => {
-    const mockItems = ['Option 1', 'Option 10', 'Option 11', 'Option 2'].map(
-      label => ({ label })
-    );
+    const mockItems = [
+      'Option 1',
+      'Option 10',
+      'Option 11',
+      'Option 2',
+    ].map(label => ({ label }));
     expect(defaultSortItems(mockItems, mockOptions)).toEqual([
       {
         label: 'Option 1',
@@ -74,9 +77,12 @@ describe('defaultSortItems', () => {
   });
 
   it('should order a selected item before all other options', () => {
-    const mockItems = ['Option 1', 'Option 10', 'Option 11', 'Option 2'].map(
-      label => ({ label })
-    );
+    const mockItems = [
+      'Option 1',
+      'Option 10',
+      'Option 11',
+      'Option 2',
+    ].map(label => ({ label }));
 
     // Set `selectedItems` to ['Option 11']
     mockOptions.selectedItems = [mockItems[2]];
@@ -98,9 +104,12 @@ describe('defaultSortItems', () => {
   });
 
   it('should sort selected items and order them before all other options', () => {
-    const mockItems = ['Option 1', 'Option 10', 'Option 11', 'Option 2'].map(
-      label => ({ label })
-    );
+    const mockItems = [
+      'Option 1',
+      'Option 10',
+      'Option 11',
+      'Option 2',
+    ].map(label => ({ label }));
 
     // Set `selectedItems` to ['Option 11', 'Option 2']
     mockOptions.selectedItems = [mockItems[2], mockItems[3]];
