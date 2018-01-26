@@ -40,7 +40,7 @@ const DropdownItem = ({
       onClick={handleClick}
       onKeyPress={handleKeypress}
       tabIndex={-1}
-      role="menuitem">
+      role="option">
       <a
         href={href}
         onClick={/* istanbul ignore next */ evt => evt.preventDefault()}
