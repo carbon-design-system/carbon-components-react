@@ -1,3 +1,4 @@
+import warning from 'warning';
 import PropTypes from 'prop-types';
 import React, { isValidElement } from 'react';
 import classNames from 'classnames';
@@ -37,18 +38,11 @@ const CardContent = ({
   const cardLinkContentArray = Object.keys(cardLinkContent);
   const cardInfoContentArray = Object.keys(cardInfoContent);
 
-  if (
-    isValidElement(cardIcon) &&
-    iconDescription !== CardContent.defaultProps.iconDescription
-  ) {
-    // eslint-disable-next-line no-console
-    console.warn(
-      [
-        'Specified a custom icon while the icon description is provided.',
-        "It'll be ignored as an icon description is only used for carbon-icons sprite.",
-      ].join('\n')
-    );
-  }
+  warning(
+    !isValidElement(cardIcon) ||
+      iconDescription === CardContent.defaultProps.iconDescription,
+    "Specified a custom icon while the icon description is provided.\nIt'll be ignored as an icon description is only used for carbon-icons sprite."
+  );
 
   return (
     <div {...other} className={cardContentClasses}>

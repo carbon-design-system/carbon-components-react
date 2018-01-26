@@ -1,7 +1,10 @@
+import warning from 'warning';
 import React from 'react';
 import CardContent from '../CardContent';
 import Icon from '../Icon';
 import { shallow } from 'enzyme';
+
+jest.mock('warning', () => jest.fn());
 
 describe('CardContent', () => {
   describe('Renders as expected', () => {
@@ -115,32 +118,31 @@ describe('CardContent', () => {
     });
 
     it('warns if icon description is given along with a custom icon', () => {
-      const spyWarn = jest.spyOn(console, 'warn');
-      try {
-        const props = {
-          cardIcon: (
-            <svg>
-              <title>foo</title>
-            </svg>
-          ),
-          iconDescription: 'icon-desc-foo',
-        };
-        const wrapper = shallow(<CardContent {...props} />);
-        expect(
-          wrapper.contains(
-            <svg>
-              <title>foo</title>
-            </svg>
-          )
-        ).toBe(true);
-        const message = [
-          'Specified a custom icon while the icon description is provided.',
-          "It'll be ignored as an icon description is only used for carbon-icons sprite.",
-        ].join('\n');
-        expect(spyWarn.mock.calls).toEqual([[message]]);
-      } finally {
-        spyWarn.mockRestore();
-      }
+      const props = {
+        cardIcon: (
+          <svg>
+            <title>foo</title>
+          </svg>
+        ),
+        iconDescription: 'icon-desc-foo',
+      };
+      const wrapper = shallow(<CardContent {...props} />);
+      expect(
+        wrapper.contains(
+          <svg>
+            <title>foo</title>
+          </svg>
+        )
+      ).toBe(true);
+      const message = [
+        'Specified a custom icon while the icon description is provided.',
+        "It'll be ignored as an icon description is only used for carbon-icons sprite.",
+      ].join('\n');
+      expect(warning.mock.calls).toEqual([[false, message]]);
     });
+  });
+
+  afterEach(() => {
+    warning.mockReset();
   });
 });
