@@ -13,24 +13,23 @@ const toggleSortDirection = direction => {
   return 'DESC';
 };
 
-const sortRow = (key, direction) => (a, b) => {
-  if (typeof a[key] === 'string' && typeof b[key] === 'string') {
-    if (direction === 'DESC') {
-      return a[key].localeCompare(b[key]);
-    }
+const sortRow = (key, direction, locale = 'en') => (a, b) => {
+  const itemA = String(a[key]);
+  const itemB = String(b[key]);
 
-    return b[key].localeCompare(a[key]);
+  if (typeof a[key] === 'boolean' && typeof b[key] === 'boolean') {
+    return null;
   }
 
-  if (typeof a[key] === 'number' && typeof b[key] === 'number') {
-    if (direction === 'DESC') {
-      return a[key] > b[key];
-    }
-
-    return b[key] > a[key];
+  if (direction === 'DESC') {
+    return itemA.localeCompare(itemB, locale, {
+      numeric: true,
+    });
   }
 
-  return null;
+  return itemB.localeCompare(itemA, locale, {
+    numeric: true,
+  });
 };
 
 export class DataTable extends Component {
