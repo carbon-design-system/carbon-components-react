@@ -39,11 +39,11 @@ export class ClickableTile extends Component {
     handleKeyDown: () => {},
   };
 
-  handleClick = () => {
+  handleClick = evt => {
     this.setState({
       clicked: !this.state.clicked,
     });
-    this.props.handleClick();
+    this.props.handleClick(evt);
   };
 
   handleKeyDown = evt => {
@@ -52,7 +52,7 @@ export class ClickableTile extends Component {
         clicked: !this.state.clicked,
       });
     }
-    this.props.handleKeyDown();
+    this.props.handleKeyDown(evt);
   };
 
   render() {
@@ -118,7 +118,7 @@ export class SelectableTile extends Component {
         selected: !this.state.selected,
       });
     }
-    this.props.handleClick();
+    this.props.handleClick(evt);
   };
 
   handleKeyDown = evt => {
@@ -127,7 +127,7 @@ export class SelectableTile extends Component {
         selected: !this.state.selected,
       });
     }
-    this.props.handleKeyDown();
+    this.props.handleKeyDown(evt);
   };
 
   render() {
@@ -226,7 +226,7 @@ export class ExpandableTile extends Component {
     }
   };
 
-  handleClick = () => {
+  handleClick = evt => {
     this.setState(
       {
         expanded: !this.state.expanded,
@@ -235,7 +235,7 @@ export class ExpandableTile extends Component {
         this.setMaxHeight();
       }
     );
-    this.props.handleClick();
+    this.props.handleClick(evt);
   };
 
   getChildren = () => {
