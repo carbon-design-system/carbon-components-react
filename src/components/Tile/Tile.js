@@ -112,6 +112,7 @@ export class SelectableTile extends Component {
   };
 
   handleClick = evt => {
+    evt.preventDefault();
     const isInput = evt.target === this.input;
     if (!isInput) {
       this.setState({
@@ -122,6 +123,7 @@ export class SelectableTile extends Component {
   };
 
   handleKeyDown = evt => {
+    evt.preventDefault();
     if (evt.which === 13 || evt.which === 32) {
       this.setState({
         selected: !this.state.selected,
