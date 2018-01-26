@@ -6,7 +6,7 @@ jest.unmock('object-assign');
 
 require('../polyfills');
 
-// Starting with React 16, we'll have to polyfill this in test environments.
-global.requestAnimationFrame = function(callback) {
-  callback();
-};
+const enzyme = require.requireActual('enzyme');
+const Adapter = require.requireActual('enzyme-adapter-react-16');
+
+enzyme.configure({ adapter: new Adapter() });

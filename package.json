@@ -1,24 +1,27 @@
 {
   "name": "carbon-components-react",
+  "version": "5.5.1",
   "description": "A React wrapper for carbon-components",
   "license": "Apache-2",
-  "main": "cjs/index.js",
+  "main": "lib/index.js",
   "module": "es/index.js",
   "scripts": {
-    "check": "npm run lint && npm run test",
-    "lint": "eslint {components,internal}/**",
-    "test": "jest '/(__tests__|components|lib|internal)/' && npm run test-ssr",
-    "test-watch": "jest '/(__tests__|components|lib|internal)/' --watch",
-    "test-ssr": "npm run build && node server-side-rendering-tests/*.js",
-    "prepublish": "npm run build",
     "build": "node scripts/build.js",
-    "commitmsg": "validate-commit-msg",
-    "commit": "git cz",
-    "storybook": "start-storybook -p 9000",
     "build-storybook": "build-storybook",
-    "start": "npm run storybook",
-    "semantic-release": "semantic-release pre && npm publish && semantic-release post",
-    "prettier": "prettier --write **/*.js"
+    "ci-check": "yarn prettier:diff && yarn lint && yarn test --runInBand && yarn test-ssr",
+    "commitmsg": "validate-commit-msg",
+    "contributors:add": "all-contributors add",
+    "contributors:generate": "all-contributors generate",
+    "lint": "eslint src",
+    "precommit": "lint-staged",
+    "prepublish": "yarn build",
+    "prettier": "prettier --write \"**/*.{scss,css,js}\"",
+    "prettier:diff": "prettier --list-different \"**/*.{scss,css,js}\"",
+    "semantic-release": "semantic-release",
+    "start": "yarn storybook",
+    "storybook": "start-storybook -p 9000",
+    "test": "jest",
+    "test-ssr": "yarn build && node ssr-tests/*.js"
   },
   "keywords": [
     "react",
@@ -26,7 +29,7 @@
     "carbon-components"
   ],
   "files": [
-    "cjs/**/*",
+    "lib/**/*",
     "es/**/*"
   ],
   "contributors": [
@@ -69,10 +72,26 @@
       "react/jsx-uses-vars": 1,
       "react/jsx-uses-react": 1,
       "react/no-find-dom-node": 1,
-      "jsx-a11y/onclick-has-role": 1,
+      "jsx-a11y/no-static-element-interactions": 1,
+      "jsx-a11y/no-noninteractive-element-interactions": 1,
       "jsx-a11y/click-events-have-key-events": 1,
-      "jsx-a11y/href-no-hash": 1,
-      "jsx-a11y/onclick-has-focus": 1
+      "jsx-a11y/anchor-is-valid": 1,
+      "jsx-a11y/interactive-supports-focus": 1,
+      "jsx-a11y/label-has-for": [
+        1,
+        {
+          "components": [
+            "Label"
+          ],
+          "required": {
+            "some": [
+              "nesting",
+              "id"
+            ]
+          },
+          "allowChildren": false
+        }
+      ]
     },
     "env": {
       "node": true,
@@ -83,63 +102,78 @@
     }
   },
   "peerDependencies": {
-    "carbon-components": "^8.0.0",
+    "carbon-components": "^8.7.1",
     "carbon-icons": "^5.1.2 || ^6.0.0",
-    "react": "^15.3.2",
-    "react-dom": "^15.3.2"
+    "react": "^15.3.2 || ^16.1.0",
+    "react-dom": "^15.3.2 || ^16.1.0"
   },
   "dependencies": {
     "classnames": "2.2.5",
-    "flatpickr": "3.0.7",
+    "downshift": "^1.23.2",
+    "flatpickr": "4.2.2",
     "lodash.debounce": "^4.0.8",
-    "react-addons-css-transition-group": "^15.4.2",
+    "lodash.isequal": "^4.5.0",
     "warning": "3.0.0",
     "window-or-global": "^1.0.1"
   },
   "devDependencies": {
-    "@storybook/addon-centered": "3.2.13",
+    "@storybook/addon-actions": "^3.2.15",
     "@storybook/addon-info": "^3.2.13",
     "@storybook/react": "^3.2.13",
+    "all-contributors-cli": "^4.10.1",
     "babel-cli": "^6.24.1",
-    "babel-eslint": "^7.1.0",
-    "babel-jest": "^18.0.0",
+    "babel-eslint": "^8.0.2",
+    "babel-jest": "^22.0.0",
     "babel-plugin-transform-object-assign": "^6.22.0",
     "babel-preset-env": "^1.5.1",
     "babel-preset-react": "^6.11.1",
     "babel-preset-stage-1": "^6.16.0",
     "bowser": "^1.6.1",
-    "carbon-components": "^8.0.0",
+    "carbon-components": "^8.7.1",
     "carbon-icons": "^6.1.0",
     "commitizen": "^2.9.5",
     "css-loader": "^0.28.4",
     "cz-conventional-changelog-components": "^1.0.0",
-    "enzyme": "^2.6.0",
-    "enzyme-to-json": "^2.0.1",
-    "eslint": "^3.0.0",
-    "eslint-plugin-jsx-a11y": "^2.0.0",
-    "eslint-plugin-react": "^6.0.0",
-    "gh-pages": "0.11.0",
-    "husky": "^0.13.1",
-    "jest": "^20.0.4",
+    "enzyme": "^3.1.0",
+    "enzyme-adapter-react-16": "^1.1.0",
+    "enzyme-to-json": "^3.1.2",
+    "eslint": "^4.11.0",
+    "eslint-plugin-jsx-a11y": "^6.0.2",
+    "eslint-plugin-react": "^7.4.0",
+    "gh-pages": "1.0.0",
+    "husky": "^0.14.3",
+    "jest": "^22.0.0",
     "lcov2badge": "^0.1.0",
-    "lint-staged": "^3.4.0",
-    "node-sass": "3.8.0",
+    "lint-staged": "^6.0.1",
+    "node-sass": "4.6.0",
     "object-assign": "^4.1.1",
     "postcss-loader": "^2.0.5",
-    "prettier": "^1.7.4",
+    "prettier": "^1.10.0",
     "promise": "^8.0.1",
     "prop-types": "^15.5.8",
-    "react": "^15.5.4",
-    "react-dom": "^15.5.4",
-    "react-test-renderer": "^15.6.1",
+    "react": "^16.1.0",
+    "react-dom": "^16.1.0",
+    "react-test-renderer": "^16.1.0",
     "requestanimationframe": "^0.0.23",
     "rimraf": "^2.6.1",
     "sass-loader": "^6.0.5",
-    "semantic-release": "^6.3.6",
-    "shelljs": "^0.7.5",
+    "semantic-release": "^12.2.2",
     "storybook-addon-a11y": "^3.0.0",
     "validate-commit-msg": "^2.10.1",
     "whatwg-fetch": "^2.0.3"
+  },
+  "release": {
+    "branch": "master"
+  },
+  "babel": {
+    "presets": [
+      "./scripts/env",
+      "react",
+      "stage-1"
+    ],
+    "plugins": [
+      "transform-object-assign"
+    ]
   },
   "prettier": {
     "jsxBracketSameLine": true,
@@ -149,6 +183,11 @@
   },
   "lint-staged": {
     "*.js": [
+      "prettier",
+      "lint",
+      "git add"
+    ],
+    "*.{css,scss}": [
       "prettier",
       "git add"
     ]
@@ -181,14 +220,20 @@
   },
   "jest": {
     "collectCoverageFrom": [
-      "components/**/*.js"
+      "src/components/**/*.js",
+      "!src/components/**/*-story.js"
+    ],
+    "coverageDirectory": "coverage",
+    "coverageReporters": [
+      "text",
+      "html"
     ],
     "setupFiles": [
       "<rootDir>/config/jest/setup.js"
     ],
     "testMatch": [
       "<rootDir>/**/__tests__/**/*.js?(x)",
-      "<rootDir>/**/?(*.)(spec|test).js?(x)"
+      "<rootDir>/**/?(*-)(spec|test).js?(x)"
     ],
     "testURL": "http://localhost",
     "transform": {
@@ -197,6 +242,8 @@
       "^(?!.*\\.(js|jsx|css|json)$)": "<rootDir>/config/jest/fileTransform.js"
     },
     "testPathIgnorePatterns": [
+      "/node_modules/",
+      "/examples/",
       "/config/",
       "/lib/",
       "/es/",

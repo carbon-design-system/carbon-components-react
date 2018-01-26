@@ -1,4 +1,5 @@
+package.json
 node_modules
-cjs
+lib
 es
 storybook-static
