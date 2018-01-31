@@ -357,7 +357,6 @@ export const DataTableSearch = props => {
         className={className}
         {...other}
         small
-        id="search-2"
         labelText="Filter table"
         placeHolderText="Search"
         onChange={onChange}
