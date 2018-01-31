@@ -27,7 +27,6 @@ export class FileUploaderButton extends Component {
     multiple: false,
     onChange: () => {},
     onClick: () => {},
-    role: 'button',
   };
   state = {
     labelText: this.props.labelText,
@@ -88,7 +87,7 @@ export class FileUploaderButton extends Component {
           {this.state.labelText}
         </label>
         <input
-          hidden
+          className="bx--visually-hidden"
           ref={input => (this.input = input)}
           id={this.uid}
           type="file"
@@ -173,7 +172,7 @@ export default class FileUploader extends Component {
   static defaultProps = {
     iconDescription: 'Provide icon description',
     filenameStatus: 'uploading',
-    buttonLabel: 'Add file',
+    buttonLabel: '',
     buttonKind: 'primary',
     multiple: false,
     onChange: () => {},

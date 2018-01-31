@@ -44,6 +44,16 @@ export default class OverflowMenu extends Component {
     open: this.props.open,
   };
 
+  shouldComponentUpdate(nextProps, nextState) {
+    if (nextState.open && !this.state.open) {
+      requestAnimationFrame(() => {
+        this.getMenuPosition();
+      });
+      return false; // Let `.getMenuPosition()` cause render
+    }
+    return true;
+  }
+
   componentDidMount() {
     requestAnimationFrame(() => {
       this.getMenuPosition();
@@ -112,17 +122,19 @@ export default class OverflowMenu extends Component {
       ...other
     } = this.props;
 
+    const { open } = this.state;
+
     const overflowMenuClasses = classNames(
       this.props.className,
       'bx--overflow-menu',
       {
-        'bx--overflow-menu--open': this.state.open,
+        'bx--overflow-menu--open': open,
       }
     );
 
     const overflowMenuOptionsClasses = classNames('bx--overflow-menu-options', {
       'bx--overflow-menu--flip': this.props.flipped,
-      'bx--overflow-menu-options--open': this.state.open,
+      'bx--overflow-menu-options--open': open,
     });
 
     const overflowMenuIconClasses = classNames(
@@ -134,6 +146,20 @@ export default class OverflowMenu extends Component {
       React.cloneElement(child, {
         closeMenu: this.closeMenu,
       })
+    );
+
+    const menuBody = (
+      <ul className={overflowMenuOptionsClasses}>{childrenWithProps}</ul>
+    );
+    const wrappedMenuBody = !floatingMenu ? (
+      menuBody
+    ) : (
+      <FloatingMenu
+        menuPosition={this.state.menuPosition}
+        menuDirection="bottom"
+        menuOffset={flipped ? menuOffsetFlip : menuOffset}>
+        {menuBody}
+      </FloatingMenu>
     );
 
     return (
@@ -154,18 +180,7 @@ export default class OverflowMenu extends Component {
             description={iconDescription}
             style={{ width: '100%' }}
           />
-          {floatingMenu ? (
-            <FloatingMenu
-              menuPosition={this.state.menuPosition}
-              menuDirection="bottom"
-              menuOffset={flipped ? menuOffsetFlip : menuOffset}>
-              <ul className={overflowMenuOptionsClasses}>
-                {childrenWithProps}
-              </ul>
-            </FloatingMenu>
-          ) : (
-            <ul className={overflowMenuOptionsClasses}>{childrenWithProps}</ul>
-          )}
+          {open && wrappedMenuBody}
         </div>
       </ClickListener>
     );

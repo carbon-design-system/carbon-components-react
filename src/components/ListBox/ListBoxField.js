@@ -15,7 +15,7 @@ const ListBoxField = ({ children, ...rest }) => (
 );
 
 ListBoxField.propTypes = {
-  children: childrenOf([ListBoxMenuIcon, ListBoxSelection]),
+  children: childrenOf([ListBoxMenuIcon, ListBoxSelection, 'span', 'input']),
 };
 
 export default ListBoxField;

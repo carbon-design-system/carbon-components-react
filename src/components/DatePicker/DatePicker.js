@@ -88,7 +88,17 @@ export default class DatePicker extends Component {
     ) {
       this.cal.destroy();
     }
+    this.inputField.removeEventListener('change', this.onChange);
+    if (this.toInputField) {
+      this.toInputField.removeEventListener('change', this.onChange);
+    }
   }
+
+  onChange = e => {
+    if (e.target.value === '' && this.cal.selectedDates.length > 0) {
+      this.cal.clear();
+    }
+  };
 
   addKeyboardEvents = cal => {
     const input = this.inputField;
@@ -97,10 +107,12 @@ export default class DatePicker extends Component {
         cal.calendarContainer.focus();
       }
     });
+    input.addEventListener('change', this.onChange);
     if (this.toInputField) {
       this.toInputField.addEventListener('blur', () => {
         this.cal.close();
       });
+      this.toInputField.addEventListener('change', this.onChange);
     }
   };
 
@@ -135,13 +147,13 @@ export default class DatePicker extends Component {
     calendarContainer
       .querySelector('.flatpickr-days')
       .classList.add('bx--date-picker__days');
-    [
-      ...calendarContainer.querySelectorAll('.flatpickr-weekday'),
-    ].forEach(item => {
-      const currentItem = item;
-      currentItem.innerHTML = currentItem.innerHTML.replace(/\s+/g, '');
-      currentItem.classList.add('bx--date-picker__weekday');
-    });
+    [...calendarContainer.querySelectorAll('.flatpickr-weekday')].forEach(
+      item => {
+        const currentItem = item;
+        currentItem.innerHTML = currentItem.innerHTML.replace(/\s+/g, '');
+        currentItem.classList.add('bx--date-picker__weekday');
+      }
+    );
     [...daysContainer.querySelectorAll('.flatpickr-day')].forEach(item => {
       item.classList.add('bx--date-picker__day');
       if (

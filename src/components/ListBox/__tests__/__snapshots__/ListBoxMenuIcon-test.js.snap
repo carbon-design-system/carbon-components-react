@@ -9,20 +9,19 @@ exports[`ListBoxMenuIcon should render 1`] = `
     className="bx--list-box__menu-icon bx--list-box__menu-icon--open"
   >
     <Icon
+      alt="Close menu"
       description="Close menu"
       fillRule="evenodd"
       name="caret--down"
       role="img"
     >
       <svg
+        alt="Close menu"
         aria-label="Close menu"
-        className={undefined}
-        fill={undefined}
         fillRule="evenodd"
         height="5"
         name="caret--down"
         role="img"
-        style={undefined}
         viewBox="0 0 10 5"
         width="10"
       >
@@ -48,20 +47,19 @@ exports[`ListBoxMenuIcon should render 2`] = `
     className="bx--list-box__menu-icon"
   >
     <Icon
+      alt="Open menu"
       description="Open menu"
       fillRule="evenodd"
       name="caret--down"
       role="img"
     >
       <svg
+        alt="Open menu"
         aria-label="Open menu"
-        className={undefined}
-        fill={undefined}
         fillRule="evenodd"
         height="5"
         name="caret--down"
         role="img"
-        style={undefined}
         viewBox="0 0 10 5"
         width="10"
       >

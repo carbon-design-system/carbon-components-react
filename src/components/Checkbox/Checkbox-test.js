@@ -26,29 +26,6 @@ describe('Checkbox', () => {
         expect(label.hasClass('extra-class')).toEqual(true);
       });
 
-      describe('firstSpan', () => {
-        const span1 = label.find('span').first();
-        it('has the expected className', () => {
-          expect(span1.props().className).toEqual('bx--checkbox-appearance');
-        });
-
-        it('has expected children', () => {
-          const icon = span1.childAt(0);
-          expect(icon.props().className).toEqual('bx--checkbox-checkmark');
-          expect(icon.props().name).toEqual('checkmark');
-        });
-      });
-
-      describe('secondSpan', () => {
-        const span2 = label.find('span').last();
-        it('has the expected className', () => {
-          expect(span2.props().className).toEqual('bx--checkbox-label-text');
-        });
-        it('has the expected labelText', () => {
-          expect(span2.props().children).toEqual('testingLabel');
-        });
-      });
-
       describe('input', () => {
         const input = () => wrapper.find('input');
 
@@ -66,7 +43,9 @@ describe('Checkbox', () => {
   });
 
   it('disabled prop on component sets disabled prop on input', () => {
-    const wrapper = mount(<Checkbox id="test" disabled />);
+    const wrapper = mount(
+      <Checkbox id="test" labelText="testlabel" disabled />
+    );
 
     const input = () => wrapper.find('input');
     expect(input().props().disabled).toEqual(true);
@@ -76,7 +55,7 @@ describe('Checkbox', () => {
   });
 
   it('checked prop on component sets checked prop on input', () => {
-    const wrapper = mount(<Checkbox id="test" checked />);
+    const wrapper = mount(<Checkbox id="test" labelText="testlabel" checked />);
 
     const input = () => wrapper.find('input');
     expect(input().props().checked).toEqual(true);
@@ -89,7 +68,9 @@ describe('Checkbox', () => {
     it('should invoke onChange with expected arguments', () => {
       const onChange = jest.fn();
       const id = 'test-input';
-      const wrapper = mount(<Checkbox id={id} onChange={onChange} />);
+      const wrapper = mount(
+        <Checkbox labelText="testlabel" id={id} onChange={onChange} />
+      );
 
       const input = wrapper.find('input');
       const inputElement = input.instance();

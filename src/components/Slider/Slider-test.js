@@ -16,7 +16,11 @@ describe('Slider', () => {
         max={100}
         step={1}
         onChange={mockFn}>
-        <TextInput id="input-for-slider" className="bx-slider-text-input" />
+        <TextInput
+          id="input-for-slider"
+          labelText="testlabel"
+          className="bx-slider-text-input"
+        />
       </Slider>
     );
 
@@ -40,6 +44,51 @@ describe('Slider', () => {
     it('can set value via props', () => {
       wrapper.setProps({ value: 55 });
       expect(wrapper.props().value).toEqual(55);
+    });
+  });
+
+  describe('Supporting label', () => {
+    it('concatenates the value and the label by default', () => {
+      const wrapper = mount(
+        <Slider min={0} minLabel="min" max={100} maxLabel="max" value={0} />
+      );
+      expect(
+        wrapper
+          .find('.bx--slider__range-label')
+          .first()
+          .text()
+      ).toBe('0min');
+      expect(
+        wrapper
+          .find('.bx--slider__range-label')
+          .last()
+          .text()
+      ).toBe('100max');
+    });
+
+    it('supports custom formatting of the label', () => {
+      const wrapper = mount(
+        <Slider
+          min={0}
+          minLabel="min"
+          max={100}
+          maxLabel="max"
+          formatLabel={(value, label) => `${value}-${label}`}
+          value={0}
+        />
+      );
+      expect(
+        wrapper
+          .find('.bx--slider__range-label')
+          .first()
+          .text()
+      ).toBe('0-min');
+      expect(
+        wrapper
+          .find('.bx--slider__range-label')
+          .last()
+          .text()
+      ).toBe('100-max');
     });
   });
 

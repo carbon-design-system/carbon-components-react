@@ -25,6 +25,7 @@ export class OrderSummaryHeader extends Component {
   static propTypes = {
     children: PropTypes.node,
     className: PropTypes.string,
+    id: PropTypes.string,
     title: PropTypes.string,
   };
 
@@ -33,12 +34,24 @@ export class OrderSummaryHeader extends Component {
   };
 
   render() {
-    const { children, className, title, ...other } = this.props;
+    const {
+      children,
+      className,
+      id = (this._sectionId =
+        this._sectionId ||
+        `order__summary__header__id_${Math.random()
+          .toString(36)
+          .substr(2)}`),
+      title,
+      ...other
+    } = this.props;
     const classes = classNames('bx--order-header', className);
 
     return (
-      <section className={classes} {...other}>
-        <p className="bx--order-header-title">{title}</p>
+      <section className={classes} aria-labelledby={`${id}__title`} {...other}>
+        <p className="bx--order-header-title" id={`${id}__title`}>
+          {title}
+        </p>
         {children}
       </section>
     );
@@ -116,6 +129,7 @@ export class OrderSummaryTotal extends Component {
   static propTypes = {
     children: PropTypes.node,
     className: PropTypes.string,
+    id: PropTypes.string,
     summaryText: PropTypes.string,
     summaryPrice: PropTypes.string,
     summaryDetails: PropTypes.string,
@@ -131,6 +145,9 @@ export class OrderSummaryTotal extends Component {
     const {
       children,
       className,
+      id = `order__summary__total__id_${Math.random()
+        .toString(36)
+        .substr(2)}`,
       summaryText,
       summaryPrice,
       summaryDetails,
@@ -139,9 +156,11 @@ export class OrderSummaryTotal extends Component {
     const classes = classNames('bx--order-total-container', className);
 
     return (
-      <section className={classes} {...other}>
+      <section className={classes} aria-labelledby={`${id}__title`} {...other}>
         <div className="bx--order-total">
-          <p className="bx--order-total-text">{summaryText}</p>
+          <p className="bx--order-total-text" id={`${id}__title`}>
+            {summaryText}
+          </p>
           <p className="bx--order-total-price">
             {summaryPrice}
             <span>{summaryDetails}</span>
@@ -156,6 +175,7 @@ export class OrderSummaryTotal extends Component {
 export class OrderSummaryFooter extends Component {
   static propTypes = {
     className: PropTypes.string,
+    id: PropTypes.string,
     linkText: PropTypes.string,
     href: PropTypes.string,
     target: PropTypes.string,
@@ -173,6 +193,11 @@ export class OrderSummaryFooter extends Component {
   render() {
     const {
       className,
+      id = (this._sectionId =
+        this._sectionId ||
+        `order__summary__footer__id_${Math.random()
+          .toString(36)
+          .substr(2)}`),
       footerText,
       linkText,
       href,
@@ -183,8 +208,10 @@ export class OrderSummaryFooter extends Component {
     const classes = classNames('bx--order-footer', className);
 
     return (
-      <section className={classes} {...other}>
-        <p className="bx--order-footer-text">{footerText}</p>
+      <section className={classes} aria-labelledby={`${id}__title`} {...other}>
+        <p className="bx--order-footer-text" id={`${id}__title`}>
+          {footerText}
+        </p>
         &nbsp;
         <Link href={href} target={target} rel={rel}>
           {linkText}
