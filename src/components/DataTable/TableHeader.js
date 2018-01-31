@@ -2,7 +2,7 @@ import cx from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 import Icon from '../Icon';
-import { sortStates } from './tools/sorting';
+import { sortStates } from './state/sorting';
 
 const translationKeys = {
   'carbon.table-header.icon.description': 'Sort arrow',
@@ -15,12 +15,16 @@ const TableHeader = ({
   children,
   onClick,
   translateWithId: t,
+  isSortHeader,
+  sortDirection,
   ...rest
 }) => {
   const className = cx(headerClassName, {
     'bx--table-sort-v2': true,
-    'bx--table-sort-v2--active': false,
-    'bx--table-sort-v2--ascending': false,
+    'bx--table-sort-v2--active':
+      isSortHeader && sortDirection !== sortStates.NONE,
+    'bx--table-sort-v2--ascending':
+      isSortHeader && sortDirection === sortStates.ASC,
   });
   return (
     <th>
@@ -37,7 +41,9 @@ const TableHeader = ({
 };
 
 TableHeader.propTypes = {
+  className: PropTypes.string,
   children: PropTypes.node,
+  isSortHeader: PropTypes.bool,
   onClick: PropTypes.func,
   sortDirection: PropTypes.oneOf(Object.values(sortStates)),
   translateWithId: PropTypes.func,

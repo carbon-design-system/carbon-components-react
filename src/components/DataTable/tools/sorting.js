@@ -1,46 +1,27 @@
 import { getCellId } from './cells';
+import { sortStates } from '../state/sorting';
 
 /**
- * We currently support the following sorting states for DataTable headers,
- * namely: `NONE` for no sorting being applied, and then `DESC` and `ASC` for
- * the corresponding direction of the sorting order.
- */
-export const sortStates = {
-  NONE: 'NONE',
-  DESC: 'DESC',
-  ASC: 'ASC',
-};
-
-// Our initialSortState should be `NONE`, unless a consumer has specified a
-// different initialSortState
-export const initialSortState = sortStates.NONE;
-
-/**
- * Utility used to get the next sort state given the following pieces of
- * information:
+ * Compare two primitives to determine which comes first. Initially, this method
+ * will try and figure out if both entries are the same type. If so, it will
+ * apply the default sort algorithm for those types. Otherwise, it defaults to a
+ * string conversion.
  *
- * @param {String} prevHeader the value of the previous header
- * @param {String} header the value of the currently selected header
- * @param {String} prevState the previous sort state of the table
- * @returns {String}
+ * @param {Number|String} a
+ * @param {Number|String} b
+ * @param {String} locale
+ * @returns {Number}
  */
-export const getSortState = (prevHeader, header, prevState) => {
-  // If the previous header is equivalent to the current header, we know that we
-  // have to derive the next sort state from the previous sort state
-  if (prevHeader === header) {
-    // When transitioning, we know that the sequence of states is as follows:
-    // NONE -> DESC -> ASC -> NONE
-    if (prevState === 'NONE') {
-      return sortStates.DESC;
-    }
-    if (prevState === 'DESC') {
-      return sortStates.ASC;
-    }
-    return sortStates.NONE;
+export const compare = (a, b, locale = 'en') => {
+  if (typeof a === 'number' && typeof b === 'number') {
+    return a - b;
   }
-  // Otherwise, we have selected a new header and need to start off by sorting
-  // in descending order by default
-  return sortStates.DESC;
+
+  if (typeof a === 'string' && typeof b === 'string') {
+    return compareStrings(a, b, locale);
+  }
+
+  return compareStrings('' + a, '' + b, locale);
 };
 
 /**
@@ -78,12 +59,12 @@ export const defaultSortRows = ({
   key,
   locale,
 }) =>
-  rowIds.sort((a, b) => {
+  rowIds.slice().sort((a, b) => {
     const cellA = cellsById[getCellId(a, key)];
     const cellB = cellsById[getCellId(b, key)];
     if (direction === sortStates.DESC) {
-      return compareStrings(cellB.value, cellA.value, locale);
+      return compare(cellB.value, cellA.value, locale);
     }
 
-    return compareStrings(cellA.value, cellB.value, locale);
+    return compare(cellA.value, cellB.value, locale);
   });

@@ -1,7 +1,15 @@
 import { getCellId } from './cells';
 
-// `normalize` is a helper to generate flat objects from a nested
-// multi-dimensional array
+/**
+ * Normalize a collection of rows with the given headers.
+ *
+ * @param {Array[Object]} rows
+ * @param {String} rows[0].id
+ * @param {Array[Object]} headers
+ * @param {String} headers[0].key
+ * @param {String} headers[0].header
+ * @returns {Object}
+ */
 const normalize = (rows, headers) => {
   const rowIds = new Array(rows.length);
   const rowsById = {};

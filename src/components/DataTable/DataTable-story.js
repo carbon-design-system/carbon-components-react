@@ -2,14 +2,22 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import DataTable, {
-  Container,
   Table,
+  TableActionList,
+  TableBatchAction,
+  TableBatchActions,
+  TableBody,
+  TableCell,
+  TableContainer,
   TableHead,
   TableHeader,
-  TableBody,
   TableRow,
-  TableCell,
+  TableSearch,
+  TableToolbar,
+  TableToolbarAction,
+  TableToolbarContent,
 } from '../DataTable';
+import Button from '../Button';
 
 const initialRows = [
   {
@@ -68,37 +76,151 @@ const headers = [
   },
 ];
 
-storiesOf('DataTable', module).addWithInfo(
-  'default',
-  `
-      Data table
+storiesOf('DataTable', module)
+  .addWithInfo(
+    'default',
+    `
+      Data Tables are used to represent a collection of resources, displaying a
+      subset of their fields in columns, or headers. The \`DataTable\` component
+      that we export from Carbon requires two props to be passed in: \`rows\`
+      and \`headers\`.
+
+      Each row should have it\'s own \`id\` field, and the array of headers
+      should include a \`key\` field that corresponds to the field in the
+      provided rows for the header, and a \`header\` field which corresponds to
+      the title of the header that will actually render.
+
+      To actually render your DataTable, you'll need to include a \`render\`
+      prop. If you\'re unfamiliar with this pattern, a \`render\` prop is just
+      a function that takes in a variety of arguments that we provide from the
+      DataTable component, and it should return a valid React node.
+
+      View the source of this story for more information, or checkout the
+      README for this component in the \`carbon-components-react\` repo.
     `,
-  () => (
-    <DataTable
-      rows={initialRows}
-      headers={headers}
-      render={({ rows, headers, getHeaderProps }) => (
-        <Table>
-          <TableHead>
-            <TableRow>
-              {headers.map(header => (
-                <TableHeader {...getHeaderProps({ header })}>
-                  {header.header}
-                </TableHeader>
-              ))}
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {rows.map(row => (
-              <TableRow key={row.id}>
-                {row.cells.map(cell => (
-                  <TableCell key={cell.id}>{cell.value}</TableCell>
+    () => (
+      <DataTable
+        rows={initialRows}
+        headers={headers}
+        render={({ rows, headers, getHeaderProps }) => (
+          <TableContainer title="DataTable">
+            <Table>
+              <TableHead>
+                <TableRow>
+                  {headers.map(header => (
+                    <TableHeader {...getHeaderProps({ header })}>
+                      {header.header}
+                    </TableHeader>
+                  ))}
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {rows.map(row => (
+                  <TableRow key={row.id}>
+                    {row.cells.map(cell => (
+                      <TableCell key={cell.id}>{cell.value}</TableCell>
+                    ))}
+                  </TableRow>
                 ))}
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      )}
-    />
+              </TableBody>
+            </Table>
+          </TableContainer>
+        )}
+      />
+    )
   )
-);
+  .addWithInfo(
+    'with toolbar',
+    `
+      DataTable
+    `,
+    () => (
+      <DataTable
+        rows={initialRows}
+        headers={headers}
+        render={({ rows, headers, getHeaderProps }) => (
+          <TableContainer title="DataTable with toolbar">
+            <TableToolbar>
+              <TableSearch onChange={action('TableSearch - onChange')} />
+              <TableToolbarContent>
+                <TableToolbarAction
+                  iconName="download"
+                  iconDescription="Download"
+                  onClick={action('TableToolbarAction - Download')}
+                />
+                <TableToolbarAction
+                  iconName="edit"
+                  iconDescription="Edit"
+                  onClick={action('TableToolbarAction - Edit')}
+                />
+                <TableToolbarAction
+                  iconName="settings"
+                  iconDescription="Settings"
+                  onClick={action('TableToolbarAction - Settings')}
+                />
+                <Button onClick={action('Add new row')} small kind="primary">
+                  Add new
+                </Button>
+              </TableToolbarContent>
+            </TableToolbar>
+            <Table>
+              <TableHead>
+                <TableRow>
+                  {headers.map(header => (
+                    <TableHeader {...getHeaderProps({ header })}>
+                      {header.header}
+                    </TableHeader>
+                  ))}
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {rows.map(row => (
+                  <TableRow key={row.id}>
+                    {row.cells.map(cell => (
+                      <TableCell key={cell.id}>{cell.value}</TableCell>
+                    ))}
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
+        )}
+      />
+    )
+  )
+  .addWithInfo(
+    'with sorting',
+    `
+    Default Data table sorting behavior
+  `,
+    () => (
+      <DataTable
+        rows={initialRows}
+        headers={headers}
+        render={({ rows, headers, getHeaderProps }) => (
+          <TableContainer title="DataTable with sorting">
+            <Table>
+              <TableHead>
+                <TableRow>
+                  {headers.map(header => (
+                    <TableHeader {...getHeaderProps({ header })}>
+                      {header.header}
+                    </TableHeader>
+                  ))}
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {rows.map(row => (
+                  <TableRow key={row.id}>
+                    {row.cells.map(cell => (
+                      <TableCell key={cell.id}>{cell.value}</TableCell>
+                    ))}
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
+        )}
+      />
+    )
+  );
