@@ -12,10 +12,10 @@ import DataTable, {
   TableHead,
   TableHeader,
   TableRow,
-  TableSearch,
   TableToolbar,
   TableToolbarAction,
   TableToolbarContent,
+  TableToolbarSearch,
 } from '../DataTable';
 import Button from '../Button';
 
@@ -141,7 +141,9 @@ storiesOf('DataTable', module)
         render={({ rows, headers, getHeaderProps }) => (
           <TableContainer title="DataTable with toolbar">
             <TableToolbar>
-              <TableSearch onChange={action('TableSearch - onChange')} />
+              <TableToolbarSearch
+                onChange={action('TableToolbarSearch - onChange')}
+              />
               <TableToolbarContent>
                 <TableToolbarAction
                   iconName="download"
@@ -192,7 +194,7 @@ storiesOf('DataTable', module)
     'with sorting',
     `
     Default Data table sorting behavior
-  `,
+    `,
     () => (
       <DataTable
         rows={initialRows}

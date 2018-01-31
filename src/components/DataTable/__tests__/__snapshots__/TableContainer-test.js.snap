@@ -5,7 +5,7 @@ exports[`DataTable.TableContainer should render 1`] = `
   className="custom-class"
 >
   <div
-    className="bx--data-table-v2-container custom-class"
+    className="custom-class bx--data-table-v2-container"
   />
 </TableContainer>
 `;

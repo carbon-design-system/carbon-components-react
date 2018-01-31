@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import Search from '../Search';
 
-const TableSearch = ({
+const TableToolbarSearch = ({
   className,
   searchContainerClass,
   onChange,
@@ -13,7 +13,6 @@ const TableSearch = ({
     searchContainerClass,
     'bx--toolbar-search-container'
   );
-
   return (
     <div className={searchContainerClasses}>
       <Search
@@ -29,11 +28,11 @@ const TableSearch = ({
   );
 };
 
-TableSearch.propTypes = {
+TableToolbarSearch.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
   searchContainerClasses: PropTypes.string,
   onChange: PropTypes.func,
 };
 
-export default TableSearch;
+export default TableToolbarSearch;
