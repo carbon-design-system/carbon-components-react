@@ -115,7 +115,7 @@ const Icon = ({
   );
 
   return (
-    <svg {...props} aria-label={description}>
+    <svg {...props} aria-label={description} alt={description}>
       <title>{description}</title>
       {svgContent}
     </svg>
