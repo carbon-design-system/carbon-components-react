@@ -138,12 +138,10 @@ storiesOf('DataTable', module)
       <DataTable
         rows={initialRows}
         headers={headers}
-        render={({ rows, headers, getHeaderProps }) => (
+        render={({ rows, headers, getHeaderProps, onInputChange }) => (
           <TableContainer title="DataTable with toolbar">
             <TableToolbar>
-              <TableToolbarSearch
-                onChange={action('TableToolbarSearch - onChange')}
-              />
+              <TableToolbarSearch onChange={onInputChange} />
               <TableToolbarContent>
                 <TableToolbarAction
                   iconName="download"

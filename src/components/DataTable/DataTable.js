@@ -4,6 +4,7 @@ import { getNextSortState, initialSortState } from './state/sorting';
 import { composeEventHandlers } from './tools/events';
 import denormalize from './tools/denormalize';
 import normalize from './tools/normalize';
+import { defaultFilterRows } from './tools/filter';
 import { defaultSortRows } from './tools/sorting';
 
 /**
@@ -55,6 +56,12 @@ export default class DataTable extends React.Component {
     sortRows: PropTypes.func,
 
     /**
+     * Optional hook to manually control filtering of the rows from the
+     * TableToolbarSearch
+     */
+    filterRows: PropTypes.func,
+
+    /**
      * Provide a string for the current locale
      */
     locale: PropTypes.string,
@@ -62,6 +69,7 @@ export default class DataTable extends React.Component {
 
   static defaultProps = {
     sortRows: defaultSortRows,
+    filterRows: defaultFilterRows,
     locale: 'en',
   };
 
@@ -79,6 +87,8 @@ export default class DataTable extends React.Component {
       // Copy over rowIds so the reference doesn't mutate the stored
       // `initialRowOrder`
       initialRowOrder: rowIds.slice(),
+
+      filterInputValue: null,
     };
   };
 
@@ -111,14 +121,26 @@ export default class DataTable extends React.Component {
     );
   };
 
+  handleOnInputValueChange = event => {
+    this.setState({ filterInputValue: event.target.value });
+  };
+
   render() {
-    const { children, render } = this.props;
-    const { rowIds, rowsById, cellsById } = this.state;
+    const { children, filterRows, headers, render } = this.props;
+    const { filterInputValue, rowIds, rowsById, cellsById } = this.state;
+    const filteredRowIds = filterInputValue
+      ? filterRows({
+          rowIds,
+          headers,
+          cellsById,
+          inputValue: filterInputValue,
+        })
+      : rowIds;
     const renderProps = {
-      rows: denormalize(rowIds, rowsById, cellsById),
+      rows: denormalize(filteredRowIds, rowsById, cellsById),
       headers: this.props.headers,
       getHeaderProps: this.getHeaderProps,
-
+      onInputChange: this.handleOnInputValueChange,
       sortBy: headerKey => this.handleSortBy(headerKey)(),
     };
 
