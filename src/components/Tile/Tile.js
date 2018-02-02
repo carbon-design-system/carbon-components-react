@@ -40,19 +40,29 @@ export class ClickableTile extends Component {
   };
 
   handleClick = evt => {
-    this.setState({
-      clicked: !this.state.clicked,
-    });
-    this.props.handleClick(evt);
+    this.setState(
+      {
+        clicked: !this.state.clicked,
+      },
+      () => {
+        this.props.handleClick(evt);
+      }
+    );
   };
 
   handleKeyDown = evt => {
     if (evt.which === 13 || evt.which === 32) {
-      this.setState({
-        clicked: !this.state.clicked,
-      });
+      this.setState(
+        {
+          clicked: !this.state.clicked,
+        },
+        () => {
+          this.props.handleKeyDown(evt);
+        }
+      );
+    } else {
+      this.props.handleKeyDown(evt);
     }
-    this.props.handleKeyDown(evt);
   };
 
   render() {
@@ -115,21 +125,33 @@ export class SelectableTile extends Component {
     evt.preventDefault();
     const isInput = evt.target === this.input;
     if (!isInput) {
-      this.setState({
-        selected: !this.state.selected,
-      });
+      this.setState(
+        {
+          selected: !this.state.selected,
+        },
+        () => {
+          this.props.handleClick(evt);
+        }
+      );
+    } else {
+      this.props.handleClick(evt);
     }
-    this.props.handleClick(evt);
   };
 
   handleKeyDown = evt => {
     evt.preventDefault();
     if (evt.which === 13 || evt.which === 32) {
-      this.setState({
-        selected: !this.state.selected,
-      });
+      this.setState(
+        {
+          selected: !this.state.selected,
+        },
+        () => {
+          this.props.handleKeyDown(evt);
+        }
+      );
+    } else {
+      this.props.handleKeyDown(evt);
     }
-    this.props.handleKeyDown(evt);
   };
 
   render() {
@@ -234,9 +256,9 @@ export class ExpandableTile extends Component {
       },
       () => {
         this.setMaxHeight();
+        this.props.handleClick(evt);
       }
     );
-    this.props.handleClick(evt);
   };
 
   getChildren = () => {
