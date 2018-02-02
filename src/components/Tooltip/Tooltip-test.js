@@ -162,14 +162,14 @@ describe('Tooltip', () => {
     });
   });
 
-  describe.skip('getTriggerPosition', () => {
+  describe('getTriggerPosition', () => {
     it('sets triggerPosition when triggerEl is set', () => {
       const rootWrapper = mount(<Tooltip clickToOpen triggerText="Tooltip" />);
       rootWrapper.setState({
         triggerPosition: { left: 0, top: 0, right: 0, bottom: 0 },
       });
       rootWrapper.instance().getTriggerPosition();
-      expect(rootWrapper.state().triggerPosition).not.toMatchObject({
+      expect(rootWrapper.state().triggerPosition).not.toEqual({
         left: 0,
         top: 0,
         right: 0,
@@ -183,7 +183,7 @@ describe('Tooltip', () => {
       });
       delete rootWrapper.instance().triggerEl;
       rootWrapper.instance().getTriggerPosition();
-      expect(rootWrapper.state().triggerPosition).toMatchObject({
+      expect(rootWrapper.state().triggerPosition).toEqual({
         left: 0,
         top: 0,
         right: 0,

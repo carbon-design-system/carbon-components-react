@@ -108,7 +108,7 @@ export default class Tabs extends React.Component {
       this.setState({
         selected: index,
       });
-      if (onSelectionChange !== undefined) {
+      if (typeof onSelectionChange === 'function') {
         onSelectionChange(index);
       }
     }
