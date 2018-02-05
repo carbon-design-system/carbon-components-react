@@ -10,7 +10,7 @@ export default class Search extends Component {
     type: PropTypes.string,
     small: PropTypes.bool,
     placeHolderText: PropTypes.string,
-    labelText: PropTypes.string.isRequired,
+    labelText: PropTypes.node.isRequired,
     id: PropTypes.string,
     searchButtonLabelText: PropTypes.string,
     layoutButtonLabelText: PropTypes.string,
@@ -117,7 +117,11 @@ export default class Search extends Component {
     const {
       className,
       type,
-      id,
+      id = (this._inputId =
+        this._inputId ||
+        `search__input__id_${Math.random()
+          .toString(36)
+          .substr(2)}`),
       placeHolderText,
       labelText,
       small,
