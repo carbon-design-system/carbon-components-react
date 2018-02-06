@@ -16,7 +16,7 @@
 - [Props](#props)
   - [`rows`](#rows)
   - [`headers`](#headers)
-  - [`sortRows`](#sortrows)
+  - [`sortRow`](#sortrow)
   - [`filterRows`](#filterrows)
   - [`locale`](#locale)
 - [Render Prop Function](#render-prop-function)
@@ -27,11 +27,13 @@
 - [Use-cases](#use-cases)
   - [Sorting](#sorting)
     - [Programmatic sorting](#programmatic-sorting)
+    - [Custom sorting](#custom-sorting)
   - [Expansion](#expansion)
     - [Programmatic expansion](#programmatic-expansion)
   - [Selection](#selection)
     - [Programmatic selection](#programmatic-selection)
   - [Filtering](#filtering)
+- [Batch Actions](#batch-actions)
 - [Attribution](#attribution)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -192,36 +194,9 @@ const headers = [
 ];
 ```
 
-### `sortRows`
+### `sortRow`
 
-Optional hook to manually control sorting of the rows. Here is what the default method signature looks like:
-
-```js
-/**
- * Default implementation of how we sort rows internally. The idea behind this
- * implementation is to use the given list of row ids to look up the cells in
- * the row by the given key. We then use the value of these cells and pipe them
- * into our local `compareStrings` method, including the locale where
- * appropriate.
- *
- * @param {Array[string]} rowIds array of all the row ids in the table
- * @param {Object} cellsById object containing a mapping of cell id to cell
- * @param {string} direction the sort direction used to determine the order the
- * comparison is called in
- * @param {string} key the header key that we use to lookup the cell
- * @param {string?} locale optional locale used in the comparison function
- * @returns {Array[string]} array of sorted rowIds
- */
-const sortRows = ({
-  rowIds,
-  cellsById,
-  direction,
-  key,
-  locale,
-}) => {
-  // ...
-};
-```
+Optional hook to manually control sorting of the rows. You can find more information about this [here](#custom-sorting).
 
 ### `filterRows`
 
@@ -383,6 +358,30 @@ In order to enable the sort behavior for a given `DataTable`, all you need to do
 #### Programmatic sorting
 
 In addition to the prop getter specified in the previous section, you can also change the sort status of the table by using the `sortBy` action made available in your `render` prop function. This `sortBy` utility takes in the `key` of the header you want to sort by as an argument. After invoking this method with the given `key`, the table should be sorted by the header that you've specified.
+
+#### Custom sorting
+
+If the default sorting logic doesn't match your use-case, you can provide a custom sort method as a `sortRow` prop to `DataTable`.
+
+`sortRow` is a method that takes in the values of two cells, in addition to some info, and should return -1, 0, or 1 as a result (mirroring the native sort behavior in JavaScript).
+
+The two cells that are passed in are derived by accessing the value of the sort header in each row that we're comparing. For example, if we're sorting on the `Foo` header, with the `foo` key available in each row, then for row `a` and row `b` we would get the `a.foo` and `b.foo` field values.
+
+As a result, a custom `sortRow` function would take on the following shape:
+
+```js
+const customSortRow = (cellA, cellB, {
+  sortDirection,
+  sortStates,
+  locale,
+}) => {
+  if (sortDirection === sortStates.DESC) {
+    return compare(cellB, cellA, locale);
+  }
+
+  return compare(cellA, cellB, locale);
+}
+```
 
 ### Expansion
 

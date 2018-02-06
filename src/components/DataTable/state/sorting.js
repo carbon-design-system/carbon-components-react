@@ -1,3 +1,5 @@
+import { sortRows } from '../tools/sorting';
+
 /**
  * We currently support the following sorting states for DataTable headers,
  * namely: `NONE` for no sorting being applied, and then `DESC` and `ASC` for
@@ -69,7 +71,7 @@ export const getNextSortState = (props, state, { key }) => {
     sortHeaderKey,
     initialRowOrder,
   } = state;
-  const { locale, sortRows } = props;
+  const { locale, sortRow } = props;
   const nextSortDirection = getNextSortDirection(
     key,
     sortHeaderKey,
@@ -80,9 +82,10 @@ export const getNextSortState = (props, state, { key }) => {
       ? sortRows({
           rowIds,
           cellsById,
-          direction: sortDirection,
+          sortDirection,
           key,
           locale,
+          sortRow,
         })
       : initialRowOrder;
   return {

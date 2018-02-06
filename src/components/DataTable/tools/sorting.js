@@ -52,19 +52,32 @@ export const compareStrings = (a, b, locale = 'en') => {
  * @param {string} [locale] optional locale used in the comparison function
  * @returns {Array[string]} array of sorted rowIds
  */
-export const defaultSortRows = ({
+export const sortRows = ({
   rowIds,
   cellsById,
-  direction,
+  sortDirection,
   key,
   locale,
+  sortRow,
 }) =>
   rowIds.slice().sort((a, b) => {
     const cellA = cellsById[getCellId(a, key)];
     const cellB = cellsById[getCellId(b, key)];
-    if (direction === sortStates.DESC) {
-      return compare(cellB.value, cellA.value, locale);
-    }
-
-    return compare(cellA.value, cellB.value, locale);
+    return sortRow(cellA.value, cellB.value, {
+      sortDirection,
+      locale,
+      sortStates,
+    });
   });
+
+export const defaultSortRow = (
+  cellA,
+  cellB,
+  { sortDirection, sortStates, locale }
+) => {
+  if (sortDirection === sortStates.DESC) {
+    return compare(cellB, cellA, locale);
+  }
+
+  return compare(cellA, cellB, locale);
+};

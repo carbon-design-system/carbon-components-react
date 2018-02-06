@@ -5,7 +5,7 @@ import { composeEventHandlers } from './tools/events';
 import denormalize from './tools/denormalize';
 import normalize from './tools/normalize';
 import { defaultFilterRows } from './tools/filter';
-import { defaultSortRows } from './tools/sorting';
+import { defaultSortRows, defaultSortRow } from './tools/sorting';
 import setupGetInstanceId from './tools/instanceId';
 
 const getInstanceId = setupGetInstanceId();
@@ -56,7 +56,7 @@ export default class DataTable extends React.Component {
     /**
      * Optional hook to manually control sorting of the rows.
      */
-    sortRows: PropTypes.func,
+    sortRow: PropTypes.func,
 
     /**
      * Optional hook to manually control filtering of the rows from the
@@ -71,7 +71,7 @@ export default class DataTable extends React.Component {
   };
 
   static defaultProps = {
-    sortRows: defaultSortRows,
+    sortRow: defaultSortRow,
     filterRows: defaultFilterRows,
     locale: 'en',
   };

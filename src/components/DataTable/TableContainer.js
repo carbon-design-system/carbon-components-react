@@ -5,7 +5,7 @@ import React from 'react';
 const TableContainer = ({ className, children, title, ...rest }) => {
   const tableContainerClasses = cx(className, 'bx--data-table-v2-container');
   return (
-    <div className={tableContainerClasses} {...rest}>
+    <div {...rest} className={tableContainerClasses}>
       {title && <h4 className="bx--data-table-v2-header">{title}</h4>}
       {children}
     </div>

@@ -450,4 +450,47 @@ storiesOf('DataTable', module)
         )}
       />
     )
+  )
+  .addWithInfo(
+    'with custom sorting',
+    `
+      Data table with custom sorting behavior
+    `,
+    () => {
+      const customSortRow = (
+        rowAValue,
+        rowBValue,
+        { header, sortDirection }
+      ) => {};
+      return (
+        <DataTable
+          rows={initialRows}
+          headers={headers}
+          render={({ rows, headers, getHeaderProps }) => (
+            <TableContainer title="DataTable with custom sorting">
+              <Table>
+                <TableHead>
+                  <TableRow>
+                    {headers.map(header => (
+                      <TableHeader {...getHeaderProps({ header })}>
+                        {header.header}
+                      </TableHeader>
+                    ))}
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {rows.map(row => (
+                    <TableRow key={row.id}>
+                      {row.cells.map(cell => (
+                        <TableCell key={cell.id}>{cell.value}</TableCell>
+                      ))}
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </TableContainer>
+          )}
+        />
+      );
+    }
   );
