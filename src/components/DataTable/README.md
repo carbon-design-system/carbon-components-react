@@ -28,7 +28,9 @@
   - [Sorting](#sorting)
     - [Programmatic sorting](#programmatic-sorting)
   - [Expansion](#expansion)
+    - [Programmatic expansion](#programmatic-expansion)
   - [Selection](#selection)
+    - [Programmatic Selection](#programmatic-selection)
   - [Filtering](#filtering)
 - [Attribution](#attribution)
 
@@ -445,6 +447,10 @@ Some things to note:
 - `TableExpandedRow` is used as a wrapper for any content you want to appear in the expanded row
   - Tip: the `colSpan` attribute on the `TableCell` should be `headers.length + 1` in order to span the whole table
 
+#### Programmatic expansion
+
+You can use the `expandRow` action made available through your `render` prop function to toggle the expansion state of a given row. This method takes in the row id as a single argument.
+
 ### Selection
 
 Selection in a `DataTable` has two parts:
@@ -491,6 +497,13 @@ Some items to note:
 - `TableSelectRow` is placed before all the cells in a row. It also uses `getSelectionProps`, but it also passes in the specific `row` in order to get selection information about the given row.
 
 You can access all the selected rows through the `selectedRows` property passed into your `render` prop function.
+
+#### Programmatic Selection
+
+You can use either of the following actions from your `render` prop function to update the selection status of a row:
+
+- `selectAll`: invoking this will toggle the selection of all rows, either by making all selected or de-selecting all rows
+- `selectRow`: invoking this will toggle the selection of a specific row. Takes in a valid row id as an argument
 
 ### Filtering
 
