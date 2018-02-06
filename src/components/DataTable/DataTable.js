@@ -115,6 +115,90 @@ export default class DataTable extends React.Component {
     };
   };
 
+  getRowProps = ({ onClick, row, ...rest }) => {
+    return {
+      ...rest,
+      key: row.id,
+      onExpand: composeEventHandlers([this.handleOnExpandRow(row.id), onClick]),
+      isExpanded: row.isExpanded,
+    };
+  };
+
+  getSelectionProps = ({ row, ...rest } = {}) => {
+    if (row) {
+      return {
+        ...rest,
+        checked: row.isSelected,
+        onSelect: this.handleSelectRow(row.id),
+        id: `select-row-${row.id}`,
+        name: `select-row-${row.id}`,
+      };
+    }
+    const checked = this.getSelectedRows().length === this.state.rowIds.length;
+    return {
+      ...rest,
+      checked,
+      onSelect: this.handleSelectAll,
+      id: 'select-all_data-table',
+      name: 'select-all_data-table',
+    };
+  };
+
+  getSelectedRows = () =>
+    this.state.rowIds.filter(id => {
+      const row = this.state.rowsById[id];
+      return row.isSelected;
+    });
+
+  handleSelectAll = () => {
+    this.setState(state => {
+      const { rowIds } = state;
+      const isSelected = this.getSelectedRows().length !== rowIds.length;
+      return {
+        rowsById: rowIds.reduce(
+          (acc, id) => ({
+            ...acc,
+            [id]: {
+              ...state.rowsById[id],
+              isSelected,
+            },
+          }),
+          {}
+        ),
+      };
+    });
+  };
+
+  handleSelectRow = rowId => () => {
+    this.setState(state => {
+      const row = state.rowsById[rowId];
+      return {
+        rowsById: {
+          ...state.rowsById,
+          [rowId]: {
+            ...row,
+            isSelected: !row.isSelected,
+          },
+        },
+      };
+    });
+  };
+
+  handleOnExpandRow = rowId => () => {
+    this.setState(state => {
+      const row = state.rowsById[rowId];
+      return {
+        rowsById: {
+          ...state.rowsById,
+          [rowId]: {
+            ...row,
+            isExpanded: !row.isExpanded,
+          },
+        },
+      };
+    });
+  };
+
   handleSortBy = headerKey => () => {
     this.setState(state =>
       getNextSortState(this.props, state, { key: headerKey })
@@ -128,20 +212,33 @@ export default class DataTable extends React.Component {
   render() {
     const { children, filterRows, headers, render } = this.props;
     const { filterInputValue, rowIds, rowsById, cellsById } = this.state;
-    const filteredRowIds = filterInputValue
-      ? filterRows({
-          rowIds,
-          headers,
-          cellsById,
-          inputValue: filterInputValue,
-        })
-      : rowIds;
+    const filteredRowIds =
+      typeof filterInputValue === 'string'
+        ? filterRows({
+            rowIds,
+            headers,
+            cellsById,
+            inputValue: filterInputValue,
+          })
+        : rowIds;
     const renderProps = {
+      // Data derived from state
       rows: denormalize(filteredRowIds, rowsById, cellsById),
       headers: this.props.headers,
+
+      // Prop accessors/getters
       getHeaderProps: this.getHeaderProps,
+      getRowProps: this.getRowProps,
+      getSelectionProps: this.getSelectionProps,
+
+      // Custom event handlers
       onInputChange: this.handleOnInputValueChange,
+
+      // Expose internal state change actions
       sortBy: headerKey => this.handleSortBy(headerKey)(),
+      selectAll: this.handleSelectAll,
+      selectRow: rowId => this.handleSelectRow(rowId)(),
+      expandRow: rowId => this.handleOnExpandRow(rowId)(),
     };
 
     if (render !== undefined) {

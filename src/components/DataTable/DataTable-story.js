@@ -9,9 +9,14 @@ import DataTable, {
   TableBody,
   TableCell,
   TableContainer,
+  TableExpandHeader,
+  TableExpandRow,
+  TableExpandedRow,
   TableHead,
   TableHeader,
   TableRow,
+  TableSelectAll,
+  TableSelectRow,
   TableToolbar,
   TableToolbarAction,
   TableToolbarContent,
@@ -216,6 +221,91 @@ storiesOf('DataTable', module)
                       <TableCell key={cell.id}>{cell.value}</TableCell>
                     ))}
                   </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
+        )}
+      />
+    )
+  )
+  .addWithInfo(
+    'with selection',
+    `
+      Data Tables
+    `,
+    () => (
+      <DataTable
+        rows={initialRows}
+        headers={headers}
+        render={({ rows, headers, getHeaderProps, getSelectionProps }) => (
+          <TableContainer title="DataTable">
+            <Table>
+              <TableHead>
+                <TableRow>
+                  <TableSelectAll {...getSelectionProps()} />
+                  {headers.map(header => (
+                    <TableHeader {...getHeaderProps({ header })}>
+                      {header.header}
+                    </TableHeader>
+                  ))}
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {rows.map(row => (
+                  <TableRow key={row.id}>
+                    <TableSelectRow {...getSelectionProps({ row })} />
+                    {row.cells.map(cell => (
+                      <TableCell key={cell.id}>{cell.value}</TableCell>
+                    ))}
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
+        )}
+      />
+    )
+  )
+  .addWithInfo(
+    'with expansion',
+    `
+      Data Tables
+    `,
+    () => (
+      <DataTable
+        rows={initialRows}
+        headers={headers}
+        render={({ rows, headers, getHeaderProps, getRowProps }) => (
+          <TableContainer title="DataTable with expansion">
+            <Table>
+              <TableHead>
+                <TableRow>
+                  <TableExpandHeader />
+                  {headers.map(header => (
+                    <TableHeader {...getHeaderProps({ header })}>
+                      {header.header}
+                    </TableHeader>
+                  ))}
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {rows.map(row => (
+                  <React.Fragment key={row.id}>
+                    <TableExpandRow {...getRowProps({ row })}>
+                      {row.cells.map(cell => (
+                        <TableCell key={cell.id}>{cell.value}</TableCell>
+                      ))}
+                    </TableExpandRow>
+                    {row.isExpanded && (
+                      <TableExpandedRow span={headers.length}>
+                        <TableCell colSpan={headers.length + 1}>
+                          <h1>Expandable row content</h1>
+                          <p>Description here</p>
+                        </TableCell>
+                      </TableExpandedRow>
+                    )}
+                  </React.Fragment>
                 ))}
               </TableBody>
             </Table>
