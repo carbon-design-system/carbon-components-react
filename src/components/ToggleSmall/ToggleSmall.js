@@ -61,17 +61,18 @@ const ToggleSmall = ({
 
 ToggleSmall.propTypes = {
   className: PropTypes.string,
+  /**
+   * `true` to make it toggled by default.
+   */
   defaultToggled: PropTypes.bool,
   onToggle: PropTypes.func,
   id: PropTypes.string.isRequired,
   toggled: PropTypes.bool,
-  small: PropTypes.bool,
   ariaLabel: PropTypes.string.isRequired,
 };
 
 ToggleSmall.defaultProps = {
   defaultToggled: false,
-  small: false,
   onToggle: () => {},
 };
 
