@@ -10,10 +10,6 @@ export default class ContentSwitcher extends React.Component {
     selectedIndex: PropTypes.number,
   };
 
-  static defaultProps = {
-    selectedIndex: 0,
-  };
-
   state = {
     selectedIndex: this.props.selectedIndex,
   };
@@ -24,7 +20,9 @@ export default class ContentSwitcher extends React.Component {
         index,
         onClick: this.handleChildChange,
         onKeyDown: this.handleChildChange,
-        selected: index === this.state.selectedIndex,
+        ...(typeof this.state.selectedIndex === 'number'
+          ? { selected: index === this.state.selectedIndex }
+          : {}),
       })
     );
   }
