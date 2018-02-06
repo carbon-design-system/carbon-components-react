@@ -8,7 +8,7 @@ describe('ContentSwitcher', () => {
     const wrapper = shallow(
       <ContentSwitcher onChange={() => {}} className="extra-class">
         <Switch kind="anchor" text="one" />
-        <Switch kind="anchor" text="two" />
+        <Switch kind="anchor" text="two" selected />
       </ContentSwitcher>
     );
 
@@ -22,13 +22,32 @@ describe('ContentSwitcher', () => {
       expect(children.length).toEqual(2);
     });
 
-    it('should default "selected" property to true on first child', () => {
-      expect(children.first().props().selected).toEqual(true);
-      expect(children.last().props().selected).toEqual(false);
+    it('should honor selected property on selected child when selectedIndex is unspecified', () => {
+      expect(children.first().props().selected).toEqual(false);
+      expect(children.last().props().selected).toEqual(true);
     });
 
     it('should apply extra classes passed to it', () => {
       expect(wrapper.hasClass('extra-class')).toEqual(true);
+    });
+  });
+
+  describe('When selectedIndex and selected proprty on child are set', () => {
+    const wrapper = shallow(
+      <ContentSwitcher
+        selectedIndex={0}
+        onChange={() => {}}
+        className="extra-class">
+        <Switch kind="anchor" text="one" />
+        <Switch kind="anchor" text="two" selected />
+      </ContentSwitcher>
+    );
+
+    const children = wrapper.find(Switch);
+
+    it('should override selected property on child', () => {
+      expect(children.first().props().selected).toEqual(true);
+      expect(children.last().props().selected).toEqual(false);
     });
   });
 
