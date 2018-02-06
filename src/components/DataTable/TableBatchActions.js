@@ -5,15 +5,15 @@ import React from 'react';
 const TableBatchActions = ({
   className,
   children,
-  showBatchActions,
+  shouldShowBatchActions,
   totalSelected,
-  handleClick,
+  onCancel,
   ...other
 }) => {
   const batchActionsClasses = cx(
     {
       'bx--batch-actions': true,
-      'bx--batch-actions--active': showBatchActions,
+      'bx--batch-actions--active': shouldShowBatchActions,
     },
     className
   );
@@ -26,7 +26,7 @@ const TableBatchActions = ({
           <span>{totalSelected}</span>{' '}
           {totalSelected > 1 ? 'items selected' : 'item selected'}
         </p>
-        <button className="bx--batch-summary__cancel" onClick={handleClick}>
+        <button className="bx--batch-summary__cancel" onClick={onCancel}>
           Cancel
         </button>
       </div>
@@ -37,9 +37,9 @@ const TableBatchActions = ({
 TableBatchActions.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
-  showBatchActions: PropTypes.bool,
+  shouldShowBatchActions: PropTypes.bool,
   totalSelected: PropTypes.number,
-  handleClick: PropTypes.func,
+  onCancel: PropTypes.func,
 };
 
 export default TableBatchActions;

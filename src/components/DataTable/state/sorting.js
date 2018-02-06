@@ -17,10 +17,10 @@ export const initialSortState = sortStates.NONE;
  * Utility used to get the next sort state given the following pieces of
  * information:
  *
- * @param {String} prevHeader the value of the previous header
- * @param {String} header the value of the currently selected header
- * @param {String} prevState the previous sort state of the table
- * @returns {String}
+ * @param {string} prevHeader the value of the previous header
+ * @param {string} header the value of the currently selected header
+ * @param {string} prevState the previous sort state of the table
+ * @returns {string}
  */
 export const getNextSortDirection = (prevHeader, header, prevState) => {
   // If the previous header is equivalent to the current header, we know that we
@@ -46,18 +46,18 @@ export const getNextSortDirection = (prevHeader, header, prevState) => {
  * header key.
  *
  * @param {Object} props
- * @param {String} props.locale The current locale
+ * @param {string} props.locale The current locale
  * @param {Function} props.sortRows Method to handle sorting a collection of
  * rows
  * @param {Object} state
- * @param {Array[String]} state.rowIds Array of row ids
+ * @param {Array<string>} state.rowIds Array of row ids
  * @param {Object} state.cellsById Lookup object for cells by id
- * @param {String} state.sortDirection The current sort direction
- * @param {String} state.sortHeaderKey The current sort header ky
- * @param {Array[String]} state.initialRowOrder Initial row order for the
+ * @param {string} state.sortDirection The current sort direction
+ * @param {string} state.sortHeaderKey The current sort header ky
+ * @param {Array<string>} state.initialRowOrder Initial row order for the
  * current set of rows
  * @param {Object} options
- * @param {String} options.key the key for the given header we are derving the
+ * @param {string} options.key the key for the given header we are derving the
  * next sort state for
  * @return {Object}
  */

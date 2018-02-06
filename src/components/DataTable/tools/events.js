@@ -4,7 +4,7 @@
  * iterate through the given functions until `preventDefault` is called on the
  * given event.
  *
- * @param {Array[Function]} fns array of functions to apply to the event
+ * @param {Array<Function>} fns array of functions to apply to the event
  * @returns {Function}
  */
 export const composeEventHandlers = fns => (event, ...args) => {

@@ -6,11 +6,11 @@ import { getCellId } from './cells';
  * individual cell values for a row. Then, we go through each cell value and see
  * if any of them includes the given inputValue.
  *
- * @param {Array[string]} rowIds array of all the row ids in the table
- * @param {Array[Object]} headers
+ * @param {Array<string>} rowIds array of all the row ids in the table
+ * @param {Array<Object>} headers
  * @param {Object} cellsById object containing a map of cell id to cell
  * @param {string} inputValue the current input value in the Table Search
- * @returns {Array[string]} rowIds
+ * @returns {Array<string>} rowIds
  */
 export const defaultFilterRows = ({ rowIds, headers, cellsById, inputValue }) =>
   rowIds.filter(rowId =>

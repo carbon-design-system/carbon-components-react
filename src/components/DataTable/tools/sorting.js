@@ -7,10 +7,10 @@ import { sortStates } from '../state/sorting';
  * apply the default sort algorithm for those types. Otherwise, it defaults to a
  * string conversion.
  *
- * @param {Number|String} a
- * @param {Number|String} b
- * @param {String} locale
- * @returns {Number}
+ * @param {number|string} a
+ * @param {number|string} b
+ * @param {string} locale
+ * @returns {number}
  */
 export const compare = (a, b, locale = 'en') => {
   if (typeof a === 'number' && typeof b === 'number') {
@@ -28,10 +28,10 @@ export const compare = (a, b, locale = 'en') => {
  * Use the built-in `localeCompare` function available on strings to compare two
  * srints.
  *
- * @param {String} a
- * @param {String} b
- * @param {String} locale
- * @returns {Number}
+ * @param {string} a
+ * @param {string} b
+ * @param {string} locale
+ * @returns {number}
  */
 export const compareStrings = (a, b, locale = 'en') => {
   return a.localeCompare(b, locale, { numeric: true });
@@ -44,13 +44,13 @@ export const compareStrings = (a, b, locale = 'en') => {
  * into our local `compareStrings` method, including the locale where
  * appropriate.
  *
- * @param {Array[String]} rowIds array of all the row ids in the table
+ * @param {Array[string]} rowIds array of all the row ids in the table
  * @param {Object} cellsById object containing a mapping of cell id to cell
- * @param {String} direction the sort direction used to determine the order the
+ * @param {string} direction the sort direction used to determine the order the
  * comparison is called in
- * @param {String} key the header key that we use to lookup the cell
- * @param {String?} locale optional locale used in the comparison function
- * @returns {Array[String]} array of sorted rowIds
+ * @param {string} key the header key that we use to lookup the cell
+ * @param {string} [locale] optional locale used in the comparison function
+ * @returns {Array[string]} array of sorted rowIds
  */
 export const defaultSortRows = ({
   rowIds,

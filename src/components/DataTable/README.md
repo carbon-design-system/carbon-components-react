@@ -568,6 +568,8 @@ In practice, this looks like the following:
 
 All you need to do to make sure filtering is hooked up is provide the `onInputChange` handler as the `onChange` prop to `TableToolbarSearch` in your `TableToolbar` component.
 
+## Batch Actions
+
 ## Attribution
 
 This `README.md` file is adapted from the [Downshift `README.md`](https://github.com/paypal/downshift/blob/master/README.md) file.

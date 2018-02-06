@@ -81,6 +81,9 @@ const headers = [
   },
 ];
 
+const batchActionClick = selectedRows => () =>
+  action('batch action click')(selectedRows);
+
 storiesOf('DataTable', module)
   .addWithInfo(
     'default',
@@ -107,11 +110,54 @@ storiesOf('DataTable', module)
       <DataTable
         rows={initialRows}
         headers={headers}
-        render={({ rows, headers, getHeaderProps }) => (
-          <TableContainer title="DataTable">
+        render={({
+          rows,
+          headers,
+          getHeaderProps,
+          getSelectionProps,
+          getBatchActionProps,
+          onInputChange,
+          selectedRows,
+        }) => (
+          <TableContainer title="DataTable with batch actions">
+            <TableToolbar>
+              <TableBatchActions {...getBatchActionProps()}>
+                <TableBatchAction onClick={batchActionClick(selectedRows)}>
+                  Ghost
+                </TableBatchAction>
+                <TableBatchAction onClick={batchActionClick(selectedRows)}>
+                  Ghost
+                </TableBatchAction>
+                <TableBatchAction onClick={batchActionClick(selectedRows)}>
+                  Ghost
+                </TableBatchAction>
+              </TableBatchActions>
+              <TableToolbarSearch onChange={onInputChange} />
+              <TableToolbarContent>
+                <TableToolbarAction
+                  iconName="download"
+                  iconDescription="Download"
+                  onClick={action('TableToolbarAction - Download')}
+                />
+                <TableToolbarAction
+                  iconName="edit"
+                  iconDescription="Edit"
+                  onClick={action('TableToolbarAction - Edit')}
+                />
+                <TableToolbarAction
+                  iconName="settings"
+                  iconDescription="Settings"
+                  onClick={action('TableToolbarAction - Settings')}
+                />
+                <Button onClick={action('Add new row')} small kind="primary">
+                  Add new
+                </Button>
+              </TableToolbarContent>
+            </TableToolbar>
             <Table>
               <TableHead>
                 <TableRow>
+                  <TableSelectAll {...getSelectionProps()} />
                   {headers.map(header => (
                     <TableHeader {...getHeaderProps({ header })}>
                       {header.header}
@@ -122,6 +168,7 @@ storiesOf('DataTable', module)
               <TableBody>
                 {rows.map(row => (
                   <TableRow key={row.id}>
+                    <TableSelectRow {...getSelectionProps({ row })} />
                     {row.cells.map(cell => (
                       <TableCell key={cell.id}>{cell.value}</TableCell>
                     ))}
@@ -306,6 +353,96 @@ storiesOf('DataTable', module)
                       </TableExpandedRow>
                     )}
                   </React.Fragment>
+                ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
+        )}
+      />
+    )
+  )
+  .addWithInfo(
+    'with batch actions',
+    `
+      Uses <TableToolbar> alongside <TableBatchActions> and <TableBatchAction>
+      to create the toolbar and placeholder for where the batch action menu will
+      be displayed.
+
+      You can use the \`getBatchActionProps\` prop getter on the
+      <TableBatchActions> component to have it wire up the ghost menu for you.
+
+      Individual <TableBatchAction> components take in any kind of event handler
+      prop that you would expect to use, like \`onClick\`. You can use these
+      alongside the \`selectedRows\` property in your \`render\` prop function
+      to pass along this info to your batch action handler.
+    `,
+    () => (
+      <DataTable
+        rows={initialRows}
+        headers={headers}
+        render={({
+          rows,
+          headers,
+          getHeaderProps,
+          getSelectionProps,
+          getBatchActionProps,
+          onInputChange,
+          selectedRows,
+        }) => (
+          <TableContainer title="DataTable with batch actions">
+            <TableToolbar>
+              <TableBatchActions {...getBatchActionProps()}>
+                <TableBatchAction onClick={batchActionClick(selectedRows)}>
+                  Ghost
+                </TableBatchAction>
+                <TableBatchAction onClick={batchActionClick(selectedRows)}>
+                  Ghost
+                </TableBatchAction>
+                <TableBatchAction onClick={batchActionClick(selectedRows)}>
+                  Ghost
+                </TableBatchAction>
+              </TableBatchActions>
+              <TableToolbarSearch onChange={onInputChange} />
+              <TableToolbarContent>
+                <TableToolbarAction
+                  iconName="download"
+                  iconDescription="Download"
+                  onClick={action('TableToolbarAction - Download')}
+                />
+                <TableToolbarAction
+                  iconName="edit"
+                  iconDescription="Edit"
+                  onClick={action('TableToolbarAction - Edit')}
+                />
+                <TableToolbarAction
+                  iconName="settings"
+                  iconDescription="Settings"
+                  onClick={action('TableToolbarAction - Settings')}
+                />
+                <Button onClick={action('Add new row')} small kind="primary">
+                  Add new
+                </Button>
+              </TableToolbarContent>
+            </TableToolbar>
+            <Table>
+              <TableHead>
+                <TableRow>
+                  <TableSelectAll {...getSelectionProps()} />
+                  {headers.map(header => (
+                    <TableHeader {...getHeaderProps({ header })}>
+                      {header.header}
+                    </TableHeader>
+                  ))}
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {rows.map(row => (
+                  <TableRow key={row.id}>
+                    <TableSelectRow {...getSelectionProps({ row })} />
+                    {row.cells.map(cell => (
+                      <TableCell key={cell.id}>{cell.value}</TableCell>
+                    ))}
+                  </TableRow>
                 ))}
               </TableBody>
             </Table>

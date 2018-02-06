@@ -8,7 +8,7 @@
  * contains the results of mapping over the rows cells and getting individual
  * cell info.
  *
- * @param {Array[String]} rowIds array of row ids in the table
+ * @param {Array<string>} rowIds array of row ids in the table
  * @param {Object} rowsById object containing lookups for rows by id
  * @param {Object} cellsById object containing lookups for cells by id
  */

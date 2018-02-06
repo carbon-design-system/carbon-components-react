@@ -99,6 +99,10 @@ export default class DataTable extends React.Component {
       initialRowOrder: rowIds.slice(),
 
       filterInputValue: null,
+
+      // Optionally state field to indicate whether a consumer should show a
+      // batch actions menu
+      shouldShowBatchActions: false,
     };
   };
 
@@ -159,7 +163,7 @@ export default class DataTable extends React.Component {
    * applicable. Most often used to indicate selection status of the table or
    * for a specific row.
    *
-   * @param {Object?} row an optional row that we want to access the props for
+   * @param {Object} [row] an optional row that we want to access the props for
    * @returns {Object}
    */
   getSelectionProps = ({ row, ...rest } = {}) => {
@@ -185,9 +189,20 @@ export default class DataTable extends React.Component {
     };
   };
 
+  getBatchActionProps = (props = {}) => {
+    const { shouldShowBatchActions } = this.state;
+    const totalSelected = this.getSelectedRows().length;
+    return {
+      ...props,
+      shouldShowBatchActions,
+      totalSelected,
+      onCancel: this.handleOnCancel,
+    };
+  };
+
   /**
    * Helper utility to get all the currently selected rows
-   * @return {Array[string]} the array of rowIds that are currently selected
+   * @return {Array<string>} the array of rowIds that are currently selected
    */
   getSelectedRows = () =>
     this.state.rowIds.filter(id => {
@@ -203,6 +218,10 @@ export default class DataTable extends React.Component {
    */
   getTablePrefix = () => `data-table-${this.instanceId}`;
 
+  handleOnCancel = () => {
+    this.setState({ shouldShowBatchActions: false });
+  };
+
   /**
    * Handler for toggling the selection state of all rows in the database
    */
@@ -215,6 +234,7 @@ export default class DataTable extends React.Component {
        */
       const isSelected = this.getSelectedRows().length !== rowIds.length;
       return {
+        shouldShowBatchActions: isSelected,
         rowsById: rowIds.reduce(
           (acc, id) => ({
             ...acc,
@@ -238,7 +258,19 @@ export default class DataTable extends React.Component {
   handleOnSelectRow = rowId => () => {
     this.setState(state => {
       const row = state.rowsById[rowId];
+      const selectedRows = state.rowIds.filter(id => {
+        return state.rowsById[id].isSelected;
+      }).length;
+      // Predict the length of the selected rows after this change occurs
+      const selectedRowsCount = !row.isSelected
+        ? selectedRows + 1
+        : selectedRows - 1;
       return {
+        // Basic assumption here is that we want to show the batch action bar if
+        // the row is being selected. If it's being unselected, then see if we
+        // have a non-zero number of selected rows that batch actions could
+        // still apply to
+        shouldShowBatchActions: !row.isSelected || selectedRowsCount > 0,
         rowsById: {
           ...state.rowsById,
           [rowId]: {
@@ -315,6 +347,7 @@ export default class DataTable extends React.Component {
       getHeaderProps: this.getHeaderProps,
       getRowProps: this.getRowProps,
       getSelectionProps: this.getSelectionProps,
+      getBatchActionProps: this.getBatchActionProps,
 
       // Custom event handlers
       onInputChange: this.handleOnInputValueChange,
