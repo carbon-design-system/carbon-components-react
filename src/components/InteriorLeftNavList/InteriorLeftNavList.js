@@ -105,7 +105,7 @@ export default class InteriorLeftNavList extends Component {
         <ul
           role="menu"
           className="left-nav-list left-nav-list--nested"
-          aria-hidden>
+          aria-label={title}>
           {newChildren}
         </ul>
       </li>
