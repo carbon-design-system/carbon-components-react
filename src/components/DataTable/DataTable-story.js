@@ -298,7 +298,7 @@ storiesOf('DataTable', module)
                       ))}
                     </TableExpandRow>
                     {row.isExpanded && (
-                      <TableExpandedRow span={headers.length}>
+                      <TableExpandedRow>
                         <TableCell colSpan={headers.length + 1}>
                           <h1>Expandable row content</h1>
                           <p>Description here</p>
