@@ -30,7 +30,7 @@
   - [Expansion](#expansion)
     - [Programmatic expansion](#programmatic-expansion)
   - [Selection](#selection)
-    - [Programmatic Selection](#programmatic-selection)
+    - [Programmatic selection](#programmatic-selection)
   - [Filtering](#filtering)
 - [Attribution](#attribution)
 
@@ -498,7 +498,7 @@ Some items to note:
 
 You can access all the selected rows through the `selectedRows` property passed into your `render` prop function.
 
-#### Programmatic Selection
+#### Programmatic selection
 
 You can use either of the following actions from your `render` prop function to update the selection status of a row:
 
