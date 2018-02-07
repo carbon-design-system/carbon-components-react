@@ -119,7 +119,7 @@ storiesOf('DataTable', module)
           onInputChange,
           selectedRows,
         }) => (
-          <TableContainer title="DataTable with batch actions">
+          <TableContainer title="DataTable">
             <TableToolbar>
               <TableBatchActions {...getBatchActionProps()}>
                 <TableBatchAction onClick={batchActionClick(selectedRows)}>

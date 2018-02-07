@@ -33,7 +33,7 @@
   - [Selection](#selection)
     - [Programmatic selection](#programmatic-selection)
   - [Filtering](#filtering)
-- [Batch Actions](#batch-actions)
+  - [Batch Actions](#batch-actions)
 - [Attribution](#attribution)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -567,7 +567,7 @@ In practice, this looks like the following:
 
 All you need to do to make sure filtering is hooked up is provide the `onInputChange` handler as the `onChange` prop to `TableToolbarSearch` in your `TableToolbar` component.
 
-## Batch Actions
+### Batch Actions
 
 ## Attribution
 
