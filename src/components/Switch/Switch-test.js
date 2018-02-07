@@ -4,8 +4,12 @@ import { shallow } from 'enzyme';
 
 describe('Switch', () => {
   describe('component rendering', () => {
-    const buttonWrapper = shallow(<Switch kind="button" text="test" />);
-    const linkWrapper = shallow(<Switch kind="anchor" text="test" />);
+    const buttonWrapper = shallow(
+      <Switch kind="button" icon={<svg />} text="test" />
+    );
+    const linkWrapper = shallow(
+      <Switch kind="anchor" icon={<svg />} text="test" />
+    );
 
     it('should render a button when kind is button', () => {
       expect(buttonWrapper.is('button')).toEqual(true);
@@ -18,6 +22,10 @@ describe('Switch', () => {
     it('should have the expected text', () => {
       expect(buttonWrapper.text()).toEqual('test');
       expect(linkWrapper.text()).toEqual('test');
+    });
+    it('should have the expected icon', () => {
+      expect(buttonWrapper.find('svg').length).toEqual(1);
+      expect(linkWrapper.find('svg').length).toEqual(1);
     });
 
     it('should have the expected class', () => {
