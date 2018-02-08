@@ -30,7 +30,8 @@
   ],
   "files": [
     "lib/**/*",
-    "es/**/*"
+    "es/**/*",
+    "umd/**/*"
   ],
   "contributors": [
     {
@@ -66,12 +67,16 @@
     ],
     "plugins": [
       "react",
+      "jsdoc",
       "jsx-a11y"
     ],
     "rules": {
       "react/jsx-uses-vars": 1,
       "react/jsx-uses-react": 1,
       "react/no-find-dom-node": 1,
+      "jsdoc/check-param-names": 2,
+      "jsdoc/check-tag-names": 2,
+      "jsdoc/check-types": 2,
       "jsx-a11y/no-static-element-interactions": 1,
       "jsx-a11y/no-noninteractive-element-interactions": 1,
       "jsx-a11y/click-events-have-key-events": 1,
@@ -99,6 +104,13 @@
       "es6": true,
       "jest": true,
       "jasmine": true
+    },
+    "settings": {
+      "jsdoc": {
+        "tagNamePreference": {
+          "augments": "extends"
+        }
+      }
     }
   },
   "peerDependencies": {
@@ -119,6 +131,7 @@
   "devDependencies": {
     "@babel/cli": "^7.0.0-beta.38",
     "@babel/core": "^7.0.0-beta.38",
+    "@babel/plugin-external-helpers": "^7.0.0-beta.38",
     "@babel/plugin-proposal-class-properties": "^7.0.0-beta.38",
     "@babel/preset-env": "^7.0.0-beta.38",
     "@babel/preset-react": "^7.0.0-beta.38",
@@ -134,6 +147,8 @@
     "bowser": "^1.6.1",
     "carbon-components": "^8.7.1",
     "carbon-icons": "^6.1.0",
+    "chalk": "^2.3.0",
+    "cli-table": "^0.3.0",
     "commitizen": "^2.9.5",
     "css-loader": "^0.28.4",
     "cz-conventional-changelog-components": "^1.0.0",
@@ -141,9 +156,11 @@
     "enzyme-adapter-react-16": "^1.1.0",
     "enzyme-to-json": "^3.1.2",
     "eslint": "^4.11.0",
+    "eslint-plugin-jsdoc": "^3.3.0",
     "eslint-plugin-jsx-a11y": "^6.0.2",
     "eslint-plugin-react": "^7.4.0",
     "gh-pages": "1.0.0",
+    "gzip-size": "^4.1.0",
     "husky": "^0.14.3",
     "jest": "^22.1.0",
     "lcov2badge": "^0.1.0",
@@ -159,6 +176,13 @@
     "react-test-renderer": "^16.1.0",
     "requestanimationframe": "^0.0.23",
     "rimraf": "^2.6.1",
+    "rollup": "^0.55.0",
+    "rollup-plugin-babel": "^4.0.0-beta.1",
+    "rollup-plugin-commonjs": "^8.2.0",
+    "rollup-plugin-node-resolve": "^3.0.0",
+    "rollup-plugin-replace": "^2.0.0",
+    "rollup-plugin-sizes": "^0.4.0",
+    "rollup-plugin-uglify": "^3.0.0",
     "sass-loader": "^6.0.5",
     "semantic-release": "^12.2.2",
     "storybook-addon-a11y": "^3.0.0",
@@ -259,5 +283,6 @@
     "snapshotSerializers": [
       "enzyme-to-json/serializer"
     ]
-  }
+  },
+  "bundleSizeThreshold": 60000
 }
