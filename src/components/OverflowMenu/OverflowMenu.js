@@ -35,6 +35,7 @@ export default class OverflowMenu extends Component {
     flipped: false,
     floatingMenu: false,
     onClick: () => {},
+    onKeyDown: () => {},
     tabIndex: 0,
     menuOffset: { top: 0, left: 60.5 },
     menuOffsetFlip: { top: 0, left: -60.5 },
@@ -83,6 +84,13 @@ export default class OverflowMenu extends Component {
   handleClick = evt => {
     this.setState({ open: !this.state.open });
     this.props.onClick(evt);
+  };
+
+  handleKeyDown = evt => {
+    if (evt.which === 40) {
+      this.setState({ open: !this.state.open });
+      this.props.onClick(evt);
+    }
   };
 
   handleKeyPress = evt => {
@@ -154,12 +162,14 @@ export default class OverflowMenu extends Component {
     const wrappedMenuBody = !floatingMenu ? (
       menuBody
     ) : (
-      <FloatingMenu
-        menuPosition={this.state.menuPosition}
-        menuDirection="bottom"
-        menuOffset={flipped ? menuOffsetFlip : menuOffset}>
-        {menuBody}
-      </FloatingMenu>
+      <div role="menuitem">
+        <FloatingMenu
+          menuPosition={this.state.menuPosition}
+          menuDirection="bottom"
+          menuOffset={flipped ? menuOffsetFlip : menuOffset}>
+          {menuBody}
+        </FloatingMenu>
+      </div>
     );
 
     return (
@@ -167,6 +177,8 @@ export default class OverflowMenu extends Component {
         <div
           {...other}
           role="button"
+          aria-haspopup="menu"
+          aria-expanded={this.state.open}
           className={overflowMenuClasses}
           onKeyDown={this.handleKeyPress}
           aria-label={ariaLabel}
@@ -175,6 +187,7 @@ export default class OverflowMenu extends Component {
           ref={this.bindMenuEl}>
           <Icon
             onClick={this.handleClick}
+            onKeyDown={this.handleKeyDown}
             className={overflowMenuIconClasses}
             name={iconName}
             description={iconDescription}
