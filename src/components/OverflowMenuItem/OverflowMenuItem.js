@@ -30,10 +30,9 @@ const OverflowMenuItem = ({
   };
 
   const item = (
-    <li className={overflowMenuItemClasses}>
+    <li className={overflowMenuItemClasses} role="menuitem">
       <button
         {...other}
-        type="button"
         className={overflowMenuBtnClasses}
         onClick={handleClick}>
         {itemText}
@@ -59,6 +58,7 @@ OverflowMenuItem.propTypes = {
   onMouseLeave: PropTypes.func,
   onMouseUp: PropTypes.func,
   closeMenu: PropTypes.func,
+  tabIndex: PropTypes.number,
 };
 
 OverflowMenuItem.defaultProps = {
