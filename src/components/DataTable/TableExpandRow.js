@@ -1,4 +1,5 @@
 import cx from 'classnames';
+import PropTypes from 'prop-types';
 import React from 'react';
 import Icon from '../Icon';
 import TableCell from './TableCell';
@@ -31,6 +32,13 @@ const TableExpandRow = ({
       {children}
     </tr>
   );
+};
+
+TableExpandRow.propTypes = {
+  className: PropTypes.string,
+  children: PropTypes.node,
+  isExpanded: PropTypes.bool.isRequired,
+  onExpand: PropTypes.func.isRequired,
 };
 
 export default TableExpandRow;

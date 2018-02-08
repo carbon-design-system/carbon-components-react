@@ -21,7 +21,11 @@ exports[`DataTable should render 1`] = `
       "calls": Array [
         Array [
           Object {
+            "expandRow": [Function],
+            "getBatchActionProps": [Function],
             "getHeaderProps": [Function],
+            "getRowProps": [Function],
+            "getSelectionProps": [Function],
             "headers": Array [
               Object {
                 "header": "Field A",
@@ -54,9 +58,7 @@ exports[`DataTable should render 1`] = `
                   },
                 ],
                 "id": "b",
-                "isExpandable": null,
                 "isExpanded": false,
-                "isSelectable": false,
                 "isSelected": false,
               },
               Object {
@@ -79,9 +81,7 @@ exports[`DataTable should render 1`] = `
                   },
                 ],
                 "id": "a",
-                "isExpandable": null,
                 "isExpanded": false,
-                "isSelectable": false,
                 "isSelected": false,
               },
               Object {
@@ -104,12 +104,13 @@ exports[`DataTable should render 1`] = `
                   },
                 ],
                 "id": "c",
-                "isExpandable": null,
                 "isExpanded": false,
-                "isSelectable": false,
                 "isSelected": false,
               },
             ],
+            "selectAll": [Function],
+            "selectRow": [Function],
+            "selectedRows": Array [],
             "sortBy": [Function],
           },
         ],
@@ -135,7 +136,7 @@ exports[`DataTable should render 1`] = `
       },
     ]
   }
-  sortRows={[Function]}
+  sortRow={[Function]}
 >
   <TableContainer
     title="DataTable with toolbar"
