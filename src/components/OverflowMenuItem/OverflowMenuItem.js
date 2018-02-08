@@ -58,7 +58,6 @@ OverflowMenuItem.propTypes = {
   onMouseLeave: PropTypes.func,
   onMouseUp: PropTypes.func,
   closeMenu: PropTypes.func,
-  tabIndex: PropTypes.number,
 };
 
 OverflowMenuItem.defaultProps = {

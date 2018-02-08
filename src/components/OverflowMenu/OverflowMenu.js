@@ -177,7 +177,7 @@ export default class OverflowMenu extends Component {
         <div
           {...other}
           role="button"
-          aria-haspopup="menu"
+          aria-haspopup
           aria-expanded={this.state.open}
           className={overflowMenuClasses}
           onKeyDown={this.handleKeyPress}
