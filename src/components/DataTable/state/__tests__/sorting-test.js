@@ -1,11 +1,22 @@
-import {
-  sortStates,
-  initialSortState,
-  getNextSortDirection,
-  getNextSortState,
-} from '../sorting';
-
 describe('sorting state', () => {
+  let sorting;
+  let sortStates;
+  let initialSortState;
+  let getNextSortDirection;
+  let getNextSortState;
+
+  beforeEach(() => {
+    jest.mock('../../tools/sorting', () => ({
+      sortRows: jest.fn(() => ['b', 'a', 'c']),
+    }));
+
+    sorting = require('../sorting');
+    sortStates = sorting.sortStates;
+    initialSortState = sorting.initialSortState;
+    getNextSortDirection = sorting.getNextSortDirection;
+    getNextSortState = sorting.getNextSortState;
+  });
+
   describe('sortStates', () => {
     it('should describe the available sort states', () => {
       expect(sortStates).toMatchSnapshot();
@@ -91,7 +102,7 @@ describe('sorting state', () => {
     beforeEach(() => {
       mockProps = {
         locale: 'en',
-        sortRows: jest.fn(() => ['b', 'a', 'c']),
+        sortRow: jest.fn(),
       };
       mockState = {
         rowIds: ['b', 'a', 'c'],
@@ -129,6 +140,7 @@ describe('sorting state', () => {
         rowIds: ['b', 'a', 'c'],
       });
     });
+
     it('should iterate through the sort order for the same header key', () => {
       const sortHeaderKey = 'a';
       const nextState1 = getNextSortState(mockProps, mockState, {

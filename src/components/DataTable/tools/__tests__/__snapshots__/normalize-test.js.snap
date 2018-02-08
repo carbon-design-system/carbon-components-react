@@ -86,9 +86,7 @@ Object {
       "a:fieldC",
     ],
     "id": "a",
-    "isExpandable": null,
     "isExpanded": false,
-    "isSelectable": false,
     "isSelected": false,
   },
   "b": Object {
@@ -98,9 +96,7 @@ Object {
       "b:fieldC",
     ],
     "id": "b",
-    "isExpandable": null,
     "isExpanded": false,
-    "isSelectable": false,
     "isSelected": false,
   },
   "c": Object {
@@ -110,9 +106,7 @@ Object {
       "c:fieldC",
     ],
     "id": "c",
-    "isExpandable": null,
     "isExpanded": false,
-    "isSelectable": false,
     "isSelected": false,
   },
 }

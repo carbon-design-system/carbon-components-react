@@ -67,6 +67,5 @@ describe('DataTable.TableExpandRow', () => {
     expect(expandedWrapper.find('TableCell').prop('data-previous-value')).toBe(
       'collapsed'
     );
-    expect(expandedWrapper).toMatchSnapshot();
   });
 });
