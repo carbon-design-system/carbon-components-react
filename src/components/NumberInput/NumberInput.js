@@ -53,6 +53,7 @@ export default class NumberInput extends Component {
 
   handleChange = evt => {
     if (!this.props.disabled) {
+      evt.persist();
       this.setState(
         {
           value: evt.target.value,
@@ -77,7 +78,7 @@ export default class NumberInput extends Component {
 
     if (!disabled && conditional) {
       value = direction === 'down' ? value - step : value + step;
-
+      evt.persist();
       this.setState(
         {
           value,
