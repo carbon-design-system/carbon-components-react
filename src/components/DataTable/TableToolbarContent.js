@@ -1,6 +1,3 @@
-import cx from 'classnames';
-import PropTypes from 'prop-types';
-import React from 'react';
 import wrapComponent from '../../tools/wrapComponent';
 
 const TableToolbarContent = wrapComponent({

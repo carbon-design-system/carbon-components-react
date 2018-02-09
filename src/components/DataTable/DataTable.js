@@ -5,7 +5,7 @@ import { composeEventHandlers } from './tools/events';
 import denormalize from './tools/denormalize';
 import normalize from './tools/normalize';
 import { defaultFilterRows } from './tools/filter';
-import { defaultSortRows, defaultSortRow } from './tools/sorting';
+import { defaultSortRow } from './tools/sorting';
 import setupGetInstanceId from './tools/instanceId';
 
 const getInstanceId = setupGetInstanceId();
@@ -83,7 +83,7 @@ export default class DataTable extends React.Component {
    * Currently, it's being used as a way to normalize the incoming data that we
    * are receiving for rows
    */
-  static getDerivedStateFromProps = (props, prevState) => {
+  static getDerivedStateFromProps = props => {
     const { rowIds, rowsById, cellsById } = normalize(
       props.rows,
       props.headers
@@ -108,12 +108,12 @@ export default class DataTable extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = DataTable.getDerivedStateFromProps(props, null);
+    this.state = DataTable.getDerivedStateFromProps(props);
     this.instanceId = getInstanceId();
   }
 
   componentWillReceiveProps(nextProps) {
-    const nextState = DataTable.getDerivedStateFromProps(nextProps, this.state);
+    const nextState = DataTable.getDerivedStateFromProps(nextProps);
     if (nextState) {
       this.setState(nextState);
     }

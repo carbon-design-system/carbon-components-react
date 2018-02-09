@@ -1,5 +1,3 @@
-import cx from 'classnames';
-import PropTypes from 'prop-types';
 import React from 'react';
 import omit from 'lodash.omit';
 

@@ -28,12 +28,12 @@ exports[`DataTable.TableSelectAll should render 1`] = `
                     className="bx--checkbox"
                     id="id"
                     name="select-all"
+                    onClick={[MockFunction]}
                     type="checkbox"
                   />
                   <label
                     className="bx--checkbox-label"
                     htmlFor="id"
-                    onClick={[MockFunction]}
                   />
                 </InlineCheckbox>
               </th>

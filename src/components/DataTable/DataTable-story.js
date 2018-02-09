@@ -3,7 +3,6 @@ import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import DataTable, {
   Table,
-  TableActionList,
   TableBatchAction,
   TableBatchActions,
   TableBody,
@@ -87,6 +86,7 @@ const batchActionClick = selectedRows => () =>
 storiesOf('DataTable', module)
   .addWithInfo(
     'default',
+    /* eslint-disable no-useless-escape */
     `
       Data Tables are used to represent a collection of resources, displaying a
       subset of their fields in columns, or headers. The \`DataTable\` component
@@ -106,6 +106,7 @@ storiesOf('DataTable', module)
       View the source of this story for more information, or checkout the
       README for this component in the \`carbon-components-react\` repo.
     `,
+    /* eslint-enable no-useless-escape */
     () => (
       <DataTable
         rows={initialRows}

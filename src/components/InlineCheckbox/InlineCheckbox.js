@@ -9,13 +9,10 @@ const InlineCheckbox = ({ id, checked, name, onClick, onKeyDown }) => (
       type="checkbox"
       name={name}
       checked={checked}
-    />
-    <label
       onClick={onClick}
       onKeyDown={onKeyDown}
-      htmlFor={id}
-      className="bx--checkbox-label"
     />
+    <label htmlFor={id} className="bx--checkbox-label" />
   </React.Fragment>
 );
 

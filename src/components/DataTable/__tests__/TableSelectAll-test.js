@@ -38,7 +38,7 @@ describe('DataTable.TableSelectAll', () => {
         </TableHead>
       </Table>
     );
-    wrapper.find('InlineCheckbox label').simulate('click');
+    wrapper.find('InlineCheckbox input').simulate('click');
     expect(mockProps.onSelect).toHaveBeenCalledTimes(1);
   });
 });
