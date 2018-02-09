@@ -86,7 +86,8 @@ const {
 // Inside of your component's `render` method
 function App() {
   return (
-    <DataTable rows={initialRows}
+    <DataTable
+      rows={initialRows}
       headers={headers}
       render={({ rows, headers, getHeaderProps }) => (
         <TableContainer title="DataTable">
@@ -258,7 +259,7 @@ const renderProp = ({ rows, headers, getHeaderProps }) => (
 );
 ```
 
-The types of arguments that this function are as follows:
+The types of arguments that this function has are as follows:
 
 - [Prop Getters](#prop-getters)
 - [Actions](#actions)
@@ -568,6 +569,101 @@ In practice, this looks like the following:
 All you need to do to make sure filtering is hooked up is provide the `onInputChange` handler as the `onChange` prop to `TableToolbarSearch` in your `TableToolbar` component.
 
 ### Batch Actions
+
+Batch actions are typically used when you want to the user to select multiple rows in your table and then allow them to perform a single action on the selected rows. To orchestrate this behavior, you'll need to include both the Table components for selection and for batch actions, which include:
+
+- `TableToolbar`
+- `TableToolbarAction`
+- `TableBatchActions`
+- `TableBatchAction`
+- `TableSelectAll`
+- `TableSelectRow`
+
+In practice, this looks like the following:
+
+```js
+<DataTable
+  rows={initialRows}
+  headers={headers}
+  render={({
+    rows,
+    headers,
+    getHeaderProps,
+    getSelectionProps,
+    getBatchActionProps,
+    onInputChange,
+    {/* the selected rows are provided as a render prop */
+    selectedRows,
+  }) => (
+    <TableContainer title="DataTable with batch actions">
+      <TableToolbar>
+        {/* make sure to apply getBatchActionProps so that the bar renders */}
+        <TableBatchActions {...getBatchActionProps()}>
+          {/* inside of you batch actinos, you can include selectedRows */}
+          <TableBatchAction onClick={batchActionClick(selectedRows)}>
+            Ghost
+          </TableBatchAction>
+          <TableBatchAction onClick={batchActionClick(selectedRows)}>
+            Ghost
+          </TableBatchAction>
+          <TableBatchAction onClick={batchActionClick(selectedRows)}>
+            Ghost
+          </TableBatchAction>
+        </TableBatchActions>
+        <TableToolbarSearch onChange={onInputChange} />
+        <TableToolbarContent>
+          <TableToolbarAction
+            iconName="download"
+            iconDescription="Download"
+            onClick={action('TableToolbarAction - Download')}
+          />
+          <TableToolbarAction
+            iconName="edit"
+            iconDescription="Edit"
+            onClick={action('TableToolbarAction - Edit')}
+          />
+          <TableToolbarAction
+            iconName="settings"
+            iconDescription="Settings"
+            onClick={action('TableToolbarAction - Settings')}
+          />
+          <Button onClick={action('Add new row')} small kind="primary">
+            Add new
+          </Button>
+        </TableToolbarContent>
+      </TableToolbar>
+      <Table>
+        <TableHead>
+          <TableRow>
+            <TableSelectAll {...getSelectionProps()} />
+            {headers.map(header => (
+              <TableHeader {...getHeaderProps({ header })}>
+                {header.header}
+              </TableHeader>
+            ))}
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {rows.map(row => (
+            <TableRow key={row.id}>
+              <TableSelectRow {...getSelectionProps({ row })} />
+              {row.cells.map(cell => (
+                <TableCell key={cell.id}>{cell.value}</TableCell>
+              ))}
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </TableContainer>
+  )}
+/>
+```
+
+The import aspects of this example are:
+
+- That we are including the relevant markup for the Table Toolbar
+- We are wiring up the Batch Actions component with `getBatchActionProps`. This handles toggling the batch action menu for you
+- We are reading the `selectedItems` from the `render` prop function in our Batch Action click handlers
 
 ## Attribution
 
