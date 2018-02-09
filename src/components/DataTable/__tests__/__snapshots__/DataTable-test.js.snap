@@ -179,6 +179,7 @@ exports[`DataTable should render 1`] = `
                     role="img"
                   >
                     <svg
+                      alt="search"
                       aria-label="search"
                       className="bx--search-magnifier"
                       fillRule="evenodd"
@@ -223,6 +224,7 @@ exports[`DataTable should render 1`] = `
                     role="img"
                   >
                     <svg
+                      alt="close"
                       aria-label="close"
                       className="bx--search-close bx--search-close--hidden"
                       fillRule="evenodd"
@@ -267,6 +269,7 @@ exports[`DataTable should render 1`] = `
                     role="img"
                   >
                     <svg
+                      alt="Download"
                       aria-label="Download"
                       className="bx--toolbar-action__icon"
                       fillRule="evenodd"
@@ -308,6 +311,7 @@ exports[`DataTable should render 1`] = `
                     role="img"
                   >
                     <svg
+                      alt="Edit"
                       aria-label="Edit"
                       className="bx--toolbar-action__icon"
                       fillRule="evenodd"
@@ -345,6 +349,7 @@ exports[`DataTable should render 1`] = `
                     role="img"
                   >
                     <svg
+                      alt="Settings"
                       aria-label="Settings"
                       className="bx--toolbar-action__icon"
                       fillRule="evenodd"
@@ -421,6 +426,7 @@ exports[`DataTable should render 1`] = `
                           role="img"
                         >
                           <svg
+                            alt="Sort arrow"
                             aria-label="Sort arrow"
                             className="bx--table-sort-v2__icon"
                             fillRule="evenodd"
@@ -467,6 +473,7 @@ exports[`DataTable should render 1`] = `
                           role="img"
                         >
                           <svg
+                            alt="Sort arrow"
                             aria-label="Sort arrow"
                             className="bx--table-sort-v2__icon"
                             fillRule="evenodd"

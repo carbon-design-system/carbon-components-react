@@ -17,6 +17,7 @@ exports[`DataTable.TableToolbarAction should render 1`] = `
       role="img"
     >
       <svg
+        alt="Add"
         aria-label="Add"
         className="bx--toolbar-action__icon"
         fillRule="evenodd"

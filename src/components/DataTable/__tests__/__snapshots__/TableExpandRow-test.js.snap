@@ -34,6 +34,7 @@ exports[`DataTable.TableExpandRow should render 1`] = `
                     role="img"
                   >
                     <svg
+                      alt="Provide a description that will be used as the title"
                       aria-label="Provide a description that will be used as the title"
                       className="bx--table-expand-v2__svg"
                       fillRule="evenodd"

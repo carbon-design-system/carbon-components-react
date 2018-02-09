@@ -33,6 +33,7 @@ exports[`DataTable.TableHeader should have an active and ascending class if sort
                     role="img"
                   >
                     <svg
+                      alt="Sort arrow"
                       aria-label="Sort arrow"
                       className="bx--table-sort-v2__icon"
                       fillRule="evenodd"
@@ -95,6 +96,7 @@ exports[`DataTable.TableHeader should have an active class if it is the sort hea
                     role="img"
                   >
                     <svg
+                      alt="Sort arrow"
                       aria-label="Sort arrow"
                       className="bx--table-sort-v2__icon"
                       fillRule="evenodd"
@@ -157,6 +159,7 @@ exports[`DataTable.TableHeader should render 1`] = `
                     role="img"
                   >
                     <svg
+                      alt="Sort arrow"
                       aria-label="Sort arrow"
                       className="bx--table-sort-v2__icon"
                       fillRule="evenodd"
