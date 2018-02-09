@@ -93,18 +93,8 @@ storiesOf('DataTable', module)
       that we export from Carbon requires two props to be passed in: \`rows\`
       and \`headers\`.
 
-      Each row should have it\'s own \`id\` field, and the array of headers
-      should include a \`key\` field that corresponds to the field in the
-      provided rows for the header, and a \`header\` field which corresponds to
-      the title of the header that will actually render.
-
-      To actually render your DataTable, you'll need to include a \`render\`
-      prop. If you\'re unfamiliar with this pattern, a \`render\` prop is just
-      a function that takes in a variety of arguments that we provide from the
-      DataTable component, and it should return a valid React node.
-
-      View the source of this story for more information, or checkout the
-      README for this component in the \`carbon-components-react\` repo.
+      You can find more detailed information surrounding usage of this component
+      at the following url: https://goo.gl/kapBz3
     `,
     /* eslint-enable no-useless-escape */
     () => (
@@ -185,7 +175,10 @@ storiesOf('DataTable', module)
   .addWithInfo(
     'with toolbar',
     `
-      DataTable
+      DataTable with toolbar and filtering.
+
+      You can find more detailed information surrounding usage of this component
+      at the following url: https://goo.gl/kapBz3
     `,
     () => (
       <DataTable
@@ -244,7 +237,10 @@ storiesOf('DataTable', module)
   .addWithInfo(
     'with sorting',
     `
-    Default Data table sorting behavior
+      DataTable with sorting
+
+      You can find more detailed information surrounding usage of this component
+      at the following url: https://goo.gl/kapBz3
     `,
     () => (
       <DataTable
@@ -280,7 +276,10 @@ storiesOf('DataTable', module)
   .addWithInfo(
     'with selection',
     `
-      Data Tables
+      DataTable with selection
+
+      You can find more detailed information surrounding usage of this component
+      at the following url: https://goo.gl/kapBz3
     `,
     () => (
       <DataTable
@@ -318,7 +317,10 @@ storiesOf('DataTable', module)
   .addWithInfo(
     'with expansion',
     `
-      Data Tables
+      DataTable with expansion
+
+      You can find more detailed information surrounding usage of this component
+      at the following url: https://goo.gl/kapBz3
     `,
     () => (
       <DataTable
@@ -376,6 +378,9 @@ storiesOf('DataTable', module)
       prop that you would expect to use, like \`onClick\`. You can use these
       alongside the \`selectedRows\` property in your \`render\` prop function
       to pass along this info to your batch action handler.
+
+      You can find more detailed information surrounding usage of this component
+      at the following url: https://goo.gl/kapBz3
     `,
     () => (
       <DataTable
