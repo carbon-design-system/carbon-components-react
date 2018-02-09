@@ -123,8 +123,9 @@ export default class DataTable extends React.Component {
    * Get the props associated with the given header. Mostly used for adding in
    * sorting behavior.
    *
-   * @param {Object} header the header we want the props for
-   * @param {Function} onClick a custom click handler for the header
+   * @param {Object} config
+   * @param {string} config.header the header we want the props for
+   * @param {Function} config.onClick a custom click handler for the header
    * @returns {Object}
    */
   getHeaderProps = ({ header, onClick, ...rest }) => {
@@ -143,8 +144,9 @@ export default class DataTable extends React.Component {
   /**
    * Get the props associated with the given row. Mostly used for expansion.
    *
-   * @param {Object} row the row we want the props for
-   * @param {Function} onClick a custom click handler for the header
+   * @param {Object} config
+   * @param {Object} config.row the row we want the props for
+   * @param {Function} config.onClick a custom click handler for the header
    * @returns {Object}
    */
   getRowProps = ({ row, onClick, ...rest }) => {
@@ -202,7 +204,7 @@ export default class DataTable extends React.Component {
 
   /**
    * Helper utility to get all the currently selected rows
-   * @return {Array<string>} the array of rowIds that are currently selected
+   * @returns {Array<string>} the array of rowIds that are currently selected
    */
   getSelectedRows = () =>
     this.state.rowIds.filter(id => {

@@ -61,7 +61,7 @@ export const getNextSortDirection = (prevHeader, header, prevState) => {
  * @param {Object} options
  * @param {string} options.key the key for the given header we are derving the
  * next sort state for
- * @return {Object}
+ * @returns {Object}
  */
 export const getNextSortState = (props, state, { key }) => {
   const {

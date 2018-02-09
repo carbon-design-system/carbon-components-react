@@ -44,12 +44,15 @@ export const compareStrings = (a, b, locale = 'en') => {
  * into our local `compareStrings` method, including the locale where
  * appropriate.
  *
- * @param {Array[string]} rowIds array of all the row ids in the table
- * @param {Object} cellsById object containing a mapping of cell id to cell
- * @param {string} direction the sort direction used to determine the order the
- * comparison is called in
- * @param {string} key the header key that we use to lookup the cell
- * @param {string} [locale] optional locale used in the comparison function
+ * @param {Object} config
+ * @param {Array[string]} config.rowIds array of all the row ids in the table
+ * @param {Object} config.cellsById object containing a mapping of cell id to
+ * cell
+ * @param {string} config.direction the sort direction used to determine the
+ * order the comparison is called in
+ * @param {string} config.key the header key that we use to lookup the cell
+ * @param {string} [config.locale] optional locale used in the comparison
+ * function
  * @returns {Array[string]} array of sorted rowIds
  */
 export const sortRows = ({
