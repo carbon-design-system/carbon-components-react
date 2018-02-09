@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import classNames from 'classnames';
 
+// Make sure to duplicate these keys in propTypes
 const TYPES = {
   beta: 'Beta',
   community: 'Community',
@@ -27,7 +28,18 @@ const Tag = ({ children, className, type, ...other }) => {
 Tag.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
-  type: PropTypes.oneOf(Object.keys(TYPES)).isRequired,
+  // These are just the keys of TYPES but to generate proper docs, can't use dynamic generation.
+  type: PropTypes.oneOf([
+    'beta',
+    'community',
+    'custom',
+    'dedicated',
+    'experimental',
+    'ibm',
+    'local',
+    'private',
+    'third-party',
+  ]).isRequired,
 };
 
 export const types = Object.keys(TYPES);
