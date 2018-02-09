@@ -40,10 +40,19 @@ const Switch = props => {
     className: classes,
   };
 
+  const btnIcon = icon
+    ? React.cloneElement(icon, {
+        className: classNames(
+          icon.props.className,
+          ' bx--content-switcher__icon'
+        ),
+      })
+    : null;
+
   if (kind === 'button') {
     return (
       <button {...other} {...commonProps}>
-        {icon}
+        {btnIcon}
         {text}
       </button>
     );
@@ -51,7 +60,7 @@ const Switch = props => {
 
   return (
     <a href={href} {...other} {...commonProps}>
-      {icon}
+      {btnIcon}
       {text}
     </a>
   );

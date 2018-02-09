@@ -8,7 +8,7 @@ describe('Switch', () => {
       <Switch kind="button" icon={<svg />} text="test" />
     );
     const linkWrapper = shallow(
-      <Switch kind="anchor" icon={<svg />} text="test" />
+      <Switch kind="anchor" icon={<svg className="testClass" />} text="test" />
     );
 
     it('should render a button when kind is button', () => {
@@ -27,7 +27,13 @@ describe('Switch', () => {
       expect(buttonWrapper.find('svg').length).toEqual(1);
       expect(linkWrapper.find('svg').length).toEqual(1);
     });
+    it('icon should have the expected class', () => {
+      const cls = 'bx--content-switcher__icon';
 
+      expect(buttonWrapper.find('svg').hasClass(cls)).toEqual(true);
+      expect(linkWrapper.find('svg').hasClass(cls)).toEqual(true);
+      expect(linkWrapper.find('svg').hasClass('testClass')).toEqual(true);
+    });
     it('should have the expected class', () => {
       const cls = 'bx--content-switcher-btn';
 
