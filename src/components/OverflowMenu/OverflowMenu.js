@@ -6,24 +6,136 @@ import FloatingMenu from '../../internal/FloatingMenu';
 import OptimizedResize from '../../internal/OptimizedResize';
 import Icon from '../Icon';
 
+/**
+ * @param {Element} menuBody The menu body with the menu arrow.
+ * @returns {FloatingMenu~offset} The adjustment of the floating menu position, upon the position of the menu arrow.
+ * @private
+ */
+const getMenuOffset = menuBody => {
+  const menuWidth = menuBody.offsetWidth;
+  const arrowStyle = menuBody.ownerDocument.defaultView.getComputedStyle(
+    menuBody,
+    ':before'
+  );
+  const values = ['top', 'left', 'width', 'height', 'border-top-width'].reduce(
+    (o, name) => ({
+      ...o,
+      [name]: Number(
+        (/^([\d-]+)px$/.exec(arrowStyle.getPropertyValue(name)) || [])[1]
+      ),
+    }),
+    {}
+  );
+  if (Object.keys(values).every(name => !isNaN(values[name]))) {
+    const {
+      top,
+      left,
+      width,
+      height,
+      'border-top-width': borderTopWidth,
+    } = values;
+    return {
+      left:
+        menuWidth / 2 -
+        (left + Math.sqrt(Math.pow(width, 2) + Math.pow(height, 2)) / 2),
+      top: Math.sqrt(Math.pow(borderTopWidth, 2) * 2) - top,
+    };
+  }
+};
+
 export default class OverflowMenu extends Component {
   static propTypes = {
+    /**
+     * `true` if the menu should be open.
+     */
     open: PropTypes.bool,
+
+    /**
+     * `true` if the menu alignment should be flipped.
+     */
     flipped: PropTypes.bool,
+
+    /**
+     * `true` if the menu should be floated.
+     * Useful when the container of the triggering element cannot have `overflow:visible` style, etc.
+     */
     floatingMenu: PropTypes.bool,
+
+    /**
+     * The child nodes.
+     */
     children: PropTypes.node,
+
+    /**
+     * The CSS class names.
+     */
     className: PropTypes.string,
+
+    /**
+     * The `tabindex` attribute.
+     */
     tabIndex: PropTypes.number,
+
+    /**
+     * The element ID.
+     */
     id: PropTypes.string,
+
+    /**
+     * The ARIA label.
+     */
     ariaLabel: PropTypes.string,
+
+    /**
+     * The event handler for the `click` event.
+     */
     onClick: PropTypes.func,
+
+    /**
+     * The event handler for the `focus` event.
+     */
     onFocus: PropTypes.func,
+
+    /**
+     * The event handler for the `keydown` event.
+     */
     onKeyDown: PropTypes.func,
-    handleClick: PropTypes.func,
+
+    /**
+     * The icon description.
+     */
     iconDescription: PropTypes.string.isRequired,
+
+    /**
+     * The icon name.
+     */
     iconName: PropTypes.string,
-    menuOffset: PropTypes.object,
-    menuOffsetFlip: PropTypes.object,
+
+    /**
+     * The adjustment in position applied to the floating menu.
+     */
+    menuOffset: PropTypes.oneOfType([
+      PropTypes.shape({
+        top: PropTypes.number,
+        left: PropTypes.number,
+      }),
+      PropTypes.func,
+    ]),
+
+    /**
+     * The adjustment in position applied to the floating menu.
+     */
+    menuOffsetFlip: PropTypes.oneOfType([
+      PropTypes.shape({
+        top: PropTypes.number,
+        left: PropTypes.number,
+      }),
+      PropTypes.func,
+    ]),
+
+    /**
+     * The CSS class for the icon.
+     */
     iconClass: PropTypes.string,
   };
 
@@ -35,12 +147,17 @@ export default class OverflowMenu extends Component {
     flipped: false,
     floatingMenu: false,
     onClick: () => {},
+    onKeyDown: () => {},
     tabIndex: 0,
-    menuOffset: { top: 0, left: 60.5 },
-    menuOffsetFlip: { top: 0, left: -60.5 },
+    menuOffset: getMenuOffset,
+    menuOffsetFlip: getMenuOffset,
   };
 
   state = {
+    /**
+     * The open/closed state.
+     * @type {boolean}
+     */
     open: this.props.open,
   };
 
@@ -83,6 +200,13 @@ export default class OverflowMenu extends Component {
   handleClick = evt => {
     this.setState({ open: !this.state.open });
     this.props.onClick(evt);
+  };
+
+  handleKeyDown = evt => {
+    if (evt.which === 40) {
+      this.setState({ open: !this.state.open });
+      this.props.onClick(evt);
+    }
   };
 
   handleKeyPress = evt => {
@@ -144,7 +268,7 @@ export default class OverflowMenu extends Component {
 
     const childrenWithProps = React.Children.toArray(children).map(child =>
       React.cloneElement(child, {
-        onClick: this.closeMenu,
+        closeMenu: this.closeMenu,
       })
     );
 
@@ -154,12 +278,13 @@ export default class OverflowMenu extends Component {
     const wrappedMenuBody = !floatingMenu ? (
       menuBody
     ) : (
-      <FloatingMenu
-        menuPosition={this.state.menuPosition}
-        menuDirection="bottom"
-        menuOffset={flipped ? menuOffsetFlip : menuOffset}>
-        {menuBody}
-      </FloatingMenu>
+      <div role="menuitem">
+        <FloatingMenu
+          menuPosition={this.state.menuPosition}
+          menuOffset={flipped ? menuOffsetFlip : menuOffset}>
+          {menuBody}
+        </FloatingMenu>
+      </div>
     );
 
     return (
@@ -167,6 +292,8 @@ export default class OverflowMenu extends Component {
         <div
           {...other}
           role="button"
+          aria-haspopup
+          aria-expanded={this.state.open}
           className={overflowMenuClasses}
           onKeyDown={this.handleKeyPress}
           aria-label={ariaLabel}
@@ -175,6 +302,7 @@ export default class OverflowMenu extends Component {
           ref={this.bindMenuEl}>
           <Icon
             onClick={this.handleClick}
+            onKeyDown={this.handleKeyDown}
             className={overflowMenuIconClasses}
             name={iconName}
             description={iconDescription}

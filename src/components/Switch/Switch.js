@@ -14,6 +14,7 @@ const Switch = props => {
     text,
     icon,
     href,
+    icon,
     ...other
   } = props;
 

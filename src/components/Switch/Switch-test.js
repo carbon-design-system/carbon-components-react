@@ -27,6 +27,7 @@ describe('Switch', () => {
       expect(buttonWrapper.find('svg').length).toEqual(1);
       expect(linkWrapper.find('svg').length).toEqual(1);
     });
+
     it('icon should have the expected class', () => {
       const cls = 'bx--content-switcher__icon';
 
