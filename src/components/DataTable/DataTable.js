@@ -32,7 +32,7 @@ export default class DataTable extends React.Component {
       PropTypes.shape({
         id: PropTypes.string.isRequired,
       })
-    ),
+    ).isRequired,
 
     /**
      * The `headers` prop represents the order in which the headers should
@@ -46,12 +46,6 @@ export default class DataTable extends React.Component {
         header: PropTypes.string.isRequired,
       })
     ).isRequired,
-
-    /**
-     * Provide an `onChange` hook where you can subscribe to internal state
-     * changes of the component.
-     */
-    onChange: PropTypes.func,
 
     /**
      * Optional hook to manually control sorting of the rows.

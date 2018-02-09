@@ -7,6 +7,9 @@ const TableBatchAction = props => (
 );
 
 TableBatchAction.propTypes = {
+  /**
+   * Provide a text description for the icon in the button
+   */
   iconDescription: PropTypes.string.isRequired,
 };
 

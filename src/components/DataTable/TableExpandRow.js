@@ -37,7 +37,15 @@ const TableExpandRow = ({
 TableExpandRow.propTypes = {
   className: PropTypes.string,
   children: PropTypes.node,
+  /**
+   * Specify whether this row is expanded or not. This helps coordinate data
+   * attributes so that `TableExpandRow` and `TableExapndedRow` work together
+   */
   isExpanded: PropTypes.bool.isRequired,
+
+  /**
+   * Hook for when a listener initiates a request to expand the given row
+   */
   onExpand: PropTypes.func.isRequired,
 };
 

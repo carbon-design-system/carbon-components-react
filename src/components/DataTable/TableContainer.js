@@ -15,6 +15,9 @@ const TableContainer = ({ className, children, title, ...rest }) => {
 TableContainer.propTypes = {
   className: PropTypes.string,
   children: PropTypes.node,
+  /**
+   * Provide a title for the Table
+   */
   title: PropTypes.string,
 };
 

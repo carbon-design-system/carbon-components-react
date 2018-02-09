@@ -49,9 +49,30 @@ TableBatchActions.translationKeys = Object.keys(translationKeys);
 TableBatchActions.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
+
+  /**
+   * Boolean specifier for whether or not the batch action bar should be
+   * displayed
+   */
   shouldShowBatchActions: PropTypes.bool,
+
+  /**
+   * Numeric representation of the total number of items selected in a table.
+   * This number is used to derive the selection message
+   */
   totalSelected: PropTypes.number.isRequired,
+
+  /**
+   * Hook required to listen for when the user initiates a cancel request
+   * through this comopnent
+   */
   onCancel: PropTypes.func.isRequired,
+
+  /**
+   * Supply a method to translate internal strings with your i18n tool of
+   * choice. Translation keys are avabile on the `translationKeys` field for
+   * this component.
+   */
   translateWithId: PropTypes.func,
 };
 

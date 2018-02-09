@@ -24,7 +24,15 @@ const TableToolbarAction = ({
 TableToolbarAction.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
+
+  /**
+   * Specify the name of the icon for the toolbar action
+   */
   iconName: PropTypes.string.isRequired,
+
+  /**
+   * Specify the description of the icon for the toolbar action
+   */
   iconDescription: PropTypes.string.isRequired,
 };
 

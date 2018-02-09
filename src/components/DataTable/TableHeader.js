@@ -43,9 +43,27 @@ const TableHeader = ({
 TableHeader.propTypes = {
   className: PropTypes.string,
   children: PropTypes.node,
+  /**
+   * Specify whether this header is the header by which a table is being sorted
+   * by
+   */
   isSortHeader: PropTypes.bool,
+  /**
+   * Hook that is invoked when the header is clicked
+   */
   onClick: PropTypes.func,
+
+  /**
+   * Specify which direction we are currently sorting by, should be one of DESC,
+   * NONE, or ASC.
+   */
   sortDirection: PropTypes.oneOf(Object.values(sortStates)),
+
+  /**
+   * Supply a method to translate internal strings with your i18n tool of
+   * choice. Translation keys are avabile on the `translationKeys` field for
+   * this component.
+   */
   translateWithId: PropTypes.func,
 };
 

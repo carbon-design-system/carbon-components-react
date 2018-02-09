@@ -31,7 +31,14 @@ const TableToolbarSearch = ({
 TableToolbarSearch.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
+  /**
+   * Provide an optional class name for the search container
+   */
   searchContainerClasses: PropTypes.string,
+
+  /**
+   * Provide an optional hook that is called each time the input is updated
+   */
   onChange: PropTypes.func,
 };
 
