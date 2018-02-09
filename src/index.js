@@ -20,6 +20,23 @@ export ComposedModal, {
 export ContentSwitcher from './components/ContentSwitcher';
 export CopyButton from './components/CopyButton';
 export DangerButton from './components/DangerButton';
+export DataTableRow from './components/DataTableRow';
+export DataTableData from './components/DataTableData';
+export {
+  DataTable,
+  DataTableToolbar,
+  DataTableToolbarContent,
+  DataTableToolbarAction,
+  DataTableHead,
+  DataTableColumnHeader,
+  DataTableBody,
+  DataTableBatchActions,
+  DataTableActionList,
+  DataTableBatchAction,
+  DataTableSearch,
+  DataTableContainer,
+  DataTableSelectAll,
+} from './components/DataTable';
 export DatePicker from './components/DatePicker';
 export DatePickerInput from './components/DatePickerInput';
 export DetailPageHeader from './components/DetailPageHeader';
