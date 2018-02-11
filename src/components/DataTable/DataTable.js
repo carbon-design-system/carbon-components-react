@@ -10,6 +10,26 @@ import setupGetInstanceId from './tools/instanceId';
 
 const getInstanceId = setupGetInstanceId();
 
+const translationKeys = {
+  expandRow: 'carbon.table.row.expand',
+  collapseRow: 'carbon.table.row.collapse',
+  selectAll: 'carbon.table.all.select',
+  unselectAll: 'carbon.table.all.unselect',
+  selectRow: 'carbon.table.row.select',
+  unselectRow: 'carbon.table.row.unselect',
+};
+
+const defaultTranslations = {
+  [translationKeys.expandRow]: 'Expand current row',
+  [translationKeys.collapseRow]: 'Collapse current row',
+  [translationKeys.selectAll]: 'Select all rows',
+  [translationKeys.unselectAll]: 'Unselect all rows',
+  [translationKeys.selectRow]: 'Select row',
+  [translationKeys.unselectRow]: 'Unselect row',
+};
+
+const translateWithId = id => defaultTranslations[id];
+
 /**
  * Data Tables are used to represent a collection of resources, displaying a
  * subset of their fields in columns, or headers. We prioritize direct updates
@@ -62,13 +82,23 @@ export default class DataTable extends React.Component {
      * Provide a string for the current locale
      */
     locale: PropTypes.string,
+
+    /**
+     * Optional method that takes in a message id and returns an
+     * internationalized string. See `DataTable.translationKeys` for all
+     * available message ids.
+     */
+    translateWithId: PropTypes.func,
   };
 
   static defaultProps = {
     sortRow: defaultSortRow,
     filterRows: defaultFilterRows,
     locale: 'en',
+    translateWithId,
   };
+
+  static translationKeys = Object.values(translationKeys);
 
   /**
    * Static helper to derive the next state from the given props and the
@@ -144,6 +174,10 @@ export default class DataTable extends React.Component {
    * @returns {Object}
    */
   getRowProps = ({ row, onClick, ...rest }) => {
+    const { translateWithId: t } = this.props;
+    const translationKey = row.isExpanded
+      ? translationKeys.collapseRow
+      : translationKeys.expandRow;
     return {
       ...rest,
       key: row.id,
@@ -151,6 +185,7 @@ export default class DataTable extends React.Component {
       // handler
       onExpand: composeEventHandlers([this.handleOnExpandRow(row.id), onClick]),
       isExpanded: row.isExpanded,
+      ariaLabel: t(translationKey),
     };
   };
 
@@ -163,25 +198,36 @@ export default class DataTable extends React.Component {
    * @returns {Object}
    */
   getSelectionProps = ({ row, ...rest } = {}) => {
+    const { translateWithId: t } = this.props;
+
+    // If we're given a row, return the selection state values for that row
     if (row) {
-      // If we're given a row, return the selection state values for that row
+      const translationKey = row.isSelected
+        ? translationKeys.unselectRow
+        : translationKeys.selectRow;
       return {
         ...rest,
         checked: row.isSelected,
         onSelect: this.handleOnSelectRow(row.id),
         id: `${this.getTablePrefix()}__select-row-${row.id}`,
         name: `select-row-${row.id}`,
+        ariaLabel: t(translationKey),
       };
     }
+
     // Otherwise, we're working on `TableSelectAll` which handles toggling the
     // selection state of all rows
     const checked = this.getSelectedRows().length === this.state.rowIds.length;
+    const translationKey = checked
+      ? translationKeys.unselectAll
+      : translationKeys.selectAll;
     return {
       ...rest,
       checked,
       onSelect: this.handleSelectAll,
       id: `${this.getTablePrefix()}__select-all`,
       name: 'select-all',
+      ariaLabel: t(translationKey),
     };
   };
 

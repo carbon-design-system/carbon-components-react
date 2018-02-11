@@ -2,13 +2,24 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import InlineCheckbox from '../InlineCheckbox';
 
-const TableSelectRow = ({ checked, id, name, onSelect }) => (
+const TableSelectRow = ({ ariaLabel, checked, id, name, onSelect }) => (
   <td>
-    <InlineCheckbox id={id} name={name} onClick={onSelect} checked={checked} />
+    <InlineCheckbox
+      id={id}
+      name={name}
+      onClick={onSelect}
+      checked={checked}
+      ariaLabel={ariaLabel}
+    />
   </td>
 );
 
 TableSelectRow.propTypes = {
+  /**
+   * Specify the aria label for the underlying input control
+   */
+  ariaLabel: PropTypes.string.isRequired,
+
   /**
    * Specify whether all items are selected, or not
    */

@@ -137,6 +137,7 @@ exports[`DataTable should render 1`] = `
     ]
   }
   sortRow={[Function]}
+  translateWithId={[Function]}
 >
   <TableContainer
     title="DataTable with toolbar"
@@ -405,10 +406,13 @@ exports[`DataTable should render 1`] = `
                     isSortHeader={false}
                     key="fieldA"
                     onClick={[Function]}
+                    scope="col"
                     sortDirection="NONE"
                     translateWithId={[Function]}
                   >
-                    <th>
+                    <th
+                      scope="col"
+                    >
                       <button
                         className="bx--table-sort-v2"
                         onClick={[Function]}
@@ -420,14 +424,14 @@ exports[`DataTable should render 1`] = `
                         </span>
                         <Icon
                           className="bx--table-sort-v2__icon"
-                          description="Sort arrow"
+                          description="Sort rows by this header in descending order"
                           fillRule="evenodd"
                           name="caret--down"
                           role="img"
                         >
                           <svg
-                            alt="Sort arrow"
-                            aria-label="Sort arrow"
+                            alt="Sort rows by this header in descending order"
+                            aria-label="Sort rows by this header in descending order"
                             className="bx--table-sort-v2__icon"
                             fillRule="evenodd"
                             height="5"
@@ -437,7 +441,7 @@ exports[`DataTable should render 1`] = `
                             width="10"
                           >
                             <title>
-                              Sort arrow
+                              Sort rows by this header in descending order
                             </title>
                             <path
                               d="M10 0L5 5 0 0z"
@@ -452,10 +456,13 @@ exports[`DataTable should render 1`] = `
                     isSortHeader={false}
                     key="fieldB"
                     onClick={[Function]}
+                    scope="col"
                     sortDirection="NONE"
                     translateWithId={[Function]}
                   >
-                    <th>
+                    <th
+                      scope="col"
+                    >
                       <button
                         className="bx--table-sort-v2"
                         onClick={[Function]}
@@ -467,14 +474,14 @@ exports[`DataTable should render 1`] = `
                         </span>
                         <Icon
                           className="bx--table-sort-v2__icon"
-                          description="Sort arrow"
+                          description="Sort rows by this header in descending order"
                           fillRule="evenodd"
                           name="caret--down"
                           role="img"
                         >
                           <svg
-                            alt="Sort arrow"
-                            aria-label="Sort arrow"
+                            alt="Sort rows by this header in descending order"
+                            aria-label="Sort rows by this header in descending order"
                             className="bx--table-sort-v2__icon"
                             fillRule="evenodd"
                             height="5"
@@ -484,7 +491,7 @@ exports[`DataTable should render 1`] = `
                             width="10"
                           >
                             <title>
-                              Sort arrow
+                              Sort rows by this header in descending order
                             </title>
                             <path
                               d="M10 0L5 5 0 0z"

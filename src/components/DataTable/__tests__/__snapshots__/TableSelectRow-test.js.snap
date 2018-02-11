@@ -10,6 +10,7 @@ exports[`DataTable.TableSelectRow should render 1`] = `
         <TableRow>
           <tr>
             <TableSelectRow
+              ariaLabel="Aria label"
               checked={false}
               className="custom-class-name"
               id="id"
@@ -18,6 +19,7 @@ exports[`DataTable.TableSelectRow should render 1`] = `
             >
               <td>
                 <InlineCheckbox
+                  ariaLabel="Aria label"
                   checked={false}
                   id="id"
                   name="select-all"
@@ -32,6 +34,7 @@ exports[`DataTable.TableSelectRow should render 1`] = `
                     type="checkbox"
                   />
                   <label
+                    aria-label="Aria label"
                     className="bx--checkbox-label"
                     htmlFor="id"
                   />

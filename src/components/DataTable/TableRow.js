@@ -2,9 +2,9 @@ import React from 'react';
 import omit from 'lodash.omit';
 
 const TableRow = props => {
-  // Remove `onExpand` or `isExpanded` if provided to this component, these are
+  // Remove unnecessary props if provided to this component, these are
   // only useful in `TableExpandRow`
-  const cleanProps = omit(props, ['onExpand', 'isExpanded']);
+  const cleanProps = omit(props, ['ariaLabel', 'onExpand', 'isExpanded']);
   return <tr {...cleanProps} />;
 };
 

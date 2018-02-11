@@ -10,6 +10,7 @@ describe('DataTable.TableExpandRow', () => {
       className: 'custom-class',
       isExpanded: false,
       onExpand: jest.fn(),
+      ariaLabel: 'Aria label',
     };
   });
 

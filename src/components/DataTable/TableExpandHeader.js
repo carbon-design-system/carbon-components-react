@@ -1,6 +1,5 @@
-import wrapComponent from '../../tools/wrapComponent';
+import React from 'react';
 
-export default wrapComponent({
-  name: 'TableExpandHeader',
-  type: 'th',
-});
+const TableExpandHeader = props => <th scope="col" {...props} />;
+
+export default TableExpandHeader;

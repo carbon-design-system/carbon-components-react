@@ -12,6 +12,7 @@ describe('DataTable.TableSelectRow', () => {
       checked: false,
       onSelect: jest.fn(),
       className: 'custom-class-name',
+      ariaLabel: 'Aria label',
     };
   });
 

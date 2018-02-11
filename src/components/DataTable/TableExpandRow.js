@@ -5,6 +5,7 @@ import Icon from '../Icon';
 import TableCell from './TableCell';
 
 const TableExpandRow = ({
+  ariaLabel,
   className: rowClassName,
   children,
   isExpanded,
@@ -25,7 +26,10 @@ const TableExpandRow = ({
       <TableCell
         className="bx--table-expand-v2"
         data-previous-value={previousValue}>
-        <button className="bx--table-expand-v2__button" onClick={onExpand}>
+        <button
+          className="bx--table-expand-v2__button"
+          onClick={onExpand}
+          aria-label={ariaLabel}>
           <Icon className="bx--table-expand-v2__svg" name="chevron--right" />
         </button>
       </TableCell>
@@ -35,6 +39,11 @@ const TableExpandRow = ({
 };
 
 TableExpandRow.propTypes = {
+  /**
+   * Specify the string read by a voice reader when the expand trigger is
+   * focused
+   */
+  ariaLabel: PropTypes.string.isRequired,
   className: PropTypes.string,
   children: PropTypes.node,
   /**

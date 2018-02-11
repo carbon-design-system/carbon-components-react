@@ -1,7 +1,14 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-const InlineCheckbox = ({ id, checked, name, onClick, onKeyDown }) => (
+const InlineCheckbox = ({
+  id,
+  checked,
+  ariaLabel,
+  name,
+  onClick,
+  onKeyDown,
+}) => (
   <React.Fragment>
     <input
       id={id}
@@ -12,7 +19,7 @@ const InlineCheckbox = ({ id, checked, name, onClick, onKeyDown }) => (
       onClick={onClick}
       onKeyDown={onKeyDown}
     />
-    <label htmlFor={id} className="bx--checkbox-label" />
+    <label htmlFor={id} className="bx--checkbox-label" aria-label={ariaLabel} />
   </React.Fragment>
 );
 
@@ -26,6 +33,11 @@ InlineCheckbox.propTypes = {
    * Provide a `name` for the underlying input control
    */
   name: PropTypes.string.isRequired,
+
+  /**
+   * Specify the label for the control
+   */
+  ariaLabel: PropTypes.string.isRequired,
 
   /**
    * Provide a handler that is invoked when a user clicks on the control

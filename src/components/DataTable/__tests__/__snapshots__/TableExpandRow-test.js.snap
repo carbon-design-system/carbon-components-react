@@ -8,6 +8,7 @@ exports[`DataTable.TableExpandRow should render 1`] = `
     <TableBody>
       <tbody>
         <TableExpandRow
+          ariaLabel="Aria label"
           className="custom-class"
           isExpanded={false}
           onExpand={[MockFunction]}
@@ -23,6 +24,7 @@ exports[`DataTable.TableExpandRow should render 1`] = `
                 className="bx--table-expand-v2"
               >
                 <button
+                  aria-label="Aria label"
                   className="bx--table-expand-v2__button"
                   onClick={[MockFunction]}
                 >

@@ -12,10 +12,13 @@ exports[`DataTable.TableHeader should have an active and ascending class if sort
             <TableHeader
               isSortHeader={true}
               onClick={[MockFunction]}
+              scope="col"
               sortDirection="ASC"
               translateWithId={[Function]}
             >
-              <th>
+              <th
+                scope="col"
+              >
                 <button
                   className="bx--table-sort-v2 bx--table-sort-v2--active bx--table-sort-v2--ascending"
                   onClick={[MockFunction]}
@@ -27,14 +30,14 @@ exports[`DataTable.TableHeader should have an active and ascending class if sort
                   </span>
                   <Icon
                     className="bx--table-sort-v2__icon"
-                    description="Sort arrow"
+                    description="Sort rows by this header in ascending order"
                     fillRule="evenodd"
                     name="caret--down"
                     role="img"
                   >
                     <svg
-                      alt="Sort arrow"
-                      aria-label="Sort arrow"
+                      alt="Sort rows by this header in ascending order"
+                      aria-label="Sort rows by this header in ascending order"
                       className="bx--table-sort-v2__icon"
                       fillRule="evenodd"
                       height="5"
@@ -44,7 +47,7 @@ exports[`DataTable.TableHeader should have an active and ascending class if sort
                       width="10"
                     >
                       <title>
-                        Sort arrow
+                        Sort rows by this header in ascending order
                       </title>
                       <path
                         d="M10 0L5 5 0 0z"
@@ -75,10 +78,13 @@ exports[`DataTable.TableHeader should have an active class if it is the sort hea
             <TableHeader
               isSortHeader={true}
               onClick={[MockFunction]}
+              scope="col"
               sortDirection="NONE"
               translateWithId={[Function]}
             >
-              <th>
+              <th
+                scope="col"
+              >
                 <button
                   className="bx--table-sort-v2"
                   onClick={[MockFunction]}
@@ -90,14 +96,14 @@ exports[`DataTable.TableHeader should have an active class if it is the sort hea
                   </span>
                   <Icon
                     className="bx--table-sort-v2__icon"
-                    description="Sort arrow"
+                    description="Sort rows by this header in ascending order"
                     fillRule="evenodd"
                     name="caret--down"
                     role="img"
                   >
                     <svg
-                      alt="Sort arrow"
-                      aria-label="Sort arrow"
+                      alt="Sort rows by this header in ascending order"
+                      aria-label="Sort rows by this header in ascending order"
                       className="bx--table-sort-v2__icon"
                       fillRule="evenodd"
                       height="5"
@@ -107,7 +113,7 @@ exports[`DataTable.TableHeader should have an active class if it is the sort hea
                       width="10"
                     >
                       <title>
-                        Sort arrow
+                        Sort rows by this header in ascending order
                       </title>
                       <path
                         d="M10 0L5 5 0 0z"
@@ -138,10 +144,13 @@ exports[`DataTable.TableHeader should render 1`] = `
             <TableHeader
               isSortHeader={false}
               onClick={[MockFunction]}
+              scope="col"
               sortDirection="NONE"
               translateWithId={[Function]}
             >
-              <th>
+              <th
+                scope="col"
+              >
                 <button
                   className="bx--table-sort-v2"
                   onClick={[MockFunction]}
@@ -153,14 +162,14 @@ exports[`DataTable.TableHeader should render 1`] = `
                   </span>
                   <Icon
                     className="bx--table-sort-v2__icon"
-                    description="Sort arrow"
+                    description="Sort rows by this header in descending order"
                     fillRule="evenodd"
                     name="caret--down"
                     role="img"
                   >
                     <svg
-                      alt="Sort arrow"
-                      aria-label="Sort arrow"
+                      alt="Sort rows by this header in descending order"
+                      aria-label="Sort rows by this header in descending order"
                       className="bx--table-sort-v2__icon"
                       fillRule="evenodd"
                       height="5"
@@ -170,7 +179,7 @@ exports[`DataTable.TableHeader should render 1`] = `
                       width="10"
                     >
                       <title>
-                        Sort arrow
+                        Sort rows by this header in descending order
                       </title>
                       <path
                         d="M10 0L5 5 0 0z"
