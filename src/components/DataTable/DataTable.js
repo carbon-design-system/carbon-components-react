@@ -197,7 +197,7 @@ export default class DataTable extends React.Component {
    * @param {Object} [row] an optional row that we want to access the props for
    * @returns {Object}
    */
-  getSelectionProps = ({ row, ...rest } = {}) => {
+  getSelectionProps = ({ onClick, row, ...rest } = {}) => {
     const { translateWithId: t } = this.props;
 
     // If we're given a row, return the selection state values for that row
@@ -208,7 +208,10 @@ export default class DataTable extends React.Component {
       return {
         ...rest,
         checked: row.isSelected,
-        onSelect: this.handleOnSelectRow(row.id),
+        onSelect: composeEventHandlers([
+          this.handleOnSelectRow(row.id),
+          onClick,
+        ]),
         id: `${this.getTablePrefix()}__select-row-${row.id}`,
         name: `select-row-${row.id}`,
         ariaLabel: t(translationKey),
@@ -224,7 +227,7 @@ export default class DataTable extends React.Component {
     return {
       ...rest,
       checked,
-      onSelect: this.handleSelectAll,
+      onSelect: composeEventHandlers([this.handleSelectAll, onClick]),
       id: `${this.getTablePrefix()}__select-all`,
       name: 'select-all',
       ariaLabel: t(translationKey),
