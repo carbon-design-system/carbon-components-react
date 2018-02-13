@@ -114,6 +114,7 @@ export {
 export TimePicker from './components/TimePicker';
 export TimePickerSelect from './components/TimePickerSelect';
 export Toggle from './components/Toggle';
+export ToggleSmall from './components/ToggleSmall';
 export Toolbar, {
   ToolbarItem,
   ToolbarTitle,
