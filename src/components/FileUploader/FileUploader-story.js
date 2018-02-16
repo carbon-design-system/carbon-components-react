@@ -30,6 +30,7 @@ storiesOf('FileUploader', module)
         labelDescription="only .jpg files at 500mb or less"
         buttonLabel="Add files"
         filenameStatus="edit"
+        accept={['.jpg', '.png']}
         multiple
       />
     )
