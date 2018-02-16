@@ -1,9 +1,9 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { getNextSortState, initialSortState } from './state/sorting';
-import { composeEventHandlers } from './tools/events';
+import getDerivedStateFromProps from './state/getDerivedStateFromProps';
+import { getNextSortState } from './state/sorting';
 import denormalize from './tools/denormalize';
-import normalize from './tools/normalize';
+import { composeEventHandlers } from './tools/events';
 import { defaultFilterRows } from './tools/filter';
 import { defaultSortRow } from './tools/sorting';
 import setupGetInstanceId from './tools/instanceId';
@@ -100,44 +100,14 @@ export default class DataTable extends React.Component {
 
   static translationKeys = Object.values(translationKeys);
 
-  /**
-   * Static helper to derive the next state from the given props and the
-   * prevState. Potential future-facing API hook for React v17.
-   *
-   * Currently, it's being used as a way to normalize the incoming data that we
-   * are receiving for rows
-   */
-  static getDerivedStateFromProps = props => {
-    const { rowIds, rowsById, cellsById } = normalize(
-      props.rows,
-      props.headers
-    );
-    return {
-      rowIds,
-      rowsById,
-      cellsById,
-      sortDirection: initialSortState,
-      sortHeaderKey: null,
-      // Copy over rowIds so the reference doesn't mutate the stored
-      // `initialRowOrder`
-      initialRowOrder: rowIds.slice(),
-
-      filterInputValue: null,
-
-      // Optionally state field to indicate whether a consumer should show a
-      // batch actions menu
-      shouldShowBatchActions: false,
-    };
-  };
-
   constructor(props) {
     super(props);
-    this.state = DataTable.getDerivedStateFromProps(props);
+    this.state = getDerivedStateFromProps(props);
     this.instanceId = getInstanceId();
   }
 
   componentWillReceiveProps(nextProps) {
-    const nextState = DataTable.getDerivedStateFromProps(nextProps);
+    const nextState = getDerivedStateFromProps(nextProps);
     if (nextState) {
       this.setState(nextState);
     }
@@ -256,13 +226,16 @@ export default class DataTable extends React.Component {
     });
 
   /**
-   * Helper utility for getting the table prefix for elements that require an
+   * Helper for getting the table prefix for elements that require an
    * `id` attribute that is unique.
    *
    * @returns {string}
    */
   getTablePrefix = () => `data-table-${this.instanceId}`;
 
+  /**
+   * Handler for the `onCancel` event to hide the batch action bar
+   */
   handleOnCancel = () => {
     this.setState({ shouldShowBatchActions: false });
   };
@@ -273,10 +246,6 @@ export default class DataTable extends React.Component {
   handleSelectAll = () => {
     this.setState(state => {
       const { rowIds } = state;
-      /**
-       * The `isSelected` state field for a row is derived from the initial
-       * heuristic where
-       */
       const isSelected = this.getSelectedRows().length !== rowIds.length;
       return {
         shouldShowBatchActions: isSelected,
