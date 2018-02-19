@@ -210,6 +210,11 @@ export default class FileUploader extends Component {
     this.props.onClick(evt);
   };
 
+  clearFiles = () => {
+    // A clearFiles function that resets filenames and can be referenced using a ref by the parent.
+    this.setState({ filenames: [] });
+  };
+
   render() {
     const {
       iconDescription,
