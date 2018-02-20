@@ -326,7 +326,6 @@ As a convenience, `headers` is passed through to make it easier to render the he
 In order to enable the sort behavior for a given `DataTable`, all you need to do is apply the `getHeaderProps` prop getter to each individual `TableHeader` that you want the sort actions hooked up for. In practice, this looks like the following:
 
 ```jsx
-<<<<<<< HEAD
 <DataTable
   rows={initialRows}
   headers={headers}

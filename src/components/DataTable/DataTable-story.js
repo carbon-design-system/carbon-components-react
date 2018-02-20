@@ -80,6 +80,8 @@ const headers = [
   },
 ];
 
+const readmeURL = 'https://goo.gl/dq6CEK';
+
 const batchActionClick = selectedRows => () =>
   action('batch action click')(selectedRows);
 
@@ -94,7 +96,7 @@ storiesOf('DataTable', module)
       and \`headers\`.
 
       You can find more detailed information surrounding usage of this component
-      at the following url: https://goo.gl/kapBz3
+      at the following url: ${readmeURL}
     `,
     /* eslint-enable no-useless-escape */
     () => (
@@ -178,7 +180,7 @@ storiesOf('DataTable', module)
       DataTable with toolbar and filtering.
 
       You can find more detailed information surrounding usage of this component
-      at the following url: https://goo.gl/kapBz3
+      at the following url: ${readmeURL}
     `,
     () => (
       <DataTable
@@ -240,7 +242,7 @@ storiesOf('DataTable', module)
       DataTable with sorting
 
       You can find more detailed information surrounding usage of this component
-      at the following url: https://goo.gl/kapBz3
+      at the following url: ${readmeURL}
     `,
     () => (
       <DataTable
@@ -279,7 +281,7 @@ storiesOf('DataTable', module)
       DataTable with selection
 
       You can find more detailed information surrounding usage of this component
-      at the following url: https://goo.gl/kapBz3
+      at the following url: ${readmeURL}
     `,
     () => (
       <DataTable
@@ -320,7 +322,7 @@ storiesOf('DataTable', module)
       DataTable with expansion
 
       You can find more detailed information surrounding usage of this component
-      at the following url: https://goo.gl/kapBz3
+      at the following url: ${readmeURL}
     `,
     () => (
       <DataTable
@@ -380,7 +382,7 @@ storiesOf('DataTable', module)
       to pass along this info to your batch action handler.
 
       You can find more detailed information surrounding usage of this component
-      at the following url: https://goo.gl/kapBz3
+      at the following url: ${readmeURL}
     `,
     () => (
       <DataTable
