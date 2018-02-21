@@ -127,6 +127,7 @@
     "lodash.debounce": "^4.0.8",
     "lodash.isequal": "^4.5.0",
     "lodash.omit": "^4.5.0",
+    "moment": "^2.20.1",
     "resize-observer-polyfill": "^1.5.0",
     "warning": "3.0.0",
     "window-or-global": "^1.0.1"

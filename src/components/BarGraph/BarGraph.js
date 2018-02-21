@@ -2,13 +2,11 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import * as d3 from 'd3';
 import ResizeObserver from 'resize-observer-polyfill';
-// import './BarGraph.css'
 
 export default class BarGraph extends Component {
   static propTypes = {
-    className: PropTypes.string,
     /**
-     * data shoiuld be in format: [ { xVal: x1, yVal: y1 }, { xVal: x2, yVal: y2 }, ... ]
+     * data should be in format: [ { xVal: x1, yVal: y1 }, { xVal: x2, yVal: y2 }, ... ]
      */
     data: PropTypes.array.isRequired,
     /**
