@@ -208,12 +208,12 @@
   },
   "lint-staged": {
     "*.js": [
-      "prettier",
-      "lint",
+      "yarn prettier",
+      "yarn lint",
       "git add"
     ],
-    "*.{css,scss}": [
-      "prettier",
+    "*.{css,md,scss}": [
+      "yarn prettier",
       "git add"
     ]
   },
