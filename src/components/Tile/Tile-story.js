@@ -10,7 +10,7 @@ import {
   TileBelowTheFoldContent,
 } from '../Tile';
 import TileGroup from '../TileGroup';
-import TileRadio from '../TileRadio';
+import RadioTile from '../RadioTile';
 
 storiesOf('Tile', module)
   .addWithInfo(
@@ -35,18 +35,26 @@ storiesOf('Tile', module)
       Use this to select multiple tiles.
     `,
     () => (
-      <SelectableTile id="tile-1" name="tiles">
-        Multi-select Tile
-      </SelectableTile>
+      <div>
+        <SelectableTile id="tile-1" name="tiles">
+          Multi-select Tile
+        </SelectableTile>
+        <SelectableTile id="tile-1" name="tiles">
+          Multi-select Tile
+        </SelectableTile>
+        <SelectableTile id="tile-1" name="tiles">
+          Multi-select Tile
+        </SelectableTile>
+      </div>
     )
   )
   .addWithInfo(
     'Selectable',
     `
          The example below shows a Tile Group component with a default selected Tile.
-         Although you can set the checked prop on the Tile, when using the TileRadio component
+         Although you can set the checked prop on the Tile, when using the RadioTile component
          as a child of the Tile Group, either set the defaultSelected or valueSelected which will
-         automatically set the selected prop on the corresponding TileRadio component.
+         automatically set the selected prop on the corresponding RadioTile component.
   
          Use defaultSelected when you want a tile to be selected initially, but don't need to set it
          at a later time. If you do need to set it dynamically at a later time, then use the valueSelected property instead.
@@ -59,18 +67,18 @@ storiesOf('Tile', module)
         name="tile-group"
         defaultSelected="default-selected"
         legend="Selectable Tile Group">
-        <TileRadio value="standard" id="tile-1" labelText="Selectable Tile">
+        <RadioTile value="standard" id="tile-1" labelText="Selectable Tile">
           Selectable Tile
-        </TileRadio>
-        <TileRadio
+        </RadioTile>
+        <RadioTile
           value="default-selected"
           labelText="Default selected tile"
           id="tile-2">
           Selectable Tile
-        </TileRadio>
-        <TileRadio value="selected" labelText="Selectable Tile" id="tile-3">
+        </RadioTile>
+        <RadioTile value="selected" labelText="Selectable Tile" id="tile-3">
           Selectable Tile
-        </TileRadio>
+        </RadioTile>
       </TileGroup>
     )
   )

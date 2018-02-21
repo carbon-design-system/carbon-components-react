@@ -3,7 +3,7 @@ import React from 'react';
 import uid from '../../tools/uniqueId';
 import Icon from '../Icon';
 
-export default class TileRadio extends React.Component {
+export default class RadioTile extends React.Component {
   static propTypes = {
     checked: PropTypes.bool,
     defaultChecked: PropTypes.bool,

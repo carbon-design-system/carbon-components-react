@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import TileRadio from '../TileRadio';
+import RadioTile from '../RadioTile';
 import warning from 'warning';
 
 export default class TileGroup extends React.Component {
@@ -50,7 +50,7 @@ export default class TileGroup extends React.Component {
       }
 
       return (
-        <TileRadio
+        <RadioTile
           {...other}
           name={this.props.name}
           key={value}

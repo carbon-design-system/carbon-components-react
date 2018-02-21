@@ -1,14 +1,14 @@
 import React from 'react';
 import { mount } from 'enzyme';
 import TileGroup from '../TileGroup';
-import TileRadio from '../TileRadio';
+import RadioTile from '../RadioTile';
 
 describe('TileGroup', () => {
   describe('renders as expected', () => {
     const wrapper = mount(
       <TileGroup defaultSelected="female" name="gender">
-        <TileRadio labelText="Male" value="male" />
-        <TileRadio labelText="Female" value="female" />
+        <RadioTile labelText="Male" value="male" />
+        <RadioTile labelText="Female" value="female" />
       </TileGroup>
     );
 
@@ -31,7 +31,7 @@ describe('TileGroup', () => {
     });
 
     describe('children', () => {
-      const tileButton = () => wrapper.find(TileRadio);
+      const tileButton = () => wrapper.find(RadioTile);
 
       it('renders expected number of children', () => {
         expect(tileButton().length).toEqual(2);
@@ -72,12 +72,12 @@ describe('TileGroup', () => {
     const onChange = jest.fn();
     const wrapper = mount(
       <TileGroup onChange={onChange} name="gender">
-        <TileRadio labelText="Male" value="male" />
-        <TileRadio labelText="Female" value="female" />
+        <RadioTile labelText="Male" value="male" />
+        <RadioTile labelText="Female" value="female" />
       </TileGroup>
     );
 
-    const firstRadio = wrapper.find(TileRadio).first();
+    const firstRadio = wrapper.find(RadioTile).first();
     const args = ['male', 'gender', { test: 'test event' }];
 
     it('first child should not have checked set initially', () => {
@@ -89,7 +89,7 @@ describe('TileGroup', () => {
       wrapper.update();
       expect(
         wrapper
-          .find(TileRadio)
+          .find(RadioTile)
           .first()
           .props().checked
       ).toEqual(true);
