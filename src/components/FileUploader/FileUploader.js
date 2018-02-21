@@ -125,7 +125,7 @@ export class Filename extends Component {
       return (
         <div
           className="bx--loading"
-          style={{ ...style, ...{ width: '1rem', height: '1rem' } }}
+          style={{ ...style, width: '1rem', height: '1rem' }}
           {...other}>
           <svg className="bx--loading__svg" viewBox="-42 -42 84 84">
             <circle cx="0" cy="0" r="37.5" />
