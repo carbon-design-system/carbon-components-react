@@ -125,7 +125,7 @@ export class Filename extends Component {
       return (
         <div
           className="bx--loading"
-          style={Object.assign(style, { width: '1rem', height: '1rem' })}
+          style={{ ...style, ...{ width: '1rem', height: '1rem' } }}
           {...other}>
           <svg className="bx--loading__svg" viewBox="-42 -42 84 84">
             <circle cx="0" cy="0" r="37.5" />
@@ -212,7 +212,7 @@ export default class FileUploader extends Component {
 
   clearFiles = () => {
     // A clearFiles function that resets filenames and can be referenced using a ref by the parent.
-    this.setState({ filenames: [] });
+    this.setState({ filenames: [], filenameStatus: '' });
   };
 
   render() {
