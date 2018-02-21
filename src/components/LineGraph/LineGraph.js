@@ -134,7 +134,7 @@ export default class LineGraph extends Component {
     const { node, data } = this;
     const { margin, legendLabels } = this.props;
     const labelOffset = 35;
-    const axisOffset = 20;
+    const axisOffset = 16;
 
     d3
       .select(node)
@@ -144,13 +144,15 @@ export default class LineGraph extends Component {
 
     const el = d3.select(node).node();
     /* Find the new window dimensions */
-    let width =
-      parseInt(el.getBoundingClientRect().width, 10) -
-      (margin.left + margin.right);
+    let width = el
+      ? parseInt(el.getBoundingClientRect().width, 10) -
+        (margin.left + margin.right)
+      : 500;
     width = width >= 0 ? width : 0;
-    let height =
-      parseInt(el.getBoundingClientRect().height, 10) -
-      (margin.top + margin.bottom);
+    let height = el
+      ? parseInt(el.getBoundingClientRect().height, 10) -
+        (margin.top + margin.bottom)
+      : 300;
     height = height >= 0 ? height : 0;
 
     const timeFormat = d3.timeFormat(this.props.displayTimeFormat);
@@ -273,7 +275,7 @@ export default class LineGraph extends Component {
 
     // Animate the line on initial draw
     paths.forEach(path => {
-      const totalLength = path.node().getTotalLength();
+      const totalLength = path.node() ? path.node().getTotalLength() : width;
       path
         .attr('stroke-dasharray', `${0} ${totalLength}`)
         .transition()
@@ -327,7 +329,7 @@ export default class LineGraph extends Component {
             // Moves the tooltip to the correct coordinates, and adds the calculated difference.
             tooltips[i]
               .style('left', `${x(d.xVal) + margin.left + offset}px`)
-              .style('top', `${y(d.yVal) - 30}px`)
+              .style('top', `${y(d.yVal) - axisOffset}px`)
               .text(`${this.props.dollar ? '$' : ''}${d.yVal}`);
           }
         });
