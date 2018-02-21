@@ -75,6 +75,10 @@ export function isPrefixed(name) {
   return name.split('--')[0] === 'icon';
 }
 
+export function isXlink(name) {
+  return name.split('--')[0] === 'xlink';
+}
+
 const Icon = ({
   className,
   description,
@@ -104,7 +108,13 @@ const Icon = ({
     ...other,
   };
 
-  const svgContent = icon ? svgShapes(icon.svgData) : '';
+  const svgContent = icon ? (
+    svgShapes(icon.svgData)
+  ) : isXlink(name) ? (
+    <use xlinkHref={'#' + name.substring('xlink--'.length)} />
+  ) : (
+    ''
+  );
 
   return (
     <svg {...props} aria-label={description} alt={description}>

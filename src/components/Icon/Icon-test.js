@@ -5,6 +5,7 @@ import Icon, {
   getSvgData,
   icons,
   isPrefixed,
+  isXlink,
 } from '../Icon';
 import { mount } from 'enzyme';
 
@@ -49,6 +50,23 @@ describe('Icon', () => {
 
     it('should recieve style props', () => {
       expect(wrapper.props().style).toEqual({ transition: '2s' });
+    });
+  });
+
+  describe('Renders custom icon as expected', () => {
+    const props = {
+      name: 'xlink--search--glyph',
+    };
+
+    const wrapper = mount(<Icon {...props} />);
+
+    it('should have expected <use> inside <svg>', () => {
+      expect(
+        wrapper
+          .find('svg')
+          .find('use')
+          .props().xlinkHref
+      ).toEqual('#search--glyph');
     });
   });
 
@@ -110,6 +128,18 @@ describe('Icon', () => {
 
     it('returns false when given a name without icon-- prefix', () => {
       const prefixed = isPrefixed('search--glyph');
+      expect(prefixed).toBe(false);
+    });
+  });
+
+  describe('isXlink', () => {
+    it('returns true when given a name with xlink-- prefix', () => {
+      const prefixed = isXlink('xlink--search--glyph');
+      expect(prefixed).toBe(true);
+    });
+
+    it('returns false when given a name without xlink-- prefix', () => {
+      const prefixed = isXlink('search--glyph');
       expect(prefixed).toBe(false);
     });
   });
