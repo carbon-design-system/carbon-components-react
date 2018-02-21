@@ -121,11 +121,13 @@
   },
   "dependencies": {
     "classnames": "2.2.5",
+    "d3": "^4.13.0",
     "downshift": "^1.23.2",
     "flatpickr": "4.3.0",
     "lodash.debounce": "^4.0.8",
     "lodash.isequal": "^4.5.0",
     "lodash.omit": "^4.5.0",
+    "resize-observer-polyfill": "^1.5.0",
     "warning": "3.0.0",
     "window-or-global": "^1.0.1"
   },
