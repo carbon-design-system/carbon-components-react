@@ -96,9 +96,6 @@ export default class LineGraph extends Component {
       )
   );
 
-  resize = () => {};
-  ro = null;
-
   componentDidMount() {
     this.createLineGraph();
   }
