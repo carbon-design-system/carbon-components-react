@@ -50,7 +50,9 @@ class BarGraph extends Component {
       yLabel,
       minY,
       color,
+      colors,
       labelOffset,
+      legendLabels,
     } = this.props;
     const axisOffset = 12;
 
@@ -67,31 +69,6 @@ class BarGraph extends Component {
       : 300;
     height = height >= 0 ? height : 0;
 
-    // Set the scales
-    const x = d3
-      .scaleBand()
-      .rangeRound([0, width])
-      .domain(data.map(d => d.xVal))
-      .padding(0.5);
-
-    const maxY = d3.max(data, d => d.yVal);
-    const y = d3
-      .scaleLinear()
-      .range([height, 0])
-      .domain([0, maxY > minY ? maxY : minY]);
-
-    // // Set the axes
-    const xAxis = d3
-      .axisBottom()
-      .scale(x)
-      .tickSize(0);
-
-    const yAxis = d3
-      .axisLeft()
-      .ticks(4)
-      .tickSize(-width)
-      .scale(y.nice());
-
     // // Set up SVG with initial transform to avoid repeat positioning
     const svg = d3
       .select(node)
@@ -103,6 +80,60 @@ class BarGraph extends Component {
       .attr('class', 'group-container')
       .attr('transform', `translate(${margin.left}, ${margin.top})`)
       .attr('font-family', 'ibm-plex-sans');
+
+    let x;
+    let x0;
+    let x1;
+    let colorScale;
+    let maxY;
+    let legend;
+    let legendRectSize;
+    let legendSpacing;
+
+    if (!Array.isArray(data[0].yVal)) {
+      // Basic Bar Graph
+      // Set the scales
+      x = d3
+        .scaleBand()
+        .rangeRound([0, width])
+        .domain(data.map(d => d.xVal))
+        .padding(0.5);
+
+      maxY = d3.max(data, d => d.yVal);
+    } else {
+      // Grouped Bar Graph
+      colorScale = d3.scaleOrdinal().range(colors);
+
+      // Set the scales
+      x0 = d3
+        .scaleBand()
+        .rangeRound([0, width])
+        .domain(data.map(d => d.xVal))
+        .paddingInner(0.3);
+      x1 = d3
+        .scaleBand()
+        .rangeRound([0, x0.bandwidth()])
+        .domain(d3.range(data[0].yVal.length))
+        .padding(0.05);
+
+      maxY = d3.max(data, d => d3.max(d.yVal, y => Number(y)));
+    }
+    const y = d3
+      .scaleLinear()
+      .range([height, 0])
+      .domain([0, maxY > minY ? maxY : minY]);
+
+    // // Set the axes
+    const xAxis = d3
+      .axisBottom()
+      .scale(x || x0)
+      .tickSize(0);
+
+    const yAxis = d3
+      .axisLeft()
+      .ticks(4)
+      .tickSize(-width)
+      .scale(y.nice());
 
     // Add Y axis
     svg
@@ -170,55 +201,158 @@ class BarGraph extends Component {
       .style('pointer-events', 'none');
     svg.select('.domain').style('stroke', '#5A6872');
 
-    svg
-      .append('g')
-      .attr('class', 'bar-container')
-      .selectAll('rect')
-      .data(data)
-      .enter()
-      .append('rect')
-      .attr('class', 'bar')
-      .attr('x', d => x(d.xVal))
-      .attr('y', () => height)
-      .attr('width', x.bandwidth())
-      .attr('height', 0)
-      .attr('fill', color)
-      .transition()
-      .duration(500)
-      .delay((d, i) => i * 50)
-      .attr('height', d => height - y(d.yVal))
-      .attr('y', d => y(d.yVal));
+    if (!Array.isArray(data[0].yVal)) {
+      // Basic Bar Graph
+      svg
+        .append('g')
+        .attr('class', 'bar-container')
+        .selectAll('rect')
+        .data(data)
+        .enter()
+        .append('rect')
+        .attr('class', 'bar')
+        .attr('x', d => x(d.xVal))
+        .attr('y', () => height)
+        .attr('width', x.bandwidth())
+        .attr('height', 0)
+        .attr('fill', color)
+        .transition()
+        .duration(500)
+        .delay((d, i) => i * 50)
+        .attr('height', d => height - y(d.yVal))
+        .attr('y', d => y(d.yVal));
 
-    const tooltip = d3.select(node).select('#tooltip');
+      const tooltip = d3.select(node).select('#tooltip');
 
-    svg
-      .selectAll('.bar')
-      .on('mouseover', d => {
-        d3
-          .select(d3.event.currentTarget)
-          .style('cursor', 'pointer')
-          .transition()
-          .attr('fill', d3.color(color).darker());
+      svg
+        .selectAll('.bar')
+        .on('mouseover', d => {
+          d3
+            .select(d3.event.currentTarget)
+            .style('cursor', 'pointer')
+            .transition()
+            .attr('fill', d3.color(color).darker());
 
-        tooltip
-          .style('display', 'inherit')
-          .text(`${d.yVal}`)
-          .style('top', `${y(d.yVal) - axisOffset}px`);
+          tooltip
+            .style('display', 'inherit')
+            .text(`${d.yVal}`)
+            .style('top', `${y(d.yVal) - axisOffset}px`);
 
-        const bandwidth = x.bandwidth();
-        const tooltipWidth = tooltip.nodes()[0].getBoundingClientRect().width;
-        const offset = (tooltipWidth - bandwidth) / 2;
+          const bandwidth = x.bandwidth();
+          const tooltipWidth = tooltip.nodes()[0].getBoundingClientRect().width;
+          const offset = (tooltipWidth - bandwidth) / 2;
 
-        tooltip.style('left', `${x(d.xVal) + margin.left - offset}px`);
-      })
-      .on('mouseout', () => {
-        d3
-          .select(d3.event.currentTarget)
-          .transition()
-          .attr('fill', color);
+          tooltip.style('left', `${x(d.xVal) + margin.left - offset}px`);
+        })
+        .on('mouseout', () => {
+          d3
+            .select(d3.event.currentTarget)
+            .transition()
+            .attr('fill', color);
 
-        tooltip.style('display', 'none');
-      });
+          tooltip.style('display', 'none');
+        });
+    } else {
+      // Grouped Bar Graph
+
+      let count = 0;
+      svg
+        .append('g')
+        .selectAll('g')
+        .data(data)
+        .enter()
+        .append('g')
+        .attr('transform', d => `translate(${x0(d.xVal)}, 0)`)
+        .selectAll('rect')
+        .data(d => {
+          count++;
+          return d.yVal.map((key, index) => ({
+            key,
+            index,
+            series: count,
+            xVal: d.xVal,
+          }));
+        })
+        .enter()
+        .append('rect')
+        .attr('class', 'bar')
+        .attr('x', d => x1(d.index))
+        .attr('y', height)
+        .attr('width', x1.bandwidth())
+        .attr('height', 0)
+        .attr('fill', d => colorScale(d.index))
+        .transition()
+        .duration(500)
+        .delay((d, i) => i * 50)
+        .attr('height', d => height - y(d.key))
+        .attr('y', d => y(d.key));
+
+      const tooltip = d3.select(node).select('#tooltip');
+
+      svg
+        .selectAll('.bar')
+        .on('mouseover', d => {
+          d3
+            .select(d3.event.currentTarget)
+            .style('cursor', 'pointer')
+            .transition()
+            .attr('fill', d3.color(colorScale(d.index)).darker());
+
+          tooltip
+            .style('display', 'inherit')
+            .text(`${d.key}`)
+            .style('top', `${y(d.key) - axisOffset}px`);
+
+          const bandwidth = x1.bandwidth();
+          const tooltipWidth = tooltip.nodes()[0].getBoundingClientRect().width;
+          const offset = (tooltipWidth - bandwidth) / 2;
+
+          tooltip.style(
+            'left',
+            `${x1(d.index) + x0(d.xVal) + margin.left - offset}px`
+          );
+        })
+        .on('mouseout', d => {
+          d3
+            .select(d3.event.currentTarget)
+            .transition()
+            .attr('fill', colorScale(d.index));
+
+          tooltip.style('display', 'none');
+        });
+
+      if (legendLabels) {
+        legendRectSize = 18;
+        legendSpacing = 4;
+
+        legend = svg
+          .selectAll('.legend')
+          .data(legendLabels)
+          .enter()
+          .append('g')
+          .attr('class', 'legend')
+          .attr('transform', (d, i) => {
+            const h = legendRectSize + legendSpacing;
+            const offset = h * legendLabels.length / 2;
+            const horz = width;
+            const vert = i * h - offset + 50;
+            return `translate(${horz},${vert})`;
+          });
+
+        legend
+          .append('rect')
+          .attr('width', legendRectSize)
+          .attr('height', legendRectSize)
+          .style('fill', (d, i) => this.props.colors[i])
+          .style('stroke', (d, i) => this.props.colors[i]);
+
+        legend
+          .append('text')
+          .attr('x', legendRectSize + legendSpacing)
+          .attr('y', legendRectSize - legendSpacing)
+          .text((d, i) => legendLabels[i]);
+      }
+    }
 
     this.resize = () => {
       const newEl = d3.select(node).node();
@@ -242,11 +376,28 @@ class BarGraph extends Component {
           .attr('height', resizeHeight + (margin.top + margin.bottom));
 
         /* Update the range of the scale with new width/height */
-        x.rangeRound([0, resizeWidth]);
+        (x || x0).rangeRound([0, resizeWidth]);
+        if (x1) {
+          x1.rangeRound([0, x0.bandwidth()]);
+        }
         y.range([resizeHeight, 0]).nice();
 
-        xAxis.scale(x);
+        xAxis.scale(x || x0);
         yAxis.scale(y).tickSize(-resizeWidth);
+
+        if (legend) {
+          const maxWidth = d3.max(
+            legend.nodes(),
+            n => n.getBoundingClientRect().width
+          );
+          legend.attr('transform', (d, i) => {
+            const h = legendRectSize + legendSpacing;
+            const offset = h * legendLabels.length / 2;
+            const horz = resizeWidth + margin.right - maxWidth;
+            const vert = i * h - offset + 50;
+            return `translate(${horz},${vert})`;
+          });
+        }
 
         /* Update the axis with the new scale */
         svg
@@ -269,19 +420,30 @@ class BarGraph extends Component {
           .attr('transform', `translate(${-labelOffset}, ${resizeHeight / 2})`);
 
         /* Force D3 to recalculate and update the bars */
-        svg
-          .select('.bar-container')
-          .selectAll('.bar')
-          .attr('x', d => x(d.xVal))
-          .attr('y', () => resizeHeight)
-          .attr('width', x.bandwidth())
-          .attr('height', 0)
-          .attr('fill', color)
-          .transition()
-          .duration(500)
-          .delay((d, i) => i * 50)
-          .attr('height', d => resizeHeight - y(d.yVal))
-          .attr('y', d => y(d.yVal));
+        if (!Array.isArray(data[0].yVal)) {
+          svg
+            .select('.bar-container')
+            .selectAll('.bar')
+            .attr('x', d => x(d.xVal))
+            .attr('y', () => resizeHeight)
+            .attr('width', x.bandwidth())
+            .attr('height', 0)
+            .attr('fill', color)
+            .transition()
+            .duration(500)
+            .delay((d, i) => i * 50)
+            .attr('height', d => resizeHeight - y(d.yVal))
+            .attr('y', d => y(d.yVal));
+        } else {
+          svg
+            .select('.bar-container')
+            .selectAll('.bar')
+            .attr('x', d => x1(d.index))
+            .attr('y', d => y(d.key))
+            .attr('width', x1.bandwidth())
+            .attr('height', d => resizeHeight - y(d.key))
+            .attr('fill', d => colorScale(d.index));
+        }
       }
     };
 
@@ -328,9 +490,10 @@ class BarGraph extends Component {
 
 BarGraph.propTypes = {
   /**
-   * data should be in format: [ { xVal: x1, yVal: y1 }, { xVal: x2, yVal: y2 }, ... ]
+   * data should be in this format for basic Bar Graph: [ { xVal: x1, yVal: y1 }, { xVal: x2, yVal: y2 }, ... ]
+   * OR this format for grouped Bar Graph: [ { xVal: x1, yVal: [s1y1, s2y1, ...] }, { xVal: x2, yVal: [s1y2, s2y2, ...] }, ... ]
    */
-  data: PropTypes.array.isRequired,
+  data: PropTypes.arrayOf(PropTypes.object).isRequired,
   /**
    * margin shoiuld be in format: { left: X, right: X, top: X, bottom: X  }
    */
@@ -345,9 +508,13 @@ BarGraph.propTypes = {
    */
   minY: PropTypes.number,
   /**
-   * color for the graph's bars. Should be in hex format.
+   * color for the graph's bars. This color will be used if your data has a single series. Should be in hex format.
    */
   color: PropTypes.string,
+  /**
+   * colors for the graph's bars. These colors will be used if your data has multiple series. Should be in hex format.
+   */
+  colors: PropTypes.arrayOf(PropTypes.string),
   labelOffset: PropTypes.number,
   /**
    * width and height props are inserted into inline styling, and therefore should be
@@ -355,6 +522,7 @@ BarGraph.propTypes = {
    */
   width: PropTypes.string,
   height: PropTypes.string,
+  legendLabels: PropTypes.arrayOf(PropTypes.string),
 };
 
 BarGraph.defaultProps = {
@@ -369,9 +537,11 @@ BarGraph.defaultProps = {
   yLabel: '',
   minY: 5,
   color: '#00a68f',
+  colors: ['#00A78F', '#3b1a40', '#473793', '#3c6df0', '#56D2BB', '#00a682'],
   labelOffset: 35,
   width: '100%',
   height: '300px',
+  legendLabels: null,
 };
 
 export default BarGraph;
