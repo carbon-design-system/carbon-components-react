@@ -1,0 +1,23 @@
+import PropTypes from 'prop-types';
+import React from 'react';
+
+const NumberInputSkeleton = ({ hideLabel, id }) => {
+  const label = hideLabel ? null : (
+    <label className="bx--label bx--skeleton" htmlFor={id} />
+  );
+
+  return (
+    <div className="bx--form-item">
+      {label}
+      <div class="bx--number bx--skeleton">
+        <input type="number" />
+      </div>
+    </div>
+  );
+};
+
+NumberInputSkeleton.propTypes = {
+  hideLabel: PropTypes.bool,
+};
+
+export default NumberInputSkeleton;

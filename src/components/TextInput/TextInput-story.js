@@ -2,6 +2,7 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import TextInput from '../TextInput';
+import TextInputSkeleton from '../TextInput/TextInput.Skeleton';
 
 const TextInputProps = {
   className: 'some-class',
@@ -76,5 +77,17 @@ storiesOf('TextInput', module)
         invalid={true}
         invalidText={'A valid value is required'}
       />
+    )
+  )
+  .addWithInfo(
+    'skeleton',
+    `
+    Placeholder skeleton state to use when content is loading.
+    `,
+    () => (
+      <div>
+        <TextInputSkeleton />
+        <TextInputSkeleton hideLabel />
+      </div>
     )
   );
