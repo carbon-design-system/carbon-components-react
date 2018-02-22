@@ -7,7 +7,7 @@ import PieChart from '../PieChart';
 storiesOf('PieChart', module).addWithInfo(
   'Default',
   `
-    Line graphs connect individual data values together to show the continuity from one value to the next, making it a great way to display the shape of values as they change over time. When displaying a time-series, always place time on the x-axis so it reads chronologically from left to right.
+    Pie charts show individual values that make up a whole data set so users can compare the values to each other and see how each value compares to the whole. A common way to express the part-to-whole relationship is to use percentages, with the whole equaling 100% and each of its parts equaling smaller percentages corresponding to its value relative to the whole. Expressing exact values is useful as long as the total is also shown.
   `,
   () => (
     <PieChart

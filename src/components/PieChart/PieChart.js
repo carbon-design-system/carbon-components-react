@@ -2,36 +2,7 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import * as d3 from 'd3';
 
-export default class PieChart extends Component {
-  static propTypes = {
-    /**
-     * data should be in format: [ { label: label1, value: value1 }, { label: label2, value: value2 }, ... ]
-     */
-    data: PropTypes.array.isRequired,
-    radius: PropTypes.number,
-    colors: PropTypes.array,
-    units: PropTypes.string,
-    title: PropTypes.string,
-  };
-
-  static defaultProps = {
-    radius: 96,
-    colors: [
-      '#3b1a40',
-      '#473793',
-      '#3c6df0',
-      '#00a68f',
-      '#56D2BB',
-      '#3b1a41',
-      '#473792',
-      '#3c6df1',
-      '#00a682',
-      '#56D2B3',
-    ],
-    units: '',
-    title: '',
-  };
-
+class PieChart extends Component {
   componentDidMount() {
     this.createPieChart();
   }
@@ -215,3 +186,34 @@ export default class PieChart extends Component {
     );
   }
 }
+
+PieChart.propTypes = {
+  /**
+   * data should be in format: [ { label: label1, value: value1 }, { label: label2, value: value2 }, ... ]
+   */
+  data: PropTypes.array.isRequired,
+  radius: PropTypes.number,
+  colors: PropTypes.array,
+  units: PropTypes.string,
+  title: PropTypes.string,
+};
+
+PieChart.defaultProps = {
+  radius: 96,
+  colors: [
+    '#3b1a40',
+    '#473793',
+    '#3c6df0',
+    '#00a68f',
+    '#56D2BB',
+    '#3b1a41',
+    '#473792',
+    '#3c6df1',
+    '#00a682',
+    '#56D2B3',
+  ],
+  units: '',
+  title: '',
+};
+
+export default PieChart;

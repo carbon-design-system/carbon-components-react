@@ -4,73 +4,7 @@ import * as d3 from 'd3';
 import ResizeObserver from 'resize-observer-polyfill';
 import moment from 'moment';
 
-export default class LineGraph extends Component {
-  static propTypes = {
-    /**
-     * data should be in format: [ [ { xVal: s1x1, yVal: s1y1 }, { xVal: s1x2, yVal: s1y2 }, ... ], [ { xVal: s2x1, yVal: s2y1 }, { xVal: s2x2, yVal: s2y2 }, ... ] ]
-     */
-    data: PropTypes.array.isRequired,
-    /**
-     * margin shoiuld be in format: { left: X, right: X, top: X, bottom: X  }
-     */
-    margin: PropTypes.object,
-    /**
-     * displayTimeFormat is used to format the date/time x values displayed on the x axis
-     */
-    displayTimeFormat: PropTypes.string,
-    xLabel: PropTypes.string,
-    yLabel: PropTypes.string,
-    /**
-     * dollar indicates whether the y values are dollar amounts
-     */
-    dollar: PropTypes.bool,
-    title: PropTypes.string,
-    /**
-     * dateFormat should be a string representing the format of the dates in xVal.
-     * dateFormat can be used to help the component interpret the provided dates.
-     */
-    dateFormat: PropTypes.string,
-    colors: PropTypes.array,
-    legendLabels: PropTypes.array,
-    /**
-     * width and height props are inserted into inline styling, and therefore should be
-     * in css format (i.e. 'inherit', '100%', '200px', '10em' would all work).
-     */
-    width: PropTypes.string,
-    height: PropTypes.string,
-  };
-
-  static defaultProps = {
-    margin: {
-      top: 30,
-      right: 20,
-      bottom: 60,
-      left: 65,
-    },
-    displayTimeFormat: '%b %e, %y',
-    xLabel: '',
-    yLabel: '',
-    dollar: false,
-    title: '',
-    dateFormat: null,
-    legendLabels: null,
-    colors: [
-      '#00a68f',
-      '#3d70b2',
-      '#3b1a40',
-      '#473793',
-      '#3c6df0',
-      '#56D2BB',
-      '#3b1a41',
-      '#473792',
-      '#3c6df1',
-      '#00a682',
-      '#56D2B3',
-    ],
-    width: '100%',
-    height: '300px',
-  };
-
+class LineGraph extends Component {
   resize = () => {};
   ro;
 
@@ -475,3 +409,71 @@ export default class LineGraph extends Component {
     );
   }
 }
+
+LineGraph.propTypes = {
+  /**
+   * data should be in format: [ [ { xVal: s1x1, yVal: s1y1 }, { xVal: s1x2, yVal: s1y2 }, ... ], [ { xVal: s2x1, yVal: s2y1 }, { xVal: s2x2, yVal: s2y2 }, ... ] ]
+   */
+  data: PropTypes.array.isRequired,
+  /**
+   * margin shoiuld be in format: { left: X, right: X, top: X, bottom: X  }
+   */
+  margin: PropTypes.object,
+  /**
+   * displayTimeFormat is used to format the date/time x values displayed on the x axis
+   */
+  displayTimeFormat: PropTypes.string,
+  xLabel: PropTypes.string,
+  yLabel: PropTypes.string,
+  /**
+   * dollar indicates whether the y values are dollar amounts
+   */
+  dollar: PropTypes.bool,
+  title: PropTypes.string,
+  /**
+   * dateFormat should be a string representing the format of the dates in xVal.
+   * dateFormat can be used to help the component interpret the provided dates.
+   */
+  dateFormat: PropTypes.string,
+  colors: PropTypes.array,
+  legendLabels: PropTypes.array,
+  /**
+   * width and height props are inserted into inline styling, and therefore should be
+   * in css format (i.e. 'inherit', '100%', '200px', '10em' would all work).
+   */
+  width: PropTypes.string,
+  height: PropTypes.string,
+};
+
+LineGraph.defaultProps = {
+  margin: {
+    top: 30,
+    right: 20,
+    bottom: 60,
+    left: 65,
+  },
+  displayTimeFormat: '%b %e, %y',
+  xLabel: '',
+  yLabel: '',
+  dollar: false,
+  title: '',
+  dateFormat: null,
+  legendLabels: null,
+  colors: [
+    '#00a68f',
+    '#3d70b2',
+    '#3b1a40',
+    '#473793',
+    '#3c6df0',
+    '#56D2BB',
+    '#3b1a41',
+    '#473792',
+    '#3c6df1',
+    '#00a682',
+    '#56D2B3',
+  ],
+  width: '100%',
+  height: '300px',
+};
+
+export default LineGraph;

@@ -3,55 +3,7 @@ import React, { Component } from 'react';
 import * as d3 from 'd3';
 import ResizeObserver from 'resize-observer-polyfill';
 
-export default class BarGraph extends Component {
-  static propTypes = {
-    /**
-     * data should be in format: [ { xVal: x1, yVal: y1 }, { xVal: x2, yVal: y2 }, ... ]
-     */
-    data: PropTypes.array.isRequired,
-    /**
-     * margin shoiuld be in format: { left: X, right: X, top: X, bottom: X  }
-     */
-    margin: PropTypes.object,
-    title: PropTypes.string,
-    xLabel: PropTypes.string,
-    yLabel: PropTypes.string,
-    /**
-     * minY is the lowest value that will be used as the max value on the y-axis.
-     * The range of the y-axis will be determined by the range of the data provided,
-     * unless a minY value is provided to prevent that range from becoming too small.
-     */
-    minY: PropTypes.number,
-    /**
-     * color for the graph's bars. Should be in hex format.
-     */
-    color: PropTypes.string,
-    labelOffset: PropTypes.number,
-    /**
-     * width and height props are inserted into inline styling, and therefore should be
-     * in css format (i.e. 'inherit', '100%', '200px', '10em' would all work).
-     */
-    width: PropTypes.string,
-    height: PropTypes.string,
-  };
-
-  static defaultProps = {
-    margin: {
-      top: 30,
-      right: 20,
-      bottom: 60,
-      left: 65,
-    },
-    title: '',
-    xLabel: '',
-    yLabel: '',
-    minY: 5,
-    color: '#00a68f',
-    labelOffset: 35,
-    width: '100%',
-    height: '300px',
-  };
-
+class BarGraph extends Component {
   data = this.props.data.map(d => d);
 
   resize = () => {};
@@ -373,3 +325,53 @@ export default class BarGraph extends Component {
     );
   }
 }
+
+BarGraph.propTypes = {
+  /**
+   * data should be in format: [ { xVal: x1, yVal: y1 }, { xVal: x2, yVal: y2 }, ... ]
+   */
+  data: PropTypes.array.isRequired,
+  /**
+   * margin shoiuld be in format: { left: X, right: X, top: X, bottom: X  }
+   */
+  margin: PropTypes.object,
+  title: PropTypes.string,
+  xLabel: PropTypes.string,
+  yLabel: PropTypes.string,
+  /**
+   * minY is the lowest value that will be used as the max value on the y-axis.
+   * The range of the y-axis will be determined by the range of the data provided,
+   * unless a minY value is provided to prevent that range from becoming too small.
+   */
+  minY: PropTypes.number,
+  /**
+   * color for the graph's bars. Should be in hex format.
+   */
+  color: PropTypes.string,
+  labelOffset: PropTypes.number,
+  /**
+   * width and height props are inserted into inline styling, and therefore should be
+   * in css format (i.e. 'inherit', '100%', '200px', '10em' would all work).
+   */
+  width: PropTypes.string,
+  height: PropTypes.string,
+};
+
+BarGraph.defaultProps = {
+  margin: {
+    top: 30,
+    right: 20,
+    bottom: 60,
+    left: 65,
+  },
+  title: '',
+  xLabel: '',
+  yLabel: '',
+  minY: 5,
+  color: '#00a68f',
+  labelOffset: 35,
+  width: '100%',
+  height: '300px',
+};
+
+export default BarGraph;
