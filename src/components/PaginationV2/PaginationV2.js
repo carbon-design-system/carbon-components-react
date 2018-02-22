@@ -188,16 +188,17 @@ export default class PaginationV2 extends Component {
           <button
             className="bx--pagination__button bx--pagination__button--backward"
             onClick={this.decrementPage}
-            disabled={this.props.disabled || statePage === 1}>
+            disabled={this.props.disabled || statePage === 1}
+            style={
+              pageInputDisabled ? { borderRight: 0, marginRight: '1px' } : null
+            }>
             <Icon
               className="bx--pagination__button-icon"
               name="chevron--left"
               description={backwardText}
             />
           </button>
-          {pageInputDisabled ? (
-            <span className="bx--pagination__text">|</span>
-          ) : (
+          {pageInputDisabled ? null : (
             <Select
               id={`bx-pagination-select-${inputId + 2}`}
               labelText={itemsPerPageText}
