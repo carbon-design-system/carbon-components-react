@@ -14,18 +14,18 @@ storiesOf('LineGraph', module)
       <LineGraph
         data={[
           [
-            { xVal: '02/20/2018', yVal: Math.ceil(Math.random() * 100) },
-            { xVal: '02/21/2018', yVal: Math.ceil(Math.random() * 100) },
-            { xVal: '02/22/2018', yVal: Math.ceil(Math.random() * 100) },
-            { xVal: '02/23/2018', yVal: Math.ceil(Math.random() * 100) },
-            { xVal: '02/24/2018', yVal: Math.ceil(Math.random() * 100) },
-            { xVal: '02/25/2018', yVal: Math.ceil(Math.random() * 100) },
-            { xVal: '02/26/2018', yVal: Math.ceil(Math.random() * 100) },
+            { xVal: 21, yVal: Math.ceil(Math.random() * 100) },
+            { xVal: 32, yVal: Math.ceil(Math.random() * 100) },
+            { xVal: 47, yVal: Math.ceil(Math.random() * 100) },
+            { xVal: 53, yVal: Math.ceil(Math.random() * 100) },
+            { xVal: 61, yVal: Math.ceil(Math.random() * 100) },
+            { xVal: 75, yVal: Math.ceil(Math.random() * 100) },
+            { xVal: 81, yVal: Math.ceil(Math.random() * 100) },
           ],
         ]}
         title="Line Graph"
         width="700px"
-        xLabel="DATE"
+        xLabel="RANDOM NUMBER"
         yLabel="RANDOM NUMBER"
       />
     )
@@ -71,6 +71,7 @@ storiesOf('LineGraph', module)
         xLabel="DATE"
         yLabel="RANDOM NUMBER"
         legendLabels={['Series 1', 'Series 2', 'Series 3']}
+        dateFormat="MM/DD/YYYY"
         margin={{
           top: 30,
           right: 100,

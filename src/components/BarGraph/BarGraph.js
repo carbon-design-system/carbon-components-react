@@ -131,7 +131,7 @@ class BarGraph extends Component {
 
     const yAxis = d3
       .axisLeft()
-      .ticks(4)
+      .ticks(Math.ceil(height / 50))
       .tickSize(-width)
       .scale(y.nice());
 

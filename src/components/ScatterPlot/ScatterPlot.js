@@ -20,8 +20,9 @@ class ScatterPlot extends Component {
   data = this.props.data.map(dataset =>
     dataset
       .map(d => {
-        const date = moment(d.xVal, this.props.dateFormat);
-        d.xVal = date.isValid() ? date : Number(d.xVal);
+        d.xVal = this.props.dateFormat
+          ? moment(d.xVal, this.props.dateFormat)
+          : Number(d.xVal);
         return d;
       })
       .sort()
@@ -33,11 +34,11 @@ class ScatterPlot extends Component {
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.data !== this.props.data) {
+      const { dateFormat } = nextProps;
       this.data = nextProps.data.map(dataset =>
         dataset
           .map(d => {
-            const date = moment(d.xVal, this.props.dateFormat);
-            d.xVal = date.isValid() ? date : Number(d.xVal);
+            d.xVal = dateFormat ? moment(d.xVal, dateFormat) : Number(d.xVal);
             return d;
           })
           .sort()
@@ -57,7 +58,14 @@ class ScatterPlot extends Component {
 
   createScatterPlot() {
     const { node, data } = this;
-    const { margin, legendLabels, yLabel, xLabel, colors } = this.props;
+    const {
+      margin,
+      legendLabels,
+      yLabel,
+      xLabel,
+      colors,
+      dateFormat,
+    } = this.props;
     const labelOffset = 35;
     const axisOffset = 12;
 
@@ -80,12 +88,12 @@ class ScatterPlot extends Component {
       : 300;
     height = height >= 0 ? height : 0;
 
-    const timeFormat = d3.timeFormat(this.props.displayTimeFormat);
+    const timeFormat = dateFormat
+      ? d3.timeFormat(this.props.displayTimeFormat)
+      : null;
 
-    // Set the scales TODO: MAKE IT HANDLE NON-DATE X VALS
     // Set the scales
-    var x = d3
-      .scaleTime()
+    var x = (dateFormat ? d3.scaleTime() : d3.scaleLinear())
       .rangeRound([0, width])
       .domain([
         d3.min(this.flatten(data), d => d.xVal),
@@ -106,7 +114,7 @@ class ScatterPlot extends Component {
 
     var yAxis = d3
       .axisLeft()
-      .ticks(4)
+      .ticks(Math.ceil(height / 50))
       .tickSize(-width)
       .scale(y.nice());
 
@@ -140,7 +148,7 @@ class ScatterPlot extends Component {
       .attr('fill', '#5A6872')
       .attr(
         'transform',
-        'translate(' + -labelOffset + ', ' + height / 2 + ') rotate(-90)'
+        `translate(${-labelOffset}, ${height / 2}) rotate(-90)`
       )
       .attr('font-family', 'ibm-plex-sans');
 
@@ -148,7 +156,7 @@ class ScatterPlot extends Component {
     svg
       .append('g')
       .attr('class', 'axis x')
-      .attr('transform', 'translate(0, ' + height + ')')
+      .attr('transform', `translate(0, ${height})`)
       .call(xAxis)
       .selectAll('text')
       .attr('y', axisOffset)
@@ -161,7 +169,7 @@ class ScatterPlot extends Component {
       .text(xLabel)
       .attr('class', 'label')
       .attr('fill', '#5A6872')
-      .attr('transform', 'translate(' + width / 2 + ', ' + labelOffset + ')')
+      .attr('transform', `translate(${width / 2}, ${labelOffset})`)
       .attr('font-family', 'ibm-plex-sans');
 
     svg
@@ -232,7 +240,7 @@ class ScatterPlot extends Component {
 
           tooltip
             .style('display', 'inherit')
-            .text(d.yVal)
+            .text(dateFormat ? d.yVal : `${d.xVal}, ${d.yVal}`)
             .style('top', y(d.yVal) - axisOffset + 'px')
             .transition()
             .style('opacity', 1);
@@ -322,7 +330,10 @@ class ScatterPlot extends Component {
         xAxis
           .scale(x)
           .ticks(Math.min(resizeWidth / 70, d3.max(data, d => d.length)));
-        yAxis.scale(y).tickSize(-resizeWidth);
+        yAxis
+          .scale(y)
+          .ticks(Math.ceil(resizeHeight / 50))
+          .tickSize(-resizeWidth);
 
         if (legend) {
           const maxWidth = d3.max(
@@ -433,7 +444,7 @@ ScatterPlot.propTypes = {
   title: PropTypes.string,
   /**
    * dateFormat should be a string representing the format of the dates in xVal.
-   * dateFormat can be used to help the component interpret the provided dates.
+   * if dateFormat is null, xVals are assumed to be numbers, not dates.
    */
   dateFormat: PropTypes.string,
   colors: PropTypes.array,

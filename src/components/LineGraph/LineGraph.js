@@ -20,14 +20,12 @@ class LineGraph extends Component {
   data = this.props.data.map(dataset =>
     dataset
       .map(d => {
-        const date = moment(d.xVal, this.props.dateFormat);
-        d.xVal = date.isValid() ? date : d.xVal;
+        d.xVal = this.props.dateFormat
+          ? moment(d.xVal, this.props.dateFormat)
+          : Number(d.xVal);
         return d;
       })
-      .sort(
-        (a, b) =>
-          a instanceof Date || typeof a === 'number' ? a.xVal - b.xVal : -1
-      )
+      .sort()
   );
 
   componentDidMount() {
@@ -36,17 +34,14 @@ class LineGraph extends Component {
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.data !== this.props.data) {
+      const { dateFormat } = nextProps;
       this.data = nextProps.data.map(dataset =>
         dataset
           .map(d => {
-            const date = moment(d.xVal, this.props.dateFormat);
-            d.xVal = date.isValid() ? date : d.xVal;
+            d.xVal = dateFormat ? moment(d.xVal, dateFormat) : Number(d.xVal);
             return d;
           })
-          .sort(
-            (a, b) =>
-              a instanceof Date || typeof a === 'number' ? a.xVal - b.xVal : -1
-          )
+          .sort()
       );
     }
   }
@@ -63,7 +58,7 @@ class LineGraph extends Component {
 
   createLineGraph() {
     const { node, data } = this;
-    const { margin, legendLabels } = this.props;
+    const { margin, legendLabels, dateFormat } = this.props;
     const labelOffset = 35;
     const axisOffset = 16;
 
@@ -86,11 +81,11 @@ class LineGraph extends Component {
       : 300;
     height = height >= 0 ? height : 0;
 
-    const timeFormat = d3.timeFormat(this.props.displayTimeFormat);
+    const timeFormat = dateFormat
+      ? d3.timeFormat(this.props.displayTimeFormat)
+      : null;
 
-    // Set the scales TODO: MAKE IT HANDLE NON-DATE X VALS
-    const x = d3
-      .scaleTime()
+    const x = (dateFormat ? d3.scaleTime() : d3.scaleLinear())
       .range([0, width])
       .domain(d3.extent(this.flatten(data), d => d.xVal));
     const y = d3
@@ -108,7 +103,7 @@ class LineGraph extends Component {
 
     const yAxis = d3
       .axisLeft()
-      .ticks(4)
+      .ticks(Math.ceil(height / 50))
       .tickSize(-width)
       .scale(y.nice());
 
@@ -136,7 +131,8 @@ class LineGraph extends Component {
       .attr('stroke-dasharray', '4')
       .call(yAxis)
       .selectAll('text')
-      .attr('x', -axisOffset);
+      .attr('x', -axisOffset)
+      .attr('font-family', 'ibm-plex-sans');
 
     // Add Y axis label
     svg
@@ -144,10 +140,12 @@ class LineGraph extends Component {
       .append('text')
       .text(this.props.yLabel)
       .attr('class', 'bx--graph-label')
+      .attr('fill', '#5A6872')
       .attr(
         'transform',
         `translate(${-labelOffset}, ${height / 2}) rotate(-90)`
-      );
+      )
+      .attr('font-family', 'ibm-plex-sans');
 
     // Add X axis
     svg
@@ -156,7 +154,8 @@ class LineGraph extends Component {
       .attr('transform', `translate(0, ${height})`)
       .call(xAxis)
       .selectAll('text')
-      .attr('y', axisOffset);
+      .attr('y', axisOffset)
+      .attr('font-family', 'ibm-plex-sans');
 
     // Add X axis label
     svg
@@ -164,7 +163,8 @@ class LineGraph extends Component {
       .append('text')
       .text(this.props.xLabel)
       .attr('class', 'bx--graph-label')
-      .attr('transform', `translate(${width / 2}, ${labelOffset})`);
+      .attr('transform', `translate(${width / 2}, ${labelOffset})`)
+      .attr('font-family', 'ibm-plex-sans');
 
     // Style axes
     svg
@@ -432,7 +432,7 @@ LineGraph.propTypes = {
   title: PropTypes.string,
   /**
    * dateFormat should be a string representing the format of the dates in xVal.
-   * dateFormat can be used to help the component interpret the provided dates.
+   * if dateFormat is null, xVals are assumed to be numbers, not dates.
    */
   dateFormat: PropTypes.string,
   colors: PropTypes.array,
