@@ -20,6 +20,7 @@ export ComposedModal, {
 export ContentSwitcher from './components/ContentSwitcher';
 export CopyButton from './components/CopyButton';
 export DangerButton from './components/DangerButton';
+export DataTable from './components/DataTable';
 export DatePicker from './components/DatePicker';
 export DatePickerInput from './components/DatePickerInput';
 export DetailPageHeader from './components/DetailPageHeader';
@@ -110,6 +111,8 @@ export {
   TileAboveTheFoldContent,
   TileBelowTheFoldContent,
 } from './components/Tile';
+export RadioTile from './components/RadioTile';
+export TileGroup from './components/TileGroup';
 export TimePicker from './components/TimePicker';
 export TimePickerSelect from './components/TimePickerSelect';
 export Toggle from './components/Toggle';
