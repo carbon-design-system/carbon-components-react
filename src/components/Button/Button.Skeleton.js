@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import classNames from 'classnames';
 
-const ButtonSkeleton = ({ small, href, ...other }) => {
+const ButtonSkeleton = ({ small, href }) => {
   const buttonClasses = classNames({
     'bx--skeleton': true,
     'bx--btn': true,
@@ -13,9 +13,9 @@ const ButtonSkeleton = ({ small, href, ...other }) => {
     className: buttonClasses,
   };
 
-  const button = <button {...other} {...commonProps} type="button" />;
+  const button = <button {...commonProps} type="button" />;
 
-  const anchor = <a {...other} {...commonProps} href={href} role="button" />; // eslint-disable-line
+  const anchor = <a {...commonProps} href={href} role="button" />; // eslint-disable-line
 
   return href ? anchor : button;
 };

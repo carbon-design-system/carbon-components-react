@@ -4,6 +4,7 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import Search from '../Search';
+import SearchSkeleton from '../Search/Search.Skeleton.js';
 
 const searchProps = {
   className: 'some-class',
@@ -87,4 +88,16 @@ storiesOf('Search', module)
 
       return <ControlledSearch />;
     }
+  )
+  .addWithInfo(
+    'skeleton',
+    `
+      Placeholder skeleton state to use when content is loading.
+    `,
+    () => (
+      <div>
+        <SearchSkeleton />&nbsp;
+        <SearchSkeleton small />
+      </div>
+    )
   );

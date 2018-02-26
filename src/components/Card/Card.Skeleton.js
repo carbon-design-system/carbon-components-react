@@ -3,7 +3,7 @@ import React from 'react';
 import classNames from 'classnames';
 import SkeletonText from '../SkeletonText';
 
-const CardSkeleton = ({ children, className, ...other }) => {
+const CardSkeleton = ({ children, className }) => {
   const cardClasses = classNames({
     'bx--card': true,
     'bx--skeleton': true,
@@ -11,7 +11,7 @@ const CardSkeleton = ({ children, className, ...other }) => {
   });
 
   return (
-    <div {...other} className={cardClasses}>
+    <div className={cardClasses}>
       {children}
       <div className="bx--card__card-overview">
         <SkeletonText heading width="45%" />

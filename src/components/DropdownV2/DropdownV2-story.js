@@ -1,6 +1,7 @@
 import React from 'react';
 import { storiesOf, action } from '@storybook/react';
 import DropdownV2 from '../DropdownV2';
+import DropdownSkeleton from '../DropdownV2/Dropdown.Skeleton.js';
 
 const items = [
   {
@@ -87,6 +88,18 @@ storiesOf('DropdownV2', module)
           onChange={action('onChange')}
           disabled
         />
+      </div>
+    )
+  )
+  .addWithInfo(
+    'skeleton',
+    `
+    Placeholder skeleton state to use when content is loading.
+  `,
+    () => (
+      <div style={{ width: 300 }}>
+        <DropdownSkeleton />&nbsp;
+        <DropdownSkeleton inline />
       </div>
     )
   );

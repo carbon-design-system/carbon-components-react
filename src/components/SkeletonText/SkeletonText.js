@@ -2,10 +2,18 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import classNames from 'classnames';
 
-const SkeletonText = ({ paragraph, lineCount, width, heading, ...other }) => {
+const SkeletonText = ({
+  paragraph,
+  lineCount,
+  width,
+  heading,
+  className,
+  ...other
+}) => {
   const skeletonTextClasses = classNames({
     'bx--skeleton__text': true,
     'bx--skeleton__heading': heading,
+    [className]: className,
   });
 
   const widthNum = parseInt(width, 10);
@@ -71,6 +79,7 @@ SkeletonText.propTypes = {
    * generates skeleton text at a larger size
    */
   heading: PropTypes.bool,
+  className: PropTypes.string,
 };
 
 SkeletonText.defaultProps = {

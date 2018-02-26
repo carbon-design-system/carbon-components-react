@@ -49,7 +49,6 @@ storiesOf('NumberInput', module)
   .addWithInfo(
     'skeleton',
     `
-      ${introText}
       Placeholder skeleton state to use when content is loading.
     `,
     () => <NumberInputSkeleton />

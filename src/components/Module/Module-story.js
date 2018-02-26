@@ -1,6 +1,7 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { Module, ModuleHeader, ModuleBody } from '../Module';
+import ModuleSkeleton from '../Module/Module.Skeleton.js';
 
 storiesOf('Module', module)
   .addWithInfo(
@@ -111,5 +112,17 @@ storiesOf('Module', module)
           </p>
         </ModuleBody>
       </Module>
+    )
+  )
+  .addWithInfo(
+    'skeleton',
+    `
+     Placeholder skeleton state to use when content is loading.
+    `,
+    () => (
+      <div>
+        <ModuleSkeleton />
+        <ModuleSkeleton size="single" />
+      </div>
     )
   );

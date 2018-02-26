@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-const TextInputSkeleton = ({ hideLabel, id }) => {
+const SelectSkeleton = ({ hideLabel, id }) => {
   const label = hideLabel ? null : (
     <label className="bx--label bx--skeleton" htmlFor={id} />
   );
@@ -9,13 +9,15 @@ const TextInputSkeleton = ({ hideLabel, id }) => {
   return (
     <div className="bx--form-item">
       {label}
-      <input type="text" className="bx--skeleton bx--text-input" />
+      <div className="bx--select bx--skeleton">
+        <select className="bx--select-input" />
+      </div>
     </div>
   );
 };
 
-TextInputSkeleton.propTypes = {
+SelectSkeleton.propTypes = {
   hideLabel: PropTypes.bool,
 };
 
-export default TextInputSkeleton;
+export default SelectSkeleton;

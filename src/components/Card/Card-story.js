@@ -211,10 +211,6 @@ storiesOf('Card', module)
   .addWithInfo(
     'skeleton',
     `
-      Cards provide an at-a glance preview of the content they link to and frequently contain
-      easily-consumable content. The example below shows an empty card. Create Card Content, Card Footer,
-      Card Status and Card Actions components to add content to your card.
-
       Placeholder skeleton state to use when content is loading.
     `,
     () => <CardSkeleton />
