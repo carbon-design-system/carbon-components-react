@@ -4,7 +4,7 @@ import { action } from '@storybook/addon-actions';
 import Select from '../Select';
 import SelectItem from '../SelectItem';
 import SelectItemGroup from '../SelectItemGroup';
-import SelectSkeleton from '../Select/Select.Skeleton.js';
+import SelectSkeleton from '../Select/Select.Skeleton';
 
 const selectProps = {
   onChange: action('onChange'),

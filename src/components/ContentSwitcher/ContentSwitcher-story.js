@@ -3,7 +3,7 @@ import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import ContentSwitcher from '../ContentSwitcher';
 import Switch from '../Switch';
-import ContentSwitcherSkeleton from '../ContentSwitcher/ContentSwitcher.Skeleton.js';
+import ContentSwitcherSkeleton from '../ContentSwitcher/ContentSwitcher.Skeleton';
 
 storiesOf('ContentSwitcher', module)
   .addWithInfo(

@@ -2,7 +2,7 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import ToggleSmall from '../ToggleSmall';
-import ToggleSmallSkeleton from '../ToggleSmall/ToggleSmall.Skeleton.js';
+import ToggleSmallSkeleton from '../ToggleSmall/ToggleSmall.Skeleton';
 
 const toggleProps = {
   onToggle: action('toggle'),

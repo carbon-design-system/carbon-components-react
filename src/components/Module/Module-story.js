@@ -1,7 +1,7 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { Module, ModuleHeader, ModuleBody } from '../Module';
-import ModuleSkeleton from '../Module/Module.Skeleton.js';
+import ModuleSkeleton from '../Module/Module.Skeleton';
 
 storiesOf('Module', module)
   .addWithInfo(

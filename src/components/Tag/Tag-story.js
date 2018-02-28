@@ -1,7 +1,7 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import Tag, { types } from '../Tag';
-import TagSkeleton from '../Tag/Tag.Skeleton.js';
+import TagSkeleton from '../Tag/Tag.Skeleton';
 
 storiesOf('Tag', module)
   .addWithInfo(

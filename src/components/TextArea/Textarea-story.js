@@ -2,7 +2,7 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import TextArea from '../TextArea';
-import TextAreaSkeleton from '../TextArea/TextArea.Skeleton.js';
+import TextAreaSkeleton from '../TextArea/TextArea.Skeleton';
 
 const TextAreaProps = {
   labelText: 'Text Area label',

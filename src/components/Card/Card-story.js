@@ -13,7 +13,7 @@ import CardActions from '../CardActions';
 import CardActionItem from '../CardActionItem';
 import Button from '../Button';
 import Link from '../Link';
-import CardSkeleton from '../Card/Card.Skeleton.js';
+import CardSkeleton from '../Card/Card.Skeleton';
 
 const cardProps = {
   onClick: () => {

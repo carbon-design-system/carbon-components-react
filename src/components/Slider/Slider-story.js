@@ -2,7 +2,7 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import Slider from '../Slider';
-import SliderSkeleton from '../Slider/Slider.Skeleton.js';
+import SliderSkeleton from '../Slider/Slider.Skeleton';
 
 const mock = action('onChange');
 

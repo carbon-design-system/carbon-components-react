@@ -2,7 +2,7 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import NumberInput from '../NumberInput';
-import NumberInputSkeleton from '../NumberInput/NumberInput.Skeleton.js';
+import NumberInputSkeleton from '../NumberInput/NumberInput.Skeleton';
 
 const numberInputProps = {
   className: 'some-class',

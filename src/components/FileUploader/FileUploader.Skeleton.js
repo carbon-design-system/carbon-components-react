@@ -1,6 +1,6 @@
 import React from 'react';
 import SkeletonText from '../SkeletonText';
-import SkeletonButton from '../Button/Button.Skeleton.js';
+import SkeletonButton from '../Button/Button.Skeleton';
 
 export default class FileUploaderSkeleton extends React.Component {
   render() {

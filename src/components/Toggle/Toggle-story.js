@@ -2,7 +2,7 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import Toggle from '../Toggle';
-import ToggleSkeleton from '../Toggle/Toggle.Skeleton.js';
+import ToggleSkeleton from '../Toggle/Toggle.Skeleton';
 
 const toggleProps = {
   onToggle: action('toggle'),

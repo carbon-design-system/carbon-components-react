@@ -4,7 +4,7 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import Search from '../Search';
-import SearchSkeleton from '../Search/Search.Skeleton.js';
+import SearchSkeleton from '../Search/Search.Skeleton';
 
 const searchProps = {
   className: 'some-class',

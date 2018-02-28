@@ -1,7 +1,7 @@
 import React from 'react';
 import { storiesOf, action } from '@storybook/react';
 import DropdownV2 from '../DropdownV2';
-import DropdownSkeleton from '../DropdownV2/Dropdown.Skeleton.js';
+import DropdownSkeleton from '../DropdownV2/Dropdown.Skeleton';
 
 const items = [
   {

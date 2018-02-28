@@ -2,7 +2,7 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import Button from '../Button';
-import ButtonSkeleton from '../Button/Button.Skeleton.js';
+import ButtonSkeleton from '../Button/Button.Skeleton';
 
 const buttonEvents = {
   onClick: action('onClick'),

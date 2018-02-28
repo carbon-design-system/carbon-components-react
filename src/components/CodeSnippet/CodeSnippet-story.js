@@ -2,7 +2,7 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import CodeSnippet from '../CodeSnippet';
-import CodeSnippetSkeleton from '../CodeSnippet/CodeSnippet.Skeleton.js';
+import CodeSnippetSkeleton from '../CodeSnippet/CodeSnippet.Skeleton';
 
 const copyProps = {
   onClick: action('onClick'),

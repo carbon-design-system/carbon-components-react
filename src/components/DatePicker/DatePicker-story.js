@@ -3,7 +3,7 @@ import { storiesOf } from '@storybook/react';
 import { action, decorateAction } from '@storybook/addon-actions';
 import DatePicker from '../DatePicker';
 import DatePickerInput from '../DatePickerInput';
-import DatePickerSkeleton from '../DatePicker/DatePicker.Skeleton.js';
+import DatePickerSkeleton from '../DatePicker/DatePicker.Skeleton';
 
 // Datepickers last argument contains an instance of flatpickr
 // and will cause action logger to enter an infinite loop. Just don't log that argument

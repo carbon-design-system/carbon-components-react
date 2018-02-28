@@ -2,7 +2,7 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import Checkbox from '../Checkbox';
-import CheckboxSkeleton from '../Checkbox/Checkbox.Skeleton.js';
+import CheckboxSkeleton from '../Checkbox/Checkbox.Skeleton';
 
 const checkboxEvents = {
   className: 'some-class',

@@ -2,7 +2,7 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import RadioButton from '../RadioButton';
-import RadioButtonSkeleton from '../RadioButton/RadioButton.Skeleton.js';
+import RadioButtonSkeleton from '../RadioButton/RadioButton.Skeleton';
 
 const radioProps = {
   className: 'some-class',
