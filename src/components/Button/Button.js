@@ -24,7 +24,7 @@ const Button = ({
     'bx--btn--secondary': kind === 'secondary',
     'bx--btn--ghost': kind === 'ghost',
     'bx--btn--danger--primary': kind === 'dangerPrimary',
-    'bx--btn bx--btn--tertiary': kind === 'tertiary',
+    'bx--btn--tertiary': kind === 'tertiary',
   });
 
   const commonProps = {
