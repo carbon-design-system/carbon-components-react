@@ -198,6 +198,18 @@ storiesOf('Buttons', module)
         <Button kind="danger" {...buttonEvents} href="#" className="some-class">
           Danger link
         </Button>
+        &nbsp;
+        <Button kind="dangerPrimary" {...buttonEvents} className="some-class">
+          Danger Primary button
+        </Button>
+        &nbsp;
+        <Button
+          kind="dangerPrimary"
+          {...buttonEvents}
+          href="#"
+          className="some-class">
+          Danger Primary link
+        </Button>
       </div>
     )
   )
