@@ -1,6 +1,7 @@
 import React from 'react';
 import DatePicker from '../DatePicker';
-import { mount } from 'enzyme';
+import DatePickerSkeleton from '../DatePicker/DatePicker.Skeleton';
+import { mount, shallow } from 'enzyme';
 
 describe('DatePicker', () => {
   describe('Renders as expected', () => {
@@ -165,6 +166,20 @@ describe('DatePicker', () => {
 
     it('should render an icon', () => {
       expect(icon.length).toEqual(1);
+    });
+  });
+});
+
+describe('DatePickerSkeleton', () => {
+  describe('Renders as expected', () => {
+    const wrapper = shallow(<DatePickerSkeleton range />);
+
+    it('Has the expected classes', () => {
+      expect(wrapper.children().hasClass('bx--skeleton')).toEqual(true);
+      expect(wrapper.children().hasClass('bx--date-picker')).toEqual(true);
+      expect(wrapper.children().hasClass('bx--date-picker--range')).toEqual(
+        true
+      );
     });
   });
 });

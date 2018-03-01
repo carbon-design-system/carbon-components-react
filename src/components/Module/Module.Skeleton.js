@@ -9,12 +9,12 @@ const ModuleSkeleton = ({ size }) => {
     `bx--module--${size}`
   );
   return (
-    <div class={wrapperClasses}>
-      <div class="bx--module__inner">
-        <div class="bx--module__header">
-          <h1 class="bx--module__title">&nbsp;</h1>
+    <div className={wrapperClasses}>
+      <div className="bx--module__inner">
+        <div className="bx--module__header">
+          <h1 className="bx--module__title">&nbsp;</h1>
         </div>
-        <div class="bx--module__content" />
+        <div className="bx--module__content" />
       </div>
     </div>
   );

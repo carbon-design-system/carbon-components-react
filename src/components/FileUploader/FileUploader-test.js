@@ -1,6 +1,7 @@
 import React from 'react';
 import FileUploader, { FileUploaderButton, Filename } from '../FileUploader';
-import { mount } from 'enzyme';
+import FileUploaderSkeleton from '../FileUploader/FileUploader.Skeleton';
+import { mount, shallow } from 'enzyme';
 
 describe('Filename', () => {
   const mountWrapper = mount(<Filename name={'trees.jpg'} />);
@@ -113,6 +114,16 @@ describe('FileUploader', () => {
     });
     it('renders with empty div.bx--file-container by default', () => {
       expect(mountWrapper.find('div.bx--file-container').text()).toEqual('');
+    });
+  });
+});
+
+describe('FileUploaderSkeleton', () => {
+  describe('Renders as expected', () => {
+    const wrapper = shallow(<FileUploaderSkeleton />);
+
+    it('Has the expected classes', () => {
+      expect(wrapper.hasClass('bx--form-item')).toEqual(true);
     });
   });
 });

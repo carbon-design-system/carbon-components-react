@@ -11,9 +11,9 @@ const DropdownSkeleton = ({ inline }) => {
     'bx--list-box--inline': inline,
   });
   return (
-    <div class={wrapperClasses}>
+    <div className={wrapperClasses}>
       <div role="button" class="bx--list-box__field">
-        <span class="bx--list-box__label" />
+        <span className="bx--list-box__label" />
       </div>
     </div>
   );

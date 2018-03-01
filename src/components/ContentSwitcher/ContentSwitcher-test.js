@@ -1,4 +1,5 @@
 import React from 'react';
+import ContentSwitcherSkeleton from '../ContentSwitcher/ContentSwitcher.Skeleton';
 import ContentSwitcher from '../ContentSwitcher';
 import Switch from '../Switch';
 import { mount, shallow } from 'enzyme';
@@ -122,6 +123,17 @@ describe('ContentSwitcher', () => {
       const secondChild = wrapper.find(Switch).last();
       expect(firstChild.props().selected).toEqual(false);
       expect(secondChild.props().selected).toEqual(true);
+    });
+  });
+});
+
+describe('ContentSwitcherSkeleton', () => {
+  describe('Renders as expected', () => {
+    const wrapper = shallow(<ContentSwitcherSkeleton />);
+
+    it('Has the expected classes', () => {
+      expect(wrapper.hasClass('bx--skeleton')).toEqual(true);
+      expect(wrapper.hasClass('bx--content-switcher')).toEqual(true);
     });
   });
 });

@@ -9,7 +9,7 @@ const NumberInputSkeleton = ({ hideLabel, id }) => {
   return (
     <div className="bx--form-item">
       {label}
-      <div class="bx--number bx--skeleton">
+      <div className="bx--number bx--skeleton">
         <input type="number" />
       </div>
     </div>
