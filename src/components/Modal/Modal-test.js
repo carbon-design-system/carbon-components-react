@@ -197,7 +197,7 @@ describe('Danger Modal', () => {
       const modalButtons = wrapper.find('.bx--modal__buttons-container').props()
         .children;
       expect(modalButtons[0].props.kind).toEqual('tertiary');
-      expect(modalButtons[1].props.kind).toEqual('dangerPrimary');
+      expect(modalButtons[1].props.kind).toEqual('danger--primary');
     });
   });
 });

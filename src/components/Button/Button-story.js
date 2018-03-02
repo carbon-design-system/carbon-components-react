@@ -199,12 +199,12 @@ storiesOf('Buttons', module)
           Danger link
         </Button>
         &nbsp;
-        <Button kind="dangerPrimary" {...buttonEvents} className="some-class">
+        <Button kind="danger--primary" {...buttonEvents} className="some-class">
           Danger Primary button
         </Button>
         &nbsp;
         <Button
-          kind="dangerPrimary"
+          kind="danger--primary"
           {...buttonEvents}
           href="#"
           className="some-class">

@@ -23,7 +23,7 @@ const Button = ({
     'bx--btn--danger': kind === 'danger',
     'bx--btn--secondary': kind === 'secondary',
     'bx--btn--ghost': kind === 'ghost',
-    'bx--btn--danger--primary': kind === 'dangerPrimary',
+    'bx--btn--danger--primary': kind === 'danger--primary',
     'bx--btn--tertiary': kind === 'tertiary',
   });
 
@@ -63,7 +63,7 @@ Button.propTypes = {
     'secondary',
     'danger',
     'ghost',
-    'dangerPrimary',
+    'danger--primary',
     'tertiary',
   ]).isRequired,
   href: PropTypes.string,

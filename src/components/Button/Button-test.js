@@ -184,10 +184,10 @@ describe('DangerButton', () => {
   });
 });
 
-describe('DangerPrimaryButton', () => {
+describe('danger--primaryButton', () => {
   describe('Renders as exptected', () => {
     const wrapper = shallow(
-      <Button kind="dangerPrimary" className="extra-class" />
+      <Button kind="danger--primary" className="extra-class" />
     );
 
     it('Has the expected classes', () => {
