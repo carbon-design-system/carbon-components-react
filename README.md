@@ -20,11 +20,11 @@ npm install -S carbon-components-react carbon-components carbon-icons
 yarn add carbon-components-rect carbon-components carbon-icons
 ```
 
-1.  These components require the use of [Webpack](http://webpack.github.io/docs/tutorials/getting-started/) in your project. See our [`webpack.config.js`](/.storybook/webpack.config.js) for an example configuration.
+1. These components require the use of [Webpack](http://webpack.github.io/docs/tutorials/getting-started/) in your project. See our [`webpack.config.js`](/.storybook/webpack.config.js) for an example configuration.
 
-2.  Components do not import any of the styles themselves, use the scss or css from `carbon-components` to bring in styling. You can also use the `unpkg` cdn to bring in the styles wholesale - `unpkg.com/carbon-components/css/carbon-components.css` aliases the latest css file.
+2. Components do not import any of the styles themselves, use the scss or css from `carbon-components` to bring in styling. You can also use the `unpkg` cdn to bring in the styles wholesale - `unpkg.com/carbon-components/css/carbon-components.css` aliases the latest css file.
 
-3.  For older browsers (e.g. IE11), polyfills listed in [`carbon-components-react/.storybook/polyfills.js` file](./.storybook/polyfills.js) is required.
+3. For older browsers (e.g. IE11), polyfills listed in [`carbon-components-react/.storybook/polyfills.js` file](./.storybook/polyfills.js) is required.
 
 ## Development
 
@@ -34,17 +34,17 @@ Please refer to the [Contribution Guidelines](./.github/CONTRIBUTING.md) before 
 
 We recommend the use of [React Storybook](https://github.com/storybooks/react-storybook) for developing components.
 
-1.  Start the server:
+1. Start the server:
 
-    ```
-    $ yarn storybook
-    ```
+   ```
+   $ yarn storybook
+   ```
 
-2.  Open browser to `http://localhost:9000/`.
+2. Open browser to `http://localhost:9000/`.
 
-3.  Develop components in their respective folders (`/components` or `/internal`).
+3. Develop components in their respective folders (`/components` or `/internal`).
 
-4.  Write stories for your components in `/.storybook`.
+4. Write stories for your components in `/.storybook`.
 
 ## Contributing
 
