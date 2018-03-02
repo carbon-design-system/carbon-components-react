@@ -1,13 +1,10 @@
 # Carbon Components React
 
-[![Greenkeeper badge](https://badges.greenkeeper.io/carbon-design-system/carbon-components-react.svg)](https://greenkeeper.io/)
-[![All Contributors](https://img.shields.io/badge/all_contributors-44-orange.svg?style=flat-square)](#contributors)
-
 [![Build Status](https://travis-ci.org/carbon-design-system/carbon-components-react.svg?branch=master)](https://travis-ci.org/carbon-design-system/carbon-components-react)
+[![All Contributors](https://img.shields.io/badge/all_contributors-53-orange.svg?style=flat-square)](#contributors)
+[![Greenkeeper badge](https://badges.greenkeeper.io/carbon-design-system/carbon-components-react.svg)](https://greenkeeper.io/)
 
-**React component library for building websites and UIs with Carbon**
-
-This repository provides a collection of [Carbon Components](https://github.com/carbon-design-system/carbon-components) implemented using [React](https://facebook.github.io/react/).
+> A collection of [Carbon Components](https://github.com/carbon-design-system/carbon-components) implemented using [React](https://facebook.github.io/react/).
 
 ## Usage
 
@@ -19,6 +16,8 @@ View available React Components [here](http://react.carbondesignsystem.com). Usa
 
 ```
 npm install -S carbon-components-react carbon-components carbon-icons
+# Or, with yarn
+yarn add carbon-components-rect carbon-components carbon-icons
 ```
 
 1. These components require the use of [Webpack](http://webpack.github.io/docs/tutorials/getting-started/) in your project. See our [`webpack.config.js`](/.storybook/webpack.config.js) for an example configuration.
@@ -29,7 +28,7 @@ npm install -S carbon-components-react carbon-components carbon-icons
 
 ## Development
 
-Please refer to the [Contribution Guidelines](CONTRIBUTING.md) before starting any work.
+Please refer to the [Contribution Guidelines](./github/CONTRIBUTING.md) before starting any work.
 
 ### Using the server
 
@@ -37,9 +36,9 @@ We recommend the use of [React Storybook](https://github.com/storybooks/react-st
 
 1. Start the server:
 
-	```
-	$ npm run storybook
-	```
+   ```
+   $ yarn storybook
+   ```
 
 2. Open browser to `http://localhost:9000/`.
 
@@ -49,13 +48,14 @@ We recommend the use of [React Storybook](https://github.com/storybooks/react-st
 
 ## Contributing
 
-Please check out our [Contribution Guidelines](CONTRIBUTING.md) for detailed information on how you can lend a hand.
+Please check out our [Contribution Guidelines](./.github/CONTRIBUTING.md) for detailed information on how you can lend a hand.
 
 ## Contributors
 
 Thanks goes to these wonderful people:
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+
 <!-- prettier-ignore -->
 | [<img src="https://avatars3.githubusercontent.com/u/4185382?v=4" width="100px;"/><br /><sub><b>Brian Han</b></sub>](https://github.com/hellobrian)<br />[💻](https://github.com/carbon-design-system/carbon-components-react/commits?author=hellobrian "Code") | [<img src="https://avatars2.githubusercontent.com/u/1266014?v=4" width="100px;"/><br /><sub><b>Chris Dhanaraj</b></sub>](http://twitter.com/chrisdhanaraj)<br />[💻](https://github.com/carbon-design-system/carbon-components-react/commits?author=chrisdhanaraj "Code") | [<img src="https://avatars0.githubusercontent.com/u/181819?v=4" width="100px;"/><br /><sub><b>Nick Sandonato</b></sub>](https://github.com/nsand)<br />[💻](https://github.com/carbon-design-system/carbon-components-react/commits?author=nsand "Code") | [<img src="https://avatars1.githubusercontent.com/u/11928039?v=4" width="100px;"/><br /><sub><b>TJ Egan</b></sub>](http://tw15egan.github.io/portfolio)<br />[💻](https://github.com/carbon-design-system/carbon-components-react/commits?author=tw15egan "Code") | [<img src="https://avatars0.githubusercontent.com/u/5447411?v=4" width="100px;"/><br /><sub><b>Mari Johannessen</b></sub>](http://www.marijohannessen.com)<br />[💻](https://github.com/carbon-design-system/carbon-components-react/commits?author=marijohannessen "Code") | [<img src="https://avatars1.githubusercontent.com/u/8836958?v=4" width="100px;"/><br /><sub><b>Sam Doyle</b></sub>](https://github.com/sam1463)<br />[💻](https://github.com/carbon-design-system/carbon-components-react/commits?author=sam1463 "Code") | [<img src="https://avatars0.githubusercontent.com/u/6420214?v=4" width="100px;"/><br /><sub><b>alex weidner</b></sub>](https://github.com/shimmerjs)<br />[💻](https://github.com/carbon-design-system/carbon-components-react/commits?author=shimmerjs "Code") |
 | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
@@ -65,4 +65,7 @@ Thanks goes to these wonderful people:
 | [<img src="https://avatars2.githubusercontent.com/u/20052710?v=4" width="100px;"/><br /><sub><b>James</b></sub>](https://github.com/jamesvclements)<br />[💻](https://github.com/carbon-design-system/carbon-components-react/commits?author=jamesvclements "Code") | [<img src="https://avatars0.githubusercontent.com/u/2426829?v=4" width="100px;"/><br /><sub><b>Kade Keith</b></sub>](http://kadekeith.me/)<br />[💻](https://github.com/carbon-design-system/carbon-components-react/commits?author=keithkade "Code") | [<img src="https://avatars1.githubusercontent.com/u/11800028?v=4" width="100px;"/><br /><sub><b>Mira Murali</b></sub>](https://github.com/miramurali23)<br />[💻](https://github.com/carbon-design-system/carbon-components-react/commits?author=miramurali23 "Code") | [<img src="https://avatars2.githubusercontent.com/u/17085131?v=4" width="100px;"/><br /><sub><b>alisonemiller</b></sub>](https://github.com/alisonemiller)<br />[💻](https://github.com/carbon-design-system/carbon-components-react/commits?author=alisonemiller "Code") | [<img src="https://avatars0.githubusercontent.com/u/8770483?v=4" width="100px;"/><br /><sub><b>bjones526</b></sub>](https://github.com/bjones526)<br />[💻](https://github.com/carbon-design-system/carbon-components-react/commits?author=bjones526 "Code") | [<img src="https://avatars2.githubusercontent.com/u/32277486?v=4" width="100px;"/><br /><sub><b>sandhya-r-reddy</b></sub>](https://github.com/sandhya-r-reddy)<br />[💻](https://github.com/carbon-design-system/carbon-components-react/commits?author=sandhya-r-reddy "Code") | [<img src="https://avatars0.githubusercontent.com/u/2753488?v=4" width="100px;"/><br /><sub><b>Alison Joseph</b></sub>](https://github.com/alisonjoseph)<br />[💻](https://github.com/carbon-design-system/carbon-components-react/commits?author=alisonjoseph "Code") |
 | [<img src="https://avatars0.githubusercontent.com/u/14316696?v=4" width="100px;"/><br /><sub><b>Dogukan</b></sub>](https://github.com/ereneld)<br />[💻](https://github.com/carbon-design-system/carbon-components-react/commits?author=ereneld "Code") | [<img src="https://avatars2.githubusercontent.com/u/13935994?v=4" width="100px;"/><br /><sub><b>Erika Dsouza</b></sub>](https://github.com/ehdsouza)<br />[💻](https://github.com/carbon-design-system/carbon-components-react/commits?author=ehdsouza "Code") | [<img src="https://avatars2.githubusercontent.com/u/4943036?v=4" width="100px;"/><br /><sub><b>Jeroen Schaftenaar</b></sub>](https://github.com/jschaftenaar)<br />[💻](https://github.com/carbon-design-system/carbon-components-react/commits?author=jschaftenaar "Code") | [<img src="https://avatars1.githubusercontent.com/u/16617646?v=4" width="100px;"/><br /><sub><b>Joseph Meis</b></sub>](http://bluemix.net)<br />[💻](https://github.com/carbon-design-system/carbon-components-react/commits?author=jmeis "Code") | [<img src="https://avatars2.githubusercontent.com/u/11449728?v=4" width="100px;"/><br /><sub><b>Paul Sachs</b></sub>](https://github.com/psachs21)<br />[💻](https://github.com/carbon-design-system/carbon-components-react/commits?author=psachs21 "Code") | [<img src="https://avatars2.githubusercontent.com/u/17710824?v=4" width="100px;"/><br /><sub><b>Ryan Mackey</b></sub>](https://github.com/ryanomackey)<br />[💻](https://github.com/carbon-design-system/carbon-components-react/commits?author=ryanomackey "Code") | [<img src="https://avatars2.githubusercontent.com/u/7711697?v=4" width="100px;"/><br /><sub><b>Tom </b></sub>](https://github.com/Flyingcirc-Danger)<br />[💻](https://github.com/carbon-design-system/carbon-components-react/commits?author=Flyingcirc-Danger "Code") |
 | [<img src="https://avatars2.githubusercontent.com/u/4289301?v=4" width="100px;"/><br /><sub><b>Toni</b></sub>](https://github.com/tonitagd)<br />[💻](https://github.com/carbon-design-system/carbon-components-react/commits?author=tonitagd "Code") | [<img src="https://avatars3.githubusercontent.com/u/29720673?v=4" width="100px;"/><br /><sub><b>shyfruan</b></sub>](https://github.com/shyfruan)<br />[💻](https://github.com/carbon-design-system/carbon-components-react/commits?author=shyfruan "Code") |
+| [<img src="https://avatars2.githubusercontent.com/u/4289301?v=4" width="100px;"/><br /><sub><b>Toni</b></sub>](https://github.com/tonitagd)<br />[💻](https://github.com/carbon-design-system/carbon-components-react/commits?author=tonitagd "Code") | [<img src="https://avatars3.githubusercontent.com/u/29720673?v=4" width="100px;"/><br /><sub><b>shyfruan</b></sub>](https://github.com/shyfruan)<br />[💻](https://github.com/carbon-design-system/carbon-components-react/commits?author=shyfruan "Code") | [<img src="https://avatars1.githubusercontent.com/u/7243419?s=400&v=4" width="100px;"/><br /><sub><b>Joseph Gordon</b></sub>](https://github.com/JMGordon)<br />[💻](https://github.com/carbon-design-system/carbon-components-react/commits?author=JMGordon "Code") | [<img src="https://avatars3.githubusercontent.com/u/7374889?s=400&v=4" width="100px;"/><br /><sub><b>Logan McCaul</b></sub>](https://github.com/loganmccaul)<br />[💻](https://github.com/carbon-design-system/carbon-components-react/commits?author=loganmccaul "Code") | [<img src="https://avatars2.githubusercontent.com/u/14233261?s=400&v=4" width="100px;"/><br /><sub><b>Matt Chapman</b></sub>](https://github.com/asfordmatt)<br />[💻](https://github.com/carbon-design-system/carbon-components-react/commits?author=asfordmatt "Code") | [<img src="https://avatars1.githubusercontent.com/u/6663002?s=400&v=4" width="100px;"/><br /><sub><b>Scott Dickerson</b></sub>](https://github.com/scottdickerson)<br />[💻](https://github.com/carbon-design-system/carbon-components-react/commits?author=scottdickerson "Code") | [<img src="https://avatars3.githubusercontent.com/u/32717?s=400&v=4" width="100px;"/><br /><sub><b>Darío Hereñú</b></sub>](https://github.com/kant)<br />[💻](https://github.com/carbon-design-system/carbon-components-react/commits?author=kant "Code") |
+| [<img src="https://avatars3.githubusercontent.com/u/1449523?s=400&v=4" width="100px;"/><br /><sub><b>James Zhang</b></sub>](https://github.com/jzhang300)<br />[💻](https://github.com/carbon-design-system/carbon-components-react/commits?author=jzhang300 "Code") | [<img src="https://avatars0.githubusercontent.com/u/6776917?s=400&v=4" width="100px;"/><br /><sub><b>Simone Riccardelli</b></sub>](https://github.com/michead)<br />[💻](https://github.com/carbon-design-system/carbon-components-react/commits?author=michead "Code") | [<img src="https://avatars2.githubusercontent.com/u/7711697?s=400&v=4" width="100px;"/><br /><sub><b>Tom</b></sub>](https://github.com/Tom-Danger-Bryant)<br />[💻](https://github.com/carbon-design-system/carbon-components-react/commits?author=Tom-Danger-Bryant "Code") | [<img src="https://avatars2.githubusercontent.com/u/2263351?s=400&v=4" width="100px;"/><br /><sub><b>Zeus Courtois</b></sub>](https://github.com/zeusorion)<br />[💻](https://github.com/carbon-design-system/carbon-components-react/commits?author=zeusorion "Code") |
+
 <!-- ALL-CONTRIBUTORS-LIST:END -->

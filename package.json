@@ -15,8 +15,8 @@
     "lint": "eslint src",
     "precommit": "lint-staged",
     "prepublish": "yarn build",
-    "prettier": "prettier --write \"**/*.{scss,css,js}\"",
-    "prettier:diff": "prettier --list-different \"**/*.{scss,css,js}\"",
+    "prettier": "prettier --write \"**/*.{scss,css,js,md}\"",
+    "prettier:diff": "prettier --list-different \"**/*.{scss,css,js,md}\"",
     "semantic-release": "semantic-release",
     "start": "yarn storybook",
     "storybook": "start-storybook -p 9000",
@@ -123,6 +123,7 @@
     "classnames": "2.2.5",
     "downshift": "^1.23.2",
     "flatpickr": "4.3.0",
+    "invariant": "^2.2.3",
     "lodash.debounce": "^4.0.8",
     "lodash.isequal": "^4.5.0",
     "lodash.omit": "^4.5.0",
@@ -165,7 +166,7 @@
     "husky": "^0.14.3",
     "jest": "^22.1.0",
     "lcov2badge": "^0.1.0",
-    "lint-staged": "^6.0.1",
+    "lint-staged": "^7.0.0",
     "node-sass": "4.6.0",
     "object-assign": "^4.1.1",
     "postcss-loader": "^2.0.5",
@@ -208,12 +209,12 @@
   },
   "lint-staged": {
     "*.js": [
-      "prettier",
-      "lint",
+      "yarn prettier",
+      "yarn lint",
       "git add"
     ],
-    "*.{css,scss}": [
-      "prettier",
+    "*.{css,md,scss}": [
+      "yarn prettier",
       "git add"
     ]
   },
