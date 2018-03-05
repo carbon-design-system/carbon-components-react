@@ -212,6 +212,7 @@ export class ExpandableTile extends Component {
   state = {
     expanded: this.props.expanded,
     tileMaxHeight: this.props.tileMaxHeight,
+    tilePadding: this.props.tilePadding,
   };
 
   static propTypes = {
@@ -234,6 +235,19 @@ export class ExpandableTile extends Component {
     }
     this.setState({
       tileMaxHeight: this.aboveTheFold.getBoundingClientRect().height,
+      tilePadding:
+        parseInt(
+          window
+            .getComputedStyle(this.tile, null)
+            .getPropertyValue('padding-top'),
+          10
+        ) +
+        parseInt(
+          window
+            .getComputedStyle(this.tile, null)
+            .getPropertyValue('padding-bottom'),
+          10
+        ),
     });
   };
 
@@ -283,8 +297,9 @@ export class ExpandableTile extends Component {
       },
       className
     );
+
     const tileStyle = {
-      maxHeight: this.state.tileMaxHeight,
+      maxHeight: this.state.tileMaxHeight + this.state.tilePadding,
     };
     const content = this.getChildren().map((child, index) => {
       return React.cloneElement(child, { ref: index });
