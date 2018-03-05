@@ -21,7 +21,10 @@ storiesOf('Dropdown', module)
     () => (
       <Dropdown
         {...dropdownEvents}
+        ariaLabel="dropdown menu label"
         onChange={action('onChange')}
+        onOpen={action('onOpen')}
+        onClose={action('onClose')}
         defaultText="Dropdown label">
         <DropdownItem itemText="Option 1" value="option1" />
         <DropdownItem itemText="Option 2" value="option2" />
@@ -41,6 +44,8 @@ storiesOf('Dropdown', module)
       <Dropdown
         {...dropdownEvents}
         onChange={selectedItemInfo => console.log(selectedItemInfo)}
+        onOpen={action('onOpen')}
+        onClose={action('onClose')}
         defaultText="Option 1"
         value="all">
         <DropdownItem itemText="Option 1" value="option1" />
@@ -61,6 +66,8 @@ storiesOf('Dropdown', module)
       <Dropdown
         {...dropdownEvents}
         onChange={selectedItemInfo => console.log(selectedItemInfo)}
+        onOpen={action('onOpen')}
+        onClose={action('onClose')}
         defaultText="Dropdown label"
         disabled>
         <DropdownItem itemText="Option 1" value="option1" />
@@ -81,6 +88,8 @@ storiesOf('Dropdown', module)
       <Dropdown
         {...dropdownEvents}
         onChange={selectedItemInfo => console.log(selectedItemInfo)}
+        onOpen={action('onOpen')}
+        onClose={action('onClose')}
         defaultText="Dropdown label"
         value="all"
         selectedText="Option 4">

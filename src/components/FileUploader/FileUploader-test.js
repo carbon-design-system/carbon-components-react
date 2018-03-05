@@ -48,6 +48,10 @@ describe('FileUploaderButton', () => {
       expect(mountWrapper.props().disableLabelChanges).toEqual(false);
     });
 
+    it('renders with default accept prop', () => {
+      expect(mountWrapper.props().accept).toEqual([]);
+    });
+
     it('does not have default role', () => {
       expect(mountWrapper.props().role).not.toBeTruthy();
     });
@@ -109,6 +113,20 @@ describe('FileUploader', () => {
     });
     it('renders with empty div.bx--file-container by default', () => {
       expect(mountWrapper.find('div.bx--file-container').text()).toEqual('');
+    });
+    it('clears all uploaded files when the clearFiles method is called', () => {
+      const mountUploadedWrapper = mount(fileUploader);
+      mountUploadedWrapper.setState({
+        filenames: ['examplefile.jpg'],
+        filenameStatus: 'complete',
+      });
+
+      // Test to make sure that the Filename is rendered
+      expect(mountUploadedWrapper.find(Filename)).toHaveLength(1);
+
+      // Test to make sure it was properly removed
+      mountUploadedWrapper.instance().clearFiles();
+      expect(mountUploadedWrapper.update().find(Filename)).toHaveLength(0);
     });
   });
 });
