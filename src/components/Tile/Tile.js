@@ -233,21 +233,12 @@ export class ExpandableTile extends Component {
     if (this.refs[0]) {
       this.aboveTheFold = ReactDOM.findDOMNode(this.refs[0]); // eslint-disable-line
     }
+    const getStyle = window.getComputedStyle(this.tile, null);
     this.setState({
       tileMaxHeight: this.aboveTheFold.getBoundingClientRect().height,
       tilePadding:
-        parseInt(
-          window
-            .getComputedStyle(this.tile, null)
-            .getPropertyValue('padding-top'),
-          10
-        ) +
-        parseInt(
-          window
-            .getComputedStyle(this.tile, null)
-            .getPropertyValue('padding-bottom'),
-          10
-        ),
+        parseInt(getStyle.getPropertyValue('padding-top'), 10) +
+        parseInt(getStyle.getPropertyValue('padding-bottom'), 10),
     });
   };
 
