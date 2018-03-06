@@ -84,7 +84,7 @@ export default class ComboBox extends React.Component {
      * This provides support to change available items based on the text.
      * @param {string} inputText
      */
-    onFilterInputChange: PropTypes.func,
+    onInputChange: PropTypes.func,
   };
 
   static defaultProps = {
@@ -128,15 +128,15 @@ export default class ComboBox extends React.Component {
   };
 
   handleOnInputValueChange = inputValue => {
-    const { onFilterInputChange } = this.props;
+    const { onInputChange } = this.props;
     this.setState(
       () => ({
         // Default to empty string if we have a false-y `inputValue`
         inputValue: inputValue || '',
       }),
       () => {
-        if (onFilterInputChange) {
-          onFilterInputChange(inputValue);
+        if (onInputChange) {
+          onInputChange(inputValue);
         }
       }
     );

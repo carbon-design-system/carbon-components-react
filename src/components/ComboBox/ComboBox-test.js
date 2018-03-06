@@ -65,16 +65,16 @@ describe('ComboBox', () => {
   });
 
   it('capture filter text events', () => {
-    const onFilterInputChange = jest.fn();
+    const onInputChange = jest.fn();
     const wrapper = mount(
-      <ComboBox {...mockProps} onFilterInputChange={onFilterInputChange} />
+      <ComboBox {...mockProps} onInputChange={onInputChange} />
     );
 
     findInputNode(wrapper).simulate('change', {
       target: { value: 'something' },
     });
 
-    expect(onFilterInputChange).toHaveBeenCalledWith('something');
+    expect(onInputChange).toHaveBeenCalledWith('something');
   });
 
   describe('when disabled', () => {

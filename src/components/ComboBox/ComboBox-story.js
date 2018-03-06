@@ -71,7 +71,7 @@ storiesOf('ComboBox', module)
               onChange={action('onChange - ComboBox')}
               placeholder="Filter..."
               shouldFilterItem={() => true}
-              onFilterInputChange={text => setState({ inputText: text })}
+              onInputChange={text => setState({ inputText: text })}
             />
           </div>
         )}
