@@ -204,12 +204,11 @@ export default class OverflowMenu extends Component {
 
   handleKeyDown = evt => {
     const key = evt.key || evt.which;
-    const isOverflowMenuItem = evt.target.classList.contains(
-      'bx--overflow-menu-options__btn'
-    );
-    const isOverflowMenuIcon = evt.target.classList.contains(
-      'bx--overflow-menu'
-    );
+    const isOverflowMenuItem =
+      evt.target &&
+      evt.target.classList.contains('bx--overflow-menu-options__btn');
+    const isOverflowMenuIcon =
+      evt.target && evt.target.classList.contains('bx--overflow-menu');
     if ((key === 'ArrowDown' || key === 40) && isOverflowMenuIcon) {
       if (evt.target.querySelector('button')) {
         evt.target.querySelector('button').focus();
