@@ -187,12 +187,13 @@ export default class MultiSelect extends React.Component {
                           isHighlighted={highlightedIndex === index}
                           {...itemProps}>
                           <Checkbox
-                            id={itemProps.id}
+                            id={`${itemProps.id}-input`}
                             name={itemText}
                             checked={isChecked}
                             readOnly={true}
                             tabIndex="-1"
                             labelText={itemText}
+                            onClick={evt => evt.stopPropagation()}
                           />
                         </ListBox.MenuItem>
                       );
