@@ -141,7 +141,7 @@ export default class Tooltip extends Component {
   };
 
   state = {
-    open: this.props.open === undefined ? false : this.props.open,
+    open: Boolean(this.props.open),
   };
 
   componentDidMount() {
