@@ -167,6 +167,7 @@ export default class Tabs extends React.Component {
         <nav {...other} className={classes.tabs} role={role}>
           <div
             role="listbox"
+            aria-label="listbox"
             tabIndex={0}
             className="bx--tabs-trigger"
             onClick={this.handleDropdownClick}
