@@ -132,7 +132,6 @@ export default class Tooltip extends Component {
   };
 
   static defaultProps = {
-    open: false,
     direction: DIRECTION_BOTTOM,
     showIcon: true,
     iconName: 'info--glyph',
@@ -142,7 +141,7 @@ export default class Tooltip extends Component {
   };
 
   state = {
-    open: this.props.open,
+    open: Boolean(this.props.open),
   };
 
   componentDidMount() {
@@ -168,29 +167,35 @@ export default class Tooltip extends Component {
   };
 
   handleMouse = state => {
-    if (this.props.clickToOpen) {
-      if (state === 'click') {
-        this.setState({ open: !this.state.open });
-      }
-    } else {
-      if (state === 'over') {
-        this.getTriggerPosition();
-        this.setState({ open: true });
+    if (this.props.open === undefined) {
+      if (this.props.clickToOpen) {
+        if (state === 'click') {
+          this.setState({ open: !this.state.open });
+        }
       } else {
-        this.setState({ open: false });
+        if (state === 'over') {
+          this.getTriggerPosition();
+          this.setState({ open: true });
+        } else {
+          this.setState({ open: false });
+        }
       }
     }
   };
 
   handleClickOutside = () => {
-    this.setState({ open: false });
+    if (this.props.open === undefined) {
+      this.setState({ open: false });
+    }
   };
 
   handleKeyPress = evt => {
-    const key = evt.key || evt.which;
+    if (this.props.open === undefined) {
+      const key = evt.key || evt.which;
 
-    if (key === 'Enter' || key === 13 || key === ' ' || key === 32) {
-      this.setState({ open: !this.state.open });
+      if (key === 'Enter' || key === 13 || key === ' ' || key === 32) {
+        this.setState({ open: !this.state.open });
+      }
     }
   };
 

@@ -120,6 +120,24 @@ describe('Tooltip', () => {
       expect(wrapper.state().open).toEqual(false);
     });
 
+    it("click doesn't change state when both clickToOpen and open are set", () => {
+      const wrapper = mount(<Tooltip clickToOpen open triggerText="Tooltip" />);
+      const icon = wrapper.find(Icon);
+      icon.simulate('click');
+      expect(wrapper.state().open).toEqual(true);
+      icon.simulate('click');
+      expect(wrapper.state().open).toEqual(true);
+
+      const wrapper2 = mount(
+        <Tooltip clickToOpen open={false} triggerText="Tooltip" />
+      );
+      const icon2 = wrapper2.find(Icon);
+      icon2.simulate('click');
+      expect(wrapper2.state().open).toEqual(false);
+      icon2.simulate('click');
+      expect(wrapper2.state().open).toEqual(false);
+    });
+
     it('hover does not change state when clickToOpen is set', () => {
       const wrapper = mount(<Tooltip clickToOpen triggerText="Tooltip" />);
       const icon = wrapper.find(Icon);
@@ -129,8 +147,42 @@ describe('Tooltip', () => {
       expect(wrapper.state().open).toEqual(false);
     });
 
+    it('hover does not change state when open is set', () => {
+      const wrapper = mount(<Tooltip open={false} triggerText="Tooltip" />);
+      const icon = wrapper.find(Icon);
+      icon.simulate('mouseover');
+      expect(wrapper.state().open).toEqual(false);
+      icon.simulate('mouseout');
+      expect(wrapper.state().open).toEqual(false);
+
+      const wrapper2 = mount(<Tooltip open triggerText="Tooltip" />);
+      const icon2 = wrapper2.find(Icon);
+      icon2.simulate('mouseover');
+      expect(wrapper2.state().open).toEqual(true);
+      icon2.simulate('mouseout');
+      expect(wrapper2.state().open).toEqual(true);
+    });
+
     it('Enter key press changes state when clickToOpen is set', () => {
       const wrapper = mount(<Tooltip clickToOpen triggerText="Tooltip" />);
+      const icon = wrapper.find(Icon);
+      icon.simulate('keyDown', { which: 'Enter' });
+      expect(wrapper.state().open).toEqual(true);
+      icon.simulate('keyDown', { key: 13 });
+      expect(wrapper.state().open).toEqual(false);
+    });
+
+    it("Enter key press doesn't changes state when open is set", () => {
+      const wrapper = mount(<Tooltip open={false} triggerText="Tooltip" />);
+      const icon = wrapper.find(Icon);
+      icon.simulate('keyDown', { which: 'Enter' });
+      expect(wrapper.state().open).toEqual(false);
+      icon.simulate('keyDown', { key: 13 });
+      expect(wrapper.state().open).toEqual(false);
+    });
+
+    it('Enter key press changes state when open is not set', () => {
+      const wrapper = mount(<Tooltip triggerText="Tooltip" />);
       const icon = wrapper.find(Icon);
       icon.simulate('keyDown', { which: 'Enter' });
       expect(wrapper.state().open).toEqual(true);
