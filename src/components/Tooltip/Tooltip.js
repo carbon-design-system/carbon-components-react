@@ -231,7 +231,10 @@ export default class Tooltip extends Component {
 
   handleClickOutside = evt => {
     const shouldPreventClose =
-      evt.target && this._tooltipEl && this._tooltipEl.contains(evt.target);
+      evt &&
+      evt.target &&
+      this._tooltipEl &&
+      this._tooltipEl.contains(evt.target);
     if (!shouldPreventClose) {
       this.setState({ open: false });
     }
