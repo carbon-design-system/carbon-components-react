@@ -143,6 +143,12 @@ export default class Tooltip extends Component {
   };
 
   /**
+   * A flag to detect if `oncontextmenu` event is fired right before `mouseover`/`mouseout`/`focus`/`blur` events.
+   * @type {boolean}
+   */
+  _hasContextMenu = false;
+
+  /**
    * The element of the tooltip body.
    * @type {Element}
    * @private
@@ -212,17 +218,22 @@ export default class Tooltip extends Component {
         : { mouseover: 'over', mouseout: 'out', focus: 'over', blur: 'out' }[
             evt.type
           ];
+    const hadContextMenu = this._hasContextMenu;
+    this._hasContextMenu = evt.type === 'contextmenu';
     if (this.props.clickToOpen) {
       if (state === 'click') {
         this.setState({ open: !this.state.open });
       }
-    } else if (state) {
+    } else if (state && (state !== 'out' || !hadContextMenu)) {
       this._debouncedHandleHover(state, evt.relatedTarget);
     }
   };
 
-  handleClickOutside = () => {
-    this.setState({ open: false });
+  handleClickOutside = evt => {
+    const shouldPreventClose = evt.target && this._tooltipEl && this._tooltipEl.contains(evt.target);
+    if (!shouldPreventClose) {
+      this.setState({ open: false });
+    }
   };
 
   handleKeyPress = evt => {
@@ -331,6 +342,7 @@ export default class Tooltip extends Component {
               onMouseOut={evt => this.handleMouse(evt)}
               onFocus={evt => this.handleMouse(evt)}
               onBlur={evt => this.handleMouse(evt)}
+              onContextMenu={evt => this.handleMouse(evt)}
               ref={node => {
                 this._tooltipEl = node;
               }}>
