@@ -123,4 +123,17 @@ describe('Icon', () => {
       expect(icons.length).toBeGreaterThan(0);
     });
   });
+
+  describe('Custom render icon', () => {
+    const wrapper = mount(
+      <Icon>
+        {({ svgProps }) => (
+          <svg {...svgProps} viewBox="0 0 1 1">
+            Custom Content
+          </svg>
+        )}
+      </Icon>
+    );
+    expect(wrapper.find('svg').props().viewBox).toBe('0 0 1 1');
+  });
 });
