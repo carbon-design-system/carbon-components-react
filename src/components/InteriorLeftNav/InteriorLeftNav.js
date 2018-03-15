@@ -34,6 +34,9 @@ export default class InteriorLeftNav extends Component {
     if (nextProps.activeHref) {
       this.setState({ activeHref: nextProps.activeHref });
     }
+    if (nextProps.initialOpenState !== undefined) {
+      this.setState({ open: nextProps.initialOpenState });
+    }
   };
 
   handleItemClick = (evt, href) => {
