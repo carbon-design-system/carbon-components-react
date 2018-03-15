@@ -13,11 +13,12 @@ export default class InteriorLeftNav extends Component {
     className: PropTypes.string,
     activeHref: PropTypes.string,
     onToggle: PropTypes.func,
-    initialOpenState: PropTypes.boolean,
+    initialOpenState: PropTypes.bool,
   };
 
   static defaultProps = {
     onToggle: () => {},
+    initialOpenState: true,
   };
 
   state = {
