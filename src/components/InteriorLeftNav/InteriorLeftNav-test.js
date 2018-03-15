@@ -46,6 +46,26 @@ describe('InteriorLeftNav', () => {
           .matchesElement(<div data-child-div>foo</div>)
       ).toBe(true);
     });
+
+    it('renders a interior left nav with initialOpenState to be true', () => {
+      const interiorLeftNav = mount(
+        <InteriorLeftNav initialOpenState={true} />
+      );
+      expect(interiorLeftNav.length).toEqual(1);
+      expect(
+        interiorLeftNav.find('.bx--interior-left-nav--collapsed').length
+      ).toEqual(0);
+    });
+
+    it('renders a interior left nav with initialOpenState to be false', () => {
+      const interiorLeftNav = mount(
+        <InteriorLeftNav initialOpenState={false} />
+      );
+      expect(interiorLeftNav.length).toEqual(1);
+      expect(
+        interiorLeftNav.find('.bx--interior-left-nav--collapsed').length
+      ).toEqual(1);
+    });
   });
 
   describe('clicking on one list should close any currently opened lists', () => {
