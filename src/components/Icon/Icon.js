@@ -86,46 +86,28 @@ const Icon = ({
   style,
   width,
   iconRef,
-  children,
   ...other
 }) => {
-  let icon = null;
+  const icon = isPrefixed(name) ? findIcon(name) : findIcon(`icon--${name}`);
 
-  let props = {
+  const props = {
     className,
     fill,
     fillRule,
+    height: height || icon.height,
+    name: isPrefixed ? name : `icon--${name}`,
     role,
     style,
-    height,
+    viewBox: icon.viewBox,
+    width: width || icon.width,
     ref: iconRef,
     ...other,
   };
 
-  if (name) {
-    icon = isPrefixed(name) ? findIcon(name) : findIcon(`icon--${name}`);
-    props = {
-      ...props,
-      height: height || icon.height,
-      width: width || icon.width,
-      name: isPrefixed ? name : `icon--${name}`,
-      viewBox: icon.viewBox,
-    };
-  }
-
-  const svgProps = {
-    ...props,
-    'aria-label': description,
-    alt: description,
-  };
-
-  if (typeof children === 'function') {
-    return children({ svgProps, icon, description });
-  }
-
   const svgContent = icon ? svgShapes(icon.svgData) : '';
+
   return (
-    <svg {...svgProps}>
+    <svg {...props} aria-label={description} alt={description}>
       <title>{description}</title>
       {svgContent}
     </svg>
@@ -161,7 +143,7 @@ Icon.propTypes = {
   /**
    * The name in the sprite.
    */
-  name: PropTypes.string,
+  name: PropTypes.string.isRequired,
 
   /**
    * The `role` attribute.
@@ -187,12 +169,6 @@ Icon.propTypes = {
    * The `ref` callback for the icon.
    */
   iconRef: PropTypes.func,
-
-  /**
-   * An optional render callback to allow customizing the output.
-   * @param {{ svgProps, icon, description }}
-   */
-  children: PropTypes.func,
 };
 
 Icon.defaultProps = {
