@@ -48,9 +48,7 @@ describe('InteriorLeftNav', () => {
     });
 
     it('renders a interior left nav with initialOpenState to be true', () => {
-      const interiorLeftNav = mount(
-        <InteriorLeftNav initialOpenState={true} />
-      );
+      const interiorLeftNav = mount(<InteriorLeftNav open={true} />);
       expect(interiorLeftNav.length).toEqual(1);
       expect(
         interiorLeftNav.find('.bx--interior-left-nav--collapsed').length
@@ -58,9 +56,7 @@ describe('InteriorLeftNav', () => {
     });
 
     it('renders a interior left nav with initialOpenState to be false', () => {
-      const interiorLeftNav = mount(
-        <InteriorLeftNav initialOpenState={false} />
-      );
+      const interiorLeftNav = mount(<InteriorLeftNav open={false} />);
       expect(interiorLeftNav.length).toEqual(1);
       expect(
         interiorLeftNav.find('.bx--interior-left-nav--collapsed').length

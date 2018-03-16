@@ -13,29 +13,26 @@ export default class InteriorLeftNav extends Component {
     className: PropTypes.string,
     activeHref: PropTypes.string,
     onToggle: PropTypes.func,
-    initialOpenState: PropTypes.bool,
+    open: PropTypes.bool,
   };
 
   static defaultProps = {
     onToggle: () => {},
-    initialOpenState: true,
+    open: true,
   };
 
   state = {
     activeHref:
       this.props.activeHref || (window.location && window.location.pathname),
-    open:
-      this.props.initialOpenState !== undefined
-        ? this.props.initialOpenState
-        : true,
+    open: this.props.open !== undefined ? this.props.open : true,
   };
 
   componentWillReceiveProps = nextProps => {
     if (nextProps.activeHref) {
       this.setState({ activeHref: nextProps.activeHref });
     }
-    if (nextProps.initialOpenState !== undefined) {
-      this.setState({ open: nextProps.initialOpenState });
+    if (nextProps.open !== undefined) {
+      this.setState({ open: nextProps.open });
     }
   };
 
