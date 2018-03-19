@@ -105,6 +105,7 @@ exports[`DataTable selection should have select-all default to un-checked if no 
                   </TableSelectAll>
                   <TableHeader
                     isSortHeader={false}
+                    isSortable={true}
                     key="fieldA"
                     onClick={[Function]}
                     scope="col"
@@ -155,6 +156,7 @@ exports[`DataTable selection should have select-all default to un-checked if no 
                   </TableHeader>
                   <TableHeader
                     isSortHeader={false}
+                    isSortable={true}
                     key="fieldB"
                     onClick={[Function]}
                     scope="col"
@@ -410,6 +412,7 @@ exports[`DataTable selection should render 1`] = `
                   </TableSelectAll>
                   <TableHeader
                     isSortHeader={false}
+                    isSortable={true}
                     key="fieldA"
                     onClick={[Function]}
                     scope="col"
@@ -460,6 +463,7 @@ exports[`DataTable selection should render 1`] = `
                   </TableHeader>
                   <TableHeader
                     isSortHeader={false}
+                    isSortable={true}
                     key="fieldB"
                     onClick={[Function]}
                     scope="col"
