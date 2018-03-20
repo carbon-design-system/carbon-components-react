@@ -129,6 +129,8 @@ describe('DataTable', () => {
 
       header.simulate('click');
       expect(wrapper.state('rowIds')).toEqual(['b', 'a', 'c']);
+
+      wrapper.setProps({ rows: [] });
     });
 
     it('should reset to DESC ordering when another header is clicked', () => {
