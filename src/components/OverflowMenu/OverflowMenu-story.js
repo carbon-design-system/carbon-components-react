@@ -58,7 +58,7 @@ storiesOf('OverflowMenu', module)
     )
   )
   .addWithInfo(
-    'custom icons',
+    'custom trigger',
     `
       Sometimes you just want to render something other than an icon
     `,
@@ -67,7 +67,7 @@ storiesOf('OverflowMenu', module)
         {...overflowMenuEvents}
         style={{ width: 'auto' }}
         floatingMenu
-        renderIcon={iconProps => <div {...iconProps}>Custom stuff</div>}>
+        renderIcon={iconProps => <div {...iconProps}>Custom trigger</div>}>
         <OverflowMenuItem {...overflowMenuItemEvents} itemText="Option 1" />
         <OverflowMenuItem {...overflowMenuItemEvents} itemText="Option 2" />
         <OverflowMenuItem {...overflowMenuItemEvents} itemText="Option 3" />
