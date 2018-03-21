@@ -47,7 +47,7 @@ describe('InteriorLeftNav', () => {
       ).toBe(true);
     });
 
-    it('renders a interior left nav with initialOpenState to be true', () => {
+    it('renders a interior left nav with open to be true', () => {
       const interiorLeftNav = mount(<InteriorLeftNav open={true} />);
       expect(interiorLeftNav.length).toEqual(1);
       expect(
@@ -55,7 +55,7 @@ describe('InteriorLeftNav', () => {
       ).toEqual(0);
     });
 
-    it('renders a interior left nav with initialOpenState to be false', () => {
+    it('renders a interior left nav with open to be false', () => {
       const interiorLeftNav = mount(<InteriorLeftNav open={false} />);
       expect(interiorLeftNav.length).toEqual(1);
       expect(
