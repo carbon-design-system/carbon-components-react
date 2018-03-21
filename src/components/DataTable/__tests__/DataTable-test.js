@@ -129,8 +129,17 @@ describe('DataTable', () => {
 
       header.simulate('click');
       expect(wrapper.state('rowIds')).toEqual(['b', 'a', 'c']);
+    });
 
-      wrapper.setProps({ rows: [] });
+    it('should re-sort new row props by the current sort state', () => {
+      const wrapper = mount(<DataTable {...mockProps} />);
+      const header = getHeaderAt(wrapper, 0);
+
+      header.simulate('click');
+      expect(wrapper.state('rowIds')).toEqual(['a', 'b', 'c']);
+
+      wrapper.setProps({ rows: mockProps.rows });
+      expect(wrapper.state('rowIds')).toEqual(['a', 'b', 'c']);
     });
 
     it('should reset to DESC ordering when another header is clicked', () => {
