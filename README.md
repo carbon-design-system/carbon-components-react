@@ -3,7 +3,6 @@
 [![Build Status](https://travis-ci.org/carbon-design-system/carbon-components-react.svg?branch=master)](https://travis-ci.org/carbon-design-system/carbon-components-react)
 [![All Contributors](https://img.shields.io/badge/all_contributors-53-orange.svg?style=flat-square)](#contributors)
 [![Greenkeeper badge](https://badges.greenkeeper.io/carbon-design-system/carbon-components-react.svg)](https://greenkeeper.io/)
-[![Edit carbon-components-react](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/x2mjypo6pp)
 
 > A collection of [Carbon Components](https://github.com/carbon-design-system/carbon-components) implemented using [React](https://facebook.github.io/react/).
 
@@ -32,6 +31,10 @@ yarn add carbon-components-react carbon-components carbon-icons
 2. Components do not import any of the styles themselves, use the scss or css from `carbon-components` to bring in styling. You can also use the `unpkg` cdn to bring in the styles wholesale - `unpkg.com/carbon-components/css/carbon-components.css` aliases the latest css file.
 
 3. For older browsers (e.g. IE11), polyfills listed in [`carbon-components-react/.storybook/polyfills.js` file](./.storybook/polyfills.js) is required.
+
+If you just want to try out `carbon-components-react`, you can also use [Codesandbox](https://codesandbox.io).
+
+[![Edit carbon-components-react](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/x2mjypo6pp)
 
 ## Development
 
