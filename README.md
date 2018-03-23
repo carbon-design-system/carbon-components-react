@@ -3,6 +3,7 @@
 [![Build Status](https://travis-ci.org/carbon-design-system/carbon-components-react.svg?branch=master)](https://travis-ci.org/carbon-design-system/carbon-components-react)
 [![All Contributors](https://img.shields.io/badge/all_contributors-53-orange.svg?style=flat-square)](#contributors)
 [![Greenkeeper badge](https://badges.greenkeeper.io/carbon-design-system/carbon-components-react.svg)](https://greenkeeper.io/)
+[![Edit carbon-components-react](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/x2mjypo6pp)
 
 > A collection of [Carbon Components](https://github.com/carbon-design-system/carbon-components) implemented using [React](https://facebook.github.io/react/).
 
@@ -14,9 +15,15 @@ View available React Components [here](http://react.carbondesignsystem.com). Usa
 
 ### Getting Started
 
-```
+Run the following command using [npm](https://www.npmjs.com/):
+
+```bash
 npm install -S carbon-components-react carbon-components carbon-icons
-# Or, with yarn
+```
+
+If you prefer [Yarn](https://yarnpkg.com/en/), use the following command instead:
+
+```bash
 yarn add carbon-components-react carbon-components carbon-icons
 ```
 
