@@ -66,7 +66,6 @@ export default class Modal extends Component {
       secondaryButtonText,
       primaryButtonText,
       open,
-      onRequestClose,
       onRequestSubmit,
       onSecondarySubmit,
       iconDescription,
