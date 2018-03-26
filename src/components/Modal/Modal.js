@@ -39,7 +39,7 @@ export default class Modal extends Component {
     open: true,
   };
 
-  onRequestClose = evt => {
+  onRequestClose = () => {
     this.setState({ open: false });
   };
 
