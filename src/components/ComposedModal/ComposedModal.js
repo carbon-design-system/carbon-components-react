@@ -48,6 +48,9 @@ export default class ComposedModal extends Component {
   };
 
   render() {
+    if (!this.state.open) {
+      return null;
+    }
     const {
       className,
       open,
