@@ -28,6 +28,7 @@ export default class Pagination extends Component {
     pagesUnknown: PropTypes.bool,
     isLastPage: PropTypes.bool,
     pageInputDisabled: PropTypes.bool,
+    onChangeTimeout: PropTypes.number,
   };
 
   static defaultProps = {
@@ -45,6 +46,7 @@ export default class Pagination extends Component {
     pageInputDisabled: false,
     itemText: (min, max) => `${min}-${max} items`,
     pageText: page => `page ${page}`,
+    onChangeTimeout: 500,
   };
 
   state = {
@@ -59,12 +61,19 @@ export default class Pagination extends Component {
     this.uniqueId = `${Math.floor(Math.random() * 0xffff)}`;
   }
 
+  componentWillUnmount() {
+    if (this.timeoutId) {
+      clearTimeout(this.timeoutId);
+    }
+  }
+
   componentWillReceiveProps({ pageSizes, page, pageSize }) {
     if (!equals(pageSizes, this.props.pageSizes)) {
       this.setState({ pageSize: pageSizes[0], page: 1 });
     }
     if (page !== this.props.page) {
       this.setState({
+        prevPage: this.props.page,
         page,
       });
     }
@@ -86,7 +95,15 @@ export default class Pagination extends Component {
       page <= Math.ceil(this.props.totalItems / this.state.pageSize)
     ) {
       this.setState({ page });
-      this.props.onChange({ page, pageSize: this.state.pageSize });
+      if (this.timeoutId) {
+        clearTimeout(this.timeoutId);
+      }
+      this.timeoutId = setTimeout(
+        () => this.props.onChange({ page, pageSize: this.state.pageSize }),
+        this.props.onChangeTimeout
+      );
+    } else if (page === 0) {
+      this.setState({ page, prevPage: this.state.page });
     }
   };
 
@@ -102,6 +119,30 @@ export default class Pagination extends Component {
     this.props.onChange({ page, pageSize: this.state.pageSize });
   };
 
+  getItemsText = () => {
+    const { pagesUnknown, totalItems, itemRangeText, itemText } = this.props;
+    const { pageSize, page, prevPage } = this.state;
+    const statePage = page === 0 ? prevPage : page;
+    if (pagesUnknown) {
+      return itemText(pageSize * (statePage - 1) + 1, statePage * pageSize);
+    }
+    return itemRangeText(
+      pageSize * (statePage - 1) + 1,
+      Math.min(statePage * pageSize, totalItems),
+      totalItems
+    );
+  };
+
+  getPagesText = () => {
+    const { pagesUnknown, totalItems, pageRangeText, pageText } = this.props;
+    const { pageSize, page, prevPage } = this.state;
+    const statePage = page === 0 ? prevPage : page;
+    if (pagesUnknown) {
+      return pageText(statePage);
+    }
+    return pageRangeText(statePage, Math.ceil(totalItems / pageSize));
+  };
+
   render() {
     const {
       backwardText,
@@ -109,18 +150,19 @@ export default class Pagination extends Component {
       forwardText,
       id,
       itemsPerPageText,
-      itemRangeText,
-      pageNumberText,
-      pageRangeText,
+      itemRangeText, // eslint-disable-line no-unused-vars
+      pageNumberText, // eslint-disable-line no-unused-vars
+      pageRangeText, // eslint-disable-line no-unused-vars
       pageSize, // eslint-disable-line no-unused-vars
       pageSizes,
-      itemText,
-      pageText,
-      pagesUnknown,
+      itemText, // eslint-disable-line no-unused-vars
+      pageText, // eslint-disable-line no-unused-vars
+      pagesUnknown, // eslint-disable-line no-unused-vars
       isLastPage,
       pageInputDisabled,
       totalItems,
       onChange, // eslint-disable-line no-unused-vars
+      onChangeTimeout, // eslint-disable-line no-unused-vars
       page: pageNumber, // eslint-disable-line no-unused-vars
       ...other
     } = this.props;
@@ -146,25 +188,10 @@ export default class Pagination extends Component {
           <span className="bx--pagination__text">
             {itemsPerPageText}&nbsp;&nbsp;|&nbsp;&nbsp;
           </span>
-          <span className="bx--pagination__text">
-            {pagesUnknown
-              ? itemText(
-                  statePageSize * (statePage - 1) + 1,
-                  statePage * statePageSize
-                )
-              : itemRangeText(
-                  statePageSize * (statePage - 1) + 1,
-                  Math.min(statePage * statePageSize, totalItems),
-                  totalItems
-                )}
-          </span>
+          <span className="bx--pagination__text">{this.getItemsText()}</span>
         </div>
         <div className="bx--pagination__right">
-          <span className="bx--pagination__text">
-            {pagesUnknown
-              ? pageText(statePage)
-              : pageRangeText(statePage, Math.ceil(totalItems / statePageSize))}
-          </span>
+          <span className="bx--pagination__text">{this.getPagesText()}</span>
           <button
             className="bx--pagination__button bx--pagination__button--backward"
             onClick={this.decrementPage}
@@ -180,8 +207,7 @@ export default class Pagination extends Component {
           ) : (
             <TextInput
               id={`bx-pagination-input-${inputId}`}
-              placeholder="0"
-              value={statePage}
+              value={statePage > 0 ? statePage : ''}
               onChange={this.handlePageInputChange}
               labelText={pageNumberText}
               hideLabel
