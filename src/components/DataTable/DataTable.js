@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import isEqual from 'lodash.isequal';
 import getDerivedStateFromProps from './state/getDerivedStateFromProps';
 import { getNextSortState, getCurrentSortState } from './state/sorting';
 import denormalize from './tools/denormalize';
@@ -120,6 +121,22 @@ export default class DataTable extends React.Component {
           key: this.state.sortHeaderKey,
         }),
       });
+      return;
+    }
+
+    const rowIds = this.state.rowIds.sort();
+    const nextRowIds = nextState.rowIds.sort();
+
+    if (!isEqual(rowIds, nextRowIds)) {
+      this.setState(nextState);
+      return;
+    }
+
+    const headers = this.props.headers.map(header => header.key);
+    const nextHeaders = nextProps.headers.map(header => header.key);
+
+    if (!isEqual(headers, nextHeaders)) {
+      this.setState(nextState);
     }
   }
 

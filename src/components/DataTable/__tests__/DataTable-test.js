@@ -303,4 +303,110 @@ describe('DataTable', () => {
       expect(selectedRows.length).toBe(0);
     });
   });
+
+  describe('componentWillReceiveProps', () => {
+    let mockProps;
+
+    beforeEach(() => {
+      mockProps = {
+        rows: [
+          {
+            id: 'b',
+            fieldA: 'Field 2:A',
+            fieldB: 'Field 2:B',
+          },
+          {
+            id: 'a',
+            fieldA: 'Field 1:A',
+            fieldB: 'Field 1:B',
+          },
+          {
+            id: 'c',
+            fieldA: 'Field 3:A',
+            fieldB: 'Field 3:B',
+          },
+        ],
+        headers: [
+          {
+            key: 'fieldA',
+            header: 'Field A',
+          },
+          {
+            key: 'fieldB',
+            header: 'Field B',
+          },
+        ],
+        locale: 'en',
+        render: jest.fn(({ rows, headers, getHeaderProps }) => (
+          <Table>
+            <TableHead>
+              <TableRow>
+                {headers.map(header => (
+                  <TableHeader {...getHeaderProps({ header })}>
+                    {header.header}
+                  </TableHeader>
+                ))}
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {rows.map(row => (
+                <TableRow key={row.id}>
+                  {row.cells.map(cell => (
+                    <TableCell key={cell.id}>{cell.value}</TableCell>
+                  ))}
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        )),
+      };
+    });
+
+    it('should add additional rows when receiving new props', () => {
+      const wrapper = mount(<DataTable {...mockProps} />);
+      const args = mockProps.render.mock.calls[0][0];
+
+      expect(args.rows.length).toEqual(mockProps.rows.length);
+
+      const nextRows = [
+        ...mockProps.rows,
+        {
+          id: 'd',
+          fieldA: 'Field 4:A',
+          fieldB: 'Field 4:B',
+        },
+      ];
+
+      wrapper.setProps({ rows: nextRows });
+
+      const nextArgs = mockProps.render.mock.calls[1][0];
+      expect(nextArgs.rows.length).toBe(nextRows.length);
+    });
+
+    it('should add additional headers when receiving new props', () => {
+      const wrapper = mount(<DataTable {...mockProps} />);
+      const args = mockProps.render.mock.calls[0][0];
+
+      expect(args.headers).toEqual(mockProps.headers);
+
+      const nextProps = {
+        rows: mockProps.rows.map(row => ({
+          ...row,
+          fieldC: 'Field X:C',
+        })),
+        headers: [
+          ...mockProps.headers,
+          {
+            key: 'fieldC',
+            header: 'Field C',
+          },
+        ],
+      };
+
+      wrapper.setProps(nextProps);
+
+      const nextArgs = mockProps.render.mock.calls[1][0];
+      expect(nextArgs.headers).toEqual(nextProps.headers);
+    });
+  });
 });
