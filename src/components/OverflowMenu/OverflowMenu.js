@@ -208,15 +208,30 @@ export default class OverflowMenu extends Component {
   };
 
   handleKeyDown = evt => {
-    if (evt.which === 40) {
-      this.setState({ open: !this.state.open });
-      this.props.onClick(evt);
-    }
-  };
-
-  handleKeyPress = evt => {
     const key = evt.key || evt.which;
-
+    const isOverflowMenuItem =
+      evt.target &&
+      evt.target.classList.contains('bx--overflow-menu-options__btn');
+    const isOverflowMenuIcon =
+      evt.target && evt.target.classList.contains('bx--overflow-menu');
+    if ((key === 'ArrowDown' || key === 40) && isOverflowMenuIcon) {
+      if (evt.target.querySelector('button')) {
+        evt.target.querySelector('button').focus();
+      }
+    }
+    if ((key === 'ArrowDown' || key === 40) && isOverflowMenuItem) {
+      if (evt.target.parentElement.nextSibling) {
+        evt.target.parentElement.nextSibling.querySelector('button').focus();
+      }
+    } else if (key === 'ArrowUp' || key === 38) {
+      if (evt.target.parentElement.previousSibling) {
+        evt.target.parentElement.previousSibling
+          .querySelector('button')
+          .focus();
+      } else {
+        evt.target.parentElement.parentElement.parentElement.focus();
+      }
+    }
     if (key === 'Enter' || key === 13 || key === ' ' || key === 32) {
       this.setState({ open: !this.state.open });
     }
@@ -279,12 +294,17 @@ export default class OverflowMenu extends Component {
     );
 
     const menuBody = (
-      <ul className={overflowMenuOptionsClasses}>{childrenWithProps}</ul>
+      <ul
+        role="menu"
+        aria-label="overflow menu options"
+        className={overflowMenuOptionsClasses}>
+        {childrenWithProps}
+      </ul>
     );
     const wrappedMenuBody = !floatingMenu ? (
       menuBody
     ) : (
-      <div role="menuitem">
+      <div role="presentation">
         <FloatingMenu
           menuPosition={this.state.menuPosition}
           menuOffset={flipped ? menuOffsetFlip : menuOffset}>
@@ -308,7 +328,7 @@ export default class OverflowMenu extends Component {
           aria-haspopup
           aria-expanded={this.state.open}
           className={overflowMenuClasses}
-          onKeyDown={this.handleKeyPress}
+          onKeyDown={this.handleKeyDown}
           aria-label={ariaLabel}
           id={id}
           tabIndex={tabIndex}
