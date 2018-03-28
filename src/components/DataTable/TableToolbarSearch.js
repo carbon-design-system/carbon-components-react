@@ -7,6 +7,7 @@ const TableToolbarSearch = ({
   className,
   searchContainerClass,
   onChange,
+  id,
   ...rest
 }) => {
   const searchContainerClasses = cx(
@@ -19,7 +20,7 @@ const TableToolbarSearch = ({
         className={className}
         {...rest}
         small
-        id="search-2"
+        id={id}
         labelText="Filter table"
         placeHolderText="Search"
         onChange={onChange}
@@ -34,6 +35,7 @@ TableToolbarSearch.propTypes = {
   /**
    * Provide an optional class name for the search container
    */
+  id: PropTypes.string,
   searchContainerClasses: PropTypes.string,
 
   /**
