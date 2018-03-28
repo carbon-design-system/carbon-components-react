@@ -292,6 +292,7 @@ export class ExpandableTile extends Component {
       tabIndex,
       className,
       tileMaxHeight, // eslint-disable-line
+      tilePadding, // eslint-disable-line
       handleClick, // eslint-disable-line
       expanded, // eslint-disable-line
       ...other
