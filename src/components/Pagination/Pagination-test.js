@@ -340,7 +340,7 @@ describe('Pagination', () => {
       });
 
       describe('empty page input', () => {
-        it('sets page to 0 and previousPage to current page', () => {
+        it('sets page to 0', () => {
           const pager = mount(
             <Pagination pageSizes={[5, 10]} totalItems={50} page={3} />
           );
@@ -349,41 +349,40 @@ describe('Pagination', () => {
             .last()
             .simulate('change', { target: { value: '' } });
           expect(pager.state().page).toBe(0);
-          expect(pager.state().prevPage).toBe(3);
         });
 
-        it('uses previous page for page text when current page 0', () => {
-          const pageRangeMock = jest.fn();
+        it('uses default page text when current page 0', () => {
+          const defaultMock = jest.fn();
           const pager = mount(
             <Pagination
               pageSizes={[5, 10]}
               totalItems={50}
               page={3}
-              pageRangeText={pageRangeMock}
+              defaultPageText={defaultMock}
+            />
+          );
+          pager
+            .find('.bx--text__input')
+            .last()
+            .simulate('change', { target: { value: 0 } });
+          expect(defaultMock).toBeCalledWith(10);
+        });
+
+        it('uses default item text when current page 0', () => {
+          const defaultMock = jest.fn();
+          const pager = mount(
+            <Pagination
+              pageSizes={[5, 10]}
+              totalItems={50}
+              page={3}
+              defaultItemText={defaultMock}
             />
           );
           pager
             .find('.bx--text__input')
             .last()
             .simulate('change', { target: { value: '' } });
-          expect(pageRangeMock).toBeCalledWith(3, 10);
-        });
-
-        it('uses previous page for item text when current page 0', () => {
-          const itemRangeMock = jest.fn();
-          const pager = mount(
-            <Pagination
-              pageSizes={[5, 10]}
-              totalItems={50}
-              page={3}
-              itemRangeText={itemRangeMock}
-            />
-          );
-          pager
-            .find('.bx--text__input')
-            .last()
-            .simulate('change', { target: { value: '' } });
-          expect(itemRangeMock).toBeCalledWith(11, 15, 50);
+          expect(defaultMock).toBeCalledWith(50);
         });
       });
     });

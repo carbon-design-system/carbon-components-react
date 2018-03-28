@@ -29,6 +29,8 @@ export default class Pagination extends Component {
     isLastPage: PropTypes.bool,
     pageInputDisabled: PropTypes.bool,
     onChangeTimeout: PropTypes.number,
+    defaultPageText: PropTypes.func,
+    defaultItemText: PropTypes.func,
   };
 
   static defaultProps = {
@@ -46,7 +48,9 @@ export default class Pagination extends Component {
     pageInputDisabled: false,
     itemText: (min, max) => `${min}-${max} items`,
     pageText: page => `page ${page}`,
-    onChangeTimeout: 500,
+    defaultPageText: totalPages => `${totalPages} pages`,
+    defaultItemText: totalItems => `${totalItems} items`,
+    onChangeTimeout: 300,
   };
 
   state = {
@@ -88,23 +92,27 @@ export default class Pagination extends Component {
     this.props.onChange({ page: 1, pageSize });
   };
 
+  setupTimer = page => {
+    const { pageSize } = this.state;
+
+    if (this.timeoutId) {
+      clearTimeout(this.timeoutId);
+    }
+    this.timeoutId = setTimeout(() => {
+      this.props.onChange({ page, pageSize });
+    }, this.props.onChangeTimeout);
+  };
+
   handlePageInputChange = evt => {
     const page = Number(evt.target.value);
+
     if (
       page > 0 &&
       page <= Math.ceil(this.props.totalItems / this.state.pageSize)
     ) {
-      this.setState({ page });
-      if (this.timeoutId) {
-        clearTimeout(this.timeoutId);
-      }
-      this.timeoutId = setTimeout(
-        () => this.props.onChange({ page, pageSize: this.state.pageSize }),
-        this.props.onChangeTimeout
-      );
-    } else if (page === 0) {
-      this.setState({ page, prevPage: this.state.page });
+      this.setupTimer(page);
     }
+    this.setState({ page });
   };
 
   incrementPage = () => {
@@ -120,33 +128,51 @@ export default class Pagination extends Component {
   };
 
   getItemsText = () => {
-    const { pagesUnknown, totalItems, itemRangeText, itemText } = this.props;
-    const { pageSize, page, prevPage } = this.state;
-    const statePage = page === 0 ? prevPage : page;
+    const {
+      pagesUnknown,
+      totalItems,
+      itemRangeText,
+      itemText,
+      defaultItemText,
+    } = this.props;
+    const { pageSize, page } = this.state;
+
     if (pagesUnknown) {
-      return itemText(pageSize * (statePage - 1) + 1, statePage * pageSize);
+      return itemText(pageSize * (page - 1) + 1, page * pageSize);
+    } else if (page > 0) {
+      return itemRangeText(
+        pageSize * (page - 1) + 1,
+        Math.min(page * pageSize, totalItems),
+        totalItems
+      );
     }
-    return itemRangeText(
-      pageSize * (statePage - 1) + 1,
-      Math.min(statePage * pageSize, totalItems),
-      totalItems
-    );
+    return defaultItemText(totalItems);
   };
 
   getPagesText = () => {
-    const { pagesUnknown, totalItems, pageRangeText, pageText } = this.props;
-    const { pageSize, page, prevPage } = this.state;
-    const statePage = page === 0 ? prevPage : page;
+    const {
+      pagesUnknown,
+      totalItems,
+      pageRangeText,
+      pageText,
+      defaultPageText,
+    } = this.props;
+    const { pageSize, page } = this.state;
+
     if (pagesUnknown) {
-      return pageText(statePage);
+      return pageText(page);
+    } else if (page > 0) {
+      return pageRangeText(page, Math.ceil(totalItems / pageSize));
     }
-    return pageRangeText(statePage, Math.ceil(totalItems / pageSize));
+    return defaultPageText(Math.ceil(totalItems / pageSize));
   };
 
   render() {
     const {
       backwardText,
       className,
+      defaultItemText, // eslint-disable-line no-unused-vars
+      defaultPageText, // eslint-disable-line no-unused-vars
       forwardText,
       id,
       itemsPerPageText,
