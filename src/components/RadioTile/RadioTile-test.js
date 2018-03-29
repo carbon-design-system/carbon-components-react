@@ -65,8 +65,8 @@ describe('RadioButton', () => {
         expect(label.text()).toMatch(/test label text/);
       });
 
-      it('should have the class passed through props', () => {
-        expect(label.hasClass(label.props.className)).toEqual(true);
+      it('should not have the className when no class is passed through props', () => {
+        expect(label.hasClass(label.props.className)).toEqual(false);
       });
     });
 
