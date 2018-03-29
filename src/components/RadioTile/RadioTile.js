@@ -17,6 +17,7 @@ export default class RadioTile extends React.Component {
 
   static defaultProps = {
     onChange: () => {},
+    className: null,
   };
 
   componentWillMount() {
