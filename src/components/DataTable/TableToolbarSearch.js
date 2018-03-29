@@ -31,9 +31,14 @@ const TableToolbarSearch = ({
 
 TableToolbarSearch.propTypes = {
   children: PropTypes.node,
-  className: PropTypes.string,
+
   /**
    * Provide an optional class name for the search container
+   */
+  className: PropTypes.string,
+
+  /**
+   * Provide an optional id for the search container
    */
   id: PropTypes.string,
   searchContainerClasses: PropTypes.string,
