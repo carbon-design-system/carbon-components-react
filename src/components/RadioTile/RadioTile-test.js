@@ -64,6 +64,10 @@ describe('RadioButton', () => {
         wrapper.setProps({ labelText: 'test label text' });
         expect(label.text()).toMatch(/test label text/);
       });
+
+      it('should have the class passed through props', () => {
+        expect(label.hasClass(label.props.className).toEqual(true));
+      });
     });
 
     describe('wrapper', () => {
