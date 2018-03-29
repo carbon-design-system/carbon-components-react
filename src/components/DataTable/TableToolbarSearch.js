@@ -2,6 +2,9 @@ import cx from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 import Search from '../Search';
+import setupGetInstanceId from './tools/instanceId';
+
+const getInstanceId = setupGetInstanceId();
 
 const TableToolbarSearch = ({
   className,
@@ -47,6 +50,10 @@ TableToolbarSearch.propTypes = {
    * Provide an optional hook that is called each time the input is updated
    */
   onChange: PropTypes.func,
+};
+
+TableToolbarSearch.defaultProps = {
+  id: `data-table-search-${getInstanceId()}`,
 };
 
 export default TableToolbarSearch;
