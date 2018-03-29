@@ -1,8 +1,13 @@
 import React from 'react';
+import debounce from 'lodash.debounce';
 import Icon from '../Icon';
 import FloatingMenu from '../../internal/FloatingMenu';
 import Tooltip from '../Tooltip';
 import { mount } from 'enzyme';
+
+jest.mock('lodash.debounce');
+
+debounce.mockImplementation(fn => fn);
 
 describe('Tooltip', () => {
   describe('Renders as expected with defaults', () => {
@@ -160,6 +165,16 @@ describe('Tooltip', () => {
       rootWrapper.setState({ open: true });
       rootWrapper.instance().handleClickOutside();
       expect(rootWrapper.state().open).toEqual(false);
+    });
+
+    it('prop.open change should update open state', () => {
+      const rootWrapper = mount(<Tooltip open={false} triggerText="Tooltip" />);
+      expect(rootWrapper.state().open).toEqual(false);
+      rootWrapper.setProps({
+        open: true,
+        triggerText: 'Tooltip',
+      });
+      expect(rootWrapper.state().open).toEqual(true);
     });
   });
 

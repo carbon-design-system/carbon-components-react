@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import getDerivedStateFromProps from './state/getDerivedStateFromProps';
-import { getNextSortState } from './state/sorting';
+import { getNextSortState, getCurrentSortState } from './state/sorting';
 import denormalize from './tools/denormalize';
 import { composeEventHandlers } from './tools/events';
 import { defaultFilterRows } from './tools/filter';
@@ -102,14 +102,24 @@ export default class DataTable extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = getDerivedStateFromProps(props);
+    this.state = getDerivedStateFromProps(props, {});
     this.instanceId = getInstanceId();
   }
 
   componentWillReceiveProps(nextProps) {
-    const nextState = getDerivedStateFromProps(nextProps);
-    if (nextState) {
-      this.setState(nextState);
+    const nextState = getDerivedStateFromProps(nextProps, this.state);
+
+    // Preserve the sorted order by re-sorting the data
+    if (
+      (nextState && nextState.sortHeaderKey !== this.state.sortHeaderKey) ||
+      nextState.sortDirection !== this.state.sortDirection
+    ) {
+      this.setState({
+        ...nextState,
+        ...getCurrentSortState(this.props, this.state, {
+          key: this.state.sortHeaderKey,
+        }),
+      });
     }
   }
 
@@ -128,6 +138,7 @@ export default class DataTable extends React.Component {
       ...rest,
       key: header.key,
       sortDirection,
+      isSortable: true,
       isSortHeader: sortHeaderKey === header.key,
       // Compose the event handlers so we don't overwrite a consumer's `onClick`
       // handler
@@ -189,8 +200,12 @@ export default class DataTable extends React.Component {
     }
 
     // Otherwise, we're working on `TableSelectAll` which handles toggling the
-    // selection state of all rows
-    const checked = this.getSelectedRows().length === this.state.rowIds.length;
+    // selection state of all rows. If we have no rows, then this value defaults
+    // to false.
+    const checked =
+      this.state.rowIds.length > 0
+        ? this.getSelectedRows().length === this.state.rowIds.length
+        : false;
     const translationKey = checked
       ? translationKeys.unselectAll
       : translationKeys.selectAll;
@@ -234,10 +249,38 @@ export default class DataTable extends React.Component {
   getTablePrefix = () => `data-table-${this.instanceId}`;
 
   /**
-   * Handler for the `onCancel` event to hide the batch action bar
+   * Helper for toggling all selected items in a state. Does not call
+   * setState, so use it when setting state.
+   * @param {Object} initialState
+   * @returns {Object} object to put into this.setState (use spread operator)
+   */
+  setAllSelectedState = (initialState, isSelected) => {
+    const { rowIds } = initialState;
+    return {
+      rowsById: rowIds.reduce(
+        (acc, id) => ({
+          ...acc,
+          [id]: {
+            ...initialState.rowsById[id],
+            isSelected,
+          },
+        }),
+        {}
+      ),
+    };
+  };
+
+  /**
+   * Handler for the `onCancel` event to hide the batch action bar and
+   * deselect all selected rows
    */
   handleOnCancel = () => {
-    this.setState({ shouldShowBatchActions: false });
+    this.setState(state => {
+      return {
+        shouldShowBatchActions: false,
+        ...this.setAllSelectedState(state, false),
+      };
+    });
   };
 
   /**
@@ -249,16 +292,7 @@ export default class DataTable extends React.Component {
       const isSelected = this.getSelectedRows().length !== rowIds.length;
       return {
         shouldShowBatchActions: isSelected,
-        rowsById: rowIds.reduce(
-          (acc, id) => ({
-            ...acc,
-            [id]: {
-              ...state.rowsById[id],
-              isSelected,
-            },
-          }),
-          {}
-        ),
+        ...this.setAllSelectedState(state, isSelected),
       };
     });
   };
