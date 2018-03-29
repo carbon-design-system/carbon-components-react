@@ -6,6 +6,7 @@ import Button from '../Button';
 
 export default class Modal extends Component {
   static propTypes = {
+    ariaLabel: PropTypes.sting,
     children: PropTypes.node,
     className: PropTypes.string,
     passiveModal: PropTypes.bool,
@@ -49,6 +50,7 @@ export default class Modal extends Component {
 
   render() {
     const {
+      ariaLabel,
       modalHeading,
       modalLabel,
       passiveModal,
@@ -95,7 +97,8 @@ export default class Modal extends Component {
           this.innerModal = modal;
         }}
         role="dialog"
-        className="bx--modal-container">
+        className="bx--modal-container"
+        ariaLabel={ariaLabel}>
         <div className="bx--modal-header">
           {passiveModal && modalButton}
           {modalLabel && (
