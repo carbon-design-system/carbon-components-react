@@ -10,7 +10,7 @@ const TableToolbarSearch = ({
   className,
   searchContainerClass,
   onChange,
-  id,
+  id = `data-table-search-${getInstanceId()}`,
   ...rest
 }) => {
   const searchContainerClasses = cx(
@@ -50,10 +50,6 @@ TableToolbarSearch.propTypes = {
    * Provide an optional hook that is called each time the input is updated
    */
   onChange: PropTypes.func,
-};
-
-TableToolbarSearch.defaultProps = {
-  id: `data-table-search-${getInstanceId()}`,
 };
 
 export default TableToolbarSearch;
