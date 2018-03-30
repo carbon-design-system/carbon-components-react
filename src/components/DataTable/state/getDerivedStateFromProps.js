@@ -9,7 +9,11 @@ import normalize from '../tools/normalize';
  * are receiving for rows
  */
 const getDerivedStateFromProps = (props, prevState) => {
-  const { rowIds, rowsById, cellsById } = normalize(props.rows, props.headers);
+  const { rowIds, rowsById, cellsById } = normalize(
+    props.rows,
+    props.headers,
+    prevState
+  );
   const state = {
     rowIds,
     rowsById,

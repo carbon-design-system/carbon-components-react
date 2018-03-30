@@ -108,16 +108,16 @@ export default class DataTable extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    const rowIds = this.props.rows.map(row => row.id).sort();
-    const nextRowIds = nextProps.rows.map(row => row.id).sort();
+    const rowIds = this.props.rows.map(row => row.id);
+    const nextRowIds = nextProps.rows.map(row => row.id);
 
     if (!isEqual(rowIds, nextRowIds)) {
       this.setState(state => getDerivedStateFromProps(nextProps, state));
       return;
     }
 
-    const headers = this.props.headers.map(header => header.key).sort();
-    const nextHeaders = nextProps.headers.map(header => header.key).sort();
+    const headers = this.props.headers.map(header => header.key);
+    const nextHeaders = nextProps.headers.map(header => header.key);
 
     if (!isEqual(headers, nextHeaders)) {
       this.setState(state => getDerivedStateFromProps(nextProps, state));
