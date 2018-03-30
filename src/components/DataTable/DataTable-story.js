@@ -458,4 +458,120 @@ storiesOf('DataTable', module)
         )}
       />
     )
+  )
+  .addWithInfo(
+    'with dynamic rows',
+    `
+      Showcases DataTable behavior when rows are added to the component
+      dynamically.
+    `,
+    () => {
+      class DynamicRows extends React.Component {
+        state = {
+          rows: initialRows,
+          id: 0,
+        };
+
+        handleOnClick = () => {
+          this.setState(state => {
+            const { id: _id, rows } = state;
+            const id = _id + 1;
+            return {
+              id,
+              rows: rows.concat({
+                id: '' + id,
+                name: `New Row ${id}`,
+                protocol: 'HTTP',
+                port: 443,
+                rule: 'Round robin',
+                attached_groups: 'Maureens VM Groups',
+                status: 'Starting',
+              }),
+            };
+          });
+        };
+
+        render() {
+          return (
+            <DataTable
+              rows={this.state.rows}
+              headers={headers}
+              render={({
+                rows,
+                headers,
+                getHeaderProps,
+                getSelectionProps,
+                getBatchActionProps,
+                onInputChange,
+                selectedRows,
+              }) => (
+                <TableContainer title="DataTable with dynamic rows">
+                  <TableToolbar>
+                    <TableBatchActions {...getBatchActionProps()}>
+                      <TableBatchAction
+                        onClick={batchActionClick(selectedRows)}>
+                        Ghost
+                      </TableBatchAction>
+                      <TableBatchAction
+                        onClick={batchActionClick(selectedRows)}>
+                        Ghost
+                      </TableBatchAction>
+                      <TableBatchAction
+                        onClick={batchActionClick(selectedRows)}>
+                        Ghost
+                      </TableBatchAction>
+                    </TableBatchActions>
+                    <TableToolbarSearch onChange={onInputChange} />
+                    <TableToolbarContent>
+                      <TableToolbarAction
+                        iconName="download"
+                        iconDescription="Download"
+                        onClick={action('TableToolbarAction - Download')}
+                      />
+                      <TableToolbarAction
+                        iconName="edit"
+                        iconDescription="Edit"
+                        onClick={action('TableToolbarAction - Edit')}
+                      />
+                      <TableToolbarAction
+                        iconName="settings"
+                        iconDescription="Settings"
+                        onClick={action('TableToolbarAction - Settings')}
+                      />
+                      <Button onClick={this.handleOnClick} small kind="primary">
+                        Add new row
+                      </Button>
+                    </TableToolbarContent>
+                  </TableToolbar>
+                  <Table>
+                    <TableHead>
+                      <TableRow>
+                        <TableSelectAll {...getSelectionProps()} />
+                        {headers.map(header => (
+                          <TableHeader {...getHeaderProps({ header })}>
+                            {header.header}
+                          </TableHeader>
+                        ))}
+                      </TableRow>
+                    </TableHead>
+                    <TableBody>
+                      {rows.map(row => (
+                        <TableRow key={row.id}>
+                          <TableSelectRow {...getSelectionProps({ row })} />
+                          {row.cells.map(cell => (
+                            <TableCell key={cell.id}>{cell.value}</TableCell>
+                          ))}
+                        </TableRow>
+                      ))}
+                    </TableBody>
+                  </Table>
+                </TableContainer>
+              )}
+            />
+          );
+        }
+      }
+
+      return <DynamicRows />;
+    }
   );
