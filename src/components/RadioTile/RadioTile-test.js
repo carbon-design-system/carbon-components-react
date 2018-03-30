@@ -68,6 +68,13 @@ describe('RadioButton', () => {
       it('should not have the className when no class is passed through props', () => {
         expect(label.hasClass(label.props.className)).toEqual(false);
       });
+
+      it('should have the className passed through props', () => {
+        const label = render({
+          className: 'extra-class',
+        });
+        expect(label.hasClass('extra-class')).toEqual(true);
+      });
     });
 
     describe('wrapper', () => {

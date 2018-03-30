@@ -17,7 +17,6 @@ export default class RadioTile extends React.Component {
 
   static defaultProps = {
     onChange: () => {},
-    className: null,
   };
 
   componentWillMount() {
@@ -29,16 +28,11 @@ export default class RadioTile extends React.Component {
   };
 
   render() {
-    const { children, ...other } = this.props;
+    const { children, className, ...other } = this.props;
 
-    const classes = classNames(
-      this.props.className,
-      'bx--tile',
-      'bx--tile--selectable',
-      {
-        'bx--tile--is-selected': this.props.checked,
-      }
-    );
+    const classes = classNames(className, 'bx--tile', 'bx--tile--selectable', {
+      'bx--tile--is-selected': this.props.checked,
+    });
 
     return (
       <label htmlFor={this.uid} className={classes}>
