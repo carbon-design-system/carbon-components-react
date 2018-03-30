@@ -18,10 +18,13 @@ export default class DropdownV2 extends React.Component {
     items: PropTypes.array.isRequired,
 
     /**
-     * Allow users to pass in arbitrary items from their collection that are
-     * pre-selected
+     * Allow users to pass in an arbitrary item or a string (in case their items are an array of strings)
+     * from their collection that are pre-selected
      */
-    initialSelectedItem: PropTypes.object,
+    initialSelectedItem: PropTypes.oneOfType([
+      PropTypes.object,
+      PropTypes.string,
+    ]),
 
     /**
      * Helper function passed to downshift that allows the library to render a
