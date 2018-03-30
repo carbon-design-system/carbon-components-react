@@ -580,9 +580,6 @@ storiesOf('DataTable', module)
                         iconDescription="Settings"
                         onClick={action('TableToolbarAction - Settings')}
                       />
-                      <Button onClick={action('Add new')} small kind="primary">
-                        Add new
-                      </Button>
                     </TableToolbarContent>
                   </TableToolbar>
                   <Table>
