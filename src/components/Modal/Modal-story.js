@@ -22,6 +22,7 @@ storiesOf('Modal', module)
         {...modalProps}
         open
         modalHeading="Modal heading"
+        modalAriaLabel="Modal Heading"
         modalLabel="Optional label"
         primaryButtonText="Primary Button"
         secondaryButtonText="Secondary Button">
