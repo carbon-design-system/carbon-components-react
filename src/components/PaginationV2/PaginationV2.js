@@ -165,7 +165,6 @@ export default class PaginationV2 extends Component {
             id={`bx-pagination-select-${inputId}`}
             labelText={itemsPerPageText}
             hideLabel
-            inline
             onChange={this.handleSizeChange}
             value={statePageSize}>
             {pageSizes.map(size => (
@@ -207,7 +206,6 @@ export default class PaginationV2 extends Component {
               id={`bx-pagination-select-${inputId + 2}`}
               labelText={itemsPerPageText}
               hideLabel
-              inline
               onChange={this.handlePageInputChange}
               value={statePage}>
               {selectItems}
