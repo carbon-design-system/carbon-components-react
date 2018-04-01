@@ -4,6 +4,14 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import ListBox, { PropTypes as ListBoxPropTypes } from '../ListBox';
 
+const defaultItemToString = item => {
+  if (typeof item === 'string') {
+    return item;
+  }
+
+  return item ? item.label : '';
+};
+
 export default class DropdownV2 extends React.Component {
   static propTypes = {
     /**
@@ -56,7 +64,7 @@ export default class DropdownV2 extends React.Component {
   static defaultProps = {
     disabled: false,
     type: 'default',
-    itemToString: item => (item ? item.label : ''),
+    itemToString: defaultItemToString,
   };
 
   handleOnChange = selectedItem => {
