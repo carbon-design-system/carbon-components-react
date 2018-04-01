@@ -4,7 +4,14 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import ListBox, { PropTypes as ListBoxPropTypes } from '../ListBox';
 
-const defaultItemToString = item => item && item.label;
+const defaultItemToString = item => {
+  if (typeof item === 'string') {
+    return item;
+  }
+
+  return item && item.label;
+};
+
 const defaultShouldFilterItem = ({ inputValue, item, itemToString }) =>
   !inputValue ||
   itemToString(item)
