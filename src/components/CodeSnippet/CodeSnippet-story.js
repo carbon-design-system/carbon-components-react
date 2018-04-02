@@ -5,6 +5,7 @@ import CodeSnippet from '../CodeSnippet';
 
 const copyProps = {
   onClick: action('onClick'),
+  feedback: 'Feedback Enabled 👍',
 };
 
 storiesOf('CodeSnippet', module)
@@ -16,7 +17,7 @@ storiesOf('CodeSnippet', module)
       The Code style is for larger, multi-line code snippets.
     `,
     () => (
-      <CodeSnippet type="code" {...copyProps}>
+      <CodeSnippet type="code" copyProps={copyProps}>
         {`@mixin bx--snippet($type) {
   @if $type == 'terminal' {
     background-color: red;
@@ -46,7 +47,7 @@ storiesOf('CodeSnippet', module)
       The Terminal style is for single-line .
     `,
     () => (
-      <CodeSnippet type="terminal" {...copyProps}>
+      <CodeSnippet type="terminal" copyProps={copyProps}>
         {
           'node -v Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis, veritatis voluptate id incidunt molestiae officia possimus, quasi itaque alias, architecto hic, dicta fugit? Debitis delectus quidem explicabo vitae fuga laboriosam!'
         }
