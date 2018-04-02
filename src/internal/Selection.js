@@ -23,7 +23,7 @@ export default class Selection extends React.Component {
       return selectedItems.indexOf(item) === -1;
     });
 
-    if (itemsToAdd.length > 0) {
+    if (selectedItems.indexOf(itemsToAdd) !== -1) {
       this.setState(state => ({
         selectedItems: state.selectedItems.concat(itemsToAdd),
       }));
