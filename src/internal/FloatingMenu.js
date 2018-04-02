@@ -318,7 +318,7 @@ class FloatingMenu extends React.Component {
   _getChildrenWithProps = () => {
     const { styles, children } = this.props;
     const { floatingPosition: pos } = this.state;
-    // If no pos available, we need to hide the element (offscreen to the right)
+    // If no pos available, we need to hide the element (offscreen to the left)
     // This is done so we can measure the content before positioning it correctly.
     const positioningStyle = pos
       ? {
