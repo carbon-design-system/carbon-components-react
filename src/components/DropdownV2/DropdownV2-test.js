@@ -57,4 +57,33 @@ describe('DropdownV2', () => {
       selectedItem: mockProps.items[1],
     });
   });
+
+  describe('should display initially selected item found in `initialSelectedItem`', () => {
+    it('using an object type for the `initialSelectedItem` prop', () => {
+      const wrapper = mount(
+        <DropdownV2 {...mockProps} initialSelectedItem={mockProps.items[0]} />
+      );
+
+      expect(
+        wrapper.find('span.bx--list-box__label').text() ===
+          mockProps.items[0].label
+      ).toEqual(true);
+    });
+
+    it('using a string type for the `initialSelectedItem` prop', () => {
+      // Replace the 'items' property in mockProps with a list of strings
+      mockProps = {
+        ...mockProps,
+        items: ['1', '2', '3'],
+      };
+
+      const wrapper = mount(
+        <DropdownV2 {...mockProps} initialSelectedItem={mockProps.items[1]} />
+      );
+
+      expect(
+        wrapper.find('span.bx--list-box__label').text() === mockProps.items[1]
+      ).toEqual(true);
+    });
+  });
 });
