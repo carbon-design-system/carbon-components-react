@@ -42,7 +42,7 @@ const ListBoxSelection = ({
       onKeyDown={handleOnKeyDown}
       title={description}>
       {selectionCount}
-      <Icon name="close" description={description} focusable={false} />
+      <Icon name="close" description={description} focusable="false" />
     </div>
   );
 };
