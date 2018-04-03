@@ -417,6 +417,7 @@ describe('DataTable', () => {
 
       const nextArgs = mockProps.render.mock.calls[1][0];
       expect(nextArgs.rows.length).toBe(nextRows.length);
+      expect(nextArgs.rows.map(row => row.id)).toEqual(['b', 'a', 'c', 'd']);
     });
 
     it('should add additional headers when receiving new props', () => {
