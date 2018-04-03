@@ -64,10 +64,9 @@ describe('DropdownV2', () => {
         <DropdownV2 {...mockProps} initialSelectedItem={mockProps.items[0]} />
       );
 
-      expect(
-        wrapper.find('span.bx--list-box__label').text() ===
-          mockProps.items[0].label
-      ).toEqual(true);
+      expect(wrapper.find('span.bx--list-box__label').text()).toEqual(
+        mockProps.items[0].label
+      );
     });
 
     it('using a string type for the `initialSelectedItem` prop', () => {
@@ -81,9 +80,9 @@ describe('DropdownV2', () => {
         <DropdownV2 {...mockProps} initialSelectedItem={mockProps.items[1]} />
       );
 
-      expect(
-        wrapper.find('span.bx--list-box__label').text() === mockProps.items[1]
-      ).toEqual(true);
+      expect(wrapper.find('span.bx--list-box__label').text()).toEqual(
+        mockProps.items[1]
+      );
     });
   });
 });
