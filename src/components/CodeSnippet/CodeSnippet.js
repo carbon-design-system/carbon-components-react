@@ -7,7 +7,7 @@ const CodeSnippet = ({
   className,
   type,
   children,
-  copyProps,
+  feedback,
   onClick,
   wrappedContentRef,
   ...other
@@ -15,8 +15,6 @@ const CodeSnippet = ({
   const snippetType =
     type === 'terminal' ? 'bx--snippet--terminal' : 'bx--snippet--code';
   const wrapperClasses = classNames('bx--snippet', className, snippetType);
-  const localCopyProps = { ...copyProps };
-  if (onClick) localCopyProps.onClick = onClick;
   return (
     <div className={wrapperClasses} {...other}>
       <div role="textbox" tabIndex={0} className="bx--snippet-container">
@@ -24,7 +22,7 @@ const CodeSnippet = ({
           <pre ref={wrappedContentRef}>{children}</pre>
         </code>
       </div>
-      <CopyButton {...localCopyProps} />
+      <CopyButton onClick={onClick} feedback={feedback} />
     </div>
   );
 };
@@ -33,9 +31,7 @@ CodeSnippet.propTypes = {
   type: PropTypes.string,
   className: PropTypes.string,
   children: PropTypes.string,
-  /** props for the CopyButton component */
-  copyProps: PropTypes.object,
-  /** onClick function for the CopyButton. For legacy usage only. Please use copyProps instead. */
+  feedback: PropTypes.string,
   onClick: PropTypes.func,
   wrappedContentRef: PropTypes.func,
 };
