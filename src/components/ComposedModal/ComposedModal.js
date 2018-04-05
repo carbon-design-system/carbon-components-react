@@ -15,12 +15,9 @@ export default class ComposedModal extends Component {
     onKeyDown: PropTypes.func,
   };
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      open: props.open,
-    };
-  }
+  state = {
+    open: this.props.open,
+  };
 
   handleKeyDown = evt => {
     if (evt.which === 27) {
