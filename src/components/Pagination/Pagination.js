@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import classnames from 'classnames';
+import debounce from 'lodash.debounce';
 import Icon from '../Icon';
 import Select from '../Select';
 import SelectItem from '../SelectItem';
@@ -28,7 +29,7 @@ export default class Pagination extends Component {
     pagesUnknown: PropTypes.bool,
     isLastPage: PropTypes.bool,
     pageInputDisabled: PropTypes.bool,
-    onChangeTimeout: PropTypes.number,
+    onChangeInterval: PropTypes.number,
     defaultPageText: PropTypes.func,
     defaultItemText: PropTypes.func,
   };
@@ -50,7 +51,7 @@ export default class Pagination extends Component {
     pageText: page => `page ${page}`,
     defaultPageText: totalPages => `${totalPages} pages`,
     defaultItemText: totalItems => `${totalItems} items`,
-    onChangeTimeout: 300,
+    onChangeInterval: 250,
   };
 
   state = {
@@ -63,12 +64,10 @@ export default class Pagination extends Component {
 
   componentWillMount() {
     this.uniqueId = `${Math.floor(Math.random() * 0xffff)}`;
-  }
-
-  componentWillUnmount() {
-    if (this.timeoutId) {
-      clearTimeout(this.timeoutId);
-    }
+    this.paginateDebouncer = debounce(
+      this.updateState,
+      this.props.onChangeInterval
+    );
   }
 
   componentWillReceiveProps({ pageSizes, page, pageSize }) {
@@ -92,27 +91,19 @@ export default class Pagination extends Component {
     this.props.onChange({ page: 1, pageSize });
   };
 
-  setupTimer = page => {
-    const { pageSize } = this.state;
-
-    if (this.timeoutId) {
-      clearTimeout(this.timeoutId);
-    }
-    this.timeoutId = setTimeout(() => {
-      this.props.onChange({ page, pageSize });
-    }, this.props.onChangeTimeout);
+  updateState = page => {
+    page > 0 && this.props.onChange({ page, pageSize: this.state.pageSize });
   };
 
   handlePageInputChange = evt => {
     const page = Number(evt.target.value);
-
     if (
-      page > 0 &&
+      page >= 0 &&
       page <= Math.ceil(this.props.totalItems / this.state.pageSize)
     ) {
-      this.setupTimer(page);
+      this.setState({ page });
+      this.paginateDebouncer(page);
     }
-    this.setState({ page });
   };
 
   incrementPage = () => {
@@ -188,7 +179,7 @@ export default class Pagination extends Component {
       pageInputDisabled,
       totalItems,
       onChange, // eslint-disable-line no-unused-vars
-      onChangeTimeout, // eslint-disable-line no-unused-vars
+      onChangeInterval, // eslint-disable-line no-unused-vars
       page: pageNumber, // eslint-disable-line no-unused-vars
       ...other
     } = this.props;
