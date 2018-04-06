@@ -64,8 +64,10 @@ export default class Pagination extends Component {
 
   componentWillMount() {
     this.uniqueId = `${Math.floor(Math.random() * 0xffff)}`;
-    this.paginateDebouncer = debounce(
-      this.updateState,
+    this.pageInputDebouncer = debounce(
+      page =>
+        page > 0 &&
+        this.props.onChange({ page, pageSize: this.state.pageSize }),
       this.props.onChangeInterval
     );
   }
@@ -76,7 +78,6 @@ export default class Pagination extends Component {
     }
     if (page !== this.props.page) {
       this.setState({
-        prevPage: this.props.page,
         page,
       });
     }
@@ -91,10 +92,6 @@ export default class Pagination extends Component {
     this.props.onChange({ page: 1, pageSize });
   };
 
-  updateState = page => {
-    page > 0 && this.props.onChange({ page, pageSize: this.state.pageSize });
-  };
-
   handlePageInputChange = evt => {
     const page = Number(evt.target.value);
     if (
@@ -102,7 +99,7 @@ export default class Pagination extends Component {
       page <= Math.ceil(this.props.totalItems / this.state.pageSize)
     ) {
       this.setState({ page });
-      this.paginateDebouncer(page);
+      this.pageInputDebouncer(page);
     }
   };
 
