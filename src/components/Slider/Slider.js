@@ -104,10 +104,12 @@ export default class Slider extends PureComponent {
 
   static defaultProps = {
     hideTextInput: false,
+    step: 1,
     stepMuliplier: 4,
     disabled: false,
     minLabel: '',
     maxLabel: '',
+    onChange: () => {},
     inputType: 'number',
     ariaLabelInput: 'Slider number input',
   };
@@ -158,7 +160,9 @@ export default class Slider extends PureComponent {
         if (prevState.left === left && prevState.value === newValue) {
           return { dragging: false };
         }
-        props.onChange({ value: newValue });
+        if (typeof props.onChange === 'function') {
+          props.onChange({ value: newValue });
+        }
         return {
           dragging: false,
           left,
