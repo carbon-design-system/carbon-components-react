@@ -72,6 +72,10 @@ export default class Pagination extends Component {
     );
   }
 
+  componentWillUnmount() {
+    this.pageInputDebouncer.cancel();
+  }
+
   componentWillReceiveProps({ pageSizes, page, pageSize }) {
     if (!equals(pageSizes, this.props.pageSizes)) {
       this.setState({ pageSize: pageSizes[0], page: 1 });
