@@ -9,6 +9,9 @@ export default class DatePickerInput extends Component {
   };
 
   static defaultProps = {
+    // prettier-ignore
+    // Need this format for validation to work on FF
+    // eslint-disable-next-line no-useless-escape
     pattern: '\d{1,2}\/\d{1,2}\/\d{4}',
     type: 'text',
     disabled: false,
