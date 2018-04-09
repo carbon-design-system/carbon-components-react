@@ -109,7 +109,6 @@ export default class Slider extends PureComponent {
     disabled: false,
     minLabel: '',
     maxLabel: '',
-    onChange: () => {},
     inputType: 'number',
     ariaLabelInput: 'Slider number input',
   };
