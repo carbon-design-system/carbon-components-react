@@ -27,9 +27,7 @@ const TooltipSimple = ({
             tabIndex="0"
             role="button"
             {...other}>
-            {showIcon && (
-              <Icon role="img" name={iconName} description={iconDescription} />
-            )}
+            <Icon role="img" name={iconName} description={iconDescription} />
           </div>
         </div>
       ) : (
