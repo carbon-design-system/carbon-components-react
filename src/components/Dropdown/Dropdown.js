@@ -54,6 +54,10 @@ export default class Dropdown extends PureComponent {
     document.addEventListener('keydown', this.handleKeydown);
   }
 
+  componentWillUnmount() {
+    document.removeEventListener('keydown', this.handleKeydown);
+  }
+
   resetState(props) {
     const { children, selectedText, value, defaultText, open } = props;
 
