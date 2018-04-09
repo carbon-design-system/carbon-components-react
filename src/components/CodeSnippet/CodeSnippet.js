@@ -7,6 +7,7 @@ const CodeSnippet = ({
   className,
   type,
   children,
+  feedback,
   onClick,
   wrappedContentRef,
   ...other
@@ -16,12 +17,12 @@ const CodeSnippet = ({
   const wrapperClasses = classNames('bx--snippet', className, snippetType);
   return (
     <div className={wrapperClasses} {...other}>
-      <div className="bx--snippet-container">
+      <div role="textbox" tabIndex={0} className="bx--snippet-container">
         <code>
           <pre ref={wrappedContentRef}>{children}</pre>
         </code>
       </div>
-      <CopyButton onClick={onClick} />
+      <CopyButton onClick={onClick} feedback={feedback} />
     </div>
   );
 };
@@ -30,6 +31,7 @@ CodeSnippet.propTypes = {
   type: PropTypes.string,
   className: PropTypes.string,
   children: PropTypes.string,
+  feedback: PropTypes.string,
   onClick: PropTypes.func,
   wrappedContentRef: PropTypes.func,
 };

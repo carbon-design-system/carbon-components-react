@@ -3,6 +3,7 @@ import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import OverflowMenu from '../OverflowMenu';
 import OverflowMenuItem from '../OverflowMenuItem';
+import Icon from '../Icon';
 
 const overflowMenuEvents = {
   onClick: action('onClick'),
@@ -23,10 +24,26 @@ storiesOf('OverflowMenu', module)
     `,
     () => (
       <OverflowMenu {...overflowMenuEvents}>
-        <OverflowMenuItem {...overflowMenuItemEvents} itemText="Option 1" />
+        <OverflowMenuItem
+          {...overflowMenuItemEvents}
+          itemText="Option 1"
+          primaryFocus={true}
+        />
         <OverflowMenuItem {...overflowMenuItemEvents} itemText="Option 2" />
         <OverflowMenuItem {...overflowMenuItemEvents} itemText="Option 3" />
         <OverflowMenuItem {...overflowMenuItemEvents} itemText="Option 4" />
+        <OverflowMenuItem
+          {...overflowMenuItemEvents}
+          itemText={
+            <div
+              style={{
+                display: 'flex',
+                justifyContent: 'space-between',
+              }}>
+              Add <Icon name="icon--add" style={{ height: '12px' }} />
+            </div>
+          }
+        />
         <OverflowMenuItem
           {...overflowMenuItemEvents}
           itemText="Danger option"
@@ -44,6 +61,34 @@ storiesOf('OverflowMenu', module)
     `,
     () => (
       <OverflowMenu {...overflowMenuEvents} floatingMenu>
+        <OverflowMenuItem
+          {...overflowMenuItemEvents}
+          itemText="Option 1"
+          primaryFocus={true}
+        />
+        <OverflowMenuItem {...overflowMenuItemEvents} itemText="Option 2" />
+        <OverflowMenuItem {...overflowMenuItemEvents} itemText="Option 3" />
+        <OverflowMenuItem {...overflowMenuItemEvents} itemText="Option 4" />
+        <OverflowMenuItem
+          {...overflowMenuItemEvents}
+          itemText="Danger option"
+          hasDivider
+          isDelete
+        />
+      </OverflowMenu>
+    )
+  )
+  .addWithInfo(
+    'custom trigger',
+    `
+      Sometimes you just want to render something other than an icon
+    `,
+    () => (
+      <OverflowMenu
+        {...overflowMenuEvents}
+        style={{ width: 'auto' }}
+        floatingMenu
+        renderIcon={iconProps => <div {...iconProps}>Custom trigger</div>}>
         <OverflowMenuItem {...overflowMenuItemEvents} itemText="Option 1" />
         <OverflowMenuItem {...overflowMenuItemEvents} itemText="Option 2" />
         <OverflowMenuItem {...overflowMenuItemEvents} itemText="Option 3" />

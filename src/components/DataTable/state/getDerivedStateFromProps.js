@@ -1,4 +1,4 @@
-import { initialSortState } from './sorting';
+import { initialSortState, getSortedState } from './sorting';
 import normalize from '../tools/normalize';
 
 /**
@@ -8,24 +8,39 @@ import normalize from '../tools/normalize';
  * Currently, it's being used as a way to normalize the incoming data that we
  * are receiving for rows
  */
-const getDerivedStateFromProps = props => {
-  const { rowIds, rowsById, cellsById } = normalize(props.rows, props.headers);
-  return {
+const getDerivedStateFromProps = (props, prevState) => {
+  const { rowIds, rowsById, cellsById } = normalize(
+    props.rows,
+    props.headers,
+    prevState
+  );
+  const state = {
     rowIds,
     rowsById,
     cellsById,
-    sortDirection: initialSortState,
-    sortHeaderKey: null,
+    sortDirection: prevState.sortDirection || initialSortState,
+    sortHeaderKey: prevState.sortHeaderKey || null,
     // Copy over rowIds so the reference doesn't mutate the stored
     // `initialRowOrder`
     initialRowOrder: rowIds.slice(),
-
-    filterInputValue: null,
+    filterInputValue: prevState.filterInputValue || null,
 
     // Optional state field to indicate whether a consumer should show a
     // batch actions menu
-    shouldShowBatchActions: false,
+    shouldShowBatchActions: prevState.shouldShowBatchActions || false,
   };
+
+  if (prevState.sortDirection && prevState.sortHeaderKey) {
+    const { rowIds } = getSortedState(
+      props,
+      state,
+      prevState.sortHeaderKey,
+      prevState.sortDirection
+    );
+    state.rowIds = rowIds;
+  }
+
+  return state;
 };
 
 export default getDerivedStateFromProps;

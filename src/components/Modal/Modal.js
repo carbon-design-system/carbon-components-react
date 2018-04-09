@@ -13,6 +13,7 @@ export default class Modal extends Component {
     id: PropTypes.string,
     modalHeading: PropTypes.string,
     modalLabel: PropTypes.string,
+    modalAriaLabel: PropTypes.string,
     secondaryButtonText: PropTypes.string,
     primaryButtonText: PropTypes.string,
     open: PropTypes.bool,
@@ -21,6 +22,7 @@ export default class Modal extends Component {
     iconDescription: PropTypes.string,
     primaryButtonDisabled: PropTypes.bool,
     onSecondarySubmit: PropTypes.func,
+    danger: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -50,6 +52,7 @@ export default class Modal extends Component {
     const {
       modalHeading,
       modalLabel,
+      modalAriaLabel,
       passiveModal,
       secondaryButtonText,
       primaryButtonText,
@@ -59,6 +62,7 @@ export default class Modal extends Component {
       onSecondarySubmit,
       iconDescription,
       primaryButtonDisabled,
+      danger,
       ...other
     } = this.props;
 
@@ -70,6 +74,7 @@ export default class Modal extends Component {
       'bx--modal': true,
       'bx--modal-tall': !passiveModal,
       'is-visible': open,
+      'bx--modal--danger': this.props.danger,
       [this.props.className]: this.props.className,
     });
 
@@ -91,7 +96,9 @@ export default class Modal extends Component {
         ref={modal => {
           this.innerModal = modal;
         }}
-        className="bx--modal-container">
+        role="dialog"
+        className="bx--modal-container"
+        aria-label={modalAriaLabel}>
         <div className="bx--modal-header">
           {passiveModal && modalButton}
           {modalLabel && (
@@ -104,11 +111,13 @@ export default class Modal extends Component {
         {!passiveModal && (
           <div className="bx--modal-footer">
             <div className="bx--modal__buttons-container">
-              <Button kind="secondary" onClick={onSecondaryButtonClick}>
+              <Button
+                kind={danger ? 'tertiary' : 'secondary'}
+                onClick={onSecondaryButtonClick}>
                 {secondaryButtonText}
               </Button>
               <Button
-                kind="primary"
+                kind={danger ? 'danger--primary' : 'primary'}
                 disabled={primaryButtonDisabled}
                 onClick={onRequestSubmit}>
                 {primaryButtonText}

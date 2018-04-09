@@ -95,6 +95,11 @@ export default class Slider extends PureComponent {
      * The `type` attribute of the `<input>`.
      */
     inputType: PropTypes.string,
+
+    /**
+     * The `ariaLabel` for the `<input>`.
+     */
+    ariaLabelInput: PropTypes.string,
   };
 
   static defaultProps = {
@@ -104,6 +109,7 @@ export default class Slider extends PureComponent {
     minLabel: '',
     maxLabel: '',
     inputType: 'number',
+    ariaLabelInput: 'Slider number input',
   };
 
   state = {
@@ -139,20 +145,19 @@ export default class Slider extends PureComponent {
 
     requestAnimationFrame(() => {
       this.setState((prevState, props) => {
-        if (
+        const fromInput =
           evt &&
           evt.target &&
-          evt.target.classList.contains('bx-slider-text-input')
-        ) {
-          const { left } = this.calcValue(evt, prevState, props);
-          return { left, value: evt.target.value, dragging: false };
-        }
-
-        const { left, newValue } = this.calcValue(evt, prevState, props);
+          evt.target.classList.contains('bx-slider-text-input');
+        const { left, newValue: newSliderValue } = this.calcValue(
+          evt,
+          prevState,
+          props
+        );
+        const newValue = fromInput ? Number(evt.target.value) : newSliderValue;
         if (prevState.left === left && prevState.value === newValue) {
           return { dragging: false };
         }
-
         props.onChange({ value: newValue });
         return {
           dragging: false,
@@ -279,6 +284,7 @@ export default class Slider extends PureComponent {
 
   render() {
     const {
+      ariaLabelInput,
       className,
       hideTextInput,
       id = (this.inputId =
@@ -348,6 +354,7 @@ export default class Slider extends PureComponent {
             <div
               className="bx--slider__thumb"
               role="slider"
+              id={id}
               tabIndex={0}
               aria-valuemax={max}
               aria-valuemin={min}
@@ -358,7 +365,6 @@ export default class Slider extends PureComponent {
               onKeyDown={this.updatePosition}
             />
             <input
-              id={id}
               type="hidden"
               name={name}
               value={value}
@@ -380,6 +386,7 @@ export default class Slider extends PureComponent {
               value={value}
               onChange={this.handleChange}
               labelText=""
+              aria-label={ariaLabelInput}
             />
           )}
         </div>

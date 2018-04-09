@@ -19,8 +19,8 @@ storiesOf('Accordion', module)
   .addWithInfo(
     'Default',
     `
-        Accordions allow users to expand and collapse sections of content.
-      `,
+      Accordions allow users to expand and collapse sections of content.
+    `,
     () => (
       <Accordion>
         <AccordionItem title="Section 1 title" {...props}>
@@ -55,7 +55,13 @@ storiesOf('Accordion', module)
             <SelectItem value="option-3" text="Option 3" />
           </Select>
         </AccordionItem>
-        <AccordionItem title="Section 4 title" {...props}>
+        <AccordionItem
+          title={
+            <h4>
+              Section 4 title (<em>the title can be a node</em>)
+            </h4>
+          }
+          {...props}>
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
@@ -69,8 +75,8 @@ storiesOf('Accordion', module)
   .addWithInfo(
     'skeleton',
     `
-      Placeholder skeleton state to use when content is loading.
-    `,
+    Placeholder skeleton state to use when content is loading.
+  `,
     () => (
       <div style={{ width: '500px' }}>
         <AccordionSkeleton />

@@ -6,6 +6,7 @@ import Icon from '../Icon';
 
 export default class Dropdown extends PureComponent {
   static propTypes = {
+    ariaLabel: PropTypes.string.isRequired,
     children: PropTypes.node,
     className: PropTypes.string,
     defaultText: PropTypes.string,
@@ -13,6 +14,8 @@ export default class Dropdown extends PureComponent {
     tabIndex: PropTypes.number,
     onClick: PropTypes.func,
     onChange: PropTypes.func.isRequired,
+    onOpen: PropTypes.func,
+    onClose: PropTypes.func,
     selectedText: PropTypes.string,
     open: PropTypes.bool,
     iconDescription: PropTypes.string,
@@ -25,6 +28,8 @@ export default class Dropdown extends PureComponent {
     disabled: false,
     iconDescription: 'open list of options',
     onChange: () => {},
+    onOpen: () => {},
+    onClose: () => {},
   };
 
   constructor(props) {
@@ -34,6 +39,15 @@ export default class Dropdown extends PureComponent {
 
   componentWillReceiveProps(nextProps) {
     this.setState(this.resetState(nextProps));
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (!prevState.open && this.state.open) {
+      this.props.onOpen();
+    }
+    if (prevState.open && !this.state.open) {
+      this.props.onClose();
+    }
   }
 
   resetState(props) {
@@ -88,11 +102,14 @@ export default class Dropdown extends PureComponent {
 
   render() {
     const {
+      ariaLabel,
       tabIndex,
       defaultText, // eslint-disable-line no-unused-vars
       iconDescription,
       disabled,
       selectedText, // eslint-disable-line no-unused-vars
+      onOpen, // eslint-disable-line no-unused-vars
+      onClose, // eslint-disable-line no-unused-vars
       ...other
     } = this.props;
 
@@ -104,6 +121,7 @@ export default class Dropdown extends PureComponent {
             child.props.onClick && child.props.onClick(...args);
             this.handleItemClick(...args);
           },
+          isDropdownOpen: this.state.open,
         })
       );
 
@@ -123,6 +141,7 @@ export default class Dropdown extends PureComponent {
           value={this.state.value}
           className={dropdownClasses}
           tabIndex={tabIndex}
+          aria-label={ariaLabel}
           role="listbox">
           <li className="bx--dropdown-text">{this.state.selectedText}</li>
           <li>
@@ -133,7 +152,10 @@ export default class Dropdown extends PureComponent {
             />
           </li>
           <li>
-            <ul role="menu" className="bx--dropdown-list">
+            <ul
+              role="menu"
+              className="bx--dropdown-list"
+              aria-label="inner dropdown menu">
               {children}
             </ul>
           </li>

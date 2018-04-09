@@ -4,7 +4,14 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import ListBox, { PropTypes as ListBoxPropTypes } from '../ListBox';
 
-const defaultItemToString = item => item && item.label;
+const defaultItemToString = item => {
+  if (typeof item === 'string') {
+    return item;
+  }
+
+  return item && item.label;
+};
+
 const defaultShouldFilterItem = ({ inputValue, item, itemToString }) =>
   !inputValue ||
   itemToString(item)
@@ -37,10 +44,13 @@ export default class ComboBox extends React.Component {
     id: PropTypes.string,
 
     /**
-     * Allow users to pass in arbitrary items from their collection that are
-     * pre-selected
+     * Allow users to pass in an arbitrary item or a string (in case their items are an array of strings)
+     * from their collection that are pre-selected
      */
-    initialSelectedItem: PropTypes.object,
+    initialSelectedItem: PropTypes.oneOfType([
+      PropTypes.object,
+      PropTypes.string,
+    ]),
 
     /**
      * We try to stay as generic as possible here to allow individuals to pass
@@ -57,7 +67,8 @@ export default class ComboBox extends React.Component {
 
     /**
      * `onChange` is a utility for this controlled component to communicate to a
-     * consuming component what kind of internal state changes are occuring
+     * consuming component when a specific dropdown item is selected.
+     * @param {{ selectedItem }}
      */
     onChange: PropTypes.func.isRequired,
 
@@ -78,6 +89,12 @@ export default class ComboBox extends React.Component {
      * Currently supports either the default type, or an inline variant
      */
     type: ListBoxPropTypes.ListBoxType,
+    /**
+     * Callback function to notify consumer when the text input changes.
+     * This provides support to change available items based on the text.
+     * @param {string} inputText
+     */
+    onInputChange: PropTypes.func,
   };
 
   static defaultProps = {
@@ -85,6 +102,7 @@ export default class ComboBox extends React.Component {
     itemToString: defaultItemToString,
     shouldFilterItem: defaultShouldFilterItem,
     type: 'default',
+    ariaLabel: 'ListBox input field',
   };
 
   constructor(props) {
@@ -120,10 +138,18 @@ export default class ComboBox extends React.Component {
   };
 
   handleOnInputValueChange = inputValue => {
-    this.setState(() => ({
-      // Default to empty string if we have a false-y `inputValue`
-      inputValue: inputValue || '',
-    }));
+    const { onInputChange } = this.props;
+    this.setState(
+      () => ({
+        // Default to empty string if we have a false-y `inputValue`
+        inputValue: inputValue || '',
+      }),
+      () => {
+        if (onInputChange) {
+          onInputChange(inputValue);
+        }
+      }
+    );
   };
 
   render() {
@@ -135,6 +161,7 @@ export default class ComboBox extends React.Component {
       itemToString,
       placeholder,
       initialSelectedItem,
+      ariaLabel,
     } = this.props;
     const className = cx('bx--combo-box', containerClassName);
     return (
@@ -162,6 +189,7 @@ export default class ComboBox extends React.Component {
             <ListBox.Field {...getButtonProps({ disabled })}>
               <input
                 className="bx--text-input"
+                aria-label={ariaLabel}
                 {...getInputProps({
                   disabled,
                   id,
