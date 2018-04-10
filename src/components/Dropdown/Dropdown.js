@@ -101,7 +101,8 @@ export default class Dropdown extends PureComponent {
   };
 
   handleKeydown = evt => {
-    if (evt.which === 27 && this.state.open) {
+    const key = evt.keyCode || evt.which;
+    if (key === 27 && this.state.open) {
       this.setState({ open: !this.state.open });
     }
   };
