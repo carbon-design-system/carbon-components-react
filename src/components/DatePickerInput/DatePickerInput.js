@@ -18,6 +18,7 @@ export default class DatePickerInput extends Component {
     invalid: false,
     labelText: '',
     onClick: () => {},
+    onChange: () => {},
   };
 
   render() {
