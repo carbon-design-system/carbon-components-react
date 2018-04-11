@@ -52,7 +52,13 @@ export default class DatePicker extends Component {
      */
     value: PropTypes.oneOfType([
       PropTypes.string,
-      PropTypes.array,
+      PropTypes.arrayOf(
+        PropTypes.oneOfType([
+          PropTypes.string,
+          PropTypes.number,
+          PropTypes.object,
+        ])
+      ),
       PropTypes.object,
       PropTypes.number,
     ]),
