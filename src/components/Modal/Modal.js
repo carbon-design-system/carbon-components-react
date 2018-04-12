@@ -36,6 +36,18 @@ export default class Modal extends Component {
     modalLabel: '',
   };
 
+  state = {
+    open: this.props.open,
+  };
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.open !== this.state.open) {
+      this.setState({
+        open: nextProps.open,
+      });
+    }
+  }
+
   handleKeyDown = evt => {
     if (evt.which === 27) {
       this.props.onRequestClose();
@@ -44,11 +56,18 @@ export default class Modal extends Component {
 
   handleClick = evt => {
     if (this.innerModal && !this.innerModal.contains(evt.target)) {
-      this.props.onRequestClose();
+      this.onRequestClose();
     }
   };
 
+  onRequestClose = () => {
+    this.setState({
+      open: false,
+    });
+  };
+
   render() {
+    const { open } = this.state;
     const {
       modalHeading,
       modalLabel,
@@ -56,7 +75,6 @@ export default class Modal extends Component {
       passiveModal,
       secondaryButtonText,
       primaryButtonText,
-      open,
       onRequestClose,
       onRequestSubmit,
       onSecondarySubmit,
@@ -82,7 +100,7 @@ export default class Modal extends Component {
       <button
         className="bx--modal-close"
         type="button"
-        onClick={onRequestClose}>
+        onClick={this.onRequestClose}>
         <Icon
           name="close"
           className="bx--modal-close__icon"
