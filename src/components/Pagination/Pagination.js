@@ -99,6 +99,9 @@ export default class Pagination extends Component {
   handlePageInputChange = evt => {
     const page = Number(evt.target.value);
     if (
+      // Added props for defaultPageText and defaultItemText to be
+      // used for case when page # is 0 or empty. For other cases
+      // existing props will be used.
       page >= 0 &&
       page <= Math.ceil(this.props.totalItems / this.state.pageSize)
     ) {
