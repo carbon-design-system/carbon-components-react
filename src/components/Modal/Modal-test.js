@@ -89,13 +89,13 @@ describe('Modal', () => {
 
   describe('events', () => {
     it('should set expected class when state is open', () => {
-      const wrapper = mount(<ModalWrapper />);
+      const wrapper = mount(<Modal />);
       const modal = wrapper.find(Modal);
       const modalContainer = modal.find('.bx--modal');
       const openClass = 'is-visible';
 
       expect(modalContainer.hasClass(openClass)).not.toEqual(true);
-      wrapper.setState({ isOpen: true });
+      wrapper.setState({ open: true });
       expect(wrapper.find('.bx--modal').hasClass(openClass)).toEqual(true);
     });
 
@@ -108,31 +108,31 @@ describe('Modal', () => {
     });
 
     it('should set open state to false when close button is clicked', () => {
-      const wrapper = mount(<ModalWrapper />);
+      const wrapper = mount(<Modal />);
       const modal = wrapper.find(Modal);
       const closeBtn = modal.find('.bx--modal-close');
-      wrapper.setState({ isOpen: true });
-      expect(wrapper.state('isOpen')).toEqual(true);
+      wrapper.setState({ open: true });
+      expect(wrapper.state('open')).toEqual(true);
       closeBtn.simulate('click');
-      expect(wrapper.state('isOpen')).not.toEqual(true);
+      expect(wrapper.state('open')).not.toEqual(true);
     });
 
     it('should stay open when "inner modal" is clicked', () => {
-      const wrapper = mount(<ModalWrapper />);
+      const wrapper = mount(<Modal />);
       const modal = wrapper.find(Modal);
       const div = modal.find('.bx--modal-container');
-      wrapper.setState({ isOpen: true });
+      wrapper.setState({ open: true });
       div.simulate('click');
-      expect(wrapper.state('isOpen')).toEqual(true);
+      expect(wrapper.state('open')).toEqual(true);
     });
 
     it('should close when "outer modal" is clicked...not "inner modal"', () => {
-      const wrapper = mount(<ModalWrapper />);
+      const wrapper = mount(<Modal />);
       const modal = wrapper.find(Modal);
       const div = modal.find('.bx--modal');
-      wrapper.setState({ isOpen: true });
+      wrapper.setState({ open: true });
       div.simulate('click');
-      expect(wrapper.state('isOpen')).toEqual(false);
+      expect(wrapper.state('open')).toEqual(false);
     });
 
     it('should handle keyDown events', () => {
