@@ -40,6 +40,9 @@ export default class Modal extends Component {
     if (evt.which === 27) {
       this.props.onRequestClose();
     }
+    if (evt.which === 13) {
+      this.props.onRequestSubmit();
+    }
   };
 
   handleClick = evt => {
