@@ -7,6 +7,7 @@ const OverflowMenuItem = ({
   itemText,
   hasDivider,
   isDelete,
+  isDisabled,
   closeMenu,
   onClick,
   primaryFocus,
@@ -23,6 +24,7 @@ const OverflowMenuItem = ({
     {
       'bx--overflow-menu--divider': hasDivider,
       'bx--overflow-menu-options__option--danger': isDelete,
+      'bx--overflow-menu-options__option--disabled': isDisabled,
     },
     wrapperClassName
   );
@@ -41,6 +43,7 @@ const OverflowMenuItem = ({
         {...other}
         {...primaryFocusProp}
         className={overflowMenuBtnClasses}
+        disabled={isDisabled}
         onClick={handleClick}>
         {itemText}
       </button>
@@ -75,6 +78,10 @@ OverflowMenuItem.propTypes = {
    * `true` to make this menu item a "danger button".
    */
   isDelete: PropTypes.bool,
+  /**
+   * `true` to make this menu item disabled.
+   */
+  isDisabled: PropTypes.bool,
 
   onBlur: PropTypes.func,
   onClick: PropTypes.func,
@@ -100,6 +107,7 @@ OverflowMenuItem.propTypes = {
 OverflowMenuItem.defaultProps = {
   hasDivider: false,
   isDelete: false,
+  isDisabled: false,
   itemText: 'Provide itemText',
   onClick: () => {},
 };
