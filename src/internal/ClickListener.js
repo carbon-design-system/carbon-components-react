@@ -9,6 +9,7 @@ export default class ClickListener extends React.Component {
   static propTypes = {
     children: PropTypes.element.isRequired,
     onClickOutside: PropTypes.func.isRequired,
+    refPropName: PropTypes.string,
   };
 
   constructor(props) {
@@ -37,7 +38,7 @@ export default class ClickListener extends React.Component {
   }
 
   handleRef(el) {
-    const { children } = this.props;
+    const { children, refPropName } = this.props;
     this.element = el;
 
     /**
@@ -49,8 +50,9 @@ export default class ClickListener extends React.Component {
      *   <Child ref={targetedRefHere} />
      * </ClickListener>
      */
-    if (children.ref && typeof children.ref === 'function') {
-      children.ref(el);
+    const childRef = children[refPropName || 'ref'];
+    if (childRef && typeof childRef === 'function') {
+      childRef(el);
     }
   }
 
