@@ -37,6 +37,7 @@ exports[`ModalWrapper should render 1`] = `
       </button>
     </Button>
     <Modal
+      enterSubmit={false}
       iconDescription="close the modal"
       id="modal"
       modalHeading="Transactional Modal"

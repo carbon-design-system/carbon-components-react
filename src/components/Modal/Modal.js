@@ -23,6 +23,7 @@ export default class Modal extends Component {
     primaryButtonDisabled: PropTypes.bool,
     onSecondarySubmit: PropTypes.func,
     danger: PropTypes.bool,
+    enterSubmit: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -34,13 +35,14 @@ export default class Modal extends Component {
     iconDescription: 'close the modal',
     modalHeading: '',
     modalLabel: '',
+    enterSubmit: false,
   };
 
-  handleKeyDown = evt => {
+  handleKeyDown = (evt, enterSubmit) => {
     if (evt.which === 27) {
       this.props.onRequestClose();
     }
-    if (evt.which === 13) {
+    if (evt.which === 13 && enterSubmit) {
       this.props.onRequestSubmit();
     }
   };
@@ -65,6 +67,7 @@ export default class Modal extends Component {
       onSecondarySubmit,
       iconDescription,
       primaryButtonDisabled,
+      enterSubmit,
       danger,
       ...other
     } = this.props;
@@ -134,7 +137,7 @@ export default class Modal extends Component {
     return (
       <div
         {...other}
-        onKeyDown={this.handleKeyDown}
+        onKeyDown={event => this.handleKeyDown(event, enterSubmit)}
         onClick={this.handleClick}
         className={modalClasses}
         role="presentation"
