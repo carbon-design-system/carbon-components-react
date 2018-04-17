@@ -38,5 +38,63 @@ describe('OverflowMenuItem', () => {
 
       expect(wrapper.hasClass('bx--overflow-menu--divider')).toEqual(true);
     });
+
+    it('calls onClick function when clicked', () => {
+      const clickFn = jest.fn();
+      const wrapper = shallowRender({
+        itemText: 'testing',
+        closeMenu: () => {},
+        onClick: clickFn,
+      });
+
+      const button = wrapper.find('button');
+      button.simulate('click');
+      expect(clickFn).toHaveBeenCalled();
+    });
+
+    it('calls onClick function when Space is pressed', () => {
+      const spaceKey = 32;
+      const clickFn = jest.fn();
+      const wrapper = shallowRender({
+        itemText: 'testing',
+        closeMenu: () => {},
+        onClick: clickFn,
+      });
+
+      const button = wrapper.find('button');
+      button.simulate('keydown', { which: spaceKey });
+      expect(clickFn).toHaveBeenCalled();
+    });
+
+    it('calls onClick function when Enter is pressed', () => {
+      const enterKey = 13;
+      const clickFn = jest.fn();
+      const wrapper = shallowRender({
+        itemText: 'testing',
+        closeMenu: () => {},
+        onClick: clickFn,
+      });
+
+      const button = wrapper.find('button');
+      button.simulate('keydown', { which: enterKey });
+      expect(clickFn).toHaveBeenCalled();
+    });
+
+    it('calls onKeyDown function when provided instead of onClick function', () => {
+      const enterKey = 13;
+      const clickFn = jest.fn();
+      const keyFn = jest.fn();
+      const wrapper = shallowRender({
+        itemText: 'testing',
+        closeMenu: () => {},
+        onClick: clickFn,
+        onKeyDown: keyFn,
+      });
+
+      const button = wrapper.find('button');
+      button.simulate('keydown', { which: enterKey });
+      expect(clickFn).not.toHaveBeenCalled();
+      expect(keyFn).toHaveBeenCalled();
+    });
   });
 });

@@ -32,12 +32,22 @@ const OverflowMenuItem = ({
     closeMenu();
   };
 
+  const handleKey = evt => {
+    const key = evt.key || evt.which;
+
+    if (key === 'Enter' || key === 13 || key === ' ' || key === 32) {
+      onClick(evt);
+      closeMenu();
+    }
+  };
+
   const primaryFocusProp = !primaryFocus
     ? {}
     : { 'data-floating-menu-primary-focus': true };
   const item = (
     <li className={overflowMenuItemClasses} role="menuitem">
       <button
+        onKeyDown={handleKey}
         {...other}
         {...primaryFocusProp}
         className={overflowMenuBtnClasses}
