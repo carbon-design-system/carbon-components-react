@@ -76,7 +76,6 @@ export class FileUploaderButton extends Component {
       <div
         role="button"
         className={classes}
-        tabIndex={tabIndex}
         onKeyDown={evt => {
           if (evt.which === 13 || evt.which === 32) {
             this.input.click();
@@ -84,6 +83,7 @@ export class FileUploaderButton extends Component {
         }}>
         <label
           className={`bx--btn bx--btn--${buttonKind}`}
+          tabIndex={tabIndex}
           htmlFor={this.uid}
           role={role}
           {...other}>
@@ -97,6 +97,9 @@ export class FileUploaderButton extends Component {
           multiple={multiple}
           accept={accept}
           onChange={this.handleChange}
+          onClick={evt => {
+            evt.target.value = null;
+          }}
         />
       </div>
     );
@@ -212,7 +215,7 @@ export default class FileUploader extends Component {
 
   clearFiles = () => {
     // A clearFiles function that resets filenames and can be referenced using a ref by the parent.
-    this.setState({ filenames: [], filenameStatus: '' });
+    this.setState({ filenames: [] });
   };
 
   render() {

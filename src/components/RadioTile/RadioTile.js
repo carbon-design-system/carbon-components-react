@@ -2,10 +2,12 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import uid from '../../tools/uniqueId';
 import Icon from '../Icon';
+import classNames from 'classnames';
 
 export default class RadioTile extends React.Component {
   static propTypes = {
     checked: PropTypes.bool,
+    className: PropTypes.string,
     defaultChecked: PropTypes.bool,
     id: PropTypes.string,
     name: PropTypes.string,
@@ -26,10 +28,14 @@ export default class RadioTile extends React.Component {
   };
 
   render() {
-    const { children, ...other } = this.props;
+    const { children, className, ...other } = this.props;
+
+    const classes = classNames(className, 'bx--tile', 'bx--tile--selectable', {
+      'bx--tile--is-selected': this.props.checked,
+    });
 
     return (
-      <label htmlFor={this.uid} className="bx--tile bx--tile--selectable">
+      <label htmlFor={this.uid} className={classes}>
         <input
           {...other}
           type="radio"
