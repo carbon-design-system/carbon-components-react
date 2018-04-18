@@ -555,7 +555,7 @@ storiesOf('DataTable', module)
                 onInputChange,
                 selectedRows,
               }) => (
-                <TableContainer title="DataTable with dynamic rows">
+                <TableContainer title="DataTable with dynamic content">
                   <Button small onClick={this.handleOnRowAdd}>
                     Add new row
                   </Button>
