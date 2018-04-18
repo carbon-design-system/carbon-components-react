@@ -7,7 +7,7 @@ const OverflowMenuItem = ({
   itemText,
   hasDivider,
   isDelete,
-  isDisabled,
+  disabled,
   closeMenu,
   onClick,
   primaryFocus,
@@ -24,7 +24,7 @@ const OverflowMenuItem = ({
     {
       'bx--overflow-menu--divider': hasDivider,
       'bx--overflow-menu-options__option--danger': isDelete,
-      'bx--overflow-menu-options__option--disabled': isDisabled,
+      'bx--overflow-menu-options__option--disabled': disabled,
     },
     wrapperClassName
   );
@@ -43,8 +43,9 @@ const OverflowMenuItem = ({
         {...other}
         {...primaryFocusProp}
         className={overflowMenuBtnClasses}
-        disabled={isDisabled}
-        onClick={handleClick}>
+        disabled={disabled}
+        onClick={handleClick}
+        tabIndex={disabled ? -1 : 0}>
         {itemText}
       </button>
     </li>
@@ -81,7 +82,7 @@ OverflowMenuItem.propTypes = {
   /**
    * `true` to make this menu item disabled.
    */
-  isDisabled: PropTypes.bool,
+  disabled: PropTypes.bool,
 
   onBlur: PropTypes.func,
   onClick: PropTypes.func,
@@ -107,7 +108,7 @@ OverflowMenuItem.propTypes = {
 OverflowMenuItem.defaultProps = {
   hasDivider: false,
   isDelete: false,
-  isDisabled: false,
+  disabled: false,
   itemText: 'Provide itemText',
   onClick: () => {},
 };
