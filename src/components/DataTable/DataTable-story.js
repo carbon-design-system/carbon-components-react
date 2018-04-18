@@ -460,10 +460,10 @@ storiesOf('DataTable', module)
     )
   )
   .addWithInfo(
-    'with dynamic rows',
+    'with dynamic content',
     `
-      Showcases DataTable behavior when rows are added to the component
-      dynamically.
+      Showcases DataTable behavior when rows are added to the component,
+      and when cell data changes dynamically.
     `,
     () => {
       const insertInRandomPosition = (array, element) => {
@@ -526,6 +526,20 @@ storiesOf('DataTable', module)
           });
         };
 
+        handleOnCellChange = () => {
+          this.setState(state => {
+            const rows = state.rows.map(row => {
+              return {
+                ...row,
+                port: row.port + 1,
+              };
+            });
+            return {
+              rows,
+            };
+          });
+        };
+
         render() {
           return (
             <DataTable
@@ -547,6 +561,9 @@ storiesOf('DataTable', module)
                   </Button>
                   <Button small onClick={this.handleOnHeaderAdd}>
                     Add new header
+                  </Button>
+                  <Button small onClick={this.handleOnCellChange}>
+                    Change cell contents
                   </Button>
                   <TableToolbar>
                     <TableBatchActions {...getBatchActionProps()}>
