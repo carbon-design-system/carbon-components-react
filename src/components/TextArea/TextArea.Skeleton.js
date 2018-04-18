@@ -9,7 +9,7 @@ const TextAreaSkeleton = ({ hideLabel, id }) => {
   return (
     <div className="bx--form-item">
       {label}
-      <textarea className="bx--skeleton bx--text-area" />
+      <div className="bx--skeleton bx--text-area" />
     </div>
   );
 };

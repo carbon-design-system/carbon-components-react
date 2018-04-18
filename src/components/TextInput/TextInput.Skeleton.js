@@ -9,7 +9,7 @@ const TextInputSkeleton = ({ hideLabel, id }) => {
   return (
     <div className="bx--form-item">
       {label}
-      <input type="text" className="bx--skeleton bx--text-input" />
+      <div className="bx--skeleton bx--text-input" />
     </div>
   );
 };

@@ -95,7 +95,7 @@ storiesOf('Search', module)
       Placeholder skeleton state to use when content is loading.
     `,
     () => (
-      <div>
+      <div style={{ width: '200px' }}>
         <SearchSkeleton />&nbsp;
         <SearchSkeleton small />
       </div>

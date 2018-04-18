@@ -1,6 +1,5 @@
 import React from 'react';
 import { Module, ModuleBody } from '../Module';
-import ModuleSkeleton from '../Module/Module.Skeleton';
 import { shallow } from 'enzyme';
 
 describe('Module', () => {
@@ -56,30 +55,6 @@ describe('Module', () => {
       it('should render children as expected', () => {
         expect(moduleBody.text()).toEqual('Body');
       });
-    });
-  });
-});
-
-describe('ModuleSkeleton', () => {
-  describe('Renders as expected', () => {
-    const wrapper = shallow(<ModuleSkeleton />);
-
-    it('Has the expected classes', () => {
-      expect(wrapper.hasClass('bx--module')).toEqual(true);
-      expect(wrapper.hasClass('bx--module--double')).toEqual(true);
-      expect(wrapper.hasClass('bx--skeleton')).toEqual(true);
-    });
-  });
-});
-
-describe('ModuleSkeleton Single', () => {
-  describe('Renders as expected', () => {
-    const wrapper = shallow(<ModuleSkeleton size="single" />);
-
-    it('Has the expected classes', () => {
-      expect(wrapper.hasClass('bx--module')).toEqual(true);
-      expect(wrapper.hasClass('bx--module--single')).toEqual(true);
-      expect(wrapper.hasClass('bx--skeleton')).toEqual(true);
     });
   });
 });

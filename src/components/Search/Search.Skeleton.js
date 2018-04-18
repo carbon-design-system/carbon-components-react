@@ -23,7 +23,7 @@ export default class SearchSkeleton extends Component {
     return (
       <div className={searchClasses} role="search">
         <label htmlFor={id} className="bx--label" />
-        <input type="search" className="bx--search-input" />
+        <div className="bx--search-input" />
       </div>
     );
   }
