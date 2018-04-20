@@ -39,6 +39,13 @@ export default class Selection extends React.Component {
     }));
   };
 
+  handleOnToggleAll = items => {
+    this.internalSetState(({ selectedItems }) => ({
+      selectedItems:
+        selectedItems.length === items.length ? [] : items.slice(0),
+    }));
+  };
+
   handleRemoveItem = index => {
     this.internalSetState(state => ({
       selectedItems: removeAtIndex(state.selectedItems, index),
@@ -62,6 +69,7 @@ export default class Selection extends React.Component {
     const renderProps = {
       selectedItems,
       onItemChange: this.handleOnItemChange,
+      onToggleAll: this.handleOnToggleAll,
       clearSelection: this.handleClearSelection,
     };
 
