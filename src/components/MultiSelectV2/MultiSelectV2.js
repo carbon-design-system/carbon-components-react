@@ -63,21 +63,21 @@ export default class MultiSelectV2 extends React.Component {
     /**
      * Adds another option in the dropdown for toggling all values
      */
-    isToggle: PropTypes.bool,
+    toggleItemSelection: PropTypes.bool,
 
     /**
      * Shows the selected values inline in the input
      */
-    showSelectedValues: PropTypes.bool,
+    inlineSelectedItems: PropTypes.bool,
   };
 
   static defaultProps = {
     compareItems: defaultCompareItems,
     disabled: false,
-    isToggle: false,
-    showSelectedValues: false,
     locale: 'en',
     itemToString: defaultItemToString,
+    toggleItemSelection: false,
+    inlineSelectedItems: false,
     initialSelectedItems: [],
     sortItems: defaultSortItems,
     type: 'default',
@@ -126,7 +126,7 @@ export default class MultiSelectV2 extends React.Component {
       // Reference: https://github.com/paypal/downshift/issues/206
       case Downshift.stateChangeTypes.clickButton:
       case Downshift.stateChangeTypes.keyDownSpaceButton:
-        this.handleOnToggleMenu();
+        Reflect.has(changes, 'isOpen') && this.handleOnToggleMenu();
         break;
     }
   };
@@ -143,7 +143,7 @@ export default class MultiSelectV2 extends React.Component {
       locale,
       disabled,
       initialSelectedItems,
-      isToggle,
+      toggleItemSelection,
       sortItems,
       compareItems,
     } = this.props;
@@ -175,15 +175,16 @@ export default class MultiSelectV2 extends React.Component {
               getItemProps,
               getButtonProps,
             }) => {
-              let selectAllItemProps;
-              if (isToggle) {
-                highlightedIndex -= 1;
-                selectAllItemProps = getItemProps({
+              let toggleItemProps,
+                baseIndex = 0;
+              if (toggleItemSelection) {
+                toggleItemProps = getItemProps({
                   item: {
                     id: 'select-all',
                   },
                   onClick: () => {},
                 });
+                baseIndex += 1;
               }
               return (
                 <ListBox
@@ -222,14 +223,13 @@ export default class MultiSelectV2 extends React.Component {
                   </ListBox.Field>
                   {isOpen && (
                     <ListBox.Menu>
-                      {isToggle && (
+                      {toggleItemSelection && (
                         <ListBox.MenuItem
                           isActive={false}
-                          isHighlighted={highlightedIndex === -1}
-                          {...selectAllItemProps}
+                          {...toggleItemProps}
                           onClick={() => onToggleAll(items)}>
                           <Checkbox
-                            id={selectAllItemProps.id}
+                            id={toggleItemProps.id}
                             name="select-all"
                             checked={selectedItem.length === items.length}
                             readOnly={true}
@@ -251,7 +251,9 @@ export default class MultiSelectV2 extends React.Component {
                           <ListBox.MenuItem
                             key={itemProps.id}
                             isActive={selectedItem.indexOf(item) !== -1}
-                            isHighlighted={highlightedIndex === index}
+                            isHighlighted={
+                              highlightedIndex === index + baseIndex
+                            }
                             {...itemProps}>
                             <Checkbox
                               id={itemProps.id}

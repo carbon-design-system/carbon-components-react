@@ -46,9 +46,9 @@ storiesOf('MultiSelectV2', module)
     )
   )
   .addWithInfo(
-    'default - global toggle',
+    'default - item selection toggle',
     `
-    MultiSelectV2 with Global toggle
+    MultiSelectV2 with Item Selection Toggle
   `,
     () => (
       <div style={{ width: 300 }}>
@@ -56,8 +56,8 @@ storiesOf('MultiSelectV2', module)
           label={defaultLabel}
           items={items}
           itemToString={item => (item ? item.text : '')}
+          toggleItemSelection
           onChange={action('onChange')}
-          isToggle
         />
       </div>
     )
@@ -137,7 +137,7 @@ storiesOf('MultiSelectV2', module)
         <MultiSelectV2
           label={defaultLabel}
           items={items}
-          showSelectedValues={true}
+          inlineSelectedItems
           itemToString={item => (item ? item.text : '')}
           initialSelectedItems={[items[0], items[1]]}
           onChange={action('onChange - Inline MultiSelectV2')}
@@ -162,22 +162,59 @@ storiesOf('MultiSelectV2', module)
     )
   )
   .addWithInfo(
-    'filterable - inline',
+    'filterable - item selection toggle',
     `
-        Inline filterable version of our MultiSelectV2 component
-      `,
+      Filterable version of our MultiSelectV2 component with global toggle
+    `,
     () => (
       <div style={{ width: 300 }}>
         <MultiSelectV2.Filterable
           items={items}
+          toggleItemSelection
           itemToString={item => (item ? item.text : '')}
           onChange={action('onChange')}
-          label={defaultLabel}
           placeholder={defaultPlaceholder}
         />
       </div>
     )
   )
+  .addWithInfo('filterable - inner searchbox', () => (
+    <div style={{ width: 300 }}>
+      <MultiSelectV2.Filterable
+        searchBoxType="inner"
+        items={items}
+        itemToString={item => (item ? item.text : '')}
+        onChange={action('onChange')}
+        placeholder={defaultPlaceholder}
+      />
+    </div>
+  ))
+  .addWithInfo('filterable - inline - inner searchbox', () => (
+    <div style={{ width: 300 }}>
+      <MultiSelectV2.Filterable
+        searchBoxType="inner"
+        type="inline"
+        items={items}
+        itemToString={item => (item ? item.text : '')}
+        onChange={action('onChange')}
+        placeholder={defaultPlaceholder}
+      />
+    </div>
+  ))
+  .addWithInfo('filterable - inline - inner - selected values', () => (
+    <div style={{ width: 300 }}>
+      <MultiSelectV2.Filterable
+        inlineSelectedItems
+        toggleItemSelection
+        searchBoxType="inner"
+        type="inline"
+        items={items}
+        itemToString={item => (item ? item.text : '')}
+        onChange={action('onChange')}
+        placeholder={defaultPlaceholder}
+      />
+    </div>
+  ))
   .addWithInfo(
     'filterable - disabled',
     `

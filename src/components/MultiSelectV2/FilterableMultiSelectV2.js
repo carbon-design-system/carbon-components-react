@@ -34,7 +34,7 @@ export default class FilterableMultiSelectV2 extends React.Component {
     /**
      * Specifies the position of the search box
      */
-    searchBoxPlacement: PropTypes.oneOf(['default', 'inside']),
+    searchBoxType: PropTypes.oneOf(['default', 'inner']),
 
     /**
      * Specifies the position of the search box
@@ -46,6 +46,11 @@ export default class FilterableMultiSelectV2 extends React.Component {
      * pre-selected
      */
     initialSelectedItems: PropTypes.array,
+
+    /**
+     * Shows the selected values inline in the input
+     */
+    inlineSelectedItems: PropTypes.bool,
 
     /**
      * Helper function passed to downshift that allows the library to render a
@@ -80,26 +85,21 @@ export default class FilterableMultiSelectV2 extends React.Component {
     /**
      * Adds another option in the dropdown for toggling all values
      */
-    isToggle: PropTypes.bool,
-
-    /**
-     * Shows the selected values inline in the input
-     */
-    showSelectedValues: PropTypes.bool,
+    toggleItemSelection: PropTypes.bool,
   };
 
   static defaultProps = {
     compareItems: defaultCompareItems,
-    disabled: false,
-    showSelectedValues: false,
-    isToggle: false,
-    filterItems: defaultFilterItems,
-    initialSelectedItems: [],
-    itemToString: defaultItemToString,
-    locale: 'en',
     sortItems: defaultSortItems,
+    filterItems: defaultFilterItems,
+    itemToString: defaultItemToString,
+    disabled: false,
+    inlineSelectedItems: false,
+    initialSelectedItems: [],
+    toggleItemSelection: false,
+    locale: 'en',
     searchBoxLabel: 'Search',
-    searchBoxPlacement: 'default',
+    searchBoxType: 'default',
   };
 
   constructor(props) {
@@ -196,11 +196,11 @@ export default class FilterableMultiSelectV2 extends React.Component {
       className: containerClassName,
       disabled,
       filterItems,
-      showSelectedValues,
-      searchBoxPlacement,
+      inlineSelectedItems,
+      searchBoxType,
       searchBoxLabel,
       type,
-      isToggle,
+      toggleItemSelection,
       items,
       itemToString,
       initialSelectedItems,
@@ -244,6 +244,16 @@ export default class FilterableMultiSelectV2 extends React.Component {
               inputValue,
               selectedItem,
             }) => {
+              let toggleItemProps,
+                baseIndex = 0;
+              if (toggleItemSelection) {
+                toggleItemProps = getItemProps({
+                  item: {
+                    id: 'select-all',
+                  },
+                });
+                baseIndex += 1;
+              }
               return (
                 <ListBox
                   className={className}
@@ -257,7 +267,7 @@ export default class FilterableMultiSelectV2 extends React.Component {
                         selectionCount={selectedItem.length}
                       />
                     )}
-                    {searchBoxPlacement === 'default' && (
+                    {searchBoxType === 'default' && (
                       <input
                         className="bx--text-input"
                         ref={el => (this.inputNode = el)}
@@ -271,51 +281,48 @@ export default class FilterableMultiSelectV2 extends React.Component {
                     )}
                     {inputValue &&
                       isOpen &&
-                      searchBoxPlacement === 'default' && (
+                      searchBoxType === 'default' && (
                         <ListBox.Selection
                           clearSelection={this.clearInputValue}
                         />
                       )}
-                    {showSelectedValues && searchBoxPlacement === 'inside' ? (
-                      <div>
-                        {!selectedItem.length ? (
-                          <span className="bx--list-box__label">
-                            {placeholder}
-                          </span>
-                        ) : (
-                          sortItems(selectedItem, {
-                            selectedItems,
-                            itemToString,
-                            compareItems,
-                            locale,
-                          }).map(item => (
-                            <span className="bx--list-box__label" key={item.id}>
-                              {itemToString(item)}
+                    {searchBoxType === 'inner' &&
+                      inlineSelectedItems && (
+                        <div>
+                          {!selectedItem.length ? (
+                            <span className="bx--list-box__label">
+                              {placeholder}
                             </span>
-                          ))
-                        )}
-                      </div>
-                    ) : (
+                          ) : (
+                            sortItems(selectedItem, {
+                              selectedItems,
+                              itemToString,
+                              compareItems,
+                              locale,
+                            }).map(item => (
+                              <span
+                                className="bx--list-box__label"
+                                key={item.id}>
+                                {itemToString(item)}
+                              </span>
+                            ))
+                          )}
+                        </div>
+                      )}
+                    {searchBoxType === 'inner' && (
                       <span className="bx--list-box__label">{placeholder}</span>
                     )}
                     <ListBox.MenuIcon isOpen={isOpen} />
                   </ListBox.Field>
                   {isOpen && (
                     <ListBox.Menu>
-                      {searchBoxPlacement === 'inside' && (
-                        <ListBox.MenuItem
-                          style={{
-                            padding: 0,
-                            position: 'sticky',
-                            top: 0,
-                            backgroundColor: '#fff',
-                            zIndex: 1,
-                          }}>
+                      {searchBoxType === 'inner' && (
+                        <ListBox.MenuItem isActive={false}>
                           <Search
                             small
                             {...getInputProps({
                               role: 'input',
-                              label: searchBoxLabel,
+                              labelText: searchBoxLabel,
                               placeHolderText: 'Search',
                               placeholder: 'Search',
                               tabIndex: 0,
@@ -326,21 +333,18 @@ export default class FilterableMultiSelectV2 extends React.Component {
                           />
                         </ListBox.MenuItem>
                       )}
-                      {isToggle && (
+                      {toggleItemSelection && (
                         <ListBox.MenuItem
-                          {...getItemProps({
-                            item: {
-                              id: 'select-all',
-                            },
-                            onClick: () => onToggleAll(items),
-                          })}>
+                          isActive={false}
+                          {...toggleItemProps}
+                          onClick={() => onToggleAll(items)}>
                           <Checkbox
-                            id={`${id}_toggle`}
+                            id={toggleItemProps.id}
                             name="select-all"
                             checked={selectedItem.length === items.length}
                             readOnly={true}
                             tabIndex="0"
-                            label="Select All"
+                            labelText="Select All"
                           />
                         </ListBox.MenuItem>
                       )}
@@ -360,7 +364,9 @@ export default class FilterableMultiSelectV2 extends React.Component {
                           <ListBox.MenuItem
                             key={itemProps.id}
                             isActive={selectedItem.indexOf(item) !== -1}
-                            isHighlighted={highlightedIndex === index}
+                            isHighlighted={
+                              highlightedIndex === index + baseIndex
+                            }
                             {...itemProps}>
                             <Checkbox
                               id={itemProps.id}
@@ -368,7 +374,7 @@ export default class FilterableMultiSelectV2 extends React.Component {
                               checked={isChecked}
                               readOnly={true}
                               tabIndex="-1"
-                              label={itemText}
+                              labelText={itemText}
                             />
                           </ListBox.MenuItem>
                         );
