@@ -287,7 +287,7 @@ export default class FilterableMultiSelectV2 extends React.Component {
                         />
                       )}
                     {searchBoxType === 'inner' &&
-                      inlineSelectedItems && (
+                      (inlineSelectedItems ? (
                         <div>
                           {!selectedItem.length ? (
                             <span className="bx--list-box__label">
@@ -308,10 +308,11 @@ export default class FilterableMultiSelectV2 extends React.Component {
                             ))
                           )}
                         </div>
-                      )}
-                    {searchBoxType === 'inner' && (
-                      <span className="bx--list-box__label">{placeholder}</span>
-                    )}
+                      ) : (
+                        <span className="bx--list-box__label">
+                          {placeholder}
+                        </span>
+                      ))}
                     <ListBox.MenuIcon isOpen={isOpen} />
                   </ListBox.Field>
                   {isOpen && (

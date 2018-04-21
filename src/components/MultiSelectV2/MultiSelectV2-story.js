@@ -122,15 +122,15 @@ storiesOf('MultiSelectV2', module)
           items={items}
           itemToString={item => (item ? item.text : '')}
           initialSelectedItems={[items[0], items[1]]}
-          onChange={action('onChange - Inline MultiSelectV2')}
+          onChange={action('onChange')}
         />
       </div>
     )
   )
   .addWithInfo(
-    'with visible selected items',
+    'with visible initial selected items',
     `
-      Display selected items with the input
+      Inline MultiSelect with selected values displayed inside input
     `,
     () => (
       <div style={{ width: 300 }}>
@@ -140,7 +140,7 @@ storiesOf('MultiSelectV2', module)
           inlineSelectedItems
           itemToString={item => (item ? item.text : '')}
           initialSelectedItems={[items[0], items[1]]}
-          onChange={action('onChange - Inline MultiSelectV2')}
+          onChange={action('onChange')}
         />
       </div>
     )

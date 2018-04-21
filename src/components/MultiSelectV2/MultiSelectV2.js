@@ -138,7 +138,7 @@ export default class MultiSelectV2 extends React.Component {
       items,
       itemToString,
       label,
-      showSelectedValues,
+      inlineSelectedItems,
       type,
       locale,
       disabled,
@@ -199,7 +199,7 @@ export default class MultiSelectV2 extends React.Component {
                         selectionCount={selectedItem.length}
                       />
                     )}
-                    {showSelectedValues ? (
+                    {inlineSelectedItems ? (
                       <div>
                         {!selectedItem.length ? (
                           <span className="bx--list-box__label">{label}</span>
