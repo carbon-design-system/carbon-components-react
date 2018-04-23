@@ -139,6 +139,7 @@
     "@babel/preset-env": "^7.0.0-beta.38",
     "@babel/preset-react": "^7.0.0-beta.38",
     "@babel/preset-stage-1": "^7.0.0-beta.38",
+    "@semantic-release/commit-analyzer": "^5.0.0",
     "@storybook/addon-actions": "^3.2.15",
     "@storybook/addon-info": "^3.2.13",
     "@storybook/react": "^3.2.13",
@@ -192,6 +193,7 @@
     "whatwg-fetch": "^2.0.3"
   },
   "release": {
+    "analyzeCommits": "./scripts/analyze-commits.js",
     "branch": "master"
   },
   "babel": {
@@ -229,7 +231,8 @@
         "perf",
         "test",
         "chore",
-        "revert"
+        "revert",
+        "release"
       ],
       "warnOnFail": false,
       "maxSubjectLength": 100,
