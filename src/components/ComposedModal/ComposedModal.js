@@ -24,7 +24,7 @@ export default class ComposedModal extends Component {
       this.closeModal();
     }
 
-    this.props.onKeyDown(evt);
+    this.onKeyDown(evt);
   };
 
   componentDidMount() {
@@ -214,9 +214,13 @@ export class ModalFooter extends Component {
     onRequestSubmit: () => {},
   };
 
-  handleRequestClose = evt => {
+  handleRequestClose = () => {
     this.props.closeModal();
-    this.props.onRequestClose(evt);
+    this.props.onRequestClose();
+  };
+
+  onRequestSubmit = () => {
+    this.props.closeModal();
   };
 
   render() {
@@ -260,7 +264,7 @@ export class ModalFooter extends Component {
 
         {primaryButtonText && (
           <Button
-            onClick={onRequestSubmit}
+            onClick={this.onRequestSubmit}
             className={primaryClass}
             disabled={primaryButtonDisabled}
             kind="primary">
