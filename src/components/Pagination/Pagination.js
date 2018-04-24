@@ -105,8 +105,7 @@ export default class Pagination extends Component {
       page >= 0 &&
       page <= Math.ceil(this.props.totalItems / this.state.pageSize)
     ) {
-      this.setState({ page });
-      this.pageInputDebouncer(page);
+      this.setState({ page }, () => this.pageInputDebouncer(this.state.page));
     }
   };
 
