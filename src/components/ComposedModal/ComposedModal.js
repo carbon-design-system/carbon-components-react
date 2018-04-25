@@ -205,6 +205,7 @@ export class ModalFooter extends Component {
     primaryButtonDisabled: PropTypes.bool,
     onRequestClose: PropTypes.func,
     onRequestSubmit: PropTypes.func,
+    handleSubmit: PropTypes.func,
     closeModal: PropTypes.func,
     children: PropTypes.node,
   };
@@ -219,7 +220,8 @@ export class ModalFooter extends Component {
     this.props.onRequestClose();
   };
 
-  onRequestSubmit = () => {
+  handleRequestSubmit = () => {
+    this.props.onRequestSubmit();
     this.props.closeModal();
   };
 
@@ -264,7 +266,7 @@ export class ModalFooter extends Component {
 
         {primaryButtonText && (
           <Button
-            onClick={this.onRequestSubmit}
+            onClick={this.handleRequestSubmit}
             className={primaryClass}
             disabled={primaryButtonDisabled}
             kind="primary">
