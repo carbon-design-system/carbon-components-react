@@ -64,6 +64,9 @@ export default class Pagination extends Component {
 
   componentWillMount() {
     this.uniqueId = `${Math.floor(Math.random() * 0xffff)}`;
+  }
+
+  componentDidMount() {
     this.pageInputDebouncer = debounce(
       page =>
         page > 0 &&
