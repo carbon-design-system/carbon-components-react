@@ -2,7 +2,7 @@ import cx from 'classnames';
 import React from 'react';
 import PropTypes from 'prop-types';
 import Downshift from 'downshift';
-import ListBox from '../ListBox';
+import ListBox, { PropTypes as ListBoxPropTypes } from '../ListBox';
 import Checkbox from '../Checkbox';
 import Selection from '../../internal/Selection';
 import { sortingPropTypes } from './MultiSelectV2PropTypes';
@@ -58,7 +58,7 @@ export default class MultiSelectV2 extends React.Component {
     /**
      * Specify 'inline' to create an inline multi-select.
      */
-    type: PropTypes.oneOf(['default', 'inline']),
+    type: ListBoxPropTypes.ListBoxType,
 
     /**
      * Adds another option in the dropdown for toggling all values
@@ -181,6 +181,7 @@ export default class MultiSelectV2 extends React.Component {
                 toggleItemProps = getItemProps({
                   item: {
                     id: 'select-all',
+                    label: 'Select All',
                   },
                   onClick: () => {},
                 });

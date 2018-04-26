@@ -16,10 +16,22 @@ const childrenOfType = expectedChildType => {
   );
   const validate = (props, propName, componentName) => {
     Children.forEach(props[propName], child => {
-      const childDisplayName = getDisplayName(child.type);
+      let childType = child.type;
       if (
-        child.type !== expectedChildType.type &&
-        child.type !== expectedChildType
+        child.type.hasOwnProperty('name') &&
+        child.type.name !== getDisplayName(child.type) &&
+        /proxyfacade/i.test(child.type.name) &&
+        Object.prototype.hasOwnProperty.call(
+          child.type,
+          '__reactstandin__getCurrent'
+        )
+      ) {
+        childType = child.type.__reactstandin__getCurrent();
+      }
+      const childDisplayName = getDisplayName(childType);
+      if (
+        childType !== expectedChildType.type &&
+        childType !== expectedChildType
       ) {
         throw new Error(
           `Invalid prop \`children\` of type \`${childDisplayName}\` ` +

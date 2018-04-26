@@ -90,8 +90,8 @@ export default class DropdownV2 extends React.Component {
         onChange={this.handleOnChange}
         itemToString={itemToString}
         defaultSelectedItem={initialSelectedItem}
-        selectedItem={selectedItem}>
-        {({
+        selectedItem={selectedItem}
+        render={({
           isOpen,
           itemToString,
           selectedItem,
@@ -127,7 +127,7 @@ export default class DropdownV2 extends React.Component {
             )}
           </ListBox>
         )}
-      </Downshift>
+      />
     );
   }
 }
