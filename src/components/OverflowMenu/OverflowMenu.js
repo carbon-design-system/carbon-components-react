@@ -6,6 +6,22 @@ import FloatingMenu from '../../internal/FloatingMenu';
 import OptimizedResize from '../../internal/OptimizedResize';
 import Icon from '../Icon';
 
+const matchesFuncName =
+  typeof Element !== 'undefined' &&
+  ['matches', 'webkitMatchesSelector', 'msMatchesSelector'].filter(
+    name => typeof Element.prototype[name] === 'function'
+  )[0];
+
+/**
+ * @param {Node} elem A DOM node.
+ * @param {string} selector A CSS selector
+ * @returns {boolean} `true` if the given DOM element is a element node and matches the given selector.
+ * @private
+ */
+const matches = (elem, selector) =>
+  typeof elem[matchesFuncName] === 'function' &&
+  elem[matchesFuncName](selector);
+
 const on = (element, ...args) => {
   element.addEventListener(...args);
   return {
@@ -285,10 +301,7 @@ export default class OverflowMenu extends Component {
             this.closeMenu();
             if (
               this.menuEl &&
-              (typeof target.matches !== 'function' ||
-                !target.matches(
-                  '.bx--overflow-menu,.bx--overflow-menu-options'
-                ))
+              !matches(target, '.bx--overflow-menu,.bx--overflow-menu-options')
             ) {
               // Note:
               // The last focusable element in the page should NOT be the trigger button of overflow menu.
@@ -373,6 +386,7 @@ export default class OverflowMenu extends Component {
       onKeyDown: this.handleKeyDown,
       className: overflowMenuIconClasses,
       description: iconDescription,
+      focusable: 'false', // Prevent `<svg>` in trigger icon from getting focus for IE11
     };
 
     return (
