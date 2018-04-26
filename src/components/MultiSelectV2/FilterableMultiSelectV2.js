@@ -250,6 +250,7 @@ export default class FilterableMultiSelectV2 extends React.Component {
                 toggleItemProps = getItemProps({
                   item: {
                     id: 'select-all',
+                    label: 'Select All',
                   },
                 });
                 baseIndex += 1;
