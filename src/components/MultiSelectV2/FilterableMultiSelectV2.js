@@ -250,6 +250,7 @@ export default class FilterableMultiSelectV2 extends React.Component {
                 toggleItemProps = getItemProps({
                   item: {
                     id: 'select-all',
+                    label: 'Select All',
                   },
                 });
                 baseIndex += 1;
@@ -288,7 +289,7 @@ export default class FilterableMultiSelectV2 extends React.Component {
                       )}
                     {searchBoxType === 'inner' &&
                       (inlineSelectedItems ? (
-                        <div>
+                        <div className="bx--list-box__selected-items">
                           {!selectedItem.length ? (
                             <span className="bx--list-box__label">
                               {placeholder}
