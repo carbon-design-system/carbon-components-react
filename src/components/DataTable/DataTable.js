@@ -237,6 +237,17 @@ export default class DataTable extends React.Component {
     };
   };
 
+  getCellProps = ({ cell }) => {
+    return {
+      key: cell.id,
+      update: this.update,
+    };
+  }
+
+  update = updater => {
+    this.setState(updater);
+  }
+
   /**
    * Helper utility to get all the currently selected rows
    * @returns {Array<string>} the array of rowIds that are currently selected
@@ -403,6 +414,7 @@ export default class DataTable extends React.Component {
       getRowProps: this.getRowProps,
       getSelectionProps: this.getSelectionProps,
       getBatchActionProps: this.getBatchActionProps,
+      getCellProps: this.getCellProps,
 
       // Custom event handlers
       onInputChange: this.handleOnInputValueChange,

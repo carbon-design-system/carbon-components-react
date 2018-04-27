@@ -20,6 +20,7 @@ import DataTable, {
   TableToolbarAction,
   TableToolbarContent,
   TableToolbarSearch,
+  EditableTableCell,
 } from '../DataTable';
 import Button from '../Button';
 
@@ -641,4 +642,138 @@ storiesOf('DataTable', module)
 
       return <DynamicRows />;
     }
-  );
+  )
+  .addWithInfo(
+    'with inline edit',
+    `
+    TODO
+    `,
+    () => {
+      const delay = (amount = 2500) => new Promise(resolve => {
+        setTimeout(resolve, amount);
+      });
+      const mockStore = {
+        // Clone `initialRows` two levels deep so we don't mutate it
+        // accidentally in our mock Mutation API
+        rows: [
+          ...initialRows.map(row => ({ ...row })),
+        ],
+        async commit(cell, rowId, shouldFail) {
+          await validate(cell);
+          await delay();
+
+          if (shouldFail) {
+            return {
+              error: 'foo bar',
+            };
+          }
+
+          const [row] = this.rows.filter(row => row.id === rowId);
+          row[cell.info.header] = cell.value;
+        },
+      };
+
+      const validate = async cell => {
+        throw new Error('invalid');
+        return true;
+      };
+      const renderHeader = (header, getHeaderProps) => (
+        <TableHeader {...getHeaderProps({ header })}>
+          {header.header}
+        </TableHeader>
+      );
+      const renderCell = (cell, getCellProps) => {
+        const { id, info, value } = cell;
+
+        // Non-editable fields
+        if (info.header !== 'name') {
+          return (
+            <TableCell {...getCellProps({ cell })}>
+              {cell.value}
+            </TableCell>
+          );
+        }
+
+        // Editable field
+        return (
+          <TableCell
+            {...getCellProps({ cell })}
+            initialValue={value}
+            onSave={({ value }) => {
+              console.log('#onSave', value);
+            }}
+            onCancel={({ value }) => {
+              console.log('#onCancel', value);
+            }}
+            validate={validate}
+            render={({
+              className,
+              errors,
+              isEditing,
+              isValid,
+              onChange,
+              onEdit,
+              initialValue,
+              value,
+            }) => {
+              if (isEditing) {
+                return (
+                  <td className={className}>
+                    <div className="bx--data-table__edit-field">
+                      <label htmlFor="text-input-1" className="bx--label">
+                        Edit {info.header}: {initialValue}
+                      </label>
+                      <input
+                        id="text-input-1"
+                        type="text"
+                        className="bx--text-input"
+                        value={value}
+                        onChange={onChange}
+                      />
+                    </div>
+                  </td>
+                );
+              }
+
+              if (errors) {
+                return <td className={className}>Errors</td>;
+              }
+
+              return (
+                <EditableTableCell
+                  className={className}
+                  value={cell.value}
+                  header={cell.info.header}
+                  onEdit={onEdit}
+                />
+              );
+            }}
+          />
+        );
+      };
+
+      return (
+        <DataTable
+          rows={mockStore.rows}
+          headers={headers}
+          render={({ rows, headers, getCellProps, getHeaderProps }) => (
+            <TableContainer title="DataTable">
+              <Table>
+                <TableHead>
+                  <TableRow>
+                    {headers.map(header => renderHeader(header, getHeaderProps))}
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {rows.map(row => (
+                    <TableRow key={row.id}>
+                      {row.cells.map(cell => renderCell(cell, getCellProps))}
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </TableContainer>
+          )}
+        />
+      );
+    });

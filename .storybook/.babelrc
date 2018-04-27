@@ -9,7 +9,8 @@
             "last 1 version",
             "ie >= 11"
           ]
-        }
+        },
+        "useBuiltIns": "entry"
       }
     ],
     "@babel/preset-react",

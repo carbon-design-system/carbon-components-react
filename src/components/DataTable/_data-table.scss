@@ -1,0 +1,162 @@
+@import 'carbon-components/scss/globals/scss/helper-mixins';
+@import 'carbon-components/scss/globals/scss/import-once';
+@import 'carbon-components/scss/globals/scss/layer';
+@import 'carbon-components/scss/globals/scss/layout';
+
+@mixin truncate {
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@mixin assistive-text {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+  visibility: visible;
+  white-space: nowrap;
+}
+
+@include exports('data-table-v2-inline-edit-cell') {
+  // Edit triggers
+  .#{$prefix}--data-table-cell--editable {
+    position: relative;
+  }
+
+  .#{$prefix}--data-table-cell__align {
+    display: flex;
+    align-items: center;
+  }
+
+  .#{$prefix}--data-table-cell__content {
+    @include truncate;
+  }
+
+  .#{$prefix}--data-table-cell__edit {
+    @include button-reset(false);
+    margin-left: 1rem;
+    opacity: 0;
+    width: 1rem;
+    height: 1rem;
+  }
+
+  .#{$prefix}--data-table-cell__edit:focus,
+  .#{$prefix}--data-table-cell--editable:hover
+    .#{$prefix}--data-table-cell__edit {
+    opacity: 1;
+  }
+
+  .#{$prefix}--data-table-cell__edit:focus {
+    outline: 1px solid $brand-01;
+    outline-offset: 2px;
+  }
+
+  .#{$prefix}--data-table-cell__icon--edit {
+    fill: $ui-05;
+  }
+
+  // Form controls
+  .#{$prefix}--data-table-cell--editing {
+    padding-right: 6rem;
+  }
+
+  .#{$prefix}--data-table-cell--editing .#{$prefix}--label {
+    @include assistive-text;
+  }
+
+  .#{$prefix}--data-table-cell--editing .#{$prefix}--data-table__edit-field {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    max-width: 100%;
+    overflow: hidden;
+    // Set min-height so height does not collapse in IE11
+    min-height: 3rem;
+  }
+
+  .#{$prefix}--data-table-cell--editing:first-child input[type='text'],
+  .#{$prefix}--data-table-cell--editing:first-child input[type='number'],
+  .#{$prefix}--data-table-cell--editing:first-child .#{$prefix}--select-input {
+    padding-left: 1.5rem;
+  }
+
+  .#{$prefix}--data-table-cell--editing input[type='text'],
+  .#{$prefix}--data-table-cell--editing input[type='number'],
+  .#{$prefix}--data-table-cell--editing .#{$prefix}--select-input {
+    padding-left: rem(11px);
+  }
+
+  // Reset form-specific styles
+  .#{$prefix}--data-table-cell--editing .#{$prefix}--text-input,
+  .#{$prefix}--data-table-cell--editing .#{$prefix}--number,
+  .#{$prefix}--data-table-cell--editing
+    .#{$prefix}--number
+    input[type='number'],
+  .#{$prefix}--data-table-cell--editing .#{$prefix}--select,
+  .#{$prefix}--data-table-cell--editing .#{$prefix}--select-input {
+    height: 100%;
+    min-width: 100%;
+  }
+
+  .#{$prefix}--data-table-cell--editing .#{$prefix}--select__arrow {
+    top: 1.3rem;
+  }
+
+  // Controls
+  .#{$prefix}--data-table__edit-actions {
+    @include layer('overlay');
+
+    position: absolute;
+    top: #{3rem + rem(1px)};
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 3rem;
+    background-color: $inverse-01;
+    padding: 0.5rem;
+    z-index: z('overlay');
+  }
+
+  .#{$prefix}--data-table__edit-actions
+    .#{$prefix}--btn--secondary
+    + .#{$prefix}--btn--primary {
+    margin-left: 0.5rem;
+  }
+
+  // Pad the bottom of the container with the height of each row plus the height
+  // of the edit actions menu. This help prevents a scrollbar from appearing in
+  // the overflow-y direction when a cell on the final row is being edited.
+  .#{$prefix}--data-table-v2--editing::after {
+    content: '';
+    display: block;
+    height: #{3rem + rem(8px)};
+  }
+
+  // Sibling selector that will undo the ::after block that we set above to
+  // restore the expected layout when placing an element after a data table
+  // container.
+  .#{$prefix}--data-table-v2--editing ~ * {
+    margin-top: -#{3rem + rem(8px)};
+  }
+
+  // Invalid states
+  .#{$prefix}--data-table-cell--invalid > .#{$prefix}--data-table__edit-field::after {
+    content: '';
+    display: block;
+    height: 2px;
+    position: absolute;
+    bottom: 0;
+    left: 1px;
+    right: 1px;
+    background-color: $support-01;
+  }
+}
