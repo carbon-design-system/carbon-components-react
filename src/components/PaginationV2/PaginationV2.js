@@ -16,6 +16,7 @@ export default class PaginationV2 extends Component {
     forwardText: PropTypes.string,
     id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     itemsPerPageText: PropTypes.string,
+    itemsPerPageFollowsText: PropTypes.string,
     itemText: PropTypes.func,
     onChange: PropTypes.func,
     pageNumberText: PropTypes.string,
@@ -125,6 +126,7 @@ export default class PaginationV2 extends Component {
       forwardText,
       id,
       itemsPerPageText,
+      itemsPerPageFollowsText,
       itemRangeText,
       pageRangeText,
       pageSize, // eslint-disable-line no-unused-vars
@@ -159,7 +161,7 @@ export default class PaginationV2 extends Component {
       <div className={classNames} {...other}>
         <div className="bx--pagination__left">
           <span className="bx--pagination__text">
-            {itemsPerPageText}:&nbsp;&nbsp;
+            {itemsPerPageFollowsText || `${itemsPerPageText}:`}&nbsp;&nbsp;
           </span>
           <Select
             id={`bx-pagination-select-${inputId}`}
