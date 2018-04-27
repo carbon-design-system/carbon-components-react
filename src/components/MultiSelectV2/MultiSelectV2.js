@@ -201,7 +201,7 @@ export default class MultiSelectV2 extends React.Component {
                       />
                     )}
                     {inlineSelectedItems ? (
-                      <div>
+                      <div className="bx--list-box__selected-items">
                         {!selectedItem.length ? (
                           <span className="bx--list-box__label">{label}</span>
                         ) : (

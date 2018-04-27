@@ -289,7 +289,7 @@ export default class FilterableMultiSelectV2 extends React.Component {
                       )}
                     {searchBoxType === 'inner' &&
                       (inlineSelectedItems ? (
-                        <div>
+                        <div className="bx--list-box__selected-items">
                           {!selectedItem.length ? (
                             <span className="bx--list-box__label">
                               {placeholder}
