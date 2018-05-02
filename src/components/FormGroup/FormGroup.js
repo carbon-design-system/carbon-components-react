@@ -11,7 +11,7 @@ const FormGroup = ({
   messageText,
   ...other
 }) => {
-  const classNamesLegend = classnames('bx--label', className);
+  const classNamesLegend = classnames('bx--label');
   const classNamesFieldset = classnames('bx--fieldset', className);
 
   return (

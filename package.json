@@ -3,7 +3,7 @@
   "version": "5.5.1",
   "description": "A React wrapper for carbon-components",
   "license": "Apache-2",
-  "main": "src/index.js",
+  "main": "lib/index.js",
   "module": "es/index.js",
   "sideEffects": false,
   "scripts": {
