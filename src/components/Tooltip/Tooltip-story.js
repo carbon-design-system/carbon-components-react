@@ -180,14 +180,41 @@ storiesOf('Tooltip', module)
       below shows the option to open on click instead of hover, which is useful when including interactive
       elements such as links inside the tooltip.
     `,
-    () => (
-      <div style={{ marginTop: '2rem' }}>
-        <Tooltip clickToOpen triggerText="Tooltip label">
-          <p className="bx--tooltip__label">Tooltip with link</p>
-          <a href="http://react.carbondesignsystem.com/" target="_blank">
-            Visit Carbon React
-          </a>
-        </Tooltip>
-      </div>
-    )
+    () =>
+      (
+        <div style={{ marginTop: '2rem' }}>
+          <Tooltip clickToOpen triggerText="Tooltip label">
+            <p className="bx--tooltip__label">Tooltip with link</p>
+            <a href="http://react.carbondesignsystem.com/" target="_blank">
+              Visit Carbon React
+            </a>
+          </Tooltip>
+        </div>
+      ).addWithInfo(
+        'invert direction when tooltip is out of viewport',
+        `
+        Tooltips are used to supply additional information to an element when hovering over it. By default,
+        the tooltip will render above the element. The example below shows the default scenario.
+      `,
+        () => (
+          <div style={{ marginTop: '2rem' }}>
+            <Tooltip triggerText="Tooltip label" direction="top">
+              <p className="bx--tooltip__label">Tooltip direction is top</p>
+              <p>
+                But you will see the tooltip appear to the bottom of the trigger
+                element
+              </p>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
+                in reprehenderit in voluptate velit esse cillum dolore eu fugiat
+                nulla pariatur. Excepteur sint occaeca cupidatat non proident,
+                sunt in culpa qui officia deserunt mollit anim id est laborum.
+              </p>
+            </Tooltip>
+          </div>
+        )
+      )
   );

@@ -335,7 +335,14 @@ export default class Tooltip extends Component {
           <FloatingMenu
             menuPosition={this.state.triggerPosition}
             menuDirection={direction}
-            menuOffset={menuOffset}>
+            menuOffset={menuOffset}
+            updateDirection={updatedDirection => {
+              // update the value to display the arror at correct place
+              this._tooltipEl.setAttribute(
+                'data-floating-menu-direction',
+                updatedDirection
+              );
+            }}>
             <div
               id={tooltipId}
               className={tooltipClasses}

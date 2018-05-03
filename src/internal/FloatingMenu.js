@@ -84,7 +84,7 @@ const getFloatingPosition = ({
   const refCenterHorizontal = (refLeft + refRight) / 2;
   const refCenterVertical = (refTop + refBottom) / 2;
 
-  return {
+  const proposedPositions = {
     [DIRECTION_LEFT]: () => ({
       left: refLeft - width - left,
       top: refCenterVertical - height / 2 + scrollY + top,
@@ -101,8 +101,47 @@ const getFloatingPosition = ({
       left: refCenterHorizontal - width / 2 + left,
       top: refBottom + scrollY + top,
     }),
-  }[direction]();
+  };
+  // check if inverting the direction is needed
+  const inversion = _shouldInvertDirection({
+    left: proposedPositions[direction]().left,
+    top: proposedPositions[direction]().top,
+    menuSize,
+  });
+  // get the inverted direction
+  const invertedDirection = _getInversions(inversion)[direction];
+  return {
+    ...proposedPositions[invertedDirection](),
+    invertedDirection,
+  };
 };
+
+const _shouldInvertDirection = ({
+  left: proposedLeft,
+  top: proposedTop,
+  menuSize,
+}) => {
+  const viewportWidth = Math.max(
+    document.documentElement.clientWidth,
+    window.innerWidth || 0
+  );
+  const viewportHeight = Math.max(
+    document.documentElement.clientHeight,
+    window.innerHeight || 0
+  );
+  return {
+    vertical: proposedTop + menuSize.height > viewportHeight || proposedTop < 0,
+    horizontal:
+      proposedLeft + menuSize.width > viewportWidth || proposedLeft < 0,
+  };
+};
+
+const _getInversions = ({ vertical, horizontal }) => ({
+  [DIRECTION_LEFT]: horizontal ? DIRECTION_RIGHT : DIRECTION_LEFT,
+  [DIRECTION_RIGHT]: horizontal ? DIRECTION_RIGHT : DIRECTION_LEFT,
+  [DIRECTION_TOP]: vertical ? DIRECTION_BOTTOM : DIRECTION_TOP,
+  [DIRECTION_BOTTOM]: vertical ? DIRECTION_TOP : DIRECTION_BOTTOM,
+});
 
 /**
  * A menu that is detached from the triggering element.
@@ -155,6 +194,7 @@ class FloatingMenu extends React.Component {
      * The callback called when the menu body has been mounted to/will be unmounted from the DOM.
      */
     menuRef: PropTypes.func,
+    updateDirection: PropTypes.func,
   };
 
   static defaultProps = {
@@ -241,15 +281,19 @@ class FloatingMenu extends React.Component {
       // a) Menu body has `display:none`
       // b) `menuOffset` as a callback returns `undefined` (The callback saw that it couldn't calculate the value)
       if ((menuSize.width > 0 && menuSize.height > 0) || !offset) {
-        this.setState({
-          floatingPosition: getFloatingPosition({
-            menuSize,
-            refPosition,
-            direction: menuDirection,
-            offset,
-            scrollY: window.scrollY,
-          }),
+        const floatingPosition = getFloatingPosition({
+          menuSize,
+          refPosition,
+          direction: menuDirection,
+          offset,
+          scrollY: window.scrollY,
         });
+        this.setState({
+          floatingPosition,
+        });
+        if (this.props.updateDirection) {
+          this.props.updateDirection(floatingPosition.visibleDirection);
+        }
       }
     }
   };
