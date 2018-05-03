@@ -1,101 +1,55 @@
-import debounce from 'lodash.debounce';
+import cx from 'classnames';
 import React from 'react';
 import PropTypes from 'prop-types';
-import cx from 'classnames';
 
 export default class TableCell extends React.Component {
-  state = {
-    value: this.props.initialValue,
-    isEditing: false,
-    isSaving: false,
-    isValid: false,
-    isValidating: false,
-    errors: null,
-  }
+  static propTypes = {
+    /**
+     * Supply a custom class for the containing `<td>` cell
+     */
+    className: PropTypes.string,
 
-  componentWillReceiveProps(nextProps) {
-    // TODO
-  }
+    /**
+     * Children rendered inside of the `<td>` cell
+     */
+    children: PropTypes.node,
 
-  handleOnChange = event => {
-    const { value } = event.target;
-    const nextState = { value };
+    /**
+     * Specify whether the cell is editable
+     */
+    isEditable: PropTypes.bool,
 
-    if (this.props.validate) {
-      nextState.isValidating = true;
-    }
+    /**
+     * Specify whether the cell is currently being edited
+     */
+    isEditing: PropTypes.bool,
 
-    this.setState(nextState, () => {
-      this.handleOnValidate(value);
-    });
-  }
-
-  handleOnValidate = debounce(value => {
-    if (!this.props.validate) {
-      return;
-    }
-
-    const handleSuccess = () => {
-      console.log('is valid')
-      this.setState({ isValidating: false, isValid: true });
-    };
-    const handleError = error => {
-      console.log('is not valid')
-      this.setState({
-        isValidating: false,
-        isValid: false,
-        errors: ['no bueno'],
-      });
-    };
-
-    console.log('validating')
-    this.props.validate(value)
-      .then(handleSuccess, handleError);
-  }, 250)
-
-  handleOnEdit = () => {
-    this.setState({ isEditing: true });
-  }
+    /**
+     * Specify whether the cell is currently being saved
+     */
+    isSaving: PropTypes.bool,
+  };
 
   render() {
     const {
       children,
-      className,
+      className: cellClassName,
       isEditable,
       isEditing,
-      isValid,
-      errors,
-      update,
-      validate,
-      render,
+      isSaving,
       ...rest
     } = this.props;
 
-    if (!render) {
-      return (
-        <td className={className} {...rest}>{children}</td>
-      );
-    }
-
-    const classNames = cx(className, 'bx--data-table-cell--editable', {
-      'bx--data-table-cell--editing': this.state.isEditing,
-      'bx--data-table-cell--invalid': !this.state.isValid,
+    const className = cx(cellClassName, {
+      'bx--data-table-cell--editable': isEditable,
+      'bx--data-table-cell--editing': isEditing,
+      'bx--data-table-cell--saving': isSaving,
     });
 
-    return render({
-      // Static values
-      className: classNames,
-      initialValue: this.props.initialValue,
-
-      // Stateful values
-      errors: this.state.errors,
-      isEditing: this.state.isEditing,
-      isValid: this.state.isValid,
-      value: this.state.value,
-
-      // Handlers
-      onChange: this.handleOnChange,
-      onEdit: this.handleOnEdit,
-    });
+    return (
+      <td {...rest} className={className}>
+        {children}
+      </td>
+    );
   }
 }

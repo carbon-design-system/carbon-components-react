@@ -49,19 +49,11 @@ const normalize = (rows, headers, prevState = {}) => {
 
         // TODO remove these and place in state. Write codemod to help with
         // transition.
-        isEditable: false,
+        // isEditable: false,
         isEditing: false,
         isValid: true,
         errors: null,
 
-        props: {
-          isEditable: false,
-        },
-        state: {
-          isEditing: false,
-          isValid: true,
-          errors: null,
-        },
         info: {
           header: key,
           row: row.id,

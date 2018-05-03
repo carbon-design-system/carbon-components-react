@@ -240,13 +240,30 @@ export default class DataTable extends React.Component {
   getCellProps = ({ cell }) => {
     return {
       key: cell.id,
-      update: this.update,
+      id: cell.id,
+      onToggleEditCell: this.handleOnToggleEditCell,
+      // If we're already editing, don't allow editing on other cells
+      isEditable: !this.state.isEditing,
     };
-  }
+  };
 
-  update = updater => {
-    this.setState(updater);
-  }
+  handleOnToggleEditCell = id => {
+    this.setState(state => {
+      const { cellsById } = state;
+      const cell = cellsById[id];
+      const nextEditValue = !cell.isEditing;
+      return {
+        isEditing: nextEditValue,
+        cellsById: {
+          ...cellsById,
+          [id]: {
+            ...cell,
+            isEditing: nextEditValue,
+          },
+        },
+      };
+    });
+  };
 
   /**
    * Helper utility to get all the currently selected rows

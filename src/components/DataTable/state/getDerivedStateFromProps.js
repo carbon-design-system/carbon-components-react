@@ -28,6 +28,9 @@ const getDerivedStateFromProps = (props, prevState) => {
     // Optional state field to indicate whether a consumer should show a
     // batch actions menu
     shouldShowBatchActions: prevState.shouldShowBatchActions || false,
+
+    // Editing
+    isEditing: prevState.isEditing || false,
   };
 
   if (prevState.sortDirection && prevState.sortHeaderKey) {

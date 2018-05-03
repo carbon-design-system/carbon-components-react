@@ -27,6 +27,7 @@
   // Edit triggers
   .#{$prefix}--data-table-cell--editable {
     position: relative;
+    padding-right: 2rem;
   }
 
   .#{$prefix}--data-table-cell__align {
@@ -35,24 +36,29 @@
   }
 
   .#{$prefix}--data-table-cell__content {
-    @include truncate;
+    // If we get rid of this, line height works in IE11
+    // @include truncate;
   }
 
-  .#{$prefix}--data-table-cell__edit {
+  .#{$prefix}--data-table-cell__edit-trigger {
     @include button-reset(false);
-    margin-left: 1rem;
+    // margin-left: 1rem;
     opacity: 0;
     width: 1rem;
     height: 1rem;
   }
 
-  .#{$prefix}--data-table-cell__edit:focus,
+  .#{$prefix}--data-table-cell__edit-trigger:focus,
   .#{$prefix}--data-table-cell--editable:hover
-    .#{$prefix}--data-table-cell__edit {
+    .#{$prefix}--data-table-cell__edit-trigger {
     opacity: 1;
   }
 
-  .#{$prefix}--data-table-cell__edit:focus {
+  .#{$prefix}--data-table-cell__edit-trigger:active > svg {
+    fill: $brand-01;
+  }
+
+  .#{$prefix}--data-table-cell__edit-trigger:focus {
     outline: 1px solid $brand-01;
     outline-offset: 2px;
   }
@@ -88,6 +94,10 @@
     padding-left: 1.5rem;
   }
 
+  // TODO: last-child padding
+  // TODO: how to keep in sync with form elements?
+  // TODO: padding-left: inherit; ???
+
   .#{$prefix}--data-table-cell--editing input[type='text'],
   .#{$prefix}--data-table-cell--editing input[type='number'],
   .#{$prefix}--data-table-cell--editing .#{$prefix}--select-input {
@@ -95,11 +105,10 @@
   }
 
   // Reset form-specific styles
+  // prettier-ignore
   .#{$prefix}--data-table-cell--editing .#{$prefix}--text-input,
   .#{$prefix}--data-table-cell--editing .#{$prefix}--number,
-  .#{$prefix}--data-table-cell--editing
-    .#{$prefix}--number
-    input[type='number'],
+  .#{$prefix}--data-table-cell--editing .#{$prefix}--number input[type='number'],
   .#{$prefix}--data-table-cell--editing .#{$prefix}--select,
   .#{$prefix}--data-table-cell--editing .#{$prefix}--select-input {
     height: 100%;
@@ -114,9 +123,9 @@
   .#{$prefix}--data-table__edit-actions {
     @include layer('overlay');
 
-    position: absolute;
-    top: #{3rem + rem(1px)};
-    right: 0;
+    // position: absolute;
+    // top: #{3rem + rem(1px)};
+    // right: 0;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -149,7 +158,8 @@
   }
 
   // Invalid states
-  .#{$prefix}--data-table-cell--invalid > .#{$prefix}--data-table__edit-field::after {
+  .#{$prefix}--data-table-cell--invalid
+    > .#{$prefix}--data-table__edit-field::after {
     content: '';
     display: block;
     height: 2px;
@@ -158,5 +168,71 @@
     left: 1px;
     right: 1px;
     background-color: $support-01;
+  }
+
+  // Saving
+  .#{$prefix}--data-table-cell--saving {
+    cursor: not-allowed;
+  }
+
+  .#{$prefix}--data-table-cell--saving > .#{$prefix}--data-table__edit-field {
+    opacity: 0.25;
+  }
+
+  // Offset bounding box of loading to align on right-hand side of cell
+  .#{$prefix}--data-table-cell--saving .#{$prefix}--loading {
+    margin-right: -0.4rem;
+  }
+
+  .#{$prefix}--data-table-cell--saving .#{$prefix}--text-input {
+    background-color: inherit;
+  }
+
+  .#{$prefix}--data-table__edit-status,
+  .#{$prefix}--data-table__edit {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    min-height: 3rem;
+  }
+
+  // Stretch to full-width
+  .#{$prefix}--data-table__edit {
+    left: 0;
+  }
+
+  .#{$prefix}--data-table-cell__icon--success {
+    fill: $support-02;
+  }
+
+  // Padding fix for last cell in row
+  .#{$prefix}--data-table-v2
+    td.#{$prefix}--data-table-cell--editable:last-of-type {
+    // Width of icon offset plus default offset in table
+    padding-right: #{1.5rem + 2rem};
+  }
+
+  .#{$prefix}--data-table-v2
+    td.#{$prefix}--data-table-cell--editable:last-of-type
+    .#{$prefix}--data-table__edit {
+    padding-right: 1.5rem;
+  }
+
+  // Errors
+  .#{$prefix}--data-table__edit-field--invalid {
+    border-bottom: 2px solid $support-01;
+  }
+
+  .#{$prefix}--data-table__edit-field--invalid
+    ~ .#{$prefix}--data-table__edit-status {
+    padding-right: 0.5rem;
+  }
+
+  .#{$prefix}--data-table__icon--error {
+    fill: $support-01;
   }
 }
