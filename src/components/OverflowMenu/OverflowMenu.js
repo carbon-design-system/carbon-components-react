@@ -66,7 +66,7 @@ export default class OverflowMenu extends Component {
     flipped: PropTypes.bool,
 
     /**
-     * `true` if the menu should be floated.
+     * `true` if the menu should be floated, making the DOM of the menu body orphaned from the trigger button.
      * Useful when the container of the triggering element cannot have `overflow:visible` style, etc.
      */
     floatingMenu: PropTypes.bool,
@@ -231,10 +231,13 @@ export default class OverflowMenu extends Component {
   };
 
   handleKeyPress = evt => {
-    const key = evt.key || evt.which;
+    // only respond to key events when the menu is closed, so that menu items still respond to key events
+    if (!this.state.open) {
+      const key = evt.key || evt.which;
 
-    if (key === 'Enter' || key === 13 || key === ' ' || key === 32) {
-      this.setState({ open: !this.state.open });
+      if (key === 'Enter' || key === 13 || key === ' ' || key === 32) {
+        this.setState({ open: true });
+      }
     }
   };
 
