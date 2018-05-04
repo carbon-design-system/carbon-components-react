@@ -190,4 +190,31 @@ storiesOf('Tooltip', module)
         </Tooltip>
       </div>
     )
+  )
+  .addWithInfo(
+    'invert direction when tooltip is out of viewport',
+    `
+    Tooltips are used to supply additional information to an element when hovering over it. By default,
+    the tooltip will render above the element. The example below shows the default scenario.
+  `,
+    () => (
+      <div>
+        Tooltip direction: top
+        {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(num => (
+          <div style={{ marginTop: '2rem' }}>
+            <Tooltip
+              triggerText={`isDynamicDirection: ${num % 2 === 1}`}
+              direction="top"
+              isDynamicDirection={num % 2 === 1}>
+              <p className="bx--tooltip__label">Tooltip direction is top</p>
+              <p>
+                Component will calculate whether the defined direction will
+                cause the tooltip to go beyond the viewport. If so, it will use
+                the opposite direction.
+              </p>
+            </Tooltip>
+          </div>
+        ))}
+      </div>
+    )
   );
