@@ -71,6 +71,7 @@ const getFloatingPosition = ({
   offset = {},
   direction = DIRECTION_BOTTOM,
   scrollY = 0,
+  isDynamicDirection = false,
 }) => {
   const {
     left: refLeft = 0,
@@ -109,7 +110,9 @@ const getFloatingPosition = ({
     menuSize,
   });
   // get the inverted direction
-  const invertedDirection = _getInversions(inversion)[direction];
+  const invertedDirection = isDynamicDirection
+    ? _getInversions(inversion)[direction]
+    : direction;
   return {
     ...proposedPositions[invertedDirection](),
     invertedDirection,
@@ -130,7 +133,9 @@ const _shouldInvertDirection = ({
     window.innerHeight || 0
   );
   return {
-    vertical: proposedTop + menuSize.height > viewportHeight || proposedTop < 0,
+    vertical:
+      proposedTop + menuSize.height > viewportHeight + scrollY ||
+      proposedTop < 0,
     horizontal:
       proposedLeft + menuSize.width > viewportWidth || proposedLeft < 0,
   };
@@ -194,6 +199,15 @@ class FloatingMenu extends React.Component {
      * The callback called when the menu body has been mounted to/will be unmounted from the DOM.
      */
     menuRef: PropTypes.func,
+
+    /**
+     * `true` if menu direction should be calcuated base on it's visiblity on viewport
+     */
+    isMenuDynamicDirection: PropTypes.bool,
+
+    /**
+     * the callback called when the menu direction/position is calculated. currently used to update the arrow on the tooltip
+     */
     updateDirection: PropTypes.func,
   };
 
@@ -201,6 +215,7 @@ class FloatingMenu extends React.Component {
     menuPosition: {},
     menuOffset: {},
     menuDirection: DIRECTION_BOTTOM,
+    isMenuDynamicDirection: false,
   };
 
   state = {
@@ -262,6 +277,7 @@ class FloatingMenu extends React.Component {
       menuPosition: refPosition = {},
       menuOffset = {},
       menuDirection,
+      isMenuDynamicDirection,
     } = this.props;
 
     if (
@@ -287,12 +303,13 @@ class FloatingMenu extends React.Component {
           direction: menuDirection,
           offset,
           scrollY: window.scrollY,
+          isDynamicDirection: isMenuDynamicDirection,
         });
         this.setState({
           floatingPosition,
         });
         if (this.props.updateDirection) {
-          this.props.updateDirection(floatingPosition.visibleDirection);
+          this.props.updateDirection(floatingPosition.invertedDirection);
         }
       }
     }

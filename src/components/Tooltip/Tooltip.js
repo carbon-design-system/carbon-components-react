@@ -130,6 +130,11 @@ export default class Tooltip extends Component {
      * `true` if opening tooltip should be triggered by clicking the trigger button.
      */
     clickToOpen: PropTypes.bool,
+
+    /**
+     * `true` if tooltip direction should be calcuated base on it's visiblity on viewport
+     */
+    isDynamicDirection: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -140,6 +145,7 @@ export default class Tooltip extends Component {
     iconDescription: 'tooltip',
     triggerText: 'Provide triggerText',
     menuOffset: getMenuOffset,
+    isDynamicDirection: false,
   };
 
   /**
@@ -272,6 +278,7 @@ export default class Tooltip extends Component {
       // Exclude `clickToOpen` from `other` to avoid passing it along to `<div>`
       // eslint-disable-next-line no-unused-vars
       clickToOpen,
+      isDynamicDirection,
       ...other
     } = this.props;
 
@@ -336,6 +343,7 @@ export default class Tooltip extends Component {
             menuPosition={this.state.triggerPosition}
             menuDirection={direction}
             menuOffset={menuOffset}
+            isMenuDynamicDirection={isDynamicDirection}
             updateDirection={updatedDirection => {
               // update the value to display the arror at correct place
               this._tooltipEl.setAttribute(
