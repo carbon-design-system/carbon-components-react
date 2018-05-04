@@ -128,6 +128,7 @@
     "lodash.debounce": "^4.0.8",
     "lodash.isequal": "^4.5.0",
     "lodash.omit": "^4.5.0",
+    "react-hot-loader": "^4.1.2",
     "warning": "3.0.0",
     "window-or-global": "^1.0.1"
   },

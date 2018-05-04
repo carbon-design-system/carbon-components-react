@@ -1,4 +1,5 @@
 import { Children } from 'react';
+import { areComponentsEqual } from 'react-hot-loader/patch';
 import createChainableTypeChecker from './tools/createChainableTypeChecker';
 import getDisplayName from './tools/getDisplayName';
 
@@ -21,7 +22,13 @@ const childrenOf = expectedChildTypes => {
         return;
       }
       const childDisplayName = getDisplayName(child.type || child);
-      if (!expectedChildTypes.includes(child.type)) {
+      const expectedChildType = expectedChildTypes.find(
+        c =>
+          typeof c === 'string'
+            ? c === childDisplayName
+            : c.name === childDisplayName
+      );
+      if (!areComponentsEqual(child.type, expectedChildType)) {
         throw new Error(
           `Invalid prop \`children\` of type \`${childDisplayName}\` ` +
             `supplied to \`${componentName}\`, expected each child to be one ` +
