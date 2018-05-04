@@ -20,6 +20,7 @@ const datePickerProps = {
 const datePickerInputProps = {
   className: 'some-class',
   labelText: 'Date Picker label',
+  locale: 'en',
   onClick: action('onClick'),
   onChange: action('onInputChange'),
   placeholder: 'mm/dd/yyyy',
