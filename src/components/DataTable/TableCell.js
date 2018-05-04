@@ -1,6 +1,6 @@
 import cx from 'classnames';
-import React from 'react';
 import PropTypes from 'prop-types';
+import React from 'react';
 
 export default class TableCell extends React.Component {
   static propTypes = {
@@ -39,7 +39,6 @@ export default class TableCell extends React.Component {
       isSaving,
       ...rest
     } = this.props;
-
     const className = cx(cellClassName, {
       'bx--data-table-cell--editable': isEditable,
       'bx--data-table-cell--editing': isEditing,

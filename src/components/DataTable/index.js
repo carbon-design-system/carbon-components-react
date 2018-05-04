@@ -1,5 +1,4 @@
 import DataTable from './DataTable';
-import EditableTableCell from './EditableTableCell';
 import EditableTextCell from './EditableTextCell';
 import Table from './Table';
 import TableActionList from './TableActionList';
@@ -21,7 +20,6 @@ import TableToolbarAction from './TableToolbarAction';
 import TableToolbarContent from './TableToolbarContent';
 import TableToolbarSearch from './TableToolbarSearch';
 
-DataTable.EditableTableCell = EditableTableCell;
 DataTable.EditableTextCell = EditableTextCell;
 DataTable.Table = Table;
 DataTable.TableActionList = TableActionList;
@@ -44,7 +42,6 @@ DataTable.TableToolbarContent = TableToolbarContent;
 DataTable.TableToolbarSearch = TableToolbarSearch;
 
 export {
-  EditableTableCell,
   EditableTextCell,
   Table,
   TableActionList,

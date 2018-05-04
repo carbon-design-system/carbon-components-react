@@ -3,19 +3,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Icon from '../Icon';
 import Loading from '../Loading';
-import EditCellActions from './EditCellActions';
 import FloatingMenu from '../../internal/FloatingMenu';
+import EditCellActions from './EditCellActions';
+import EditCellField from './EditCellField';
+import EditCellStatus from './EditCellStatus';
 import TableCell from './TableCell';
 
 const getInputId = cellId => `edit-cell:${cellId}`;
-
-const EditableCellContent = ({ value }) => (
-  <span className="bx--data-table-cell__content">{value}</span>
-);
-
-EditableCellContent.propTypes = {
-  value: PropTypes.node,
-};
 
 export default class EditableTextCell extends React.Component {
   static propTypes = {
@@ -46,7 +40,7 @@ export default class EditableTextCell extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      errors: null,
+      error: null,
       isEditing: false,
       isSaving: false,
       shouldDisplaySuccess: false,
@@ -59,8 +53,6 @@ export default class EditableTextCell extends React.Component {
 
   handleOnEdit = () => {
     this.setState({ isEditing: true }, () => {
-      // TODO: is this the proper way to add focus here?
-      this.fieldNode.querySelector('input').focus();
       this.props.onToggleEditCell(this.props.id);
     });
   };
@@ -69,7 +61,7 @@ export default class EditableTextCell extends React.Component {
     const { value } = event.target;
     this.setState({ value }, () => {
       if (this.props.validate) {
-        this.props.validate({ value });
+        this.performAsyncWork(this.props.validate({ value }));
       }
     });
   };
@@ -79,30 +71,20 @@ export default class EditableTextCell extends React.Component {
     const { value } = this.state;
 
     this.setState({ isEditing: false, isSaving: true });
-
-    Promise.resolve(onSave({ value }))
-      .then(() => {
-        this.setState(
-          {
-            isEditing: false,
-            isSaving: false,
-            shouldDisplaySuccess: true,
-            errors: null,
-          },
-          () => {
-            this.props.onToggleEditCell(this.props.id);
-          }
-        );
-
-        this.timeoutId = window.setTimeout(this.handleSaveTimeout, 3000);
-      })
-      .catch(error => {
-        this.setState({
+    this.performAsyncWork(onSave({ value }), () => {
+      this.setState(
+        {
           isEditing: false,
           isSaving: false,
-          errors: [error],
-        });
-      });
+          shouldDisplaySuccess: true,
+          error: null,
+        },
+        () => {
+          this.props.onToggleEditCell(this.props.id);
+          this.timeoutId = window.setTimeout(this.handleSaveTimeout, 3000);
+        }
+      );
+    });
   };
 
   handleOnCancel = () => {
@@ -112,7 +94,7 @@ export default class EditableTextCell extends React.Component {
       {
         value: initialValue,
         isEditing: false,
-        errors: null,
+        error: null,
         isSaving: false,
       },
       () => {
@@ -125,41 +107,24 @@ export default class EditableTextCell extends React.Component {
   };
 
   handleSaveTimeout = () => {
-    this.setState({ shouldDisplaySuccess: false });
     this.timeoutId = null;
+    this.setState({ shouldDisplaySuccess: false });
   };
 
-  handleToggleError = () => {};
-
-  handleErrorRef = el => {
-    this.errorIconNode = el;
-    if (this.errorIconNode) {
-      const rect = this.errorIconNode.getBoundingClientRect();
-      this.setState({
-        errorPosition: {
-          top: rect.top + window.scrollY,
-          left: rect.left + window.scrollX,
-          right: rect.right,
-          bottom: rect.bottom,
-        },
+  performAsyncWork = (promise, callback) =>
+    Promise.resolve(promise)
+      .then(result => {
+        if (callback) {
+          callback(result);
+        }
+      })
+      .catch(error => {
+        this.setState({
+          isEditing: false,
+          isSaving: false,
+          error: error.message,
+        });
       });
-    }
-  };
-
-  handleFieldRef = el => {
-    this.fieldNode = el;
-    if (this.fieldNode) {
-      const rect = this.fieldNode.getBoundingClientRect();
-      this.setState({
-        fieldPosition: {
-          top: rect.top + window.scrollY,
-          left: rect.left + window.scrollX,
-          right: rect.right,
-          bottom: rect.bottom,
-        },
-      });
-    }
-  };
 
   componentWillUnmount() {
     if (this.timeoutId) {
@@ -171,39 +136,31 @@ export default class EditableTextCell extends React.Component {
     const { id, initialValue, isEditable } = this.props;
     const {
       fieldPosition,
-      errors,
+      error,
       isEditing,
       isSaving,
       shouldDisplaySuccess,
+      value,
     } = this.state;
     const inputId = getInputId(id);
-    const hasErrors = Array.isArray(errors) && errors.length > 0;
 
     // Guard case where we are already editing some other cell and so we just
     // want to display the content.
-    if (!isEditing && !isSaving && !hasErrors && !isEditable) {
+    if (!isEditing && !isSaving && !error && !isEditable) {
       return (
         <TableCell isEditable>
-          <EditableCellContent value={this.state.value} />
+          <span className="bx--data-table-cell__content">{value}</span>
         </TableCell>
       );
     }
 
     // Default view where we want to show the trigger to start editing
-    if (!isEditing && !isSaving && !hasErrors) {
+    if (!isEditing && !isSaving && !error && isEditable) {
       return (
         <TableCell isEditable>
-          <EditableCellContent value={this.state.value} />
+          <span className="bx--data-table-cell__content">{value}</span>
           {shouldDisplaySuccess ? (
-            <div className="bx--data-table__edit-status">
-              <Icon
-                className="bx--data-table-cell__icon--success"
-                name="checkmark"
-                role="alert"
-                title="Successfully saved cell"
-                description="Successfully saved cell"
-              />
-            </div>
+            <EditCellStatus shouldDisplaySuccess />
           ) : (
             <div className="bx--data-table__edit">
               <button
@@ -223,92 +180,20 @@ export default class EditableTextCell extends React.Component {
       );
     }
 
-    // Saving
-    if (isSaving) {
-      return (
-        <TableCell isEditable isSaving isEditing>
-          <div className="bx--data-table__edit-field">
-            <label htmlFor={inputId} className="bx--label">
-              Edit Name: {initialValue}
-            </label>
-            <input
-              id={inputId}
-              type="text"
-              className="bx--text-input"
-              value={this.state.value}
-              onChange={this.handleOnChange}
-              disabled
-            />
-          </div>
-          <div className="bx--data-table__edit-status">
-            <Loading small withOverlay={false} />
-          </div>
-        </TableCell>
-      );
-    }
-
-    // Errors
-    if (hasErrors) {
-      return (
-        <TableCell isEditable isEditing>
-          <div className="bx--data-table__edit-field bx--data-table__edit-field--invalid">
-            <label htmlFor={inputId} className="bx--label">
-              Edit Name: {initialValue}
-            </label>
-            <input
-              id={inputId}
-              type="text"
-              className="bx--text-input"
-              value={this.state.value}
-              onChange={this.handleOnChange}
-            />
-          </div>
-          <div className="bx--data-table__edit-status">
-            <Icon
-              className="bx--data-table__icon--error"
-              name="error--glyph"
-              description={errors.join('. ')}
-              ref={this.handleErrorRef}
-              onClick={this.handleToggleError}
-              onFocus={this.handleToggleError}
-              tabIndex="0"
-            />
-          </div>
-          {fieldPosition && (
-            <FloatingMenu menuPosition={fieldPosition}>
-              <EditCellActions
-                onSave={this.handleOnSave}
-                onCancel={this.handleOnCancel}
-              />
-            </FloatingMenu>
-          )}
-        </TableCell>
-      );
-    }
-
-    // Editing
     return (
-      <TableCell isEditable isEditing>
-        <div className="bx--data-table__edit-field" ref={this.handleFieldRef}>
-          <label htmlFor={inputId} className="bx--label">
-            Edit Name: {initialValue}
-          </label>
-          <input
-            id={inputId}
-            type="text"
-            className="bx--text-input"
-            value={this.state.value}
-            onChange={this.handleOnChange}
-          />
-        </div>
-        {fieldPosition && (
-          <FloatingMenu menuPosition={fieldPosition}>
-            <EditCellActions
-              onSave={this.handleOnSave}
-              onCancel={this.handleOnCancel}
-            />
-          </FloatingMenu>
-        )}
+      <TableCell isEditable isEditing isSaving={isSaving}>
+        <EditCellField
+          disabled={isSaving}
+          error={error}
+          id={inputId}
+          labelText={`Edit Name: ${initialValue}`}
+          onCancel={this.handleOnCancel}
+          onChange={this.handleOnChange}
+          onSave={this.handleOnSave}
+          type="text"
+          value={value}
+        />
+        {isSaving && <EditCellStatus isLoading />}
       </TableCell>
     );
   }
