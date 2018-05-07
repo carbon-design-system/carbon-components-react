@@ -11,7 +11,8 @@ const DataTableSkeleton = ({ rowCount, zebra, compact, ...other }) => {
   });
 
   const rows = [];
-  for (var i = 0; i < rowCount; i++) {
+  const rowRepeat = rowCount - 1;
+  for (var i = 0; i < rowRepeat; i++) {
     rows.push(
       <tr key={i}>
         <td />
@@ -27,24 +28,33 @@ const DataTableSkeleton = ({ rowCount, zebra, compact, ...other }) => {
     <table className={dataTableSkeletonClasses} {...other}>
       <thead>
         <tr>
-          <th>
-            <span />
-          </th>
-          <th>
-            <span />
-          </th>
-          <th>
-            <span />
-          </th>
-          <th>
-            <span />
-          </th>
-          <th>
-            <span />
-          </th>
+          <th />
+          <th />
+          <th />
+          <th />
+          <th />
         </tr>
       </thead>
-      <tbody>{rows}</tbody>
+      <tbody>
+        <tr>
+          <td>
+            <span />
+          </td>
+          <td>
+            <span />
+          </td>
+          <td>
+            <span />
+          </td>
+          <td>
+            <span />
+          </td>
+          <td>
+            <span />
+          </td>
+        </tr>
+        {rows}
+      </tbody>
     </table>
   );
 };
