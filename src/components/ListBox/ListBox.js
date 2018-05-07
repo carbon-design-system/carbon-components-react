@@ -7,7 +7,9 @@ import { ListBoxType } from './ListBoxPropTypes';
 import childrenOf from '../../prop-types/childrenOf';
 
 const handleOnKeyDown = event => {
-  event.stopPropagation();
+  if (event.keyCode === 27) {
+    event.stopPropagation();
+  }
 };
 
 /**
