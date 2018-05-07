@@ -134,7 +134,6 @@ export DataTableSkeleton from './components/DataTableSkeleton';
 export AccordionSkeleton from './components/Accordion/Accordion.Skeleton';
 export BreadcrumbSkeleton from './components/Breadcrumb/Breadcrumb.Skeleton';
 export ButtonSkeleton from './components/Button/Button.Skeleton';
-export CardSkeleton from './components/Card/Card.Skeleton';
 export CheckboxSkeleton from './components/Checkbox/Checkbox.Skeleton';
 export CodeSnippetSkeleton from './components/CodeSnippet/CodeSnippet.Skeleton';
 export DropdownSkeleton from './components/DropdownV2/Dropdown.Skeleton';

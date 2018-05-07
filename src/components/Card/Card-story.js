@@ -13,7 +13,6 @@ import CardActions from '../CardActions';
 import CardActionItem from '../CardActionItem';
 import Button from '../Button';
 import Link from '../Link';
-import CardSkeleton from '../Card/Card.Skeleton';
 
 const cardProps = {
   onClick: () => {
@@ -207,11 +206,4 @@ storiesOf('Card', module)
       Card Status and Card Actions components to add content to your card.
     `,
     () => <Card />
-  )
-  .addWithInfo(
-    'skeleton',
-    `
-      Placeholder skeleton state to use when content is loading.
-    `,
-    () => <CardSkeleton />
   );

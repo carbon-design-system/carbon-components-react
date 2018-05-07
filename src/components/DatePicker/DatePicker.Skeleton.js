@@ -5,7 +5,7 @@ const DatePickerSkeleton = ({ range, id }) => {
   const dateInput = (
     <div className="bx--date-picker-container">
       <label className="bx--label" htmlFor={id} />
-      <div className="bx--date-picker__input" />
+      <div className="bx--date-picker__input bx--skeleton" />
     </div>
   );
 

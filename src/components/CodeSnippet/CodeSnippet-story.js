@@ -2,7 +2,6 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import CodeSnippet from '../CodeSnippet';
-import CodeSnippetSkeleton from '../CodeSnippet/CodeSnippet.Skeleton';
 
 const copyProps = {
   onClick: action('onClick'),
@@ -53,17 +52,5 @@ storiesOf('CodeSnippet', module)
           'node -v Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis, veritatis voluptate id incidunt molestiae officia possimus, quasi itaque alias, architecto hic, dicta fugit? Debitis delectus quidem explicabo vitae fuga laboriosam!'
         }
       </CodeSnippet>
-    )
-  )
-  .addWithInfo(
-    'skeleton',
-    `
-      Placeholder skeleton state to use when content is loading.
-    `,
-    () => (
-      <div style={{ width: '400px' }}>
-        <CodeSnippetSkeleton type="code" />&nbsp;
-        <CodeSnippetSkeleton type="terminal" />
-      </div>
     )
   );
