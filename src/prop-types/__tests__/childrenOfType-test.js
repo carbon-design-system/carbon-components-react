@@ -1,4 +1,5 @@
 import React from 'react';
+import reactHotLoader from 'react-hot-loader/patch';
 import childrenOfType from '../childrenOfType';
 
 const Element = <span />;
@@ -21,10 +22,24 @@ describe('childrenOfType', () => {
     // on the number of times this is called to make sure we aren't swallowing
     // any errors unexpectedly.
     spy = jest.spyOn(console, 'error').mockImplementation(() => {});
+    reactHotLoader.disableProxyCreation = true;
   });
 
   afterEach(() => {
     spy.mockRestore();
+    reactHotLoader.reset();
+  });
+
+  it('should validate RHL Proxied children of a given element type', () => {
+    reactHotLoader.disableProxyCreation = false;
+    const ProxiedChildValidTest = ({ children }) => <div>{children}</div>;
+    ProxiedChildValidTest.propTypes = {
+      children: childrenOfType(StatelessComponent),
+    };
+    <ProxiedChildValidTest>
+      <StatelessComponent />
+    </ProxiedChildValidTest>;
+    expect(spy).not.toHaveBeenCalled();
   });
 
   it('should validate children of a given element type', () => {
