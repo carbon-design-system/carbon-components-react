@@ -1,11 +1,13 @@
 import { Children } from 'react';
+import { areComponentsEqual } from 'react-hot-loader/patch';
 import createChainableTypeChecker from './tools/createChainableTypeChecker';
 import getDisplayName from './tools/getDisplayName';
 
 /**
  * `childrenOfType` is used for asserting that children of a given React
  * component are only of a given type. Currently, this supports React elements,
- * Stateless Functional Components, and Class-based components.
+ * Stateless Functional Components, and Class-based components (even Proxied
+ * via React-Hot-Loader)
  *
  * This prop validator also supports chaining through `isRequired`
  */
@@ -16,22 +18,11 @@ const childrenOfType = expectedChildType => {
   );
   const validate = (props, propName, componentName) => {
     Children.forEach(props[propName], child => {
-      let childType = child.type;
-      if (
-        child.type.hasOwnProperty('name') &&
-        child.type.name !== getDisplayName(child.type) &&
-        /proxyfacade/i.test(child.type.name) &&
-        Object.prototype.hasOwnProperty.call(
-          child.type,
-          '__reactstandin__getCurrent'
-        )
-      ) {
-        childType = child.type.__reactstandin__getCurrent();
-      }
+      const childType = child.type;
       const childDisplayName = getDisplayName(childType);
       if (
-        childType !== expectedChildType.type &&
-        childType !== expectedChildType
+        !areComponentsEqual(childType, expectedChildType.type) &&
+        !areComponentsEqual(childType, expectedChildType)
       ) {
         throw new Error(
           `Invalid prop \`children\` of type \`${childDisplayName}\` ` +

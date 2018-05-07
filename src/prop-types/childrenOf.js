@@ -1,4 +1,5 @@
 import { Children } from 'react';
+import { areComponentsEqual } from 'react-hot-loader/patch';
 import createChainableTypeChecker from './tools/createChainableTypeChecker';
 import getDisplayName from './tools/getDisplayName';
 
@@ -20,21 +21,14 @@ const childrenOf = expectedChildTypes => {
       if (!child) {
         return;
       }
-      let childType = child.type;
-      //TODO: think about this one
-      if (
-        child.type.hasOwnProperty('name') &&
-        child.type.name !== getDisplayName(child.type) &&
-        /proxyfacade/i.test(child.type.name) &&
-        Object.prototype.hasOwnProperty.call(
-          child.type,
-          '__reactstandin__getCurrent'
-        )
-      ) {
-        childType = child.type.__reactstandin__getCurrent();
-      }
-      const childDisplayName = getDisplayName(childType || child);
-      if (!expectedChildTypes.includes(childType)) {
+      const childDisplayName = getDisplayName(child.type || child);
+      const expectedChildType = expectedChildTypes.find(
+        c =>
+          typeof c === 'string'
+            ? c === childDisplayName
+            : c.name === childDisplayName
+      );
+      if (!areComponentsEqual(child.type, expectedChildType)) {
         throw new Error(
           `Invalid prop \`children\` of type \`${childDisplayName}\` ` +
             `supplied to \`${componentName}\`, expected each child to be one ` +
