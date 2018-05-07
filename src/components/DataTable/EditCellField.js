@@ -18,33 +18,6 @@ export default class EditCellField extends React.Component {
     value: PropTypes.string.isRequired,
   };
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      position: null,
-    };
-  }
-
-  handleRef = el => {
-    this.fieldNode = el;
-    if (this.fieldNode) {
-      const {
-        top,
-        left,
-        right,
-        bottom,
-      } = this.fieldNode.getBoundingClientRect();
-      this.setState({
-        position: {
-          top: top + window.scrollY,
-          left: left + window.scrollX,
-          right,
-          bottom,
-        },
-      });
-    }
-  };
-
   render() {
     const {
       error,
@@ -57,42 +30,53 @@ export default class EditCellField extends React.Component {
       type,
       value,
     } = this.props;
-    const { position } = this.state;
     const className = cx({
       'bx--data-table__edit-field': true,
-      'bx--data-table__edit-field--invalid': error,
+      'bx--data-table__edit-field--error': error,
     });
+    const inputProps = {
+      className: 'bx--text-input',
+      disabled,
+      id,
+      type,
+      value,
+      onChange,
+    };
+    const errorNodeId = `${id}_error`;
+
+    if (error) {
+      inputProps['aria-describedby'] = errorNodeId;
+    }
+
     return (
       <React.Fragment>
-        <div className={className} ref={this.handleRef}>
+        <div className={className}>
           <label className="bx--label" htmlFor={id}>
             {labelText}
           </label>
-          <input
-            className="bx--text-input"
-            disabled={disabled}
-            id={id}
-            type={type}
-            value={value}
-            onChange={onChange}
-          />
-          {position &&
-            !disabled && (
-              <FloatingMenu menuPosition={position}>
-                <EditCellActions onSave={onSave} onCancel={onCancel} />
-              </FloatingMenu>
-            )}
+          <input {...inputProps} />
         </div>
         {error && (
           <div className="bx--data-table__edit-status">
-            <div className="bx--data-table__status--error">
+            <div
+              className="bx--data-table__status--error"
+              role="alert"
+              tabIndex="0"
+              aria-describedby={errorNodeId}>
               <Icon
                 className="bx--data-table__icon--error"
                 name="error--glyph"
+                title={error}
+                description={error}
+                aria-hidden
               />
+              <span id={errorNodeId} className="bx--data-table__error-text">
+                {error}
+              </span>
             </div>
           </div>
         )}
+        {!disabled && <EditCellActions onSave={onSave} onCancel={onCancel} />}
       </React.Fragment>
     );
   }

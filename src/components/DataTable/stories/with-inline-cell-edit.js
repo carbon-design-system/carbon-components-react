@@ -37,7 +37,7 @@ const mockStore = {
     await delay(delayMs);
 
     if (shouldFail) {
-      throw new Error('Error message');
+      throw new Error('This is the field validation message.');
     }
 
     const row = this.rows.find(row => row.id === cell.info.row);
@@ -98,13 +98,13 @@ class EditableTable extends React.Component {
     const { id, info, value } = cell;
 
     // Non-editable fields
-    // if (info.header !== 'name') {
-    // return <TableCell {...getCellProps({ cell })}>{cell.value}</TableCell>;
-    // }
+    if (info.header !== 'name') {
+      return <TableCell {...getCellProps({ cell })}>{cell.value}</TableCell>;
+    }
 
     return (
       <EditableTextCell
-        {...getCellProps({ cell })}
+        {...getCellProps({ cell, isEditable: true })}
         initialValue={cell.value}
         onSave={this.handleOnSave(cell)}
         onCancel={this.handleOnCancel}

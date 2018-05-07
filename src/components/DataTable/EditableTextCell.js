@@ -162,9 +162,9 @@ export default class EditableTextCell extends React.Component {
           {shouldDisplaySuccess ? (
             <EditCellStatus shouldDisplaySuccess />
           ) : (
-            <div className="bx--data-table__edit">
+            <div className="bx--data-table-cell__activity">
               <button
-                className="bx--data-table-cell__edit-trigger"
+                className="bx--data-table-cell__edit"
                 title={`Edit Cell: ${initialValue}`}
                 onClick={this.handleOnEdit}>
                 <Icon

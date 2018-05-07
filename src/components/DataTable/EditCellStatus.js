@@ -9,7 +9,7 @@ const EditCellStatus = ({ isLoading, shouldDisplaySuccess }) => (
     {!isLoading &&
       shouldDisplaySuccess && (
         <Icon
-          className="bx--data-table-cell__icon--success"
+          className="bx--data-table__icon--success"
           name="checkmark"
           role="alert"
           description="Successfully saved cell"
