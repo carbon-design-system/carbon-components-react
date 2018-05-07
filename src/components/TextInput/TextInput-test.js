@@ -1,6 +1,5 @@
 import React from 'react';
 import TextInput from '../TextInput';
-import TextInputSkeleton from '../TextInput/TextInput.Skeleton';
 import { mount, shallow } from 'enzyme';
 
 describe('TextInput', () => {
@@ -124,19 +123,6 @@ describe('TextInput', () => {
         input.simulate('change', eventObject);
         expect(onChange).toBeCalledWith(eventObject);
       });
-    });
-  });
-});
-
-describe('TextInputSkeleton', () => {
-  describe('Renders as expected', () => {
-    const wrapper = shallow(<TextInputSkeleton />);
-
-    const input = wrapper.find('input');
-
-    it('Has the expected classes', () => {
-      expect(input.hasClass('bx--skeleton')).toEqual(true);
-      expect(input.hasClass('bx--text-input')).toEqual(true);
     });
   });
 });

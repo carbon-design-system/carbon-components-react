@@ -1,7 +1,6 @@
 import React from 'react';
 import { mount, shallow } from 'enzyme';
 import TextArea from '../TextArea';
-import TextAreaSkeleton from '../TextArea/TextArea.Skeleton';
 
 describe('TextArea', () => {
   describe('should render as expected', () => {
@@ -131,19 +130,6 @@ describe('TextArea', () => {
         textarea.simulate('change', eventObject);
         expect(onChange).toBeCalledWith(eventObject);
       });
-    });
-  });
-});
-
-describe('TextAreaSkeleton', () => {
-  describe('Renders as expected', () => {
-    const wrapper = shallow(<TextAreaSkeleton />);
-
-    const textarea = wrapper.find('textarea');
-
-    it('Has the expected classes', () => {
-      expect(textarea.hasClass('bx--skeleton')).toEqual(true);
-      expect(textarea.hasClass('bx--text-area')).toEqual(true);
     });
   });
 });
