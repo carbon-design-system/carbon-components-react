@@ -5,7 +5,6 @@ import ComposedModal, {
   ModalBody,
   ModalFooter,
 } from '../ComposedModal';
-import Button from '../Button';
 
 storiesOf('ComposedModal', module)
   .addWithInfo(
@@ -46,10 +45,7 @@ storiesOf('ComposedModal', module)
             functionality.
           </p>
         </ModalBody>
-        <ModalFooter>
-          <Button kind="secondary">Cancel</Button>
-          <Button kind="primary">Save</Button>
-        </ModalFooter>
+        <ModalFooter secondaryButtonText="Cancel" primaryButtonText="save" />
       </ComposedModal>
     )
   );
