@@ -1,10 +1,12 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import classNames from 'classnames';
-import flatpickr from 'flatpickr';
 import l10n from 'flatpickr/dist/l10n/index';
 import rangePlugin from 'flatpickr/dist/plugins/rangePlugin';
 import DatePickerInput from '../DatePickerInput';
+
+let flatpickr = null;
+if (typeof window !== 'undefined') flatpickr = require('flatpickr');
 
 // Weekdays shorthand for english locale
 l10n.en.weekdays.shorthand.forEach((day, index) => {
@@ -189,6 +191,7 @@ export default class DatePicker extends Component {
   };
 
   componentWillUpdate(nextProps) {
+    if (typeof window === 'undefined') return;
     if (nextProps.value !== this.props.value) {
       if (
         this.props.datePickerType === 'single' ||
@@ -205,6 +208,7 @@ export default class DatePicker extends Component {
   }
 
   componentDidMount() {
+    if (typeof window === 'undefined') return;
     const {
       datePickerType,
       dateFormat,
@@ -245,6 +249,7 @@ export default class DatePicker extends Component {
   }
 
   componentWillUnmount() {
+    if (typeof window === 'undefined') return;
     if (
       this.props.datePickerType === 'range' ||
       this.props.datePickerType === 'single'
@@ -358,6 +363,7 @@ export default class DatePicker extends Component {
   };
 
   render() {
+    if (typeof window === 'undefined') return (<div />);
     const {
       children,
       className,
