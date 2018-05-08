@@ -1,8 +1,6 @@
 import React from 'react';
 import DataTable, {
   Table,
-  TableBatchAction,
-  TableBatchActions,
   TableBody,
   TableCell,
   TableContainer,
@@ -12,12 +10,6 @@ import DataTable, {
   TableHead,
   TableHeader,
   TableRow,
-  TableSelectAll,
-  TableSelectRow,
-  TableToolbar,
-  TableToolbarAction,
-  TableToolbarContent,
-  TableToolbarSearch,
 } from '../../DataTable';
 import { initialRows, headers } from './';
 export default () => (

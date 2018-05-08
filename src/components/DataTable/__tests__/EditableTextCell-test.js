@@ -1,6 +1,3 @@
-import React from 'react';
-import EditableTextCell from '../../DataTable';
-
 describe('EditableTextCell', () => {
   it('should render');
 

@@ -3,25 +3,18 @@ import { action } from '@storybook/addon-actions';
 import Button from '../../Button';
 import DataTable, {
   Table,
-  TableBatchAction,
-  TableBatchActions,
   TableBody,
   TableCell,
   TableContainer,
-  TableExpandHeader,
-  TableExpandRow,
-  TableExpandedRow,
   TableHead,
   TableHeader,
   TableRow,
-  TableSelectAll,
-  TableSelectRow,
   TableToolbar,
   TableToolbarAction,
   TableToolbarContent,
   TableToolbarSearch,
 } from '../../DataTable';
-import { batchActionClick, initialRows, headers } from './';
+import { initialRows, headers } from './';
 
 export default () => (
   <DataTable

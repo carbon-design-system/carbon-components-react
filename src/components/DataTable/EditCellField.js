@@ -67,7 +67,6 @@ export default class EditCellField extends React.Component {
               <div
                 className="bx--data-table__status--error"
                 role="alert"
-                tabIndex="0"
                 aria-describedby={errorNodeId}>
                 <Icon
                   className="bx--data-table__icon--error"

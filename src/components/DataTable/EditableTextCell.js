@@ -1,10 +1,6 @@
-import cx from 'classnames';
 import React from 'react';
 import PropTypes from 'prop-types';
 import Icon from '../Icon';
-import Loading from '../Loading';
-import FloatingMenu from '../../internal/FloatingMenu';
-import EditCellActions from './EditCellActions';
 import EditCellField from './EditCellField';
 import EditCellStatus from './EditCellStatus';
 import TableCell from './TableCell';
@@ -46,8 +42,6 @@ export default class EditableTextCell extends React.Component {
       shouldDisplaySuccess: false,
       shouldDisplayError: false,
       value: props.initialValue,
-      errorPosition: null,
-      fieldPosition: null,
     };
   }
 
@@ -135,7 +129,6 @@ export default class EditableTextCell extends React.Component {
   render() {
     const { id, initialValue, isEditable } = this.props;
     const {
-      fieldPosition,
       error,
       isEditing,
       isSaving,

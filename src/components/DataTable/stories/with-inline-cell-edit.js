@@ -3,25 +3,13 @@ import { action } from '@storybook/addon-actions';
 import Button from '../../Button';
 import DataTable, {
   EditableTextCell,
-  EditableNumberCell,
   Table,
-  TableBatchAction,
-  TableBatchActions,
   TableBody,
   TableCell,
   TableContainer,
-  TableExpandHeader,
-  TableExpandRow,
-  TableExpandedRow,
   TableHead,
   TableHeader,
   TableRow,
-  TableSelectAll,
-  TableSelectRow,
-  TableToolbar,
-  TableToolbarAction,
-  TableToolbarContent,
-  TableToolbarSearch,
 } from '../../DataTable';
 import { initialRows, headers } from './';
 
@@ -88,7 +76,7 @@ class EditableTable extends React.Component {
     action(`Validating value: ${value}`);
 
     return delay(delayMs).then(() => {
-      if (this.state.shouldFailValidation) {
+      if (shouldFailValidation) {
         return Promise.reject(new Error('Validation error'));
       }
       return Promise.resolve();
@@ -96,7 +84,7 @@ class EditableTable extends React.Component {
   };
 
   renderCell = (cell, getCellProps) => {
-    const { id, info, value } = cell;
+    const { info, value } = cell;
 
     // Non-editable fields
     if (info.header !== 'name') {
@@ -106,7 +94,7 @@ class EditableTable extends React.Component {
     return (
       <EditableTextCell
         {...getCellProps({ cell, isEditable: true })}
-        initialValue={cell.value}
+        initialValue={value}
         onSave={this.handleOnSave(cell)}
         onCancel={this.handleOnCancel}
         validate={this.validate}
