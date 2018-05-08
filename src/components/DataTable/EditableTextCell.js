@@ -186,6 +186,7 @@ export default class EditableTextCell extends React.Component {
           disabled={isSaving}
           error={error}
           id={inputId}
+          isSaving={isSaving}
           labelText={`Edit Name: ${initialValue}`}
           onCancel={this.handleOnCancel}
           onChange={this.handleOnChange}

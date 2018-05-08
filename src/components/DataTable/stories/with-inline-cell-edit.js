@@ -3,6 +3,7 @@ import { action } from '@storybook/addon-actions';
 import Button from '../../Button';
 import DataTable, {
   EditableTextCell,
+  EditableNumberCell,
   Table,
   TableBatchAction,
   TableBatchActions,

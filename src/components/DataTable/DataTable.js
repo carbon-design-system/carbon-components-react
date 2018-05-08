@@ -238,8 +238,16 @@ export default class DataTable extends React.Component {
   };
 
   getCellProps = ({ cell, isEditable }) => {
-    return {
+    const cellProps = {
       key: cell.id,
+    };
+
+    if (!isEditable) {
+      return cellProps;
+    }
+
+    return {
+      ...cellProps,
       id: cell.id,
       onToggleEditCell: this.handleOnToggleEditCell,
       // If we're already editing, don't allow editing on other cells
