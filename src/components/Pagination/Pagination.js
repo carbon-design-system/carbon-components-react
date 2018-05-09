@@ -83,7 +83,8 @@ export default class Pagination extends Component {
     const page = Number(evt.target.value);
     if (
       page > 0 &&
-      page <= Math.ceil(this.props.totalItems / this.state.pageSize)
+      page <=
+        Math.max(Math.ceil(this.props.totalItems / this.state.pageSize), 1)
     ) {
       this.setState({ page });
       this.props.onChange({ page, pageSize: this.state.pageSize });
@@ -127,6 +128,7 @@ export default class Pagination extends Component {
 
     const statePage = this.state.page;
     const statePageSize = this.state.pageSize;
+    const totalPages = Math.max(Math.ceil(totalItems / statePageSize), 1);
     const classNames = classnames('bx--pagination', className);
     const inputId = id || this.uniqueId;
 
@@ -153,7 +155,7 @@ export default class Pagination extends Component {
                   statePage * statePageSize
                 )
               : itemRangeText(
-                  statePageSize * (statePage - 1) + 1,
+                  Math.min(statePageSize * (statePage - 1) + 1, totalItems),
                   Math.min(statePage * statePageSize, totalItems),
                   totalItems
                 )}
@@ -163,7 +165,7 @@ export default class Pagination extends Component {
           <span className="bx--pagination__text">
             {pagesUnknown
               ? pageText(statePage)
-              : pageRangeText(statePage, Math.ceil(totalItems / statePageSize))}
+              : pageRangeText(statePage, totalPages)}
           </span>
           <button
             className="bx--pagination__button bx--pagination__button--backward"
@@ -191,9 +193,7 @@ export default class Pagination extends Component {
             className="bx--pagination__button bx--pagination__button--forward"
             onClick={this.incrementPage}
             disabled={
-              this.props.disabled ||
-              statePage === Math.ceil(totalItems / statePageSize) ||
-              isLastPage
+              this.props.disabled || statePage === totalPages || isLastPage
             }>
             <Icon
               className="bx--pagination__button-icon"
