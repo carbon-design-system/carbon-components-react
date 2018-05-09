@@ -1,6 +1,7 @@
 import React from 'react';
 import Button from '../../Button';
 import DataTable, {
+  EditableTextCell,
   Table,
   TableBatchActions,
   TableBatchAction,
@@ -119,6 +120,48 @@ describe('DataTable', () => {
   it('should render', () => {
     const wrapper = mount(<DataTable {...mockProps} />);
     expect(wrapper).toMatchSnapshot();
+  });
+
+  describe('editing', () => {
+    let mockRenderProp;
+    let editCellMockProps;
+
+    beforeEach(() => {
+      editCellMockProps = {
+        onSave: jest.fn(),
+        onCancel: jest.fn(),
+        validate: jest.fn(),
+      };
+      editMockProps = {
+        ...mockProps,
+        render: jest.fn(({ rows, headers, getHeaderProps, getCellProps }) => (
+          <Table>
+            <TableBody>
+              {rows.map(row => (
+                <TableRow key={row.id}>
+                  {row.cells.map((cell, i) => {
+                    if (i === 0) {
+                      return (
+                        <EditableTextCell
+                          {...getCellProps({ cell, isEditable: true })}
+                          {...editCellMockProps}
+                          initialValue={cell.value}
+                        />
+                      );
+                    }
+                    return <TableCell key={cell.id}>{cell.value}</TableCell>;
+                  })}
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        )),
+      };
+    });
+
+    it('should work', () => {
+      // ...
+    });
   });
 
   describe('sorting', () => {

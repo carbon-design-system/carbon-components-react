@@ -1,3 +1,4 @@
+import cx from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 import isEqual from 'lodash.isequal';
@@ -257,6 +258,13 @@ export default class DataTable extends React.Component {
     };
   };
 
+  getTableProps = ({ className } = {}) => ({
+    className: cx({
+      [className]: !!className,
+      'bx--data-table--editing': this.state.isEditing,
+    }),
+  });
+
   handleOnToggleEditCell = id => {
     this.setState(state => {
       const { cellsById } = state;
@@ -437,11 +445,12 @@ export default class DataTable extends React.Component {
       selectedRows: denormalize(this.getSelectedRows(), rowsById, cellsById),
 
       // Prop accessors/getters
+      getBatchActionProps: this.getBatchActionProps,
+      getCellProps: this.getCellProps,
       getHeaderProps: this.getHeaderProps,
       getRowProps: this.getRowProps,
       getSelectionProps: this.getSelectionProps,
-      getBatchActionProps: this.getBatchActionProps,
-      getCellProps: this.getCellProps,
+      getTableProps: this.getTableProps,
 
       // Custom event handlers
       onInputChange: this.handleOnInputValueChange,

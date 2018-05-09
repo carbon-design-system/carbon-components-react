@@ -22,6 +22,30 @@ export default class EditCellField extends React.Component {
     value: PropTypes.string.isRequired,
   };
 
+  state = {
+    isEditing: true,
+  };
+
+  componentDidMount() {
+    // Set cursor position to end of control
+    this.inputNode.value = '';
+    this.inputNode.value = this.props.value;
+    // Focus the control
+    this.inputNode.focus && this.inputNode.focus();
+  }
+
+  handleRef = el => {
+    this.inputNode = el;
+  };
+
+  handleOnFocus = () => {
+    this.setState({ isEditing: true });
+  };
+
+  handleOnBlur = () => {
+    this.setState({ isEditing: false });
+  };
+
   render() {
     const {
       error,
@@ -35,8 +59,10 @@ export default class EditCellField extends React.Component {
       type,
       value,
     } = this.props;
+    const { isEditing } = this.state;
     const className = cx({
       'bx--data-table__edit-field': true,
+      'bx--data-table__edit-field--editing': isEditing && !isSaving,
       'bx--data-table__edit-field--error': error && !isSaving,
     });
     const inputProps = {
@@ -46,6 +72,8 @@ export default class EditCellField extends React.Component {
       type,
       value,
       onChange,
+      onBlur: this.handleOnBlur,
+      onFocus: this.handleOnFocus,
     };
     const errorNodeId = `${id}_error`;
 
@@ -59,7 +87,7 @@ export default class EditCellField extends React.Component {
           <label className="bx--label" htmlFor={id}>
             {labelText}
           </label>
-          <input {...inputProps} />
+          <input {...inputProps} ref={this.handleRef} />
         </div>
         {error &&
           !isSaving && (

@@ -112,13 +112,19 @@ class EditableTable extends React.Component {
       <DataTable
         rows={mockStore.rows}
         headers={headers}
-        render={({ rows, headers, getCellProps, getHeaderProps }) => (
+        render={({
+          rows,
+          headers,
+          getCellProps,
+          getHeaderProps,
+          getTableProps,
+        }) => (
           <React.Fragment>
             <TableContainer title="DataTable">
               <p>Validation: {shouldFailValidation ? 'Fail' : 'Pass'}</p>
               <p>Save: {shouldFailSave ? 'Fail' : 'Pass'}</p>
               <p>Action Delay (ms): {delayMs}</p>
-              <Table>
+              <Table {...getTableProps()}>
                 <TableHead>
                   <TableRow>
                     {headers.map(header =>

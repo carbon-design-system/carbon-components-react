@@ -28,6 +28,25 @@
   $spacing--cell--status: 2rem;
 
   //----------------------------------------------------------------------------
+  // Table
+  //----------------------------------------------------------------------------
+
+  // Reset hover styles while editing
+  .#{$prefix}--data-table--editing tr:hover td {
+    background-color: inherit;
+    border-top: 1px solid $ui-04;
+    border-bottom: 1px solid $ui-04;
+  }
+
+  .#{$prefix}--data-table--editing tr:hover td:first-of-type {
+    border-left: 1px solid $ui-04;
+  }
+
+  .#{$prefix}--data-table--editing tr:hover td:last-of-type {
+    border-right: 1px solid $ui-04;
+  }
+
+  //----------------------------------------------------------------------------
   // Cell Edit
   //----------------------------------------------------------------------------
 
@@ -318,7 +337,15 @@
 
     // Display text area triangle on focus
   .#{$prefix}--data-table__status--error:focus
-    > .#{$prefix}--data-table__error-text::after {
+    > .#{$prefix}--data-table__error-text::after,
+
+  // Display when user is typing in edit field
+  .#{$prefix}--data-table__edit-field--editing.#{$prefix}--data-table__edit-field--error +
+  .#{$prefix}--data-table__edit-status .#{$prefix}--data-table__error-text,
+
+  .#{$prefix}--data-table__edit-field--editing.#{$prefix}--data-table__edit-field--error +
+  .#{$prefix}--data-table__edit-status
+  .#{$prefix}--data-table__error-text::after {
     opacity: 1;
   }
 
