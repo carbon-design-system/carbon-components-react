@@ -206,9 +206,11 @@ describe('Pagination', () => {
       });
 
       it('should render ranges and pages for no items', () => {
-        const pager = mount(<Pagination pageSizes={[5, 10]} totalItems={0} />);
+        const pager = mount(
+          <PaginationV2 pageSizes={[5, 10]} totalItems={0} />
+        );
         const labels = pager.find('.bx--pagination__text');
-        expect(labels.at(1).text()).toBe('0-0 of 0 items');
+        expect(labels.at(1).text()).toBe('\u00a0|\u00a0\u00a00-0 of 0 items');
         expect(labels.at(2).text()).toBe('1 of 1 pages');
       });
 
