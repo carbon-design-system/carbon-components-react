@@ -6,6 +6,12 @@ import ListBoxMenu from './ListBoxMenu';
 import { ListBoxType } from './ListBoxPropTypes';
 import childrenOf from '../../prop-types/childrenOf';
 
+const handleOnKeyDown = event => {
+  if (event.keyCode === 27) {
+    event.stopPropagation();
+  }
+};
+
 /**
  * `ListBox` is a generic container component that handles creating the
  * container class name in response to certain props.
@@ -21,12 +27,15 @@ const ListBox = ({
   const className = cx({
     [containerClassName]: !!containerClassName,
     'bx--list-box': true,
-    'bx--form-item': true,
     'bx--list-box--inline': type === 'inline',
     'bx--list-box--disabled': disabled,
   });
   return (
-    <div className={className} ref={innerRef} {...rest}>
+    <div
+      {...rest}
+      className={className}
+      ref={innerRef}
+      onKeyDown={handleOnKeyDown}>
       {children}
     </div>
   );

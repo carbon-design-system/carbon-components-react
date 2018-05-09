@@ -2,6 +2,7 @@ import React from 'react';
 import { mount, shallow } from 'enzyme';
 import Icon from '../Icon';
 import NumberInput from '../NumberInput';
+import NumberInputSkeleton from '../NumberInput/NumberInput.Skeleton';
 
 describe('NumberInput', () => {
   describe('should render as expected', () => {
@@ -122,6 +123,13 @@ describe('NumberInput', () => {
           let wrapper = getWrapper(undefined, 100, 5);
           let numberInput = wrapper.find('input');
           expect(numberInput.prop('value')).toEqual(5);
+        });
+
+        it('should set invalidText when value is empty string', () => {
+          wrapper.setProps({ value: '' });
+          const invalidText = wrapper.find('.bx--form-requirement');
+          expect(invalidText.length).toEqual(1);
+          expect(invalidText.text()).toEqual('invalid text');
         });
       });
     });
@@ -291,6 +299,20 @@ describe('NumberInput', () => {
         expect(onChange).toBeCalled();
         expect(onChange).toHaveBeenCalledWith(expect.anything());
       });
+    });
+  });
+});
+
+describe('NumberInputSkeleton', () => {
+  describe('Renders as expected', () => {
+    const wrapper = shallow(<NumberInputSkeleton />);
+
+    const container = wrapper.find('.bx--number');
+    const label = wrapper.find('.bx--label');
+
+    it('has the expected classes', () => {
+      expect(container.hasClass('bx--skeleton')).toEqual(true);
+      expect(label.hasClass('bx--skeleton')).toEqual(true);
     });
   });
 });
