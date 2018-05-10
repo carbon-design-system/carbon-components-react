@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import Icon from '../Icon';
 import Loading from '../Loading';
 
-const EditCellStatus = ({ isLoading, shouldDisplaySuccess }) => (
+const EditCellStatus = ({ isSaving, shouldDisplaySuccess }) => (
   <div className="bx--data-table__edit-status">
-    {isLoading && <Loading small withOverlay={false} />}
-    {!isLoading &&
+    {isSaving && <Loading small withOverlay={false} />}
+    {!isSaving &&
       shouldDisplaySuccess && (
         <Icon
           className="bx--data-table__icon--success"
@@ -19,7 +19,14 @@ const EditCellStatus = ({ isLoading, shouldDisplaySuccess }) => (
 );
 
 EditCellStatus.propTypes = {
-  isLoading: PropTypes.bool,
+  /**
+   * Specify whether the cell being edited is currently being saved
+   */
+  isSaving: PropTypes.bool,
+
+  /**
+   * Boolean flag specifying whether we should display the saved indicator
+   */
   shouldDisplaySuccess: PropTypes.bool,
 };
 

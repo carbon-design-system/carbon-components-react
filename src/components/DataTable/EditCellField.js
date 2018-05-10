@@ -4,21 +4,58 @@ import PropTypes from 'prop-types';
 import Icon from '../Icon';
 import EditCellActions from './EditCellActions';
 
-const inputClassNames = {
-  text: 'bx--text-input',
-};
-
 export default class EditCellField extends React.Component {
   static propTypes = {
+    /**
+     * Specify whether the Cell Field is disabled
+     */
     disabled: PropTypes.bool,
+    /**
+     * Pass in an error that is associated with the edit status of the cell
+     * field
+     */
     error: PropTypes.string,
+
+    /**
+     * The id used to uniquely identify the underlying input node
+     */
     id: PropTypes.string.isRequired,
+
+    /**
+     * Specify whether the Edit Cell is currently being saved, or not
+     */
     isSaving: PropTypes.bool,
+
+    /**
+     * Pass in the label text that is used to describe this cell to screen
+     * readers
+     */
     labelText: PropTypes.string.isRequired,
+
+    /**
+     * Specify a hook for when the user cancels their current edit flow
+     */
     onCancel: PropTypes.func.isRequired,
+
+    /**
+     * Specify a hook to listen into whenever the underlying input node changes
+     */
     onChange: PropTypes.func.isRequired,
+
+    /**
+     * Specify a hook for when the user saves their current edit flow
+     */
     onSave: PropTypes.func.isRequired,
+
+    /**
+     * Specify the type of the Cell Field. For now, only supports text. In the
+     * future this should support a variety of input types.
+     */
     type: PropTypes.oneOf(['text']).isRequired,
+
+    /**
+     * The value of the Cell
+     */
     value: PropTypes.string.isRequired,
   };
 
@@ -66,7 +103,7 @@ export default class EditCellField extends React.Component {
       'bx--data-table__edit-field--error': error && !isSaving,
     });
     const inputProps = {
-      className: inputClassNames[type],
+      className: 'bx--text-input',
       disabled,
       id,
       type,

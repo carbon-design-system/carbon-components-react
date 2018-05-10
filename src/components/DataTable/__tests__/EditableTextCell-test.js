@@ -1,35 +1,155 @@
+import React from 'react';
+import { mount } from 'enzyme';
+
+const getCancelTrigger = wrapper => wrapper.find('button').first();
+const getEditTrigger = wrapper => wrapper.find('.bx--data-table-cell__edit');
+const getSaveTrigger = wrapper => wrapper.find('button').last();
+const getTextInput = wrapper => wrapper.find('input');
+const startEditing = wrapper => getEditTrigger(wrapper).simulate('click');
+
+const nextTick = () => new Promise(resolve => process.nextTick(resolve));
+
 describe('EditableTextCell', () => {
-  it('should render');
+  let EditableTextCell;
+  let mockProps;
+  let mountNode;
 
-  it('should default to the initialValue provided');
+  beforeEach(() => {
+    EditableTextCell = require('../EditableTextCell').default;
+    mockProps = {
+      className: 'custom-class',
+      id: 'id',
+      initialValue: 'value-0',
+      onToggleEditCell: jest.fn(),
+      onSave: jest.fn(),
+      onCancel: jest.fn(),
+      isEditable: true,
+      validate: jest.fn(),
+    };
 
-  it('should switch to edit mode when a user clicks on the edit button');
+    mountNode = document.createElement('table');
+    mountNode.innerHTML = '<tbody><tr></tr></tbody>';
+    mountNode.id = 'root';
+    document.body.appendChild(mountNode);
 
-  it(
-    'should switch to edit mode when a user presses spacebar on the edit button'
-  );
+    mountNode = document.querySelector('#root tr');
+  });
 
-  it('should update the value of the input as the user types');
+  afterEach(() => {
+    const rootNode = document.querySelector('#root');
+    rootNode.parentNode.removeChild(rootNode);
+  });
 
-  it('should revert any changes to the input if the cancel button is clicked');
+  it('should render', () => {
+    const wrapper = mount(<EditableTextCell {...mockProps} />, {
+      attachTo: mountNode,
+    });
+    expect(wrapper).toMatchSnapshot();
+  });
 
-  it(
-    'should call the `onCancel` hook with the value of the input when cancelled'
-  );
+  it('should default to the initialValue provided', () => {
+    const wrapper = mount(<EditableTextCell {...mockProps} />, {
+      attachTo: mountNode,
+    });
+    expect(wrapper.find('.bx--data-table-cell__content').text()).toBe(
+      mockProps.initialValue
+    );
+    expect(getEditTrigger(wrapper).prop('title')).toBe(
+      `Edit Cell: ${mockProps.initialValue}`
+    );
+  });
 
-  it('should call validate on each change to the value of the input');
+  it('should switch to edit mode when a user clicks on the edit button', () => {
+    const wrapper = mount(<EditableTextCell {...mockProps} />, {
+      attachTo: mountNode,
+    });
+    getEditTrigger(wrapper).simulate('click');
+    expect(wrapper.find('EditCellField').length).toBe(1);
+  });
 
-  it(
-    'should show validation errors if they exist in response to input changes'
-  );
+  it('should update the value of the input as the user types', () => {
+    const wrapper = mount(<EditableTextCell {...mockProps} />, {
+      attachTo: mountNode,
+    });
+    startEditing(wrapper);
+    getTextInput(wrapper).simulate('change', {
+      target: {
+        value: 'foo',
+      },
+    });
+    expect(wrapper.state('value')).toBe('foo');
+  });
 
-  it(
-    'should call `onSave` prop when the user clicks on Save and show a spinner'
-  );
+  it('should revert any changes to the input if the cancel button is clicked', () => {
+    const wrapper = mount(<EditableTextCell {...mockProps} />, {
+      attachTo: mountNode,
+    });
+    startEditing(wrapper);
+    getTextInput(wrapper).simulate('change', {
+      target: {
+        value: 'foo',
+      },
+    });
+    getCancelTrigger(wrapper).simulate('click');
 
-  it('should show a success icon if `onSave` does not throw an error');
+    expect(wrapper.state('value')).toBe(mockProps.initialValue);
+    expect(mockProps.onCancel).toHaveBeenCalledWith({ value: 'foo' });
+  });
 
-  it('should fade out the success icon after 3000ms');
+  it('should call validate on each change to the value of the input', () => {
+    const wrapper = mount(<EditableTextCell {...mockProps} />, {
+      attachTo: mountNode,
+    });
+    startEditing(wrapper);
+    getTextInput(wrapper).simulate('change', {
+      target: {
+        value: 'foo',
+      },
+    });
+    expect(mockProps.validate).toHaveBeenCalledTimes(1);
+  });
 
-  it('should switch to invalid state if `onSave` fails');
+  it('should show validation errors if they exist in response to input changes', async () => {
+    const mockError = new Error('error');
+    const mockValidate = () => Promise.reject(mockError);
+    const wrapper = mount(
+      <EditableTextCell {...mockProps} validate={mockValidate} />,
+      {
+        attachTo: mountNode,
+      }
+    );
+    startEditing(wrapper);
+    getTextInput(wrapper).simulate('change', {
+      target: {
+        value: 'foo',
+      },
+    });
+
+    await nextTick();
+
+    expect(wrapper.state('error')).toBe(mockError.message);
+    expect(wrapper).toMatchSnapshot();
+  });
+
+  it('should call `onSave` prop when the user clicks on Save and show a spinner', async () => {
+    const wrapper = mount(<EditableTextCell {...mockProps} />, {
+      attachTo: mountNode,
+    });
+    startEditing(wrapper);
+    getTextInput(wrapper).simulate('change', {
+      target: {
+        value: 'foo',
+      },
+    });
+    getSaveTrigger(wrapper).simulate('click');
+
+    expect(wrapper.state('isSaving')).toBe(true);
+    expect(mockProps.onSave).toHaveBeenCalledWith({
+      value: 'foo',
+    });
+
+    await nextTick();
+
+    expect(wrapper).toMatchSnapshot();
+  });
 });

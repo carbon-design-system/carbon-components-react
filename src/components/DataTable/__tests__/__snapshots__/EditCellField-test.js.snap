@@ -1,0 +1,340 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EditCellField isEditing should not display editing classes if the control is being saved 1`] = `
+<EditCellField
+  disabled={false}
+  error={null}
+  id="id"
+  isSaving={true}
+  labelText="label"
+  onCancel={[MockFunction]}
+  onChange={[MockFunction]}
+  onSave={[MockFunction]}
+  type="text"
+  value="value"
+>
+  <div
+    className="bx--data-table__edit-field"
+  >
+    <label
+      className="bx--label"
+      htmlFor="id"
+    >
+      label
+    </label>
+    <input
+      className="bx--text-input"
+      disabled={false}
+      id="id"
+      onBlur={[Function]}
+      onChange={[MockFunction]}
+      onFocus={[Function]}
+      type="text"
+      value="value"
+    />
+  </div>
+  <EditCellActions
+    onCancel={[MockFunction]}
+    onSave={[MockFunction]}
+    translateWithId={[Function]}
+  >
+    <div
+      className="bx--data-table__edit-actions"
+    >
+      <button
+        className="bx--btn bx--btn--secondary bx--btn--sm"
+        onClick={[MockFunction]}
+      >
+        Cancel
+      </button>
+      <button
+        className="bx--btn bx--btn--primary bx--btn--sm"
+        onClick={[MockFunction]}
+      >
+        Save
+      </button>
+    </div>
+  </EditCellActions>
+</EditCellField>
+`;
+
+exports[`EditCellField isEditing should remove the editing class if the user blurs the input node 1`] = `
+<EditCellField
+  disabled={false}
+  error={null}
+  id="id"
+  isSaving={false}
+  labelText="label"
+  onCancel={[MockFunction]}
+  onChange={[MockFunction]}
+  onSave={[MockFunction]}
+  type="text"
+  value="value"
+>
+  <div
+    className="bx--data-table__edit-field"
+  >
+    <label
+      className="bx--label"
+      htmlFor="id"
+    >
+      label
+    </label>
+    <input
+      className="bx--text-input"
+      disabled={false}
+      id="id"
+      onBlur={[Function]}
+      onChange={[MockFunction]}
+      onFocus={[Function]}
+      type="text"
+      value="value"
+    />
+  </div>
+  <EditCellActions
+    onCancel={[MockFunction]}
+    onSave={[MockFunction]}
+    translateWithId={[Function]}
+  >
+    <div
+      className="bx--data-table__edit-actions"
+    >
+      <button
+        className="bx--btn bx--btn--secondary bx--btn--sm"
+        onClick={[MockFunction]}
+      >
+        Cancel
+      </button>
+      <button
+        className="bx--btn bx--btn--primary bx--btn--sm"
+        onClick={[MockFunction]}
+      >
+        Save
+      </button>
+    </div>
+  </EditCellActions>
+</EditCellField>
+`;
+
+exports[`EditCellField should render 1`] = `
+<EditCellField
+  disabled={false}
+  error={null}
+  id="id"
+  isSaving={false}
+  labelText="label"
+  onCancel={[MockFunction]}
+  onChange={[MockFunction]}
+  onSave={[MockFunction]}
+  type="text"
+  value="value"
+>
+  <div
+    className="bx--data-table__edit-field bx--data-table__edit-field--editing"
+  >
+    <label
+      className="bx--label"
+      htmlFor="id"
+    >
+      label
+    </label>
+    <input
+      className="bx--text-input"
+      disabled={false}
+      id="id"
+      onBlur={[Function]}
+      onChange={[MockFunction]}
+      onFocus={[Function]}
+      type="text"
+      value="value"
+    />
+  </div>
+  <EditCellActions
+    onCancel={[MockFunction]}
+    onSave={[MockFunction]}
+    translateWithId={[Function]}
+  >
+    <div
+      className="bx--data-table__edit-actions"
+    >
+      <button
+        className="bx--btn bx--btn--secondary bx--btn--sm"
+        onClick={[MockFunction]}
+      >
+        Cancel
+      </button>
+      <button
+        className="bx--btn bx--btn--primary bx--btn--sm"
+        onClick={[MockFunction]}
+      >
+        Save
+      </button>
+    </div>
+  </EditCellActions>
+</EditCellField>
+`;
+
+exports[`EditCellField with error should not display an error if the control is being saved 1`] = `
+<EditCellField
+  disabled={false}
+  error="error"
+  id="id"
+  isSaving={true}
+  labelText="label"
+  onCancel={[MockFunction]}
+  onChange={[MockFunction]}
+  onSave={[MockFunction]}
+  type="text"
+  value="value"
+>
+  <div
+    className="bx--data-table__edit-field"
+  >
+    <label
+      className="bx--label"
+      htmlFor="id"
+    >
+      label
+    </label>
+    <input
+      aria-describedby="id_error"
+      className="bx--text-input"
+      disabled={false}
+      id="id"
+      onBlur={[Function]}
+      onChange={[MockFunction]}
+      onFocus={[Function]}
+      type="text"
+      value="value"
+    />
+  </div>
+  <EditCellActions
+    onCancel={[MockFunction]}
+    onSave={[MockFunction]}
+    translateWithId={[Function]}
+  >
+    <div
+      className="bx--data-table__edit-actions"
+    >
+      <button
+        className="bx--btn bx--btn--secondary bx--btn--sm"
+        onClick={[MockFunction]}
+      >
+        Cancel
+      </button>
+      <button
+        className="bx--btn bx--btn--primary bx--btn--sm"
+        onClick={[MockFunction]}
+      >
+        Save
+      </button>
+    </div>
+  </EditCellActions>
+</EditCellField>
+`;
+
+exports[`EditCellField with error should render 1`] = `
+<EditCellField
+  disabled={false}
+  error="error"
+  id="id"
+  isSaving={false}
+  labelText="label"
+  onCancel={[MockFunction]}
+  onChange={[MockFunction]}
+  onSave={[MockFunction]}
+  type="text"
+  value="value"
+>
+  <div
+    className="bx--data-table__edit-field bx--data-table__edit-field--editing bx--data-table__edit-field--error"
+  >
+    <label
+      className="bx--label"
+      htmlFor="id"
+    >
+      label
+    </label>
+    <input
+      aria-describedby="id_error"
+      className="bx--text-input"
+      disabled={false}
+      id="id"
+      onBlur={[Function]}
+      onChange={[MockFunction]}
+      onFocus={[Function]}
+      type="text"
+      value="value"
+    />
+  </div>
+  <div
+    className="bx--data-table__edit-status"
+  >
+    <div
+      aria-describedby="id_error"
+      className="bx--data-table__status--error"
+      role="alert"
+    >
+      <Icon
+        aria-hidden={true}
+        className="bx--data-table__icon--error"
+        description="error"
+        fillRule="evenodd"
+        name="error--glyph"
+        role="img"
+        title="error"
+      >
+        <svg
+          alt="error"
+          aria-hidden={true}
+          aria-label="error"
+          className="bx--data-table__icon--error"
+          fillRule="evenodd"
+          height="16"
+          name="error--glyph"
+          role="img"
+          title="error"
+          viewBox="0 0 16 16"
+          width="16"
+        >
+          <title>
+            error
+          </title>
+          <path
+            d="M8 0C3.6 0 0 3.6 0 8s3.6 8 8 8 8-3.6 8-8-3.6-8-8-8zM5.1 13.3L3.5 12 11 2.6l1.5 1.2-7.4 9.5z"
+            key="key0"
+          />
+        </svg>
+      </Icon>
+      <span
+        className="bx--data-table__error-text"
+        id="id_error"
+      >
+        error
+      </span>
+    </div>
+  </div>
+  <EditCellActions
+    onCancel={[MockFunction]}
+    onSave={[MockFunction]}
+    translateWithId={[Function]}
+  >
+    <div
+      className="bx--data-table__edit-actions"
+    >
+      <button
+        className="bx--btn bx--btn--secondary bx--btn--sm"
+        onClick={[MockFunction]}
+      >
+        Cancel
+      </button>
+      <button
+        className="bx--btn bx--btn--primary bx--btn--sm"
+        onClick={[MockFunction]}
+      >
+        Save
+      </button>
+    </div>
+  </EditCellActions>
+</EditCellField>
+`;

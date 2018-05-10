@@ -9,27 +9,47 @@ const getInputId = cellId => `edit-cell:${cellId}`;
 
 export default class EditableTextCell extends React.Component {
   static propTypes = {
+    /**
+     * Specify a custom className that is placed on the containing node
+     */
     className: PropTypes.string,
 
-    // The id of the cell from the DataTable
+    /**
+     * The id of the cell from the corresponding DataTable
+     */
     id: PropTypes.string.isRequired,
 
-    // initialValue: PropTypes.string,
+    /**
+     * The initial value of the component
+     */
+    initialValue: PropTypes.string,
 
-    // Parent hook to register the cell is being edited
+    /**
+     * Parent hook to register the cell is being edited
+     */
     onToggleEditCell: PropTypes.func.isRequired,
 
-    // Promise-returning
+    /**
+     * Promise-returning function that handles the logic when saving a cell
+     * value
+     */
     onSave: PropTypes.func.isRequired,
 
-    // Synchronous
+    /**
+     * Hook to listen into when the user cancels editing the TextCell
+     */
     onCancel: PropTypes.func,
 
-    // Specify where the cell should display an edit trigger, or not. Useful for
-    // coordination with other cells that may already be in an edit mode.
+    /**
+     * Specify where the cell should display an edit trigger, or not. Useful for
+     * coordination with other cells that may already be in an edit mode.
+     */
     isEditable: PropTypes.bool.isRequired,
 
-    // Promise or synchronous
+    /**
+     * Provide a function that validates what the user is typing into the
+     * TextCell
+     */
     validate: PropTypes.func,
   };
 

@@ -1,0 +1,70 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EditCellStatus should render 1`] = `
+<EditCellStatus
+  isSaving={true}
+>
+  <div
+    className="bx--data-table__edit-status"
+  >
+    <Loading
+      active={true}
+      small={true}
+      withOverlay={false}
+    >
+      <div
+        className="bx--loading bx--loading--small"
+      >
+        <svg
+          className="bx--loading__svg"
+          viewBox="-75 -75 150 150"
+        >
+          <circle
+            cx="0"
+            cy="0"
+            r="37.5"
+          />
+        </svg>
+      </div>
+    </Loading>
+  </div>
+</EditCellStatus>
+`;
+
+exports[`EditCellStatus should render 2`] = `
+<EditCellStatus
+  shouldDisplaySuccess={true}
+>
+  <div
+    className="bx--data-table__edit-status"
+  >
+    <Icon
+      className="bx--data-table__icon--success"
+      description="Successfully saved cell"
+      fillRule="evenodd"
+      name="checkmark"
+      role="alert"
+    >
+      <svg
+        alt="Successfully saved cell"
+        aria-label="Successfully saved cell"
+        className="bx--data-table__icon--success"
+        fillRule="evenodd"
+        height="9"
+        name="checkmark"
+        role="alert"
+        viewBox="0 0 12 9"
+        width="12"
+      >
+        <title>
+          Successfully saved cell
+        </title>
+        <path
+          d="M4.1 6.1L1.4 3.4 0 4.9 4.1 9l7.6-7.6L10.3 0z"
+          key="key0"
+        />
+      </svg>
+    </Icon>
+  </div>
+</EditCellStatus>
+`;

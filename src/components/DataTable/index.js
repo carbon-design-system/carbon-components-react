@@ -1,5 +1,8 @@
 import DataTable from './DataTable';
 import EditableTextCell from './EditableTextCell';
+import EditCellActions from './EditCellActions';
+import EditCellField from './EditCellField';
+import EditCellStatus from './EditCellStatus';
 import Table from './Table';
 import TableActionList from './TableActionList';
 import TableBatchAction from './TableBatchAction';
@@ -21,6 +24,9 @@ import TableToolbarContent from './TableToolbarContent';
 import TableToolbarSearch from './TableToolbarSearch';
 
 DataTable.EditableTextCell = EditableTextCell;
+DataTable.EditCellActions = EditCellActions;
+DataTable.EditCellField = EditCellField;
+DataTable.EditCellStatus = EditCellStatus;
 DataTable.Table = Table;
 DataTable.TableActionList = TableActionList;
 DataTable.TableBatchAction = TableBatchAction;
@@ -43,6 +49,9 @@ DataTable.TableToolbarSearch = TableToolbarSearch;
 
 export {
   EditableTextCell,
+  EditCellActions,
+  EditCellField,
+  EditCellStatus,
   Table,
   TableActionList,
   TableBatchAction,
