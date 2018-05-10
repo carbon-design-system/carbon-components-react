@@ -103,18 +103,18 @@ export default class Tag extends Component {
     }
 
     const closeIcon = (
-      <Icon
-        className="bx--tag-close"
-        name="close"
-        fill="grey"
-        description="This is a description of the icon and what it does…"
-        role="button"
-        tabIndex="0"
-        onClick={this.handleRemove}
-        onKeyDown={evt => {
-          if (evt.which === 13 || evt.which === 32) this.handleRemove(evt);
-        }}
-      />
+      <span className="bx--tag-spacing">
+        <Icon
+          className="bx--tag-close"
+          name="close"
+          role="button"
+          tabIndex="0"
+          onClick={this.handleRemove}
+          onKeyDown={evt => {
+            if (evt.which === 13 || evt.which === 32) this.handleRemove(evt);
+          }}
+        />
+      </span>
     );
 
     return (
