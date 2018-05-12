@@ -81,6 +81,11 @@ module.exports = {
     babel({
       exclude: ['node_modules/**'], // only transpile our source code
     }),
+    babel({
+      babelrc: false,
+      plugins: [require.resolve('./babel-plugin-wrap-amd-factory')],
+      include: ['node_modules/flatpickr/**'],
+    }),
     replace({
       'process.env.NODE_ENV': JSON.stringify(env),
     }),
