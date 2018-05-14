@@ -18,9 +18,14 @@ storiesOf('CodeSnippet', module)
       The Inline style is for code used within a block of text.
     `,
     () => (
-      <CodeSnippet type="inline" {...copyProps}>
-        {'this is a test'}
-      </CodeSnippet>
+      <div>
+        <CodeSnippet type="inline" {...copyProps}>
+          {'node -v'}
+        </CodeSnippet>
+        <CodeSnippet type="inline" light {...copyProps}>
+          {'node -v'}
+        </CodeSnippet>
+      </div>
     )
   )
   .addWithInfo(

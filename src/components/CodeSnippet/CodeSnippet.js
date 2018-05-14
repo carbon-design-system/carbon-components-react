@@ -21,6 +21,11 @@ export default class CodeSnippet extends Component {
     wrappedContentRef: PropTypes.func,
     showMoreText: PropTypes.string,
     showLessText: PropTypes.string,
+    /**
+     * Used with inline snippet only
+     * to display alternate color
+     */
+    light: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -53,6 +58,7 @@ export default class CodeSnippet extends Component {
       onClick,
       copyLabel,
       wrappedContentRef,
+      light,
       /*
       showMoreText,
       showLessText,
@@ -66,9 +72,10 @@ export default class CodeSnippet extends Component {
       'bx--snippet--multi': (type === 'multi') | (type === 'code'),
       'bx--snippet--inline': type === 'inline',
       'bx--snippet--expand': this.state.expandedCode,
+      'bx--snippet--light': light,
     });
 
-    const expandCodeBtnText = this.state.expandedCode ? 'less' : 'more';
+    const expandCodeBtnText = this.state.expandedCode ? 'less' : 'more'; // need the show/more less text props to show here
 
     const moreLessBtn = (
       <button
