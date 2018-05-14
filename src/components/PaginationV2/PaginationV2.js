@@ -165,7 +165,8 @@ export default class PaginationV2 extends Component {
     const page = Number(evt.target.value);
     if (
       page > 0 &&
-      page <= Math.ceil(this.props.totalItems / this.state.pageSize)
+      page <=
+        Math.max(Math.ceil(this.props.totalItems / this.state.pageSize), 1)
     ) {
       this.setState({ page });
       this.props.onChange({ page, pageSize: this.state.pageSize });
