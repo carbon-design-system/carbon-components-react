@@ -168,6 +168,11 @@ export default class OverflowMenu extends Component {
      * Function called to override icon rendering.
      */
     renderIcon: PropTypes.func,
+
+    /**
+     * Function called when menu is closed
+     */
+    onClose: PropTypes.func,
   };
 
   static defaultProps = {
@@ -179,6 +184,7 @@ export default class OverflowMenu extends Component {
     floatingMenu: false,
     onClick: () => {},
     onKeyDown: () => {},
+    onClose: () => {},
     tabIndex: 0,
     menuOffset: getMenuOffset,
     menuOffsetFlip: getMenuOffset,
@@ -263,6 +269,7 @@ export default class OverflowMenu extends Component {
 
   closeMenu = () => {
     this.setState({ open: false });
+    this.props.onClose();
   };
 
   bindMenuEl = menuEl => {
