@@ -18,14 +18,6 @@ describe('Tag', () => {
       expect(tag.hasClass('bx--tag--functional')).toEqual(true);
     });
 
-    it('should add the selected class when clicked', () => {
-      const wrapper = mount(<Tag type="functional" />);
-      wrapper.find('.bx--tag').simulate('click');
-      const tag = wrapper.find('.bx--tag');
-      expect(tag.hasClass('bx--tag--functional')).toEqual(true);
-      expect(tag.hasClass('bx--tag--functional__selected')).toEqual(true);
-    });
-
     it('should show the tag as removed when clicking on the x', () => {
       const wrapper = mount(<Tag type="functional" isRemovable={true} />);
       const tag = wrapper.find('.bx--tag');
