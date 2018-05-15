@@ -20,7 +20,6 @@ export default class Tag extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selected: false,
       removed: false,
     };
   }
@@ -30,27 +29,11 @@ export default class Tag extends Component {
     type: PropTypes.oneOf(Object.keys(TYPES)).isRequired,
     isRemovable: PropTypes.bool,
     onRemove: PropTypes.func,
-    onSelect: PropTypes.func,
   };
 
   static defaultProps = {
     onRemove: () => {},
-    onSelect: () => {},
     isRemovable: false,
-  };
-
-  toggleSelect = event => {
-    const { onSelect, children } = this.props;
-    const newState = !this.state.selected;
-
-    this.setState({
-      selected: newState,
-    });
-
-    event.stopPropagation();
-    if (onSelect) {
-      onSelect({ children: children, isSelected: newState });
-    }
   };
 
   handleRemove = event => {
@@ -72,7 +55,6 @@ export default class Tag extends Component {
       type,
       isRemovable,
       onRemove, // eslint-disable-line no-unused-vars
-      onSelect, // eslint-disable-line no-unused-vars
       ...other
     } = this.props;
     let tagClass = `bx--tag--${type}`;
@@ -95,26 +77,20 @@ export default class Tag extends Component {
         ...tagProps,
         className: tagClasses,
         tabIndex: 0,
-        onClick: this.toggleSelect,
-        onKeyDown: evt => {
-          if (evt.which === 13 || evt.which === 32) this.toggleSelect(evt);
-        },
       };
     }
 
     const closeIcon = (
-      <span className="bx--tag-spacing">
-        <Icon
-          className="bx--tag-close"
-          name="close"
-          role="button"
-          tabIndex="0"
-          onClick={this.handleRemove}
-          onKeyDown={evt => {
-            if (evt.which === 13 || evt.which === 32) this.handleRemove(evt);
-          }}
-        />
-      </span>
+      <Icon
+        className="bx--tag-close"
+        name="close"
+        tabIndex="0"
+        role="button"
+        onClick={this.handleRemove}
+        onKeyDown={evt => {
+          if (evt.which === 13 || evt.which === 32) this.handleRemove(evt);
+        }}
+      />
     );
 
     return (
