@@ -1,6 +1,7 @@
 import React from 'react';
 import Icon from '../Icon';
 import Search from '../Search';
+import SearchSkeleton from '../Search/Search.Skeleton';
 import { mount, shallow } from 'enzyme';
 
 describe('Search', () => {
@@ -75,10 +76,10 @@ describe('Search', () => {
     describe('Large Search', () => {
       describe('buttons', () => {
         const btns = wrapper.find('button');
-        const sortBtn = btns.first();
+        const sortBtn = btns.last();
 
-        it('should be two buttons', () => {
-          expect(btns.length).toBe(2);
+        it('should be three buttons', () => {
+          expect(btns.length).toBe(3);
         });
 
         it('should have type="button"', () => {
@@ -120,12 +121,6 @@ describe('Search', () => {
           const icon = wrapper.find(Icon).at(3);
           expect(icon.props().name).toEqual('list');
         });
-
-        it('should use "grid" icon when format state is not "list"', () => {
-          wrapper.setState({ format: 'not-list' });
-          const icon = wrapper.find(Icon).at(3);
-          expect(icon.props().name).toEqual('grid');
-        });
       });
     });
 
@@ -151,9 +146,9 @@ describe('Search', () => {
         expect(smallContainer.hasClass('bx--search--sm')).toEqual(true);
       });
 
-      it('should not have buttons', () => {
+      it('should only have 1 button (clear)', () => {
         const btn = small.find('button');
-        expect(btn.length).toEqual(0);
+        expect(btn.length).toEqual(1);
       });
 
       it('renders one Icon', () => {
@@ -204,13 +199,13 @@ describe('Search', () => {
       });
 
       it('should toggle layout to "grid" when clicked', () => {
-        const button = wrapper.find('button').at(1);
+        const button = wrapper.find('button').at(2);
         button.simulate('click');
         const icon = wrapper.find(Icon).at(3);
         expect(icon.props().name).toEqual('grid');
       });
       it('should toggle layout to "list" when clicked and currently set to "grid"', () => {
-        const button = wrapper.find('button').at(1);
+        const button = wrapper.find('button').at(2);
         wrapper.setState({
           format: 'grid',
         });
@@ -218,6 +213,28 @@ describe('Search', () => {
         const icon = wrapper.find(Icon).at(3);
         expect(icon.props().name).toEqual('list');
       });
+    });
+  });
+});
+
+describe('SearchSkeleton', () => {
+  describe('Renders as expected', () => {
+    const wrapper = shallow(<SearchSkeleton />);
+
+    it('Has the expected classes', () => {
+      expect(wrapper.hasClass('bx--skeleton')).toEqual(true);
+      expect(wrapper.hasClass('bx--search--lg')).toEqual(true);
+    });
+  });
+});
+
+describe('SearchSkeleton Small', () => {
+  describe('Renders as expected', () => {
+    const wrapper = shallow(<SearchSkeleton small />);
+
+    it('Has the expected classes', () => {
+      expect(wrapper.hasClass('bx--skeleton')).toEqual(true);
+      expect(wrapper.hasClass('bx--search--sm')).toEqual(true);
     });
   });
 });

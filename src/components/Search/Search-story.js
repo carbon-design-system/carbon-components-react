@@ -4,6 +4,8 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import Search from '../Search';
+import SearchSkeleton from '../Search/Search.Skeleton';
+import SearchFilterButton from '../SearchFilterButton';
 
 const searchProps = {
   className: 'some-class',
@@ -87,4 +89,36 @@ storiesOf('Search', module)
 
       return <ControlledSearch />;
     }
+  )
+  .addWithInfo(
+    'Custom set of buttons',
+    `
+      You can control what set of buttons you want.
+    `,
+    () => (
+      <Search
+        {...searchProps}
+        className="some-class"
+        id="search-1"
+        labelText="Search"
+        placeHolderText="Search"
+        onChange={() => {
+          console.log('onChange');
+          action('onChange');
+        }}>
+        <SearchFilterButton />
+      </Search>
+    )
+  )
+  .addWithInfo(
+    'skeleton',
+    `
+      Placeholder skeleton state to use when content is loading.
+    `,
+    () => (
+      <div style={{ width: '200px' }}>
+        <SearchSkeleton />&nbsp;
+        <SearchSkeleton small />
+      </div>
+    )
   );

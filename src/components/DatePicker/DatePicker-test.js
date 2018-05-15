@@ -1,6 +1,7 @@
 import React from 'react';
 import DatePicker from '../DatePicker';
-import { mount } from 'enzyme';
+import DatePickerSkeleton from '../DatePicker/DatePicker.Skeleton';
+import { mount, shallow } from 'enzyme';
 
 describe('DatePicker', () => {
   describe('Renders as expected', () => {
@@ -165,6 +166,69 @@ describe('DatePicker', () => {
 
     it('should render an icon', () => {
       expect(icon.length).toEqual(1);
+    });
+  });
+
+  describe('Date picker with locale', () => {
+    const wrapper = mount(
+      <DatePicker
+        onChange={() => {}}
+        datePickerType="range"
+        className="extra-class"
+        locale="es">
+        <div className="test-child">
+          <input
+            type="text"
+            className="bx--date-picker__input"
+            id="input-from"
+          />
+        </div>
+        <div className="test-child">
+          <input type="text" className="bx--date-picker__input" id="input-to" />
+        </div>
+      </DatePicker>
+    );
+
+    const wrapperNoLocale = mount(
+      <DatePicker
+        onChange={() => {}}
+        datePickerType="range"
+        className="extra-class">
+        <div className="test-child">
+          <input
+            type="text"
+            className="bx--date-picker__input"
+            id="input-from"
+          />
+        </div>
+        <div className="test-child">
+          <input type="text" className="bx--date-picker__input" id="input-to" />
+        </div>
+      </DatePicker>
+    );
+
+    it('has the range date picker locale', () => {
+      const datepicker = wrapper.find('DatePicker');
+      expect(datepicker.props().locale).toBe('es');
+    });
+
+    it('has the range date picker without locale defined', () => {
+      const datepicker = wrapperNoLocale.find('DatePicker');
+      expect(datepicker.props().locale).toBe('en');
+    });
+  });
+});
+
+describe('DatePickerSkeleton', () => {
+  describe('Renders as expected', () => {
+    const wrapper = shallow(<DatePickerSkeleton range />);
+
+    it('Has the expected classes', () => {
+      expect(wrapper.children().hasClass('bx--skeleton')).toEqual(true);
+      expect(wrapper.children().hasClass('bx--date-picker')).toEqual(true);
+      expect(wrapper.children().hasClass('bx--date-picker--range')).toEqual(
+        true
+      );
     });
   });
 });
