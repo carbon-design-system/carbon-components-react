@@ -62,6 +62,12 @@ export default class ModalWrapper extends React.Component {
     }
   };
 
+  componentWillReceiveProps({ open }) {
+    if (open !== this.props.open) {
+      this.setState({ isOpen: open });
+    }
+  }
+
   render() {
     const {
       id,

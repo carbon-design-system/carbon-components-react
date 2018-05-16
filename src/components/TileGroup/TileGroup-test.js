@@ -105,4 +105,27 @@ describe('TileGroup', () => {
       expect(onChange).not.toHaveBeenCalled();
     });
   });
+
+  describe('prop -> state sync', () => {
+    const wrapper = mount(
+      <TileGroup name="gender">
+        <RadioTile labelText="Male" value="male" />
+        <RadioTile labelText="Female" value="female" />
+      </TileGroup>
+    );
+
+    it('should change the selected item upon change in props', () => {
+      wrapper.setProps({ valueSelected: 'male' });
+      wrapper.setState({ selected: 'male' });
+      wrapper.setProps({ valueSelected: 'female' });
+      expect(wrapper.state().selected).toEqual('female');
+    });
+
+    it('should avoid change the selected item upon setting props, unless there the value actually changes', () => {
+      wrapper.setProps({ valueSelected: 'male' });
+      wrapper.setState({ selected: 'female' });
+      wrapper.setProps({ valueSelected: 'male' });
+      expect(wrapper.state().selected).toEqual('female');
+    });
+  });
 });

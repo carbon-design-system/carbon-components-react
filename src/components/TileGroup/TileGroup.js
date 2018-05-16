@@ -29,10 +29,10 @@ export default class TileGroup extends React.Component {
     });
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.hasOwnProperty('valueSelected')) {
+  componentWillReceiveProps({ valueSelected }) {
+    if (this.props.valueSelected !== valueSelected) {
       this.setState({
-        selected: nextProps.valueSelected,
+        selected: valueSelected,
       });
     }
   }

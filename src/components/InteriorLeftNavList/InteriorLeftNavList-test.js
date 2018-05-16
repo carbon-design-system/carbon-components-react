@@ -129,4 +129,28 @@ describe('InteriorLeftNavList', () => {
       expect(list.state().open).toEqual(false);
     });
   });
+
+  describe('props -> state sync', () => {
+    const list = mount(
+      <InteriorLeftNavList title="test-title" open={false}>
+        <InteriorLeftNavItem href="">
+          <a href="http://www.carbondesignsystem.com">test-title</a>
+        </InteriorLeftNavItem>
+      </InteriorLeftNavList>
+    );
+
+    it('should change the open state upon change in props', () => {
+      list.setProps({ open: false });
+      list.setState({ open: false });
+      list.setProps({ open: true });
+      expect(list.state().open).toEqual(true);
+    });
+
+    it('should avoid change the open state upon setting props, unless there the value actually changes', () => {
+      list.setProps({ open: false });
+      list.setState({ open: true });
+      list.setProps({ open: false });
+      expect(list.state().open).toEqual(true);
+    });
+  });
 });

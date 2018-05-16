@@ -27,6 +27,32 @@ describe('ModalWrapper', () => {
     expect(wrapper).toMatchSnapshot();
   });
 
+  it('should change the open state upon change in props', () => {
+    const wrapper = mount(
+      <ModalWrapper {...mockProps}>
+        <p className="bx--modal-content__text">Text</p>
+      </ModalWrapper>
+    );
+
+    wrapper.setProps({ open: true });
+    expect(wrapper.state('isOpen')).toBe(true);
+
+    wrapper.setProps({ open: false });
+    expect(wrapper.state('isOpen')).toBe(false);
+  });
+
+  it('should avoid change the open state upon setting props, unless there the value actually changes', () => {
+    const wrapper = mount(
+      <ModalWrapper {...mockProps} open={true}>
+        <p className="bx--modal-content__text">Text</p>
+      </ModalWrapper>
+    );
+
+    wrapper.find({ children: mockProps.primaryButtonText }).simulate('click'); // Turns `state.open` to `false`
+    wrapper.setProps({ open: true }); // No change in `open` prop
+    expect(wrapper.state('isOpen')).toBe(false);
+  });
+
   it('should close after a successful submit action', () => {
     const wrapper = mount(
       <ModalWrapper {...mockProps}>

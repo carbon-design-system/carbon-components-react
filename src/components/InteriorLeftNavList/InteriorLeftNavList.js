@@ -60,6 +60,12 @@ export default class InteriorLeftNavList extends Component {
     );
   };
 
+  componentWillReceiveProps({ open }) {
+    if (open !== this.props.open) {
+      this.setState({ open });
+    }
+  }
+
   render() {
     const {
       tabIndex,
