@@ -16,6 +16,11 @@ l10n.en.weekdays.shorthand.forEach((day, index) => {
   }
 });
 
+const flatpickrClass = (() => {
+  let cached;
+  return () => (flatpickr.l10ns ? flatpickr : cached || (cached = flatpickr()));
+})();
+
 export default class DatePicker extends Component {
   static propTypes = {
     /**
@@ -216,7 +221,7 @@ export default class DatePicker extends Component {
       const onHook = (electedDates, dateStr, instance) => {
         this.updateClassNames(instance);
       };
-      this.cal = flatpickr(this.inputField, {
+      this.cal = flatpickrClass()(this.inputField, {
         appendTo,
         mode: datePickerType,
         allowInput: true,
