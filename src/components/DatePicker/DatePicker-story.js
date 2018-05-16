@@ -94,7 +94,7 @@ storiesOf('DatePicker', module)
   .addWithInfo(
     'range with calendar and min/max dates',
     `
-      A range Date Picker consists of two input fields and a calendar.
+      A range Date Picker consists of two input fields and a calendar, and optionally, the minDate and maxDate fields.
     `,
     () => (
       <DatePicker
