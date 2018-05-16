@@ -6,14 +6,14 @@ import { mount, shallow } from 'enzyme';
 describe('Code Snippet', () => {
   describe('Renders as expected', () => {
     const snippet = shallow(
-      <CodeSnippet className="some-class" type="terminal">
+      <CodeSnippet className="some-class" type="single">
         {'node -v'}
       </CodeSnippet>
     );
 
     it('should use the appropriate snippet class', () => {
       expect(snippet.hasClass('bx--snippet')).toEqual(true);
-      expect(snippet.hasClass('bx--snippet--terminal')).toEqual(true);
+      expect(snippet.hasClass('bx--snippet--single')).toEqual(true);
     });
 
     it('should render children as expected', () => {
@@ -30,7 +30,7 @@ describe('Code Snippet', () => {
     const wrappedContentRef = jest.fn(el => (mockRef = el));
     const content = 'node -v';
     mount(
-      <CodeSnippet type="terminal" wrappedContentRef={wrappedContentRef}>
+      <CodeSnippet type="single" wrappedContentRef={wrappedContentRef}>
         {content}
       </CodeSnippet>
     );
@@ -41,12 +41,12 @@ describe('Code Snippet', () => {
 
 describe('CodeSnippetSkeleton', () => {
   describe('Renders as expected', () => {
-    const wrapper = shallow(<CodeSnippetSkeleton type="terminal" />);
+    const wrapper = shallow(<CodeSnippetSkeleton type="single" />);
 
     it('Has the expected classes', () => {
       expect(wrapper.hasClass('bx--skeleton')).toEqual(true);
       expect(wrapper.hasClass('bx--snippet')).toEqual(true);
-      expect(wrapper.hasClass('bx--snippet--terminal')).toEqual(true);
+      expect(wrapper.hasClass('bx--snippet--single')).toEqual(true);
     });
   });
 });

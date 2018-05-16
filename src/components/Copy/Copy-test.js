@@ -1,5 +1,5 @@
 import React from 'react';
-import CopyButton from '../Copy';
+import Copy from '../Copy';
 import { shallow, mount } from 'enzyme';
 
 jest.useFakeTimers();
@@ -21,13 +21,7 @@ describe('Copy', () => {
   });
 
   describe('Renders button props as expected', () => {
-    const wrapper = shallow(<CopyButton />);
-
-    it('Renders children as expected', () => {
-      expect(wrapper.is('button')).toBe(true);
-      expect(wrapper.hasClass('bx--snippet-button')).toBe(true);
-      expect(wrapper.find('.bx--btn--copy__feedback').length).toBe(1);
-    });
+    const wrapper = shallow(<Copy />);
 
     it('Should be able to disable the button', () => {
       wrapper.setProps({ disabled: true });
@@ -36,17 +30,17 @@ describe('Copy', () => {
     });
 
     it('Should have a default feedback timeout', () => {
-      const timeoutWrapper = mount(<CopyButton />);
+      const timeoutWrapper = mount(<Copy />);
       expect(timeoutWrapper.props().feedbackTimeout).toBe(2000);
     });
 
     it('Should be able to set the timeout for displaying feedback', () => {
-      const timeoutWrapper = mount(<CopyButton feedbackTimeout={5000} />);
+      const timeoutWrapper = mount(<Copy feedbackTimeout={5000} />);
       expect(timeoutWrapper.props().feedbackTimeout).toBe(5000);
     });
 
     it('Should be able to specify the feedback message', () => {
-      const feedbackWrapper = mount(<CopyButton feedback="Copied!" />);
+      const feedbackWrapper = mount(<Copy feedback="Copied!" />);
       expect(
         feedbackWrapper.find('.bx--btn--copy__feedback').props()[
           'data-feedback'
@@ -57,7 +51,7 @@ describe('Copy', () => {
 
   describe('Renders feedback as expected', () => {
     it('Should make the feedback visible', () => {
-      const feedbackWrapper = mount(<CopyButton feedback="Copied!" />);
+      const feedbackWrapper = mount(<Copy feedback="Copied!" />);
       const feedback = () => feedbackWrapper.find('.bx--btn--copy__feedback');
       expect(feedback().hasClass('bx--btn--copy__feedback--displayed')).toBe(
         false
@@ -70,7 +64,7 @@ describe('Copy', () => {
 
     it('Should show feedback for a limited amount of time', () => {
       const feedbackWrapper = mount(
-        <CopyButton feedback="Copied!" feedbackTimeout={5000} />
+        <Copy feedback="Copied!" feedbackTimeout={5000} />
       );
       expect(feedbackWrapper.state().showFeedback).toBe(false);
       feedbackWrapper.simulate('click');
@@ -85,7 +79,7 @@ describe('Copy', () => {
   describe('Triggers appropriate events', () => {
     it('should call the click handler', () => {
       const onClick = jest.fn();
-      const clickWrapper = mount(<CopyButton onClick={onClick} />);
+      const clickWrapper = mount(<Copy onClick={onClick} />);
       clickWrapper.simulate('click');
       expect(onClick).toBeCalled();
     });

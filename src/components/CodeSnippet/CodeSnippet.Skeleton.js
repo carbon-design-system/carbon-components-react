@@ -4,7 +4,7 @@ import classNames from 'classnames';
 
 const CodeSnippetSkeleton = ({ className, type }) => {
   const snippetType =
-    type === 'terminal' ? 'bx--snippet--terminal' : 'bx--snippet--code';
+    type === 'single' ? 'bx--snippet--single' : 'bx--snippet--multi';
   const wrapperClasses = classNames(
     'bx--snippet',
     'bx--skeleton',
