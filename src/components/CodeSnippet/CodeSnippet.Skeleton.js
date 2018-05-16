@@ -1,34 +1,51 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { Component } from 'react';
 import classNames from 'classnames';
 
-const CodeSnippetSkeleton = ({ className, type }) => {
-  const snippetType =
-    type === 'single' ? 'bx--snippet--single' : 'bx--snippet--multi';
-  const wrapperClasses = classNames(
-    'bx--snippet',
-    'bx--skeleton',
-    className,
-    snippetType
-  );
-  return (
-    <div className={wrapperClasses}>
-      <div className="bx--snippet-container">
-        <code>
-          <pre />
-        </code>
-      </div>
-    </div>
-  );
-};
+export default class CodeSnippetSkeleton extends Component {
+  static propTypes = {
+    /**
+     * The type of code snippet
+     * can be inline, single or multi
+     */
+    type: PropTypes.string,
+    className: PropTypes.string,
+  };
 
-CodeSnippetSkeleton.propTypes = {
-  type: PropTypes.string,
-  className: PropTypes.string,
-};
+  static defaultProps = {
+    type: 'single',
+  };
 
-CodeSnippetSkeleton.defaultProps = {
-  type: 'terminal',
-};
+  render() {
+    const { className, type, ...other } = this.props;
 
-export default CodeSnippetSkeleton;
+    const codeSnippetClasses = classNames(className, {
+      'bx--snippet': true,
+      'bx--skeleton': true,
+      'bx--snippet--single': type === 'single',
+      'bx--snippet--multi': type === 'multi',
+    });
+
+    if (type === 'single') {
+      return (
+        <div className={codeSnippetClasses} {...other}>
+          <div className="bx--snippet-container">
+            <span />
+          </div>
+        </div>
+      );
+    }
+
+    if (type === 'multi') {
+      return (
+        <div className={codeSnippetClasses} {...other}>
+          <div className="bx--snippet-container">
+            <span />
+            <span />
+            <span />
+          </div>
+        </div>
+      );
+    }
+  }
+}

@@ -2,6 +2,7 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import CodeSnippet from '../CodeSnippet';
+import CodeSnippetSkeleton from './CodeSnippet.Skeleton';
 
 const copyProps = {
   onClick: action('onClick'),
@@ -75,6 +76,18 @@ $z-indexes: (
   floating: 10000
 );   `}
         </CodeSnippet>
+      </div>
+    )
+  )
+  .addWithInfo(
+    'skeleton',
+    `
+    Placeholder skeleton state to use when content is loading.
+    `,
+    () => (
+      <div style={{ width: '800px' }}>
+        <CodeSnippetSkeleton type="single" />
+        <CodeSnippetSkeleton type="multi" />
       </div>
     )
   );
