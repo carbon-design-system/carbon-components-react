@@ -223,6 +223,12 @@ export default class OverflowMenu extends Component {
     });
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.open) {
+      this.props.onClose();
+    }
+  }
+
   componentWillReceiveProps(nextProps) {
     if (nextProps.open !== this.props.open) {
       this.setState({ open: nextProps.open });
@@ -340,10 +346,6 @@ export default class OverflowMenu extends Component {
     } = this.props;
 
     const { open } = this.state;
-
-    if (!open) {
-      this.props.onClose();
-    }
 
     const overflowMenuClasses = classNames(
       this.props.className,
