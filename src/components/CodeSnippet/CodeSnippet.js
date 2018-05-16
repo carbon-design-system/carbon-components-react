@@ -68,8 +68,8 @@ export default class CodeSnippet extends Component {
 
     const codeSnippetClasses = classNames(className, {
       'bx--snippet': true,
-      'bx--snippet--single': (type === 'single') | (type === 'terminal'),
-      'bx--snippet--multi': (type === 'multi') | (type === 'code'),
+      'bx--snippet--single': type === 'single' || type === 'terminal',
+      'bx--snippet--multi': type === 'multi' || type === 'code',
       'bx--snippet--inline': type === 'inline',
       'bx--snippet--expand': this.state.expandedCode,
       'bx--snippet--light': light,
@@ -102,7 +102,7 @@ export default class CodeSnippet extends Component {
 
     const copy = <CopyButton onClick={onClick} feedback={feedback} />;
 
-    if ((type === 'inline') | (type === 'terminal')) {
+    if (type === 'inline' || type === 'terminal') {
       return (
         <Copy
           className={codeSnippetClasses}
@@ -122,7 +122,7 @@ export default class CodeSnippet extends Component {
       );
     }
 
-    if ((type === 'multi') | (type === 'code') && !this.state.showBtn) {
+    if (type === 'multi' || (type === 'code' && !this.state.showBtn)) {
       return (
         <div className={codeSnippetClasses} {...other}>
           {code}
@@ -131,7 +131,7 @@ export default class CodeSnippet extends Component {
       );
     }
 
-    if ((type === 'multi') | (type === 'code') && this.state.showBtn) {
+    if (type === 'multi' || (type === 'code' && this.state.showBtn)) {
       return (
         <div className={codeSnippetClasses} {...other}>
           {code}
