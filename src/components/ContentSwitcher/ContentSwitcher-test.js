@@ -55,7 +55,7 @@ describe('ContentSwitcher', () => {
       expect(children.last().props().selected).toEqual(true);
     });
 
-    it('should avoid change the selected index upon setting props, unless there the value actually changes', () => {
+    it('should avoid changing the selected index when receiving new props unless the value has changed', () => {
       wrapper.setProps({ selectedIndex: 1 });
       // Turns `state.selectedIndex` to `0`
       children

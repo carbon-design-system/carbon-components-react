@@ -146,7 +146,7 @@ describe('InteriorLeftNavList', () => {
       expect(list.state().open).toEqual(true);
     });
 
-    it('should avoid change the open state upon setting props, unless there the value actually changes', () => {
+    it('should avoid changing the open state when receiving new props unless the value has changed', () => {
       list.setProps({ open: false });
       list.setState({ open: true });
       list.setProps({ open: false });

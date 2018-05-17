@@ -41,7 +41,7 @@ describe('ModalWrapper', () => {
     expect(wrapper.state('isOpen')).toBe(false);
   });
 
-  it('should avoid change the open state upon setting props, unless there the value actually changes', () => {
+  it('should avoid changing the open state when receiving new props unless the value has changed', () => {
     const wrapper = mount(
       <ModalWrapper {...mockProps} open={true}>
         <p className="bx--modal-content__text">Text</p>

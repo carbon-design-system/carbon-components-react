@@ -121,7 +121,7 @@ describe('TileGroup', () => {
       expect(wrapper.state().selected).toEqual('female');
     });
 
-    it('should avoid change the selected item upon setting props, unless there the value actually changes', () => {
+    it('should avoid changing the selected item when receiving new props unless the value has changed', () => {
       wrapper.setProps({ valueSelected: 'male' });
       wrapper.setState({ selected: 'female' });
       wrapper.setProps({ valueSelected: 'male' });
