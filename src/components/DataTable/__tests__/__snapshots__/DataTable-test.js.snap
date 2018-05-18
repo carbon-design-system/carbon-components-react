@@ -120,8 +120,6 @@ exports[`DataTable selection should have select-all default to un-checked if no 
                       <div
                         className="bx--table-sort-v2"
                         onClick={[Function]}
-                        role="button"
-                        tabIndex={0}
                       >
                         <span
                           className="bx--table-header-label"
@@ -173,8 +171,6 @@ exports[`DataTable selection should have select-all default to un-checked if no 
                       <div
                         className="bx--table-sort-v2"
                         onClick={[Function]}
-                        role="button"
-                        tabIndex={0}
                       >
                         <span
                           className="bx--table-header-label"
@@ -451,8 +447,6 @@ exports[`DataTable selection should render 1`] = `
                       <div
                         className="bx--table-sort-v2"
                         onClick={[Function]}
-                        role="button"
-                        tabIndex={0}
                       >
                         <span
                           className="bx--table-header-label"
@@ -504,8 +498,6 @@ exports[`DataTable selection should render 1`] = `
                       <div
                         className="bx--table-sort-v2"
                         onClick={[Function]}
-                        role="button"
-                        tabIndex={0}
                       >
                         <span
                           className="bx--table-header-label"
@@ -1148,8 +1140,6 @@ exports[`DataTable should render 1`] = `
                       <div
                         className="bx--table-sort-v2"
                         onClick={[Function]}
-                        role="button"
-                        tabIndex={0}
                       >
                         <span
                           className="bx--table-header-label"
@@ -1201,8 +1191,6 @@ exports[`DataTable should render 1`] = `
                       <div
                         className="bx--table-sort-v2"
                         onClick={[Function]}
-                        role="button"
-                        tabIndex={0}
                       >
                         <span
                           className="bx--table-header-label"

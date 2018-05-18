@@ -50,7 +50,7 @@ const TableHeader = ({
 
   return (
     <th scope={scope}>
-      <div className={className} onClick={onClick} {...rest} role="button" tabIndex={0}>
+      <div className={className} onClick={onClick} {...rest}>
         <span className="bx--table-header-label">{children}</span>
         <Icon
           className="bx--table-sort-v2__icon"
