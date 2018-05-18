@@ -25,7 +25,7 @@ import { mount } from 'enzyme';
 
 // Test helpers
 const getHeaderAt = (wrapper, index) =>
-  wrapper.find('TableHeader button').at(index);
+  wrapper.find('TableHeader .bx--table-sort-v2').at(index);
 const getRowAt = (wrapper, index) => wrapper.find('tbody tr').at(index);
 const getFilterInput = wrapper => wrapper.find('TableToolbarSearch input');
 const getSelectAll = wrapper =>

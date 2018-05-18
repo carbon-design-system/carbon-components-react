@@ -50,7 +50,7 @@ const TableHeader = ({
 
   return (
     <th scope={scope}>
-      <button className={className} onClick={onClick} {...rest}>
+      <div className={className} onClick={onClick} {...rest}>
         <span className="bx--table-header-label">{children}</span>
         <Icon
           className="bx--table-sort-v2__icon"
@@ -62,7 +62,7 @@ const TableHeader = ({
             sortStates,
           })}
         />
-      </button>
+      </div>
     </th>
   );
 };
@@ -76,7 +76,7 @@ TableHeader.propTypes = {
   /**
    * Pass in children that will be embedded in the table header label
    */
-  children: PropTypes.string,
+  children: PropTypes.node,
 
   /**
    * Specify whether this header is one through which a user can sort the table
