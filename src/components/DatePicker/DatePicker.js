@@ -1,12 +1,10 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import classNames from 'classnames';
+import flatpickr from 'isomorphic-flatpickr';
 import l10n from 'flatpickr/dist/l10n/index';
 import rangePlugin from 'flatpickr/dist/plugins/rangePlugin';
 import DatePickerInput from '../DatePickerInput';
-
-let flatpickr = null;
-if (typeof window !== 'undefined') flatpickr = require('flatpickr');
 
 // Weekdays shorthand for english locale
 l10n.en.weekdays.shorthand.forEach((day, index) => {
