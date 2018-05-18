@@ -125,6 +125,7 @@
     "downshift": "^1.31.14",
     "flatpickr": "4.4.1",
     "invariant": "^2.2.3",
+    "isomorphic-flatpickr": "0.0.1",
     "lodash.debounce": "^4.0.8",
     "lodash.isequal": "^4.5.0",
     "lodash.omit": "^4.5.0",
