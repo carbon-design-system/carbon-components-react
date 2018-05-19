@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import classNames from 'classnames';
-import flatpickr from 'flatpickr';
+import flatpickr from 'isomorphic-flatpickr';
 import l10n from 'flatpickr/dist/l10n/index';
 import rangePlugin from 'flatpickr/dist/plugins/rangePlugin';
 import DatePickerInput from '../DatePickerInput';
@@ -199,6 +199,7 @@ export default class DatePicker extends Component {
   };
 
   componentWillUpdate(nextProps) {
+    if (typeof window === 'undefined') return;
     if (nextProps.value !== this.props.value) {
       if (
         this.props.datePickerType === 'single' ||
@@ -215,6 +216,7 @@ export default class DatePicker extends Component {
   }
 
   componentDidMount() {
+    if (typeof window === 'undefined') return;
     const {
       datePickerType,
       dateFormat,
@@ -259,6 +261,7 @@ export default class DatePicker extends Component {
   }
 
   componentWillUnmount() {
+    if (typeof window === 'undefined') return;
     if (
       this.props.datePickerType === 'range' ||
       this.props.datePickerType === 'single'
@@ -372,6 +375,7 @@ export default class DatePicker extends Component {
   };
 
   render() {
+    if (typeof window === 'undefined') return (<div />);
     const {
       children,
       className,
