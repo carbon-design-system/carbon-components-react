@@ -1,3 +1,5 @@
+import './polyfills';
+
 import React from 'react';
 import { configure, setAddon, addDecorator } from '@storybook/react';
 import infoAddon from '@storybook/addon-info';

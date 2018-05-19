@@ -1,0 +1,249 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EditableTextCell should call \`onSave\` prop when the user clicks on Save and show a spinner 1`] = `
+<EditableTextCell
+  className="custom-class"
+  id="id"
+  initialValue="value-0"
+  isEditable={true}
+  onCancel={[MockFunction]}
+  onSave={
+    [MockFunction] {
+      "calls": Array [
+        Array [
+          Object {
+            "value": "foo",
+          },
+        ],
+      ],
+    }
+  }
+  onToggleEditCell={
+    [MockFunction] {
+      "calls": Array [
+        Array [
+          "id",
+        ],
+        Array [
+          "id",
+        ],
+      ],
+    }
+  }
+  validate={
+    [MockFunction] {
+      "calls": Array [
+        Array [
+          Object {
+            "value": "foo",
+          },
+        ],
+      ],
+    }
+  }
+>
+  <TableCell
+    isEditable={true}
+    isEditing={true}
+    isSaving={true}
+  >
+    <td
+      className="bx--data-table-cell--editable bx--data-table-cell--editing bx--data-table-cell--saving"
+    >
+      <EditCellField
+        disabled={true}
+        error={null}
+        id="edit-cell:id"
+        isSaving={true}
+        labelText="Edit Name: value-0"
+        onCancel={[Function]}
+        onChange={[Function]}
+        onSave={[Function]}
+        type="text"
+        value="foo"
+      >
+        <div
+          className="bx--data-table__edit-field"
+        >
+          <label
+            className="bx--label"
+            htmlFor="edit-cell:id"
+          >
+            Edit Name: value-0
+          </label>
+          <input
+            className="bx--text-input"
+            disabled={true}
+            id="edit-cell:id"
+            onBlur={[Function]}
+            onChange={[Function]}
+            onFocus={[Function]}
+            type="text"
+            value="foo"
+          />
+        </div>
+      </EditCellField>
+      <EditCellStatus
+        isLoading={true}
+      >
+        <div
+          className="bx--data-table__edit-status"
+        />
+      </EditCellStatus>
+    </td>
+  </TableCell>
+</EditableTextCell>
+`;
+
+exports[`EditableTextCell should render 1`] = `
+<EditableTextCell
+  className="custom-class"
+  id="id"
+  initialValue="value-0"
+  isEditable={true}
+  onCancel={[MockFunction]}
+  onSave={[MockFunction]}
+  onToggleEditCell={[MockFunction]}
+  validate={[MockFunction]}
+>
+  <TableCell
+    isEditable={true}
+  >
+    <td
+      className="bx--data-table-cell--editable"
+    >
+      <span
+        className="bx--data-table-cell__content"
+      >
+        value-0
+      </span>
+      <div
+        className="bx--data-table-cell__activity"
+      >
+        <button
+          className="bx--data-table-cell__edit"
+          onClick={[Function]}
+          title="Edit Cell: value-0"
+        >
+          <Icon
+            aria-hidden={true}
+            className="bx--data-table-cell__icon--edit"
+            description="Edit Cell: value-0"
+            fillRule="evenodd"
+            name="edit--glyph"
+            role="img"
+          >
+            <svg
+              alt="Edit Cell: value-0"
+              aria-hidden={true}
+              aria-label="Edit Cell: value-0"
+              className="bx--data-table-cell__icon--edit"
+              fillRule="evenodd"
+              height="16"
+              name="edit--glyph"
+              role="img"
+              viewBox="0 0 16 16"
+              width="16"
+            >
+              <title>
+                Edit Cell: value-0
+              </title>
+              <path
+                d="M2.032 10.924l7.99-7.99 2.97 2.97-7.99 7.99zm9.014-8.91l1.98-1.98 2.97 2.97-1.98 1.98zM0 16l3-1-2-2z"
+                key="key0"
+              />
+            </svg>
+          </Icon>
+        </button>
+      </div>
+    </td>
+  </TableCell>
+</EditableTextCell>
+`;
+
+exports[`EditableTextCell should show validation errors if they exist in response to input changes 1`] = `
+<EditableTextCell
+  className="custom-class"
+  id="id"
+  initialValue="value-0"
+  isEditable={true}
+  onCancel={[MockFunction]}
+  onSave={[MockFunction]}
+  onToggleEditCell={
+    [MockFunction] {
+      "calls": Array [
+        Array [
+          "id",
+        ],
+      ],
+    }
+  }
+  validate={[Function]}
+>
+  <TableCell
+    isEditable={true}
+    isEditing={true}
+    isSaving={false}
+  >
+    <td
+      className="bx--data-table-cell--editable bx--data-table-cell--editing"
+    >
+      <EditCellField
+        disabled={false}
+        error={null}
+        id="edit-cell:id"
+        isSaving={false}
+        labelText="Edit Name: value-0"
+        onCancel={[Function]}
+        onChange={[Function]}
+        onSave={[Function]}
+        type="text"
+        value="foo"
+      >
+        <div
+          className="bx--data-table__edit-field bx--data-table__edit-field--editing"
+        >
+          <label
+            className="bx--label"
+            htmlFor="edit-cell:id"
+          >
+            Edit Name: value-0
+          </label>
+          <input
+            className="bx--text-input"
+            disabled={false}
+            id="edit-cell:id"
+            onBlur={[Function]}
+            onChange={[Function]}
+            onFocus={[Function]}
+            type="text"
+            value="foo"
+          />
+        </div>
+        <EditCellActions
+          onCancel={[Function]}
+          onSave={[Function]}
+          translateWithId={[Function]}
+        >
+          <div
+            className="bx--data-table__edit-actions"
+          >
+            <button
+              className="bx--btn bx--btn--secondary bx--btn--sm"
+              onClick={[Function]}
+            >
+              Cancel
+            </button>
+            <button
+              className="bx--btn bx--btn--primary bx--btn--sm"
+              onClick={[Function]}
+            >
+              Save
+            </button>
+          </div>
+        </EditCellActions>
+      </EditCellField>
+    </td>
+  </TableCell>
+</EditableTextCell>
+`;

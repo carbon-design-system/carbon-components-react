@@ -1,6 +1,6 @@
 ---
 applications:
-- name: carbon-storybook
+ name: carbon-storybook
   memory: 64M
   buildpack: https://github.com/cloudfoundry/staticfile-buildpack.git
   routes:

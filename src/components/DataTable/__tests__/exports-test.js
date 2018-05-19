@@ -4,6 +4,7 @@ import * as DataTable from '../../DataTable';
 
 const COMPONENT_PATH = path.resolve(__dirname, '../');
 const blacklist = new Set([
+  'ARCHITECTURE.md',
   'README.md',
   'state',
   'tools',
@@ -13,6 +14,8 @@ const blacklist = new Set([
   '__tests__',
   '__mocks__',
   'DataTable.js',
+  'stories',
+  '_data-table.scss',
 ]);
 const components = fs
   .readdirSync(COMPONENT_PATH)

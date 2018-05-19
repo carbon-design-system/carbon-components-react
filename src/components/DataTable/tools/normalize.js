@@ -8,7 +8,7 @@ import { getCellId } from './cells';
  * @returns {Object}
  */
 const normalize = (rows, headers, prevState = {}) => {
-  const { rowsById: prevRowsByIds } = prevState;
+  const { cellsById: prevCellsById, rowsById: prevRowsByIds } = prevState;
   const rowIds = new Array(rows.length);
   const rowsById = {};
   const cellsById = {};
@@ -19,8 +19,13 @@ const normalize = (rows, headers, prevState = {}) => {
     // expansion
     rowsById[row.id] = {
       id: row.id,
+      // TODO: remove and replace with codemod
       isSelected: false,
       isExpanded: false,
+      state: {
+        isSelected: false,
+        isExpanded: false,
+      },
       cells: new Array(headers.length),
     };
 
@@ -29,6 +34,10 @@ const normalize = (rows, headers, prevState = {}) => {
     if (prevRowsByIds && prevRowsByIds[row.id] !== undefined) {
       rowsById[row.id].isSelected = prevRowsByIds[row.id].isSelected;
       rowsById[row.id].isExpanded = prevRowsByIds[row.id].isExpanded;
+
+      rowsById[row.id].state = {
+        ...prevRowsByIds[row.id].state,
+      };
     }
 
     headers.forEach(({ key }, i) => {
@@ -37,17 +46,25 @@ const normalize = (rows, headers, prevState = {}) => {
       cellsById[id] = {
         id,
         value: row[key],
-        isEditable: false,
+
+        // TODO remove these and place in state. Write codemod to help with
+        // transition.
+        // isEditable: false,
         isEditing: false,
         isValid: true,
         errors: null,
+
         info: {
           header: key,
+          row: row.id,
         },
       };
 
-      // TODO: When working on inline edits, we'll need to derive the state
-      // values similarly to rows above.
+      if (prevCellsById && prevCellsById[id]) {
+        cellsById[id].state = {
+          ...prevCellsById[id].state,
+        };
+      }
 
       rowsById[row.id].cells[i] = id;
     });

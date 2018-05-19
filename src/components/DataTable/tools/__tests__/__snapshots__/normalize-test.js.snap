@@ -7,8 +7,8 @@ Object {
     "id": "a:fieldA",
     "info": Object {
       "header": "fieldA",
+      "row": "a",
     },
-    "isEditable": false,
     "isEditing": false,
     "isValid": true,
     "value": "fieldA",
@@ -18,8 +18,8 @@ Object {
     "id": "a:fieldB",
     "info": Object {
       "header": "fieldB",
+      "row": "a",
     },
-    "isEditable": false,
     "isEditing": false,
     "isValid": true,
     "value": "fieldB",
@@ -29,8 +29,8 @@ Object {
     "id": "a:fieldC",
     "info": Object {
       "header": "fieldC",
+      "row": "a",
     },
-    "isEditable": false,
     "isEditing": false,
     "isValid": true,
     "value": "fieldC",
@@ -40,8 +40,8 @@ Object {
     "id": "b:fieldA",
     "info": Object {
       "header": "fieldA",
+      "row": "b",
     },
-    "isEditable": false,
     "isEditing": false,
     "isValid": true,
     "value": "fieldA",
@@ -51,8 +51,8 @@ Object {
     "id": "b:fieldB",
     "info": Object {
       "header": "fieldB",
+      "row": "b",
     },
-    "isEditable": false,
     "isEditing": false,
     "isValid": true,
     "value": "fieldB",
@@ -62,8 +62,8 @@ Object {
     "id": "b:fieldC",
     "info": Object {
       "header": "fieldC",
+      "row": "b",
     },
-    "isEditable": false,
     "isEditing": false,
     "isValid": true,
     "value": "fieldC",
@@ -73,8 +73,8 @@ Object {
     "id": "c:fieldA",
     "info": Object {
       "header": "fieldA",
+      "row": "c",
     },
-    "isEditable": false,
     "isEditing": false,
     "isValid": true,
     "value": "fieldA",
@@ -84,8 +84,8 @@ Object {
     "id": "c:fieldB",
     "info": Object {
       "header": "fieldB",
+      "row": "c",
     },
-    "isEditable": false,
     "isEditing": false,
     "isValid": true,
     "value": "fieldB",
@@ -95,8 +95,8 @@ Object {
     "id": "c:fieldC",
     "info": Object {
       "header": "fieldC",
+      "row": "c",
     },
-    "isEditable": false,
     "isEditing": false,
     "isValid": true,
     "value": "fieldC",
@@ -115,6 +115,10 @@ Object {
     "id": "a",
     "isExpanded": false,
     "isSelected": false,
+    "state": Object {
+      "isExpanded": false,
+      "isSelected": false,
+    },
   },
   "b": Object {
     "cells": Array [
@@ -125,6 +129,10 @@ Object {
     "id": "b",
     "isExpanded": false,
     "isSelected": false,
+    "state": Object {
+      "isExpanded": false,
+      "isSelected": false,
+    },
   },
   "c": Object {
     "cells": Array [
@@ -135,6 +143,10 @@ Object {
     "id": "c",
     "isExpanded": false,
     "isSelected": false,
+    "state": Object {
+      "isExpanded": false,
+      "isSelected": false,
+    },
   },
 }
 `;

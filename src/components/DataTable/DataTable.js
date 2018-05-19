@@ -1,3 +1,4 @@
+import cx from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 import isEqual from 'lodash.isequal';
@@ -239,6 +240,49 @@ export default class DataTable extends React.Component {
     };
   };
 
+  getCellProps = ({ cell, isEditable }) => {
+    const cellProps = {
+      key: cell.id,
+    };
+
+    if (!isEditable) {
+      return cellProps;
+    }
+
+    return {
+      ...cellProps,
+      id: cell.id,
+      onToggleEditCell: this.handleOnToggleEditCell,
+      // If we're already editing, don't allow editing on other cells
+      isEditable: isEditable && !this.state.isEditing,
+    };
+  };
+
+  getTableProps = ({ className } = {}) => ({
+    className: cx({
+      [className]: !!className,
+      'bx--data-table--editing': this.state.isEditing,
+    }),
+  });
+
+  handleOnToggleEditCell = id => {
+    this.setState(state => {
+      const { cellsById } = state;
+      const cell = cellsById[id];
+      const nextEditValue = !cell.isEditing;
+      return {
+        isEditing: nextEditValue,
+        cellsById: {
+          ...cellsById,
+          [id]: {
+            ...cell,
+            isEditing: nextEditValue,
+          },
+        },
+      };
+    });
+  };
+
   /**
    * Helper utility to get all the currently selected rows
    * @returns {Array<string>} the array of rowIds that are currently selected
@@ -401,10 +445,12 @@ export default class DataTable extends React.Component {
       selectedRows: denormalize(this.getSelectedRows(), rowsById, cellsById),
 
       // Prop accessors/getters
+      getBatchActionProps: this.getBatchActionProps,
+      getCellProps: this.getCellProps,
       getHeaderProps: this.getHeaderProps,
       getRowProps: this.getRowProps,
       getSelectionProps: this.getSelectionProps,
-      getBatchActionProps: this.getBatchActionProps,
+      getTableProps: this.getTableProps,
 
       // Custom event handlers
       onInputChange: this.handleOnInputValueChange,
