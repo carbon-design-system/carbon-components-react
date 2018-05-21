@@ -269,8 +269,10 @@ export default class OverflowMenu extends Component {
     }
   };
 
-  handleClickOutside = () => {
-    this.closeMenu();
+  handleClickOutside = evt => {
+    if (!this._menuBody || !this._menuBody.contains(evt.target)) {
+      this.closeMenu();
+    }
   };
 
   closeMenu = () => {
@@ -287,8 +289,11 @@ export default class OverflowMenu extends Component {
    * @private
    */
   _bindMenuBody = menuBody => {
-    if (!menuBody && this._hFocusIn) {
-      this._hFocusIn = this._hFocusIn.release();
+    if (!menuBody) {
+      this._menuBody = menuBody;
+      if (this._hFocusIn) {
+        this._hFocusIn = this._hFocusIn.release();
+      }
     }
   };
 
@@ -299,6 +304,7 @@ export default class OverflowMenu extends Component {
    */
   _handlePlace = menuBody => {
     if (menuBody) {
+      this._menuBody = menuBody;
       (
         menuBody.querySelector('[data-floating-menu-primary-focus]') || menuBody
       ).focus();
