@@ -11,7 +11,7 @@ export default class CodeSnippet extends Component {
      * The type of code snippet
      * can be inline, single or multi
      */
-    type: PropTypes.string,
+    type: PropTypes.oneOf(['single', 'inline', 'multi']),
     className: PropTypes.string,
     children: PropTypes.string,
     feedback: PropTypes.string,
@@ -37,17 +37,17 @@ export default class CodeSnippet extends Component {
   };
 
   state = {
-    showBtn: false,
+    shouldShowMoreLessBtn: false,
     expandedCode: false,
   };
 
-  componentDidMount = () => {
+  componentDidMount() {
     if (this.codeContent) {
       if (this.codeContent.getBoundingClientRect().height > 255) {
-        this.setState({ showBtn: true });
+        this.setState({ shouldShowMoreLessBtn: true });
       }
     }
-  };
+  }
 
   expandCode = () => {
     this.setState({ expandedCode: !this.state.expandedCode });
@@ -69,20 +69,20 @@ export default class CodeSnippet extends Component {
 
     const codeSnippetClasses = classNames(className, {
       'bx--snippet': true,
-      'bx--snippet--single': type === 'single' || type === 'terminal',
-      'bx--snippet--multi': type === 'multi' || type === 'code',
+      'bx--snippet--single': type === 'single',
+      'bx--snippet--multi': type === 'multi',
       'bx--snippet--inline': type === 'inline',
       'bx--snippet--expand': this.state.expandedCode,
       'bx--snippet--light': light,
     });
 
-    const more = showMoreText;
-    const less = showLessText;
-
-    const expandCodeBtnText = this.state.expandedCode ? less : more; // need the show/more less text props to show here
+    const expandCodeBtnText = this.state.expandedCode
+      ? showLessText
+      : showMoreText;
 
     const moreLessBtn = (
       <button
+        aria-hidden="true"
         className="bx--btn bx--btn--ghost bx--btn--sm bx--snippet-btn--expand"
         type="button"
         onClick={this.expandCode}>
@@ -111,7 +111,7 @@ export default class CodeSnippet extends Component {
 
     const copy = <CopyButton onClick={onClick} feedback={feedback} />;
 
-    if (type === 'inline' || type === 'terminal') {
+    if (type === 'inline') {
       return (
         <Copy
           className={codeSnippetClasses}
@@ -124,29 +124,23 @@ export default class CodeSnippet extends Component {
 
     if (type === 'single') {
       return (
-        <div className={codeSnippetClasses} {...other}>
+        <div {...other} className={codeSnippetClasses}>
           {code}
           {copy}
         </div>
       );
     }
 
-    if (
-      (!this.state.showBtn && type === 'multi') ||
-      (!this.state.showBtn && type === 'code')
-    ) {
+    if (!this.state.shouldShowMoreLessBtn && type === 'multi') {
       return (
-        <div className={codeSnippetClasses} {...other}>
+        <div {...other} className={codeSnippetClasses}>
           {code}
           {copy}
         </div>
       );
     }
 
-    if (
-      (this.state.showBtn && type === 'multi') ||
-      (this.state.showBtn && type === 'code')
-    ) {
+    if (this.state.shouldShowMoreLessBtn && type === 'multi') {
       return (
         <div className={codeSnippetClasses} {...other}>
           {code}

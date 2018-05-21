@@ -6,9 +6,9 @@ export default class CodeSnippetSkeleton extends Component {
   static propTypes = {
     /**
      * The type of code snippet
-     * can be inline, single or multi
+     * can be single or multi
      */
-    type: PropTypes.string,
+    type: PropTypes.oneOf(['single', 'multi']),
     className: PropTypes.string,
   };
 
