@@ -173,6 +173,11 @@ export default class OverflowMenu extends Component {
      * Function called when menu is closed
      */
     onClose: PropTypes.func,
+
+    /**
+     * Function called when menu is closed
+     */
+    onOpen: PropTypes.func,
   };
 
   static defaultProps = {
@@ -185,6 +190,7 @@ export default class OverflowMenu extends Component {
     onClick: () => {},
     onKeyDown: () => {},
     onClose: () => {},
+    onOpen: () => {},
     tabIndex: 0,
     menuOffset: getMenuOffset,
     menuOffsetFlip: getMenuOffset,
@@ -211,6 +217,7 @@ export default class OverflowMenu extends Component {
       });
       return false; // Let `.getMenuPosition()` cause render
     }
+
     return true;
   }
 
@@ -221,12 +228,6 @@ export default class OverflowMenu extends Component {
     this.hResize = OptimizedResize.add(() => {
       this.getMenuPosition();
     });
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-    if (prevState.open) {
-      this.props.onClose();
-    }
   }
 
   componentWillReceiveProps(nextProps) {
@@ -275,6 +276,7 @@ export default class OverflowMenu extends Component {
 
   closeMenu = () => {
     this.setState({ open: false });
+    this.props.onClose();
   };
 
   bindMenuEl = menuEl => {
@@ -379,19 +381,24 @@ export default class OverflowMenu extends Component {
         {childrenWithProps}
       </ul>
     );
-    const wrappedMenuBody = !floatingMenu ? (
-      menuBody
-    ) : (
-      <div role="menuitem">
-        <FloatingMenu
-          menuPosition={this.state.menuPosition}
-          menuOffset={flipped ? menuOffsetFlip : menuOffset}
-          menuRef={this._bindMenuBody}
-          onPlace={this._handlePlace}>
-          {menuBody}
-        </FloatingMenu>
-      </div>
-    );
+
+    const wrappedMenuBody = () => {
+      this.props.onOpen();
+
+      return !floatingMenu ? (
+        menuBody
+      ) : (
+        <div role="menuitem">
+          <FloatingMenu
+            menuPosition={this.state.menuPosition}
+            menuOffset={flipped ? menuOffsetFlip : menuOffset}
+            menuRef={this._bindMenuBody}
+            onPlace={this._handlePlace}>
+            {menuBody}
+          </FloatingMenu>
+        </div>
+      );
+    };
 
     const iconProps = {
       onClick: this.handleClick,
@@ -419,7 +426,7 @@ export default class OverflowMenu extends Component {
           ) : (
             <Icon {...iconProps} name={iconName} style={{ width: '100%' }} />
           )}
-          {open && wrappedMenuBody}
+          {open && wrappedMenuBody()}
         </div>
       </ClickListener>
     );
