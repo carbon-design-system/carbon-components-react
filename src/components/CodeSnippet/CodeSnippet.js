@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
 import classNames from 'classnames';
 import Copy from '../Copy';
 import CopyButton from '../CopyButton';
@@ -18,7 +17,10 @@ export default class CodeSnippet extends Component {
     feedback: PropTypes.string,
     copyLabel: PropTypes.string,
     onClick: PropTypes.func,
-    wrappedContentRef: PropTypes.func,
+    /**
+     * Used with multi snippet only
+     * when text is more than 15 lines
+     */
     showMoreText: PropTypes.string,
     showLessText: PropTypes.string,
     /**
@@ -40,8 +42,10 @@ export default class CodeSnippet extends Component {
   };
 
   componentDidMount = () => {
-    if (ReactDOM.findDOMNode(this).offsetHeight > 190) {
-      this.setState({ showBtn: true });
+    if (this.codeContent) {
+      if (this.codeContent.getBoundingClientRect().height > 255) {
+        this.setState({ showBtn: true });
+      }
     }
   };
 
@@ -57,12 +61,9 @@ export default class CodeSnippet extends Component {
       feedback,
       onClick,
       copyLabel,
-      wrappedContentRef,
       light,
-      /*
       showMoreText,
       showLessText,
-      */
       ...other
     } = this.props;
 
@@ -75,7 +76,10 @@ export default class CodeSnippet extends Component {
       'bx--snippet--light': light,
     });
 
-    const expandCodeBtnText = this.state.expandedCode ? 'less' : 'more'; // need the show/more less text props to show here
+    const more = showMoreText;
+    const less = showLessText;
+
+    const expandCodeBtnText = this.state.expandedCode ? less : more; // need the show/more less text props to show here
 
     const moreLessBtn = (
       <button
@@ -95,7 +99,12 @@ export default class CodeSnippet extends Component {
     const code = (
       <div role="textbox" tabIndex={0} className="bx--snippet-container">
         <code>
-          <pre ref={wrappedContentRef}>{children}</pre>
+          <pre
+            ref={codeContent => {
+              this.codeContent = codeContent;
+            }}>
+            {children}
+          </pre>
         </code>
       </div>
     );
@@ -122,7 +131,10 @@ export default class CodeSnippet extends Component {
       );
     }
 
-    if (type === 'multi' || (type === 'code' && !this.state.showBtn)) {
+    if (
+      (!this.state.showBtn && type === 'multi') ||
+      (!this.state.showBtn && type === 'code')
+    ) {
       return (
         <div className={codeSnippetClasses} {...other}>
           {code}
@@ -131,7 +143,10 @@ export default class CodeSnippet extends Component {
       );
     }
 
-    if (type === 'multi' || (type === 'code' && this.state.showBtn)) {
+    if (
+      (this.state.showBtn && type === 'multi') ||
+      (this.state.showBtn && type === 'code')
+    ) {
       return (
         <div className={codeSnippetClasses} {...other}>
           {code}

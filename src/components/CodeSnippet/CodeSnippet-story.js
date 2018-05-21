@@ -76,6 +76,18 @@ $z-indexes: (
   floating: 10000
 );   `}
         </CodeSnippet>
+        <br />
+        <CodeSnippet type="multi" {...copyProps}>
+          {`@mixin grid-container {
+  width: 100%;
+  padding-right: padding(mobile);
+  padding-left: padding(mobile);
+
+  @include breakpoint(bp--xs--major) {
+    padding-right: padding(xs);
+  }
+}  `}
+        </CodeSnippet>
       </div>
     )
   )

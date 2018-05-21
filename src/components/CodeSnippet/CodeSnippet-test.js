@@ -1,7 +1,7 @@
 import React from 'react';
 import CodeSnippet from '../CodeSnippet';
 import CodeSnippetSkeleton from '../CodeSnippet/CodeSnippet.Skeleton';
-import { mount, shallow } from 'enzyme';
+import { shallow } from 'enzyme';
 
 describe('Code Snippet', () => {
   describe('Renders as expected', () => {
@@ -23,19 +23,6 @@ describe('Code Snippet', () => {
     it('should all for custom classes to be applied', () => {
       expect(snippet.hasClass('some-class')).toEqual(true);
     });
-  });
-
-  it('should expose a `ref` to the content through `wrappedContentRef`', () => {
-    let mockRef;
-    const wrappedContentRef = jest.fn(el => (mockRef = el));
-    const content = 'node -v';
-    mount(
-      <CodeSnippet type="single" wrappedContentRef={wrappedContentRef}>
-        {content}
-      </CodeSnippet>
-    );
-    expect(mockRef.textContent).toBe(content);
-    expect(wrappedContentRef).toHaveBeenCalledTimes(1);
   });
 });
 
