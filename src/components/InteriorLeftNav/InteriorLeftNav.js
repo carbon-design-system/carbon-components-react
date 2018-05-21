@@ -27,7 +27,7 @@ export default class InteriorLeftNav extends Component {
     open: this.props.open !== undefined ? this.props.open : true,
   };
 
-  componentWillReceiveProps = nextProps => {
+  UNSAFE_componentWillReceiveProps = nextProps => {
     if (nextProps.activeHref) {
       this.setState({ activeHref: nextProps.activeHref });
     }
