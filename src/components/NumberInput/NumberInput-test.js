@@ -87,6 +87,11 @@ describe('NumberInput', () => {
         expect(invalidText.text()).toEqual('invalid text');
       });
 
+      it('has the expected classes for light', () => {
+        wrapper.setProps({ light: true });
+        expect(container.hasClass('bx--number--light')).toEqual(true);
+      });
+
       describe('initial rendering', () => {
         const getWrapper = (min, max, value) =>
           mount(
