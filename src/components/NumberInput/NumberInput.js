@@ -22,6 +22,9 @@ export default class NumberInput extends Component {
     value: PropTypes.number,
     invalid: PropTypes.bool,
     invalidText: PropTypes.string,
+    /**
+     * `true` to use the light version.
+     */
     light: PropTypes.bool,
   };
 

@@ -88,6 +88,9 @@ TextInput.propTypes = {
   hideLabel: PropTypes.bool,
   invalid: PropTypes.bool,
   invalidText: PropTypes.string,
+  /**
+   * `true` to use the light version.
+   */
   light: PropTypes.bool,
 };
 

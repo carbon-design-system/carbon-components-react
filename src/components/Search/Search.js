@@ -17,6 +17,9 @@ export default class Search extends Component {
     searchButtonLabelText: PropTypes.string,
     layoutButtonLabelText: PropTypes.string,
     closeButtonLabelText: PropTypes.string,
+    /**
+     * `true` to use the light version.
+     */
     light: PropTypes.bool,
   };
 

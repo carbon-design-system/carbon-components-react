@@ -80,6 +80,9 @@ TextArea.propTypes = {
   invalid: PropTypes.bool,
   invalidText: PropTypes.string,
   hideLabel: PropTypes.bool,
+  /**
+   * `true` to use the light version.
+   */
   light: PropTypes.bool,
 };
 

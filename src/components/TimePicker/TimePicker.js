@@ -20,6 +20,9 @@ export default class TimePicker extends Component {
     hideLabel: PropTypes.bool,
     disabled: PropTypes.bool,
     value: PropTypes.string,
+    /**
+     * `true` to use the light version.
+     */
     light: PropTypes.bool,
   };
 

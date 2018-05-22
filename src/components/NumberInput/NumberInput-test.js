@@ -87,9 +87,10 @@ describe('NumberInput', () => {
         expect(invalidText.text()).toEqual('invalid text');
       });
 
-      it('has the expected classes for light', () => {
+      it('should specify light number input as expected', () => {
+        expect(wrapper.props().light).toEqual(false);
         wrapper.setProps({ light: true });
-        expect(container.hasClass('bx--number--light')).toEqual(true);
+        expect(wrapper.props().light).toEqual(true);
       });
 
       describe('initial rendering', () => {
