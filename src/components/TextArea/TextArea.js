@@ -11,6 +11,7 @@ const TextArea = ({
   onClick,
   invalid,
   invalidText,
+  light,
   ...other
 }) => {
   const textareaProps = {
@@ -27,7 +28,9 @@ const TextArea = ({
     },
   };
 
-  const textareaClasses = classNames('bx--text-area', className);
+  const textareaClasses = classNames('bx--text-area', className, {
+    'bx--text-area--light': light,
+  });
   const labelClasses = classNames('bx--label', {
     'bx--visually-hidden': hideLabel,
   });
@@ -77,6 +80,7 @@ TextArea.propTypes = {
   invalid: PropTypes.bool,
   invalidText: PropTypes.string,
   hideLabel: PropTypes.bool,
+  light: PropTypes.bool,
 };
 
 TextArea.defaultProps = {
@@ -88,6 +92,7 @@ TextArea.defaultProps = {
   cols: 50,
   invalid: false,
   invalidText: '',
+  light: false,
 };
 
 export default TextArea;

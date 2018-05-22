@@ -17,6 +17,7 @@ export default class Search extends Component {
     searchButtonLabelText: PropTypes.string,
     layoutButtonLabelText: PropTypes.string,
     closeButtonLabelText: PropTypes.string,
+    light: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -24,6 +25,7 @@ export default class Search extends Component {
     small: false,
     placeHolderText: '',
     onChange: () => {},
+    light: false,
   };
 
   state = {
@@ -70,6 +72,7 @@ export default class Search extends Component {
       closeButtonLabelText,
       small,
       children,
+      light,
       ...other
     } = this.props;
 
@@ -79,6 +82,7 @@ export default class Search extends Component {
       'bx--search bx--search-with-options': true,
       'bx--search--lg': !small,
       'bx--search--sm': small,
+      'bx--search--light': light,
       [className]: className,
     });
 

@@ -20,6 +20,7 @@ const TableToolbarSearch = ({
   return (
     <div className={searchContainerClasses}>
       <Search
+        light
         className={className}
         {...rest}
         small
