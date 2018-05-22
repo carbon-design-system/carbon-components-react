@@ -82,12 +82,12 @@ export default class CodeSnippet extends Component {
 
     const moreLessBtn = (
       <button
-        aria-hidden="true"
         className="bx--btn bx--btn--ghost bx--btn--sm bx--snippet-btn--expand"
         type="button"
         onClick={this.expandCode}>
         <span className="bx--snippet-btn--text">{expandCodeBtnText}</span>
         <Icon
+          aria-hidden="true"
           alt={expandCodeBtnText}
           name="chevron--down"
           description={expandCodeBtnText}
