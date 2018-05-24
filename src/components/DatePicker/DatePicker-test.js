@@ -114,8 +114,8 @@ describe('DatePicker', () => {
       expect(wrapper.props().value).toEqual('11/08/2017');
     });
 
-    it('should not render an icon', () => {
-      expect(icon.length).toEqual(0);
+    it('should render an icon', () => {
+      expect(icon.length).toEqual(1);
     });
   });
 

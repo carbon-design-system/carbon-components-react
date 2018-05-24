@@ -392,7 +392,7 @@ export default class DatePicker extends Component {
     });
 
     const datePickerIcon =
-      datePickerType === 'range' ? (
+      datePickerType === 'range' || datePickerType === 'single' ? (
         <svg
           onClick={this.openCalendar}
           className="bx--date-picker__icon"
