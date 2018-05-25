@@ -276,10 +276,8 @@ export default class OverflowMenu extends Component {
     }
   };
 
-  handleClickOutside = evt => {
-    if (!this._menuBody || !this._menuBody.contains(evt.target)) {
-      this.closeMenu();
-    }
+  handleClickOutside = () => {
+    this.closeMenu();
   };
 
   closeMenu = () => {
@@ -297,11 +295,8 @@ export default class OverflowMenu extends Component {
    * @private
    */
   _bindMenuBody = menuBody => {
-    if (!menuBody) {
-      this._menuBody = menuBody;
-      if (this._hFocusIn) {
-        this._hFocusIn = this._hFocusIn.release();
-      }
+    if (!menuBody && this._hFocusIn) {
+      this._hFocusIn = this._hFocusIn.release();
     }
   };
 
