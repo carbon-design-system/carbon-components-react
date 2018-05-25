@@ -231,7 +231,8 @@ export default class OverflowMenu extends Component {
   }
 
   componentDidUpdate() {
-    if (this.state.open) this.props.onOpen();
+    const { onOpen, floatingMenu } = this.props;
+    if (this.state.open) !floatingMenu && onOpen();
     else this.props.onClose();
   }
 
@@ -312,6 +313,7 @@ export default class OverflowMenu extends Component {
   _handlePlace = menuBody => {
     if (menuBody) {
       this._menuBody = menuBody;
+      this.props.onOpen();
       (
         menuBody.querySelector('[data-floating-menu-primary-focus]') || menuBody
       ).focus();
