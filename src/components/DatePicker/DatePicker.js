@@ -180,6 +180,16 @@ export default class DatePicker extends Component {
      * The `change` event handler.
      */
     onChange: PropTypes.func,
+
+    /**
+     * The minimum date that a user can start picking from.
+     */
+    minDate: PropTypes.string,
+
+    /**
+     * The maximum date that a user can pick to.
+     */
+    maxDate: PropTypes.string,
   };
 
   static defaultProps = {
@@ -211,17 +221,21 @@ export default class DatePicker extends Component {
       locale,
       appendTo,
       onChange,
+      minDate,
+      maxDate,
     } = this.props;
     if (datePickerType === 'single' || datePickerType === 'range') {
       const onHook = (electedDates, dateStr, instance) => {
         this.updateClassNames(instance);
       };
-      this.cal = flatpickr(this.inputField, {
+      this.cal = new flatpickr(this.inputField, {
         appendTo,
         mode: datePickerType,
         allowInput: true,
         dateFormat: dateFormat,
         locale: l10n[locale],
+        minDate: minDate,
+        maxDate: maxDate,
         plugins:
           datePickerType === 'range'
             ? [new rangePlugin({ input: this.toInputField })]
@@ -363,6 +377,8 @@ export default class DatePicker extends Component {
       className,
       short,
       datePickerType,
+      minDate, // eslint-disable-line
+      maxDate, // eslint-disable-line
       dateFormat, // eslint-disable-line
       onChange, // eslint-disable-line
       ...other
