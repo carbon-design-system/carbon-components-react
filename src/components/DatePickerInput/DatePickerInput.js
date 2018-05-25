@@ -6,6 +6,7 @@ export default class DatePickerInput extends Component {
   static propTypes = {
     id: PropTypes.string.isRequired,
     children: PropTypes.node,
+    value: PropTypes.string,
   };
 
   static defaultProps = {
@@ -13,7 +14,6 @@ export default class DatePickerInput extends Component {
     type: 'text',
     disabled: false,
     invalid: false,
-    defaultDate: '',
     labelText: '',
     onClick: () => {},
     onChange: () => {},
@@ -31,7 +31,6 @@ export default class DatePickerInput extends Component {
       placeholder,
       type,
       datePickerType,
-      defaultDate,
       pattern,
       ...other
     } = this.props;
@@ -49,7 +48,6 @@ export default class DatePickerInput extends Component {
         }
       },
       placeholder,
-      value: defaultDate || null,
       type,
       pattern,
     };
