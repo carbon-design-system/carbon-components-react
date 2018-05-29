@@ -225,6 +225,8 @@ export class ExpandableTile extends Component {
     className: PropTypes.string,
     expanded: PropTypes.bool,
     tabIndex: PropTypes.number,
+    tileCollapsedIconText: PropTypes.string,
+    tileExpandedIconText: PropTypes.string,
   };
 
   static defaultProps = {
@@ -232,6 +234,8 @@ export class ExpandableTile extends Component {
     expanded: false,
     tileMaxHeight: '0',
     handleClick: () => {},
+    tileCollapsedIconText: 'Expand',
+    tileExpandedIconText: 'Collapse',
   };
 
   componentWillReceiveProps({ expanded, tileMaxHeight, tilePadding }) {
@@ -295,6 +299,8 @@ export class ExpandableTile extends Component {
       tilePadding, // eslint-disable-line
       handleClick, // eslint-disable-line
       expanded, // eslint-disable-line
+      tileCollapsedIconText, // eslint-disable-line
+      tileExpandedIconText, // eslint-disable-line
       ...other
     } = this.props;
 
@@ -328,7 +334,9 @@ export class ExpandableTile extends Component {
         <button className="bx--tile__chevron">
           <Icon
             name="chevron--down"
-            description={this.state.expanded ? 'Collapse' : 'Expand'}
+            description={
+              this.state.expanded ? tileExpandedIconText : tileCollapsedIconText
+            }
           />
         </button>
         <div
