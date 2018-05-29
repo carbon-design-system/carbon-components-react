@@ -320,7 +320,6 @@ export default class OverflowMenu extends Component {
   _handlePlace = menuBody => {
     if (menuBody) {
       this._menuBody = menuBody;
-      this.props.onOpen();
       (
         menuBody.querySelector('[data-floating-menu-primary-focus]') || menuBody
       ).focus();
