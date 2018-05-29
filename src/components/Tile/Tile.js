@@ -326,7 +326,10 @@ export class ExpandableTile extends Component {
         onClick={this.handleClick}
         tabIndex={tabIndex}>
         <button className="bx--tile__chevron">
-          <Icon name="chevron--down" description="Tile chevron" />
+          <Icon
+            name="chevron--down"
+            description={this.state.expanded ? 'Collapse' : 'Expand'}
+          />
         </button>
         <div
           ref={tileContent => {

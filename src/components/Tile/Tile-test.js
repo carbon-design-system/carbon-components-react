@@ -160,5 +160,23 @@ describe('Tile', () => {
       wrapper.simulate('click');
       expect(wrapper.state().expanded).toEqual(true);
     });
+
+    it('displays the appropriate tooltip for the chevron depending on state', () => {
+      // Force the expanded tile to be collapsed.
+      wrapper.setState({ expanded: false });
+      const collapsedDescription = wrapper
+        .find('[name="chevron--down"]')
+        .getElements()[0].props.description;
+      expect(collapsedDescription).toEqual('Expand');
+
+      // click on the item to expand it.
+      wrapper.simulate('click');
+
+      // Validate the description change
+      const expandedDescription = wrapper
+        .find('[name="chevron--down"]')
+        .getElements()[0].props.description;
+      expect(expandedDescription).toEqual('Collapse');
+    });
   });
 });
