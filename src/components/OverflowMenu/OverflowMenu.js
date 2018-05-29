@@ -231,9 +231,15 @@ export default class OverflowMenu extends Component {
   }
 
   componentDidUpdate() {
-    const { onOpen, floatingMenu } = this.props;
-    if (this.state.open) !floatingMenu && onOpen();
-    else this.props.onClose();
+    const { onClose, onOpen, floatingMenu } = this.props;
+
+    if (this.state.open) {
+      if (!floatingMenu) {
+        onOpen();
+      }
+    } else {
+      onClose();
+    }
   }
 
   componentWillReceiveProps(nextProps) {
@@ -276,13 +282,16 @@ export default class OverflowMenu extends Component {
     }
   };
 
-  handleClickOutside = () => {
-    this.closeMenu();
+  handleClickOutside = evt => {
+    if (!this._menuBody || !this._menuBody.contains(evt.target)) {
+      this.closeMenu();
+    }
   };
 
   closeMenu = () => {
-    this.setState({ open: false });
-    this.props.onClose();
+    this.setState({ open: false }, () => {
+      this.props.onClose();
+    });
   };
 
   bindMenuEl = menuEl => {
@@ -334,6 +343,7 @@ export default class OverflowMenu extends Component {
         },
         !hasFocusin
       );
+      this.props.onOpen();
     }
   };
 
