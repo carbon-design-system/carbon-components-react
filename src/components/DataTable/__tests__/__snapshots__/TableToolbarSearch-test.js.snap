@@ -5,6 +5,7 @@ exports[`DataTable.TableToolbarSearch should render 1`] = `
   className="custom-class"
   id="custom-id"
   onChange={[MockFunction]}
+  translateWithId={[Function]}
 >
   <div
     className="bx--toolbar-search-container"
@@ -25,14 +26,14 @@ exports[`DataTable.TableToolbarSearch should render 1`] = `
       >
         <Icon
           className="bx--search-magnifier"
-          description="search"
+          description="Filter table"
           fillRule="evenodd"
           name="search"
           role="img"
         >
           <svg
-            alt="search"
-            aria-label="search"
+            alt="Filter table"
+            aria-label="Filter table"
             className="bx--search-magnifier"
             fillRule="evenodd"
             height="16"
@@ -42,7 +43,7 @@ exports[`DataTable.TableToolbarSearch should render 1`] = `
             width="16"
           >
             <title>
-              search
+              Filter table
             </title>
             <path
               d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zm4.936-1.27l4.563 4.557-.707.708-4.563-4.558a6.5 6.5 0 1 1 .707-.707z"
@@ -69,20 +70,20 @@ exports[`DataTable.TableToolbarSearch should render 1`] = `
           type="button"
         >
           <Icon
-            description="close"
+            description="Provide a description that will be used as the title"
             fillRule="evenodd"
             name="close--solid"
             role="img"
           >
             <svg
-              alt="close"
-              aria-label="close"
+              alt="Provide a description that will be used as the title"
+              aria-label="Provide a description that will be used as the title"
               fillRule="evenodd"
               name="close--solid"
               role="img"
             >
               <title>
-                close
+                Provide a description that will be used as the title
               </title>
             </svg>
           </Icon>
