@@ -7,11 +7,7 @@ import Icon from '../Icon';
  */
 const SearchFilterButton = ({ labelText }) => (
   <button className="bx--search-button" type="button" aria-label={labelText}>
-    <Icon
-      name="filter--glyph"
-      description="filter"
-      className="bx--search-filter"
-    />
+    <Icon name="filter" description="filter" className="bx--search-filter" />
   </button>
 );
 

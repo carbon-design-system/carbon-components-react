@@ -898,7 +898,7 @@ exports[`DataTable should render 1`] = `
                     className="bx--search-magnifier"
                     description="search"
                     fillRule="evenodd"
-                    name="search--glyph"
+                    name="search"
                     role="img"
                   >
                     <svg
@@ -907,7 +907,7 @@ exports[`DataTable should render 1`] = `
                       className="bx--search-magnifier"
                       fillRule="evenodd"
                       height="16"
-                      name="search--glyph"
+                      name="search"
                       role="img"
                       viewBox="0 0 16 16"
                       width="16"
@@ -946,7 +946,7 @@ exports[`DataTable should render 1`] = `
                     <Icon
                       description="close"
                       fillRule="evenodd"
-                      name="close--glyph"
+                      name="close--solid"
                       role="img"
                     >
                       <svg
@@ -954,7 +954,7 @@ exports[`DataTable should render 1`] = `
                         aria-label="close"
                         fillRule="evenodd"
                         height="16"
-                        name="close--glyph"
+                        name="close--solid"
                         role="img"
                         viewBox="0 0 16 16"
                         width="16"

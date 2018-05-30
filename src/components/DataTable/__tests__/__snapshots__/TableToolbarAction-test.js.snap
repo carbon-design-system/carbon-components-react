@@ -4,7 +4,7 @@ exports[`DataTable.TableToolbarAction should render 1`] = `
 <TableToolbarAction
   className="custom-class"
   iconDescription="Add"
-  iconName="add--glyph"
+  iconName="add--solid"
 >
   <button
     className="custom-class bx--toolbar-action"
@@ -13,7 +13,7 @@ exports[`DataTable.TableToolbarAction should render 1`] = `
       className="bx--toolbar-action__icon"
       description="Add"
       fillRule="evenodd"
-      name="add--glyph"
+      name="add--solid"
       role="img"
     >
       <svg
@@ -22,7 +22,7 @@ exports[`DataTable.TableToolbarAction should render 1`] = `
         className="bx--toolbar-action__icon"
         fillRule="evenodd"
         height="16"
-        name="add--glyph"
+        name="add--solid"
         role="img"
         viewBox="0 0 16 16"
         width="16"

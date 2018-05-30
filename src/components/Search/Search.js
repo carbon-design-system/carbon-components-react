@@ -99,7 +99,7 @@ export default class Search extends Component {
     return (
       <div className={searchClasses} role="search">
         <Icon
-          name="search--glyph"
+          name="search"
           description="search"
           className="bx--search-magnifier"
         />
@@ -122,7 +122,7 @@ export default class Search extends Component {
           onClick={this.clearInput}
           type="button"
           aria-label={closeButtonLabelText}>
-          <Icon name="close--glyph" description="close" />
+          <Icon name="close--solid" description="close" />
         </button>
         {children}
         {renderButtons && (
