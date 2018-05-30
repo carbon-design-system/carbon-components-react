@@ -148,7 +148,7 @@ exports[`DataTable selection should have select-all default to un-checked if no 
                               Sort rows by this header in descending order
                             </title>
                             <path
-                              d="M10 0L5 5 0 0z"
+                              d="M0 0l5 4.998L10 0z"
                               key="key0"
                             />
                           </svg>
@@ -199,7 +199,7 @@ exports[`DataTable selection should have select-all default to un-checked if no 
                               Sort rows by this header in descending order
                             </title>
                             <path
-                              d="M10 0L5 5 0 0z"
+                              d="M0 0l5 4.998L10 0z"
                               key="key0"
                             />
                           </svg>
@@ -475,7 +475,7 @@ exports[`DataTable selection should render 1`] = `
                               Sort rows by this header in descending order
                             </title>
                             <path
-                              d="M10 0L5 5 0 0z"
+                              d="M0 0l5 4.998L10 0z"
                               key="key0"
                             />
                           </svg>
@@ -526,7 +526,7 @@ exports[`DataTable selection should render 1`] = `
                               Sort rows by this header in descending order
                             </title>
                             <path
-                              d="M10 0L5 5 0 0z"
+                              d="M0 0l5 4.998L10 0z"
                               key="key0"
                             />
                           </svg>
@@ -916,12 +916,8 @@ exports[`DataTable should render 1`] = `
                         search
                       </title>
                       <path
-                        d="M6 2c2.2 0 4 1.8 4 4s-1.8 4-4 4-4-1.8-4-4 1.8-4 4-4zm0-2C2.7 0 0 2.7 0 6s2.7 6 6 6 6-2.7 6-6-2.7-6-6-6zm10 13.8L13.8 16l-3.6-3.6 2.2-2.2z"
+                        d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zm4.936-1.27l4.563 4.557-.707.708-4.563-4.558a6.5 6.5 0 1 1 .707-.707z"
                         key="key0"
-                      />
-                      <path
-                        d="M16 13.8L13.8 16l-3.6-3.6 2.2-2.2z"
-                        key="key1"
                       />
                     </svg>
                   </Icon>
@@ -953,19 +949,12 @@ exports[`DataTable should render 1`] = `
                         alt="close"
                         aria-label="close"
                         fillRule="evenodd"
-                        height="16"
                         name="close--solid"
                         role="img"
-                        viewBox="0 0 16 16"
-                        width="16"
                       >
                         <title>
                           close
                         </title>
-                        <path
-                          d="M8 0C3.6 0 0 3.6 0 8s3.6 8 8 8 8-3.6 8-8-3.6-8-8-8zm3.5 10.1l-1.4 1.4L8 9.4l-2.1 2.1-1.4-1.4L6.6 8 4.5 5.9l1.4-1.4L8 6.6l2.1-2.1 1.4 1.4L9.4 8l2.1 2.1z"
-                          key="key0"
-                        />
                       </svg>
                     </Icon>
                   </button>
@@ -1050,7 +1039,7 @@ exports[`DataTable should render 1`] = `
                         Edit
                       </title>
                       <path
-                        d="M20.297 2.932l2.9-2.9 5.806 5.805-2.9 2.9zM3.867 19.385l5.8 5.807 14.5-14.517-5.8-5.806-14.5 14.515zm5.8 3.07L6.6 19.384 18.367 7.607l3.066 3.068-11.766 11.78zM0 29.062l4.833-1.936-2.9-2.903z"
+                        d="M20.297 2.932l2.9-2.9 5.806 5.805-2.9 2.9zM3.867 19.385l5.8 5.807 14.5-14.517-5.8-5.806-14.5 14.516zm5.8 3.069L6.6 19.385 18.367 7.607l3.066 3.068L9.667 22.454zM0 29.063l4.833-1.936-2.9-2.903z"
                         key="key0"
                       />
                     </svg>
@@ -1169,7 +1158,7 @@ exports[`DataTable should render 1`] = `
                               Sort rows by this header in descending order
                             </title>
                             <path
-                              d="M10 0L5 5 0 0z"
+                              d="M0 0l5 4.998L10 0z"
                               key="key0"
                             />
                           </svg>
@@ -1220,7 +1209,7 @@ exports[`DataTable should render 1`] = `
                               Sort rows by this header in descending order
                             </title>
                             <path
-                              d="M10 0L5 5 0 0z"
+                              d="M0 0l5 4.998L10 0z"
                               key="key0"
                             />
                           </svg>
