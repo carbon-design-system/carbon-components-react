@@ -76,7 +76,10 @@ TableHeader.propTypes = {
   /**
    * Pass in children that will be embedded in the table header label
    */
-  children: PropTypes.string,
+  children: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.element
+  ])
 
   /**
    * Specify whether this header is one through which a user can sort the table
