@@ -125,13 +125,18 @@ export default class Tooltip extends Component {
      * The description of the default tooltip icon, to be put in its SVG `<title>` element.
      */
     iconDescription: PropTypes.string,
+
+    /**
+     * `true` if opening tooltip should be triggered by clicking the trigger button.
+     */
+    clickToOpen: PropTypes.bool,
   };
 
   static defaultProps = {
     open: false,
     direction: DIRECTION_BOTTOM,
     showIcon: true,
-    iconName: 'info--solid',
+    iconName: 'info--glyph',
     iconDescription: 'tooltip',
     triggerText: 'Provide triggerText',
     menuOffset: getMenuOffset,
@@ -211,16 +216,19 @@ export default class Tooltip extends Component {
 
   handleMouse = evt => {
     const state =
-      typeof evt === 'string' ? evt : { focus: 'over', blur: 'out' }[evt.type];
+      typeof evt === 'string'
+        ? evt
+        : { mouseover: 'over', mouseout: 'out', focus: 'over', blur: 'out' }[
+            evt.type
+          ];
     const hadContextMenu = this._hasContextMenu;
     this._hasContextMenu = evt.type === 'contextmenu';
-    // if (this.props.clickToOpen) {
-    if (state) {
+    if (this.props.clickToOpen) {
       if (state === 'click') {
         this.setState({ open: !this.state.open });
-      } else if (state !== 'out' || !hadContextMenu) {
-        this._debouncedHandleHover(state, evt.relatedTarget);
       }
+    } else if (state && (state !== 'out' || !hadContextMenu)) {
+      this._debouncedHandleHover(state, evt.relatedTarget);
     }
   };
 
@@ -295,7 +303,8 @@ export default class Tooltip extends Component {
                 id={triggerId}
                 role="button"
                 tabIndex="0"
-                onClick={() => this.handleMouse('click')}
+                onMouseOver={evt => this.handleMouse(evt)}
+                onMouseOut={evt => this.handleMouse(evt)}
                 onFocus={evt => this.handleMouse(evt)}
                 onBlur={evt => this.handleMouse(evt)}
                 aria-haspopup="true"
@@ -303,6 +312,7 @@ export default class Tooltip extends Component {
                 {...ariaOwnsProps}>
                 <Icon
                   onKeyDown={this.handleKeyPress}
+                  onClick={() => this.handleMouse('click')}
                   name={iconName}
                   description={iconDescription}
                   iconRef={node => {
@@ -318,7 +328,8 @@ export default class Tooltip extends Component {
               ref={node => {
                 this.triggerEl = node;
               }}
-              onClick={() => this.handleMouse('click')}
+              onMouseOver={evt => this.handleMouse(evt)}
+              onMouseOut={evt => this.handleMouse(evt)}
               onFocus={evt => this.handleMouse(evt)}
               onBlur={evt => this.handleMouse(evt)}
               aria-haspopup="true"
