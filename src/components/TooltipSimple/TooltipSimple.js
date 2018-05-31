@@ -2,6 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Icon from '../Icon';
 import classNames from 'classnames';
+import warning from 'warning';
+
+let didWarnAboutDeprecation = false;
 
 const TooltipSimple = ({
   children,
@@ -13,6 +16,16 @@ const TooltipSimple = ({
   iconDescription,
   ...other
 }) => {
+  if (__DEV__) {
+    warning(
+      didWarnAboutDeprecation,
+      'The `TooltipSimple` component has been deprecated in favor of ' +
+        '`TooltipDefinition` and `TooltipIcon`. This component will be ' +
+        'removed in the next major version of this package.'
+    );
+    didWarnAboutDeprecation = true;
+  }
+
   const tooltipClasses = classNames(`bx--tooltip--simple__${position}`);
 
   const tooltipWrapperClasses = classNames(`bx--tooltip--simple`, className);
