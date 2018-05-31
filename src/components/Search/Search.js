@@ -88,8 +88,6 @@ export default class Search extends Component {
       'bx--search-close--hidden': !hasContent,
     });
 
-    // const renderButtons = !children && !small;
-
     return (
       <div className={searchClasses} role="search">
         <Icon
