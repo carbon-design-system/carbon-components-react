@@ -118,13 +118,8 @@
     }
   },
   "peerDependencies": {
-<<<<<<< HEAD
     "carbon-components": "^8.20.0",
     "carbon-icons": "^5.1.2 || ^7.0.3",
-=======
-    "carbon-components": "^8.23.0",
-    "carbon-icons": "^5.1.2 || ^6.0.0",
->>>>>>> feat(tooltip): update tooltip to only support click to open
     "react": "^15.3.2 || ^16.1.0",
     "react-dom": "^15.3.2 || ^16.1.0"
   },

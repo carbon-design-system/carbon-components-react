@@ -114,11 +114,7 @@ export default class Search extends Component {
           onClick={this.clearInput}
           type="button"
           aria-label={closeButtonLabelText}>
-<<<<<<< HEAD
           <Icon name="close--solid" description={closeButtonLabelText} />
-=======
-          <Icon name="close--glyph" description={closeButtonLabelText} />
->>>>>>> fix(Search): make search icon description translatable (#927)
         </button>
         {children}
       </div>
