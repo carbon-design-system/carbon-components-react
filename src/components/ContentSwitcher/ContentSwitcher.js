@@ -39,6 +39,12 @@ export default class ContentSwitcher extends React.Component {
     }
   };
 
+  componentWillReceiveProps({ selectedIndex }) {
+    if (selectedIndex !== this.props.selectedIndex) {
+      this.setState({ selectedIndex });
+    }
+  }
+
   render() {
     const {
       children,
