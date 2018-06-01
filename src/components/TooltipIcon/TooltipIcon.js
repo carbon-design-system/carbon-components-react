@@ -20,13 +20,9 @@ const TooltipIcon = ({
   });
   return (
     <div {...rest} className={tooltipClassName}>
-      <div
-        role="tooltip"
-        aria-label={tooltipText}
-        className={triggerClassName}
-        data-tooltip-text={tooltipText}>
+      <button className={triggerClassName} title={tooltipText}>
         {children}
-      </div>
+      </button>
     </div>
   );
 };
