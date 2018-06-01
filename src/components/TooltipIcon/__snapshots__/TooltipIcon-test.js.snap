@@ -9,14 +9,12 @@ exports[`TooltipIcon should allow the user to specify the direction 1`] = `
   <div
     className="custom-class bx--tooltip-icon"
   >
-    <div
-      aria-label="tooltip text"
+    <button
       className="bx--tooltip__trigger bx--tooltip--icon__top"
-      data-tooltip-text="tooltip text"
-      role="tooltip"
+      title="tooltip text"
     >
       <svg />
-    </div>
+    </button>
   </div>
 </TooltipIcon>
 `;
@@ -30,14 +28,12 @@ exports[`TooltipIcon should render 1`] = `
   <div
     className="custom-class bx--tooltip-icon"
   >
-    <div
-      aria-label="tooltip text"
+    <button
       className="bx--tooltip__trigger bx--tooltip--icon__bottom"
-      data-tooltip-text="tooltip text"
-      role="tooltip"
+      title="tooltip text"
     >
       <svg />
-    </div>
+    </button>
   </div>
 </TooltipIcon>
 `;
