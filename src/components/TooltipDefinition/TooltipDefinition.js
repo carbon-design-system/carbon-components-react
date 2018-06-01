@@ -1,14 +1,19 @@
 import cx from 'classnames';
 import React from 'react';
 import PropTypes from 'prop-types';
+import setupGetInstanceId from '../../tools/setupGetInstanceId';
+
+const getInstanceId = setupGetInstanceId();
 
 const TooltipDefinition = ({
+  id,
   className,
   children,
   direction,
   tooltipText,
   ...rest
 }) => {
+  const tooltipId = id || `definition-tooltip-${getInstanceId()}`;
   const definitionClassName = cx({
     [className]: !!className,
     'bx--tooltip--definition': true,
@@ -19,8 +24,11 @@ const TooltipDefinition = ({
   });
   return (
     <div {...rest} className={definitionClassName}>
-      <p className="bx--tooltip__trigger">{children}</p>
+      <button className="bx--tooltip__trigger" aria-describedby={tooltipId}>
+        {children}
+      </button>
       <div
+        id={tooltipId}
         className={directionClassName}
         role="tooltip"
         aria-label={tooltipText}>
@@ -42,6 +50,12 @@ TooltipDefinition.propTypes = {
    * Specify the direction of the tooltip. Can be either bottom or top.
    */
   direction: PropTypes.oneOf(['top', 'bottom']).isRequired,
+
+  /**
+   * Optionally specify a custom id for the tooltip. If one is not provided, we
+   * generate a unique id for you.
+   */
+  id: PropTypes.string,
 
   /**
    * Provide the text that will be displayed in the tooltip when it is rendered.
