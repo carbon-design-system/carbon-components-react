@@ -108,12 +108,24 @@ storiesOf('Search', module)
     )
   )
   .addWithInfo(
-    'custom button',
+    'custom buttons',
     `
       You can control what set of buttons you want.
     `,
     () => (
-      <div>
+      <div style={{ display: 'flex' }}>
+        <Search
+          {...searchProps}
+          light
+          className="some-class"
+          id="search-1"
+          labelText="Search"
+          placeHolderText="Search"
+          onChange={() => {
+            console.log('onChange');
+            action('onChange');
+          }}
+        />
         <SearchFilterButton onClick={action('onClick')} />
         <SearchLayoutButton onClick={action('onClick')} />
       </div>
