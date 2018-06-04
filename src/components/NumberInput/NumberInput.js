@@ -167,6 +167,7 @@ export default class NumberInput extends Component {
               {...buttonProps}
               onClick={evt => this.handleArrowClick(evt, 'up')}>
               <Icon
+                className="up-icon"
                 name="caret--up"
                 description={this.props.iconDescription}
                 viewBox="0 0 10 5"
@@ -177,6 +178,7 @@ export default class NumberInput extends Component {
               {...buttonProps}
               onClick={evt => this.handleArrowClick(evt, 'down')}>
               <Icon
+                className="down-icon"
                 name="caret--down"
                 viewBox="0 0 10 5"
                 description={this.props.iconDescription}
