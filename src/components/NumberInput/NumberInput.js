@@ -193,8 +193,8 @@ export default class NumberInput extends Component {
           <label htmlFor={id} className="bx--label">
             {label}
           </label>
+          {error}
         </div>
-        {error}
       </div>
     );
   }
