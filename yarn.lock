@@ -2770,9 +2770,13 @@ carbon-components@^8.20.0:
     lodash.debounce "^4.0.8"
     warning "^3.0.0"
 
-carbon-icons@^6.0.4, carbon-icons@^6.1.0:
+carbon-icons@^6.0.4:
   version "6.2.0"
   resolved "https://registry.yarnpkg.com/carbon-icons/-/carbon-icons-6.2.0.tgz#84f568a64b1465c52183eb26de736893b3d8abdb"
+
+carbon-icons@^7.0.6:
+  version "7.0.6"
+  resolved "https://registry.yarnpkg.com/carbon-icons/-/carbon-icons-7.0.6.tgz#5ce22cfc3e1c36180f209fd1f253680dd347b257"
 
 cardinal@^1.0.0:
   version "1.0.0"
