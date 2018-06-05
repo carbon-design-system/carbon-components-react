@@ -20,6 +20,10 @@ export default class TimePicker extends Component {
     hideLabel: PropTypes.bool,
     disabled: PropTypes.bool,
     value: PropTypes.string,
+    /**
+     * `true` to use the light version.
+     */
+    light: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -33,6 +37,7 @@ export default class TimePicker extends Component {
     onChange: () => {},
     onClick: () => {},
     onBlur: () => {},
+    light: false,
   };
 
   constructor(props) {
@@ -43,7 +48,7 @@ export default class TimePicker extends Component {
     };
   }
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     if (nextProps.value !== this.props.value) {
       this.setState({ value: nextProps.value });
     }
@@ -65,6 +70,7 @@ export default class TimePicker extends Component {
       invalidText,
       invalid,
       hideLabel,
+      light,
       ...other
     } = this.props;
 
@@ -103,6 +109,7 @@ export default class TimePicker extends Component {
 
     const timePickerClasses = classNames({
       'bx--time-picker': true,
+      'bx--time-picker--light': light,
       [className]: className,
     });
 
@@ -122,7 +129,6 @@ export default class TimePicker extends Component {
 
     return (
       <div className="bx--form-item">
-        {label}
         <div className={timePickerClasses}>
           <div className="bx--time-picker__input">
             <input
@@ -131,6 +137,7 @@ export default class TimePicker extends Component {
               data-invalid={invalid ? invalid : undefined}
               className="bx--time-picker__input-field"
             />
+            {label}
             {error}
           </div>
           {children}

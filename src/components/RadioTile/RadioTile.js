@@ -19,7 +19,7 @@ export default class RadioTile extends React.Component {
     onChange: () => {},
   };
 
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
     this.uid = this.props.id || uid();
   }
 
@@ -45,7 +45,7 @@ export default class RadioTile extends React.Component {
         />
 
         <div className="bx--tile__checkmark">
-          <Icon name="checkmark--glyph" description="Tile checkmark" />
+          <Icon name="checkmark--solid" description="Tile checkmark" />
         </div>
         <div className="bx--tile-content">{children}</div>
       </label>
