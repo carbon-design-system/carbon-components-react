@@ -121,7 +121,7 @@ export class ToastNotification extends Component {
     iconDescription: 'closes notification',
     onCloseButtonClick: () => {},
     hideCloseButton: false,
-    timeout: 3000,
+    timeout: 0,
   };
 
   state = {
