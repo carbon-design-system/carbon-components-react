@@ -22,6 +22,7 @@ import DataTable, {
   TableToolbarSearch,
 } from '../DataTable';
 import Button from '../Button';
+import Tooltip from '../Tooltip';
 
 const initialRows = [
   {
@@ -77,6 +78,20 @@ const headers = [
   {
     key: 'status',
     header: 'Status',
+  },
+];
+
+const headersWithToolTip = [
+  ...headers.slice(0, -1),
+  {
+    key: 'status',
+    header: (
+      <div>
+        <Tooltip triggerText="Status" direction="top">
+          This is the tooltip content
+        </Tooltip>
+      </div>
+    ),
   },
 ];
 
@@ -447,6 +462,68 @@ storiesOf('DataTable', module)
                 {rows.map(row => (
                   <TableRow key={row.id}>
                     <TableSelectRow {...getSelectionProps({ row })} />
+                    {row.cells.map(cell => (
+                      <TableCell key={cell.id}>{cell.value}</TableCell>
+                    ))}
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
+        )}
+      />
+    )
+  )
+  .addWithInfo(
+    'with tooltip in header',
+    `
+      DataTable with tooltip in the header.
+
+      You can find more detailed information surrounding usage of this component
+      at the following url: ${readmeURL}
+    `,
+    () => (
+      <DataTable
+        rows={initialRows}
+        headers={headersWithToolTip}
+        render={({ rows, headers, getHeaderProps, onInputChange }) => (
+          <TableContainer title="DataTable with toolbar">
+            <TableToolbar>
+              <TableToolbarSearch onChange={onInputChange} />
+              <TableToolbarContent>
+                <TableToolbarAction
+                  iconName="download"
+                  iconDescription="Download"
+                  onClick={action('TableToolbarAction - Download')}
+                />
+                <TableToolbarAction
+                  iconName="edit"
+                  iconDescription="Edit"
+                  onClick={action('TableToolbarAction - Edit')}
+                />
+                <TableToolbarAction
+                  iconName="settings"
+                  iconDescription="Settings"
+                  onClick={action('TableToolbarAction - Settings')}
+                />
+                <Button onClick={action('Add new row')} small kind="primary">
+                  Add new
+                </Button>
+              </TableToolbarContent>
+            </TableToolbar>
+            <Table>
+              <TableHead>
+                <TableRow>
+                  {headers.map(header => (
+                    <TableHeader {...getHeaderProps({ header })}>
+                      {header.header}
+                    </TableHeader>
+                  ))}
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {rows.map(row => (
+                  <TableRow key={row.id}>
                     {row.cells.map(cell => (
                       <TableCell key={cell.id}>{cell.value}</TableCell>
                     ))}

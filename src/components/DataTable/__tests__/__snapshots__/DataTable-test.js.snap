@@ -117,9 +117,11 @@ exports[`DataTable selection should have select-all default to un-checked if no 
                     <th
                       scope="col"
                     >
-                      <button
+                      <div
                         className="bx--table-sort-v2"
                         onClick={[Function]}
+                        role="button"
+                        tabIndex={0}
                       >
                         <span
                           className="bx--table-header-label"
@@ -153,7 +155,7 @@ exports[`DataTable selection should have select-all default to un-checked if no 
                             />
                           </svg>
                         </Icon>
-                      </button>
+                      </div>
                     </th>
                   </TableHeader>
                   <TableHeader
@@ -168,9 +170,11 @@ exports[`DataTable selection should have select-all default to un-checked if no 
                     <th
                       scope="col"
                     >
-                      <button
+                      <div
                         className="bx--table-sort-v2"
                         onClick={[Function]}
+                        role="button"
+                        tabIndex={0}
                       >
                         <span
                           className="bx--table-header-label"
@@ -204,7 +208,7 @@ exports[`DataTable selection should have select-all default to un-checked if no 
                             />
                           </svg>
                         </Icon>
-                      </button>
+                      </div>
                     </th>
                   </TableHeader>
                 </tr>
@@ -444,9 +448,11 @@ exports[`DataTable selection should render 1`] = `
                     <th
                       scope="col"
                     >
-                      <button
+                      <div
                         className="bx--table-sort-v2"
                         onClick={[Function]}
+                        role="button"
+                        tabIndex={0}
                       >
                         <span
                           className="bx--table-header-label"
@@ -480,7 +486,7 @@ exports[`DataTable selection should render 1`] = `
                             />
                           </svg>
                         </Icon>
-                      </button>
+                      </div>
                     </th>
                   </TableHeader>
                   <TableHeader
@@ -495,9 +501,11 @@ exports[`DataTable selection should render 1`] = `
                     <th
                       scope="col"
                     >
-                      <button
+                      <div
                         className="bx--table-sort-v2"
                         onClick={[Function]}
+                        role="button"
+                        tabIndex={0}
                       >
                         <span
                           className="bx--table-header-label"
@@ -531,7 +539,7 @@ exports[`DataTable selection should render 1`] = `
                             />
                           </svg>
                         </Icon>
-                      </button>
+                      </div>
                     </th>
                   </TableHeader>
                 </tr>
@@ -1135,9 +1143,11 @@ exports[`DataTable should render 1`] = `
                     <th
                       scope="col"
                     >
-                      <button
+                      <div
                         className="bx--table-sort-v2"
                         onClick={[Function]}
+                        role="button"
+                        tabIndex={0}
                       >
                         <span
                           className="bx--table-header-label"
@@ -1171,7 +1181,7 @@ exports[`DataTable should render 1`] = `
                             />
                           </svg>
                         </Icon>
-                      </button>
+                      </div>
                     </th>
                   </TableHeader>
                   <TableHeader
@@ -1186,9 +1196,11 @@ exports[`DataTable should render 1`] = `
                     <th
                       scope="col"
                     >
-                      <button
+                      <div
                         className="bx--table-sort-v2"
                         onClick={[Function]}
+                        role="button"
+                        tabIndex={0}
                       >
                         <span
                           className="bx--table-header-label"
@@ -1222,7 +1234,7 @@ exports[`DataTable should render 1`] = `
                             />
                           </svg>
                         </Icon>
-                      </button>
+                      </div>
                     </th>
                   </TableHeader>
                 </tr>
