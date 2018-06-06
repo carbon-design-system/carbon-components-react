@@ -33,10 +33,10 @@ export class FileUploaderButton extends Component {
   state = {
     labelText: this.props.labelText,
   };
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
     this.uid = this.props.id || uid();
   }
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     if (nextProps.labelText !== this.props.labelText) {
       this.setState({ labelText: nextProps.labelText });
     }
@@ -140,7 +140,7 @@ export class Filename extends Component {
         <Icon
           description={iconDescription}
           className="bx--file-close"
-          name="close--glyph"
+          name="close--solid"
           style={style}
           {...other}
         />
@@ -150,7 +150,7 @@ export class Filename extends Component {
         <Icon
           description={iconDescription}
           className="bx--file-complete"
-          name="checkmark--glyph"
+          name="checkmark--solid"
           style={style}
           {...other}
         />
@@ -195,7 +195,7 @@ export default class FileUploader extends Component {
 
   nodes = [];
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     if (nextProps.filenameStatus !== this.props.filenameStatus) {
       this.setState({ filenameStatus: nextProps.filenameStatus });
     }

@@ -22,6 +22,10 @@ export default class NumberInput extends Component {
     value: PropTypes.number,
     invalid: PropTypes.bool,
     invalidText: PropTypes.string,
+    /**
+     * `true` to use the light version.
+     */
+    light: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -34,6 +38,7 @@ export default class NumberInput extends Component {
     value: 0,
     invalid: false,
     invalidText: 'Provide invalidText',
+    light: false,
   };
 
   /**
@@ -55,7 +60,7 @@ export default class NumberInput extends Component {
     };
   }
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     if (nextProps.value !== this.props.value) {
       this.setState({ value: nextProps.value });
     }
@@ -123,10 +128,13 @@ export default class NumberInput extends Component {
       step,
       invalid,
       invalidText,
+      light,
       ...other
     } = this.props;
 
-    const numberInputClasses = classNames('bx--number', className);
+    const numberInputClasses = classNames('bx--number', className, {
+      'bx--number--light': light,
+    });
 
     const props = {
       disabled,
@@ -141,7 +149,6 @@ export default class NumberInput extends Component {
     const buttonProps = {
       disabled,
       type: 'button',
-      className: 'bx--number__control-btn',
     };
 
     const inputWrapperProps = {};
@@ -153,10 +160,31 @@ export default class NumberInput extends Component {
 
     return (
       <div className="bx--form-item">
-        <label htmlFor={id} className="bx--label">
-          {label}
-        </label>
         <div className={numberInputClasses} {...inputWrapperProps}>
+          <div className="bx--number__controls">
+            <button
+              className="bx--number__control-btn up-icon"
+              {...buttonProps}
+              onClick={evt => this.handleArrowClick(evt, 'up')}>
+              <Icon
+                className="up-icon"
+                name="caret--up"
+                description={this.props.iconDescription}
+                viewBox="0 0 10 5"
+              />
+            </button>
+            <button
+              className="bx--number__control-btn down-icon"
+              {...buttonProps}
+              onClick={evt => this.handleArrowClick(evt, 'down')}>
+              <Icon
+                className="down-icon"
+                name="caret--down"
+                viewBox="0 0 10 5"
+                description={this.props.iconDescription}
+              />
+            </button>
+          </div>
           <input
             type="number"
             pattern="[0-9]*"
@@ -164,30 +192,11 @@ export default class NumberInput extends Component {
             {...props}
             ref={this._handleInputRef}
           />
-          <div className="bx--number__controls">
-            <button
-              {...buttonProps}
-              onClick={evt => this.handleArrowClick(evt, 'up')}>
-              <Icon
-                className="up-icon"
-                name="caret--up"
-                description={this.props.iconDescription}
-                viewBox="0 2 10 5"
-              />
-            </button>
-            <button
-              {...buttonProps}
-              onClick={evt => this.handleArrowClick(evt, 'down')}>
-              <Icon
-                className="down-icon"
-                name="caret--down"
-                viewBox="0 2 10 5"
-                description={this.props.iconDescription}
-              />
-            </button>
-          </div>
+          <label htmlFor={id} className="bx--label">
+            {label}
+          </label>
+          {error}
         </div>
-        {error}
       </div>
     );
   }

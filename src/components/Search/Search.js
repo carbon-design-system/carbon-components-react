@@ -2,21 +2,20 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import classNames from 'classnames';
 import Icon from '../Icon';
-import SearchFilterButton from '../SearchFilterButton';
-import SearchLayoutButton from '../SearchLayoutButton';
 
 export default class Search extends Component {
   static propTypes = {
-    children: PropTypes.node,
     className: PropTypes.string,
     type: PropTypes.string,
     small: PropTypes.bool,
     placeHolderText: PropTypes.string,
     labelText: PropTypes.node.isRequired,
     id: PropTypes.string,
-    searchButtonLabelText: PropTypes.string,
-    layoutButtonLabelText: PropTypes.string,
     closeButtonLabelText: PropTypes.string,
+    /**
+     * `true` to use the light version.
+     */
+    light: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -24,6 +23,7 @@ export default class Search extends Component {
     small: false,
     placeHolderText: '',
     onChange: () => {},
+    light: false,
   };
 
   state = {
@@ -65,20 +65,19 @@ export default class Search extends Component {
           .substr(2)}`),
       placeHolderText,
       labelText,
-      searchButtonLabelText,
-      layoutButtonLabelText,
       closeButtonLabelText,
       small,
-      children,
+      light,
       ...other
     } = this.props;
 
     const { hasContent } = this.state;
 
     const searchClasses = classNames({
-      'bx--search bx--search-with-options': true,
+      'bx--search': true,
       'bx--search--lg': !small,
       'bx--search--sm': small,
+      'bx--search--light': light,
       [className]: className,
     });
 
@@ -87,12 +86,10 @@ export default class Search extends Component {
       'bx--search-close--hidden': !hasContent,
     });
 
-    const renderButtons = !children && !small;
-
     return (
       <div className={searchClasses} role="search">
         <Icon
-          name="search--glyph"
+          name="search"
           description={labelText}
           className="bx--search-magnifier"
         />
@@ -115,15 +112,8 @@ export default class Search extends Component {
           onClick={this.clearInput}
           type="button"
           aria-label={closeButtonLabelText}>
-          <Icon name="close--glyph" description={closeButtonLabelText} />
+          <Icon name="close--solid" description={closeButtonLabelText} />
         </button>
-        {children}
-        {renderButtons && (
-          <SearchFilterButton labelText={searchButtonLabelText} />
-        )}
-        {renderButtons && (
-          <SearchLayoutButton labelText={layoutButtonLabelText} />
-        )}
       </div>
     );
   }

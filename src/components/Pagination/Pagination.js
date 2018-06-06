@@ -2,11 +2,14 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import classnames from 'classnames';
 import debounce from 'lodash.debounce';
+import warning from 'warning';
 import Icon from '../Icon';
 import Select from '../Select';
 import SelectItem from '../SelectItem';
 import TextInput from '../TextInput';
 import { equals } from '../../tools/array';
+
+let didWarnAboutDeprecation = false;
 
 export default class Pagination extends Component {
   static propTypes = {
@@ -54,6 +57,18 @@ export default class Pagination extends Component {
     onChangeInterval: 250,
   };
 
+  constructor(props) {
+    super(props);
+    if (__DEV__) {
+      warning(
+        didWarnAboutDeprecation,
+        'The `Pagination` component is being updated in the next release of ' +
+          '`carbon-components-react`. Please use `PaginationV2` instead.'
+      );
+      didWarnAboutDeprecation = true;
+    }
+  }
+
   state = {
     page: this.props.page,
     pageSize:
@@ -62,7 +77,7 @@ export default class Pagination extends Component {
         : this.props.pageSizes[0],
   };
 
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
     this.uniqueId = `${Math.floor(Math.random() * 0xffff)}`;
   }
 
@@ -79,7 +94,7 @@ export default class Pagination extends Component {
     this.pageInputDebouncer.cancel();
   }
 
-  componentWillReceiveProps({ pageSizes, page, pageSize }) {
+  UNSAFE_componentWillReceiveProps({ pageSizes, page, pageSize }) {
     if (!equals(pageSizes, this.props.pageSizes)) {
       this.setState({ pageSize: pageSizes[0], page: 1 });
     }
