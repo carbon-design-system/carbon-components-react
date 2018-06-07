@@ -52,6 +52,16 @@ export default class Modal extends Component {
     }
   };
 
+  focusButton() {
+    if (this.button) {
+      this.button.focus();
+    }
+  }
+
+  componentDidMount() {
+    this.focusButton();
+  }
+
   render() {
     const {
       modalHeading,
@@ -86,7 +96,10 @@ export default class Modal extends Component {
       <button
         className="bx--modal-close"
         type="button"
-        onClick={onRequestClose}>
+        onClick={onRequestClose}
+        ref={closeButton => {
+          this.button = closeButton;
+        }}>
         <Icon
           name="close"
           className="bx--modal-close__icon"
@@ -123,7 +136,10 @@ export default class Modal extends Component {
               <Button
                 kind={danger ? 'danger--primary' : 'primary'}
                 disabled={primaryButtonDisabled}
-                onClick={onRequestSubmit}>
+                onClick={onRequestSubmit}
+                ref={primaryButton => {
+                  this.button = primaryButton;
+                }}>
                 {primaryButtonText}
               </Button>
             </div>
