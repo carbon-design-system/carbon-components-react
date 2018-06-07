@@ -16,7 +16,7 @@ storiesOf('FileUploader', module)
       <FileUploaderButton
         labelText="Add files"
         className="bob"
-        name="file"
+        // name="file"
         onChange={() => console.log('hi')}
         multiple
       />

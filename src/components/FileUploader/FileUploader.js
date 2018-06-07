@@ -98,7 +98,7 @@ export class FileUploaderButton extends Component {
           type="file"
           multiple={multiple}
           accept={accept}
-          name={name || ''}
+          name={name}
           onChange={this.handleChange}
           onClick={evt => {
             evt.target.value = null;
@@ -253,7 +253,7 @@ export default class FileUploader extends Component {
           onChange={this.handleChange}
           disableLabelChanges
           accept={accept}
-          name={name || ''}
+          name={name}
         />
         <div className="bx--file-container">
           {this.state.filenames.length === 0
