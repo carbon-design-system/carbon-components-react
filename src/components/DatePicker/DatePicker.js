@@ -5,6 +5,7 @@ import flatpickr from 'flatpickr';
 import l10n from 'flatpickr/dist/l10n/index';
 import rangePlugin from 'flatpickr/dist/plugins/rangePlugin';
 import DatePickerInput from '../DatePickerInput';
+import Icon from '../Icon';
 
 // Weekdays shorthand for english locale
 l10n.en.weekdays.shorthand.forEach((day, index) => {
@@ -32,6 +33,11 @@ export default class DatePicker extends Component {
      * `true` to use the short version.
      */
     short: PropTypes.bool,
+
+    /**
+     * `true` to use the light version.
+     */
+    light: PropTypes.bool,
 
     /**
      * The type of the date picker:
@@ -194,11 +200,12 @@ export default class DatePicker extends Component {
 
   static defaultProps = {
     short: false,
+    light: false,
     dateFormat: 'm/d/Y',
     locale: 'en',
   };
 
-  componentWillUpdate(nextProps) {
+  UNSAFE_componentWillUpdate(nextProps) {
     if (nextProps.value !== this.props.value) {
       if (
         this.props.datePickerType === 'single' ||
@@ -295,15 +302,15 @@ export default class DatePicker extends Component {
 
   rightArrowHTML() {
     return `
-      <svg width="8" height="12" viewBox="0 0 8 12" fill-rule="evenodd">
-        <path d="M0 10.6L4.7 6 0 1.4 1.4 0l6.1 6-6.1 6z"></path>
+      <svg height="12" width="7" viewBox="0 0 7 12">
+        <path d="M5.569 5.994L0 .726.687 0l6.336 5.994-6.335 6.002L0 11.27z"></path>
       </svg>`;
   }
 
   leftArrowHTML() {
     return `
-      <svg width="8" height="12" viewBox="0 0 8 12" fill-rule="evenodd">
-        <path d="M7.5 10.6L2.8 6l4.7-4.6L6.1 0 0 6l6.1 6z"></path>
+      <svg width="7" height="12" viewBox="0 0 7 12" fill-rule="evenodd">
+        <path d="M1.45 6.002L7 11.27l-.685.726L0 6.003 6.315 0 7 .726z"></path>
       </svg>`;
   }
 
@@ -376,6 +383,7 @@ export default class DatePicker extends Component {
       children,
       className,
       short,
+      light,
       datePickerType,
       minDate, // eslint-disable-line
       maxDate, // eslint-disable-line
@@ -386,6 +394,7 @@ export default class DatePicker extends Component {
 
     const datePickerClasses = classNames('bx--date-picker', className, {
       'bx--date-picker--short': short,
+      'bx--date-picker--light': light,
       'bx--date-picker--simple': datePickerType === 'simple',
       'bx--date-picker--single': datePickerType === 'single',
       'bx--date-picker--range': datePickerType === 'range',
@@ -393,16 +402,11 @@ export default class DatePicker extends Component {
 
     const datePickerIcon =
       datePickerType === 'range' ? (
-        <svg
-          onClick={this.openCalendar}
+        <Icon
+          name="calendar"
           className="bx--date-picker__icon"
-          width="17"
-          height="19"
-          viewBox="0 0 17 19">
-          <path d="M12 0h2v2.7h-2zM3 0h2v2.7H3z" />
-          <path d="M0 2v17h17V2H0zm15 15H2V7h13v10z" />
-          <path d="M9.9 15H8.6v-3.9H7.1v-.9c.9 0 1.7-.3 1.8-1.2h1v6z" />
-        </svg>
+          onClick={this.openCalendar}
+        />
       ) : (
         ''
       );

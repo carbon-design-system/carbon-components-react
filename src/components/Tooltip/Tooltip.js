@@ -165,7 +165,7 @@ export default class Tooltip extends Component {
     });
   }
 
-  componentWillReceiveProps({ open }) {
+  UNSAFE_componentWillReceiveProps({ open }) {
     /**
      * so that tooltip can be controlled programmatically through this `open` prop
      */
@@ -358,6 +358,7 @@ export default class Tooltip extends Component {
               ref={node => {
                 this._tooltipEl = node;
               }}>
+              <span className="bx--tooltip__caret" />
               {children}
             </div>
           </FloatingMenu>
