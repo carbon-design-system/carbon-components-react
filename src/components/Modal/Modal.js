@@ -53,12 +53,14 @@ export default class Modal extends Component {
   };
 
   focusButton() {
-    if (this.button) {
-      this.button.focus();
+    if (this.button && this.props.open) {
+      setTimeout(() => {
+        this.button.focus();
+      }, 200);
     }
   }
 
-  componentDidMount() {
+  componentDidUpdate() {
     this.focusButton();
   }
 
