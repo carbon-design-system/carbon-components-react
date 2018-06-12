@@ -37,6 +37,8 @@ export default class Modal extends Component {
     modalLabel: '',
   };
 
+  button = React.createRef();
+
   handleKeyDown = evt => {
     if (evt.which === 27) {
       this.props.onRequestClose();
@@ -55,7 +57,7 @@ export default class Modal extends Component {
   focusButton() {
     if (this.button && this.props.open) {
       setTimeout(() => {
-        this.button.focus();
+        this.button.current.focus();
       }, 200);
     }
   }
@@ -99,9 +101,7 @@ export default class Modal extends Component {
         className="bx--modal-close"
         type="button"
         onClick={onRequestClose}
-        ref={closeButton => {
-          this.button = closeButton;
-        }}>
+        ref={this.button}>
         <Icon
           name="close"
           className="bx--modal-close__icon"
@@ -139,9 +139,7 @@ export default class Modal extends Component {
                 kind={danger ? 'danger--primary' : 'primary'}
                 disabled={primaryButtonDisabled}
                 onClick={onRequestSubmit}
-                ref={primaryButton => {
-                  this.button = primaryButton;
-                }}>
+                inputRef={this.button}>
                 {primaryButtonText}
               </Button>
             </div>
