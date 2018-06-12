@@ -65,7 +65,7 @@ export class ClickableTile extends Component {
     }
   };
 
-  componentWillReceiveProps({ clicked }) {
+  UNSAFE_componentWillReceiveProps({ clicked }) {
     if (clicked !== this.props.clicked) {
       this.setState({ clicked });
     }
@@ -160,7 +160,7 @@ export class SelectableTile extends Component {
     }
   };
 
-  componentWillReceiveProps({ selected }) {
+  UNSAFE_componentWillReceiveProps({ selected }) {
     if (selected !== this.props.selected) {
       this.setState({ selected });
     }
@@ -205,7 +205,7 @@ export class SelectableTile extends Component {
           checked={this.state.selected}
         />
         <div className="bx--tile__checkmark">
-          <Icon name="checkmark--glyph" description="Tile checkmark" />
+          <Icon name="checkmark--solid" description="Tile checkmark" />
         </div>
         <div className="bx--tile-content">{children}</div>
       </label>
@@ -225,6 +225,8 @@ export class ExpandableTile extends Component {
     className: PropTypes.string,
     expanded: PropTypes.bool,
     tabIndex: PropTypes.number,
+    tileCollapsedIconText: PropTypes.string,
+    tileExpandedIconText: PropTypes.string,
   };
 
   static defaultProps = {
@@ -232,9 +234,11 @@ export class ExpandableTile extends Component {
     expanded: false,
     tileMaxHeight: '0',
     handleClick: () => {},
+    tileCollapsedIconText: 'Expand',
+    tileExpandedIconText: 'Collapse',
   };
 
-  componentWillReceiveProps({ expanded, tileMaxHeight, tilePadding }) {
+  UNSAFE_componentWillReceiveProps({ expanded, tileMaxHeight, tilePadding }) {
     if (expanded !== this.props.expanded) {
       this.setState({ expanded });
     }
@@ -295,6 +299,8 @@ export class ExpandableTile extends Component {
       tilePadding, // eslint-disable-line
       handleClick, // eslint-disable-line
       expanded, // eslint-disable-line
+      tileCollapsedIconText, // eslint-disable-line
+      tileExpandedIconText, // eslint-disable-line
       ...other
     } = this.props;
 
@@ -326,7 +332,12 @@ export class ExpandableTile extends Component {
         onClick={this.handleClick}
         tabIndex={tabIndex}>
         <button className="bx--tile__chevron">
-          <Icon name="chevron--down" description="Tile chevron" />
+          <Icon
+            name="chevron--down"
+            description={
+              this.state.expanded ? tileExpandedIconText : tileCollapsedIconText
+            }
+          />
         </button>
         <div
           ref={tileContent => {

@@ -14,43 +14,40 @@ exports[`DataTable.TableToolbarSearch should render 1`] = `
       className="custom-class"
       id="custom-id"
       labelText="Filter table"
+      light={true}
       onChange={[MockFunction]}
       placeHolderText="Search"
       small={true}
       type="text"
     >
       <div
-        className="bx--search bx--search-with-options bx--search--sm custom-class"
+        className="bx--search bx--search--sm bx--search--light custom-class"
         role="search"
       >
         <Icon
           className="bx--search-magnifier"
-          description="search"
+          description="Filter table"
           fillRule="evenodd"
-          name="search--glyph"
+          name="search"
           role="img"
         >
           <svg
-            alt="search"
-            aria-label="search"
+            alt="Filter table"
+            aria-label="Filter table"
             className="bx--search-magnifier"
             fillRule="evenodd"
             height="16"
-            name="search--glyph"
+            name="search"
             role="img"
             viewBox="0 0 16 16"
             width="16"
           >
             <title>
-              search
+              Filter table
             </title>
             <path
-              d="M6 2c2.2 0 4 1.8 4 4s-1.8 4-4 4-4-1.8-4-4 1.8-4 4-4zm0-2C2.7 0 0 2.7 0 6s2.7 6 6 6 6-2.7 6-6-2.7-6-6-6zm10 13.8L13.8 16l-3.6-3.6 2.2-2.2z"
+              d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zm4.936-1.27l4.563 4.557-.707.708-4.563-4.558a6.5 6.5 0 1 1 .707-.707z"
               key="key0"
-            />
-            <path
-              d="M16 13.8L13.8 16l-3.6-3.6 2.2-2.2z"
-              key="key1"
             />
           </svg>
         </Icon>
@@ -73,26 +70,26 @@ exports[`DataTable.TableToolbarSearch should render 1`] = `
           type="button"
         >
           <Icon
-            description="close"
+            description="Provide a description that will be used as the title"
             fillRule="evenodd"
-            name="close--glyph"
+            name="close--solid"
             role="img"
           >
             <svg
-              alt="close"
-              aria-label="close"
+              alt="Provide a description that will be used as the title"
+              aria-label="Provide a description that will be used as the title"
               fillRule="evenodd"
               height="16"
-              name="close--glyph"
+              name="close--solid"
               role="img"
               viewBox="0 0 16 16"
               width="16"
             >
               <title>
-                close
+                Provide a description that will be used as the title
               </title>
               <path
-                d="M8 0C3.6 0 0 3.6 0 8s3.6 8 8 8 8-3.6 8-8-3.6-8-8-8zm3.5 10.1l-1.4 1.4L8 9.4l-2.1 2.1-1.4-1.4L6.6 8 4.5 5.9l1.4-1.4L8 6.6l2.1-2.1 1.4 1.4L9.4 8l2.1 2.1z"
+                d="M8 6.586L5.879 4.464 4.464 5.88 6.586 8l-2.122 2.121 1.415 1.415L8 9.414l2.121 2.122 1.415-1.415L9.414 8l2.122-2.121-1.415-1.415L8 6.586zM8 16A8 8 0 1 1 8 0a8 8 0 0 1 0 16z"
                 key="key0"
               />
             </svg>

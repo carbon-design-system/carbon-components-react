@@ -165,7 +165,7 @@ export default class Tooltip extends Component {
     });
   }
 
-  componentWillReceiveProps({ open }) {
+  UNSAFE_componentWillReceiveProps({ open }) {
     /**
      * so that tooltip can be controlled programmatically through this `open` prop
      */
@@ -287,6 +287,11 @@ export default class Tooltip extends Component {
     );
 
     const triggerClasses = classNames('bx--tooltip__trigger', triggerClassName);
+    const ariaOwnsProps = !open
+      ? {}
+      : {
+          'aria-owns': tooltipId,
+        };
 
     return (
       <div>
@@ -303,8 +308,8 @@ export default class Tooltip extends Component {
                 onFocus={evt => this.handleMouse(evt)}
                 onBlur={evt => this.handleMouse(evt)}
                 aria-haspopup="true"
-                aria-owns={tooltipId}
-                aria-expanded={open}>
+                aria-expanded={open}
+                {...ariaOwnsProps}>
                 <Icon
                   onKeyDown={this.handleKeyPress}
                   onClick={() => this.handleMouse('click')}
@@ -328,8 +333,8 @@ export default class Tooltip extends Component {
               onFocus={evt => this.handleMouse(evt)}
               onBlur={evt => this.handleMouse(evt)}
               aria-haspopup="true"
-              aria-owns={tooltipId}
-              aria-expanded={open}>
+              aria-expanded={open}
+              {...ariaOwnsProps}>
               {triggerText}
             </div>
           )}
@@ -353,6 +358,7 @@ export default class Tooltip extends Component {
               ref={node => {
                 this._tooltipEl = node;
               }}>
+              <span className="bx--tooltip__caret" />
               {children}
             </div>
           </FloatingMenu>

@@ -34,6 +34,7 @@ exports[`DropdownV2 should render 1`] = `
     ]
   }
   label="input"
+  light={false}
   onChange={[MockFunction]}
   placeholder="Filter..."
   type="default"
@@ -57,13 +58,13 @@ exports[`DropdownV2 should render 1`] = `
     stateReducer={[Function]}
   >
     <ListBox
-      className="bx--dropdown-v2"
+      className="bx--dropdown"
       disabled={false}
       innerRef={[Function]}
       type="default"
     >
       <div
-        className="bx--dropdown-v2 bx--list-box"
+        className="bx--dropdown bx--list-box"
         onKeyDown={[Function]}
       >
         <ListBoxField
@@ -126,7 +127,7 @@ exports[`DropdownV2 should render 1`] = `
                       Open menu
                     </title>
                     <path
-                      d="M10 0L5 5 0 0z"
+                      d="M0 0l5 4.998L10 0z"
                       key="key0"
                     />
                   </svg>

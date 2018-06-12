@@ -87,6 +87,12 @@ describe('NumberInput', () => {
         expect(invalidText.text()).toEqual('invalid text');
       });
 
+      it('should specify light number input as expected', () => {
+        expect(wrapper.props().light).toEqual(false);
+        wrapper.setProps({ light: true });
+        expect(wrapper.props().light).toEqual(true);
+      });
+
       describe('initial rendering', () => {
         const getWrapper = (min, max, value) =>
           mount(
@@ -185,8 +191,8 @@ describe('NumberInput', () => {
       );
 
       const input = wrapper.find('input');
-      const upArrow = wrapper.find('.up-icon').parent();
-      const downArrow = wrapper.find('.down-icon').parent();
+      const upArrow = wrapper.find('button.up-icon');
+      const downArrow = wrapper.find('button.down-icon');
 
       it('should be disabled when numberInput is disabled', () => {
         expect(upArrow.prop('disabled')).toEqual(true);
