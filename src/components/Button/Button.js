@@ -3,81 +3,65 @@ import React from 'react';
 import Icon from '../Icon';
 import classNames from 'classnames';
 
-export default class Button extends React.Component {
-  focus() {
-    this.el.focus();
-  }
+const Button = ({
+  children,
+  className,
+  disabled,
+  small,
+  kind,
+  href,
+  tabIndex,
+  type,
+  icon,
+  iconDescription,
+  ...other
+}) => {
+  const buttonClasses = classNames(className, {
+    'bx--btn': true,
+    'bx--btn--sm': small,
+    'bx--btn--primary': kind === 'primary',
+    'bx--btn--danger': kind === 'danger',
+    'bx--btn--secondary': kind === 'secondary',
+    'bx--btn--ghost': kind === 'ghost',
+    'bx--btn--danger--primary': kind === 'danger--primary',
+    'bx--btn--tertiary': kind === 'tertiary',
+  });
 
-  render() {
-    const {
-      children,
-      className,
-      disabled,
-      small,
-      kind,
-      href,
-      tabIndex,
-      type,
-      icon,
-      iconDescription,
-      ...other
-    } = this.props;
+  const commonProps = {
+    tabIndex,
+    className: buttonClasses,
+  };
 
-    const buttonClasses = classNames(className, {
-      'bx--btn': true,
-      'bx--btn--sm': small,
-      'bx--btn--primary': kind === 'primary',
-      'bx--btn--danger': kind === 'danger',
-      'bx--btn--secondary': kind === 'secondary',
-      'bx--btn--ghost': kind === 'ghost',
-      'bx--btn--danger--primary': kind === 'danger--primary',
-      'bx--btn--tertiary': kind === 'tertiary',
-    });
+  const buttonImage = icon ? (
+    <Icon name={icon} description={iconDescription} className="bx--btn__icon" />
+  ) : null;
 
-    const commonProps = {
-      tabIndex,
-      className: buttonClasses,
-    };
+  const button = (
+    <button
+      {...other}
+      {...commonProps}
+      disabled={disabled}
+      type={type}
+      ref={other.inputRef}>
+      {children}
+      {buttonImage}
+    </button>
+  );
 
-    const buttonImage = icon ? (
-      <Icon
-        name={icon}
-        description={iconDescription}
-        className="bx--btn__icon"
-      />
-    ) : null;
+  const anchor = (
+    <a
+      {...other}
+      {...commonProps}
+      href={href}
+      role="button"
+      ref={other.inputRef}>
+      {children}
+      {buttonImage}
+    </a>
+  );
 
-    const button = (
-      <button
-        {...other}
-        {...commonProps}
-        disabled={disabled}
-        type={type}
-        ref={el => {
-          this.el = el;
-        }}>
-        {children}
-        {buttonImage}
-      </button>
-    );
-
-    const anchor = (
-      <a
-        {...other}
-        {...commonProps}
-        href={href}
-        role="button"
-        ref={el => {
-          this.el = el;
-        }}>
-        {children}
-        {buttonImage}
-      </a>
-    );
-
-    return href ? anchor : button;
-  }
-}
+  return href ? anchor : button;
+};
 
 Button.propTypes = {
   children: PropTypes.node,
@@ -115,3 +99,5 @@ Button.defaultProps = {
   small: false,
   kind: 'primary',
 };
+
+export default Button;
