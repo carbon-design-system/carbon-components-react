@@ -42,7 +42,7 @@ const Button = ({
       {...commonProps}
       disabled={disabled}
       type={type}
-      ref={other.inputRef}>
+      ref={other.inputref}>
       {children}
       {buttonImage}
     </button>
@@ -54,7 +54,7 @@ const Button = ({
       {...commonProps}
       href={href}
       role="button"
-      ref={other.inputRef}>
+      ref={other.inputref}>
       {children}
       {buttonImage}
     </a>
