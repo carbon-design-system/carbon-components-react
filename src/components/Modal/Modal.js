@@ -54,17 +54,14 @@ export default class Modal extends Component {
     }
   };
 
-  focusButton() {
-    if (this.button && this.props.open) {
-      setTimeout(() => {
-        this.button.current.focus();
-      }, 200);
+  focusButton = e => {
+    const modalIsVisible =
+      this.props.open &&
+      (e.propertyName === 'opacity' || e.propertyName === 'visibility');
+    if (this.button && modalIsVisible) {
+      this.button.current.focus();
     }
-  }
-
-  componentDidUpdate() {
-    this.focusButton();
-  }
+  };
 
   render() {
     const {
@@ -155,7 +152,8 @@ export default class Modal extends Component {
         onClick={this.handleClick}
         className={modalClasses}
         role="presentation"
-        tabIndex={-1}>
+        tabIndex={-1}
+        onTransitionEnd={this.focusButton}>
         {modalBody}
       </div>
     );
