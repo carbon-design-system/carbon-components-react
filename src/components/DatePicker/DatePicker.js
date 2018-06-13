@@ -381,7 +381,6 @@ export default class DatePicker extends Component {
       maxDate, // eslint-disable-line
       dateFormat, // eslint-disable-line
       onChange, // eslint-disable-line
-      ...other
     } = this.props;
 
     const datePickerClasses = classNames('bx--date-picker', className, {
@@ -431,7 +430,7 @@ export default class DatePicker extends Component {
     });
     return (
       <div className="bx--form-item">
-        <div className={datePickerClasses} {...other}>
+        <div className={datePickerClasses}>
           {childrenWithProps}
           {datePickerIcon}
         </div>
