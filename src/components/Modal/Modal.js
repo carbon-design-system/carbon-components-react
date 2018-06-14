@@ -54,22 +54,28 @@ export default class Modal extends Component {
     }
   };
 
+  componentDidUpdate(prevProps) {
+    if (!prevProps.open && this.props.open) {
+      this.buttonIsFocusable = true;
+    } else if (prevProps.open && !this.props.open) {
+      this.buttonIsFocusable = false;
+    }
+  }
+
   focusButton = () => {
     if (this.button) {
       this.button.current.focus();
     }
   };
 
-  handleTransitionEnd = evt => {
-    if (!evt.target.classList.contains('bx--modal')) {
-      return;
-    }
-    const modalIsVisible =
-      evt.target.offsetHeight &&
-      evt.target.offsetWidth &&
-      evt.propertyName === 'opacity';
-    if (this.props.open && modalIsVisible) {
+  handleTransitionEnd = () => {
+    if (
+      this.outerModal.offsetWidth &&
+      this.outerModal.offsetHeight &&
+      this.buttonIsFocusable
+    ) {
       this.focusButton();
+      this.buttonIsFocusable = false;
     }
   };
 
@@ -163,7 +169,10 @@ export default class Modal extends Component {
         className={modalClasses}
         role="presentation"
         tabIndex={-1}
-        onTransitionEnd={this.handleTransitionEnd}>
+        onTransitionEnd={this.props.open && this.handleTransitionEnd}
+        ref={outerModal => {
+          this.outerModal = outerModal;
+        }}>
         {modalBody}
       </div>
     );
