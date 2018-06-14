@@ -58,7 +58,6 @@ exports[`ModalWrapper should render 1`] = `
         id="modal"
         onClick={[Function]}
         onKeyDown={[Function]}
-        onTransitionEnd={[Function]}
         role="presentation"
         tabIndex={-1}
       >
