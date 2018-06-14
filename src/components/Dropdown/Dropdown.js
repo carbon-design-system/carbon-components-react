@@ -9,7 +9,7 @@ let didWarnAboutDeprecation = false;
 
 export default class Dropdown extends PureComponent {
   static propTypes = {
-    ariaLabel: PropTypes.string.isRequired,
+    ariaLabel: PropTypes.string,
     children: PropTypes.node,
     className: PropTypes.string,
     defaultText: PropTypes.string,
