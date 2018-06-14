@@ -169,7 +169,7 @@ export default class Modal extends Component {
         className={modalClasses}
         role="presentation"
         tabIndex={-1}
-        onTransitionEnd={this.props.open && this.handleTransitionEnd}
+        onTransitionEnd={this.props.open ? this.handleTransitionEnd : undefined}
         ref={outerModal => {
           this.outerModal = outerModal;
         }}>
