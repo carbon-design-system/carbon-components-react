@@ -56,9 +56,9 @@ export default class Modal extends Component {
 
   componentDidUpdate(prevProps) {
     if (!prevProps.open && this.props.open) {
-      this.buttonIsFocusable = true;
+      this.beingOpen = true;
     } else if (prevProps.open && !this.props.open) {
-      this.buttonIsFocusable = false;
+      this.beingOpen = false;
     }
   }
 
@@ -72,10 +72,10 @@ export default class Modal extends Component {
     if (
       this.outerModal.offsetWidth &&
       this.outerModal.offsetHeight &&
-      this.buttonIsFocusable
+      this.beingOpen
     ) {
       this.focusButton();
-      this.buttonIsFocusable = false;
+      this.beingOpen = false;
     }
   };
 
