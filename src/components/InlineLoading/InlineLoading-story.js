@@ -59,7 +59,7 @@ storiesOf('InlineLoading', module).addWithInfo(
                 timeout = setTimeout(() => {
                   this.setSuccess();
                 }, 3000);
-                // this.resetLoading();
+                this.resetLoading();
               }}
               {...loadingProps}
             />
