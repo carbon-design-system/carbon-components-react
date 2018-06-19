@@ -14,7 +14,7 @@ storiesOf('InlineLoading', module).addWithInfo(
   'Inline loading',
   `
       Inline Loading spinners are used when create, updating, or deleting an item.
-      They help notify users that their change is underway. Inline Loading has three states, LOADING, SUCCESS, or ERROR.
+      They help notify users that their change is underway. Inline Loading has three states, LOADING, SUCCESS.
     `,
   () => {
     class InlineLoadingStory extends React.Component {
