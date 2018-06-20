@@ -236,7 +236,7 @@ export default class OverflowMenu extends Component {
     if (this.state.open) {
       if (!floatingMenu) {
         (
-          this.menuEl.querySelector('[data-basic-menu-primary-focus]') ||
+          this.menuEl.querySelector('[data-overflow-menu-primary-focus]') ||
           this.menuEl
         ).focus();
         onOpen();
@@ -394,7 +394,7 @@ export default class OverflowMenu extends Component {
     const childrenWithProps = React.Children.toArray(children).map(child =>
       React.cloneElement(child, {
         closeMenu: this.closeMenu,
-        floating: floatingMenu || undefined,
+        floatingMenu: floatingMenu || undefined,
       })
     );
 

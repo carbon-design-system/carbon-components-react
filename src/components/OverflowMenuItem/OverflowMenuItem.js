@@ -11,7 +11,7 @@ const OverflowMenuItem = ({
   closeMenu,
   onClick,
   primaryFocus,
-  floating,
+  floatingMenu,
   wrapperClassName,
   ...other
 }) => {
@@ -35,14 +35,14 @@ const OverflowMenuItem = ({
     closeMenu();
   };
 
-  const primaryFocusProp = (({ primaryFocus, floating }) => {
+  const primaryFocusProp = (({ primaryFocus, floatingMenu }) => {
     if (!primaryFocus) {
       return {};
     }
-    return floating
+    return floatingMenu
       ? { 'data-floating-menu-primary-focus': true }
-      : { 'data-basic-menu-primary-focus': true };
-  })({ primaryFocus, floating });
+      : { 'data-overflow-menu-primary-focus': true };
+  })({ primaryFocus, floatingMenu });
 
   const item = (
     <li className={overflowMenuItemClasses} role="menuitem">
@@ -114,7 +114,7 @@ OverflowMenuItem.propTypes = {
   /**
    * `true` if this menu item belongs to a floating OverflowMenu
    */
-  floating: PropTypes.bool,
+  floatingMenu: PropTypes.bool,
 };
 
 OverflowMenuItem.defaultProps = {
