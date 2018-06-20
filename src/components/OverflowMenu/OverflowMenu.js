@@ -394,7 +394,7 @@ export default class OverflowMenu extends Component {
     const childrenWithProps = React.Children.toArray(children).map(child =>
       React.cloneElement(child, {
         closeMenu: this.closeMenu,
-        floating: this.props.floatingMenu,
+        floating: floatingMenu || undefined,
       })
     );
 
