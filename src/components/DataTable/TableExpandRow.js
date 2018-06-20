@@ -10,7 +10,7 @@ const TableExpandRow = ({
   children,
   isExpanded,
   onExpand,
-  iconDescription,
+  expandIconDescription,
   ...rest
 }) => {
   const className = cx(
@@ -34,7 +34,7 @@ const TableExpandRow = ({
           <Icon
             className="bx--table-expand-v2__svg"
             name="chevron--right"
-            description={iconDescription}
+            description={expandIconDescription}
           />
         </button>
       </TableCell>
@@ -65,7 +65,7 @@ TableExpandRow.propTypes = {
   /**
    * The description of the chevron right icon, to be put in its SVG `<title>` element.
    */
-  iconDescription: PropTypes.string,
+  expandIconDescription: PropTypes.string,
 };
 
 export default TableExpandRow;
