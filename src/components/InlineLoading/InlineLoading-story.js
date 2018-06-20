@@ -53,6 +53,7 @@ storiesOf('InlineLoading', module).addWithInfo(
             <InlineLoading
               success={success}
               description={description}
+              successDelay={1500}
               onSuccess={() => {
                 clearTimeout(timeout);
                 // Re occuring timeout

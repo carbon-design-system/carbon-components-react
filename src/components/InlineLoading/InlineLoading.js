@@ -9,14 +9,23 @@ export default class InlineLoading extends React.Component {
     success: PropTypes.bool,
     description: PropTypes.string,
     onSuccess: PropTypes.func,
+    successDelay: PropTypes.number,
   };
 
   static defaultProps = {
     success: false,
+    successDelay: 1500,
   };
 
   render() {
-    const { className, success, description, onSuccess, ...other } = this.props;
+    const {
+      className,
+      success,
+      description,
+      onSuccess,
+      successDelay,
+      ...other
+    } = this.props;
 
     const loadingClasses = classNames('bx--inline-loading', className);
 
@@ -26,7 +35,7 @@ export default class InlineLoading extends React.Component {
           if (onSuccess) {
             onSuccess();
           }
-        }, 1500);
+        }, successDelay);
 
         return (
           <svg
