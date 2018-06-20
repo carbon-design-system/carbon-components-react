@@ -11,6 +11,7 @@ const OverflowMenuItem = ({
   closeMenu,
   onClick,
   primaryFocus,
+  floating,
   wrapperClassName,
   ...other
 }) => {
@@ -34,9 +35,15 @@ const OverflowMenuItem = ({
     closeMenu();
   };
 
-  const primaryFocusProp = !primaryFocus
-    ? {}
-    : { 'data-floating-menu-primary-focus': true };
+  const primaryFocusProp = (({ primaryFocus, floating }) => {
+    if (!primaryFocus) {
+      return {};
+    }
+    return floating
+      ? { 'data-floating-menu-primary-focus': true }
+      : { 'data-basic-menu-primary-focus': true };
+  })({ primaryFocus, floating });
+
   const item = (
     <li className={overflowMenuItemClasses} role="menuitem">
       <button
