@@ -110,6 +110,11 @@ OverflowMenuItem.propTypes = {
    * `true` if this menu item should get focus when the menu gets open.
    */
   primaryFocus: PropTypes.bool,
+
+  /**
+   * `true` if this menu item belongs to a floating OverflowMenu
+   */
+  floating: PropTypes.bool,
 };
 
 OverflowMenuItem.defaultProps = {
