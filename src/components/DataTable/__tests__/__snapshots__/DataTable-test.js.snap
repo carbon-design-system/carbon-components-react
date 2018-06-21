@@ -877,7 +877,6 @@ exports[`DataTable should render 1`] = `
           <TableToolbarSearch
             id="custom-id"
             onChange={[Function]}
-            translateWithId={[Function]}
           >
             <div
               className="bx--toolbar-search-container"
