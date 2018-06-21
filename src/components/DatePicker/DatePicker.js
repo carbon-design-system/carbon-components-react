@@ -205,7 +205,7 @@ export default class DatePicker extends Component {
     locale: 'en',
   };
 
-  componentWillUpdate(nextProps) {
+  UNSAFE_componentWillUpdate(nextProps) {
     if (nextProps.value !== this.props.value) {
       if (
         this.props.datePickerType === 'single' ||
@@ -380,6 +380,7 @@ export default class DatePicker extends Component {
 
   render() {
     const {
+      appendTo, // eslint-disable-line
       children,
       className,
       short,
@@ -389,6 +390,8 @@ export default class DatePicker extends Component {
       maxDate, // eslint-disable-line
       dateFormat, // eslint-disable-line
       onChange, // eslint-disable-line
+      locale, // eslint-disable-line
+      value, // eslint-disable-line
       ...other
     } = this.props;
 

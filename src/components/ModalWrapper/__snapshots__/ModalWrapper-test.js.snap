@@ -2,12 +2,14 @@
 
 exports[`ModalWrapper should render 1`] = `
 <ModalWrapper
+  buttonTriggerClassName="btn-trigger"
   buttonTriggerText="Test Modal"
   disabled={false}
   handleSubmit={[MockFunction]}
   id="modal"
   modalHeading="Transactional Modal"
   modalLabel="Test Modal Label"
+  onKeyDown={[Function]}
   primaryButtonText="Save"
   secondaryButtonText="Cancel"
   shouldCloseAfterSubmit={true}
@@ -18,6 +20,7 @@ exports[`ModalWrapper should render 1`] = `
     role="presentation"
   >
     <Button
+      className="btn-trigger"
       disabled={false}
       iconDescription="Provide icon description if icon is used"
       kind="primary"
@@ -27,7 +30,7 @@ exports[`ModalWrapper should render 1`] = `
       type="button"
     >
       <button
-        className="bx--btn bx--btn--primary"
+        className="btn-trigger bx--btn bx--btn--primary"
         disabled={false}
         onClick={[Function]}
         tabIndex={0}
@@ -146,6 +149,18 @@ exports[`ModalWrapper should render 1`] = `
               <Button
                 disabled={false}
                 iconDescription="Provide icon description if icon is used"
+                inputref={
+                  Object {
+                    "current": <button
+                      class="bx--btn bx--btn--primary"
+                      inputref="[object Object]"
+                      tabindex="0"
+                      type="button"
+                    >
+                      Save
+                    </button>,
+                  }
+                }
                 kind="primary"
                 onClick={[Function]}
                 small={false}
@@ -155,6 +170,18 @@ exports[`ModalWrapper should render 1`] = `
                 <button
                   className="bx--btn bx--btn--primary"
                   disabled={false}
+                  inputref={
+                    Object {
+                      "current": <button
+                        class="bx--btn bx--btn--primary"
+                        inputref="[object Object]"
+                        tabindex="0"
+                        type="button"
+                      >
+                        Save
+                      </button>,
+                    }
+                  }
                   onClick={[Function]}
                   tabIndex={0}
                   type="button"
