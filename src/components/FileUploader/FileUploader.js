@@ -210,7 +210,6 @@ export default class FileUploader extends Component {
         [...evt.target.files].map(file => file.name)
       ),
     });
-    this.props.onChange(evt);
   };
 
   handleClick = (evt, index) => {
