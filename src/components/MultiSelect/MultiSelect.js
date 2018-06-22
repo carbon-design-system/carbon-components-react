@@ -90,12 +90,6 @@ export default class MultiSelect extends React.Component {
     }
   };
 
-  handleOnToggleMenu = () => {
-    this.setState(state => ({
-      isOpen: !state.isOpen,
-    }));
-  };
-
   handleOnOuterClick = () => {
     this.setState({
       isOpen: false,
