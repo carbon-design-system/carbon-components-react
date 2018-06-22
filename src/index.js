@@ -31,6 +31,7 @@ export FormGroup from './components/FormGroup';
 export FormItem from './components/FormItem';
 export FormLabel from './components/FormLabel';
 export Icon from './components/Icon';
+export InlineLoading from './components/InlineLoading';
 export Link from './components/Link';
 export ListItem from './components/ListItem';
 export Loading from './components/Loading';
@@ -107,6 +108,9 @@ export Toolbar, {
 } from './components/Toolbar';
 export ToolbarSearch from './components/ToolbarSearch';
 export Tooltip from './components/Tooltip';
+export TooltipDefinition from './components/TooltipDefinition';
+export TooltipIcon from './components/TooltipIcon';
+export TooltipSimple from './components/TooltipSimple';
 export UnorderedList from './components/UnorderedList';
 export SkeletonText from './components/SkeletonText';
 export DataTableSkeleton from './components/DataTableSkeleton';
