@@ -119,7 +119,19 @@ export default class MultiSelect extends React.Component {
       // Reference: https://github.com/paypal/downshift/issues/206
       case Downshift.stateChangeTypes.clickButton:
       case Downshift.stateChangeTypes.keyDownSpaceButton:
-        this.handleOnToggleMenu();
+        this.setState(() => {
+          let nextIsOpen = changes.isOpen;
+          if (changes.isOpen === false) {
+            // If Downshift is trying to close the menu, but we know the input
+            // is the active element in the document, then keep the menu open
+            if (this.inputNode === document.activeElement) {
+              nextIsOpen = true;
+            }
+          }
+          return {
+            isOpen: nextIsOpen,
+          };
+        });
         break;
     }
   };
