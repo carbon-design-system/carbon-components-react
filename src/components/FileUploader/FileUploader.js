@@ -175,7 +175,6 @@ export default class FileUploader extends Component {
     labelTitle: PropTypes.string,
     multiple: PropTypes.bool,
     name: PropTypes.string,
-    onChange: PropTypes.func,
     onClick: PropTypes.func,
     className: PropTypes.string,
     accept: PropTypes.arrayOf(PropTypes.string),
@@ -187,7 +186,6 @@ export default class FileUploader extends Component {
     buttonLabel: '',
     buttonKind: 'primary',
     multiple: false,
-    onChange: () => {},
     onClick: () => {},
     accept: [],
   };
@@ -272,12 +270,6 @@ export default class FileUploader extends Component {
                     <Filename
                       iconDescription={iconDescription}
                       status={filenameStatus}
-                      onClick={evt => {
-                        if (filenameStatus === 'edit') {
-                          this.handleClick(evt, index);
-                        }
-                      }}
-                      iconDescription={iconDescription}
                       onKeyDown={evt => {
                         if (evt.which === 13 || evt.which === 32) {
                           this.handleClick(evt, index);
