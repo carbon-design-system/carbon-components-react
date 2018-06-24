@@ -1,6 +1,7 @@
 import React from 'react';
 import { storiesOf, action } from '@storybook/react';
 import DropdownV2 from '../DropdownV2';
+import DropdownSkeleton from '../DropdownV2/Dropdown.Skeleton';
 import WithState from '../../tools/withState';
 
 const items = [
@@ -113,5 +114,34 @@ storiesOf('DropdownV2', module)
           </div>
         )}
       </WithState>
+    )
+  )
+  .addWithInfo(
+    'light',
+    `
+    DropdownV2
+  `,
+    () => (
+      <div style={{ width: 300 }}>
+        <DropdownV2
+          light
+          label="Label"
+          items={items}
+          itemToString={item => (item ? item.text : '')}
+          onChange={action('onChange')}
+        />
+      </div>
+    )
+  )
+  .addWithInfo(
+    'skeleton',
+    `
+    Placeholder skeleton state to use when content is loading.
+  `,
+    () => (
+      <div style={{ width: 300 }}>
+        <DropdownSkeleton />&nbsp;
+        <DropdownSkeleton inline />
+      </div>
     )
   );

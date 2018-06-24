@@ -1,5 +1,5 @@
 import React from 'react';
-import { mount } from 'enzyme';
+import { mount, shallow } from 'enzyme';
 import {
   assertMenuOpen,
   assertMenuClosed,
@@ -9,6 +9,7 @@ import {
   generateGenericItem,
 } from '../ListBox/test-helpers';
 import DropdownV2 from '../DropdownV2';
+import DropdownSkeleton from '../DropdownV2/Dropdown.Skeleton';
 
 describe('DropdownV2', () => {
   let mockProps;
@@ -36,6 +37,13 @@ describe('DropdownV2', () => {
     const wrapper = mount(<DropdownV2 {...mockProps} />);
     openMenu(wrapper);
     assertMenuOpen(wrapper, mockProps);
+  });
+
+  it('should specify light version as expected', () => {
+    const wrapper = mount(<DropdownV2 {...mockProps} />);
+    expect(wrapper.props().light).toEqual(false);
+    wrapper.setProps({ light: true });
+    expect(wrapper.props().light).toEqual(true);
   });
 
   it('should let the user select an option by clicking on the option node', () => {
@@ -83,6 +91,18 @@ describe('DropdownV2', () => {
       expect(wrapper.find('span.bx--list-box__label').text()).toEqual(
         mockProps.items[1]
       );
+    });
+  });
+});
+
+describe('DropdownSkeleton', () => {
+  describe('Renders as expected', () => {
+    const wrapper = shallow(<DropdownSkeleton inline />);
+
+    it('Has the expected classes', () => {
+      expect(wrapper.hasClass('bx--skeleton')).toEqual(true);
+      expect(wrapper.hasClass('bx--dropdown-v2')).toEqual(true);
+      expect(wrapper.hasClass('bx--list-box--inline')).toEqual(true);
     });
   });
 });

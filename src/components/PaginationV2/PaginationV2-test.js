@@ -5,6 +5,8 @@ import Select from '../Select';
 import SelectItem from '../SelectItem';
 import { shallow, mount } from 'enzyme';
 
+jest.useFakeTimers();
+
 describe('Pagination', () => {
   describe('renders as expected', () => {
     const paginationV2 = shallow(
@@ -60,7 +62,7 @@ describe('Pagination', () => {
 
       it('should label the dropdown', () => {
         const label = left.find('.bx--pagination__text').first();
-        expect(label.text()).toBe('Items per page:\u00a0\u00a0');
+        expect(label.text()).toBe('Items per page:');
       });
 
       it('should support translated label with colon', () => {
@@ -69,7 +71,7 @@ describe('Pagination', () => {
           .find('.bx--pagination__left')
           .find('.bx--pagination__text')
           .first();
-        expect(label.text()).toBe('foo\u00a0\u00a0');
+        expect(label.text()).toBe('foo');
       });
 
       it('should show the item range out of the total', () => {
@@ -98,7 +100,7 @@ describe('Pagination', () => {
 
         it('should label the dropdown', () => {
           const label = left.find('.bx--pagination__text').first();
-          expect(label.text()).toBe('Items per page:\u00a0\u00a0');
+          expect(label.text()).toBe('Items per page:');
         });
 
         it('should support translated label with colon', () => {
@@ -107,7 +109,7 @@ describe('Pagination', () => {
             .find('.bx--pagination__left')
             .find('.bx--pagination__text')
             .first();
-          expect(label.text()).toBe('foo\u00a0\u00a0');
+          expect(label.text()).toBe('foo');
         });
 
         it('should show the item range without the total', () => {
@@ -203,6 +205,15 @@ describe('Pagination', () => {
       it('should show the current page out of the total number of pages', () => {
         const label = right.find('.bx--pagination__text').first();
         expect(label.text()).toBe('1 of 10 pages');
+      });
+
+      it('should render ranges and pages for no items', () => {
+        const pager = mount(
+          <PaginationV2 pageSizes={[5, 10]} totalItems={0} />
+        );
+        const labels = pager.find('.bx--pagination__text');
+        expect(labels.at(1).text()).toBe('\u00a0|\u00a0\u00a00-0 of 0 items');
+        expect(labels.at(2).text()).toBe('1 of 1 pages');
       });
 
       it('should have two buttons for navigation', () => {
@@ -351,6 +362,7 @@ describe('Pagination', () => {
             .find('select')
             .last()
             .simulate('change', { target: { value: 2 } });
+          jest.runAllTimers();
           expect(actualPage).toBe(2);
           expect(pager.state().page).toBe(2);
         });

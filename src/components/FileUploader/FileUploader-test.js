@@ -1,11 +1,12 @@
 import React from 'react';
 import FileUploader, { FileUploaderButton, Filename } from '../FileUploader';
-import { mount } from 'enzyme';
+import FileUploaderSkeleton from '../FileUploader/FileUploader.Skeleton';
+import { mount, shallow } from 'enzyme';
 
 describe('Filename', () => {
   const mountWrapper = mount(<Filename name={'trees.jpg'} />);
 
-  describe('click on edit icon (close--glyph)', () => {
+  describe('click on edit icon (close--solid)', () => {
     it('should have a click event', () => {
       const onClick = jest.fn();
       mountWrapper.setProps({ onClick, status: 'edit' });
@@ -136,6 +137,16 @@ describe('FileUploader', () => {
       // Test to make sure it was properly removed
       mountUploadedWrapper.instance().clearFiles();
       expect(mountUploadedWrapper.update().find(Filename)).toHaveLength(0);
+    });
+  });
+});
+
+describe('FileUploaderSkeleton', () => {
+  describe('Renders as expected', () => {
+    const wrapper = shallow(<FileUploaderSkeleton />);
+
+    it('Has the expected classes', () => {
+      expect(wrapper.hasClass('bx--form-item')).toEqual(true);
     });
   });
 });

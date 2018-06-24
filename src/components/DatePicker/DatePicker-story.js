@@ -3,6 +3,7 @@ import { storiesOf } from '@storybook/react';
 import { action, decorateAction } from '@storybook/addon-actions';
 import DatePicker from '../DatePicker';
 import DatePickerInput from '../DatePickerInput';
+import DatePickerSkeleton from '../DatePicker/DatePicker.Skeleton';
 import WithState from '../../tools/withState';
 
 // Datepickers last argument contains an instance of flatpickr
@@ -91,6 +92,26 @@ storiesOf('DatePicker', module)
     )
   )
   .addWithInfo(
+    'range with calendar and min/max dates',
+    `
+      A range Date Picker consists of two input fields and a calendar, and optionally, the minDate and maxDate fields.
+    `,
+    () => (
+      <DatePicker
+        {...datePickerProps}
+        minDate="1/10/2020"
+        maxDate="1/20/2020"
+        datePickerType="range"
+        dateFormat="m/d/Y">
+        <DatePickerInput {...datePickerInputProps} id="date-picker-input-id" />
+        <DatePickerInput
+          {...datePickerInputProps}
+          id="date-picker-input-id-2"
+        />
+      </DatePicker>
+    )
+  )
+  .addWithInfo(
     'fully controlled',
     `
       If your application needs to control the value of the date picker and
@@ -123,4 +144,26 @@ storiesOf('DatePicker', module)
         )}
       </WithState>
     )
+  )
+  .addWithInfo(
+    'light',
+    `
+      A single Date Picker consists of an input field and a calendar.
+    `,
+    () => (
+      <DatePicker
+        light
+        {...datePickerProps}
+        datePickerType="single"
+        dateFormat="m/d/Y">
+        <DatePickerInput {...datePickerInputProps} />
+      </DatePicker>
+    )
+  )
+  .addWithInfo(
+    'skeleton',
+    `
+    Placeholder skeleton state to use when content is loading.
+    `,
+    () => <DatePickerSkeleton range />
   );

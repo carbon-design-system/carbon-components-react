@@ -6,6 +6,22 @@ import FloatingMenu from '../../internal/FloatingMenu';
 import OptimizedResize from '../../internal/OptimizedResize';
 import Icon from '../Icon';
 
+const matchesFuncName =
+  typeof Element !== 'undefined' &&
+  ['matches', 'webkitMatchesSelector', 'msMatchesSelector'].filter(
+    name => typeof Element.prototype[name] === 'function'
+  )[0];
+
+/**
+ * @param {Node} elem A DOM node.
+ * @param {string} selector A CSS selector
+ * @returns {boolean} `true` if the given DOM element is a element node and matches the given selector.
+ * @private
+ */
+const matches = (elem, selector) =>
+  typeof elem[matchesFuncName] === 'function' &&
+  elem[matchesFuncName](selector);
+
 const on = (element, ...args) => {
   element.addEventListener(...args);
   return {
@@ -152,6 +168,16 @@ export default class OverflowMenu extends Component {
      * Function called to override icon rendering.
      */
     renderIcon: PropTypes.func,
+
+    /**
+     * Function called when menu is closed
+     */
+    onClose: PropTypes.func,
+
+    /**
+     * Function called when menu is closed
+     */
+    onOpen: PropTypes.func,
   };
 
   static defaultProps = {
@@ -163,6 +189,8 @@ export default class OverflowMenu extends Component {
     floatingMenu: false,
     onClick: () => {},
     onKeyDown: () => {},
+    onClose: () => {},
+    onOpen: () => {},
     tabIndex: 0,
     menuOffset: getMenuOffset,
     menuOffsetFlip: getMenuOffset,
@@ -189,6 +217,7 @@ export default class OverflowMenu extends Component {
       });
       return false; // Let `.getMenuPosition()` cause render
     }
+
     return true;
   }
 
@@ -201,7 +230,23 @@ export default class OverflowMenu extends Component {
     });
   }
 
-  componentWillReceiveProps(nextProps) {
+  componentDidUpdate() {
+    const { onClose, onOpen, floatingMenu } = this.props;
+
+    if (this.state.open) {
+      if (!floatingMenu) {
+        (
+          this.menuEl.querySelector('[data-overflow-menu-primary-focus]') ||
+          this.menuEl
+        ).focus();
+        onOpen();
+      }
+    } else {
+      onClose();
+    }
+  }
+
+  UNSAFE_componentWillReceiveProps(nextProps) {
     if (nextProps.open !== this.props.open) {
       this.setState({ open: nextProps.open });
     }
@@ -241,12 +286,16 @@ export default class OverflowMenu extends Component {
     }
   };
 
-  handleClickOutside = () => {
-    this.closeMenu();
+  handleClickOutside = evt => {
+    if (!this._menuBody || !this._menuBody.contains(evt.target)) {
+      this.closeMenu();
+    }
   };
 
   closeMenu = () => {
-    this.setState({ open: false });
+    this.setState({ open: false }, () => {
+      this.props.onClose();
+    });
   };
 
   bindMenuEl = menuEl => {
@@ -254,12 +303,27 @@ export default class OverflowMenu extends Component {
   };
 
   /**
-   * Handles the floating menu being mounted/unmounted.
+   * Handles the floating menu being unmounted.
    * @param {Element} menuBody The DOM element of the menu body.
    * @private
    */
   _bindMenuBody = menuBody => {
+    if (!menuBody) {
+      this._menuBody = menuBody;
+      if (this._hFocusIn) {
+        this._hFocusIn = this._hFocusIn.release();
+      }
+    }
+  };
+
+  /**
+   * Handles the floating menu being placed.
+   * @param {Element} menuBody The DOM element of the menu body.
+   * @private
+   */
+  _handlePlace = menuBody => {
     if (menuBody) {
+      this._menuBody = menuBody;
       (
         menuBody.querySelector('[data-floating-menu-primary-focus]') || menuBody
       ).focus();
@@ -269,15 +333,23 @@ export default class OverflowMenu extends Component {
         menuBody.ownerDocument,
         focusinEventName,
         event => {
-          if (!menuBody.contains(event.target)) {
+          const { target } = event;
+          if (!menuBody.contains(target)) {
             this.closeMenu();
-            this.menuEl && this.menuEl.focus();
+            if (
+              this.menuEl &&
+              !matches(target, '.bx--overflow-menu,.bx--overflow-menu-options')
+            ) {
+              // Note:
+              // The last focusable element in the page should NOT be the trigger button of overflow menu.
+              // Doing so breaks the code that detects if floating menu losing focus, e.g. by keyboard events.
+              this.menuEl.focus();
+            }
           }
         },
         !hasFocusin
       );
-    } else if (this._hFocusIn) {
-      this._hFocusIn = this._hFocusIn.release();
+      this.props.onOpen();
     }
   };
 
@@ -322,6 +394,7 @@ export default class OverflowMenu extends Component {
     const childrenWithProps = React.Children.toArray(children).map(child =>
       React.cloneElement(child, {
         closeMenu: this.closeMenu,
+        floatingMenu: floatingMenu || undefined,
       })
     );
 
@@ -333,6 +406,7 @@ export default class OverflowMenu extends Component {
         {childrenWithProps}
       </ul>
     );
+
     const wrappedMenuBody = !floatingMenu ? (
       menuBody
     ) : (
@@ -340,7 +414,8 @@ export default class OverflowMenu extends Component {
         <FloatingMenu
           menuPosition={this.state.menuPosition}
           menuOffset={flipped ? menuOffsetFlip : menuOffset}
-          menuRef={this._bindMenuBody}>
+          menuRef={this._bindMenuBody}
+          onPlace={this._handlePlace}>
           {menuBody}
         </FloatingMenu>
       </div>
@@ -351,6 +426,7 @@ export default class OverflowMenu extends Component {
       onKeyDown: this.handleKeyDown,
       className: overflowMenuIconClasses,
       description: iconDescription,
+      focusable: 'false', // Prevent `<svg>` in trigger icon from getting focus for IE11
     };
 
     return (

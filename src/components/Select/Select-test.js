@@ -2,7 +2,8 @@ import React from 'react';
 import Icon from '../Icon';
 import Select from '../Select';
 import SelectItem from '../SelectItem';
-import { mount } from 'enzyme';
+import SelectSkeleton from '../Select/Select.Skeleton';
+import { mount, shallow } from 'enzyme';
 
 describe('Select', () => {
   describe('Renders as expected', () => {
@@ -53,6 +54,12 @@ describe('Select', () => {
           wrapper.props().iconDescription ===
           wrapper.find(Icon).props().description;
         expect(matches).toEqual(true);
+      });
+
+      it('should specify light select as expected', () => {
+        expect(wrapper.props().light).toEqual(false);
+        wrapper.setProps({ light: true });
+        expect(wrapper.props().light).toEqual(true);
       });
     });
 
@@ -115,6 +122,18 @@ describe('Select', () => {
 
     it('has the expected classes', () => {
       expect(selectContainer.hasClass('bx--select--inline')).toEqual(true);
+    });
+  });
+});
+
+describe('SelectSkeleton', () => {
+  describe('Renders as expected', () => {
+    const wrapper = shallow(<SelectSkeleton />);
+
+    const select = wrapper.find('.bx--select');
+
+    it('Has the expected classes', () => {
+      expect(select.hasClass('bx--skeleton')).toEqual(true);
     });
   });
 });

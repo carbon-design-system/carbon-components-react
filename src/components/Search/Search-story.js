@@ -4,7 +4,9 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import Search from '../Search';
+import SearchSkeleton from '../Search/Search.Skeleton';
 import SearchFilterButton from '../SearchFilterButton';
+import SearchLayoutButton from '../SearchLayoutButton';
 
 const searchProps = {
   className: 'some-class',
@@ -25,10 +27,7 @@ storiesOf('Search', module)
         id="search-1"
         labelText="Search"
         placeHolderText="Search"
-        onChange={() => {
-          console.log('onChange');
-          action('onChange');
-        }}
+        onChange={action('onChange')}
       />
     )
   )
@@ -48,10 +47,7 @@ storiesOf('Search', module)
         id="search-2"
         labelText="Search"
         placeHolderText="Search"
-        onChange={() => {
-          console.log('onChange');
-          action('onChange');
-        }}
+        onChange={action('onChange')}
       />
     )
   )
@@ -90,13 +86,16 @@ storiesOf('Search', module)
     }
   )
   .addWithInfo(
-    'Custom set of buttons',
+    'light',
     `
-      You can control what set of buttons you want.
+      Search enables users to specify a word or a phrase to find particular relevant pieces of content
+      without the use of navigation. Search can be used as the primary means of discovering content,
+      or as a filter to aid the user in finding content.
     `,
     () => (
       <Search
         {...searchProps}
+        light
         className="some-class"
         id="search-1"
         labelText="Search"
@@ -104,8 +103,43 @@ storiesOf('Search', module)
         onChange={() => {
           console.log('onChange');
           action('onChange');
-        }}>
-        <SearchFilterButton />
-      </Search>
+        }}
+      />
+    )
+  )
+  .addWithInfo(
+    'custom buttons',
+    `
+      You can control what set of buttons you want.
+    `,
+    () => (
+      <div style={{ display: 'flex' }}>
+        <Search
+          {...searchProps}
+          light
+          className="some-class"
+          id="search-1"
+          labelText="Search"
+          placeHolderText="Search"
+          onChange={() => {
+            console.log('onChange');
+            action('onChange');
+          }}
+        />
+        <SearchFilterButton onClick={action('onClick')} />
+        <SearchLayoutButton onClick={action('onClick')} />
+      </div>
+    )
+  )
+  .addWithInfo(
+    'skeleton',
+    `
+      Placeholder skeleton state to use when content is loading.
+    `,
+    () => (
+      <div style={{ width: '200px' }}>
+        <SearchSkeleton />&nbsp;
+        <SearchSkeleton small />
+      </div>
     )
   );

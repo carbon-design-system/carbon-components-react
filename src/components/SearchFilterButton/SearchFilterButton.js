@@ -5,13 +5,13 @@ import Icon from '../Icon';
 /**
  * The filter button for `<Search>`.
  */
-const SearchFilterButton = ({ labelText }) => (
-  <button className="bx--search-button" type="button" aria-label={labelText}>
-    <Icon
-      name="filter--glyph"
-      description="filter"
-      className="bx--search-filter"
-    />
+const SearchFilterButton = ({ labelText, ...other }) => (
+  <button
+    className="bx--search-button"
+    type="button"
+    aria-label={labelText}
+    {...other}>
+    <Icon name="filter" description="filter" className="bx--search-filter" />
   </button>
 );
 

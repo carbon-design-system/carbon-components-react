@@ -2,6 +2,7 @@ import React from 'react';
 import { mount, shallow } from 'enzyme';
 import Icon from '../Icon';
 import NumberInput from '../NumberInput';
+import NumberInputSkeleton from '../NumberInput/NumberInput.Skeleton';
 
 describe('NumberInput', () => {
   describe('should render as expected', () => {
@@ -84,6 +85,12 @@ describe('NumberInput', () => {
         const invalidText = wrapper.find('.bx--form-requirement');
         expect(invalidText.length).toEqual(1);
         expect(invalidText.text()).toEqual('invalid text');
+      });
+
+      it('should specify light number input as expected', () => {
+        expect(wrapper.props().light).toEqual(false);
+        wrapper.setProps({ light: true });
+        expect(wrapper.props().light).toEqual(true);
       });
 
       describe('initial rendering', () => {
@@ -184,8 +191,8 @@ describe('NumberInput', () => {
       );
 
       const input = wrapper.find('input');
-      const upArrow = wrapper.find('.up-icon').parent();
-      const downArrow = wrapper.find('.down-icon').parent();
+      const upArrow = wrapper.find('button.up-icon');
+      const downArrow = wrapper.find('button.down-icon');
 
       it('should be disabled when numberInput is disabled', () => {
         expect(upArrow.prop('disabled')).toEqual(true);
@@ -298,6 +305,20 @@ describe('NumberInput', () => {
         expect(onChange).toBeCalled();
         expect(onChange).toHaveBeenCalledWith(expect.anything());
       });
+    });
+  });
+});
+
+describe('NumberInputSkeleton', () => {
+  describe('Renders as expected', () => {
+    const wrapper = shallow(<NumberInputSkeleton />);
+
+    const container = wrapper.find('.bx--number');
+    const label = wrapper.find('.bx--label');
+
+    it('has the expected classes', () => {
+      expect(container.hasClass('bx--skeleton')).toEqual(true);
+      expect(label.hasClass('bx--skeleton')).toEqual(true);
     });
   });
 });

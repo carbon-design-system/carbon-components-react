@@ -4,6 +4,7 @@ import { action } from '@storybook/addon-actions';
 import Select from '../Select';
 import SelectItem from '../SelectItem';
 import SelectItemGroup from '../SelectItemGroup';
+import SelectSkeleton from '../Select/Select.Skeleton';
 
 const selectProps = {
   onChange: action('onChange'),
@@ -120,5 +121,47 @@ storiesOf('Select', module)
           <SelectItem value="option-4" text="Option 4" />
         </SelectItemGroup>
       </Select>
+    )
+  )
+  .addWithInfo(
+    'light',
+    `
+      Select displays a list below its title when selected. They are used primarily in forms,
+      where a user chooses one option from a list. Once the user selects an item, the dropdown will
+      dissapear and the field will reflect the user's choice. Create Select Item components for each
+      option in the list. The example below shows an enabled Select component with three items.
+    `,
+    () => (
+      <Select
+        {...selectProps}
+        light
+        id="select-1"
+        defaultValue="placeholder-item">
+        <SelectItem
+          disabled
+          hidden
+          value="placeholder-item"
+          text="Choose an option"
+        />
+        <SelectItemGroup label="Category 1">
+          <SelectItem value="option-1" text="Option 1" />
+          <SelectItem value="option-2" text="Option 2" />
+        </SelectItemGroup>
+        <SelectItemGroup label="Category 2">
+          <SelectItem value="option-3" text="Option 3" />
+          <SelectItem value="option-4" text="Option 4" />
+        </SelectItemGroup>
+      </Select>
+    )
+  )
+  .addWithInfo(
+    'skeleton',
+    `
+      Placeholder skeleton state to use when content is loading.
+    `,
+    () => (
+      <div style={{ width: '300px' }}>
+        <SelectSkeleton />
+      </div>
     )
   );

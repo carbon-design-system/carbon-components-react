@@ -1,11 +1,15 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import classnames from 'classnames';
+import debounce from 'lodash.debounce';
+import warning from 'warning';
 import Icon from '../Icon';
 import Select from '../Select';
 import SelectItem from '../SelectItem';
 import TextInput from '../TextInput';
 import { equals } from '../../tools/array';
+
+let didWarnAboutDeprecation = false;
 
 export default class Pagination extends Component {
   static propTypes = {
@@ -28,6 +32,9 @@ export default class Pagination extends Component {
     pagesUnknown: PropTypes.bool,
     isLastPage: PropTypes.bool,
     pageInputDisabled: PropTypes.bool,
+    onChangeInterval: PropTypes.number,
+    defaultPageText: PropTypes.func,
+    defaultItemText: PropTypes.func,
   };
 
   static defaultProps = {
@@ -45,7 +52,22 @@ export default class Pagination extends Component {
     pageInputDisabled: false,
     itemText: (min, max) => `${min}-${max} items`,
     pageText: page => `page ${page}`,
+    defaultPageText: totalPages => `${totalPages} pages`,
+    defaultItemText: totalItems => `${totalItems} items`,
+    onChangeInterval: 250,
   };
+
+  constructor(props) {
+    super(props);
+    if (__DEV__) {
+      warning(
+        didWarnAboutDeprecation,
+        'The `Pagination` component is being updated in the next release of ' +
+          '`carbon-components-react`. Please use `PaginationV2` instead.'
+      );
+      didWarnAboutDeprecation = true;
+    }
+  }
 
   state = {
     page: this.props.page,
@@ -55,11 +77,24 @@ export default class Pagination extends Component {
         : this.props.pageSizes[0],
   };
 
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
     this.uniqueId = `${Math.floor(Math.random() * 0xffff)}`;
   }
 
-  componentWillReceiveProps({ pageSizes, page, pageSize }) {
+  componentDidMount() {
+    this.pageInputDebouncer = debounce(
+      page =>
+        page > 0 &&
+        this.props.onChange({ page, pageSize: this.state.pageSize }),
+      this.props.onChangeInterval
+    );
+  }
+
+  componentWillUnmount() {
+    this.pageInputDebouncer.cancel();
+  }
+
+  UNSAFE_componentWillReceiveProps({ pageSizes, page, pageSize }) {
     if (!equals(pageSizes, this.props.pageSizes)) {
       this.setState({ pageSize: pageSizes[0], page: 1 });
     }
@@ -82,11 +117,14 @@ export default class Pagination extends Component {
   handlePageInputChange = evt => {
     const page = Number(evt.target.value);
     if (
-      page > 0 &&
-      page <= Math.ceil(this.props.totalItems / this.state.pageSize)
+      // Added props for defaultPageText and defaultItemText to be
+      // used for case when page # is 0 or empty. For other cases
+      // existing props will be used.
+      page >= 0 &&
+      page <=
+        Math.max(Math.ceil(this.props.totalItems / this.state.pageSize), 1)
     ) {
-      this.setState({ page });
-      this.props.onChange({ page, pageSize: this.state.pageSize });
+      this.setState({ page }, () => this.pageInputDebouncer(this.state.page));
     }
   };
 
@@ -102,31 +140,75 @@ export default class Pagination extends Component {
     this.props.onChange({ page, pageSize: this.state.pageSize });
   };
 
+  getItemsText = () => {
+    const {
+      pagesUnknown,
+      totalItems,
+      itemRangeText,
+      itemText,
+      defaultItemText,
+    } = this.props;
+    const { pageSize, page } = this.state;
+
+    if (pagesUnknown) {
+      return itemText(pageSize * (page - 1) + 1, page * pageSize);
+    } else if (page > 0) {
+      return itemRangeText(
+        Math.min(pageSize * (page - 1) + 1, totalItems),
+        Math.min(page * pageSize, totalItems),
+        totalItems
+      );
+    }
+    return defaultItemText(totalItems);
+  };
+
+  getPagesText = () => {
+    const {
+      pagesUnknown,
+      totalItems,
+      pageRangeText,
+      pageText,
+      defaultPageText,
+    } = this.props;
+    const { pageSize, page } = this.state;
+
+    if (pagesUnknown) {
+      return pageText(page);
+    } else if (page > 0) {
+      return pageRangeText(page, Math.max(Math.ceil(totalItems / pageSize), 1));
+    }
+    return defaultPageText(Math.ceil(totalItems / pageSize));
+  };
+
   render() {
     const {
       backwardText,
       className,
+      defaultItemText, // eslint-disable-line no-unused-vars
+      defaultPageText, // eslint-disable-line no-unused-vars
       forwardText,
       id,
       itemsPerPageText,
-      itemRangeText,
-      pageNumberText,
-      pageRangeText,
+      itemRangeText, // eslint-disable-line no-unused-vars
+      pageNumberText, // eslint-disable-line no-unused-vars
+      pageRangeText, // eslint-disable-line no-unused-vars
       pageSize, // eslint-disable-line no-unused-vars
       pageSizes,
-      itemText,
-      pageText,
-      pagesUnknown,
+      itemText, // eslint-disable-line no-unused-vars
+      pageText, // eslint-disable-line no-unused-vars
+      pagesUnknown, // eslint-disable-line no-unused-vars
       isLastPage,
       pageInputDisabled,
       totalItems,
       onChange, // eslint-disable-line no-unused-vars
+      onChangeInterval, // eslint-disable-line no-unused-vars
       page: pageNumber, // eslint-disable-line no-unused-vars
       ...other
     } = this.props;
 
     const statePage = this.state.page;
     const statePageSize = this.state.pageSize;
+    const totalPages = Math.max(Math.ceil(totalItems / statePageSize), 1);
     const classNames = classnames('bx--pagination', className);
     const inputId = id || this.uniqueId;
 
@@ -146,25 +228,10 @@ export default class Pagination extends Component {
           <span className="bx--pagination__text">
             {itemsPerPageText}&nbsp;&nbsp;|&nbsp;&nbsp;
           </span>
-          <span className="bx--pagination__text">
-            {pagesUnknown
-              ? itemText(
-                  statePageSize * (statePage - 1) + 1,
-                  statePage * statePageSize
-                )
-              : itemRangeText(
-                  statePageSize * (statePage - 1) + 1,
-                  Math.min(statePage * statePageSize, totalItems),
-                  totalItems
-                )}
-          </span>
+          <span className="bx--pagination__text">{this.getItemsText()}</span>
         </div>
         <div className="bx--pagination__right">
-          <span className="bx--pagination__text">
-            {pagesUnknown
-              ? pageText(statePage)
-              : pageRangeText(statePage, Math.ceil(totalItems / statePageSize))}
-          </span>
+          <span className="bx--pagination__text">{this.getPagesText()}</span>
           <button
             className="bx--pagination__button bx--pagination__button--backward"
             onClick={this.decrementPage}
@@ -180,8 +247,7 @@ export default class Pagination extends Component {
           ) : (
             <TextInput
               id={`bx-pagination-input-${inputId}`}
-              placeholder="0"
-              value={statePage}
+              value={statePage > 0 ? statePage : ''}
               onChange={this.handlePageInputChange}
               labelText={pageNumberText}
               hideLabel
@@ -191,9 +257,7 @@ export default class Pagination extends Component {
             className="bx--pagination__button bx--pagination__button--forward"
             onClick={this.incrementPage}
             disabled={
-              this.props.disabled ||
-              statePage === Math.ceil(totalItems / statePageSize) ||
-              isLastPage
+              this.props.disabled || statePage === totalPages || isLastPage
             }>
             <Icon
               className="bx--pagination__button-icon"

@@ -34,6 +34,7 @@ exports[`DropdownV2 should render 1`] = `
     ]
   }
   label="input"
+  light={false}
   onChange={[MockFunction]}
   placeholder="Filter..."
   type="default"
@@ -46,7 +47,6 @@ exports[`DropdownV2 should render 1`] = `
     defaultSelectedItem={null}
     environment={[Window]}
     getA11yStatusMessage={[Function]}
-    id="downshift-1"
     itemToString={[Function]}
     onChange={[Function]}
     onInputValueChange={[Function]}
@@ -55,39 +55,47 @@ exports[`DropdownV2 should render 1`] = `
     onStateChange={[Function]}
     onUserAction={[Function]}
     selectedItemChanged={[Function]}
+    stateReducer={[Function]}
   >
     <ListBox
-      className="bx--dropdown-v2"
+      className="bx--dropdown"
       disabled={false}
       innerRef={[Function]}
       type="default"
     >
       <div
-        className="bx--dropdown-v2 bx--list-box bx--form-item"
+        className="bx--dropdown bx--list-box"
+        onKeyDown={[Function]}
       >
         <ListBoxField
           aria-expanded={false}
           aria-haspopup={true}
           aria-label="open menu"
+          data-toggle={true}
           disabled={false}
+          onBlur={[Function]}
           onClick={[Function]}
           onKeyDown={[Function]}
           role="button"
+          type="button"
         >
           <div
             aria-expanded={false}
             aria-haspopup={true}
             aria-label="open menu"
             className="bx--list-box__field"
+            data-toggle={true}
             disabled={false}
+            onBlur={[Function]}
             onClick={[Function]}
             onKeyDown={[Function]}
             role="button"
             tabIndex="0"
+            type="button"
           >
             <span
               className="bx--list-box__label"
-              htmlFor="downshift-input-2"
+              htmlFor="downshift-0-input"
             >
               input
             </span>
@@ -119,7 +127,7 @@ exports[`DropdownV2 should render 1`] = `
                       Open menu
                     </title>
                     <path
-                      d="M10 0L5 5 0 0z"
+                      d="M0 0l5 4.998L10 0z"
                       key="key0"
                     />
                   </svg>

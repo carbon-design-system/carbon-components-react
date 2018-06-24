@@ -2,6 +2,7 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import TextInput from '../TextInput';
+import TextInputSkeleton from '../TextInput/TextInput.Skeleton';
 
 const TextInputProps = {
   className: 'some-class',
@@ -85,4 +86,25 @@ storiesOf('TextInput', module)
       The example below shows an Text Input with a hidden Label.  Use this property to hide the label visually but still preserve accessibility.
     `,
     () => <TextInput {...TextInputProps} hideLabel={true} />
+  )
+  .addWithInfo(
+    'light',
+    `
+      ${introText}
+      The example below shows an enabled Text Input component. The default type is 'text' and its
+      value can be either 'string' or 'number'.
+    `,
+    () => <TextInput light {...TextInputProps} />
+  )
+  .addWithInfo(
+    'skeleton',
+    `
+    Placeholder skeleton state to use when content is loading.
+    `,
+    () => (
+      <div>
+        <TextInputSkeleton />
+        <TextInputSkeleton hideLabel />
+      </div>
+    )
   );

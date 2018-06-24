@@ -1,6 +1,7 @@
 import React from 'react';
 import DatePicker from '../DatePicker';
-import { mount } from 'enzyme';
+import DatePickerSkeleton from '../DatePicker/DatePicker.Skeleton';
+import { mount, shallow } from 'enzyme';
 
 describe('DatePicker', () => {
   describe('Renders as expected', () => {
@@ -30,6 +31,12 @@ describe('DatePicker', () => {
       expect(wrapper.props().short).toEqual(false);
       wrapper.setProps({ short: true });
       expect(wrapper.props().short).toEqual(true);
+    });
+
+    it('should specify light date picker as expected', () => {
+      expect(wrapper.props().light).toEqual(false);
+      wrapper.setProps({ light: true });
+      expect(wrapper.props().light).toEqual(true);
     });
 
     it('should add the date format as expected', () => {
@@ -214,6 +221,54 @@ describe('DatePicker', () => {
     it('has the range date picker without locale defined', () => {
       const datepicker = wrapperNoLocale.find('DatePicker');
       expect(datepicker.props().locale).toBe('en');
+    });
+  });
+
+  describe('Date picker with minDate and maxDate', () => {
+    console.error = jest.genMockFn(); // eslint-disable-line no-console
+
+    const wrapper = mount(
+      <DatePicker
+        onChange={() => {}}
+        datePickerType="range"
+        className="extra-class"
+        minDate="01/01/2018"
+        maxDate="01/30/2018">
+        <div className="test-child">
+          <input
+            type="text"
+            className="bx--date-picker__input"
+            id="input-from"
+          />
+        </div>
+        <div className="test-child">
+          <input type="text" className="bx--date-picker__input" id="input-to" />
+        </div>
+      </DatePicker>
+    );
+
+    it('has the range date picker with min and max dates', () => {
+      const datepicker = wrapper.find('DatePicker');
+      expect(datepicker.props().minDate).toBe('01/01/2018');
+      expect(datepicker.props().maxDate).toBe('01/30/2018');
+    });
+
+    it('should not have "console.error" being created', () => {
+      expect(console.error).not.toBeCalled(); // eslint-disable-line no-console
+    });
+  });
+});
+
+describe('DatePickerSkeleton', () => {
+  describe('Renders as expected', () => {
+    const wrapper = shallow(<DatePickerSkeleton range />);
+
+    it('Has the expected classes', () => {
+      expect(wrapper.children().hasClass('bx--skeleton')).toEqual(true);
+      expect(wrapper.children().hasClass('bx--date-picker')).toEqual(true);
+      expect(wrapper.children().hasClass('bx--date-picker--range')).toEqual(
+        true
+      );
     });
   });
 });

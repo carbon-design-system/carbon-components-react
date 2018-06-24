@@ -165,13 +165,16 @@ export default class Tooltip extends Component {
     });
   }
 
-  componentWillReceiveProps(newProps) {
+  UNSAFE_componentWillReceiveProps({ open }) {
     /**
-     * so that tooltip can be controlled programmatically thru this `open` prop
+     * so that tooltip can be controlled programmatically through this `open` prop
      */
-    this.setState({
-      open: newProps.open,
-    });
+    const { open: origOpen } = this.props;
+    if (origOpen !== open) {
+      this.setState({
+        open,
+      });
+    }
   }
 
   getTriggerPosition = () => {
@@ -222,7 +225,11 @@ export default class Tooltip extends Component {
     this._hasContextMenu = evt.type === 'contextmenu';
     if (this.props.clickToOpen) {
       if (state === 'click') {
-        this.setState({ open: !this.state.open });
+        const shouldOpen = !this.state.open;
+        if (shouldOpen) {
+          this.getTriggerPosition();
+        }
+        this.setState({ open: shouldOpen });
       }
     } else if (state && (state !== 'out' || !hadContextMenu)) {
       this._debouncedHandleHover(state, evt.relatedTarget);
@@ -284,6 +291,11 @@ export default class Tooltip extends Component {
     );
 
     const triggerClasses = classNames('bx--tooltip__trigger', triggerClassName);
+    const ariaOwnsProps = !open
+      ? {}
+      : {
+          'aria-owns': tooltipId,
+        };
 
     return (
       <div>
@@ -300,8 +312,8 @@ export default class Tooltip extends Component {
                 onFocus={evt => this.handleMouse(evt)}
                 onBlur={evt => this.handleMouse(evt)}
                 aria-haspopup="true"
-                aria-owns={tooltipId}
-                aria-expanded={open}>
+                aria-expanded={open}
+                {...ariaOwnsProps}>
                 <Icon
                   onKeyDown={this.handleKeyPress}
                   onClick={() => this.handleMouse('click')}
@@ -325,8 +337,8 @@ export default class Tooltip extends Component {
               onFocus={evt => this.handleMouse(evt)}
               onBlur={evt => this.handleMouse(evt)}
               aria-haspopup="true"
-              aria-owns={tooltipId}
-              aria-expanded={open}>
+              aria-expanded={open}
+              {...ariaOwnsProps}>
               {triggerText}
             </div>
           )}
@@ -350,6 +362,7 @@ export default class Tooltip extends Component {
               ref={node => {
                 this._tooltipEl = node;
               }}>
+              <span className="bx--tooltip__caret" />
               {children}
             </div>
           </FloatingMenu>

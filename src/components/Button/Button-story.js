@@ -2,6 +2,7 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import Button from '../Button';
+import ButtonSkeleton from '../Button/Button.Skeleton';
 
 const buttonEvents = {
   onClick: action('onClick'),
@@ -82,7 +83,7 @@ storiesOf('Buttons', module)
           small
           {...buttonEvents}
           kind="ghost"
-          icon="add--glyph"
+          icon="add--solid"
           iconDescription="Add">
           Small ghost Button
         </Button>
@@ -118,13 +119,13 @@ storiesOf('Buttons', module)
     `,
     () => (
       <div>
-        <Button icon="search--glyph" iconDescription="Search" {...buttonEvents}>
+        <Button icon="search" iconDescription="Search" {...buttonEvents}>
           Primary with icon
         </Button>
         &nbsp;
         <Button
           kind="secondary"
-          icon="search--glyph"
+          icon="search"
           iconDescription="Search"
           {...buttonEvents}>
           Secondary with icon
@@ -133,7 +134,7 @@ storiesOf('Buttons', module)
         <Button
           small
           kind="primary"
-          icon="search--glyph"
+          icon="search"
           iconDescription="Search"
           {...buttonEvents}>
           Small primary with icon
@@ -142,7 +143,7 @@ storiesOf('Buttons', module)
         <Button
           small
           kind="secondary"
-          icon="search--glyph"
+          icon="search"
           iconDescription="Search"
           {...buttonEvents}>
           Small secondary with icon
@@ -163,7 +164,7 @@ storiesOf('Buttons', module)
         <Button
           kind="ghost"
           className="some-class"
-          icon="add--glyph"
+          icon="add--solid"
           iconDescription="Add"
           {...buttonEvents}>
           Ghost button
@@ -173,7 +174,7 @@ storiesOf('Buttons', module)
           kind="ghost"
           href="#"
           className="some-class"
-          icon="add--glyph"
+          icon="add--solid"
           iconDescription="Add"
           {...buttonEvents}>
           Ghost link
@@ -226,6 +227,21 @@ storiesOf('Buttons', module)
         <Button kind="primary" {...buttonEvents} className="some-class">
           Primary button
         </Button>
+      </div>
+    )
+  )
+  .addWithInfo(
+    'skeleton',
+    `
+      Placeholder skeleton state to use when content is loading.
+    `,
+    () => (
+      <div>
+        <ButtonSkeleton />
+        &nbsp;
+        <ButtonSkeleton href="#" />
+        &nbsp;
+        <ButtonSkeleton small />
       </div>
     )
   );
