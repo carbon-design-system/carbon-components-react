@@ -168,6 +168,16 @@ export default class OverflowMenu extends Component {
      * Function called to override icon rendering.
      */
     renderIcon: PropTypes.func,
+
+    /**
+     * Function called when menu is closed
+     */
+    onClose: PropTypes.func,
+
+    /**
+     * Function called when menu is closed
+     */
+    onOpen: PropTypes.func,
   };
 
   static defaultProps = {
@@ -179,6 +189,8 @@ export default class OverflowMenu extends Component {
     floatingMenu: false,
     onClick: () => {},
     onKeyDown: () => {},
+    onClose: () => {},
+    onOpen: () => {},
     tabIndex: 0,
     menuOffset: getMenuOffset,
     menuOffsetFlip: getMenuOffset,
@@ -205,6 +217,7 @@ export default class OverflowMenu extends Component {
       });
       return false; // Let `.getMenuPosition()` cause render
     }
+
     return true;
   }
 
@@ -215,6 +228,22 @@ export default class OverflowMenu extends Component {
     this.hResize = OptimizedResize.add(() => {
       this.getMenuPosition();
     });
+  }
+
+  componentDidUpdate() {
+    const { onClose, onOpen, floatingMenu } = this.props;
+
+    if (this.state.open) {
+      if (!floatingMenu) {
+        (
+          this.menuEl.querySelector('[data-overflow-menu-primary-focus]') ||
+          this.menuEl
+        ).focus();
+        onOpen();
+      }
+    } else {
+      onClose();
+    }
   }
 
   UNSAFE_componentWillReceiveProps(nextProps) {
@@ -264,7 +293,9 @@ export default class OverflowMenu extends Component {
   };
 
   closeMenu = () => {
-    this.setState({ open: false });
+    this.setState({ open: false }, () => {
+      this.props.onClose();
+    });
   };
 
   bindMenuEl = menuEl => {
@@ -303,21 +334,21 @@ export default class OverflowMenu extends Component {
         focusinEventName,
         event => {
           const { target } = event;
-          if (!menuBody.contains(target)) {
+          if (
+            !menuBody.contains(target) &&
+            this.menuEl &&
+            !matches(target, '.bx--overflow-menu,.bx--overflow-menu-options')
+          ) {
             this.closeMenu();
-            if (
-              this.menuEl &&
-              !matches(target, '.bx--overflow-menu,.bx--overflow-menu-options')
-            ) {
-              // Note:
-              // The last focusable element in the page should NOT be the trigger button of overflow menu.
-              // Doing so breaks the code that detects if floating menu losing focus, e.g. by keyboard events.
-              this.menuEl.focus();
-            }
+            // Note:
+            // The last focusable element in the page should NOT be the trigger button of overflow menu.
+            // Doing so breaks the code that detects if floating menu losing focus, e.g. by keyboard events.
+            this.menuEl.focus();
           }
         },
         !hasFocusin
       );
+      this.props.onOpen();
     }
   };
 
@@ -362,6 +393,7 @@ export default class OverflowMenu extends Component {
     const childrenWithProps = React.Children.toArray(children).map(child =>
       React.cloneElement(child, {
         closeMenu: this.closeMenu,
+        floatingMenu: floatingMenu || undefined,
       })
     );
 
@@ -373,6 +405,7 @@ export default class OverflowMenu extends Component {
         {childrenWithProps}
       </ul>
     );
+
     const wrappedMenuBody = !floatingMenu ? (
       menuBody
     ) : (
