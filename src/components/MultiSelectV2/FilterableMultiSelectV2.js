@@ -86,6 +86,11 @@ export default class FilterableMultiSelectV2 extends React.Component {
      * Adds another option in the dropdown for toggling all values
      */
     toggleItemSelection: PropTypes.bool,
+
+    /**
+     * Controls the open state of the dropdown
+     */
+    open: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -94,6 +99,7 @@ export default class FilterableMultiSelectV2 extends React.Component {
     filterItems: defaultFilterItems,
     itemToString: defaultItemToString,
     disabled: false,
+    open: false,
     inlineSelectedItems: false,
     initialSelectedItems: [],
     toggleItemSelection: false,
@@ -106,7 +112,7 @@ export default class FilterableMultiSelectV2 extends React.Component {
     super(props);
     this.state = {
       highlightedIndex: null,
-      isOpen: false,
+      isOpen: props.open,
       inputValue: '',
     };
   }
@@ -118,22 +124,34 @@ export default class FilterableMultiSelectV2 extends React.Component {
   };
 
   handleOnToggleMenu = () => {
-    this.setState(state => ({
-      isOpen: !state.isOpen,
-    }));
+    this.setState(
+      state => ({
+        isOpen: !state.isOpen,
+      }),
+      () => {
+        this.handleOnChange(this.state);
+      }
+    );
   };
 
   handleOnOuterClick = () => {
-    this.setState({
-      isOpen: false,
-    });
+    this.setState(
+      {
+        isOpen: false,
+      },
+      () => {
+        this.handleOnChange(this.state);
+      }
+    );
   };
 
   handleOnStateChange = changes => {
     const { type } = changes;
     switch (type) {
       case Downshift.stateChangeTypes.changeInput:
-        this.setState({ inputValue: changes.inputValue });
+        this.setState({ inputValue: changes.inputValue }, () => {
+          this.handleOnChange(this.state);
+        });
         break;
       case Downshift.stateChangeTypes.keyDownArrowDown:
       case Downshift.stateChangeTypes.keyDownArrowUp:
@@ -142,26 +160,33 @@ export default class FilterableMultiSelectV2 extends React.Component {
         break;
       case Downshift.stateChangeTypes.keyDownEscape:
       case Downshift.stateChangeTypes.mouseUp:
-        this.setState({ isOpen: false });
+        this.setState({ isOpen: false }, () => {
+          this.handleOnChange(this.state);
+        });
         break;
       // Opt-in to some cases where we should be toggling the menu based on
       // a given key press or mouse handler
       // Reference: https://github.com/paypal/downshift/issues/206
       case Downshift.stateChangeTypes.clickButton:
       case Downshift.stateChangeTypes.keyDownSpaceButton:
-        this.setState(() => {
-          let nextIsOpen = changes.isOpen;
-          if (changes.isOpen === false) {
-            // If Downshift is trying to close the menu, but we know the input
-            // is the active element in the document, then keep the menu open
-            if (this.inputNode === document.activeElement) {
-              nextIsOpen = true;
+        this.setState(
+          () => {
+            let nextIsOpen = changes.isOpen;
+            if (changes.isOpen === false) {
+              // If Downshift is trying to close the menu, but we know the input
+              // is the active element in the document, then keep the menu open
+              if (this.inputNode === document.activeElement) {
+                nextIsOpen = true;
+              }
             }
+            return {
+              isOpen: nextIsOpen,
+            };
+          },
+          () => {
+            this.handleOnChange(this.state);
           }
-          return {
-            isOpen: nextIsOpen,
-          };
-        });
+        );
         break;
     }
   };
@@ -252,6 +277,7 @@ export default class FilterableMultiSelectV2 extends React.Component {
                     id: 'select-all',
                     label: 'Select All',
                   },
+                  onClick: () => {},
                 });
                 baseIndex += 1;
               }

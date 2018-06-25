@@ -69,11 +69,17 @@ export default class MultiSelectV2 extends React.Component {
      * Shows the selected values inline in the input
      */
     inlineSelectedItems: PropTypes.bool,
+
+    /**
+     * Controls the open state of the dropdown
+     */
+    open: PropTypes.bool,
   };
 
   static defaultProps = {
     compareItems: defaultCompareItems,
     disabled: false,
+    open: false,
     locale: 'en',
     itemToString: defaultItemToString,
     toggleItemSelection: false,
@@ -87,7 +93,7 @@ export default class MultiSelectV2 extends React.Component {
     super(props);
     this.state = {
       highlightedIndex: null,
-      isOpen: false,
+      isOpen: props.open,
     };
   }
 
@@ -98,15 +104,25 @@ export default class MultiSelectV2 extends React.Component {
   };
 
   handleOnToggleMenu = () => {
-    this.setState(state => ({
-      isOpen: !state.isOpen,
-    }));
+    this.setState(
+      state => ({
+        isOpen: !state.isOpen,
+      }),
+      () => {
+        this.handleOnChange(this.state);
+      }
+    );
   };
 
   handleOnOuterClick = () => {
-    this.setState({
-      isOpen: false,
-    });
+    this.setState(
+      {
+        isOpen: false,
+      },
+      () => {
+        this.handleOnChange(this.state);
+      }
+    );
   };
 
   handleOnStateChange = changes => {
@@ -119,7 +135,9 @@ export default class MultiSelectV2 extends React.Component {
         break;
       case Downshift.stateChangeTypes.keyDownEscape:
       case Downshift.stateChangeTypes.mouseUp:
-        this.setState({ isOpen: false });
+        this.setState({ isOpen: false }, () => {
+          this.handleOnChange(this.state);
+        });
         break;
       // Opt-in to some cases where we should be toggling the menu based on
       // a given key press or mouse handler
