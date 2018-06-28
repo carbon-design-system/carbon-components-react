@@ -380,7 +380,7 @@ export default class FilterableMultiSelectV2 extends React.Component {
                             checked={selectedItem.length === items.length}
                             readOnly={true}
                             tabIndex="0"
-                            labelText="Select All"
+                            labelText={selectAllLabel}
                           />
                         </ListBox.MenuItem>
                       )}
