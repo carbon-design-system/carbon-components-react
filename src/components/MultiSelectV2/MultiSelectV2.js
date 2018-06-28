@@ -43,6 +43,8 @@ export default class MultiSelectV2 extends React.Component {
      */
     label: PropTypes.node.isRequired,
 
+    selectAllLabel: PropTypes.string,
+
     /**
      * Specify the locale of the control. Used for the default `compareItems`
      * used for sorting the list of items in the control.
@@ -93,6 +95,7 @@ export default class MultiSelectV2 extends React.Component {
     initialSelectedItems: [],
     sortItems: defaultSortItems,
     type: 'default',
+    selectAllLabel: 'Select All',
   };
 
   constructor(props) {
@@ -170,6 +173,7 @@ export default class MultiSelectV2 extends React.Component {
       toggleItemSelection,
       sortItems,
       compareItems,
+      selectAllLabel,
       light,
     } = this.props;
     const className = cx('bx--multi-select', containerClassName, {
@@ -212,7 +216,7 @@ export default class MultiSelectV2 extends React.Component {
                 toggleItemProps = getItemProps({
                   item: {
                     id: 'select-all',
-                    label: 'Select All',
+                    label: selectAllLabel,
                   },
                   onClick: () => {},
                 });
@@ -267,7 +271,7 @@ export default class MultiSelectV2 extends React.Component {
                             checked={selectedItem.length === items.length}
                             readOnly={true}
                             tabIndex="0"
-                            labelText="Select All"
+                            labelText={selectAllLabel}
                           />
                         </ListBox.MenuItem>
                       )}
