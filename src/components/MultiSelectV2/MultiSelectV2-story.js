@@ -26,7 +26,7 @@ const items = [
 ];
 
 const defaultLabel = 'MultiSelect Label';
-const defaultPlaceholder = 'Select';
+const defaultPlaceholder = 'Search';
 
 storiesOf('MultiSelectV2', module)
   .addWithInfo(
@@ -136,10 +136,28 @@ storiesOf('MultiSelectV2', module)
       <div style={{ width: 300 }}>
         <MultiSelectV2
           label={defaultLabel}
+          placeholder={defaultPlaceholder}
           items={items}
           inlineSelectedItems
           itemToString={item => (item ? item.text : '')}
           initialSelectedItems={[items[0], items[1]]}
+          onChange={action('onChange')}
+        />
+      </div>
+    )
+  )
+  .addWithInfo(
+    'light',
+    `
+    MultiSelect
+  `,
+    () => (
+      <div style={{ width: 300 }}>
+        <MultiSelectV2
+          light
+          label={defaultLabel}
+          items={items}
+          itemToString={item => (item ? item.text : '')}
           onChange={action('onChange')}
         />
       </div>
@@ -173,6 +191,7 @@ storiesOf('MultiSelectV2', module)
           toggleItemSelection
           itemToString={item => (item ? item.text : '')}
           onChange={action('onChange')}
+          label={defaultLabel}
           placeholder={defaultPlaceholder}
         />
       </div>
@@ -185,6 +204,7 @@ storiesOf('MultiSelectV2', module)
         items={items}
         itemToString={item => (item ? item.text : '')}
         onChange={action('onChange')}
+        label={defaultLabel}
         placeholder={defaultPlaceholder}
       />
     </div>
@@ -197,6 +217,7 @@ storiesOf('MultiSelectV2', module)
         items={items}
         itemToString={item => (item ? item.text : '')}
         onChange={action('onChange')}
+        label={defaultLabel}
         placeholder={defaultPlaceholder}
       />
     </div>
@@ -211,10 +232,29 @@ storiesOf('MultiSelectV2', module)
         items={items}
         itemToString={item => (item ? item.text : '')}
         onChange={action('onChange')}
+        label={defaultLabel}
         placeholder={defaultPlaceholder}
       />
     </div>
   ))
+  .addWithInfo(
+    'filterable - light',
+    `
+      Light version of our MultiSelectV2 Filterable component
+    `,
+    () => (
+      <div style={{ width: 300 }}>
+        <MultiSelectV2.Filterable
+          light
+          items={items}
+          itemToString={item => (item ? item.text : '')}
+          onChange={action('onChange')}
+          label={defaultLabel}
+          placeholder={defaultPlaceholder}
+        />
+      </div>
+    )
+  )
   .addWithInfo(
     'filterable - disabled',
     `
@@ -226,6 +266,7 @@ storiesOf('MultiSelectV2', module)
           items={items}
           itemToString={item => (item ? item.text : '')}
           onChange={action('onChange')}
+          label={defaultLabel}
           placeholder={defaultPlaceholder}
           disabled
         />

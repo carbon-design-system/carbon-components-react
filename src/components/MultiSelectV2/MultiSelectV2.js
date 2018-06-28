@@ -74,12 +74,18 @@ export default class MultiSelectV2 extends React.Component {
      * Controls the open state of the dropdown
      */
     open: PropTypes.bool,
+
+    /**
+     * `true` to use the light version.
+     */
+    light: PropTypes.bool,
   };
 
   static defaultProps = {
     compareItems: defaultCompareItems,
     disabled: false,
     open: false,
+    light: false,
     locale: 'en',
     itemToString: defaultItemToString,
     toggleItemSelection: false,
@@ -164,8 +170,11 @@ export default class MultiSelectV2 extends React.Component {
       toggleItemSelection,
       sortItems,
       compareItems,
+      light,
     } = this.props;
-    const className = cx('bx--multi-select', containerClassName);
+    const className = cx('bx--multi-select', containerClassName, {
+      'bx--list-box--light': light,
+    });
     return (
       <Selection
         onChange={this.handleOnChange}
@@ -193,8 +202,12 @@ export default class MultiSelectV2 extends React.Component {
               getItemProps,
               getButtonProps,
             }) => {
-              let toggleItemProps,
-                baseIndex = 0;
+              let toggleItemProps;
+              let baseIndex = 0;
+              let showCount = selectedItem.length > 0;
+              if (inlineSelectedItems && selectedItem.length === items.length) {
+                showCount = false;
+              }
               if (toggleItemSelection) {
                 toggleItemProps = getItemProps({
                   item: {
@@ -212,7 +225,7 @@ export default class MultiSelectV2 extends React.Component {
                   disabled={disabled}
                   {...getRootProps({ refKey: 'innerRef' })}>
                   <ListBox.Field {...getButtonProps({ disabled })}>
-                    {selectedItem.length > 0 && (
+                    {showCount && (
                       <ListBox.Selection
                         clearSelection={clearSelection}
                         selectionCount={selectedItem.length}
@@ -220,7 +233,8 @@ export default class MultiSelectV2 extends React.Component {
                     )}
                     {inlineSelectedItems ? (
                       <div className="bx--list-box__selected-items">
-                        {!selectedItem.length ? (
+                        {!selectedItem.length ||
+                        selectedItems.length === items.length ? (
                           <span className="bx--list-box__label">{label}</span>
                         ) : (
                           sortItems(selectedItem, {
