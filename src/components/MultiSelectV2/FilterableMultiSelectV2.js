@@ -31,15 +31,12 @@ export default class FilterableMultiSelectV2 extends React.Component {
      */
     label: PropTypes.string,
 
-    /**
-     * Specifies the position of the search box
-     */
-    searchBoxType: PropTypes.oneOf(['default', 'inner']),
+    selectAllLabel: PropTypes.string,
 
     /**
      * Specifies the position of the search box
      */
-    searchBoxLabel: PropTypes.string,
+    searchBoxType: PropTypes.oneOf(['default', 'inner']),
 
     /**
      * Allow users to pass in arbitrary items from their collection that are
@@ -91,6 +88,11 @@ export default class FilterableMultiSelectV2 extends React.Component {
      * Controls the open state of the dropdown
      */
     open: PropTypes.bool,
+
+    /**
+     * `true` to use the light version.
+     */
+    light: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -100,11 +102,12 @@ export default class FilterableMultiSelectV2 extends React.Component {
     itemToString: defaultItemToString,
     disabled: false,
     open: false,
+    light: false,
     inlineSelectedItems: false,
     initialSelectedItems: [],
     toggleItemSelection: false,
     locale: 'en',
-    searchBoxLabel: 'Search',
+    selectAllLabel: 'Select All',
     searchBoxType: 'default',
   };
 
@@ -223,7 +226,6 @@ export default class FilterableMultiSelectV2 extends React.Component {
       filterItems,
       inlineSelectedItems,
       searchBoxType,
-      searchBoxLabel,
       type,
       toggleItemSelection,
       items,
@@ -231,14 +233,20 @@ export default class FilterableMultiSelectV2 extends React.Component {
       initialSelectedItems,
       id,
       locale,
+      label,
       placeholder,
+      selectAllLabel,
       sortItems,
       compareItems,
+      light,
     } = this.props;
     const className = cx(
       'bx--multi-select',
       'bx--combo-box',
-      containerClassName
+      containerClassName,
+      {
+        'bx--list-box--light': light,
+      }
     );
     return (
       <Selection
@@ -269,13 +277,17 @@ export default class FilterableMultiSelectV2 extends React.Component {
               inputValue,
               selectedItem,
             }) => {
-              let toggleItemProps,
-                baseIndex = 0;
+              let toggleItemProps;
+              let baseIndex = 0;
+              let showCount = selectedItem.length > 0;
+              if (inlineSelectedItems && selectedItem.length === items.length) {
+                showCount = false;
+              }
               if (toggleItemSelection) {
                 toggleItemProps = getItemProps({
                   item: {
                     id: 'select-all',
-                    label: 'Select All',
+                    label: selectAllLabel,
                   },
                   onClick: () => {},
                 });
@@ -288,7 +300,7 @@ export default class FilterableMultiSelectV2 extends React.Component {
                   type={type}
                   {...getRootProps({ refKey: 'innerRef' })}>
                   <ListBox.Field {...getButtonProps({ disabled })}>
-                    {selectedItem.length > 0 && (
+                    {showCount && (
                       <ListBox.Selection
                         clearSelection={clearSelection}
                         selectionCount={selectedItem.length}
@@ -316,10 +328,9 @@ export default class FilterableMultiSelectV2 extends React.Component {
                     {searchBoxType === 'inner' &&
                       (inlineSelectedItems ? (
                         <div className="bx--list-box__selected-items">
-                          {!selectedItem.length ? (
-                            <span className="bx--list-box__label">
-                              {placeholder}
-                            </span>
+                          {!selectedItem.length ||
+                          selectedItems.length === items.length ? (
+                            <span className="bx--list-box__label">{label}</span>
                           ) : (
                             sortItems(selectedItem, {
                               selectedItems,
@@ -336,9 +347,7 @@ export default class FilterableMultiSelectV2 extends React.Component {
                           )}
                         </div>
                       ) : (
-                        <span className="bx--list-box__label">
-                          {placeholder}
-                        </span>
+                        <span className="bx--list-box__label">{label}</span>
                       ))}
                     <ListBox.MenuIcon isOpen={isOpen} />
                   </ListBox.Field>
@@ -350,10 +359,9 @@ export default class FilterableMultiSelectV2 extends React.Component {
                             small
                             {...getInputProps({
                               role: 'input',
-                              labelText: searchBoxLabel,
-                              placeHolderText: 'Search',
-                              placeholder: 'Search',
                               tabIndex: 0,
+                              labelText: placeholder,
+                              placeHolderText: placeholder,
                               disabled,
                               id,
                               onKeyDown: this.handleOnInputKeyDown,
