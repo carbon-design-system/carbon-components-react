@@ -235,6 +235,10 @@ export default class OverflowMenu extends Component {
 
     if (this.state.open) {
       if (!floatingMenu) {
+        (
+          this.menuEl.querySelector('[data-overflow-menu-primary-focus]') ||
+          this.menuEl
+        ).focus();
         onOpen();
       }
     } else {
@@ -330,17 +334,16 @@ export default class OverflowMenu extends Component {
         focusinEventName,
         event => {
           const { target } = event;
-          if (!menuBody.contains(target)) {
+          if (
+            !menuBody.contains(target) &&
+            this.menuEl &&
+            !matches(target, '.bx--overflow-menu,.bx--overflow-menu-options')
+          ) {
             this.closeMenu();
-            if (
-              this.menuEl &&
-              !matches(target, '.bx--overflow-menu,.bx--overflow-menu-options')
-            ) {
-              // Note:
-              // The last focusable element in the page should NOT be the trigger button of overflow menu.
-              // Doing so breaks the code that detects if floating menu losing focus, e.g. by keyboard events.
-              this.menuEl.focus();
-            }
+            // Note:
+            // The last focusable element in the page should NOT be the trigger button of overflow menu.
+            // Doing so breaks the code that detects if floating menu losing focus, e.g. by keyboard events.
+            this.menuEl.focus();
           }
         },
         !hasFocusin
@@ -363,6 +366,7 @@ export default class OverflowMenu extends Component {
       menuOffsetFlip,
       iconClass,
       onClick, // eslint-disable-line
+      onOpen, // eslint-disable-line
       renderIcon,
       ...other
     } = this.props;
@@ -390,6 +394,7 @@ export default class OverflowMenu extends Component {
     const childrenWithProps = React.Children.toArray(children).map(child =>
       React.cloneElement(child, {
         closeMenu: this.closeMenu,
+        floatingMenu: floatingMenu || undefined,
       })
     );
 
