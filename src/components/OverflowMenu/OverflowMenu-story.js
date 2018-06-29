@@ -29,7 +29,11 @@ storiesOf('OverflowMenu', module)
           itemText="Option 1"
           primaryFocus={true}
         />
-        <OverflowMenuItem {...overflowMenuItemEvents} itemText="Option 2" />
+        <OverflowMenuItem
+          {...overflowMenuItemEvents}
+          itemText="Option 2 is an example of a really long string and how we recommend handling this"
+          title
+        />
         <OverflowMenuItem {...overflowMenuItemEvents} itemText="Option 3" />
         <OverflowMenuItem {...overflowMenuItemEvents} itemText="Option 4" />
         <OverflowMenuItem
