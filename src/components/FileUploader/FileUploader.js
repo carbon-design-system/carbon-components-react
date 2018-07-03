@@ -18,7 +18,14 @@ export class FileUploaderButton extends Component {
     onClick: PropTypes.func,
     role: PropTypes.string,
     tabIndex: PropTypes.number,
-    buttonKind: PropTypes.oneOf(['primary', 'secondary']),
+    buttonKind: PropTypes.oneOf([
+      'primary',
+      'secondary',
+      'danger',
+      'ghost',
+      'danger--primary',
+      'tertiary',
+    ]),
     accept: PropTypes.arrayOf(PropTypes.string),
   };
   static defaultProps = {
