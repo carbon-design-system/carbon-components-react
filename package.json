@@ -1,5 +1,5 @@
 {
-  "name": "carbon-components-react",
+  "name": "@ibmtm/carbon-components-react",
   "version": "5.5.1",
   "description": "A React wrapper for carbon-components",
   "license": "Apache-2",
@@ -58,6 +58,10 @@
     {
       "name": "Chris Dhanaraj",
       "email": "chrisdhanaraj@us.ibm.com"
+    },
+    {
+      "name": "Liviu Dobrea",
+      "email": "liviu.dobrea@ibm.com"
     }
   ],
   "eslintConfig": {
