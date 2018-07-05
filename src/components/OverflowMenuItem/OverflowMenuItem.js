@@ -13,7 +13,7 @@ const OverflowMenuItem = ({
   primaryFocus,
   floatingMenu,
   wrapperClassName,
-  title,
+  requireTitle,
   ...other
 }) => {
   const overflowMenuBtnClasses = classNames(
@@ -53,7 +53,7 @@ const OverflowMenuItem = ({
         className={overflowMenuBtnClasses}
         disabled={disabled}
         onClick={handleClick}
-        title={title ? itemText : null}
+        title={requireTitle ? itemText : null}
         tabIndex={disabled ? -1 : 0}>
         {itemText}
       </button>
@@ -121,7 +121,7 @@ OverflowMenuItem.propTypes = {
   /**
    * `true` if this menu item has long text and requires a browser tooltip
    */
-  title: PropTypes.bool,
+  requireTitle: PropTypes.bool,
 };
 
 OverflowMenuItem.defaultProps = {

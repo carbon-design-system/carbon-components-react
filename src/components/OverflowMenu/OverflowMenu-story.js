@@ -32,7 +32,7 @@ storiesOf('OverflowMenu', module)
         <OverflowMenuItem
           {...overflowMenuItemEvents}
           itemText="Option 2 is an example of a really long string and how we recommend handling this"
-          title
+          requireTitle
         />
         <OverflowMenuItem {...overflowMenuItemEvents} itemText="Option 3" />
         <OverflowMenuItem {...overflowMenuItemEvents} itemText="Option 4" />
