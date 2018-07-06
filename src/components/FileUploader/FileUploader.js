@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import Icon from '../Icon';
 import uid from '../../tools/uniqueId';
+import types from '../../prop-types/types';
 
 export class FileUploaderButton extends Component {
   static propTypes = {
@@ -18,14 +19,7 @@ export class FileUploaderButton extends Component {
     onClick: PropTypes.func,
     role: PropTypes.string,
     tabIndex: PropTypes.number,
-    buttonKind: PropTypes.oneOf([
-      'primary',
-      'secondary',
-      'danger',
-      'ghost',
-      'danger--primary',
-      'tertiary',
-    ]),
+    buttonKind: PropTypes.oneOf(types.Button.buttonKind),
     accept: PropTypes.arrayOf(PropTypes.string),
   };
   static defaultProps = {
@@ -175,7 +169,7 @@ export default class FileUploader extends Component {
   static propTypes = {
     iconDescription: PropTypes.string,
     buttonLabel: PropTypes.string,
-    buttonKind: PropTypes.oneOf(['primary', 'secondary']),
+    buttonKind: PropTypes.oneOf(types.Button.buttonKind),
     filenameStatus: PropTypes.oneOf(['edit', 'complete', 'uploading'])
       .isRequired,
     labelDescription: PropTypes.string,
