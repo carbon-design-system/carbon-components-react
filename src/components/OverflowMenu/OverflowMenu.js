@@ -369,6 +369,8 @@ export default class OverflowMenu extends Component {
       floatingMenu,
       menuOffset,
       menuOffsetFlip,
+      onClick, // eslint-disable-line
+      onOpen, // eslint-disable-line
       iconClass,
       renderIcon,
       ...other
