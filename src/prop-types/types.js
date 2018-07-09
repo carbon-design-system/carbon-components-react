@@ -1,14 +1,12 @@
-const types = {
-  Button: {
-    buttonKind: [
-      'primary',
-      'secondary',
-      'danger',
-      'ghost',
-      'danger--primary',
-      'tertiary',
-    ],
-  },
-};
+import { oneOf } from 'prop-types';
 
-export default types;
+export const ButtonTypes = {
+  buttonKind: oneOf([
+    'primary',
+    'secondary',
+    'danger',
+    'ghost',
+    'danger--primary',
+    'tertiary',
+  ]),
+};
