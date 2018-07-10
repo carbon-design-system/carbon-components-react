@@ -9,7 +9,8 @@ export default class ModalWrapper extends React.Component {
     handleOpen: PropTypes.func,
     children: PropTypes.node,
     id: PropTypes.string,
-    buttonTriggerText: PropTypes.string,
+    buttonTriggerText: PropTypes.node,
+    buttonTriggerClassName: PropTypes.string,
     modalLabel: PropTypes.string,
     modalHeading: PropTypes.string,
     modalText: PropTypes.string,
@@ -34,6 +35,7 @@ export default class ModalWrapper extends React.Component {
     secondaryButtonText: 'Cancel',
     triggerButtonKind: 'primary',
     disabled: false,
+    onKeyDown: () => {},
   };
 
   state = {
@@ -66,6 +68,7 @@ export default class ModalWrapper extends React.Component {
     const {
       id,
       buttonTriggerText,
+      buttonTriggerClassName,
       triggerButtonKind,
       modalLabel,
       modalHeading,
@@ -97,6 +100,7 @@ export default class ModalWrapper extends React.Component {
           }
         }}>
         <Button
+          className={buttonTriggerClassName}
           disabled={disabled}
           kind={triggerButtonKind}
           onClick={this.handleOpen}>

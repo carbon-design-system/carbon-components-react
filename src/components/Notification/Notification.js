@@ -108,6 +108,7 @@ export class ToastNotification extends Component {
     iconDescription: PropTypes.string.isRequired,
     notificationType: PropTypes.string,
     hideCloseButton: PropTypes.bool,
+    timeout: PropTypes.number,
   };
 
   static defaultProps = {
@@ -120,11 +121,20 @@ export class ToastNotification extends Component {
     iconDescription: 'closes notification',
     onCloseButtonClick: () => {},
     hideCloseButton: false,
+    timeout: 0,
   };
 
   state = {
     open: true,
   };
+
+  componentDidMount() {
+    if (this.props.timeout) {
+      setTimeout(() => {
+        this.handleCloseButtonClick();
+      }, this.props.timeout);
+    }
+  }
 
   handleCloseButtonClick = evt => {
     this.setState({ open: false });
@@ -133,7 +143,7 @@ export class ToastNotification extends Component {
 
   useIconName = kindProp => {
     const isSuccess = kindProp === 'success';
-    return isSuccess ? 'checkmark--glyph' : `${kindProp}--glyph`;
+    return isSuccess ? 'checkmark--solid' : `${kindProp}--solid`;
   };
 
   render() {
@@ -214,7 +224,7 @@ export class InlineNotification extends Component {
 
   useIconName = kindProp => {
     const isSuccess = kindProp === 'success';
-    return isSuccess ? 'checkmark--glyph' : `${kindProp}--glyph`;
+    return isSuccess ? 'checkmark--solid' : `${kindProp}--solid`;
   };
 
   render() {
@@ -301,7 +311,7 @@ export default class Notification extends Component {
 
   useIconName = kindProp => {
     const isSuccess = kindProp === 'success';
-    return isSuccess ? 'checkmark--glyph' : `${kindProp}--glyph`;
+    return isSuccess ? 'checkmark--solid' : `${kindProp}--solid`;
   };
 
   render() {

@@ -1,7 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Icon from '../Icon';
 import classNames from 'classnames';
+import warning from 'warning';
+import Icon from '../Icon';
+
+let didWarnAboutDeprecation = false;
 
 const TooltipSimple = ({
   children,
@@ -13,13 +16,22 @@ const TooltipSimple = ({
   iconDescription,
   ...other
 }) => {
+  if (__DEV__) {
+    warning(
+      didWarnAboutDeprecation,
+      'The `TooltipSimple` component has been deprecated and will be removed ' +
+        'in the next major release of `carbon-components-react`. Please use ' +
+        '`TooltipDefinition` or `TooltipIcon` instead.'
+    );
+    didWarnAboutDeprecation = true;
+  }
   const tooltipClasses = classNames(`bx--tooltip--simple__${position}`);
 
   const tooltipWrapperClasses = classNames(`bx--tooltip--simple`, className);
   return (
-    <div>
+    <div className={tooltipWrapperClasses}>
       {showIcon ? (
-        <div className={tooltipWrapperClasses}>
+        <React.Fragment>
           {children}
           <div
             className={tooltipClasses}
@@ -29,17 +41,15 @@ const TooltipSimple = ({
             {...other}>
             <Icon role="img" name={iconName} description={iconDescription} />
           </div>
-        </div>
+        </React.Fragment>
       ) : (
-        <div className={tooltipWrapperClasses}>
-          <div
-            className={tooltipClasses}
-            data-tooltip-text={text}
-            tabIndex="0"
-            role="button"
-            {...other}>
-            {children}
-          </div>
+        <div
+          className={tooltipClasses}
+          data-tooltip-text={text}
+          tabIndex="0"
+          role="button"
+          {...other}>
+          {children}
         </div>
       )}
     </div>

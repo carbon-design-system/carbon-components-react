@@ -118,13 +118,13 @@
     }
   },
   "peerDependencies": {
-    "carbon-components": "^8.20.0",
-    "carbon-icons": "^5.1.2 || ^6.0.0",
-    "react": "^15.3.2 || ^16.1.0",
-    "react-dom": "^15.3.2 || ^16.1.0"
+    "carbon-components": "^9.1.6",
+    "carbon-icons": "^7.0.5",
+    "react": "^16.4.0",
+    "react-dom": "^16.4.0"
   },
   "dependencies": {
-    "classnames": "2.2.5",
+    "classnames": "2.2.6",
     "downshift": "^1.31.14",
     "flatpickr": "4.5.0",
     "invariant": "^2.2.3",
@@ -152,8 +152,8 @@
     "babel-plugin-dev-expression": "^0.2.1",
     "babel-plugin-transform-object-assign": "^6.22.0",
     "bowser": "^1.6.1",
-    "carbon-components": "^8.20.0",
-    "carbon-icons": "^6.1.0",
+    "carbon-components": "^9.1.6",
+    "carbon-icons": "^7.0.5",
     "chalk": "^2.3.0",
     "cli-table": "^0.3.0",
     "commitizen": "^2.9.5",
@@ -177,9 +177,9 @@
     "prettier": "^1.10.0",
     "promise": "^8.0.1",
     "prop-types": "^15.5.8",
-    "react": "^16.1.0",
-    "react-dom": "^16.1.0",
-    "react-test-renderer": "^16.1.0",
+    "react": "^16.4.0",
+    "react-dom": "^16.4.0",
+    "react-test-renderer": "^16.4.0",
     "requestanimationframe": "^0.0.23",
     "rimraf": "^2.6.1",
     "rollup": "^0.57.0",

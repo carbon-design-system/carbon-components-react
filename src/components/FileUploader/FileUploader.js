@@ -13,6 +13,7 @@ export class FileUploaderButton extends Component {
     labelText: PropTypes.string,
     listFiles: PropTypes.bool,
     multiple: PropTypes.bool,
+    name: PropTypes.string,
     onChange: PropTypes.func,
     onClick: PropTypes.func,
     role: PropTypes.string,
@@ -33,10 +34,10 @@ export class FileUploaderButton extends Component {
   state = {
     labelText: this.props.labelText,
   };
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
     this.uid = this.props.id || uid();
   }
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     if (nextProps.labelText !== this.props.labelText) {
       this.setState({ labelText: nextProps.labelText });
     }
@@ -65,6 +66,7 @@ export class FileUploaderButton extends Component {
       tabIndex,
       buttonKind,
       accept,
+      name,
       ...other
     } = this.props;
     const classes = classNames({
@@ -96,6 +98,7 @@ export class FileUploaderButton extends Component {
           type="file"
           multiple={multiple}
           accept={accept}
+          name={name}
           onChange={this.handleChange}
           onClick={evt => {
             evt.target.value = null;
@@ -140,7 +143,7 @@ export class Filename extends Component {
         <Icon
           description={iconDescription}
           className="bx--file-close"
-          name="close--glyph"
+          name="close--solid"
           style={style}
           {...other}
         />
@@ -150,7 +153,7 @@ export class Filename extends Component {
         <Icon
           description={iconDescription}
           className="bx--file-complete"
-          name="checkmark--glyph"
+          name="checkmark--solid"
           style={style}
           {...other}
         />
@@ -171,7 +174,7 @@ export default class FileUploader extends Component {
     labelDescription: PropTypes.string,
     labelTitle: PropTypes.string,
     multiple: PropTypes.bool,
-    onChange: PropTypes.func,
+    name: PropTypes.string,
     onClick: PropTypes.func,
     className: PropTypes.string,
     accept: PropTypes.arrayOf(PropTypes.string),
@@ -183,7 +186,6 @@ export default class FileUploader extends Component {
     buttonLabel: '',
     buttonKind: 'primary',
     multiple: false,
-    onChange: () => {},
     onClick: () => {},
     accept: [],
   };
@@ -195,13 +197,18 @@ export default class FileUploader extends Component {
 
   nodes = [];
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     if (nextProps.filenameStatus !== this.props.filenameStatus) {
       this.setState({ filenameStatus: nextProps.filenameStatus });
     }
   }
   handleChange = evt => {
-    this.setState({ filenames: [...evt.target.files].map(file => file.name) });
+    evt.stopPropagation();
+    this.setState({
+      filenames: this.state.filenames.concat(
+        [...evt.target.files].map(file => file.name)
+      ),
+    });
     this.props.onChange(evt);
   };
 
@@ -229,6 +236,7 @@ export default class FileUploader extends Component {
       className,
       multiple,
       accept,
+      name,
       ...other
     } = this.props;
 
@@ -248,6 +256,7 @@ export default class FileUploader extends Component {
           onChange={this.handleChange}
           disableLabelChanges
           accept={accept}
+          name={name}
         />
         <div className="bx--file-container">
           {this.state.filenames.length === 0
@@ -263,12 +272,6 @@ export default class FileUploader extends Component {
                     <Filename
                       iconDescription={iconDescription}
                       status={filenameStatus}
-                      onClick={evt => {
-                        if (filenameStatus === 'edit') {
-                          this.handleClick(evt, index);
-                        }
-                      }}
-                      iconDescription={iconDescription}
                       onKeyDown={evt => {
                         if (evt.which === 13 || evt.which === 32) {
                           this.handleClick(evt, index);
