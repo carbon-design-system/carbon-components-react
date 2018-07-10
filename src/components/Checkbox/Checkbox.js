@@ -41,7 +41,7 @@ const Checkbox = ({
           }
         }}
       />
-      <label htmlFor={id} className={labelClasses} title={title}>
+      <label htmlFor={id} className={labelClasses} title={title || null}>
         <span className={innerLabelClasses}>{labelText}</span>
       </label>
     </div>
