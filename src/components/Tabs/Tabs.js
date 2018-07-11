@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import classNames from 'classnames';
+import { iconCaretDown } from 'carbon-icons';
 import Icon from '../Icon';
 import TabContent from '../TabContent';
 
@@ -59,7 +60,7 @@ export default class Tabs extends React.Component {
       evt.preventDefault();
       this.selectTabAt(index, onSelectionChange);
       this.setState({
-        dropdownHidden: !this.state.dropdownHidden,
+        dropdownHidden: true,
       });
     };
   };
@@ -71,7 +72,7 @@ export default class Tabs extends React.Component {
       if (key === 'Enter' || key === 13 || key === ' ' || key === 32) {
         this.selectTabAt(index, onSelectionChange);
         this.setState({
-          dropdownHidden: !this.state.dropdownHidden,
+          dropdownHidden: true,
         });
       }
     };
@@ -148,6 +149,7 @@ export default class Tabs extends React.Component {
       return (
         <TabContent
           className="tab-content"
+          aria-hidden={!selected}
           hidden={!selected}
           selected={selected}>
           {children}
@@ -182,7 +184,7 @@ export default class Tabs extends React.Component {
               onClick={this.handleDropdownClick}>
               {selectedLabel}
             </a>
-            <Icon description={iconDescription} name="caret--down" />
+            <Icon description={iconDescription} icon={iconCaretDown} />
           </div>
           <ul role="tablist" className={classes.tablist}>
             {tabsWithProps}

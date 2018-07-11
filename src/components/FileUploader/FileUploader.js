@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import Icon from '../Icon';
 import uid from '../../tools/uniqueId';
+import { ButtonTypes } from '../../prop-types/types';
+import { iconCloseSolid, iconCheckmarkSolid } from 'carbon-icons';
 
 export class FileUploaderButton extends Component {
   static propTypes = {
@@ -18,7 +20,7 @@ export class FileUploaderButton extends Component {
     onClick: PropTypes.func,
     role: PropTypes.string,
     tabIndex: PropTypes.number,
-    buttonKind: PropTypes.oneOf(['primary', 'secondary']),
+    buttonKind: ButtonTypes.buttonKind,
     accept: PropTypes.arrayOf(PropTypes.string),
   };
   static defaultProps = {
@@ -143,7 +145,7 @@ export class Filename extends Component {
         <Icon
           description={iconDescription}
           className="bx--file-close"
-          name="close--solid"
+          icon={iconCloseSolid}
           style={style}
           {...other}
         />
@@ -153,7 +155,7 @@ export class Filename extends Component {
         <Icon
           description={iconDescription}
           className="bx--file-complete"
-          name="checkmark--solid"
+          icon={iconCheckmarkSolid}
           style={style}
           {...other}
         />
@@ -168,14 +170,13 @@ export default class FileUploader extends Component {
   static propTypes = {
     iconDescription: PropTypes.string,
     buttonLabel: PropTypes.string,
-    buttonKind: PropTypes.oneOf(['primary', 'secondary']),
+    buttonKind: ButtonTypes.buttonKind,
     filenameStatus: PropTypes.oneOf(['edit', 'complete', 'uploading'])
       .isRequired,
     labelDescription: PropTypes.string,
     labelTitle: PropTypes.string,
     multiple: PropTypes.bool,
     name: PropTypes.string,
-    onChange: PropTypes.func,
     onClick: PropTypes.func,
     className: PropTypes.string,
     accept: PropTypes.arrayOf(PropTypes.string),
@@ -187,7 +188,6 @@ export default class FileUploader extends Component {
     buttonLabel: '',
     buttonKind: 'primary',
     multiple: false,
-    onChange: () => {},
     onClick: () => {},
     accept: [],
   };
@@ -205,7 +205,12 @@ export default class FileUploader extends Component {
     }
   }
   handleChange = evt => {
-    this.setState({ filenames: [...evt.target.files].map(file => file.name) });
+    evt.stopPropagation();
+    this.setState({
+      filenames: this.state.filenames.concat(
+        [...evt.target.files].map(file => file.name)
+      ),
+    });
     this.props.onChange(evt);
   };
 
@@ -269,12 +274,6 @@ export default class FileUploader extends Component {
                     <Filename
                       iconDescription={iconDescription}
                       status={filenameStatus}
-                      onClick={evt => {
-                        if (filenameStatus === 'edit') {
-                          this.handleClick(evt, index);
-                        }
-                      }}
-                      iconDescription={iconDescription}
                       onKeyDown={evt => {
                         if (evt.which === 13 || evt.which === 32) {
                           this.handleClick(evt, index);
