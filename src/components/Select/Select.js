@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import classNames from 'classnames';
+import { iconCaretDown } from 'carbon-icons';
 import Icon from '../Icon';
 
 const Select = ({
@@ -12,6 +13,8 @@ const Select = ({
   children,
   iconDescription,
   hideLabel,
+  invalid,
+  invalidText,
   light,
   ...other
 }) => {
@@ -24,31 +27,34 @@ const Select = ({
   const labelClasses = classNames('bx--label', {
     'bx--visually-hidden': hideLabel,
   });
+  const errorId = `${id}-error-msg`;
+  const error = invalid ? (
+    <div className="bx--form-requirement" id={errorId}>
+      {invalidText}
+    </div>
+  ) : null;
   return (
     <div className="bx--form-item">
       <div className={selectClasses}>
-        {inline ? (
-          <label htmlFor={id} className={labelClasses}>
-            {labelText}
-          </label>
-        ) : null}
         <select
           {...other}
           id={id}
           className="bx--select-input"
-          disabled={disabled}>
+          disabled={disabled || undefined}
+          data-invalid={invalid || undefined}
+          aria-invalid={invalid || undefined}
+          aria-describedby={errorId}>
           {children}
         </select>
         <Icon
-          name="caret--down"
+          icon={iconCaretDown}
           className="bx--select__arrow"
           description={iconDescription}
         />
-        {!inline ? (
-          <label htmlFor={id} className={labelClasses}>
-            {labelText}
-          </label>
-        ) : null}
+        <label htmlFor={id} className={labelClasses}>
+          {labelText}
+        </label>
+        {error}
       </div>
     </div>
   );
@@ -59,12 +65,14 @@ Select.propTypes = {
   className: PropTypes.string,
   id: PropTypes.string.isRequired,
   inline: PropTypes.bool,
-  labelText: PropTypes.string,
+  labelText: PropTypes.node,
   onChange: PropTypes.func,
   disabled: PropTypes.bool,
   defaultValue: PropTypes.any,
   iconDescription: PropTypes.string.isRequired,
   hideLabel: PropTypes.bool,
+  invalid: PropTypes.bool,
+  invalidText: PropTypes.string,
   light: PropTypes.bool,
 };
 
@@ -73,6 +81,8 @@ Select.defaultProps = {
   labelText: 'Select',
   inline: false,
   iconDescription: 'open list of options',
+  invalid: false,
+  invalidText: '',
   light: false,
 };
 
