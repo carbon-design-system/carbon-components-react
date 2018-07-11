@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import classnames from 'classnames';
 import debounce from 'lodash.debounce';
 import warning from 'warning';
+import { iconChevronLeft, iconChevronRight } from 'carbon-icons';
 import Icon from '../Icon';
 import Select from '../Select';
 import SelectItem from '../SelectItem';
@@ -41,7 +42,7 @@ export default class Pagination extends Component {
     backwardText: 'Backward',
     itemRangeText: (min, max, total) => `${min}-${max} of ${total} items`,
     forwardText: 'Forward',
-    itemsPerPageText: 'items per page',
+    itemsPerPageText: 'items per page | ',
     onChange: () => {},
     pageNumberText: 'Page Number',
     pageRangeText: (current, total) => `${current} of ${total} pages`,
@@ -225,9 +226,7 @@ export default class Pagination extends Component {
               <SelectItem key={size} value={size} text={String(size)} />
             ))}
           </Select>
-          <span className="bx--pagination__text">
-            {itemsPerPageText}&nbsp;&nbsp;|&nbsp;&nbsp;
-          </span>
+          <span className="bx--pagination__text">{itemsPerPageText}</span>
           <span className="bx--pagination__text">{this.getItemsText()}</span>
         </div>
         <div className="bx--pagination__right">
@@ -238,7 +237,7 @@ export default class Pagination extends Component {
             disabled={this.props.disabled || statePage === 1}>
             <Icon
               className="bx--pagination__button-icon"
-              name="chevron--left"
+              icon={iconChevronLeft}
               description={backwardText}
             />
           </button>
@@ -261,7 +260,7 @@ export default class Pagination extends Component {
             }>
             <Icon
               className="bx--pagination__button-icon"
-              name="chevron--right"
+              icon={iconChevronRight}
               description={forwardText}
             />
           </button>
