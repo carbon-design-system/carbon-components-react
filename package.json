@@ -34,8 +34,7 @@
     "es/**/*",
     "umd/**/*"
   ],
-  "contributors": [
-    {
+  "contributors": [{
       "name": "Brian Han",
       "email": "bthan@us.ibm.com"
     },
@@ -118,7 +117,7 @@
     }
   },
   "peerDependencies": {
-    "carbon-components": "^9.0.0",
+    "carbon-components": "^9.1.13",
     "carbon-icons": "^7.0.5",
     "react": "^16.4.0",
     "react-dom": "^16.4.0"
@@ -152,7 +151,7 @@
     "babel-plugin-dev-expression": "^0.2.1",
     "babel-plugin-transform-object-assign": "^6.22.0",
     "bowser": "^1.6.1",
-    "carbon-components": "^9.0.0",
+    "carbon-components": "^9.1.13",
     "carbon-icons": "^7.0.5",
     "chalk": "^2.3.0",
     "cli-table": "^0.3.0",
@@ -201,8 +200,7 @@
   "babel": {
     "presets": [
       "./scripts/env",
-      "@babel/preset-react",
-      [
+      "@babel/preset-react", [
         "@babel/preset-stage-1",
         {
           "decoratorsLegacy": true

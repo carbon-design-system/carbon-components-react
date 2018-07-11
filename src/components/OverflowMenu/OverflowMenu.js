@@ -33,6 +33,26 @@ const on = (element, ...args) => {
 };
 
 /**
+ * @param {Element} elem An element.
+ * @param {string} selector An query selector.
+ * @returns {Element} The ancestor of the given element matching the given selector.
+ * @private
+ */
+const closest = (elem, selector) => {
+  const doc = elem.ownerDocument;
+  for (
+    let traverse = elem;
+    traverse && traverse !== doc;
+    traverse = traverse.parentNode
+  ) {
+    if (traverse.matches(selector)) {
+      return traverse;
+    }
+  }
+  return null;
+};
+
+/**
  * @param {Element} menuBody The menu body with the menu arrow.
  * @returns {FloatingMenu~offset} The adjustment of the floating menu position, upon the position of the menu arrow.
  * @private
@@ -334,17 +354,16 @@ export default class OverflowMenu extends Component {
         focusinEventName,
         event => {
           const { target } = event;
-          if (!menuBody.contains(target)) {
+          if (
+            !menuBody.contains(target) &&
+            this.menuEl &&
+            !matches(target, '.bx--overflow-menu,.bx--overflow-menu-options')
+          ) {
             this.closeMenu();
-            if (
-              this.menuEl &&
-              !matches(target, '.bx--overflow-menu,.bx--overflow-menu-options')
-            ) {
-              // Note:
-              // The last focusable element in the page should NOT be the trigger button of overflow menu.
-              // Doing so breaks the code that detects if floating menu losing focus, e.g. by keyboard events.
-              this.menuEl.focus();
-            }
+            // Note:
+            // The last focusable element in the page should NOT be the trigger button of overflow menu.
+            // Doing so breaks the code that detects if floating menu losing focus, e.g. by keyboard events.
+            this.menuEl.focus();
           }
         },
         !hasFocusin
@@ -352,6 +371,13 @@ export default class OverflowMenu extends Component {
       this.props.onOpen();
     }
   };
+
+  /**
+   * @returns {Element} The DOM element where the floating menu is placed in.
+   */
+  _getTarget = () =>
+    (this.menuEl && closest(this.menuEl, '[data-floating-menu-container]')) ||
+    document.body;
 
   render() {
     const {
@@ -367,6 +393,7 @@ export default class OverflowMenu extends Component {
       menuOffsetFlip,
       iconClass,
       onClick, // eslint-disable-line
+      onOpen, // eslint-disable-line
       renderIcon,
       ...other
     } = this.props;
@@ -415,6 +442,7 @@ export default class OverflowMenu extends Component {
           menuPosition={this.state.menuPosition}
           menuOffset={flipped ? menuOffsetFlip : menuOffset}
           menuRef={this._bindMenuBody}
+          target={this._getTarget}
           onPlace={this._handlePlace}>
           {menuBody}
         </FloatingMenu>
