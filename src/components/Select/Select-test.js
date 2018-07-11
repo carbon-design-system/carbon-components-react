@@ -4,6 +4,7 @@ import Select from '../Select';
 import SelectItem from '../SelectItem';
 import SelectSkeleton from '../Select/Select.Skeleton';
 import { mount, shallow } from 'enzyme';
+import { iconCaretDown } from 'carbon-icons';
 
 describe('Select', () => {
   describe('Renders as expected', () => {
@@ -29,7 +30,7 @@ describe('Select', () => {
 
       it('should use correct icon', () => {
         const icon = wrapper.find(Icon);
-        expect(icon.props().name).toEqual('caret--down');
+        expect(icon.props().icon).toEqual(iconCaretDown);
       });
 
       it('has the expected classes', () => {
@@ -82,7 +83,7 @@ describe('Select', () => {
       });
 
       it('should set disabled as expected', () => {
-        expect(select.props().disabled).toEqual(false);
+        expect(select.props().disabled).toEqual(undefined);
         wrapper.setProps({ disabled: true });
         expect(wrapper.find('select').props().disabled).toEqual(true);
       });
