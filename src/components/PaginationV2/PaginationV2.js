@@ -114,7 +114,7 @@ export default class PaginationV2 extends Component {
     backwardText: 'Backward',
     itemRangeText: (min, max, total) => `${min}-${max} of ${total} items`,
     forwardText: 'Forward',
-    itemsPerPageText: 'Items per page',
+    itemsPerPageText: 'Items per page:',
     pageNumberText: 'Page Number',
     pageRangeText: (current, total) => `${current} of ${total} pages`,
     disabled: false,
@@ -240,7 +240,7 @@ export default class PaginationV2 extends Component {
       <div className={classNames} {...other}>
         <div className="bx--pagination__left">
           <span className="bx--pagination__text">
-            {itemsPerPageFollowsText || `${itemsPerPageText}:`}
+            {itemsPerPageFollowsText || itemsPerPageText}
           </span>
 
           <Select

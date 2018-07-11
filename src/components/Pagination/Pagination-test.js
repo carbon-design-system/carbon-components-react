@@ -55,7 +55,7 @@ describe('Pagination', () => {
 
       it('should label the dropdown', () => {
         const label = left.find('.bx--pagination__text').first();
-        expect(label.text()).toBe('items per page\u00a0\u00a0|\u00a0\u00a0');
+        expect(label.text()).toBe('items per page | ');
       });
 
       it('should show the item range out of the total', () => {
@@ -84,7 +84,7 @@ describe('Pagination', () => {
 
         it('should label the dropdown', () => {
           const label = left.find('.bx--pagination__text').first();
-          expect(label.text()).toBe('items per page\u00a0\u00a0|\u00a0\u00a0');
+          expect(label.text()).toBe('items per page | ');
         });
 
         it('should show the item range without the total', () => {
