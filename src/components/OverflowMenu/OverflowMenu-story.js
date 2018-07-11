@@ -1,6 +1,7 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
+import { iconAdd } from 'carbon-icons';
 import OverflowMenu from '../OverflowMenu';
 import OverflowMenuItem from '../OverflowMenuItem';
 import Icon from '../Icon';
@@ -29,7 +30,11 @@ storiesOf('OverflowMenu', module)
           itemText="Option 1"
           primaryFocus={true}
         />
-        <OverflowMenuItem {...overflowMenuItemEvents} itemText="Option 2" />
+        <OverflowMenuItem
+          {...overflowMenuItemEvents}
+          itemText="Option 2 is an example of a really long string and how we recommend handling this"
+          requireTitle
+        />
         <OverflowMenuItem {...overflowMenuItemEvents} itemText="Option 3" />
         <OverflowMenuItem {...overflowMenuItemEvents} itemText="Option 4" />
         <OverflowMenuItem
@@ -40,7 +45,7 @@ storiesOf('OverflowMenu', module)
                 display: 'flex',
                 justifyContent: 'space-between',
               }}>
-              Add <Icon name="icon--add" style={{ height: '12px' }} />
+              Add <Icon icon={iconAdd} style={{ height: '12px' }} />
             </div>
           }
         />
