@@ -59,7 +59,7 @@ export default class Tabs extends React.Component {
       evt.preventDefault();
       this.selectTabAt(index, onSelectionChange);
       this.setState({
-        dropdownHidden: !this.state.dropdownHidden,
+        dropdownHidden: true,
       });
     };
   };
@@ -71,7 +71,7 @@ export default class Tabs extends React.Component {
       if (key === 'Enter' || key === 13 || key === ' ' || key === 32) {
         this.selectTabAt(index, onSelectionChange);
         this.setState({
-          dropdownHidden: !this.state.dropdownHidden,
+          dropdownHidden: true,
         });
       }
     };
