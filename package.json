@@ -144,7 +144,7 @@
     "@storybook/addon-actions": "^3.2.15",
     "@storybook/addon-info": "^3.2.13",
     "@storybook/react": "^3.2.13",
-    "all-contributors-cli": "^4.10.1",
+    "all-contributors-cli": "^5.2.1",
     "babel-core": "^7.0.0-0",
     "babel-eslint": "^8.0.2",
     "babel-jest": "^22.1.0",
@@ -156,16 +156,16 @@
     "chalk": "^2.3.0",
     "cli-table": "^0.3.0",
     "commitizen": "^2.9.5",
-    "css-loader": "^0.28.4",
+    "css-loader": "^1.0.0",
     "cz-conventional-changelog-components": "^1.0.0",
     "enzyme": "^3.1.0",
     "enzyme-adapter-react-16": "^1.1.0",
     "enzyme-to-json": "^3.1.2",
-    "eslint": "^4.11.0",
+    "eslint": "^5.0.0",
     "eslint-plugin-jsdoc": "^3.3.0",
     "eslint-plugin-jsx-a11y": "^6.0.2",
     "eslint-plugin-react": "^7.4.0",
-    "gzip-size": "^4.1.0",
+    "gzip-size": "^5.0.0",
     "husky": "^0.14.3",
     "jest": "^22.1.0",
     "lcov2badge": "^0.1.0",
@@ -286,7 +286,7 @@
       "/cjs/"
     ],
     "transformIgnorePatterns": [
-      "[/\\\\]node_modules[/\\\\].+\\.(js|jsx)$"
+      "[/\\\\]node_modules[/\\\\](?!(carbon-icons)).+\\.(js|jsx)$"
     ],
     "moduleFileExtensions": [
       "js",
