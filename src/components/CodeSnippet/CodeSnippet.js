@@ -97,7 +97,11 @@ export default class CodeSnippet extends Component {
     );
 
     const code = (
-      <div role="textbox" tabIndex={0} className="bx--snippet-container">
+      <div
+        role="textbox"
+        tabIndex={0}
+        className="bx--snippet-container"
+        aria-label="code-snippet">
         <code>
           <pre
             ref={codeContent => {
