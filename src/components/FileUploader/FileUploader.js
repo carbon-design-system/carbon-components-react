@@ -5,6 +5,7 @@ import classNames from 'classnames';
 import Icon from '../Icon';
 import uid from '../../tools/uniqueId';
 import { ButtonTypes } from '../../prop-types/types';
+import { iconCloseSolid, iconCheckmarkSolid } from 'carbon-icons';
 
 export class FileUploaderButton extends Component {
   static propTypes = {
@@ -78,6 +79,7 @@ export class FileUploaderButton extends Component {
     return (
       <div
         role="button"
+        tabIndex="0"
         className={classes}
         onKeyDown={evt => {
           if (evt.which === 13 || evt.which === 32) {
@@ -144,7 +146,7 @@ export class Filename extends Component {
         <Icon
           description={iconDescription}
           className="bx--file-close"
-          name="close--solid"
+          icon={iconCloseSolid}
           style={style}
           {...other}
         />
@@ -154,7 +156,7 @@ export class Filename extends Component {
         <Icon
           description={iconDescription}
           className="bx--file-complete"
-          name="checkmark--solid"
+          icon={iconCheckmarkSolid}
           style={style}
           {...other}
         />
