@@ -11,7 +11,9 @@ const OverflowMenuItem = ({
   closeMenu,
   onClick,
   primaryFocus,
+  floatingMenu,
   wrapperClassName,
+  requireTitle,
   ...other
 }) => {
   const overflowMenuBtnClasses = classNames(
@@ -34,9 +36,15 @@ const OverflowMenuItem = ({
     closeMenu();
   };
 
-  const primaryFocusProp = !primaryFocus
-    ? {}
-    : { 'data-floating-menu-primary-focus': true };
+  const primaryFocusProp = (({ primaryFocus, floatingMenu }) => {
+    if (!primaryFocus) {
+      return {};
+    }
+    return floatingMenu
+      ? { 'data-floating-menu-primary-focus': true }
+      : { 'data-overflow-menu-primary-focus': true };
+  })({ primaryFocus, floatingMenu });
+
   const item = (
     <li className={overflowMenuItemClasses} role="menuitem">
       <button
@@ -45,6 +53,7 @@ const OverflowMenuItem = ({
         className={overflowMenuBtnClasses}
         disabled={disabled}
         onClick={handleClick}
+        title={requireTitle ? itemText : null}
         tabIndex={disabled ? -1 : 0}>
         {itemText}
       </button>
@@ -103,6 +112,15 @@ OverflowMenuItem.propTypes = {
    * `true` if this menu item should get focus when the menu gets open.
    */
   primaryFocus: PropTypes.bool,
+
+  /**
+   * `true` if this menu item belongs to a floating OverflowMenu
+   */
+  floatingMenu: PropTypes.bool,
+  /**
+   * `true` if this menu item has long text and requires a browser tooltip
+   */
+  requireTitle: PropTypes.bool,
 };
 
 OverflowMenuItem.defaultProps = {

@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import classnames from 'classnames';
+import { iconChevronLeft, iconChevronRight } from 'carbon-icons';
 import Icon from '../Icon';
 import Select from '../Select';
 import SelectItem from '../SelectItem';
@@ -113,7 +114,7 @@ export default class PaginationV2 extends Component {
     backwardText: 'Backward',
     itemRangeText: (min, max, total) => `${min}-${max} of ${total} items`,
     forwardText: 'Forward',
-    itemsPerPageText: 'Items per page',
+    itemsPerPageText: 'Items per page:',
     pageNumberText: 'Page Number',
     pageRangeText: (current, total) => `${current} of ${total} pages`,
     disabled: false,
@@ -239,7 +240,7 @@ export default class PaginationV2 extends Component {
       <div className={classNames} {...other}>
         <div className="bx--pagination__left">
           <span className="bx--pagination__text">
-            {itemsPerPageFollowsText || `${itemsPerPageText}:`}
+            {itemsPerPageFollowsText || itemsPerPageText}
           </span>
 
           <Select
@@ -279,7 +280,7 @@ export default class PaginationV2 extends Component {
             disabled={this.props.disabled || statePage === 1}>
             <Icon
               className="bx--pagination__button-icon"
-              name="chevron--left"
+              icon={iconChevronLeft}
               description={backwardText}
             />
           </button>
@@ -302,7 +303,7 @@ export default class PaginationV2 extends Component {
             }>
             <Icon
               className="bx--pagination__button-icon"
-              name="chevron--right"
+              icon={iconChevronRight}
               description={forwardText}
             />
           </button>

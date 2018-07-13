@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import debounce from 'lodash.debounce';
 import Icon from '../Icon';
 import classNames from 'classnames';
+import { iconInfoGlyph } from 'carbon-icons';
 import FloatingMenu, {
   DIRECTION_LEFT,
   DIRECTION_TOP,
@@ -10,6 +11,26 @@ import FloatingMenu, {
   DIRECTION_BOTTOM,
 } from '../../internal/FloatingMenu';
 import ClickListener from '../../internal/ClickListener';
+
+/**
+ * @param {Element} elem An element.
+ * @param {string} selector An query selector.
+ * @returns {Element} The ancestor of the given element matching the given selector.
+ * @private
+ */
+const closest = (elem, selector) => {
+  const doc = elem.ownerDocument;
+  for (
+    let traverse = elem;
+    traverse && traverse !== doc;
+    traverse = traverse.parentNode
+  ) {
+    if (traverse.matches(selector)) {
+      return traverse;
+    }
+  }
+  return null;
+};
 
 /**
  * @param {Element} menuBody The menu body with the menu arrow.
@@ -117,6 +138,16 @@ export default class Tooltip extends Component {
     showIcon: PropTypes.bool,
 
     /**
+     * The the default tooltip icon.
+     */
+    icon: PropTypes.shape({
+      width: PropTypes.string,
+      height: PropTypes.string,
+      viewBox: PropTypes.string.isRequired,
+      svgData: PropTypes.object.isRequired,
+    }),
+
+    /**
      * The name of the default tooltip icon.
      */
     iconName: PropTypes.string,
@@ -136,7 +167,6 @@ export default class Tooltip extends Component {
     open: false,
     direction: DIRECTION_BOTTOM,
     showIcon: true,
-    iconName: 'info--glyph',
     iconDescription: 'tooltip',
     triggerText: 'Provide triggerText',
     menuOffset: getMenuOffset,
@@ -214,6 +244,14 @@ export default class Tooltip extends Component {
    */
   _debouncedHandleHover = debounce(this._handleHover, 200);
 
+  /**
+   * @returns {Element} The DOM element where the floating menu is placed in.
+   */
+  _getTarget = () =>
+    (this.triggerEl &&
+      closest(this.triggerEl, '[data-floating-menu-container]')) ||
+    document.body;
+
   handleMouse = evt => {
     const state =
       typeof evt === 'string'
@@ -225,7 +263,11 @@ export default class Tooltip extends Component {
     this._hasContextMenu = evt.type === 'contextmenu';
     if (this.props.clickToOpen) {
       if (state === 'click') {
-        this.setState({ open: !this.state.open });
+        const shouldOpen = !this.state.open;
+        if (shouldOpen) {
+          this.getTriggerPosition();
+        }
+        this.setState({ open: shouldOpen });
       }
     } else if (state && (state !== 'out' || !hadContextMenu)) {
       this._debouncedHandleHover(state, evt.relatedTarget);
@@ -269,6 +311,7 @@ export default class Tooltip extends Component {
       direction,
       triggerText,
       showIcon,
+      icon,
       iconName,
       iconDescription,
       menuOffset,
@@ -313,6 +356,7 @@ export default class Tooltip extends Component {
                 <Icon
                   onKeyDown={this.handleKeyPress}
                   onClick={() => this.handleMouse('click')}
+                  icon={!icon && !iconName ? iconInfoGlyph : icon}
                   name={iconName}
                   description={iconDescription}
                   iconRef={node => {
@@ -341,9 +385,13 @@ export default class Tooltip extends Component {
         </ClickListener>
         {open && (
           <FloatingMenu
+            target={this._getTarget}
             menuPosition={this.state.triggerPosition}
             menuDirection={direction}
-            menuOffset={menuOffset}>
+            menuOffset={menuOffset}
+            menuRef={node => {
+              this._tooltipEl = node;
+            }}>
             <div
               id={tooltipId}
               className={tooltipClasses}
@@ -354,10 +402,7 @@ export default class Tooltip extends Component {
               onMouseOut={evt => this.handleMouse(evt)}
               onFocus={evt => this.handleMouse(evt)}
               onBlur={evt => this.handleMouse(evt)}
-              onContextMenu={evt => this.handleMouse(evt)}
-              ref={node => {
-                this._tooltipEl = node;
-              }}>
+              onContextMenu={evt => this.handleMouse(evt)}>
               <span className="bx--tooltip__caret" />
               {children}
             </div>

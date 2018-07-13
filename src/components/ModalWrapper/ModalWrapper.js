@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import Modal from '../Modal';
 import Button from '../Button';
+import { ButtonTypes } from '../../prop-types/types';
 
 export default class ModalWrapper extends React.Component {
   static propTypes = {
@@ -21,12 +22,7 @@ export default class ModalWrapper extends React.Component {
     secondaryButtonText: PropTypes.string,
     handleSubmit: PropTypes.func,
     disabled: PropTypes.bool,
-    triggerButtonKind: PropTypes.oneOf([
-      'primary',
-      'secondary',
-      'danger',
-      'ghost',
-    ]),
+    triggerButtonKind: ButtonTypes.buttonKind,
     shouldCloseAfterSubmit: PropTypes.bool,
   };
 
@@ -35,6 +31,7 @@ export default class ModalWrapper extends React.Component {
     secondaryButtonText: 'Cancel',
     triggerButtonKind: 'primary',
     disabled: false,
+    onKeyDown: () => {},
   };
 
   state = {
