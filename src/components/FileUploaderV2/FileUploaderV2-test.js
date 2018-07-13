@@ -3,7 +3,7 @@ import FileUploaderV2, {
   FileUploaderButtonV2,
   FilenameV2,
 } from '../FileUploaderV2';
-import FileUploaderSkeletonV2 from '../FileUploader/FileUploaderV2.Skeleton';
+import FileUploaderSkeletonV2 from '../FileUploaderV2/FileUploaderV2.Skeleton';
 import { mount, shallow } from 'enzyme';
 
 describe('Filename', () => {
