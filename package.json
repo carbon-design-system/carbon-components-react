@@ -125,7 +125,7 @@
   },
   "dependencies": {
     "classnames": "2.2.6",
-    "downshift": "^1.31.14",
+    "downshift": "^2.0.0",
     "flatpickr": "4.5.1",
     "invariant": "^2.2.3",
     "lodash.debounce": "^4.0.8",
