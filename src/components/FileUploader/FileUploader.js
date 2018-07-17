@@ -221,6 +221,7 @@ export default class FileUploader extends Component {
     multiple: PropTypes.bool,
     name: PropTypes.string,
     onClick: PropTypes.func,
+    onChange: PropTypes.func,
     className: PropTypes.string,
     accept: PropTypes.arrayOf(PropTypes.string),
   };
@@ -232,6 +233,7 @@ export default class FileUploader extends Component {
     buttonKind: 'primary',
     multiple: false,
     onClick: () => {},
+    onChange: () => {},
     accept: [],
   };
 
