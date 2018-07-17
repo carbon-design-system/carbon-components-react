@@ -169,31 +169,14 @@ export class FileUploaderButton extends Component {
   }
 }
 
-export class Filename extends Component {
-  static propTypes = {
-    /**
-     * Specify an optional object of styles to be applied inline to the root
-     * node
-     */
-    style: PropTypes.object,
-
-    /**
-     * Specify the status of the File Upload
-     */
-    status: PropTypes.oneOf(['edit', 'complete', 'uploading']),
-  };
-
-  static defaultProps = {
-    onKeyDown: () => {},
-    status: 'uploading',
-    style: {},
-    tabIndex: 0,
-  };
-
-  render() {
-    const { iconDescription, status, style, ...other } = this.props;
-
-    if (status === 'uploading') {
+export function Filename({
+  iconDescription,
+  status = 'uploading',
+  style = {},
+  ...other
+}) {
+  switch (status) {
+    case 'uploading':
       return (
         <div
           className="bx--loading"
@@ -204,7 +187,7 @@ export class Filename extends Component {
           </svg>
         </div>
       );
-    } else if (status === 'edit') {
+    case 'edit':
       return (
         <Icon
           description={iconDescription}
@@ -214,7 +197,7 @@ export class Filename extends Component {
           {...other}
         />
       );
-    } else if (status === 'complete') {
+    case 'complete':
       return (
         <Icon
           description={iconDescription}
@@ -224,11 +207,14 @@ export class Filename extends Component {
           {...other}
         />
       );
-    } else {
+    default:
       return null;
-    }
   }
 }
+Filename.propTypes = {
+  style: PropTypes.object,
+  status: PropTypes.oneOf(['edit', 'complete', 'uploading']),
+};
 
 export default class FileUploader extends Component {
   static propTypes = {
