@@ -7,12 +7,11 @@ import FileUploaderSkeletonV2 from '../FileUploaderV2/FileUploaderV2.Skeleton';
 import Button from '../Button';
 
 class App extends React.Component {
-  upload({ file }) {
-    return fetch('https://jsonplaceholder.typicode.com/posts/', {
+  upload = ({ file }) =>
+    fetch('https://jsonplaceholder.typicode.com/posts/', {
       method: 'POST',
       body: file,
     }).then(res => res.json());
-  }
 
   render() {
     return (
