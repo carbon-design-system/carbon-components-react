@@ -81,7 +81,7 @@ const {
   TableRow,
   TableBody,
   TableCell,
-  TableHeader
+  TableHeader,
 } = DataTable;
 
 // Inside of your component's `render` method
