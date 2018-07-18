@@ -11,12 +11,14 @@ before_install:
   - export PATH=$HOME/.yarn/bin:$PATH
   - yarn global add greenkeeper-lockfile@1
 
-before_script: greenkeeper-lockfile-update
-
-script:
+install:
   # Enforce installing dependencies from our offline cache instead of going out
   # to the live registry to download code
   - yarn install --offline
+
+before_script: greenkeeper-lockfile-update
+
+script:
   - yarn ci-check
 
 after_script: greenkeeper-lockfile-upload
