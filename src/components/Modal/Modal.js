@@ -55,6 +55,17 @@ export default class Modal extends Component {
     }
   };
 
+  handleBlur = evt => {
+    // Keyboard trap
+    if (
+      this.innerModal &&
+      this.props.open &&
+      (!evt.relatedTarget || !this.innerModal.contains(evt.relatedTarget))
+    ) {
+      evt.target.focus();
+    }
+  };
+
   componentDidUpdate(prevProps) {
     if (!prevProps.open && this.props.open) {
       this.beingOpen = true;
@@ -131,6 +142,7 @@ export default class Modal extends Component {
         }}
         role="dialog"
         className="bx--modal-container"
+        onBlur={this.handleBlur}
         aria-label={modalAriaLabel}>
         <div className="bx--modal-header">
           {passiveModal && modalButton}

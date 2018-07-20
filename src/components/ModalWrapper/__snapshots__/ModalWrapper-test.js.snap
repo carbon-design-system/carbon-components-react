@@ -63,6 +63,7 @@ exports[`ModalWrapper should render 1`] = `
       >
         <div
           className="bx--modal-container"
+          onBlur={[Function]}
           role="dialog"
         >
           <div
