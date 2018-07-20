@@ -199,8 +199,7 @@ export default class MultiSelect extends React.Component {
                           return selected.id;
                         })
                         .indexOf(item.id);
-                      const isChecked =
-                        typeof selectedItem[itemIndex] !== 'undefined' || false;
+                      const isChecked = itemIndex !== -1;
                       return (
                         <ListBox.MenuItem
                           key={itemProps.id}
