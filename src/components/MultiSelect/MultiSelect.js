@@ -194,12 +194,12 @@ export default class MultiSelect extends React.Component {
                     }).map((item, index) => {
                       const itemProps = getItemProps({ item });
                       const itemText = itemToString(item);
-                      var itemIndex = selectedItem
-                        .map(function(selected) {
-                          return selected.id;
-                        })
-                        .indexOf(item.id);
-                      const isChecked = itemIndex !== -1;
+                      let isChecked =
+                        selectedItem
+                          .map(function(selected) {
+                            return selected.id;
+                          })
+                          .indexOf(item.id) !== -1;
                       return (
                         <ListBox.MenuItem
                           key={itemProps.id}
