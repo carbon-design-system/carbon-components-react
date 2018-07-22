@@ -68,7 +68,7 @@ const getMenuOffset = menuBody => {
     (o, name) => ({
       ...o,
       [name]: Number(
-        (/^([\d-]+)px$/.exec(arrowStyle.getPropertyValue(name)) || [])[1]
+        (/^([\d-.]+)px$/.exec(arrowStyle.getPropertyValue(name)) || [])[1]
       ),
     }),
     {}
