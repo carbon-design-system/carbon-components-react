@@ -196,7 +196,7 @@ export default class MultiSelect extends React.Component {
                       const itemText = itemToString(item);
                       let isChecked =
                         selectedItem
-                          .map(function(selected) {
+                          .map(selected => {
                             return selected.id;
                           })
                           .indexOf(item.id) !== -1;
