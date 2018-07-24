@@ -1,3 +1,4 @@
+import invariant from 'invariant';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import classNames from 'classnames';
@@ -84,8 +85,12 @@ const triggerButtonPositionFactors = {
 export const getMenuOffset = (menuBody, direction) => {
   const triggerButtonPositionProp = triggerButtonPositionProps[direction];
   const triggerButtonPositionFactor = triggerButtonPositionFactors[direction];
-  if (!triggerButtonPositionProp || !triggerButtonPositionFactor) {
-    console.warn('Wrong floating menu direction:', direction); // eslint-disable-line no-console
+  if (__DEV__) {
+    invariant(
+      triggerButtonPositionProp && triggerButtonPositionFactor,
+      '[OverflowMenu] wrong floating menu direction: `%s`',
+      direction
+    );
   }
   const menuWidth = menuBody.offsetWidth;
   const arrowStyle = menuBody.ownerDocument.defaultView.getComputedStyle(
