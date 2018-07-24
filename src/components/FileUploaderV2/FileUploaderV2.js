@@ -13,6 +13,7 @@ export class FileUploaderButtonV2 extends Component {
     multiple: PropTypes.bool,
     name: PropTypes.string,
     onChange: PropTypes.func,
+    onClick: PropTypes.func,
     role: PropTypes.string,
     tabIndex: PropTypes.number,
     buttonKind: ButtonTypes.buttonKind,
@@ -24,6 +25,7 @@ export class FileUploaderButtonV2 extends Component {
     buttonKind: 'primary',
     multiple: false,
     onChange: () => {},
+    onClick: () => {},
     accept: [],
   };
   uid = this.props.id || uid();
