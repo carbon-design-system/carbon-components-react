@@ -52,6 +52,11 @@ exports[`ModalWrapper should render 1`] = `
       primaryButtonDisabled={false}
       primaryButtonText="Save"
       secondaryButtonText="Cancel"
+      selectorsFloatingMenus={
+        Array [
+          ".bx--overflow-menu-options__btn",
+        ]
+      }
     >
       <div
         className="bx--modal bx--modal-tall"

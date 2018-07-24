@@ -5,6 +5,12 @@ import { iconClose } from 'carbon-icons';
 import Icon from '../Icon';
 import Button from '../Button';
 
+const matchesFuncName =
+  typeof Element !== 'undefined' &&
+  ['matches', 'webkitMatchesSelector', 'msMatchesSelector'].filter(
+    name => typeof Element.prototype[name] === 'function'
+  )[0];
+
 export default class Modal extends Component {
   static propTypes = {
     children: PropTypes.node,
@@ -25,6 +31,7 @@ export default class Modal extends Component {
     onSecondarySubmit: PropTypes.func,
     danger: PropTypes.bool,
     shouldSubmitOnEnter: PropTypes.bool,
+    selectorsFloatingMenus: PropTypes.arrayOf(PropTypes.string),
   };
 
   static defaultProps = {
@@ -36,9 +43,20 @@ export default class Modal extends Component {
     iconDescription: 'close the modal',
     modalHeading: '',
     modalLabel: '',
+    selectorsFloatingMenus: ['.bx--overflow-menu-options__btn'],
   };
 
   button = React.createRef();
+
+  isFloatingMenu = target => {
+    return this.props.selectorsFloatingMenus.some(selector => {
+      if (target && typeof target[matchesFuncName] === 'function') {
+        if (target[matchesFuncName](selector)) {
+          return true;
+        }
+      }
+    });
+  };
 
   handleKeyDown = evt => {
     if (evt.which === 27) {
@@ -50,7 +68,11 @@ export default class Modal extends Component {
   };
 
   handleClick = evt => {
-    if (this.innerModal && !this.innerModal.contains(evt.target)) {
+    if (
+      this.innerModal &&
+      !this.isFloatingMenu(evt.target) &&
+      !this.innerModal.contains(evt.target)
+    ) {
       this.props.onRequestClose();
     }
   };
@@ -60,6 +82,7 @@ export default class Modal extends Component {
     if (
       this.innerModal &&
       this.props.open &&
+      !this.isFloatingMenu(evt.relatedTarget) &&
       (!evt.relatedTarget || !this.innerModal.contains(evt.relatedTarget))
     ) {
       this.focusModal();
@@ -112,6 +135,7 @@ export default class Modal extends Component {
       iconDescription,
       primaryButtonDisabled,
       danger,
+      selectorsFloatingMenus, // eslint-disable-line
       ...other
     } = this.props;
 
