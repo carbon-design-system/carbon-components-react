@@ -56,6 +56,7 @@ exports[`ModalWrapper should render 1`] = `
       <div
         className="bx--modal bx--modal-tall"
         id="modal"
+        onBlur={[Function]}
         onClick={[Function]}
         onKeyDown={[Function]}
         role="presentation"
@@ -63,7 +64,6 @@ exports[`ModalWrapper should render 1`] = `
       >
         <div
           className="bx--modal-container"
-          onBlur={[Function]}
           role="dialog"
         >
           <div

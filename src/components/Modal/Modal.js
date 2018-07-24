@@ -62,7 +62,7 @@ export default class Modal extends Component {
       this.props.open &&
       (!evt.relatedTarget || !this.innerModal.contains(evt.relatedTarget))
     ) {
-      evt.target.focus();
+      this.focusModal();
     }
   };
 
@@ -73,6 +73,12 @@ export default class Modal extends Component {
       this.beingOpen = false;
     }
   }
+
+  focusModal = () => {
+    if (this.outerModal) {
+      this.outerModal.focus();
+    }
+  };
 
   focusButton = () => {
     if (this.button) {
@@ -142,7 +148,6 @@ export default class Modal extends Component {
         }}
         role="dialog"
         className="bx--modal-container"
-        onBlur={this.handleBlur}
         aria-label={modalAriaLabel}>
         <div className="bx--modal-header">
           {passiveModal && modalButton}
@@ -179,6 +184,7 @@ export default class Modal extends Component {
         {...other}
         onKeyDown={this.handleKeyDown}
         onClick={this.handleClick}
+        onBlur={this.handleBlur}
         className={modalClasses}
         role="presentation"
         tabIndex={-1}
