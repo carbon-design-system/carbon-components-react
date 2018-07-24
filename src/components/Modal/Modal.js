@@ -65,8 +65,8 @@ export default class Modal extends Component {
     }
   }
 
-  focusButton = e => {
-    const primaryFocusElement = e.currentTarget.querySelector(
+  focusButton = evt => {
+    const primaryFocusElement = evt.currentTarget.querySelector(
       this.props.selectorPrimaryFocus
     );
     if (primaryFocusElement) {
@@ -78,13 +78,13 @@ export default class Modal extends Component {
     }
   };
 
-  handleTransitionEnd = e => {
+  handleTransitionEnd = evt => {
     if (
       this.outerModal.offsetWidth &&
       this.outerModal.offsetHeight &&
       this.beingOpen
     ) {
-      this.focusButton(e);
+      this.focusButton(evt);
       this.beingOpen = false;
     }
   };
