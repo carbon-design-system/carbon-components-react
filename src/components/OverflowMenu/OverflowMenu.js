@@ -323,13 +323,23 @@ export default class OverflowMenu extends Component {
   };
 
   closeMenu = () => {
+    let wasOpen = this.state.open;
     this.setState({ open: false }, () => {
+      if (wasOpen) {
+        this.focusMenuEl();
+      }
       this.props.onClose();
     });
   };
 
   bindMenuEl = menuEl => {
     this.menuEl = menuEl;
+  };
+
+  focusMenuEl = () => {
+    if (this.menuEl) {
+      this.menuEl.focus();
+    }
   };
 
   /**
