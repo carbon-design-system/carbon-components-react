@@ -203,6 +203,7 @@ export default class DatePicker extends Component {
     light: false,
     dateFormat: 'm/d/Y',
     locale: 'en',
+    value: undefined,
   };
 
   UNSAFE_componentWillUpdate(nextProps) {
@@ -230,12 +231,14 @@ export default class DatePicker extends Component {
       onChange,
       minDate,
       maxDate,
+      value,
     } = this.props;
     if (datePickerType === 'single' || datePickerType === 'range') {
       const onHook = (electedDates, dateStr, instance) => {
         this.updateClassNames(instance);
       };
       this.cal = new flatpickr(this.inputField, {
+        defaultDate: value,
         appendTo,
         mode: datePickerType,
         allowInput: true,
