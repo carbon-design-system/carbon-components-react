@@ -168,7 +168,7 @@ export default class FileUploaderV2 extends Component {
     onClick: () => {},
     onChange: () => {},
     accept: [],
-    upload: () => {},
+    upload: () => new Promise(() => {}),
   };
 
   state = {
