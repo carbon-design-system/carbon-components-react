@@ -1,6 +1,6 @@
 {
   "name": "@ibmtm/carbon-components-react",
-  "version": "5.5.2",
+  "version": "6.8.1",
   "description": "A React wrapper for carbon-components",
   "license": "Apache-2",
   "main": "lib/index.js",
