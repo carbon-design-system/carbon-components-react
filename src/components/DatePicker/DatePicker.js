@@ -203,7 +203,6 @@ export default class DatePicker extends Component {
     light: false,
     dateFormat: 'm/d/Y',
     locale: 'en',
-    value: undefined,
   };
 
   UNSAFE_componentWillUpdate(nextProps) {
