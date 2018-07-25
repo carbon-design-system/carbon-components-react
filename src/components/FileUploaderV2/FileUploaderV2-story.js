@@ -46,7 +46,7 @@ storiesOf('FileUploaderV2', module)
     `,
     () => (
       <FileUploaderButtonV2
-        labelText="Add files"
+        labeltext="Add files"
         className="bob"
         name="file"
         onChange={() => console.log('hi')}
@@ -57,7 +57,7 @@ storiesOf('FileUploaderV2', module)
   .addWithInfo(
     'FileUploader',
     `
-      The FileUploader components allow the user to upload any necessary files. This uses the FileUploaderButton and Filename components. Filename components will appear below the FileUploaderButton when files are added. Use the filenameStatus prop to control what icon appears in Filename ('edit', 'complete', or 'uploading'). The FileUploader component contains a method to clear all files uploaded, clearFiles. This can be used with a ref in the parent component. The clear file button in this example is an example of how to use the clearFiles method.
+      The FileUploader components allow the user to upload any necessary files. This uses the FileUploaderButton and Filename components. Filename components will appear below the FileUploaderButton when files are added. Use the status prop to control what icon appears in Filename ('edit', 'complete', or 'uploading'). The FileUploader component contains a method to clear all files uploaded, clearFiles. This can be used with a ref in the parent component. The clear file button in this example is an example of how to use the clearFiles method.
     `,
     () => (
       <div className="bx--file__container">
@@ -65,7 +65,7 @@ storiesOf('FileUploaderV2', module)
           labelTitle="Upload"
           labelDescription="only .jpg and .png files at 500mb or less"
           buttonLabel="Add files"
-          filenameStatus="edit"
+          status="edit"
           accept={['.jpg', '.png']}
           name="file"
           multiple
