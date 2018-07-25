@@ -54,7 +54,9 @@ exports[`ModalWrapper should render 1`] = `
       secondaryButtonText="Cancel"
       selectorsFloatingMenus={
         Array [
-          ".bx--overflow-menu-options__btn",
+          ".bx--overflow-menu-options",
+          ".bx--tooltip",
+          ".flatpickr-calendar",
         ]
       }
     >

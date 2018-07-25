@@ -43,19 +43,36 @@ export default class Modal extends Component {
     iconDescription: 'close the modal',
     modalHeading: '',
     modalLabel: '',
-    selectorsFloatingMenus: ['.bx--overflow-menu-options__btn'],
+    selectorsFloatingMenus: [
+      '.bx--overflow-menu-options',
+      '.bx--tooltip',
+      '.flatpickr-calendar',
+    ],
   };
 
   button = React.createRef();
 
-  isFloatingMenu = target => {
-    return this.props.selectorsFloatingMenus.some(selector => {
-      if (target && typeof target[matchesFuncName] === 'function') {
-        if (target[matchesFuncName](selector)) {
-          return true;
+  elementOrParentIsFloatingMenu = target => {
+    if (target && typeof target.closest === 'function') {
+      return this.props.selectorsFloatingMenus.some(selector =>
+        target.closest(selector)
+      );
+    } else {
+      // Alternative if closest does not exist.
+      while (target) {
+        if (typeof target[matchesFuncName] === 'function') {
+          if (
+            this.props.selectorsFloatingMenus.some(selector =>
+              target[matchesFuncName](selector)
+            )
+          ) {
+            return true;
+          }
         }
+        target = target.parentNode;
       }
-    });
+      return false;
+    }
   };
 
   handleKeyDown = evt => {
@@ -70,8 +87,8 @@ export default class Modal extends Component {
   handleClick = evt => {
     if (
       this.innerModal &&
-      !this.isFloatingMenu(evt.target) &&
-      !this.innerModal.contains(evt.target)
+      !this.innerModal.contains(evt.target) &&
+      !this.elementOrParentIsFloatingMenu(evt.target)
     ) {
       this.props.onRequestClose();
     }
@@ -82,8 +99,8 @@ export default class Modal extends Component {
     if (
       this.innerModal &&
       this.props.open &&
-      !this.isFloatingMenu(evt.relatedTarget) &&
-      (!evt.relatedTarget || !this.innerModal.contains(evt.relatedTarget))
+      (!evt.relatedTarget || !this.innerModal.contains(evt.relatedTarget)) &&
+      !this.elementOrParentIsFloatingMenu(evt.relatedTarget)
     ) {
       this.focusModal();
     }
