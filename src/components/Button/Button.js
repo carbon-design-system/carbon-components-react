@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import Icon from '../Icon';
 import classNames from 'classnames';
+import { ButtonTypes } from '../../prop-types/types';
 
 const Button = ({
   children,
@@ -33,7 +34,12 @@ const Button = ({
   };
 
   const buttonImage = icon ? (
-    <Icon name={icon} description={iconDescription} className="bx--btn__icon" />
+    <Icon
+      icon={Object(icon) === icon ? icon : undefined}
+      name={Object(icon) !== icon ? icon : undefined}
+      description={iconDescription}
+      className="bx--btn__icon"
+    />
   ) : null;
 
   const button = (
@@ -68,19 +74,20 @@ Button.propTypes = {
   className: PropTypes.string,
   disabled: PropTypes.bool,
   small: PropTypes.bool,
-  kind: PropTypes.oneOf([
-    'primary',
-    'secondary',
-    'danger',
-    'ghost',
-    'danger--primary',
-    'tertiary',
-  ]).isRequired,
+  kind: ButtonTypes.buttonKind.isRequired,
   href: PropTypes.string,
   tabIndex: PropTypes.number,
   type: PropTypes.oneOf(['button', 'reset', 'submit']),
   role: PropTypes.string,
-  icon: PropTypes.string,
+  icon: PropTypes.oneOfType([
+    PropTypes.shape({
+      width: PropTypes.string,
+      height: PropTypes.string,
+      viewBox: PropTypes.string.isRequired,
+      svgData: PropTypes.object.isRequired,
+    }),
+    PropTypes.string,
+  ]),
   iconDescription: props => {
     if (props.icon && !props.iconDescription) {
       return new Error(

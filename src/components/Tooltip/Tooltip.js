@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import debounce from 'lodash.debounce';
 import Icon from '../Icon';
 import classNames from 'classnames';
+import { iconInfoGlyph } from 'carbon-icons';
 import FloatingMenu, {
   DIRECTION_LEFT,
   DIRECTION_TOP,
@@ -10,6 +11,22 @@ import FloatingMenu, {
   DIRECTION_BOTTOM,
 } from '../../internal/FloatingMenu';
 import ClickListener from '../../internal/ClickListener';
+
+const matchesFuncName =
+  typeof Element !== 'undefined' &&
+  ['matches', 'webkitMatchesSelector', 'msMatchesSelector'].filter(
+    name => typeof Element.prototype[name] === 'function'
+  )[0];
+
+/**
+ * @param {Node} elem A DOM node.
+ * @param {string} selector A CSS selector
+ * @returns {boolean} `true` if the given DOM element is a element node and matches the given selector.
+ * @private
+ */
+const matches = (elem, selector) =>
+  typeof elem[matchesFuncName] === 'function' &&
+  elem[matchesFuncName](selector);
 
 /**
  * @param {Element} elem An element.
@@ -24,7 +41,7 @@ const closest = (elem, selector) => {
     traverse && traverse !== doc;
     traverse = traverse.parentNode
   ) {
-    if (traverse.matches(selector)) {
+    if (matches(traverse, selector)) {
       return traverse;
     }
   }
@@ -137,6 +154,16 @@ export default class Tooltip extends Component {
     showIcon: PropTypes.bool,
 
     /**
+     * The the default tooltip icon.
+     */
+    icon: PropTypes.shape({
+      width: PropTypes.string,
+      height: PropTypes.string,
+      viewBox: PropTypes.string.isRequired,
+      svgData: PropTypes.object.isRequired,
+    }),
+
+    /**
      * The name of the default tooltip icon.
      */
     iconName: PropTypes.string,
@@ -156,7 +183,6 @@ export default class Tooltip extends Component {
     open: false,
     direction: DIRECTION_BOTTOM,
     showIcon: true,
-    iconName: 'info--glyph',
     iconDescription: 'tooltip',
     triggerText: 'Provide triggerText',
     menuOffset: getMenuOffset,
@@ -301,6 +327,7 @@ export default class Tooltip extends Component {
       direction,
       triggerText,
       showIcon,
+      icon,
       iconName,
       iconDescription,
       menuOffset,
@@ -326,7 +353,7 @@ export default class Tooltip extends Component {
         };
 
     return (
-      <div>
+      <React.Fragment>
         <ClickListener onClickOutside={this.handleClickOutside}>
           {showIcon ? (
             <div className={triggerClasses}>
@@ -345,6 +372,7 @@ export default class Tooltip extends Component {
                 <Icon
                   onKeyDown={this.handleKeyPress}
                   onClick={() => this.handleMouse('click')}
+                  icon={!icon && !iconName ? iconInfoGlyph : icon}
                   name={iconName}
                   description={iconDescription}
                   iconRef={node => {
@@ -396,7 +424,7 @@ export default class Tooltip extends Component {
             </div>
           </FloatingMenu>
         )}
-      </div>
+      </React.Fragment>
     );
   }
 }
