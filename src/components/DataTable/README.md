@@ -81,6 +81,7 @@ const {
   TableRow,
   TableBody,
   TableCell,
+  TableHeader,
 } = DataTable;
 
 // Inside of your component's `render` method
@@ -516,17 +517,17 @@ In practice, this looks like the following:
         <TableToolbarSearch onChange={onInputChange} />
         <TableToolbarContent>
           <TableToolbarAction
-            iconName="download"
+            icon={iconDownload}
             iconDescription="Download"
             onClick={action('TableToolbarAction - Download')}
           />
           <TableToolbarAction
-            iconName="edit"
+            icon={iconEdit}
             iconDescription="Edit"
             onClick={action('TableToolbarAction - Edit')}
           />
           <TableToolbarAction
-            iconName="settings"
+            icon={iconSettings}
             iconDescription="Settings"
             onClick={action('TableToolbarAction - Settings')}
           />
@@ -607,17 +608,17 @@ In practice, this looks like the following:
         <TableToolbarSearch onChange={onInputChange} />
         <TableToolbarContent>
           <TableToolbarAction
-            iconName="download"
+            icon={iconDownload}
             iconDescription="Download"
             onClick={action('TableToolbarAction - Download')}
           />
           <TableToolbarAction
-            iconName="edit"
+            icon={iconEdit}
             iconDescription="Edit"
             onClick={action('TableToolbarAction - Edit')}
           />
           <TableToolbarAction
-            iconName="settings"
+            icon={iconSettings}
             iconDescription="Settings"
             onClick={action('TableToolbarAction - Settings')}
           />

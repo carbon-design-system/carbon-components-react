@@ -118,7 +118,7 @@
     }
   },
   "peerDependencies": {
-    "carbon-components": "^9.0.0",
+    "carbon-components": "^9.1.13",
     "carbon-icons": "^7.0.5",
     "react": "^16.4.0",
     "react-dom": "^16.4.0"
@@ -126,7 +126,7 @@
   "dependencies": {
     "classnames": "2.2.6",
     "downshift": "^1.31.14",
-    "flatpickr": "4.5.0",
+    "flatpickr": "4.5.1",
     "invariant": "^2.2.3",
     "lodash.debounce": "^4.0.8",
     "lodash.isequal": "^4.5.0",
@@ -145,33 +145,33 @@
     "@storybook/addon-actions": "^3.2.15",
     "@storybook/addon-info": "^3.2.13",
     "@storybook/react": "^3.2.13",
-    "all-contributors-cli": "^4.10.1",
+    "all-contributors-cli": "^5.2.1",
     "babel-core": "^7.0.0-0",
     "babel-eslint": "^8.0.2",
     "babel-jest": "^22.1.0",
     "babel-plugin-dev-expression": "^0.2.1",
     "babel-plugin-transform-object-assign": "^6.22.0",
     "bowser": "^1.6.1",
-    "carbon-components": "^9.0.0",
+    "carbon-components": "^9.1.13",
     "carbon-icons": "^7.0.5",
     "chalk": "^2.3.0",
     "cli-table": "^0.3.0",
     "commitizen": "^2.9.5",
-    "css-loader": "^0.28.4",
+    "css-loader": "^1.0.0",
     "cz-conventional-changelog-components": "^1.0.0",
     "enzyme": "^3.1.0",
     "enzyme-adapter-react-16": "^1.1.0",
     "enzyme-to-json": "^3.1.2",
-    "eslint": "^4.11.0",
+    "eslint": "^5.0.0",
     "eslint-plugin-jsdoc": "^3.3.0",
     "eslint-plugin-jsx-a11y": "^6.0.2",
     "eslint-plugin-react": "^7.4.0",
-    "gzip-size": "^4.1.0",
+    "gzip-size": "^5.0.0",
     "husky": "^0.14.3",
     "jest": "^22.1.0",
     "lcov2badge": "^0.1.0",
     "lint-staged": "^7.0.0",
-    "node-sass": "4.8.3",
+    "node-sass": "4.9.2",
     "object-assign": "^4.1.1",
     "postcss-loader": "^2.0.5",
     "prettier": "^1.10.0",
@@ -254,7 +254,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/carbon-design-system/carbon-components-react.git"
+    "url": "https://github.com/IBM/carbon-components-react.git"
   },
   "jest": {
     "collectCoverageFrom": [
@@ -288,7 +288,7 @@
       "/cjs/"
     ],
     "transformIgnorePatterns": [
-      "[/\\\\]node_modules[/\\\\].+\\.(js|jsx)$"
+      "[/\\\\]node_modules[/\\\\](?!(carbon-icons)).+\\.(js|jsx)$"
     ],
     "moduleFileExtensions": [
       "js",

@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import classNames from 'classnames';
+import { iconOverflowMenu } from 'carbon-icons';
 import ClickListener from '../../internal/ClickListener';
 import FloatingMenu from '../../internal/FloatingMenu';
 import OptimizedResize from '../../internal/OptimizedResize';
@@ -30,6 +31,26 @@ const on = (element, ...args) => {
       return null;
     },
   };
+};
+
+/**
+ * @param {Element} elem An element.
+ * @param {string} selector An query selector.
+ * @returns {Element} The ancestor of the given element matching the given selector.
+ * @private
+ */
+const closest = (elem, selector) => {
+  const doc = elem.ownerDocument;
+  for (
+    let traverse = elem;
+    traverse && traverse !== doc;
+    traverse = traverse.parentNode
+  ) {
+    if (matches(traverse, selector)) {
+      return traverse;
+    }
+  }
+  return null;
 };
 
 /**
@@ -133,6 +154,16 @@ export default class OverflowMenu extends Component {
     iconDescription: PropTypes.string.isRequired,
 
     /**
+     * The icon.
+     */
+    icon: PropTypes.shape({
+      width: PropTypes.string,
+      height: PropTypes.string,
+      viewBox: PropTypes.string.isRequired,
+      svgData: PropTypes.object.isRequired,
+    }),
+
+    /**
      * The icon name.
      */
     iconName: PropTypes.string,
@@ -183,7 +214,6 @@ export default class OverflowMenu extends Component {
   static defaultProps = {
     ariaLabel: 'list of options',
     iconDescription: 'open and close list of options',
-    iconName: 'overflow-menu',
     open: false,
     flipped: false,
     floatingMenu: false,
@@ -352,6 +382,13 @@ export default class OverflowMenu extends Component {
     }
   };
 
+  /**
+   * @returns {Element} The DOM element where the floating menu is placed in.
+   */
+  _getTarget = () =>
+    (this.menuEl && closest(this.menuEl, '[data-floating-menu-container]')) ||
+    document.body;
+
   render() {
     const {
       id,
@@ -359,6 +396,7 @@ export default class OverflowMenu extends Component {
       ariaLabel,
       children,
       iconDescription,
+      icon,
       iconName,
       flipped,
       floatingMenu,
@@ -366,6 +404,7 @@ export default class OverflowMenu extends Component {
       menuOffsetFlip,
       iconClass,
       onClick, // eslint-disable-line
+      onOpen, // eslint-disable-line
       renderIcon,
       ...other
     } = this.props;
@@ -414,6 +453,7 @@ export default class OverflowMenu extends Component {
           menuPosition={this.state.menuPosition}
           menuOffset={flipped ? menuOffsetFlip : menuOffset}
           menuRef={this._bindMenuBody}
+          target={this._getTarget}
           onPlace={this._handlePlace}>
           {menuBody}
         </FloatingMenu>
@@ -444,7 +484,12 @@ export default class OverflowMenu extends Component {
           {renderIcon ? (
             renderIcon(iconProps)
           ) : (
-            <Icon {...iconProps} name={iconName} style={{ width: '100%' }} />
+            <Icon
+              {...iconProps}
+              icon={!icon && !iconName ? iconOverflowMenu : icon}
+              name={iconName}
+              style={{ width: '100%' }}
+            />
           )}
           {open && wrappedMenuBody}
         </div>
