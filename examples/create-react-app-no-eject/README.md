@@ -1,4 +1,4 @@
-# `examples/create-react-app`
+# `examples/create-react-app-no-eject`
 
 > See how to integrate `carbon-components` and `carbon-components-react` into a project
 > bootstrapped with `create-react-app`
