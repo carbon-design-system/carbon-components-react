@@ -9,7 +9,7 @@ import { iconCloseSolid, iconCheckmarkSolid } from 'carbon-icons';
 export class FileUploaderButtonV2 extends Component {
   static propTypes = {
     className: PropTypes.string,
-    labeltext: PropTypes.string,
+    labelText: PropTypes.string,
     multiple: PropTypes.bool,
     name: PropTypes.string,
     onChange: PropTypes.func,
@@ -21,7 +21,7 @@ export class FileUploaderButtonV2 extends Component {
   };
   static defaultProps = {
     tabIndex: 0,
-    labeltext: 'Add file',
+    labelText: 'Add file',
     buttonKind: 'primary',
     multiple: false,
     onChange: () => {},
@@ -40,6 +40,7 @@ export class FileUploaderButtonV2 extends Component {
       accept,
       name,
       onChange,
+      labelText,
       ...other
     } = this.props;
     const classes = classNames({
@@ -63,7 +64,7 @@ export class FileUploaderButtonV2 extends Component {
           htmlFor={this.uid}
           role={role}
           {...other}>
-          {this.props.labeltext}
+          {labelText}
         </label>
         <input
           className="bx--visually-hidden"
@@ -243,7 +244,7 @@ export default class FileUploaderV2 extends Component {
         <strong className="bx--label">{labelTitle}</strong>
         <p className="bx--label-description">{labelDescription}</p>
         <FileUploaderButtonV2
-          labeltext={buttonLabel}
+          labelText={buttonLabel}
           multiple={multiple || undefined}
           buttonKind={buttonKind}
           onChange={this.handleChange}

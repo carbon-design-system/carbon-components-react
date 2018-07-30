@@ -32,8 +32,8 @@ describe('FileUploaderButton', () => {
       expect(mountWrapper.hasClass('extra-class')).toBe(true);
     });
 
-    it('renders with default labeltext prop', () => {
-      expect(mountWrapper.props().labeltext).toEqual('Add file');
+    it('renders with default labelText prop', () => {
+      expect(mountWrapper.props().labelText).toEqual('Add file');
     });
 
     it('renders with default buttonKind prop', () => {

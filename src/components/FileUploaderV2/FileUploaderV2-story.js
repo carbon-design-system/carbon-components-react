@@ -46,7 +46,7 @@ storiesOf('FileUploaderV2', module)
     `,
     () => (
       <FileUploaderButtonV2
-        labeltext="Add files"
+        labelText="Add files"
         className="bob"
         name="file"
         onChange={() => console.log('hi')}
