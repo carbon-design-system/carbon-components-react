@@ -41,7 +41,8 @@ const ListBox = ({
         className={className}
         ref={innerRef}
         onKeyDown={handleOnKeyDown}
-        data-invalid={invalid}>
+        data-invalid={invalid}
+        aria-invalid={invalid}>
         {children}
       </div>
       {invalid ? (
