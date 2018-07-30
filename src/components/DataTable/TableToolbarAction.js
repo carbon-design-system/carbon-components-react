@@ -2,7 +2,7 @@ import cx from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 import Icon from '../Icon';
-import isRequiredThisOrOneOf from '../../internal/isRequiredThisOrOneOf';
+import isRequiredThisOrOneOf from '../../prop-types/isRequiredThisOrOneOf';
 
 const TableToolbarAction = ({
   className,

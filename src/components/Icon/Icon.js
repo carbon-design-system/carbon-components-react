@@ -2,7 +2,7 @@ import invariant from 'invariant';
 import PropTypes from 'prop-types';
 import React from 'react';
 import icons from 'carbon-icons';
-import isRequiredThisOrOneOf from '../../internal/isRequiredThisOrOneOf';
+import isRequiredThisOrOneOf from '../../prop-types/isRequiredThisOrOneOf';
 
 /**
  * The icons list object from `carbon-icons`.
