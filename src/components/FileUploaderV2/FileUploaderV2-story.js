@@ -5,13 +5,47 @@ import { storiesOf } from '@storybook/react';
 import FileUploaderV2, { FileUploaderButtonV2 } from '../FileUploaderV2';
 import FileUploaderSkeletonV2 from '../FileUploaderV2/FileUploaderV2.Skeleton';
 import Button from '../Button';
+import uid from '../../tools/uniqueId';
 
 class App extends React.Component {
+  state = { files: [] };
+  nodes = [];
+
   upload = ({ file }) =>
     fetch('https://jsonplaceholder.typicode.com/posts/', {
       method: 'POST',
       body: file,
     }).then(res => res.json());
+
+  handleChange = evt => {
+    evt.stopPropagation();
+    const files = [...this.state.files];
+    [...evt.target.files].forEach(file => {
+      const uuid = uid();
+      files.push({
+        uuid,
+        name: file.name,
+        size: file.size,
+        status: 'uploading',
+      });
+      const index = files.findIndex(file => file.uuid === uuid);
+      this.upload({ file })
+        .then(() => {
+          files[index].status = 'complete';
+          this.setState({ files });
+        })
+        .catch(error => {
+          files[index].status = 'edit';
+          this.setState({ files });
+          return new Error(error);
+        });
+    });
+    this.setState({ files });
+  };
+
+  clearFiles = () => {
+    this.setState({ files: [] });
+  };
 
   render() {
     return (
@@ -23,14 +57,14 @@ class App extends React.Component {
           multiple
           ref={fileUploader => (this.fileUploader = fileUploader)}
           upload={this.upload}
+          files={this.state.files}
+          onChange={this.handleChange}
         />
         <Button
           kind="secondary"
           small
           style={{ marginTop: '1rem' }}
-          onClick={() => {
-            this.fileUploader.clearFiles();
-          }}>
+          onClick={this.clearFiles}>
           Clear File
         </Button>
       </div>

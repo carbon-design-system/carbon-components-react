@@ -178,45 +178,12 @@ export default class FileUploaderV2 extends Component {
 
   nodes = [];
 
-  handleChange = evt => {
-    evt.stopPropagation();
-    const files = [...this.state.files];
-    [...evt.target.files].forEach(file => {
-      const uuid = uid();
-      files.push({
-        uuid,
-        name: file.name,
-        size: file.size,
-        status: 'uploading',
-      });
-      const index = files.findIndex(file => file.uuid === uuid);
-      this.props
-        .upload({ file })
-        .then(() => {
-          files[index].status = 'complete';
-          this.setState({ files });
-        })
-        .catch(error => {
-          files[index].status = 'edit';
-          this.setState({ files });
-          return new Error(error);
-        });
-    });
-    this.setState({ files });
-    this.props.onChange(evt);
-  };
-
   handleClick = ({ evt, index }) => {
     const filteredArray = this.state.files.filter(
       file => file.name !== this.nodes[index].innerText.trim()
     );
     this.setState({ files: filteredArray });
     this.props.onClick(evt);
-  };
-
-  clearFiles = () => {
-    // A clearFiles function that resets filenames and can be referenced using a ref by the parent.
-    this.setState({ files: [] });
   };
 
   render() {
@@ -230,6 +197,8 @@ export default class FileUploaderV2 extends Component {
       multiple,
       accept,
       name,
+      onChange,
+      files,
       upload, // eslint-disable-line
       ...other
     } = this.props;
@@ -247,13 +216,13 @@ export default class FileUploaderV2 extends Component {
           labelText={buttonLabel}
           multiple={multiple || undefined}
           buttonKind={buttonKind}
-          onChange={this.handleChange}
+          onChange={onChange}
           accept={accept}
           name={name}
         />
         <div className="bx--file-container">
-          {this.state.files.length
-            ? this.state.files.map((file, index) => (
+          {files.length
+            ? files.map((file, index) => (
                 <span
                   key={uid()}
                   className="bx--file__selected-file"
