@@ -263,19 +263,26 @@ class FloatingMenu extends React.Component {
   };
 
   componentDidUpdate(prevProps) {
+    const invokeOnPlace = () => {
+      const { onPlace } = this.props;
+      if (
+        this._placeInProgress &&
+        this.state.floatingPosition &&
+        typeof onPlace === 'function'
+      ) {
+        onPlace(this._menuBody);
+        this._placeInProgress = false;
+      }
+    };
     if (!hasCreatePortal) {
-      ReactDOM.render(this._getChildrenWithProps(), this._menuContainer);
+      ReactDOM.render(
+        this._getChildrenWithProps(),
+        this._menuContainer,
+        invokeOnPlace
+      );
     } else {
       this._updateMenuSize(prevProps);
-    }
-    const { onPlace } = this.props;
-    if (
-      this._placeInProgress &&
-      this.state.floatingPosition &&
-      typeof onPlace === 'function'
-    ) {
-      onPlace(this._menuBody);
-      this._placeInProgress = false;
+      invokeOnPlace();
     }
   }
 
@@ -292,13 +299,13 @@ class FloatingMenu extends React.Component {
         style,
       });
       ReactDOM.render(childrenWithProps, this._menuContainer, () => {
+        this._placeInProgress = true;
         this._menuBody = this._menuContainer.firstChild;
         this._updateMenuSize();
         ReactDOM.render(
           this._getChildrenWithProps(),
           this._menuContainer,
           () => {
-            this._placeInProgress = true;
             menuRef && menuRef(this._menuBody);
           }
         );
