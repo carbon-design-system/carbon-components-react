@@ -159,6 +159,7 @@ export default class FileUploaderV2 extends Component {
     accept: PropTypes.arrayOf(PropTypes.string),
     action: PropTypes.string,
     upload: PropTypes.func,
+    files: PropTypes.arrayOf(PropTypes.object),
   };
 
   static defaultProps = {
@@ -170,6 +171,7 @@ export default class FileUploaderV2 extends Component {
     onChange: () => {},
     accept: [],
     upload: () => new Promise(() => {}),
+    files: [],
   };
 
   state = {
