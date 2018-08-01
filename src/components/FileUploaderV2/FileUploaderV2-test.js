@@ -103,26 +103,6 @@ describe('FileUploader', () => {
     it('renders with empty div.bx--file-container by default', () => {
       expect(mountWrapper.find('div.bx--file-container').text()).toEqual('');
     });
-    it('clears all uploaded files when the clearFiles method is called', () => {
-      const mountUploadedWrapper = mount(fileUploader);
-      mountUploadedWrapper.setState({
-        files: [
-          {
-            uuid: 'id3',
-            name: 'test.jpeg',
-            size: 1304,
-            status: 'complete',
-          },
-        ],
-      });
-
-      // Test to make sure that the Filename is rendered
-      expect(mountUploadedWrapper.state().files).toHaveLength(1);
-
-      // Test to make sure it was properly removed
-      mountUploadedWrapper.instance().clearFiles();
-      expect(mountUploadedWrapper.update().state().files).toHaveLength(0);
-    });
   });
 });
 
