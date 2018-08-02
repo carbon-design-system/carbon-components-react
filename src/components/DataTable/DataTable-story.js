@@ -92,4 +92,12 @@ storiesOf('DataTable', module)
         and when cell data changes dynamically.
       `,
     })(require('./stories/with-dynamic-content').default)
+  )
+  .add(
+    'with batch editing',
+    withInfo({
+      text: `
+        Showcases DataTable behavior with batch editing.
+      `,
+    })(require('./stories/with-batch-edit').default)
   );

@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DataTable.TableBatchEditable should render 1`] = `
+<Table
+  className="bx--data-table-v2--batch-editable"
+/>
+`;

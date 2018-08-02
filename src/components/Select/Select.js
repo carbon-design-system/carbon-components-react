@@ -77,7 +77,7 @@ Select.propTypes = {
   iconDescription: PropTypes.string.isRequired,
   hideLabel: PropTypes.bool,
   invalid: PropTypes.bool,
-  invalidText: PropTypes.string,
+  invalidText: PropTypes.node,
   helperText: PropTypes.node,
   light: PropTypes.bool,
 };

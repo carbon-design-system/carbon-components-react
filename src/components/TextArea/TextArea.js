@@ -139,7 +139,7 @@ TextArea.propTypes = {
   /**
    * Provide the text that is displayed when the control is in an invalid state
    */
-  invalidText: PropTypes.string,
+  invalidText: PropTypes.node,
 
   /**
    * Provide text that is used alongside the control label for additional help

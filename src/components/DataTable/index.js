@@ -18,6 +18,13 @@ import TableToolbar from './TableToolbar';
 import TableToolbarAction from './TableToolbarAction';
 import TableToolbarContent from './TableToolbarContent';
 import TableToolbarSearch from './TableToolbarSearch';
+import TableBatchEditable from './TableBatchEditable';
+import TableBatchEditableContainer from './TableBatchEditableContainer';
+import TableBatchEditActions from './TableBatchEditActions';
+import TableBatchEditDeleteCell from './TableBatchEditDeleteCell';
+import TableBatchEditDeleteHeader from './TableBatchEditDeleteHeader';
+import TableBatchEditNumberInput from './TableBatchEditNumberInput';
+import TableBatchEditTextInput from './TableBatchEditTextInput';
 
 DataTable.Table = Table;
 DataTable.TableActionList = TableActionList;
@@ -38,6 +45,13 @@ DataTable.TableToolbar = TableToolbar;
 DataTable.TableToolbarAction = TableToolbarAction;
 DataTable.TableToolbarContent = TableToolbarContent;
 DataTable.TableToolbarSearch = TableToolbarSearch;
+DataTable.TableBatchEditable = TableBatchEditable;
+DataTable.TableBatchEditableContainer = TableBatchEditableContainer;
+DataTable.TableBatchEditActions = TableBatchEditActions;
+DataTable.TableBatchEditDeleteCell = TableBatchEditDeleteCell;
+DataTable.TableBatchEditDeleteHeader = TableBatchEditDeleteHeader;
+DataTable.TableBatchEditNumberInput = TableBatchEditNumberInput;
+DataTable.TableBatchEditTextInput = TableBatchEditTextInput;
 
 export {
   Table,
@@ -59,6 +73,13 @@ export {
   TableToolbarAction,
   TableToolbarContent,
   TableToolbarSearch,
+  TableBatchEditable,
+  TableBatchEditableContainer,
+  TableBatchEditActions,
+  TableBatchEditDeleteCell,
+  TableBatchEditDeleteHeader,
+  TableBatchEditNumberInput,
+  TableBatchEditTextInput,
 };
 
 export default DataTable;

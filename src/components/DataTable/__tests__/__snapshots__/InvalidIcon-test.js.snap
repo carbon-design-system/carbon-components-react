@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`InvalidIcon should render 1`] = `
+<Tooltip
+  direction="bottom"
+  icon={
+    Object {
+      "height": "16",
+      "id": "icon--error--solid",
+      "name": "icon--error--solid",
+      "styles": "",
+      "svgData": Object {
+        "circles": "",
+        "ellipses": "",
+        "paths": Array [
+          Object {
+            "d": "M8 16A8 8 0 1 1 8 0a8 8 0 0 1 0 16zM3.293 4.707l8 8 1.414-1.414-8-8-1.414 1.414z",
+          },
+        ],
+        "polygons": "",
+        "polylines": "",
+        "rects": "",
+      },
+      "tags": "icon--error--solid",
+      "viewBox": "0 0 16 16",
+      "width": "16",
+    }
+  }
+  iconDescription="tooltip"
+  menuOffset={[Function]}
+  open={false}
+  showIcon={true}
+  triggerText={null}
+/>
+`;

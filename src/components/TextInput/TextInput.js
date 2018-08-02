@@ -93,7 +93,7 @@ TextInput.propTypes = {
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   hideLabel: PropTypes.bool,
   invalid: PropTypes.bool,
-  invalidText: PropTypes.string,
+  invalidText: PropTypes.node,
   helperText: PropTypes.node,
   /**
    * `true` to use the light version.

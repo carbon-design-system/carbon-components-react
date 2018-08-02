@@ -31,7 +31,7 @@ export default class NumberInput extends Component {
     step: PropTypes.number,
     value: PropTypes.number,
     invalid: PropTypes.bool,
-    invalidText: PropTypes.string,
+    invalidText: PropTypes.node,
     helperText: PropTypes.node,
     /**
      * `true` to use the light version.

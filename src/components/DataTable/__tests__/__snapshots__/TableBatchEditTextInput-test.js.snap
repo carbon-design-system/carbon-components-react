@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DataTable.TableBatchEditTextInput should render 1`] = `
+<TextInput
+  className="bx--text__input"
+  disabled={false}
+  id="id-foo"
+  invalid={false}
+  invalidText={<InvalidIcon />}
+  labelText=""
+  light={false}
+  onChange={[Function]}
+  onClick={[Function]}
+  type="text"
+/>
+`;

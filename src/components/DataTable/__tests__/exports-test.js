@@ -14,6 +14,9 @@ const blacklist = new Set([
   '__mocks__',
   'DataTable.js',
   'stories',
+  'InvalidIcon.js',
+  'story-components',
+  'story-store',
 ]);
 const components = fs
   .readdirSync(COMPONENT_PATH)

@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DataTable.TableBatchEditNumberInput should render 1`] = `
+<NumberInput
+  disabled={false}
+  iconDescription="choose a number"
+  id="id-foo"
+  invalid={false}
+  invalidText={<InvalidIcon />}
+  label=""
+  light={false}
+  onChange={[Function]}
+  onClick={[Function]}
+  step={1}
+  value={0}
+/>
+`;

@@ -18,7 +18,7 @@ export default class TimePicker extends Component {
     placeholder: PropTypes.string,
     maxLength: PropTypes.number,
     invalid: PropTypes.bool,
-    invalidText: PropTypes.string,
+    invalidText: PropTypes.node,
     hideLabel: PropTypes.bool,
     disabled: PropTypes.bool,
     value: PropTypes.string,

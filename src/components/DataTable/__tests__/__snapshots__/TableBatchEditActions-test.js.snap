@@ -1,0 +1,60 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DataTable.TableBatchEditActions should render 1`] = `
+<div
+  className="bx--batch-actions"
+>
+  <div
+    className="bx--batch-edit-status"
+  >
+    <p
+      className="bx--batch-summary__para"
+    >
+      Editing...
+    </p>
+  </div>
+  <div
+    className="bx--batch-summary bx--batch-edit-summary"
+  >
+    <TableBatchAction
+      className="bx--batch-edit-summary__save"
+      icon={
+        Object {
+          "height": "16",
+          "id": "icon--save",
+          "name": "icon--save",
+          "styles": "",
+          "svgData": Object {
+            "circles": "",
+            "ellipses": "",
+            "paths": Array [
+              Object {
+                "d": "M12 1.597v2.406a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V1H1v14h3V9a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v6h3V4.702l-3-3.105zM1 0h10.848L16 4.298V15a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1V1a1 1 0 0 1 1-1zm10 9H5v5.992l6 .007V9zM5 1v3.003h6V1H5z",
+                "fill-rule": "nonzero",
+              },
+            ],
+            "polygons": "",
+            "polylines": "",
+            "rects": "",
+          },
+          "tags": "icon--save",
+          "viewBox": "0 0 16 16",
+          "width": "16",
+        }
+      }
+      iconDescription="Add"
+      kind="ghost"
+      onClick={[MockFunction]}
+      small={true}
+    >
+      Save
+    </TableBatchAction>
+    <button
+      className="bx--batch-summary__cancel bx--batch-edit-summary__cancel"
+      onClick={[MockFunction]}
+    >
+      Cancel
+    </button>
+  </div>
+</div>
+`;
