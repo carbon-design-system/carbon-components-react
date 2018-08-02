@@ -86,10 +86,10 @@ export class FileUploaderButtonV2 extends Component {
 
 export function FilenameV2({
   iconDescription,
-  onKeyDown = () => {},
-  status = 'uploading',
-  style = {},
-  tabIndex = 0,
+  onKeyDown,
+  status,
+  style,
+  tabIndex,
   ...other
 }) {
   switch (status) {
@@ -142,6 +142,12 @@ FilenameV2.propTypes = {
   style: PropTypes.object,
   status: PropTypes.oneOf(['edit', 'complete', 'uploading']),
   tabIndex: PropTypes.number,
+};
+FilenameV2.defaultProps = {
+  onKeyDown: () => {},
+  status: 'uploading',
+  style: {},
+  tabIndex: 0,
 };
 
 export default class FileUploaderV2 extends Component {
