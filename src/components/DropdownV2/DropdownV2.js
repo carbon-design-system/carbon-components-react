@@ -9,7 +9,7 @@ const defaultItemToString = item => {
     return item;
   }
 
-  return item ? item.label : '';
+  return item ? item.text : '';
 };
 
 export default class DropdownV2 extends React.Component {
