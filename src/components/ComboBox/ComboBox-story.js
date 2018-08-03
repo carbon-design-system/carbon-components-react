@@ -6,19 +6,19 @@ import WithState from '../../tools/withState';
 const items = [
   {
     id: 'option-1',
-    text: 'Option 1',
+    label: 'Option 1',
   },
   {
     id: 'option-2',
-    text: 'Option 2',
+    label: 'Option 2',
   },
   {
     id: 'option-3',
-    text: 'Option 3',
+    label: 'Option 3',
   },
   {
     id: 'option-4',
-    text: 'Option 4',
+    label: 'Option 4',
   },
 ];
 
@@ -32,7 +32,7 @@ storiesOf('ComboBox', module)
       <div style={{ width: 300 }}>
         <ComboBox
           items={items}
-          itemToString={item => (item ? item.text : '')}
+          itemToString={item => (item ? item.label : '')}
           onChange={action('onChange - ComboBox')}
           placeholder="Filter..."
         />
@@ -48,7 +48,7 @@ storiesOf('ComboBox', module)
       <div style={{ width: 300 }}>
         <ComboBox
           items={items}
-          itemToString={item => (item ? item.text : '')}
+          itemToString={item => (item ? item.label : '')}
           onChange={action('onChange - ComboBox')}
           placeholder="Filter..."
           disabled
@@ -57,21 +57,21 @@ storiesOf('ComboBox', module)
     )
   )
   .addWithInfo(
-    'custom text input handling',
+    'custom label input handling',
     `Sometimes you want to perform an async action to trigger a backend call on input change.`,
     () => (
-      <WithState initialState={{ inputText: '' }}>
+      <WithState initialState={{ inputlabel: '' }}>
         {({ state, setState }) => (
           <div style={{ width: 300 }}>
             <ComboBox
               items={items}
               itemToString={item =>
-                item ? `${item.text} queried with ${state.inputText}` : ''
+                item ? `${item.label} queried with ${state.inputlabel}` : ''
               }
               onChange={action('onChange - ComboBox')}
               placeholder="Filter..."
               shouldFilterItem={() => true}
-              onInputChange={text => setState({ inputText: text })}
+              onInputChange={label => setState({ inputlabel: label })}
             />
           </div>
         )}
