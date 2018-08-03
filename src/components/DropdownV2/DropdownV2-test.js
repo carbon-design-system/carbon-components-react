@@ -73,7 +73,7 @@ describe('DropdownV2', () => {
       );
 
       expect(wrapper.find('span.bx--list-box__label').text()).toEqual(
-        mockProps.items[0].label
+        mockProps.items[0].text
       );
     });
 
