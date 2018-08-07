@@ -1,6 +1,6 @@
 {
-  "name": "carbon-components-react",
-  "version": "5.5.1",
+  "name": "@ibmtm/carbon-components-react",
+  "version": "6.19.0",
   "description": "A React wrapper for carbon-components",
   "license": "Apache-2",
   "main": "lib/index.js",
@@ -58,6 +58,10 @@
     {
       "name": "Chris Dhanaraj",
       "email": "chrisdhanaraj@us.ibm.com"
+    },
+    {
+      "name": "Liviu Dobrea",
+      "email": "liviu.dobrea@ibm.com"
     }
   ],
   "eslintConfig": {
@@ -131,7 +135,9 @@
     "lodash.debounce": "^4.0.8",
     "lodash.isequal": "^4.5.0",
     "lodash.omit": "^4.5.0",
-    "warning": "^3.0.0",
+    "react-hot-loader": "^4.1.2",
+    "react-tiny-virtual-list": "^2.2.0",
+    "warning": "3.0.0",
     "window-or-global": "^1.0.1"
   },
   "devDependencies": {
@@ -301,5 +307,5 @@
       "enzyme-to-json/serializer"
     ]
   },
-  "bundleSizeThreshold": 80000
+  "bundleSizeThreshold": 95000
 }
