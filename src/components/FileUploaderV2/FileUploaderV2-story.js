@@ -56,7 +56,6 @@ class App extends React.Component {
           name="file"
           multiple
           ref={fileUploader => (this.fileUploader = fileUploader)}
-          upload={this.upload}
           files={this.state.files}
           onChange={this.handleChange}
         />

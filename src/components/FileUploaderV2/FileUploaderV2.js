@@ -163,8 +163,6 @@ export default class FileUploaderV2 extends Component {
     onChange: PropTypes.func,
     className: PropTypes.string,
     accept: PropTypes.arrayOf(PropTypes.string),
-    action: PropTypes.string,
-    upload: PropTypes.func,
     files: PropTypes.arrayOf(PropTypes.object),
   };
 
@@ -176,7 +174,6 @@ export default class FileUploaderV2 extends Component {
     onClick: () => {},
     onChange: () => {},
     accept: [],
-    upload: () => new Promise(() => {}),
     files: [],
   };
 
@@ -207,7 +204,6 @@ export default class FileUploaderV2 extends Component {
       name,
       onChange,
       files,
-      upload, // eslint-disable-line
       ...other
     } = this.props;
 
