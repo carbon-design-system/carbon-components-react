@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import Downshift from 'downshift';
 import ListBox, { PropTypes as ListBoxPropTypes } from '../ListBox';
 import Checkbox from '../Checkbox';
+import VirtualList from 'react-tiny-virtual-list';
 import Selection from '../../internal/Selection';
 import { sortingPropTypes } from './MultiSelectV2PropTypes';
 import { defaultItemToString } from './tools/itemToString';
@@ -101,7 +102,6 @@ export default class MultiSelectV2 extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      highlightedIndex: null,
       isOpen: props.open,
     };
   }
@@ -137,11 +137,6 @@ export default class MultiSelectV2 extends React.Component {
   handleOnStateChange = changes => {
     const { type } = changes;
     switch (type) {
-      case Downshift.stateChangeTypes.keyDownArrowDown:
-      case Downshift.stateChangeTypes.keyDownArrowUp:
-      case Downshift.stateChangeTypes.itemMouseEnter:
-        this.setState({ highlightedIndex: changes.highlightedIndex });
-        break;
       case Downshift.stateChangeTypes.keyDownEscape:
       case Downshift.stateChangeTypes.mouseUp:
         this.setState({ isOpen: false }, () => {
@@ -159,7 +154,7 @@ export default class MultiSelectV2 extends React.Component {
   };
 
   render() {
-    const { highlightedIndex, isOpen } = this.state;
+    const { isOpen } = this.state;
     const {
       className: containerClassName,
       items,
@@ -190,7 +185,7 @@ export default class MultiSelectV2 extends React.Component {
           onToggleAll,
         }) => (
           <Downshift
-            highlightedIndex={highlightedIndex}
+            itemCount={ items.length }
             isOpen={isOpen}
             itemToString={itemToString}
             onChange={onItemChange}
@@ -199,15 +194,14 @@ export default class MultiSelectV2 extends React.Component {
             selectedItem={selectedItems}
             render={({
               getRootProps,
-              selectedItem,
-              isOpen,
-              itemToString,
-              highlightedIndex,
               getItemProps,
-              getButtonProps,
+              getToggleButtonProps,
+              isOpen,
+              selectedItem,
+              highlightedIndex,
+              itemToString,
             }) => {
               let toggleItemProps;
-              let baseIndex = 0;
               let showCount = selectedItem.length > 0;
               if (inlineSelectedItems && selectedItem.length === items.length) {
                 showCount = false;
@@ -218,17 +212,28 @@ export default class MultiSelectV2 extends React.Component {
                     id: 'select-all',
                     label: selectAllLabel,
                   },
-                  onClick: () => {},
+                  index: 0,
+                  isActive: false,
+                  onClick: () => onToggleAll(items),
                 });
-                baseIndex += 1;
+              }
+              let sortedItems = items;
+              if (isOpen) {
+                sortedItems = sortItems(items, {
+                  selectedItems,
+                  itemToString,
+                  compareItems,
+                  locale,
+                });
               }
               return (
                 <ListBox
                   type={type}
                   className={className}
                   disabled={disabled}
-                  {...getRootProps({ refKey: 'innerRef' })}>
-                  <ListBox.Field {...getButtonProps({ disabled })}>
+                  {...getRootProps({ refKey: 'innerRef' })}
+                >
+                  <ListBox.Field {...getToggleButtonProps({ disabled })}>
                     {showCount && (
                       <ListBox.Selection
                         clearSelection={clearSelection}
@@ -247,24 +252,20 @@ export default class MultiSelectV2 extends React.Component {
                             compareItems,
                             locale,
                           }).map(item => (
-                            <span className="bx--list-box__label" key={item.id}>
+                            <span key={item.id} className="bx--list-box__label">
                               {itemToString(item)}
                             </span>
                           ))
                         )}
                       </div>
-                    ) : (
-                      <span className="bx--list-box__label">{label}</span>
-                    )}
+                    ) : <span className="bx--list-box__label">{label}</span>
+                    }
                     <ListBox.MenuIcon isOpen={isOpen} />
                   </ListBox.Field>
                   {isOpen && (
                     <ListBox.Menu>
                       {toggleItemSelection && (
-                        <ListBox.MenuItem
-                          isActive={false}
-                          {...toggleItemProps}
-                          onClick={() => onToggleAll(items)}>
+                        <ListBox.MenuItem{...toggleItemProps}>
                           <Checkbox
                             id={toggleItemProps.id}
                             name="select-all"
@@ -275,34 +276,34 @@ export default class MultiSelectV2 extends React.Component {
                           />
                         </ListBox.MenuItem>
                       )}
-                      {sortItems(items, {
-                        selectedItems,
-                        itemToString,
-                        compareItems,
-                        locale,
-                      }).map((item, index) => {
-                        const itemProps = getItemProps({ item });
-                        const itemText = itemToString(item);
-                        const isChecked = selectedItem.indexOf(item) !== -1;
-                        return (
-                          <ListBox.MenuItem
-                            key={itemProps.id}
-                            isActive={selectedItem.indexOf(item) !== -1}
-                            isHighlighted={
-                              highlightedIndex === index + baseIndex
-                            }
-                            {...itemProps}>
-                            <Checkbox
-                              id={itemProps.id}
-                              name={itemText}
-                              checked={isChecked}
-                              readOnly={true}
-                              tabIndex="-1"
-                              labelText={itemText}
-                            />
-                          </ListBox.MenuItem>
-                        );
-                      })}
+                      <VirtualList
+                        width="100%"
+                        height={ items.length < 5 ? items.length * 42 : 200 }
+                        itemCount={ items.length }
+                        itemSize={ 42 }
+                        renderItem={({ index }) => {
+                          const item = sortedItems[index];
+                          const itemProps = getItemProps({
+                            item,
+                            index,
+                            isActive: highlightedIndex === index,
+                            isHighlighted: selectedItem === sortedItems[index],
+                          });
+                          const itemText = itemToString(item);
+                          return (
+                            <ListBox.MenuItem key={itemProps.id} {...itemProps}>
+                              <Checkbox
+                                id={itemProps.id}
+                                name={itemText}
+                                checked={selectedItem.indexOf(item) !== -1}
+                                readOnly={true}
+                                tabIndex="0"
+                                labelText={itemText}
+                              />
+                            </ListBox.MenuItem>
+                          );
+                        }}
+                      />
                     </ListBox.Menu>
                   )}
                 </ListBox>

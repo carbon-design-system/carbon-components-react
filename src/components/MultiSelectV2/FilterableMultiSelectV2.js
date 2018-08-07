@@ -1,6 +1,7 @@
 import cx from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
+import VirtualList from 'react-tiny-virtual-list';
 import Downshift from 'downshift';
 import Search from '../Search';
 import ListBox from '../ListBox';
@@ -114,7 +115,6 @@ export default class FilterableMultiSelectV2 extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      highlightedIndex: null,
       isOpen: props.open,
       inputValue: '',
     };
@@ -155,11 +155,6 @@ export default class FilterableMultiSelectV2 extends React.Component {
         this.setState({ inputValue: changes.inputValue }, () => {
           this.handleOnChange(this.state);
         });
-        break;
-      case Downshift.stateChangeTypes.keyDownArrowDown:
-      case Downshift.stateChangeTypes.keyDownArrowUp:
-      case Downshift.stateChangeTypes.itemMouseEnter:
-        this.setState({ highlightedIndex: changes.highlightedIndex });
         break;
       case Downshift.stateChangeTypes.keyDownEscape:
       case Downshift.stateChangeTypes.mouseUp:
@@ -219,7 +214,7 @@ export default class FilterableMultiSelectV2 extends React.Component {
   };
 
   render() {
-    const { highlightedIndex, isOpen, inputValue } = this.state;
+    const { isOpen, inputValue } = this.state;
     const {
       className: containerClassName,
       disabled,
@@ -259,8 +254,8 @@ export default class FilterableMultiSelectV2 extends React.Component {
           onToggleAll,
         }) => (
           <Downshift
-            highlightedIndex={highlightedIndex}
             isOpen={isOpen}
+            itemCount={ items.length }
             inputValue={inputValue}
             onInputValueChange={this.handleOnInputValueChange}
             onChange={onItemChange}
@@ -269,16 +264,16 @@ export default class FilterableMultiSelectV2 extends React.Component {
             onOuterClick={this.handleOnOuterClick}
             selectedItem={selectedItems}
             render={({
-              getButtonProps,
+              getToggleButtonProps,
               getInputProps,
               getItemProps,
               getRootProps,
               isOpen,
+               highlightedIndex,
               inputValue,
               selectedItem,
             }) => {
               let toggleItemProps;
-              let baseIndex = 0;
               let showCount = selectedItem.length > 0;
               if (inlineSelectedItems && selectedItem.length === items.length) {
                 showCount = false;
@@ -289,17 +284,31 @@ export default class FilterableMultiSelectV2 extends React.Component {
                     id: 'select-all',
                     label: selectAllLabel,
                   },
-                  onClick: () => {},
+                  index: 0,
+                  isActive: false,
+                  onClick: () => onToggleAll(items),
                 });
-                baseIndex += 1;
+              }
+              let sortedItems = items;
+              if (isOpen) {
+                sortedItems = sortItems(
+                  filterItems(items, { itemToString, inputValue }),
+                  {
+                    selectedItems,
+                    itemToString,
+                    compareItems,
+                    locale,
+                  }
+                );
               }
               return (
                 <ListBox
                   className={className}
                   disabled={disabled}
                   type={type}
-                  {...getRootProps({ refKey: 'innerRef' })}>
-                  <ListBox.Field {...getButtonProps({ disabled })}>
+                  {...getRootProps({ refKey: 'innerRef' })}
+                >
+                  <ListBox.Field {...getToggleButtonProps({ disabled })}>
                     {showCount && (
                       <ListBox.Selection
                         clearSelection={clearSelection}
@@ -346,9 +355,8 @@ export default class FilterableMultiSelectV2 extends React.Component {
                             ))
                           )}
                         </div>
-                      ) : (
-                        <span className="bx--list-box__label">{label}</span>
-                      ))}
+                      ) : <span className="bx--list-box__label">{label}</span>
+                      )}
                     <ListBox.MenuIcon isOpen={isOpen} />
                   </ListBox.Field>
                   {isOpen && (
@@ -370,10 +378,7 @@ export default class FilterableMultiSelectV2 extends React.Component {
                         </ListBox.MenuItem>
                       )}
                       {toggleItemSelection && (
-                        <ListBox.MenuItem
-                          isActive={false}
-                          {...toggleItemProps}
-                          onClick={() => onToggleAll(items)}>
+                        <ListBox.MenuItem {...toggleItemProps}>
                           <Checkbox
                             id={toggleItemProps.id}
                             name="select-all"
@@ -384,37 +389,39 @@ export default class FilterableMultiSelectV2 extends React.Component {
                           />
                         </ListBox.MenuItem>
                       )}
-                      {sortItems(
-                        filterItems(items, { itemToString, inputValue }),
-                        {
-                          selectedItems,
-                          itemToString,
-                          compareItems,
-                          locale,
+                      <VirtualList
+                        width="100%"
+                        height={
+                          sortedItems.length < 5
+                          ? sortedItems.length * 42
+                          : 200
                         }
-                      ).map((item, index) => {
-                        const itemProps = getItemProps({ item });
-                        const itemText = itemToString(item);
-                        const isChecked = selectedItem.indexOf(item) !== -1;
-                        return (
-                          <ListBox.MenuItem
-                            key={itemProps.id}
-                            isActive={selectedItem.indexOf(item) !== -1}
-                            isHighlighted={
-                              highlightedIndex === index + baseIndex
-                            }
-                            {...itemProps}>
-                            <Checkbox
-                              id={itemProps.id}
-                              name={itemText}
-                              checked={isChecked}
-                              readOnly={true}
-                              tabIndex="-1"
-                              labelText={itemText}
-                            />
-                          </ListBox.MenuItem>
-                        );
-                      })}
+                        itemCount={ sortedItems.length }
+                        itemSize={ 42 }
+                        renderItem={({ index, style }) => {
+                          const item = sortedItems[index];
+                          const itemProps = getItemProps({
+                            item,
+                            index,
+                            style,
+                            isActive: highlightedIndex === index,
+                            isHighlighted: selectedItem === sortedItems[index],
+                          });
+                          const itemText = itemToString(item);
+                          return (
+                            <ListBox.MenuItem key={itemProps.id} {...itemProps}>
+                              <Checkbox
+                                id={itemProps.id}
+                                name={itemText}
+                                checked={selectedItem.indexOf(item) !== -1}
+                                readOnly={true}
+                                tabIndex="0"
+                                labelText={itemText}
+                              />
+                            </ListBox.MenuItem>
+                          );
+                        }}
+                      />
                     </ListBox.Menu>
                   )}
                 </ListBox>
