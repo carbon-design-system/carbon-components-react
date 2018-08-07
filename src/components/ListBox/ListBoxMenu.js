@@ -1,6 +1,7 @@
 import React from 'react';
 import ListBoxMenuItem from './ListBoxMenuItem';
-import childrenOfType from '../../prop-types/childrenOfType';
+import VirtualList from 'react-tiny-virtual-list';
+import childrenOf from '../../prop-types/childrenOf';
 
 /**
  * `ListBoxMenu` is a simple container node that isolates the `list-box__menu`
@@ -16,7 +17,7 @@ const ListBoxMenu = ({ children, ...rest }) => {
 };
 
 ListBoxMenu.propTypes = {
-  children: childrenOfType(ListBoxMenuItem),
+  children: childrenOf([ListBoxMenuItem, VirtualList]),
 };
 
 export default ListBoxMenu;

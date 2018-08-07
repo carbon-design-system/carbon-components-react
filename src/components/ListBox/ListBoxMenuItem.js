@@ -22,7 +22,7 @@ const ListBoxMenuItem = ({ children, isActive, isHighlighted, ...rest }) => {
 
 ListBoxMenuItem.propTypes = {
   /**
-   * Specify any children nodes that hsould be rendered inside of the ListBox
+   * Specify any children nodes that should be rendered inside of the ListBox
    * Menu Item
    */
   children: PropTypes.node,
@@ -33,7 +33,7 @@ ListBoxMenuItem.propTypes = {
   isActive: PropTypes.bool.isRequired,
 
   /**
-   * Specify whether the current menu item is "highlighed".
+   * Specify whether the current menu item is "highlighted".
    */
   isHighlighted: PropTypes.bool.isRequired,
 };

@@ -1,6 +1,6 @@
 {
   "name": "@ibmtm/carbon-components-react",
-  "version": "6.8.1",
+  "version": "6.19.0",
   "description": "A React wrapper for carbon-components",
   "license": "Apache-2",
   "main": "lib/index.js",
@@ -136,6 +136,7 @@
     "lodash.isequal": "^4.5.0",
     "lodash.omit": "^4.5.0",
     "react-hot-loader": "^4.1.2",
+    "react-tiny-virtual-list": "^2.2.0",
     "warning": "3.0.0",
     "window-or-global": "^1.0.1"
   },

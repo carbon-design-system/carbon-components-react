@@ -164,6 +164,25 @@ storiesOf('MultiSelectV2', module)
     )
   )
   .addWithInfo(
+    'Big list',
+    `
+    MultiSelect
+  `,
+    () => (
+      <div style={{ width: 300 }}>
+        <MultiSelectV2
+          light
+          label={defaultLabel}
+          items={ Array.from({ length: 500 }, (v, k) => ({
+            id: k, label: `Option ${k}`
+          })) }
+          onChange={action('onChange')}
+          sortItems={ i => i }
+        />
+      </div>
+    )
+  )
+  .addWithInfo(
     'filterable',
     `
       Filterable version of our MultiSelectV2 component
@@ -187,9 +206,10 @@ storiesOf('MultiSelectV2', module)
     () => (
       <div style={{ width: 300 }}>
         <MultiSelectV2.Filterable
-          items={items}
+          items={Array.from({ length: 250 }, (v, k) => ({
+            id: `item-${k}`, label: `Item ${k}`
+          }))}
           toggleItemSelection
-          itemToString={item => (item ? item.text : '')}
           onChange={action('onChange')}
           label={defaultLabel}
           placeholder={defaultPlaceholder}
