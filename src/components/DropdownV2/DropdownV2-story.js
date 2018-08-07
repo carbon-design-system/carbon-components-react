@@ -98,10 +98,11 @@ storiesOf('DropdownV2', module)
     Sometimes you want to control everything.
   `,
     () => (
-      <WithState initialState={{ selectedItem: items[0] }}>
+      <WithState initialState={{ selectedItem: items[0], isOpen: true }}>
         {({ state, setState }) => (
           <div style={{ width: 300 }}>
             <DropdownV2
+              open={state.isOpen}
               type="inline"
               label="Label"
               items={items}

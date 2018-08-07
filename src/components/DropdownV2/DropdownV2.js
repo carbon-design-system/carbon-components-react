@@ -64,19 +64,58 @@ export default class DropdownV2 extends React.Component {
      * `true` to use the light version.
      */
     light: PropTypes.bool,
+
+    /**
+     * Controls the open state of the dropdown
+     */
+    open: PropTypes.bool,
   };
 
   static defaultProps = {
     disabled: false,
     type: 'default',
     itemToString: defaultItemToString,
+    open: false,
     light: false,
   };
 
-  handleOnChange = selectedItem => {
+  state = { isOpen: this.props.open };
+
+  handleOnChange = changes => {
     if (this.props.onChange) {
-      this.props.onChange({ selectedItem });
+      this.props.onChange(changes);
     }
+  };
+
+  handleOnOuterClick = () => {
+    const isOpen = false;
+    this.setState({ isOpen }, () => this.handleOnChange({ isOpen }));
+  };
+
+  handleOnStateChange = changes => {
+    const { type } = changes;
+    switch (type) {
+      case Downshift.stateChangeTypes.clickItem:
+      case Downshift.stateChangeTypes.keyDownEscape:
+      case Downshift.stateChangeTypes.mouseUp:
+        this.setState({ isOpen: false }, () => this.handleOnChange(changes));
+        break;
+      // Opt-in to some cases where we should be toggling the menu based on
+      // a given key press or mouse handler
+      // Reference: https://github.com/paypal/downshift/issues/206
+      case Downshift.stateChangeTypes.clickButton:
+      case Downshift.stateChangeTypes.keyDownSpaceButton:
+        if (Reflect.has(changes, 'isOpen')) {
+          this.setState({ isOpen: changes.isOpen },
+            () => this.handleOnChange(changes)
+          );
+        }
+        break;
+    }
+  };
+
+  handleOnToggleMenu = (isOpen) => {
+    this.setState({ isOpen }, () => this.handleOnChange({ isOpen }));
   };
 
   render() {
@@ -92,14 +131,18 @@ export default class DropdownV2 extends React.Component {
       light,
       id,
     } = this.props;
+    const { isOpen } = this.state;
     const className = cx('bx--dropdown', containerClassName, {
       'bx--dropdown--light': light,
     });
     return (
       <Downshift
         id={id}
+        onStateChange={this.handleOnStateChange}
         onChange={this.handleOnChange}
+        onOuterClick={this.handleOnOuterClick}
         itemToString={itemToString}
+        isOpen={isOpen}
         defaultSelectedItem={initialSelectedItem}
         selectedItem={selectedItem}
         render={({
@@ -108,7 +151,7 @@ export default class DropdownV2 extends React.Component {
           selectedItem,
           highlightedIndex,
           getRootProps,
-          getButtonProps,
+          getToggleButtonProps,
           getItemProps,
           getLabelProps,
         }) => (
@@ -117,7 +160,7 @@ export default class DropdownV2 extends React.Component {
             className={className}
             disabled={disabled}
             {...getRootProps({ refKey: 'innerRef' })}>
-            <ListBox.Field {...getButtonProps({ disabled })}>
+            <ListBox.Field {...getToggleButtonProps({ disabled })}>
               <span className="bx--list-box__label" {...getLabelProps()}>
                 {selectedItem ? itemToString(selectedItem) : label}
               </span>
@@ -128,9 +171,13 @@ export default class DropdownV2 extends React.Component {
                 {items.map((item, index) => (
                   <ListBox.MenuItem
                     key={itemToString(item)}
-                    isActive={selectedItem === item}
-                    isHighlighted={highlightedIndex === index}
-                    {...getItemProps({ item, index })}>
+                    {...getItemProps({
+                      item,
+                      index,
+                      isActive: selectedItem === item,
+                      isHighlighted: highlightedIndex === index
+                    })}
+                  >
                     {itemToString(item)}
                   </ListBox.MenuItem>
                 ))}
