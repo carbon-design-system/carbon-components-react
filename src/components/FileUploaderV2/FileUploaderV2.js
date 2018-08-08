@@ -97,7 +97,7 @@ export function FilenameV2({
       return (
         <div
           className="bx--loading"
-          style={{ ...style, width: '1rem', height: '1rem' }}
+          style={{ ...style }}
           tabIndex={tabIndex}
           onKeyDown={onKeyDown}
           role="button"
