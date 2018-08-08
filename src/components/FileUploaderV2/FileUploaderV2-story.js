@@ -9,7 +9,6 @@ import uid from '../../tools/uniqueId';
 
 class App extends React.Component {
   state = { files: [] };
-  nodes = [];
 
   upload = ({ file }) =>
     fetch('https://jsonplaceholder.typicode.com/posts/', {
@@ -43,6 +42,14 @@ class App extends React.Component {
     this.setState({ files });
   };
 
+  handleClick = ({ evt, index }) => {
+    if (evt) {
+      evt.stopPropagation();
+    }
+    const filteredArray = this.state.files.filter((file, i) => i !== index);
+    this.setState({ files: filteredArray });
+  };
+
   clearFiles = () => {
     this.setState({ files: [] });
   };
@@ -55,9 +62,9 @@ class App extends React.Component {
           buttonLabel="Add files"
           name="file"
           multiple
-          ref={fileUploader => (this.fileUploader = fileUploader)}
           files={this.state.files}
           onChange={this.handleChange}
+          onClick={this.handleClick}
         />
         <Button
           kind="secondary"

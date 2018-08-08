@@ -150,110 +150,91 @@ FilenameV2.defaultProps = {
   tabIndex: 0,
 };
 
-export default class FileUploaderV2 extends Component {
-  static propTypes = {
-    iconDescription: PropTypes.string,
-    buttonLabel: PropTypes.string,
-    buttonKind: ButtonTypes.buttonKind,
-    labelDescription: PropTypes.string,
-    labelTitle: PropTypes.string,
-    multiple: PropTypes.bool,
-    name: PropTypes.string,
-    onClick: PropTypes.func,
-    onChange: PropTypes.func,
-    className: PropTypes.string,
-    accept: PropTypes.arrayOf(PropTypes.string),
-    files: PropTypes.arrayOf(PropTypes.object),
-  };
+export default function FileUploaderV2(props) {
+  const handleClick = ({ evt, index }) => props.onClick({ evt, index });
+  const {
+    iconDescription,
+    buttonLabel,
+    buttonKind,
+    labelDescription,
+    labelTitle,
+    className,
+    multiple,
+    accept,
+    name,
+    onChange,
+    files,
+    ...other
+  } = props;
 
-  static defaultProps = {
-    iconDescription: 'Provide icon description',
-    buttonLabel: 'Upload',
-    buttonKind: 'primary',
-    multiple: false,
-    onClick: () => {},
-    onChange: () => {},
-    accept: [],
-    files: [],
-  };
+  const classes = classNames({
+    'bx--form-item': true,
+    [className]: className,
+  });
 
-  state = {
-    files: [],
-  };
-
-  nodes = [];
-
-  handleClick = ({ evt, index }) => {
-    const filteredArray = this.state.files.filter(
-      file => file.name !== this.nodes[index].innerText.trim()
-    );
-    this.setState({ files: filteredArray });
-    this.props.onClick(evt);
-  };
-
-  render() {
-    const {
-      iconDescription,
-      buttonLabel,
-      buttonKind,
-      labelDescription,
-      labelTitle,
-      className,
-      multiple,
-      accept,
-      name,
-      onChange,
-      files,
-      ...other
-    } = this.props;
-
-    const classes = classNames({
-      'bx--form-item': true,
-      [className]: className,
-    });
-
-    return (
-      <div className={classes} {...other}>
-        <strong className="bx--label">{labelTitle}</strong>
-        <p className="bx--label-description">{labelDescription}</p>
-        <FileUploaderButtonV2
-          labelText={buttonLabel}
-          multiple={multiple || undefined}
-          buttonKind={buttonKind}
-          onChange={onChange}
-          accept={accept}
-          name={name}
-        />
-        <div className="bx--file-container">
-          {files.length
-            ? files.map((file, index) => (
-                <span
-                  key={uid()}
-                  className="bx--file__selected-file"
-                  ref={node => (this.nodes[index] = node)}
-                  {...other}>
-                  <p className="bx--file-filename">{file.name}</p>
-                  <span className="bx--file__state-container">
-                    <FilenameV2
-                      iconDescription={iconDescription}
-                      status={file.status}
-                      onKeyDown={evt => {
-                        if (evt.which === 13 || evt.which === 32) {
-                          this.handleClick({ evt, index });
-                        }
-                      }}
-                      onClick={evt => {
-                        if (file.status === 'edit') {
-                          this.handleClick({ evt, index });
-                        }
-                      }}
-                    />
-                  </span>
+  return (
+    <div className={classes} {...other}>
+      <strong className="bx--label">{labelTitle}</strong>
+      <p className="bx--label-description">{labelDescription}</p>
+      <FileUploaderButtonV2
+        labelText={buttonLabel}
+        multiple={multiple || undefined}
+        buttonKind={buttonKind}
+        onChange={onChange}
+        accept={accept}
+        name={name}
+      />
+      <div className="bx--file-container">
+        {files.length
+          ? files.map((file, index) => (
+              <span key={uid()} className="bx--file__selected-file" {...other}>
+                <p className="bx--file-filename">{file.name}</p>
+                <span className="bx--file__state-container">
+                  <FilenameV2
+                    iconDescription={iconDescription}
+                    status={file.status}
+                    onKeyDown={evt => {
+                      if (evt.which === 13 || evt.which === 32) {
+                        handleClick({ evt, index });
+                      }
+                    }}
+                    onClick={evt => {
+                      if (file.status === 'edit') {
+                        handleClick({ evt, index });
+                      }
+                    }}
+                  />
                 </span>
-              ))
-            : null}
-        </div>
+              </span>
+            ))
+          : null}
       </div>
-    );
-  }
+    </div>
+  );
 }
+
+FileUploaderV2.propTypes = {
+  iconDescription: PropTypes.string,
+  buttonLabel: PropTypes.string,
+  buttonKind: ButtonTypes.buttonKind,
+  labelDescription: PropTypes.string,
+  labelTitle: PropTypes.string,
+  multiple: PropTypes.bool,
+  name: PropTypes.string,
+  onClick: PropTypes.func,
+  onChange: PropTypes.func,
+  className: PropTypes.string,
+  accept: PropTypes.arrayOf(PropTypes.string),
+  files: PropTypes.arrayOf(PropTypes.object),
+};
+
+FileUploaderV2.defaultProps = {
+  iconDescription: 'Provide icon description',
+  buttonLabel: 'Upload',
+  buttonKind: 'primary',
+  multiple: false,
+  onClick: () => {},
+  onChange: () => {},
+  accept: [],
+  files: [],
+};
