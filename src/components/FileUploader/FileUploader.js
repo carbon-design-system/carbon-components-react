@@ -207,11 +207,12 @@ export default class FileUploader extends Component {
   }
   handleChange = evt => {
     evt.stopPropagation();
-    this.setState({
-      filenames: this.state.filenames.concat(
-        [...evt.target.files].map(file => file.name)
-      ),
-    });
+    const filenames = !this.props.multiple
+      ? [evt.target.files[0].name]
+      : this.state.filenames.concat(
+          [...evt.target.files].map(file => file.name)
+        );
+    this.setState({ filenames });
     this.props.onChange(evt);
   };
 
