@@ -63,6 +63,14 @@ export default class MultiSelect extends React.Component {
      * `true` to use the light version.
      */
     light: PropTypes.bool,
+    /**
+     * Is the current selection invalid?
+     */
+    invalid: PropTypes.bool,
+    /**
+     * If invalid, what is the error?
+     */
+    invalidText: PropTypes.string,
   };
 
   static defaultProps = {
@@ -143,6 +151,8 @@ export default class MultiSelect extends React.Component {
       sortItems,
       compareItems,
       light,
+      invalid,
+      invalidText,
     } = this.props;
     const className = cx('bx--multi-select', containerClassName, {
       'bx--list-box--light': light,
@@ -173,6 +183,8 @@ export default class MultiSelect extends React.Component {
                 type={type}
                 className={className}
                 disabled={disabled}
+                invalid={invalid}
+                invalidText={invalidText}
                 {...getRootProps({ refKey: 'innerRef' })}>
                 <ListBox.Field {...getButtonProps({ disabled })}>
                   {selectedItem.length > 0 && (
@@ -195,17 +207,15 @@ export default class MultiSelect extends React.Component {
                       const itemProps = getItemProps({ item });
                       const itemText = itemToString(item);
                       const isChecked =
-                        selectedItem.findIndex(
-                          selected => item.id === selected.id
-                        ) !== -1;
+                        selectedItem
+                          .map(selected => {
+                            return selected.id;
+                          })
+                          .indexOf(item.id) !== -1;
                       return (
                         <ListBox.MenuItem
                           key={itemProps.id}
-                          isActive={
-                            selectedItem.findIndex(
-                              selected => item.id === selected.id
-                            ) !== -1
-                          }
+                          isActive={isChecked}
                           isHighlighted={highlightedIndex === index}
                           {...itemProps}>
                           <Checkbox
