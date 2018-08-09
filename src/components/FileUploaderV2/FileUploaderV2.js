@@ -179,7 +179,7 @@ export default function FileUploaderV2(props) {
       <p className="bx--label-description">{labelDescription}</p>
       <FileUploaderButtonV2
         labelText={buttonLabel}
-        multiple={multiple || undefined}
+        multiple={multiple}
         buttonKind={buttonKind}
         onChange={handleChange}
         accept={accept}
