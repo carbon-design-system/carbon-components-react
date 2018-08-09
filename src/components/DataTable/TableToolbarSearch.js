@@ -5,21 +5,14 @@ import Search from '../Search';
 import setupGetInstanceId from './tools/instanceId';
 
 const getInstanceId = setupGetInstanceId();
-const translationKeys = {
-  'carbon.table.toolbar.search.label': 'Filter table',
-  'carbon.table.toolbar.search.placeholder': 'Search',
-};
-
-const translateWithId = id => {
-  return translationKeys[id];
-};
 
 const TableToolbarSearch = ({
   className,
   searchContainerClass,
   onChange,
-  translateWithId: t,
   id = `data-table-search-${getInstanceId()}`,
+  placeHolderText,
+  labelText,
   ...rest
 }) => {
   const searchContainerClasses = cx(
@@ -34,8 +27,8 @@ const TableToolbarSearch = ({
         {...rest}
         small
         id={id}
-        labelText={t('carbon.table.toolbar.search.label')}
-        placeHolderText={t('carbon.table.toolbar.search.placeholder')}
+        labelText={labelText || 'Filter table'}
+        placeHolderText={placeHolderText || 'Search'}
         onChange={onChange}
       />
     </div>
@@ -66,13 +59,16 @@ TableToolbarSearch.propTypes = {
   onChange: PropTypes.func,
 
   /**
-   * Provide custom text for the component for each translation id
+   * Provide custom text for the searchbar's placeholder
    */
-  translateWithId: PropTypes.func.isRequired,
+  placeHolderText: PropTypes.string,
+
+  /**
+   * Provide custom text for the searchbar's label
+   */
+  labelText: PropTypes.string,
 };
 
-TableToolbarSearch.defaultProps = {
-  translateWithId,
-};
+TableToolbarSearch.defaultProps = {};
 
 export default TableToolbarSearch;
