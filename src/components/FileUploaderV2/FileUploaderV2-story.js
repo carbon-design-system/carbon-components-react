@@ -16,9 +16,9 @@ class App extends React.Component {
       body: file,
     }).then(res => res.json());
 
-  handleChange = evt => {
+  handleChange = ({ evt, multiple }) => {
     evt.stopPropagation();
-    const files = [...this.state.files];
+    const files = multiple ? [...this.state.files] : [];
     [...evt.target.files].forEach(file => {
       const uuid = uid();
       files.push({

@@ -151,7 +151,6 @@ FilenameV2.defaultProps = {
 };
 
 export default function FileUploaderV2(props) {
-  const handleClick = ({ evt, index }) => props.onClick({ evt, index });
   const {
     iconDescription,
     buttonLabel,
@@ -163,10 +162,12 @@ export default function FileUploaderV2(props) {
     accept,
     name,
     onChange,
+    onClick,
     files,
     ...other
   } = props;
-
+  const handleChange = evt => onChange({ evt, multiple });
+  const handleClick = ({ evt, index }) => onClick({ evt, index });
   const classes = classNames({
     'bx--form-item': true,
     [className]: className,
@@ -180,7 +181,7 @@ export default function FileUploaderV2(props) {
         labelText={buttonLabel}
         multiple={multiple || undefined}
         buttonKind={buttonKind}
-        onChange={onChange}
+        onChange={handleChange}
         accept={accept}
         name={name}
       />
