@@ -16,6 +16,7 @@ export default class CodeSnippet extends Component {
     children: PropTypes.string,
     feedback: PropTypes.string,
     copyLabel: PropTypes.string,
+    copyButtonDescription: PropTypes.string,
     onClick: PropTypes.func,
     ariaLabel: PropTypes.string,
     /**
@@ -50,6 +51,14 @@ export default class CodeSnippet extends Component {
     }
   }
 
+  componentDidUpdate(prevProps) {
+    if (this.props.children !== prevProps.children && this.codeContent) {
+      if (this.codeContent.getBoundingClientRect().height > 255) {
+        this.setState({ shouldShowMoreLessBtn: true });
+      }
+    }
+  }
+
   expandCode = () => {
     this.setState({ expandedCode: !this.state.expandedCode });
   };
@@ -63,6 +72,7 @@ export default class CodeSnippet extends Component {
       onClick,
       ariaLabel,
       copyLabel,
+      copyButtonDescription,
       light,
       showMoreText,
       showLessText,
@@ -115,7 +125,13 @@ export default class CodeSnippet extends Component {
       </div>
     );
 
-    const copy = <CopyButton onClick={onClick} feedback={feedback} />;
+    const copy = (
+      <CopyButton
+        onClick={onClick}
+        feedback={feedback}
+        iconDescription={copyButtonDescription}
+      />
+    );
 
     if (type === 'inline') {
       return (

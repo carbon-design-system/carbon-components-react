@@ -118,7 +118,7 @@
     }
   },
   "peerDependencies": {
-    "carbon-components": "^9.1.13",
+    "carbon-components": "^9.6.4",
     "carbon-icons": "^7.0.5",
     "react": "^16.4.0",
     "react-dom": "^16.4.0"
@@ -152,7 +152,7 @@
     "babel-plugin-dev-expression": "^0.2.1",
     "babel-plugin-transform-object-assign": "^6.22.0",
     "bowser": "^1.6.1",
-    "carbon-components": "^9.1.13",
+    "carbon-components": "^9.6.1",
     "carbon-icons": "^7.0.5",
     "chalk": "^2.3.0",
     "cli-table": "^0.3.0",
@@ -194,6 +194,9 @@
     "storybook-addon-a11y": "^3.0.0",
     "validate-commit-msg": "^2.10.1",
     "whatwg-fetch": "^2.0.3"
+  },
+  "resolutions": {
+    "enzyme-adapter-react-16/react-test-renderer": "^16.4.0"
   },
   "release": {
     "branch": "master"
