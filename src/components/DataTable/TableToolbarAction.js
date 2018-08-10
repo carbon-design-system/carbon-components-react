@@ -2,7 +2,7 @@ import cx from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 import Icon from '../Icon';
-import isRequiredThisOrOneOf from '../../prop-types/isRequiredThisOrOneOf';
+import isRequiredOneOf from '../../prop-types/isRequiredOneOf';
 
 const TableToolbarAction = ({
   className,
@@ -28,23 +28,22 @@ TableToolbarAction.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
 
-  /**
-   * Specify the icon for the toolbar action
-   */
-  icon: isRequiredThisOrOneOf(
-    PropTypes.shape({
+  ...isRequiredOneOf({
+    /**
+     * Specify the icon for the toolbar action
+     */
+    icon: PropTypes.shape({
       width: PropTypes.string,
       height: PropTypes.string,
       viewBox: PropTypes.string.isRequired,
       svgData: PropTypes.object.isRequired,
     }),
-    ['iconName']
-  ),
 
-  /**
-   * Specify the name of the icon for the toolbar action
-   */
-  iconName: isRequiredThisOrOneOf(PropTypes.string, ['icon']),
+    /**
+     * Specify the name of the icon for the toolbar action
+     */
+    iconName: PropTypes.string,
+  }),
 
   /**
    * Specify the description of the icon for the toolbar action

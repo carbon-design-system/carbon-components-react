@@ -2,7 +2,7 @@ import invariant from 'invariant';
 import PropTypes from 'prop-types';
 import React from 'react';
 import icons from 'carbon-icons';
-import isRequiredThisOrOneOf from '../../prop-types/isRequiredThisOrOneOf';
+import isRequiredOneOf from '../../prop-types/isRequiredOneOf';
 
 /**
  * The icons list object from `carbon-icons`.
@@ -165,23 +165,22 @@ Icon.propTypes = {
    */
   height: PropTypes.string,
 
-  /**
-   * The icon data.
-   */
-  icon: isRequiredThisOrOneOf(
-    PropTypes.shape({
+  ...isRequiredOneOf({
+    /**
+     * The icon data.
+     */
+    icon: PropTypes.shape({
       width: PropTypes.string,
       height: PropTypes.string,
       viewBox: PropTypes.string.isRequired,
       svgData: PropTypes.object.isRequired,
     }),
-    ['name']
-  ),
 
-  /**
-   * The name in the sprite.
-   */
-  name: isRequiredThisOrOneOf(PropTypes.string, ['icon']),
+    /**
+     * The name in the sprite.
+     */
+    name: PropTypes.string,
+  }),
 
   /**
    * The `role` attribute.
