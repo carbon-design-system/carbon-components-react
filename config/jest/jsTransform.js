@@ -14,12 +14,14 @@ const babelOptions = {
         },
       },
     ],
-    ['@babel/preset-stage-1', { decoratorsLegacy: true }],
     '@babel/preset-react',
   ],
-  // Adding in here otherwise Jest complains about no plugin for class
-  // properties
-  plugins: ['@babel/plugin-proposal-class-properties', 'dev-expression'],
+  plugins: [
+    'dev-expression',
+    '@babel/plugin-proposal-class-properties',
+    '@babel/plugin-proposal-export-namespace-from',
+    '@babel/plugin-proposal-export-default-from',
+  ],
 };
 
 module.exports = createTransformer(babelOptions);
