@@ -2,10 +2,13 @@
 
 import React from 'react';
 import { storiesOf } from '@storybook/react';
+import fetchMock from 'fetch-mock';
 import FileUploaderV2, { FileUploaderButtonV2 } from '../FileUploaderV2';
 import FileUploaderSkeletonV2 from '../FileUploaderV2/FileUploaderV2.Skeleton';
 import Button from '../Button';
 import uid from '../../tools/uniqueId';
+
+fetchMock.post('https://jsonplaceholder.typicode.com/posts/', '200');
 
 class App extends React.Component {
   state = { files: [] };
@@ -71,7 +74,7 @@ class App extends React.Component {
           small
           style={{ marginTop: '1rem' }}
           onClick={this.clearFiles}>
-          Clear File
+          Clear Files
         </Button>
       </div>
     );
