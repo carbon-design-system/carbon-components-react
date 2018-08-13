@@ -8,7 +8,15 @@ import FileUploaderSkeletonV2 from '../FileUploaderV2/FileUploaderV2.Skeleton';
 import Button from '../Button';
 import uid from '../../tools/uniqueId';
 
-fetchMock.post('https://jsonplaceholder.typicode.com/posts/', '200');
+const coinToss = () => Math.round(Math.random());
+fetchMock.mock({
+  method: 'POST',
+  matcher: 'https://jsonplaceholder.typicode.com/posts/',
+  response: () =>
+    new Promise((resolve, reject) =>
+      setTimeout(() => (coinToss() ? resolve('200') : reject(500)), 500)
+    ),
+});
 
 class App extends React.Component {
   state = { files: [] };
@@ -33,6 +41,7 @@ class App extends React.Component {
       const index = files.findIndex(file => file.uuid === uuid);
       this.upload({ file })
         .then(() => {
+          fetchMock.restore();
           files[index].status = 'complete';
           this.setState({ files });
         })
