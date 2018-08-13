@@ -167,7 +167,6 @@ export default function FileUploaderV2(props) {
     ...other
   } = props;
   const handleChange = evt => onChange({ evt, multiple });
-  const handleClick = ({ evt, index }) => onClick({ evt, index });
   const classes = classNames({
     'bx--form-item': true,
     [className]: className,
@@ -196,12 +195,12 @@ export default function FileUploaderV2(props) {
                     status={file.status}
                     onKeyDown={evt => {
                       if (evt.which === 13 || evt.which === 32) {
-                        handleClick({ evt, index });
+                        onClick({ evt, index });
                       }
                     }}
                     onClick={evt => {
                       if (file.status === 'edit') {
-                        handleClick({ evt, index });
+                        onClick({ evt, index });
                       }
                     }}
                   />
