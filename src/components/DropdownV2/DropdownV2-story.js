@@ -7,19 +7,19 @@ import WithState from '../../tools/withState';
 const items = [
   {
     id: 'option-1',
-    text: 'Option 1',
+    label: 'Option 1',
   },
   {
     id: 'option-2',
-    text: 'Option 2',
+    label: 'Option 2',
   },
   {
     id: 'option-3',
-    text: 'Option 3',
+    label: 'Option 3',
   },
   {
     id: 'option-4',
-    text: 'Option 4',
+    label: 'Option 4',
   },
 ];
 
@@ -34,7 +34,7 @@ storiesOf('DropdownV2', module)
         <DropdownV2
           label="Label"
           items={items}
-          itemToString={item => (item ? item.text : '')}
+          itemToString={item => (item ? item.label : '')}
           onChange={action('onChange')}
         />
       </div>
@@ -51,7 +51,7 @@ storiesOf('DropdownV2', module)
           type="inline"
           label="Label"
           items={items}
-          itemToString={item => (item ? item.text : '')}
+          itemToString={item => (item ? item.label : '')}
           onChange={action('onChange')}
         />
       </div>
@@ -67,7 +67,7 @@ storiesOf('DropdownV2', module)
         <DropdownV2
           label="Label"
           items={items}
-          itemToString={item => (item ? item.text : '')}
+          itemToString={item => (item ? item.label : '')}
           onChange={action('onChange')}
           disabled
         />
@@ -85,7 +85,7 @@ storiesOf('DropdownV2', module)
           type="inline"
           label="Label"
           items={items}
-          itemToString={item => (item ? item.text : '')}
+          itemToString={item => (item ? item.label : '')}
           onChange={action('onChange')}
           disabled
         />
@@ -105,7 +105,7 @@ storiesOf('DropdownV2', module)
               type="inline"
               label="Label"
               items={items}
-              itemToString={item => (item ? item.text : '')}
+              itemToString={item => (item ? item.label : '')}
               onChange={({ selectedItem }) =>
                 setTimeout(() => setState({ selectedItem }), 1000)
               }
@@ -127,7 +127,7 @@ storiesOf('DropdownV2', module)
           light
           label="Label"
           items={items}
-          itemToString={item => (item ? item.text : '')}
+          itemToString={item => (item ? item.label : '')}
           onChange={action('onChange')}
         />
       </div>

@@ -5,19 +5,19 @@ import MultiSelect from '../MultiSelect';
 const items = [
   {
     id: 'item-1',
-    text: 'Item 1',
+    label: 'Item 1',
   },
   {
     id: 'item-2',
-    text: 'Item 2',
+    label: 'Item 2',
   },
   {
     id: 'item-3',
-    text: 'Item 3',
+    label: 'Item 3',
   },
   {
     id: 'item-4',
-    text: 'Item 4',
+    label: 'Item 4',
   },
 ];
 
@@ -35,7 +35,7 @@ storiesOf('MultiSelect', module)
         <MultiSelect
           label={defaultLabel}
           items={items}
-          itemToString={item => (item ? item.text : '')}
+          itemToString={item => (item ? item.label : '')}
           onChange={action('onChange')}
         />
       </div>
@@ -52,7 +52,7 @@ storiesOf('MultiSelect', module)
           light
           label={defaultLabel}
           items={items}
-          itemToString={item => (item ? item.text : '')}
+          itemToString={item => (item ? item.label : '')}
           onChange={action('onChange')}
         />
       </div>
@@ -68,7 +68,7 @@ storiesOf('MultiSelect', module)
         type="inline"
         label={defaultLabel}
         items={items}
-        itemToString={item => (item ? item.text : '')}
+        itemToString={item => (item ? item.label : '')}
         onChange={action('onChange')}
       />
     )
@@ -83,7 +83,7 @@ storiesOf('MultiSelect', module)
         <MultiSelect
           label={defaultLabel}
           items={items}
-          itemToString={item => (item ? item.text : '')}
+          itemToString={item => (item ? item.label : '')}
           onChange={action('onChange')}
           disabled
         />
@@ -100,7 +100,7 @@ storiesOf('MultiSelect', module)
         type="inline"
         label={defaultLabel}
         items={items}
-        itemToString={item => (item ? item.text : '')}
+        itemToString={item => (item ? item.label : '')}
         onChange={action('onChange')}
         disabled
       />
@@ -116,7 +116,7 @@ storiesOf('MultiSelect', module)
         <MultiSelect
           label={defaultLabel}
           items={items}
-          itemToString={item => (item ? item.text : '')}
+          itemToString={item => (item ? item.label : '')}
           initialSelectedItems={[items[0], items[1]]}
           onChange={action('onChange - Inline MultiSelect')}
         />
@@ -132,7 +132,7 @@ storiesOf('MultiSelect', module)
       <div style={{ width: 300 }}>
         <MultiSelect.Filterable
           items={items}
-          itemToString={item => (item ? item.text : '')}
+          itemToString={item => (item ? item.label : '')}
           onChange={action('onChange')}
           placeholder={defaultPlaceholder}
         />
@@ -149,7 +149,7 @@ storiesOf('MultiSelect', module)
         <MultiSelect.Filterable
           light
           items={items}
-          itemToString={item => (item ? item.text : '')}
+          itemToString={item => (item ? item.label : '')}
           onChange={action('onChange')}
           placeholder={defaultPlaceholder}
         />
@@ -165,7 +165,7 @@ storiesOf('MultiSelect', module)
       <div style={{ width: 300 }}>
         <MultiSelect.Filterable
           items={items}
-          itemToString={item => (item ? item.text : '')}
+          itemToString={item => (item ? item.label : '')}
           onChange={action('onChange')}
           placeholder={defaultPlaceholder}
           disabled
