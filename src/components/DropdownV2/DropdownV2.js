@@ -130,7 +130,7 @@ export default class DropdownV2 extends React.Component {
               <ListBox.Menu>
                 {items.map((item, index) => (
                   <ListBox.MenuItem
-                    key={itemToString(item)}
+                    key={`dropdown-item-${itemToString(item)}-${index}`}
                     isActive={selectedItem === item}
                     isHighlighted={highlightedIndex === index}
                     {...getItemProps({ item, index })}>
