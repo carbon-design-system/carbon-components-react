@@ -12,7 +12,7 @@ const items = [
   {
     id: 'item-2',
     text: 'Item 2',
-  }
+  },
 ];
 
 const defaultLabel = 'MultiSelect Label';
