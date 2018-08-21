@@ -95,7 +95,7 @@ ListBox.defaultProps = {
   innerRef: () => {},
   disabled: false,
   type: 'default',
-  ariaLabel: 'ListBox',
+  ariaLabel: 'Choose an item',
 };
 
 export default ListBox;
