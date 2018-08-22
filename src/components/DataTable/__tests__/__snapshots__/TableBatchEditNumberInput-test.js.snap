@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`DataTable.TableBatchEditNumberInput should render 1`] = `
+exports[`DataTable.BatchEditableTableNumberInput should render 1`] = `
 <NumberInput
   disabled={false}
   iconDescription="choose a number"

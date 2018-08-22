@@ -6,7 +6,7 @@ import TableHeader from './TableHeader';
 /**
  * `<Table>` supporting batch editing UI.
  */
-const TableBatchEditDeleteHeader = ({ children, className, ...other }) => {
+const BatchEditableTableDeleteHeader = ({ children, className, ...other }) => {
   const classes = classnames(
     'bx--data-table-v2--batch-edit-delete-cell',
     className
@@ -18,7 +18,7 @@ const TableBatchEditDeleteHeader = ({ children, className, ...other }) => {
   );
 };
 
-TableBatchEditDeleteHeader.propTypes = {
+BatchEditableTableDeleteHeader.propTypes = {
   /**
    * The CSS class names.
    */
@@ -30,4 +30,4 @@ TableBatchEditDeleteHeader.propTypes = {
   children: PropTypes.node,
 };
 
-export default TableBatchEditDeleteHeader;
+export default BatchEditableTableDeleteHeader;

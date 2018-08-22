@@ -1,22 +1,22 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import InlineLoading from '../../InlineLoading';
-import { TableBatchEditActions } from '../';
+import { BatchEditableTableActions } from '../';
 
-describe('DataTable.TableBatchEditActions', () => {
+describe('DataTable.BatchEditableTableActions', () => {
   const onSave = jest.fn();
   const onCancel = jest.fn();
 
   it('should render', () => {
     const wrapper = shallow(
-      <TableBatchEditActions onSave={onSave} onCancel={onCancel} />
+      <BatchEditableTableActions onSave={onSave} onCancel={onCancel} />
     );
     expect(wrapper).toMatchSnapshot();
   });
 
   it('should render custom attributes on the top-level node', () => {
     const wrapper = shallow(
-      <TableBatchEditActions
+      <BatchEditableTableActions
         data-foo="Foo"
         onSave={onSave}
         onCancel={onCancel}
@@ -27,7 +27,7 @@ describe('DataTable.TableBatchEditActions', () => {
 
   it('should show the action bar when activated', () => {
     const wrapper = shallow(
-      <TableBatchEditActions
+      <BatchEditableTableActions
         shouldShowBatchActions
         onSave={onSave}
         onCancel={onCancel}
@@ -38,7 +38,7 @@ describe('DataTable.TableBatchEditActions', () => {
 
   it('should show the spinner during saving', () => {
     const wrapper = shallow(
-      <TableBatchEditActions
+      <BatchEditableTableActions
         shouldShowBatchActions
         saving
         onSave={onSave}
@@ -56,7 +56,7 @@ describe('DataTable.TableBatchEditActions', () => {
 
   it('should show the checkmark once saving completes', () => {
     const wrapper = shallow(
-      <TableBatchEditActions
+      <BatchEditableTableActions
         shouldShowBatchActions
         saving
         saved

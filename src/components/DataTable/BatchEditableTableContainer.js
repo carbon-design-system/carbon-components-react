@@ -6,7 +6,7 @@ import TableContainer from './TableContainer';
 /**
  * `<TableContainer>` supporting batch editing UI.
  */
-const TableBatchEditableContainer = ({
+const BatchEditableTableContainer = ({
   children,
   className,
   editing,
@@ -22,7 +22,7 @@ const TableBatchEditableContainer = ({
   );
 };
 
-TableBatchEditableContainer.propTypes = {
+BatchEditableTableContainer.propTypes = {
   /**
    * The CSS class names.
    */
@@ -39,4 +39,4 @@ TableBatchEditableContainer.propTypes = {
   editing: PropTypes.bool,
 };
 
-export default TableBatchEditableContainer;
+export default BatchEditableTableContainer;

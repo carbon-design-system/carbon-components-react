@@ -6,7 +6,7 @@ import Table from './Table';
 /**
  * `<Table>` supporting batch editing UI.
  */
-const TableBatchEditable = ({ children, className, saving, ...other }) => {
+const BatchEditableTable = ({ children, className, saving, ...other }) => {
   const classes = classnames('bx--data-table-v2--batch-editable', className, {
     'bx--data-table-v2--batch-saving': saving,
   });
@@ -17,7 +17,7 @@ const TableBatchEditable = ({ children, className, saving, ...other }) => {
   );
 };
 
-TableBatchEditable.propTypes = {
+BatchEditableTable.propTypes = {
   /**
    * The CSS class names.
    */
@@ -34,4 +34,4 @@ TableBatchEditable.propTypes = {
   saving: PropTypes.bool,
 };
 
-export default TableBatchEditable;
+export default BatchEditableTable;

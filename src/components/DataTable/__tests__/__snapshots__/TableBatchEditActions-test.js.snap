@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`DataTable.TableBatchEditActions should render 1`] = `
+exports[`DataTable.BatchEditableTableActions should render 1`] = `
 <div
   className="bx--batch-actions"
 >

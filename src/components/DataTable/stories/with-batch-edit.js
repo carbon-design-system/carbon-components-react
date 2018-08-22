@@ -9,10 +9,10 @@ import {
   TableToolbar,
   TableToolbarAction,
   TableToolbarContent,
-  TableBatchEditActions,
-  TableBatchEditable,
-  TableBatchEditableContainer,
-  TableBatchEditDeleteHeader,
+  BatchEditableTableActions,
+  BatchEditableTable,
+  BatchEditableTableContainer,
+  BatchEditableTableDeleteHeader,
 } from '../../DataTable';
 import { iconAddOutline, iconEdit } from 'carbon-icons';
 
@@ -124,11 +124,11 @@ export default () => (
         onDeleteRule,
       }) => {
         return (
-          <TableBatchEditableContainer
+          <BatchEditableTableContainer
             title="DataTable with batch actions"
             editing={editing}>
             <TableToolbar>
-              <TableBatchEditActions
+              <BatchEditableTableActions
                 shouldShowBatchActions={editing}
                 shouldDisableSave={shouldDisableSave}
                 saving={saving}
@@ -138,7 +138,7 @@ export default () => (
                 <TableBatchAction icon={iconAddOutline} onClick={onAddRule}>
                   Add rule
                 </TableBatchAction>
-              </TableBatchEditActions>
+              </BatchEditableTableActions>
               <TableToolbarContent>
                 <TableToolbarAction
                   icon={iconEdit}
@@ -147,14 +147,14 @@ export default () => (
                 />
               </TableToolbarContent>
             </TableToolbar>
-            <TableBatchEditable saving={editing && saving}>
+            <BatchEditableTable saving={editing && saving}>
               <TableHead>
                 <TableRow>
                   {headers.map(header => {
                     const Header =
                       header.key !== 'delete'
                         ? TableHeader
-                        : TableBatchEditDeleteHeader;
+                        : BatchEditableTableDeleteHeader;
                     return (
                       <Header
                         {...getHeaderProps({ header })}
@@ -203,8 +203,8 @@ export default () => (
                   </TableRow>
                 ))}
               </TableBody>
-            </TableBatchEditable>
-          </TableBatchEditableContainer>
+            </BatchEditableTable>
+          </BatchEditableTableContainer>
         );
       }}
     />

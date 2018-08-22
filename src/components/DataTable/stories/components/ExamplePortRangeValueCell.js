@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import { TableCell, TableBatchEditNumberInput } from '../..';
+import { TableCell, BatchEditableTableNumberInput } from '../..';
 
 export default ({ id, type, value, invalid, invalidText, onChange }) => {
   if (type !== 'limit') {
@@ -17,7 +17,7 @@ export default ({ id, type, value, invalid, invalidText, onChange }) => {
   return (
     <Fragment>
       <TableCell>
-        <TableBatchEditNumberInput
+        <BatchEditableTableNumberInput
           id={`${id}__value-from__input`}
           data-id={id}
           data-field="port-range-value-from"
@@ -28,7 +28,7 @@ export default ({ id, type, value, invalid, invalidText, onChange }) => {
         />
       </TableCell>
       <TableCell>
-        <TableBatchEditNumberInput
+        <BatchEditableTableNumberInput
           id={`${id}__value-to__input`}
           data-id={id}
           data-field="port-range-value-to"

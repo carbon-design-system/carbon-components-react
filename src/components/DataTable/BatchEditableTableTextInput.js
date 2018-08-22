@@ -1,26 +1,26 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import NumberInput from '../NumberInput';
+import TextInput from '../TextInput';
 import InvalidIcon from './InvalidIcon';
 
 /**
- * `<NumberInput>` for table batch editing.
+ * `<TextInput>` for table batch editing.
  */
-const TableBatchEditNumberInput = ({ invalidText, ...other }) => {
+const BatchEditableTableTextInput = ({ invalidText, ...other }) => {
   return (
-    <NumberInput
+    <TextInput
       {...other}
-      label=""
+      labelText=""
       invalidText={<InvalidIcon>{invalidText}</InvalidIcon>}
     />
   );
 };
 
-TableBatchEditNumberInput.propTypes = {
+BatchEditableTableTextInput.propTypes = {
   /**
    * The form validation error message.
    */
   invalidText: PropTypes.node,
 };
 
-export default TableBatchEditNumberInput;
+export default BatchEditableTableTextInput;

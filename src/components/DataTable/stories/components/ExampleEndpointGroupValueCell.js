@@ -1,5 +1,5 @@
 import React from 'react';
-import { TableCell, TableBatchEditTextInput } from '../..';
+import { TableCell, BatchEditableTableTextInput } from '../..';
 import Select from '../../../Select';
 import SelectItem from '../../../SelectItem';
 
@@ -7,7 +7,7 @@ export default ({ id, type, value, items, invalid, invalidText, onChange }) => {
   if (type === 'ip_address') {
     return (
       <TableCell>
-        <TableBatchEditTextInput
+        <BatchEditableTableTextInput
           id={`${id}__ip_address__input`}
           data-id={id}
           data-field="endpoint-group-value"
@@ -22,7 +22,7 @@ export default ({ id, type, value, items, invalid, invalidText, onChange }) => {
   if (type === 'cidr_block') {
     return (
       <TableCell>
-        <TableBatchEditTextInput
+        <BatchEditableTableTextInput
           id={`${id}__cidr_block__input`}
           data-id={id}
           data-field="endpoint-group-value"

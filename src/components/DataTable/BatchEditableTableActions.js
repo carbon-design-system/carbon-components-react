@@ -19,7 +19,7 @@ const translationKeys = {
 /**
  * Action bar for batch editing in Data Table V2.
  */
-const TableBatchEditActions = ({
+const BatchEditableTableActions = ({
   className,
   children,
   shouldShowBatchActions,
@@ -76,9 +76,9 @@ const TableBatchEditActions = ({
  * The IDs of the translatable strings.
  * @type {string[]}
  */
-TableBatchEditActions.translationKeys = Object.keys(translationKeys);
+BatchEditableTableActions.translationKeys = Object.keys(translationKeys);
 
-TableBatchEditActions.propTypes = {
+BatchEditableTableActions.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
 
@@ -118,8 +118,8 @@ TableBatchEditActions.propTypes = {
   translateWithId: PropTypes.func,
 };
 
-TableBatchEditActions.defaultProps = {
+BatchEditableTableActions.defaultProps = {
   translateWithId: id => translationKeys[id],
 };
 
-export default TableBatchEditActions;
+export default BatchEditableTableActions;
