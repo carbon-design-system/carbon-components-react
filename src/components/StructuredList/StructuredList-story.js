@@ -35,9 +35,9 @@ storiesOf('StructuredList', module)
             <StructuredListCell>Row 1</StructuredListCell>
             <StructuredListCell>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc dui
-              magna, finibus id tortor sed, aliquet bibendum augue. Aenean posuere
-              sem vel euismod dignissim. Nulla ut cursus dolor. Pellentesque
-              vulputate nisl a porttitor interdum.
+              magna, finibus id tortor sed, aliquet bibendum augue. Aenean
+              posuere sem vel euismod dignissim. Nulla ut cursus dolor.
+              Pellentesque vulputate nisl a porttitor interdum.
             </StructuredListCell>
           </StructuredListRow>
           <StructuredListRow>
@@ -45,9 +45,9 @@ storiesOf('StructuredList', module)
             <StructuredListCell>Row 2</StructuredListCell>
             <StructuredListCell>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc dui
-              magna, finibus id tortor sed, aliquet bibendum augue. Aenean posuere
-              sem vel euismod dignissim. Nulla ut cursus dolor. Pellentesque
-              vulputate nisl a porttitor interdum.
+              magna, finibus id tortor sed, aliquet bibendum augue. Aenean
+              posuere sem vel euismod dignissim. Nulla ut cursus dolor.
+              Pellentesque vulputate nisl a porttitor interdum.
             </StructuredListCell>
           </StructuredListRow>
         </StructuredListBody>
@@ -90,9 +90,9 @@ storiesOf('StructuredList', module)
             <StructuredListCell>Row 1</StructuredListCell>
             <StructuredListCell>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc dui
-              magna, finibus id tortor sed, aliquet bibendum augue. Aenean posuere
-              sem vel euismod dignissim. Nulla ut cursus dolor. Pellentesque
-              vulputate nisl a porttitor interdum.
+              magna, finibus id tortor sed, aliquet bibendum augue. Aenean
+              posuere sem vel euismod dignissim. Nulla ut cursus dolor.
+              Pellentesque vulputate nisl a porttitor interdum.
             </StructuredListCell>
           </StructuredListRow>
           <StructuredListRow label htmlFor="row-2">
@@ -113,9 +113,9 @@ storiesOf('StructuredList', module)
             <StructuredListCell>Row 2</StructuredListCell>
             <StructuredListCell>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc dui
-              magna, finibus id tortor sed, aliquet bibendum augue. Aenean posuere
-              sem vel euismod dignissim. Nulla ut cursus dolor. Pellentesque
-              vulputate nisl a porttitor interdum.
+              magna, finibus id tortor sed, aliquet bibendum augue. Aenean
+              posuere sem vel euismod dignissim. Nulla ut cursus dolor.
+              Pellentesque vulputate nisl a porttitor interdum.
             </StructuredListCell>
           </StructuredListRow>
         </StructuredListBody>
