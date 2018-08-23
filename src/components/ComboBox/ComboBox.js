@@ -89,6 +89,7 @@ export default class ComboBox extends React.Component {
      * Currently supports either the default type, or an inline variant
      */
     type: ListBoxPropTypes.ListBoxType,
+
     /**
      * Callback function to notify consumer when the text input changes.
      * This provides support to change available items based on the text.
