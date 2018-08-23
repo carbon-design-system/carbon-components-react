@@ -231,6 +231,30 @@ export class ModalHeader extends Component {
   }
 }
 
+export class ModalBody extends Component {
+  static propTypes = {
+    /**
+     * Specify an optional className to be added to the Modal Body node
+     */
+    className: PropTypes.string,
+  };
+
+  render() {
+    const { className, children, ...other } = this.props;
+
+    const contentClass = classNames({
+      'bx--modal-content': true,
+      [className]: className,
+    });
+
+    return (
+      <div className={contentClass} {...other}>
+        {children}
+      </div>
+    );
+  }
+}
+
 export class ModalFooter extends Component {
   static propTypes = {
     /**

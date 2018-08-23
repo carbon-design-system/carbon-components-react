@@ -23,6 +23,7 @@ export class FileUploaderButton extends Component {
     buttonKind: ButtonTypes.buttonKind,
     accept: PropTypes.arrayOf(PropTypes.string),
   };
+
   static defaultProps = {
     tabIndex: 0,
     disableLabelChanges: false,
@@ -115,17 +116,22 @@ export class FileUploaderButton extends Component {
 
 export class Filename extends Component {
   static propTypes = {
+    /**
+     * Specify an optional object of styles to be applied inline to the root
+     * node
+     */
     style: PropTypes.object,
+
+    /**
+     * Specify the status of the File Upload
+     */
     status: PropTypes.oneOf(['edit', 'complete', 'uploading']),
-    tabIndex: PropTypes.number,
-    onKeyDown: PropTypes.func,
   };
 
   static defaultProps = {
     onKeyDown: () => {},
     status: 'uploading',
     style: {},
-    tabIndex: 0,
   };
 
   render() {
