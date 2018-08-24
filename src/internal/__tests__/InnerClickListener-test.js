@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { Component } from 'react';
 import { mount } from 'enzyme';
 import InnerClickListener from '../InnerClickListener';
 
@@ -11,7 +11,7 @@ describe('InnerClickListener', () => {
   beforeEach(() => {
     onClickOutside = jest.fn();
     handleRefSpy = jest.spyOn(InnerClickListener.prototype, 'handleRef');
-    InnerChild = class InnerChild extends React.Component {
+    InnerChild = class InnerChild extends Component {
       static propTypes = {
         innerRef: PropTypes.func.isRequired,
       };

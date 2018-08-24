@@ -1,7 +1,7 @@
-import React from 'react';
+import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
-export default class WithState extends React.PureComponent {
+export default class WithState extends PureComponent {
   static propTypes = {
     initialState: PropTypes.object,
   };

@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React, { PureComponent } from 'react';
+import React, { PureComponent, Children, cloneElement } from 'react';
 import classNames from 'classnames';
 import warning from 'warning';
 import { iconCaretDown } from 'carbon-icons';
@@ -76,7 +76,7 @@ export default class Dropdown extends PureComponent {
     const { children, selectedText, value, defaultText, open } = props;
 
     let matchingChild;
-    React.Children.forEach(children, child => {
+    Children.forEach(children, child => {
       if (
         child &&
         (child.props.itemText === selectedText || child.props.value === value)
@@ -143,10 +143,10 @@ export default class Dropdown extends PureComponent {
       ...other
     } = this.props;
 
-    const children = React.Children.toArray(this.props.children)
+    const children = Children.toArray(this.props.children)
       .filter(Boolean)
       .map(child =>
-        React.cloneElement(child, {
+        cloneElement(child, {
           onClick: (...args) => {
             child.props.onClick && child.props.onClick(...args);
             this.handleItemClick(...args);

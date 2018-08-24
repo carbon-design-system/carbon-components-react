@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { Component } from 'react';
 
-export default class InlineCheckbox extends React.Component {
+export default class InlineCheckbox extends Component {
   static propTypes = {
     /**
      * Specify the label for the control

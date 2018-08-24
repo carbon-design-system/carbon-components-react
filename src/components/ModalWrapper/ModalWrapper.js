@@ -1,10 +1,10 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { Component } from 'react';
 import Modal from '../Modal';
 import Button from '../Button';
 import { ButtonTypes } from '../../prop-types/types';
 
-export default class ModalWrapper extends React.Component {
+export default class ModalWrapper extends Component {
   static propTypes = {
     status: PropTypes.string,
     handleOpen: PropTypes.func,

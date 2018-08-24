@@ -1,7 +1,7 @@
 import warning from 'warning';
 import PropTypes from 'prop-types';
-import React, { createRef } from 'react';
-import ReactDOM from 'react-dom';
+import { Component, cloneElement, createRef } from 'react';
+import { createPortal } from 'react-dom';
 import window from 'window-or-global';
 
 /**
@@ -108,7 +108,7 @@ const getFloatingPosition = ({
  * A menu that is detached from the triggering element.
  * Useful when the container of the triggering element cannot have `overflow:visible` style, etc.
  */
-class FloatingMenu extends React.Component {
+class FloatingMenu extends Component {
   static propTypes = {
     /**
      * Contents to put into the floating menu.
@@ -306,7 +306,7 @@ class FloatingMenu extends React.Component {
           visibility: 'hidden',
           top: '0px',
         };
-    return React.cloneElement(children, {
+    return cloneElement(children, {
       ref: this._menuBody,
       style: {
         ...styles,
@@ -321,7 +321,7 @@ class FloatingMenu extends React.Component {
   render() {
     if (typeof document !== 'undefined') {
       const { target } = this.props;
-      return ReactDOM.createPortal(
+      return createPortal(
         this._getChildrenWithProps(),
         !target ? document.body : target()
       );

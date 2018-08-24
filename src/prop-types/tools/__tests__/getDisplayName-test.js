@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component, createElement } from 'react';
 import getDisplayName from '../getDisplayName';
 
 describe('getDisplayName', () => {
@@ -9,18 +9,16 @@ describe('getDisplayName', () => {
 
   it('should get the name from a Stateless Functional Component', () => {
     const Child = () => <div />;
-    expect(getDisplayName(React.createElement(Child).type)).toBe('Child');
+    expect(getDisplayName(createElement(Child).type)).toBe('Child');
   });
 
   it('should get the displayName from a class Component', () => {
-    class Child extends React.Component {
+    class Child extends Component {
       static displayName = 'ChildDisplayName';
       render() {
         return null;
       }
     }
-    expect(getDisplayName(React.createElement(Child).type)).toBe(
-      Child.displayName
-    );
+    expect(getDisplayName(createElement(Child).type)).toBe(Child.displayName);
   });
 });

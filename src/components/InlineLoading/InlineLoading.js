@@ -1,9 +1,9 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { Component } from 'react';
 import classNames from 'classnames';
 import Loading from '../Loading';
 
-export default class InlineLoading extends React.Component {
+export default class InlineLoading extends Component {
   static propTypes = {
     /**
      * Specify a custom className to be applied to the container node

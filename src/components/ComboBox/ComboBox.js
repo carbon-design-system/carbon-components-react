@@ -1,7 +1,7 @@
 import cx from 'classnames';
 import Downshift from 'downshift';
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { Component } from 'react';
 import ListBox, { PropTypes as ListBoxPropTypes } from '../ListBox';
 
 const defaultItemToString = item => {
@@ -26,7 +26,7 @@ const getInputValue = (props, state) => {
   return state.inputValue || '';
 };
 
-export default class ComboBox extends React.Component {
+export default class ComboBox extends Component {
   static propTypes = {
     /**
      * An optional className to add to the container node

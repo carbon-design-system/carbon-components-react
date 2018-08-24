@@ -1,11 +1,11 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import { Component, cloneElement } from 'react';
 
 /**
  * Generic component used for reacting to a click event happening outside of a
  * given `children` element.
  */
-export default class ClickListener extends React.Component {
+export default class ClickListener extends Component {
   static propTypes = {
     children: PropTypes.element.isRequired,
     onClickOutside: PropTypes.func.isRequired,
@@ -55,7 +55,7 @@ export default class ClickListener extends React.Component {
   }
 
   render() {
-    return React.cloneElement(this.props.children, {
+    return cloneElement(this.props.children, {
       ref: this.handleRef,
     });
   }

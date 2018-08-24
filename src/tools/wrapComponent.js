@@ -1,11 +1,11 @@
-import React from 'react';
+import { createElement } from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 
 const wrapComponent = ({ name, className, type }) => {
   const Component = props => {
     const componentClass = cx(className, props.className);
-    return React.createElement(type, {
+    return createElement(type, {
       ...props,
       // Prevent Weird quirk where `cx` will evaluate to an empty string, '',
       // and so we have empty `class` attributes in the resulting markup

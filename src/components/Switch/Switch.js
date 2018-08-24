@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { cloneElement } from 'react';
 import classNames from 'classnames';
 
 const Switch = props => {
@@ -41,7 +41,7 @@ const Switch = props => {
   };
 
   const btnIcon = icon
-    ? React.cloneElement(icon, {
+    ? cloneElement(icon, {
         className: classNames(
           icon.props.className,
           ' bx--content-switcher__icon'

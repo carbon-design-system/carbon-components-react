@@ -1,12 +1,12 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import { Component, cloneElement } from 'react';
 
 /**
  * Generic component used for reacting to a click event happening outside of a
  * given child component that used the forwarded `handleRef` function through
  * the `refKey` prop.
  */
-export default class InnerClickListener extends React.Component {
+export default class InnerClickListener extends Component {
   static propTypes = {
     children: PropTypes.node.isRequired,
     refKey: PropTypes.string.isRequired,
@@ -44,7 +44,7 @@ export default class InnerClickListener extends React.Component {
 
   render() {
     const { refKey, children } = this.props;
-    return React.cloneElement(children, {
+    return cloneElement(children, {
       [refKey]: this.handleRef,
     });
   }

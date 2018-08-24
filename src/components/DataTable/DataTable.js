@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import { Component } from 'react';
 import isEqual from 'lodash.isequal';
 import getDerivedStateFromProps from './state/getDerivedStateFromProps';
 import { getNextSortState } from './state/sorting';
@@ -41,7 +41,7 @@ const translateWithId = id => defaultTranslations[id];
  * and updating the state of the single entity will cascade updates to the
  * consumer.
  */
-export default class DataTable extends React.Component {
+export default class DataTable extends Component {
   static propTypes = {
     /**
      * The `rows` prop is where you provide us with a list of all the rows that

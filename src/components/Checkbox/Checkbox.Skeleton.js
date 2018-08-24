@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-export default class CheckboxSkeleton extends React.Component {
+export default class CheckboxSkeleton extends Component {
   render() {
     const { id } = this.props;
     return (

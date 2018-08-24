@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { Component } from 'react';
 import SkeletonText from '../SkeletonText';
 
-export default class PaginationSkeleton extends React.Component {
+export default class PaginationSkeleton extends Component {
   render() {
     return (
       <div className="bx--pagination bx--skeleton">

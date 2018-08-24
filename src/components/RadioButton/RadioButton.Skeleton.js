@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-export default class RadioButtonSkeleton extends React.Component {
+export default class RadioButtonSkeleton extends Component {
   render() {
     const { id } = this.props;
     return (

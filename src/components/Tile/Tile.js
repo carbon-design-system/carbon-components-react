@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
+import React, { Component, Children, cloneElement } from 'react';
+import { findDOMNode } from 'react-dom';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { iconCheckmarkSolid, iconChevronDown } from 'carbon-icons';
@@ -324,7 +324,7 @@ export class ExpandableTile extends Component {
 
   componentDidMount = () => {
     if (this.refs[0]) {
-      this.aboveTheFold = ReactDOM.findDOMNode(this.refs[0]); // eslint-disable-line
+      this.aboveTheFold = findDOMNode(this.refs[0]); // eslint-disable-line
     }
     const getStyle = window.getComputedStyle(this.tile, null);
     this.setState({
@@ -360,7 +360,7 @@ export class ExpandableTile extends Component {
   };
 
   getChildren = () => {
-    return React.Children.map(this.props.children, child => child);
+    return Children.map(this.props.children, child => child);
   };
 
   render() {
@@ -389,7 +389,7 @@ export class ExpandableTile extends Component {
       maxHeight: this.state.tileMaxHeight + this.state.tilePadding,
     };
     const content = this.getChildren().map((child, index) => {
-      return React.cloneElement(child, { ref: index });
+      return cloneElement(child, { ref: index });
     });
     return (
       // eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions

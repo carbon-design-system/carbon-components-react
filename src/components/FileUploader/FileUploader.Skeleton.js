@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { Component } from 'react';
 import SkeletonText from '../SkeletonText';
 import ButtonSkeleton from '../Button/Button.Skeleton';
 
-export default class FileUploaderSkeleton extends React.Component {
+export default class FileUploaderSkeleton extends Component {
   render() {
     return (
       <div className="bx--form-item">

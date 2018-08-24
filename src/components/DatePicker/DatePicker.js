@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React, { Component } from 'react';
+import React, { Component, Children, cloneElement } from 'react';
 import classNames from 'classnames';
 import flatpickr from 'flatpickr';
 import l10n from 'flatpickr/dist/l10n/index';
@@ -438,25 +438,25 @@ export default class DatePicker extends Component {
         ''
       );
 
-    const childArray = React.Children.toArray(children);
+    const childArray = Children.toArray(children);
     const childrenWithProps = childArray.map((child, index) => {
       if (index === 0 && child.type === DatePickerInput) {
-        return React.cloneElement(child, {
+        return cloneElement(child, {
           datePickerType,
           ref: this.assignInputFieldRef,
           openCalendar: this.openCalendar,
         });
       } else if (index === 1 && child.type === DatePickerInput) {
-        return React.cloneElement(child, {
+        return cloneElement(child, {
           datePickerType,
           ref: this.assignToInputFieldRef,
         });
       } else if (index === 0) {
-        return React.cloneElement(child, {
+        return cloneElement(child, {
           ref: this.assignInputFieldRef,
         });
       } else if (index === 1) {
-        return React.cloneElement(child, {
+        return cloneElement(child, {
           ref: this.assignToInputFieldRef,
         });
       }

@@ -1,7 +1,7 @@
 import cx from 'classnames';
 import Downshift from 'downshift';
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { Component } from 'react';
 import ListBox, { PropTypes as ListBoxPropTypes } from '../ListBox';
 
 const defaultItemToString = item => {
@@ -12,7 +12,7 @@ const defaultItemToString = item => {
   return item ? item.label : '';
 };
 
-export default class DropdownV2 extends React.Component {
+export default class DropdownV2 extends Component {
   static propTypes = {
     /**
      * Disable the control
