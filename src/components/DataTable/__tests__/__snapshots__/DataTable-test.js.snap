@@ -135,22 +135,22 @@ exports[`DataTable selection should have select-all default to un-checked if no 
                           icon={
                             Object {
                               "height": "5",
-                              "id": "icon--caret--down",
-                              "name": "icon--caret--down",
+                              "id": "icon--caret--up",
+                              "name": "icon--caret--up",
                               "styles": "",
                               "svgData": Object {
                                 "circles": "",
                                 "ellipses": "",
                                 "paths": Array [
                                   Object {
-                                    "d": "M0 0l5 4.998L10 0z",
+                                    "d": "M0 5L5 .002 10 5z",
                                   },
                                 ],
                                 "polygons": "",
                                 "polylines": "",
                                 "rects": "",
                               },
-                              "tags": "icon--caret--down",
+                              "tags": "icon--caret--up",
                               "viewBox": "0 0 10 5",
                               "width": "10",
                             }
@@ -207,22 +207,22 @@ exports[`DataTable selection should have select-all default to un-checked if no 
                           icon={
                             Object {
                               "height": "5",
-                              "id": "icon--caret--down",
-                              "name": "icon--caret--down",
+                              "id": "icon--caret--up",
+                              "name": "icon--caret--up",
                               "styles": "",
                               "svgData": Object {
                                 "circles": "",
                                 "ellipses": "",
                                 "paths": Array [
                                   Object {
-                                    "d": "M0 0l5 4.998L10 0z",
+                                    "d": "M0 5L5 .002 10 5z",
                                   },
                                 ],
                                 "polygons": "",
                                 "polylines": "",
                                 "rects": "",
                               },
-                              "tags": "icon--caret--down",
+                              "tags": "icon--caret--up",
                               "viewBox": "0 0 10 5",
                               "width": "10",
                             }
@@ -506,22 +506,22 @@ exports[`DataTable selection should render 1`] = `
                           icon={
                             Object {
                               "height": "5",
-                              "id": "icon--caret--down",
-                              "name": "icon--caret--down",
+                              "id": "icon--caret--up",
+                              "name": "icon--caret--up",
                               "styles": "",
                               "svgData": Object {
                                 "circles": "",
                                 "ellipses": "",
                                 "paths": Array [
                                   Object {
-                                    "d": "M0 0l5 4.998L10 0z",
+                                    "d": "M0 5L5 .002 10 5z",
                                   },
                                 ],
                                 "polygons": "",
                                 "polylines": "",
                                 "rects": "",
                               },
-                              "tags": "icon--caret--down",
+                              "tags": "icon--caret--up",
                               "viewBox": "0 0 10 5",
                               "width": "10",
                             }
@@ -578,22 +578,22 @@ exports[`DataTable selection should render 1`] = `
                           icon={
                             Object {
                               "height": "5",
-                              "id": "icon--caret--down",
-                              "name": "icon--caret--down",
+                              "id": "icon--caret--up",
+                              "name": "icon--caret--up",
                               "styles": "",
                               "svgData": Object {
                                 "circles": "",
                                 "ellipses": "",
                                 "paths": Array [
                                   Object {
-                                    "d": "M0 0l5 4.998L10 0z",
+                                    "d": "M0 5L5 .002 10 5z",
                                   },
                                 ],
                                 "polygons": "",
                                 "polylines": "",
                                 "rects": "",
                               },
-                              "tags": "icon--caret--down",
+                              "tags": "icon--caret--up",
                               "viewBox": "0 0 10 5",
                               "width": "10",
                             }
@@ -1421,22 +1421,22 @@ exports[`DataTable should render 1`] = `
                           icon={
                             Object {
                               "height": "5",
-                              "id": "icon--caret--down",
-                              "name": "icon--caret--down",
+                              "id": "icon--caret--up",
+                              "name": "icon--caret--up",
                               "styles": "",
                               "svgData": Object {
                                 "circles": "",
                                 "ellipses": "",
                                 "paths": Array [
                                   Object {
-                                    "d": "M0 0l5 4.998L10 0z",
+                                    "d": "M0 5L5 .002 10 5z",
                                   },
                                 ],
                                 "polygons": "",
                                 "polylines": "",
                                 "rects": "",
                               },
-                              "tags": "icon--caret--down",
+                              "tags": "icon--caret--up",
                               "viewBox": "0 0 10 5",
                               "width": "10",
                             }
@@ -1493,22 +1493,22 @@ exports[`DataTable should render 1`] = `
                           icon={
                             Object {
                               "height": "5",
-                              "id": "icon--caret--down",
-                              "name": "icon--caret--down",
+                              "id": "icon--caret--up",
+                              "name": "icon--caret--up",
                               "styles": "",
                               "svgData": Object {
                                 "circles": "",
                                 "ellipses": "",
                                 "paths": Array [
                                   Object {
-                                    "d": "M0 0l5 4.998L10 0z",
+                                    "d": "M0 5L5 .002 10 5z",
                                   },
                                 ],
                                 "polygons": "",
                                 "polylines": "",
                                 "rects": "",
                               },
-                              "tags": "icon--caret--down",
+                              "tags": "icon--caret--up",
                               "viewBox": "0 0 10 5",
                               "width": "10",
                             }
