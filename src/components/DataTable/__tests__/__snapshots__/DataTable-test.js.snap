@@ -171,7 +171,7 @@ exports[`DataTable selection should have select-all default to un-checked if no 
                               Sort rows by this header in descending order
                             </title>
                             <path
-                              d="M0 0l5 4.998L10 0z"
+                              d="M0 5L5 .002 10 5z"
                               key="key0"
                             />
                           </svg>
@@ -243,7 +243,7 @@ exports[`DataTable selection should have select-all default to un-checked if no 
                               Sort rows by this header in descending order
                             </title>
                             <path
-                              d="M0 0l5 4.998L10 0z"
+                              d="M0 5L5 .002 10 5z"
                               key="key0"
                             />
                           </svg>
@@ -542,7 +542,7 @@ exports[`DataTable selection should render 1`] = `
                               Sort rows by this header in descending order
                             </title>
                             <path
-                              d="M0 0l5 4.998L10 0z"
+                              d="M0 5L5 .002 10 5z"
                               key="key0"
                             />
                           </svg>
