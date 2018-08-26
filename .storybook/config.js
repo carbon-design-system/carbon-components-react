@@ -1,8 +1,15 @@
 import React from 'react';
 import { configure, setAddon, addDecorator } from '@storybook/react';
 import infoAddon, { setDefaults } from '@storybook/addon-info';
+import { setOptions } from '@storybook/addon-options';
 import { checkA11y } from 'storybook-addon-a11y';
 import Container from './Container';
+import { version } from '../package.json';
+
+setOptions({
+  name: `carbon components react v${version}`,
+  url: 'https://github.com/IBM/carbon-components-react',
+});
 
 // addon-info defaults
 setDefaults({
