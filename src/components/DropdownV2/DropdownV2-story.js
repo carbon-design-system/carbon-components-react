@@ -91,4 +91,35 @@ storiesOf('DropdownV2', module)
         <DropdownSkeleton inline />
       </div>
     ))
+  )
+  .add(
+    'custom dropdown',
+    withInfo({
+      text: `
+        Rendering node within dropdown options.
+      `,
+    })(() => (
+      <div style={{ width: 300 }}>
+        <DropdownV2
+          {...props()}
+          items={items}
+          itemToString={item => (item ? item.text : '')}
+          itemToNode={item => (
+            <div>
+              {item.text}
+              <span
+                style={{
+                  padding: '0.2rem 1rem',
+                  margin: '0 1rem',
+                  backgroundColor: '#b7cef4',
+                  borderRadius: '10px',
+                }}>
+                {item.id}
+              </span>
+            </div>
+          )}
+          onChange={action('onChange')}
+        />
+      </div>
+    ))
   );

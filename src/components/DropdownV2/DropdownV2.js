@@ -36,6 +36,12 @@ export default class DropdownV2 extends React.Component {
 
     /**
      * Helper function passed to downshift that allows the library to render a
+     * given item to a DOM node. If not provided, the itemToString function is rendered.
+     */
+    itemToNode: PropTypes.func,
+
+    /**
+     * Helper function passed to downshift that allows the library to render a
      * given item to a string label. By default, it extracts the `label` field
      * from a given item to serve as the item label in the list.
      */
@@ -94,6 +100,7 @@ export default class DropdownV2 extends React.Component {
       selectedItem,
       light,
       id,
+      itemToNode,
     } = this.props;
     const className = cx('bx--dropdown', containerClassName, {
       'bx--dropdown--light': light,
@@ -134,7 +141,7 @@ export default class DropdownV2 extends React.Component {
                     isActive={selectedItem === item}
                     isHighlighted={highlightedIndex === index}
                     {...getItemProps({ item, index })}>
-                    {itemToString(item)}
+                    {itemToNode ? itemToNode(item) : itemToString(item)}
                   </ListBox.MenuItem>
                 ))}
               </ListBox.Menu>

@@ -66,6 +66,23 @@ describe('DropdownV2', () => {
     });
   });
 
+  it('renders node when itemToNode is passed', () => {
+    const wrapper = mount(
+      <DropdownV2
+        {...mockProps}
+        initialSelectedItem={mockProps.items[0]}
+        itemToNode={item => (
+          <div className="itemNode">
+            {item.text}
+            <span>{item.id}</span>
+          </div>
+        )}
+      />
+    );
+    openMenu(wrapper);
+    expect(wrapper.find('.itemNode')).toHaveLength(5);
+  });
+
   describe('should display initially selected item found in `initialSelectedItem`', () => {
     it('using an object type for the `initialSelectedItem` prop', () => {
       const wrapper = mount(
