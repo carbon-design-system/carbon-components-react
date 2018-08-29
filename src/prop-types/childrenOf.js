@@ -1,7 +1,8 @@
 import { Children } from 'react';
-import { areComponentsEqual } from 'react-hot-loader/patch';
+import invariant from 'invariant';
 import createChainableTypeChecker from './tools/createChainableTypeChecker';
 import getDisplayName from './tools/getDisplayName';
+import areComponentsEqual from './tools/areComponentsEqual';
 
 /**
  * `childrenOf` is used for asserting that the children of a given React
@@ -28,13 +29,12 @@ const childrenOf = expectedChildTypes => {
             ? c === childDisplayName
             : c.name === childDisplayName
       );
-      if (!areComponentsEqual(child.type, expectedChildType)) {
-        throw new Error(
-          `Invalid prop \`children\` of type \`${childDisplayName}\` ` +
-            `supplied to \`${componentName}\`, expected each child to be one ` +
-            `of: \`[${expectedDisplayNames}]\`.`
-        );
-      }
+      invariant(
+        areComponentsEqual(child.type, expectedChildType),
+        `Invalid prop \`children\` of type \`${childDisplayName}\` ` +
+          `supplied to \`${componentName}\`, expected each child to be one ` +
+          `of: \`[${expectedDisplayNames}]\`.`
+      );
     });
   };
 

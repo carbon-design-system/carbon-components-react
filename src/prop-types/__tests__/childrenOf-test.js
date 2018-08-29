@@ -1,5 +1,5 @@
 import React from 'react';
-import reactHotLoader from 'react-hot-loader/patch';
+import { createProxy } from 'react-proxy';
 import childrenOf from '../childrenOf';
 
 const StatelessComponent = () => <div />;
@@ -21,17 +21,14 @@ describe('childrenOf', () => {
     // on the number of times this is called to make sure we aren't swallowing
     // any errors unexpectedly.
     spy = jest.spyOn(console, 'error').mockImplementation(() => {});
-    reactHotLoader.disableProxyCreation = true;
   });
 
   afterEach(() => {
     spy.mockRestore();
-    reactHotLoader.reset();
   });
 
   it('should Validate RHL proxied children of given a enum of types', () => {
-    reactHotLoader.disableProxyCreation = false;
-    const ProxiedChildrenEnumValid = ({ children }) => <div>{children}</div>;
+    const ProxiedChildrenEnumValid = ({ children }) => createProxy(children);
     ProxiedChildrenEnumValid.propTypes = {
       children: childrenOf([StatelessComponent, ClassComponent]),
     };
@@ -67,8 +64,8 @@ describe('childrenOf', () => {
     expect(spy).toHaveBeenCalledTimes(1);
     expect(spy).toHaveBeenCalledWith(
       expect.stringContaining(
-        'Invalid prop `children` of type `div` supplied to ' +
-          '`ChildEnumInvalid`, expected each child to be one of: ' +
+        'Warning: Failed prop type: Invalid prop `children` of type `div` ' +
+          'supplied to `ChildEnumInvalid`, expected each child to be one of: ' +
           '`[StatelessComponent, ClassComponent]`.'
       )
     );

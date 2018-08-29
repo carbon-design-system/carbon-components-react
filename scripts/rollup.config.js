@@ -75,7 +75,6 @@ module.exports = {
           'PropTypes',
           'createElement',
         ],
-        'node_modules/react-hot-loader/patch.js': ['areComponentsEqual'],
         'node_modules/react-dom/index.js': ['render'],
       },
     }),
