@@ -24,10 +24,6 @@ export class Tile extends Component {
 }
 
 export class ClickableTile extends Component {
-  state = {
-    clicked: this.props.clicked,
-  };
-
   static propTypes = {
     children: PropTypes.node,
     className: PropTypes.string,
@@ -66,10 +62,14 @@ export class ClickableTile extends Component {
     }
   };
 
-  UNSAFE_componentWillReceiveProps({ clicked }) {
-    if (clicked !== this.props.clicked) {
-      this.setState({ clicked });
-    }
+  static getDerivedStateFromProps({ clicked }, state) {
+    const { prevClicked } = state || {};
+    return state && prevClicked === clicked
+      ? null
+      : {
+          clicked,
+          prevClicked: clicked,
+        };
   }
 
   render() {
@@ -111,18 +111,51 @@ export class SelectableTile extends Component {
   };
 
   static propTypes = {
+    /**
+     * The child nodes.
+     */
     children: PropTypes.node,
+
+    /**
+     * The CSS class names.
+     */
     className: PropTypes.string,
+
+    /**
+     * `true` to select this tile.
+     */
     selected: PropTypes.bool,
+
+    /**
+     * The ID of the `<input>`.
+     */
     id: PropTypes.string,
+
+    /**
+     * The value of the `<input>`.
+     */
     value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+
+    /**
+     * The `name` of the `<input>`.
+     */
     name: PropTypes.string,
+
+    /**
+     * The `title` of the `<input>`.
+     */
     title: PropTypes.string,
+
+    /**
+     * The description of the checkmark icon.
+     */
+    iconDescription: PropTypes.string,
   };
 
   static defaultProps = {
     value: 'value',
     title: 'title',
+    iconDescription: 'Tile checkmark',
     selected: false,
     handleClick: () => {},
     handleKeyDown: () => {},
@@ -161,10 +194,14 @@ export class SelectableTile extends Component {
     }
   };
 
-  UNSAFE_componentWillReceiveProps({ selected }) {
-    if (selected !== this.props.selected) {
-      this.setState({ selected });
-    }
+  static getDerivedStateFromProps({ selected }, state) {
+    const { prevSelected } = state || {};
+    return state && prevSelected === selected
+      ? null
+      : {
+          selected,
+          prevSelected: selected,
+        };
   }
 
   render() {
@@ -175,6 +212,7 @@ export class SelectableTile extends Component {
       value,
       name,
       title,
+      iconDescription,
       className,
       handleClick, // eslint-disable-line
       handleKeyDown, // eslint-disable-line
@@ -206,7 +244,7 @@ export class SelectableTile extends Component {
           checked={this.state.selected}
         />
         <div className="bx--tile__checkmark">
-          <Icon icon={iconCheckmarkSolid} description="Tile checkmark" />
+          <Icon icon={iconCheckmarkSolid} description={iconDescription} />
         </div>
         <div className="bx--tile-content">{children}</div>
       </label>
@@ -215,12 +253,6 @@ export class SelectableTile extends Component {
 }
 
 export class ExpandableTile extends Component {
-  state = {
-    expanded: this.props.expanded,
-    tileMaxHeight: this.props.tileMaxHeight,
-    tilePadding: this.props.tilePadding,
-  };
-
   static propTypes = {
     children: PropTypes.node,
     className: PropTypes.string,
@@ -239,16 +271,37 @@ export class ExpandableTile extends Component {
     tileExpandedIconText: 'Collapse',
   };
 
-  UNSAFE_componentWillReceiveProps({ expanded, tileMaxHeight, tilePadding }) {
-    if (expanded !== this.props.expanded) {
-      this.setState({ expanded });
-    }
-    if (tileMaxHeight !== this.props.tileMaxHeight) {
-      this.setState({ tileMaxHeight });
-    }
-    if (tilePadding !== this.props.tilePadding) {
-      this.setState({ tilePadding });
-    }
+  static getDerivedStateFromProps(
+    { expanded, tileMaxHeight, tilePadding },
+    state
+  ) {
+    const {
+      prevExpanded,
+      prevTileMaxHeight,
+      prevTilePadding,
+      expanded: currentExpanded,
+      tileMaxHeight: currentTileMaxHeight,
+      tilePadding: currentTilePadding,
+    } =
+      state || {};
+    const expandedChanged = prevExpanded !== expanded;
+    const tileMaxHeightChanged = prevTileMaxHeight !== tileMaxHeight;
+    const tilePaddingChanged = prevTilePadding !== tilePadding;
+    return state &&
+      !expandedChanged &&
+      !tileMaxHeightChanged &&
+      !tilePaddingChanged
+      ? null
+      : {
+          expanded: !expandedChanged ? currentExpanded : expanded,
+          tileMaxHeight: !tileMaxHeightChanged
+            ? currentTileMaxHeight
+            : tileMaxHeight,
+          tilePadding: !tilePaddingChanged ? currentTilePadding : tilePadding,
+          prevExpanded: expanded,
+          prevTileMaxHeight: tileMaxHeight,
+          prevTilePadding: tilePadding,
+        };
   }
 
   componentDidMount = () => {

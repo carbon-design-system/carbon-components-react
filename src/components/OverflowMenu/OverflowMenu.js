@@ -271,14 +271,6 @@ export default class OverflowMenu extends Component {
    */
   _hFocusIn = null;
 
-  state = {
-    /**
-     * The open/closed state.
-     * @type {boolean}
-     */
-    open: this.props.open,
-  };
-
   shouldComponentUpdate(nextProps, nextState) {
     if (nextState.open && !this.state.open) {
       requestAnimationFrame(() => {
@@ -315,10 +307,14 @@ export default class OverflowMenu extends Component {
     }
   }
 
-  UNSAFE_componentWillReceiveProps(nextProps) {
-    if (nextProps.open !== this.props.open) {
-      this.setState({ open: nextProps.open });
-    }
+  static getDerivedStateFromProps({ open }, state) {
+    const { prevOpen } = state || {};
+    return state && prevOpen === open
+      ? null
+      : {
+          open,
+          prevOpen: open,
+        };
   }
 
   componentWillUnmount() {
@@ -366,13 +362,23 @@ export default class OverflowMenu extends Component {
   };
 
   closeMenu = () => {
+    let wasOpen = this.state.open;
     this.setState({ open: false }, () => {
+      if (wasOpen) {
+        this.focusMenuEl();
+      }
       this.props.onClose();
     });
   };
 
   bindMenuEl = menuEl => {
     this.menuEl = menuEl;
+  };
+
+  focusMenuEl = () => {
+    if (this.menuEl) {
+      this.menuEl.focus();
+    }
   };
 
   /**
@@ -413,10 +419,6 @@ export default class OverflowMenu extends Component {
             !matches(target, '.bx--overflow-menu,.bx--overflow-menu-options')
           ) {
             this.closeMenu();
-            // Note:
-            // The last focusable element in the page should NOT be the trigger button of overflow menu.
-            // Doing so breaks the code that detects if floating menu losing focus, e.g. by keyboard events.
-            this.menuEl.focus();
           }
         },
         !hasFocusin
@@ -543,7 +545,6 @@ export default class OverflowMenu extends Component {
               {...iconProps}
               icon={!icon && !iconName ? iconOverflowMenu : icon}
               name={iconName}
-              style={{ width: '100%' }}
             />
           )}
           {open && wrappedMenuBody}

@@ -19,6 +19,16 @@ class SearchLayoutButton extends Component {
     labelText: PropTypes.string,
 
     /**
+     * The description for the "list" icon.
+     */
+    iconDescriptionList: PropTypes.string,
+
+    /**
+     * The description for the "grid" icon.
+     */
+    iconDescriptionGrid: PropTypes.string,
+
+    /**
      * The callback called when layout switches.
      */
     onChangeFormat: PropTypes.func,
@@ -26,21 +36,18 @@ class SearchLayoutButton extends Component {
 
   static defaultProps = {
     labelText: 'Filter',
+    iconDescriptionList: 'list',
+    iconDescriptionGrid: 'grid',
   };
 
-  state = {
-    /**
-     * The current layout.
-     * @type {string}
-     */
-    format: this.props.format || 'list',
-  };
-
-  UNSAFE_componentWillReceiveProps({ format }) {
-    const { format: prevFormat } = this.props;
-    if (prevFormat !== format) {
-      this.setState({ format: format || 'list' });
-    }
+  static getDerivedStateFromProps({ format }, state) {
+    const { prevFormat } = state || {};
+    return state && prevFormat === format
+      ? null
+      : {
+          format: format || 'list',
+          prevFormat: format,
+        };
   }
 
   /**
@@ -57,7 +64,7 @@ class SearchLayoutButton extends Component {
   };
 
   render() {
-    const { labelText } = this.props;
+    const { labelText, iconDescriptionList, iconDescriptionGrid } = this.props;
     return (
       <button
         className="bx--search-button"
@@ -68,7 +75,7 @@ class SearchLayoutButton extends Component {
           <div className="bx--search__toggle-layout__container">
             <Icon
               icon={iconList}
-              description="list"
+              description={iconDescriptionList}
               className="bx--search-view"
             />
           </div>
@@ -76,7 +83,7 @@ class SearchLayoutButton extends Component {
           <div className="bx--search__toggle-layout__container">
             <Icon
               icon={iconGrid}
-              description="toggle-layout"
+              description={iconDescriptionGrid}
               className="bx--search-view"
             />
           </div>

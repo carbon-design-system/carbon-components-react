@@ -33,11 +33,16 @@ export default class Tabs extends React.Component {
 
   state = {
     dropdownHidden: true,
-    selected: this.props.selected,
   };
 
-  UNSAFE_componentWillReceiveProps({ selected }) {
-    this.selectTabAt(selected);
+  static getDerivedStateFromProps({ selected }, state) {
+    const { prevSelected } = state;
+    return prevSelected === selected
+      ? null
+      : {
+          selected,
+          prevSelected: selected,
+        };
   }
 
   getTabs() {
@@ -168,7 +173,7 @@ export default class Tabs extends React.Component {
     const selectedLabel = selectedTab ? selectedTab.props.label : '';
 
     return (
-      <div>
+      <React.Fragment>
         <nav {...other} className={classes.tabs} role={role}>
           <div
             role="listbox"
@@ -191,7 +196,7 @@ export default class Tabs extends React.Component {
           </ul>
         </nav>
         {tabContentWithProps}
-      </div>
+      </React.Fragment>
     );
   }
 }
