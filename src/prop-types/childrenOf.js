@@ -1,6 +1,8 @@
 import { Children } from 'react';
+import invariant from 'invariant';
 import createChainableTypeChecker from './tools/createChainableTypeChecker';
 import getDisplayName from './tools/getDisplayName';
+import areComponentsEqual from './tools/areComponentsEqual';
 
 /**
  * `childrenOf` is used for asserting that the children of a given React
@@ -21,13 +23,18 @@ const childrenOf = expectedChildTypes => {
         return;
       }
       const childDisplayName = getDisplayName(child.type || child);
-      if (!expectedChildTypes.includes(child.type)) {
-        throw new Error(
-          `Invalid prop \`children\` of type \`${childDisplayName}\` ` +
-            `supplied to \`${componentName}\`, expected each child to be one ` +
-            `of: \`[${expectedDisplayNames}]\`.`
-        );
-      }
+      const expectedChildType = expectedChildTypes.find(
+        c =>
+          typeof c === 'string'
+            ? c === childDisplayName
+            : c.name === childDisplayName
+      );
+      invariant(
+        areComponentsEqual(child.type, expectedChildType),
+        `Invalid prop \`children\` of type \`${childDisplayName}\` ` +
+          `supplied to \`${componentName}\`, expected each child to be one ` +
+          `of: \`[${expectedDisplayNames}]\`.`
+      );
     });
   };
 

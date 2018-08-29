@@ -329,7 +329,11 @@ export default class OverflowMenu extends Component {
   };
 
   handleClick = evt => {
-    this.setState({ open: !this.state.open });
+    const { onClose, onOpen } = this.props;
+    this.setState({ open: !this.state.open }, () => {
+      const { open } = this.state;
+      open ? onOpen() : onClose();
+    });
     this.props.onClick(evt);
   };
 
@@ -444,9 +448,9 @@ export default class OverflowMenu extends Component {
       floatingMenu,
       menuOffset,
       menuOffsetFlip,
-      iconClass,
       onClick, // eslint-disable-line
       onOpen, // eslint-disable-line
+      iconClass,
       renderIcon,
       ...other
     } = this.props;
