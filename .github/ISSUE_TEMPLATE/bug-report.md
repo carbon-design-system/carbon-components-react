@@ -1,7 +1,6 @@
 ---
 name: "Bug Report \U0001F41B"
 about: Create a report to help us improve
-
 ---
 
 <!-- Feel free to remove sections that aren't relevant.
@@ -35,5 +34,5 @@ about: Create a report to help us improve
 
 ## Additional information
 
-- Screenshots or code
-- Notes
+* Screenshots or code
+* Notes
