@@ -1,6 +1,7 @@
 import React from 'react';
 import Slider from '../Slider';
-import { mount } from 'enzyme';
+import SliderSkeleton from '../Slider/Slider.Skeleton';
+import { mount, shallow } from 'enzyme';
 import 'requestanimationframe';
 
 describe('Slider', () => {
@@ -38,6 +39,12 @@ describe('Slider', () => {
     it('can set value via props', () => {
       wrapper.setProps({ value: 55 });
       expect(wrapper.props().value).toEqual(55);
+    });
+
+    it('should specify light version as expected', () => {
+      expect(wrapper.props().light).toEqual(false);
+      wrapper.setProps({ light: true });
+      expect(wrapper.props().light).toEqual(true);
     });
   });
 
@@ -128,6 +135,18 @@ describe('Slider', () => {
       wrapper.instance().updatePosition(evt);
       expect(mockFn).lastCalledWith({ value: 100 });
       expect(wrapper.state().value).toEqual(100);
+    });
+  });
+});
+
+describe('SliderSkeleton', () => {
+  describe('Renders as expected', () => {
+    const wrapper = shallow(<SliderSkeleton />);
+
+    const slider = wrapper.find('.bx--slider-container');
+
+    it('Has the expected classes', () => {
+      expect(slider.hasClass('bx--skeleton')).toEqual(true);
     });
   });
 });

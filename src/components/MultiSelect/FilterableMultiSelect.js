@@ -55,6 +55,11 @@ export default class FilterableMultiSelect extends React.Component {
      * what this field is for
      */
     placeholder: PropTypes.string.isRequired,
+
+    /**
+     * `true` to use the light version.
+     */
+    light: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -65,6 +70,7 @@ export default class FilterableMultiSelect extends React.Component {
     itemToString: defaultItemToString,
     locale: 'en',
     sortItems: defaultSortItems,
+    light: false,
   };
 
   constructor(props) {
@@ -115,7 +121,7 @@ export default class FilterableMultiSelect extends React.Component {
       case Downshift.stateChangeTypes.clickButton:
       case Downshift.stateChangeTypes.keyDownSpaceButton:
         this.setState(() => {
-          let nextIsOpen = changes.isOpen;
+          let nextIsOpen = changes.isOpen || false;
           if (changes.isOpen === false) {
             // If Downshift is trying to close the menu, but we know the input
             // is the active element in thedocument, then keep the menu open
@@ -168,11 +174,15 @@ export default class FilterableMultiSelect extends React.Component {
       placeholder,
       sortItems,
       compareItems,
+      light,
     } = this.props;
     const className = cx(
       'bx--multi-select',
       'bx--combo-box',
-      containerClassName
+      containerClassName,
+      {
+        'bx--list-box--light': light,
+      }
     );
     return (
       <Selection

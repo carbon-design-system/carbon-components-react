@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import classNames from 'classnames';
 import Icon from '../Icon';
+import { iconCaretDown } from 'carbon-icons';
 
 export default class TimePickerSelect extends Component {
   static propTypes = {
@@ -13,7 +14,7 @@ export default class TimePickerSelect extends Component {
     defaultValue: PropTypes.any,
     iconDescription: PropTypes.string.isRequired,
     hideLabel: PropTypes.bool,
-    labelText: PropTypes.string.isRequired,
+    labelText: PropTypes.node.isRequired,
   };
 
   static defaultProps = {
@@ -64,7 +65,7 @@ export default class TimePickerSelect extends Component {
           {children}
         </select>
         <Icon
-          name="caret--down"
+          icon={iconCaretDown}
           className="bx--select__arrow"
           description={iconDescription}
         />

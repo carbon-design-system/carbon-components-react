@@ -1,10 +1,32 @@
+import invariant from 'invariant';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import classNames from 'classnames';
+import warning from 'warning';
+import { iconOverflowMenu } from 'carbon-icons';
 import ClickListener from '../../internal/ClickListener';
-import FloatingMenu from '../../internal/FloatingMenu';
+import FloatingMenu, {
+  DIRECTION_TOP,
+  DIRECTION_BOTTOM,
+} from '../../internal/FloatingMenu';
 import OptimizedResize from '../../internal/OptimizedResize';
 import Icon from '../Icon';
+
+const matchesFuncName =
+  typeof Element !== 'undefined' &&
+  ['matches', 'webkitMatchesSelector', 'msMatchesSelector'].filter(
+    name => typeof Element.prototype[name] === 'function'
+  )[0];
+
+/**
+ * @param {Node} elem A DOM node.
+ * @param {string} selector A CSS selector
+ * @returns {boolean} `true` if the given DOM element is a element node and matches the given selector.
+ * @private
+ */
+const matches = (elem, selector) =>
+  typeof elem[matchesFuncName] === 'function' &&
+  elem[matchesFuncName](selector);
 
 const on = (element, ...args) => {
   element.addEventListener(...args);
@@ -17,38 +39,86 @@ const on = (element, ...args) => {
 };
 
 /**
+ * @param {Element} elem An element.
+ * @param {string} selector An query selector.
+ * @returns {Element} The ancestor of the given element matching the given selector.
+ * @private
+ */
+const closest = (elem, selector) => {
+  const doc = elem.ownerDocument;
+  for (
+    let traverse = elem;
+    traverse && traverse !== doc;
+    traverse = traverse.parentNode
+  ) {
+    if (matches(traverse, selector)) {
+      return traverse;
+    }
+  }
+  return null;
+};
+
+/**
+ * The CSS property names of the arrow keyed by the floating menu direction.
+ * @type {Object<string, string>}
+ */
+const triggerButtonPositionProps = {
+  [DIRECTION_TOP]: 'bottom',
+  [DIRECTION_BOTTOM]: 'top',
+};
+
+/**
+ * Determines how the position of arrow should affect the floating menu position.
+ * @type {Object<string, number>}
+ */
+const triggerButtonPositionFactors = {
+  [DIRECTION_TOP]: -2,
+  [DIRECTION_BOTTOM]: -1,
+};
+
+/**
  * @param {Element} menuBody The menu body with the menu arrow.
+ * @param {string} direction The floating menu direction.
  * @returns {FloatingMenu~offset} The adjustment of the floating menu position, upon the position of the menu arrow.
  * @private
  */
-const getMenuOffset = menuBody => {
+export const getMenuOffset = (menuBody, direction) => {
+  const triggerButtonPositionProp = triggerButtonPositionProps[direction];
+  const triggerButtonPositionFactor = triggerButtonPositionFactors[direction];
+  if (__DEV__) {
+    invariant(
+      triggerButtonPositionProp && triggerButtonPositionFactor,
+      '[OverflowMenu] wrong floating menu direction: `%s`',
+      direction
+    );
+  }
   const menuWidth = menuBody.offsetWidth;
   const arrowStyle = menuBody.ownerDocument.defaultView.getComputedStyle(
     menuBody,
     ':before'
   );
-  const values = ['top', 'left', 'width', 'height', 'border-top-width'].reduce(
+  const values = [
+    triggerButtonPositionProp,
+    'left',
+    'width',
+    'height',
+    'border-top-width',
+  ].reduce(
     (o, name) => ({
       ...o,
       [name]: Number(
-        (/^([\d-]+)px$/.exec(arrowStyle.getPropertyValue(name)) || [])[1]
+        (/^([\d-.]+)px$/.exec(arrowStyle.getPropertyValue(name)) || [])[1]
       ),
     }),
     {}
   );
   if (Object.keys(values).every(name => !isNaN(values[name]))) {
-    const {
-      top,
-      left,
-      width,
-      height,
-      'border-top-width': borderTopWidth,
-    } = values;
+    const { left, width, height, 'border-top-width': borderTopWidth } = values;
     return {
-      left:
-        menuWidth / 2 -
-        (left + Math.sqrt(Math.pow(width, 2) + Math.pow(height, 2)) / 2),
-      top: Math.sqrt(Math.pow(borderTopWidth, 2) * 2) - top,
+      left: menuWidth / 2 - (left + Math.sqrt(width ** 2 + height ** 2) / 2),
+      top:
+        Math.sqrt(borderTopWidth ** 2 * 2) +
+        triggerButtonPositionFactor * values[triggerButtonPositionProp],
     };
   }
 };
@@ -59,6 +129,11 @@ export default class OverflowMenu extends Component {
      * `true` if the menu should be open.
      */
     open: PropTypes.bool,
+
+    /**
+     * The menu direction, supported only with `floatingMenu={true}`.
+     */
+    direction: PropTypes.oneOf([DIRECTION_TOP, DIRECTION_BOTTOM]),
 
     /**
      * `true` if the menu alignment should be flipped.
@@ -117,6 +192,16 @@ export default class OverflowMenu extends Component {
     iconDescription: PropTypes.string.isRequired,
 
     /**
+     * The icon.
+     */
+    icon: PropTypes.shape({
+      width: PropTypes.string,
+      height: PropTypes.string,
+      viewBox: PropTypes.string.isRequired,
+      svgData: PropTypes.object.isRequired,
+    }),
+
+    /**
      * The icon name.
      */
     iconName: PropTypes.string,
@@ -152,17 +237,29 @@ export default class OverflowMenu extends Component {
      * Function called to override icon rendering.
      */
     renderIcon: PropTypes.func,
+
+    /**
+     * Function called when menu is closed
+     */
+    onClose: PropTypes.func,
+
+    /**
+     * Function called when menu is closed
+     */
+    onOpen: PropTypes.func,
   };
 
   static defaultProps = {
     ariaLabel: 'list of options',
     iconDescription: 'open and close list of options',
-    iconName: 'overflow-menu',
     open: false,
+    direction: DIRECTION_BOTTOM,
     flipped: false,
     floatingMenu: false,
     onClick: () => {},
     onKeyDown: () => {},
+    onClose: () => {},
+    onOpen: () => {},
     tabIndex: 0,
     menuOffset: getMenuOffset,
     menuOffsetFlip: getMenuOffset,
@@ -174,14 +271,6 @@ export default class OverflowMenu extends Component {
    */
   _hFocusIn = null;
 
-  state = {
-    /**
-     * The open/closed state.
-     * @type {boolean}
-     */
-    open: this.props.open,
-  };
-
   shouldComponentUpdate(nextProps, nextState) {
     if (nextState.open && !this.state.open) {
       requestAnimationFrame(() => {
@@ -189,6 +278,7 @@ export default class OverflowMenu extends Component {
       });
       return false; // Let `.getMenuPosition()` cause render
     }
+
     return true;
   }
 
@@ -201,10 +291,30 @@ export default class OverflowMenu extends Component {
     });
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.open !== this.props.open) {
-      this.setState({ open: nextProps.open });
+  componentDidUpdate() {
+    const { onClose, onOpen, floatingMenu } = this.props;
+
+    if (this.state.open) {
+      if (!floatingMenu) {
+        (
+          this.menuEl.querySelector('[data-overflow-menu-primary-focus]') ||
+          this.menuEl
+        ).focus();
+        onOpen();
+      }
+    } else {
+      onClose();
     }
+  }
+
+  static getDerivedStateFromProps({ open }, state) {
+    const { prevOpen } = state || {};
+    return state && prevOpen === open
+      ? null
+      : {
+          open,
+          prevOpen: open,
+        };
   }
 
   componentWillUnmount() {
@@ -241,25 +351,54 @@ export default class OverflowMenu extends Component {
     }
   };
 
-  handleClickOutside = () => {
-    this.closeMenu();
+  handleClickOutside = evt => {
+    if (!this._menuBody || !this._menuBody.contains(evt.target)) {
+      this.closeMenu();
+    }
   };
 
   closeMenu = () => {
-    this.setState({ open: false });
+    let wasOpen = this.state.open;
+    this.setState({ open: false }, () => {
+      if (wasOpen) {
+        this.focusMenuEl();
+      }
+      this.props.onClose();
+    });
   };
 
   bindMenuEl = menuEl => {
     this.menuEl = menuEl;
   };
 
+  focusMenuEl = () => {
+    if (this.menuEl) {
+      this.menuEl.focus();
+    }
+  };
+
   /**
-   * Handles the floating menu being mounted/unmounted.
+   * Handles the floating menu being unmounted.
    * @param {Element} menuBody The DOM element of the menu body.
    * @private
    */
   _bindMenuBody = menuBody => {
+    if (!menuBody) {
+      this._menuBody = menuBody;
+      if (this._hFocusIn) {
+        this._hFocusIn = this._hFocusIn.release();
+      }
+    }
+  };
+
+  /**
+   * Handles the floating menu being placed.
+   * @param {Element} menuBody The DOM element of the menu body.
+   * @private
+   */
+  _handlePlace = menuBody => {
     if (menuBody) {
+      this._menuBody = menuBody;
       (
         menuBody.querySelector('[data-floating-menu-primary-focus]') || menuBody
       ).focus();
@@ -269,17 +408,27 @@ export default class OverflowMenu extends Component {
         menuBody.ownerDocument,
         focusinEventName,
         event => {
-          if (!menuBody.contains(event.target)) {
+          const { target } = event;
+          if (
+            !menuBody.contains(target) &&
+            this.menuEl &&
+            !matches(target, '.bx--overflow-menu,.bx--overflow-menu-options')
+          ) {
             this.closeMenu();
-            this.menuEl && this.menuEl.focus();
           }
         },
         !hasFocusin
       );
-    } else if (this._hFocusIn) {
-      this._hFocusIn = this._hFocusIn.release();
+      this.props.onOpen();
     }
   };
+
+  /**
+   * @returns {Element} The DOM element where the floating menu is placed in.
+   */
+  _getTarget = () =>
+    (this.menuEl && closest(this.menuEl, '[data-floating-menu-container]')) ||
+    document.body;
 
   render() {
     const {
@@ -288,16 +437,27 @@ export default class OverflowMenu extends Component {
       ariaLabel,
       children,
       iconDescription,
+      icon,
       iconName,
+      direction,
       flipped,
       floatingMenu,
       menuOffset,
       menuOffsetFlip,
       iconClass,
       onClick, // eslint-disable-line
+      onOpen, // eslint-disable-line
       renderIcon,
       ...other
     } = this.props;
+
+    if (__DEV__) {
+      warning(
+        floatingMenu || direction === DIRECTION_BOTTOM,
+        '[OverflowMenu] menu direction other than `bottom` is only supporting with `floatingMenu` option. Received: `%s`',
+        direction
+      );
+    }
 
     const { open } = this.state;
 
@@ -322,6 +482,7 @@ export default class OverflowMenu extends Component {
     const childrenWithProps = React.Children.toArray(children).map(child =>
       React.cloneElement(child, {
         closeMenu: this.closeMenu,
+        floatingMenu: floatingMenu || undefined,
       })
     );
 
@@ -333,15 +494,21 @@ export default class OverflowMenu extends Component {
         {childrenWithProps}
       </ul>
     );
+
     const wrappedMenuBody = !floatingMenu ? (
       menuBody
     ) : (
       <div role="menuitem">
         <FloatingMenu
           menuPosition={this.state.menuPosition}
+          menuDirection={direction}
           menuOffset={flipped ? menuOffsetFlip : menuOffset}
-          menuRef={this._bindMenuBody}>
-          {menuBody}
+          menuRef={this._bindMenuBody}
+          target={this._getTarget}
+          onPlace={this._handlePlace}>
+          {React.cloneElement(menuBody, {
+            'data-floating-menu-direction': direction,
+          })}
         </FloatingMenu>
       </div>
     );
@@ -351,6 +518,7 @@ export default class OverflowMenu extends Component {
       onKeyDown: this.handleKeyDown,
       className: overflowMenuIconClasses,
       description: iconDescription,
+      focusable: 'false', // Prevent `<svg>` in trigger icon from getting focus for IE11
     };
 
     return (
@@ -369,7 +537,11 @@ export default class OverflowMenu extends Component {
           {renderIcon ? (
             renderIcon(iconProps)
           ) : (
-            <Icon {...iconProps} name={iconName} style={{ width: '100%' }} />
+            <Icon
+              {...iconProps}
+              icon={!icon && !iconName ? iconOverflowMenu : icon}
+              name={iconName}
+            />
           )}
           {open && wrappedMenuBody}
         </div>

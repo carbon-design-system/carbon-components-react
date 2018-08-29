@@ -7,7 +7,7 @@ export default class TimePicker extends Component {
     children: PropTypes.node,
     className: PropTypes.string,
     id: PropTypes.string.isRequired,
-    labelText: PropTypes.string,
+    labelText: PropTypes.node,
     onClick: PropTypes.func,
     onChange: PropTypes.func,
     onBlur: PropTypes.func,
@@ -20,6 +20,10 @@ export default class TimePicker extends Component {
     hideLabel: PropTypes.bool,
     disabled: PropTypes.bool,
     value: PropTypes.string,
+    /**
+     * `true` to use the light version.
+     */
+    light: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -33,20 +37,17 @@ export default class TimePicker extends Component {
     onChange: () => {},
     onClick: () => {},
     onBlur: () => {},
+    light: false,
   };
 
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      value: props.value,
-    };
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.value !== this.props.value) {
-      this.setState({ value: nextProps.value });
-    }
+  static getDerivedStateFromProps({ value }, state) {
+    const { prevValue } = state || {};
+    return state && prevValue === value
+      ? null
+      : {
+          value,
+          prevValue: value,
+        };
   }
 
   render() {
@@ -65,6 +66,7 @@ export default class TimePicker extends Component {
       invalidText,
       invalid,
       hideLabel,
+      light,
       ...other
     } = this.props;
 
@@ -103,6 +105,7 @@ export default class TimePicker extends Component {
 
     const timePickerClasses = classNames({
       'bx--time-picker': true,
+      'bx--time-picker--light': light,
       [className]: className,
     });
 
@@ -122,9 +125,9 @@ export default class TimePicker extends Component {
 
     return (
       <div className="bx--form-item">
-        {label}
         <div className={timePickerClasses}>
           <div className="bx--time-picker__input">
+            {label}
             <input
               {...other}
               {...timePickerInputProps}

@@ -1,10 +1,18 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import classNames from 'classnames';
+import { iconChevronRight } from 'carbon-icons';
 import Icon from '../Icon';
 
 const TableData = props => {
-  const { children, className, iconClassName, expanded, ...other } = props;
+  const {
+    children,
+    className,
+    iconClassName,
+    expanded,
+    iconDescription,
+    ...other
+  } = props;
 
   const tableDataClasses = classNames(className);
 
@@ -23,8 +31,8 @@ const TableData = props => {
       ) : (
         <Icon
           className={iconClasses}
-          name="chevron--right"
-          description="expand row"
+          icon={iconChevronRight}
+          description={iconDescription}
           style={style}
           tabIndex={0}
           onKeyPress={evt => {
@@ -41,8 +49,25 @@ const TableData = props => {
 TableData.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
+
+  /**
+   * The CSS class name for the icon.
+   */
   iconClassName: PropTypes.string,
+
+  /**
+   * The icon description.
+   */
+  iconDescription: PropTypes.string,
+
+  /**
+   * The expanded state for expando cell. `undefined` for regular cells.
+   */
   expanded: PropTypes.bool,
+};
+
+TableData.defaultProps = {
+  iconDescription: 'expand row',
 };
 
 export default TableData;

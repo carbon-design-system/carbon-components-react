@@ -1,6 +1,6 @@
 import warning from 'warning';
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { createRef } from 'react';
 import ReactDOM from 'react-dom';
 import window from 'window-or-global';
 
@@ -32,8 +32,6 @@ export const DIRECTION_TOP = 'top';
 export const DIRECTION_RIGHT = 'right';
 export const DIRECTION_BOTTOM = 'bottom';
 
-const hasCreatePortal = typeof ReactDOM.createPortal === 'function';
-
 /**
  * @param {FloatingMenu~offset} [oldMenuOffset={}] The old value.
  * @param {FloatingMenu~offset} [menuOffset={}] The new value.
@@ -61,6 +59,7 @@ const hasChangeInOffset = (oldMenuOffset = {}, menuOffset = {}) => {
  * @param {FloatingMenu~position} params.refPosition The position of the triggering element.
  * @param {FloatingMenu~offset} [params.offset={ left: 0, top: 0 }] The position offset of the menu.
  * @param {string} [params.direction=bottom] The menu direction.
+ * @param {number} [params.scrollX=0] The scroll position of the viewport.
  * @param {number} [params.scrollY=0] The scroll position of the viewport.
  * @returns {FloatingMenu~offset} The position of the menu, relative to the top-left corner of the viewport.
  * @private
@@ -70,6 +69,7 @@ const getFloatingPosition = ({
   refPosition,
   offset = {},
   direction = DIRECTION_BOTTOM,
+  scrollX = 0,
   scrollY = 0,
 }) => {
   const {
@@ -86,19 +86,19 @@ const getFloatingPosition = ({
 
   return {
     [DIRECTION_LEFT]: () => ({
-      left: refLeft - width - left,
+      left: refLeft - width + scrollX - left,
       top: refCenterVertical - height / 2 + scrollY + top,
     }),
     [DIRECTION_TOP]: () => ({
-      left: refCenterHorizontal - width / 2 + left,
+      left: refCenterHorizontal - width / 2 + scrollX + left,
       top: refTop - height + scrollY - top,
     }),
     [DIRECTION_RIGHT]: () => ({
-      left: refRight + left,
+      left: refRight + scrollX + left,
       top: refCenterVertical - height / 2 + scrollY + top,
     }),
     [DIRECTION_BOTTOM]: () => ({
-      left: refCenterHorizontal - width / 2 + left,
+      left: refCenterHorizontal - width / 2 + scrollX + left,
       top: refBottom + scrollY + top,
     }),
   }[direction]();
@@ -114,6 +114,11 @@ class FloatingMenu extends React.Component {
      * Contents to put into the floating menu.
      */
     children: PropTypes.object,
+
+    /**
+     * The query selector indicating where the floating menu body should be placed.
+     */
+    target: PropTypes.func,
 
     /**
      * The position in the viewport of the trigger button.
@@ -155,6 +160,11 @@ class FloatingMenu extends React.Component {
      * The callback called when the menu body has been mounted to/will be unmounted from the DOM.
      */
     menuRef: PropTypes.func,
+
+    /**
+     * The callback called when the menu body has been mounted and positioned.
+     */
+    onPlace: PropTypes.func,
   };
 
   static defaultProps = {
@@ -162,6 +172,9 @@ class FloatingMenu extends React.Component {
     menuOffset: {},
     menuDirection: DIRECTION_BOTTOM,
   };
+
+  // `true` if the menu body is mounted and calculation of the position is in progress.
+  _placeInProgress = false;
 
   state = {
     /**
@@ -181,17 +194,10 @@ class FloatingMenu extends React.Component {
 
   /**
    * The cached refernce to the menu body.
-   * @type {Element}
+   * @type {React.RefObject}
    * @private
    */
-  _menuBody = null;
-
-  constructor(props) {
-    super(props);
-    if (typeof document !== 'undefined' && hasCreatePortal) {
-      this.el = document.createElement('div');
-    }
-  }
+  _menuBody = createRef();
 
   /**
    * Calculates the position in the viewport of floating menu,
@@ -204,7 +210,7 @@ class FloatingMenu extends React.Component {
    * @private
    */
   _updateMenuSize = (prevProps = {}) => {
-    const menuBody = this._menuBody;
+    const menuBody = this._menuBody.current;
     warning(
       menuBody,
       'The DOM node for menu body for calculating its position is not available. Skipping...'
@@ -247,7 +253,8 @@ class FloatingMenu extends React.Component {
             refPosition,
             direction: menuDirection,
             offset,
-            scrollY: window.scrollY,
+            scrollX: window.pageXOffset,
+            scrollY: window.pageYOffset,
           }),
         });
       }
@@ -255,60 +262,29 @@ class FloatingMenu extends React.Component {
   };
 
   componentDidUpdate(prevProps) {
-    if (!hasCreatePortal) {
-      ReactDOM.render(this._getChildrenWithProps(), this._menuContainer);
-    } else {
-      this._updateMenuSize(prevProps);
+    this._updateMenuSize(prevProps);
+    const { onPlace } = this.props;
+    if (
+      this._placeInProgress &&
+      this.state.floatingPosition &&
+      typeof onPlace === 'function'
+    ) {
+      onPlace(this._menuBody.current);
+      this._placeInProgress = false;
     }
   }
 
   componentDidMount() {
     const { menuRef } = this.props;
-    if (!hasCreatePortal) {
-      this._menuContainer = document.createElement('div');
-      document.body.appendChild(this._menuContainer);
-      const style = {
-        display: 'block',
-        opacity: 0,
-      };
-      const childrenWithProps = React.cloneElement(this.props.children, {
-        style,
-      });
-      ReactDOM.render(childrenWithProps, this._menuContainer, () => {
-        this._menuBody = this._menuContainer.firstChild;
-        this._updateMenuSize();
-        ReactDOM.render(
-          this._getChildrenWithProps(),
-          this._menuContainer,
-          () => {
-            menuRef && menuRef(this._menuBody);
-          }
-        );
-      });
-    } else {
-      if (this.el && this.el.firstChild) {
-        this._menuBody = this.el.firstChild;
-        document.body.appendChild(this._menuBody);
-        menuRef && menuRef(this._menuBody);
-      }
-      this._updateMenuSize();
-    }
+    this._placeInProgress = true;
+    menuRef && menuRef(this._menuBody.current);
+    this._updateMenuSize();
   }
 
   componentWillUnmount() {
     const { menuRef } = this.props;
     menuRef && menuRef(null);
-    if (!hasCreatePortal) {
-      const menuContainer = this._menuContainer;
-      ReactDOM.unmountComponentAtNode(menuContainer);
-      if (menuContainer && menuContainer.parentNode) {
-        menuContainer.parentNode.removeChild(menuContainer);
-      }
-      this._menuContainer = null;
-    } else if (this._menuBody) {
-      // Moves the menu body back to the portal container so that React unmount code does not crash
-      this.el.appendChild(this._menuBody);
-    }
+    this._placeInProgress = false;
   }
 
   /**
@@ -331,6 +307,7 @@ class FloatingMenu extends React.Component {
           top: '0px',
         };
     return React.cloneElement(children, {
+      ref: this._menuBody,
       style: {
         ...styles,
         ...positioningStyle,
@@ -342,8 +319,12 @@ class FloatingMenu extends React.Component {
   };
 
   render() {
-    if (typeof document !== 'undefined' && hasCreatePortal) {
-      return ReactDOM.createPortal(this._getChildrenWithProps(), this.el);
+    if (typeof document !== 'undefined') {
+      const { target } = this.props;
+      return ReactDOM.createPortal(
+        this._getChildrenWithProps(),
+        !target ? document.body : target()
+      );
     }
     return null;
   }

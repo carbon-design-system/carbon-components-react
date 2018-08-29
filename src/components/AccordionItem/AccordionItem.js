@@ -1,33 +1,63 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import classnames from 'classnames';
+import { iconChevronRight } from 'carbon-icons';
 import Icon from '../Icon';
 
 export default class AccordionItem extends Component {
   static propTypes = {
+    /**
+     * The child nodes.
+     */
     children: PropTypes.node,
+
+    /**
+     * The CSS class names.
+     */
     className: PropTypes.string,
+
+    /**
+     * The accordion title.
+     */
     title: PropTypes.node,
+
+    /**
+     * The description of the expando icon.
+     */
+    iconDescription: PropTypes.string,
+
+    /**
+     * `true` to open the expando.
+     */
     open: PropTypes.bool,
+
+    /**
+     * The handler of the massaged `click` event.
+     */
     onClick: PropTypes.func,
+
+    /**
+     * The handler of the massaged `click` event on the heading.
+     */
     onHeadingClick: PropTypes.func,
   };
 
   static defaultProps = {
     title: 'title',
+    iconDescription: 'Expand/Collapse',
     open: false,
     onClick: () => {},
     onHeadingClick: () => {},
   };
 
-  state = {
-    open: this.props.open,
-  };
-
-  componentWillReceiveProps({ open }) {
-    if (open !== this.props.open) {
-      this.setState({ open });
-    }
+  static getDerivedStateFromProps({ open }, state) {
+    const { prevOpen } = state || {};
+    return state && prevOpen === open
+      ? null
+      : {
+          open,
+          prevOpen: open,
+        };
   }
 
   handleClick = evt => {
@@ -53,6 +83,7 @@ export default class AccordionItem extends Component {
     const {
       className,
       title,
+      iconDescription,
       children,
       onClick, // eslint-disable-line no-unused-vars
       onHeadingClick, // eslint-disable-line no-unused-vars
@@ -80,8 +111,8 @@ export default class AccordionItem extends Component {
           onClick={this.handleHeadingClick}>
           <Icon
             className="bx--accordion__arrow"
-            name="chevron--right"
-            description="Expand/Collapse"
+            icon={iconChevronRight}
+            description={iconDescription}
           />
           <p className="bx--accordion__title">{title}</p>
         </button>

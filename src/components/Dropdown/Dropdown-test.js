@@ -1,4 +1,5 @@
 import React from 'react';
+import { iconCaretDown } from 'carbon-icons';
 import Dropdown from '../Dropdown';
 import DropdownItem from '../DropdownItem';
 import Icon from '../Icon';
@@ -31,6 +32,14 @@ describe('Dropdown', () => {
       expect(wrapper.hasClass('bx--dropdown--disabled')).toEqual(true);
     });
 
+    it('has the expected classes when light is true', () => {
+      const wrapper = shallow(
+        <Dropdown defaultText="Choose something.." light />
+      ).childAt(0);
+
+      expect(wrapper.hasClass('bx--dropdown--light')).toEqual(true);
+    });
+
     it('should add extra classes that are passed via className', () => {
       expect(dropdownWrapper.hasClass('extra-class')).toEqual(true);
     });
@@ -58,7 +67,7 @@ describe('Dropdown', () => {
 
     it('should use correct icon', () => {
       const icon = mounted.find(Icon);
-      expect(icon.props().name).toEqual('caret--down');
+      expect(icon.props().icon).toEqual(iconCaretDown);
     });
 
     it('has the expected default iconDescription', () => {

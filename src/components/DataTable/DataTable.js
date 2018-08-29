@@ -64,7 +64,7 @@ export default class DataTable extends React.Component {
     headers: PropTypes.arrayOf(
       PropTypes.shape({
         key: PropTypes.string.isRequired,
-        header: PropTypes.string.isRequired,
+        header: PropTypes.node.isRequired,
       })
     ).isRequired,
 
@@ -107,7 +107,7 @@ export default class DataTable extends React.Component {
     this.instanceId = getInstanceId();
   }
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     const rowIds = this.props.rows.map(row => row.id);
     const nextRowIds = nextProps.rows.map(row => row.id);
 
@@ -139,13 +139,13 @@ export default class DataTable extends React.Component {
    * @param {Function} config.onClick a custom click handler for the header
    * @returns {Object}
    */
-  getHeaderProps = ({ header, onClick, ...rest }) => {
+  getHeaderProps = ({ header, onClick, isSortable = true, ...rest }) => {
     const { sortDirection, sortHeaderKey } = this.state;
     return {
       ...rest,
       key: header.key,
       sortDirection,
-      isSortable: true,
+      isSortable,
       isSortHeader: sortHeaderKey === header.key,
       // Compose the event handlers so we don't overwrite a consumer's `onClick`
       // handler
@@ -207,22 +207,24 @@ export default class DataTable extends React.Component {
     }
 
     // Otherwise, we're working on `TableSelectAll` which handles toggling the
-    // selection state of all rows. If we have no rows, then this value defaults
-    // to false.
-    const checked =
-      this.state.rowIds.length > 0
-        ? this.getSelectedRows().length === this.state.rowIds.length
-        : false;
+    // selection state of all rows.
+    const rowCount = this.state.rowIds.length;
+    const selectedRowCount = this.getSelectedRows().length;
+    const checked = rowCount > 0 && selectedRowCount === rowCount;
+    const indeterminate =
+      rowCount > 0 && selectedRowCount > 0 && selectedRowCount !== rowCount;
+
     const translationKey = checked
       ? translationKeys.unselectAll
       : translationKeys.selectAll;
     return {
       ...rest,
-      checked,
-      onSelect: composeEventHandlers([this.handleSelectAll, onClick]),
-      id: `${this.getTablePrefix()}__select-all`,
-      name: 'select-all',
       ariaLabel: t(translationKey),
+      checked,
+      id: `${this.getTablePrefix()}__select-all`,
+      indeterminate,
+      name: 'select-all',
+      onSelect: composeEventHandlers([this.handleSelectAll, onClick]),
     };
   };
 

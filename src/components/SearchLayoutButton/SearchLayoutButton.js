@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { iconList, iconGrid } from 'carbon-icons';
 import Icon from '../Icon';
 
 /**
@@ -18,6 +19,16 @@ class SearchLayoutButton extends Component {
     labelText: PropTypes.string,
 
     /**
+     * The description for the "list" icon.
+     */
+    iconDescriptionList: PropTypes.string,
+
+    /**
+     * The description for the "grid" icon.
+     */
+    iconDescriptionGrid: PropTypes.string,
+
+    /**
      * The callback called when layout switches.
      */
     onChangeFormat: PropTypes.func,
@@ -25,21 +36,18 @@ class SearchLayoutButton extends Component {
 
   static defaultProps = {
     labelText: 'Filter',
+    iconDescriptionList: 'list',
+    iconDescriptionGrid: 'grid',
   };
 
-  state = {
-    /**
-     * The current layout.
-     * @type {string}
-     */
-    format: this.props.format || 'list',
-  };
-
-  componentWillReceiveProps({ format }) {
-    const { format: prevFormat } = this.props;
-    if (prevFormat !== format) {
-      this.setState({ format: format || 'list' });
-    }
+  static getDerivedStateFromProps({ format }, state) {
+    const { prevFormat } = state || {};
+    return state && prevFormat === format
+      ? null
+      : {
+          format: format || 'list',
+          prevFormat: format,
+        };
   }
 
   /**
@@ -56,7 +64,7 @@ class SearchLayoutButton extends Component {
   };
 
   render() {
-    const { labelText } = this.props;
+    const { labelText, iconDescriptionList, iconDescriptionGrid } = this.props;
     return (
       <button
         className="bx--search-button"
@@ -65,13 +73,17 @@ class SearchLayoutButton extends Component {
         aria-label={labelText}>
         {this.state.format === 'list' ? (
           <div className="bx--search__toggle-layout__container">
-            <Icon name="list" description="list" className="bx--search-view" />
+            <Icon
+              icon={iconList}
+              description={iconDescriptionList}
+              className="bx--search-view"
+            />
           </div>
         ) : (
           <div className="bx--search__toggle-layout__container">
             <Icon
-              name="grid"
-              description="toggle-layout"
+              icon={iconGrid}
+              description={iconDescriptionGrid}
               className="bx--search-view"
             />
           </div>

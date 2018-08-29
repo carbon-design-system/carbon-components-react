@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import Icon from '../Icon';
 import uid from '../../tools/uniqueId';
+import { ButtonTypes } from '../../prop-types/types';
+import { iconCloseSolid, iconCheckmarkSolid } from 'carbon-icons';
 
 export class FileUploaderButton extends Component {
   static propTypes = {
@@ -13,11 +15,12 @@ export class FileUploaderButton extends Component {
     labelText: PropTypes.string,
     listFiles: PropTypes.bool,
     multiple: PropTypes.bool,
+    name: PropTypes.string,
     onChange: PropTypes.func,
     onClick: PropTypes.func,
     role: PropTypes.string,
     tabIndex: PropTypes.number,
-    buttonKind: PropTypes.oneOf(['primary', 'secondary']),
+    buttonKind: ButtonTypes.buttonKind,
     accept: PropTypes.arrayOf(PropTypes.string),
   };
   static defaultProps = {
@@ -30,16 +33,15 @@ export class FileUploaderButton extends Component {
     onClick: () => {},
     accept: [],
   };
-  state = {
-    labelText: this.props.labelText,
-  };
-  componentWillMount() {
-    this.uid = this.props.id || uid();
-  }
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.labelText !== this.props.labelText) {
-      this.setState({ labelText: nextProps.labelText });
-    }
+
+  static getDerivedStateFromProps({ labelText }, state) {
+    const { prevLabelText } = state || {};
+    return state && prevLabelText === labelText
+      ? null
+      : {
+          labelText,
+          prevLabelText: labelText,
+        };
   }
 
   handleChange = evt => {
@@ -65,6 +67,7 @@ export class FileUploaderButton extends Component {
       tabIndex,
       buttonKind,
       accept,
+      name,
       ...other
     } = this.props;
     const classes = classNames({
@@ -72,9 +75,12 @@ export class FileUploaderButton extends Component {
       [className]: className,
     });
 
+    this.uid = this.props.id || uid();
+
     return (
       <div
         role="button"
+        tabIndex="0"
         className={classes}
         onKeyDown={evt => {
           if (evt.which === 13 || evt.which === 32) {
@@ -96,6 +102,7 @@ export class FileUploaderButton extends Component {
           type="file"
           multiple={multiple}
           accept={accept}
+          name={name}
           onChange={this.handleChange}
           onClick={evt => {
             evt.target.value = null;
@@ -140,7 +147,7 @@ export class Filename extends Component {
         <Icon
           description={iconDescription}
           className="bx--file-close"
-          name="close--glyph"
+          icon={iconCloseSolid}
           style={style}
           {...other}
         />
@@ -150,7 +157,7 @@ export class Filename extends Component {
         <Icon
           description={iconDescription}
           className="bx--file-complete"
-          name="checkmark--glyph"
+          icon={iconCheckmarkSolid}
           style={style}
           {...other}
         />
@@ -165,13 +172,13 @@ export default class FileUploader extends Component {
   static propTypes = {
     iconDescription: PropTypes.string,
     buttonLabel: PropTypes.string,
-    buttonKind: PropTypes.oneOf(['primary', 'secondary']),
+    buttonKind: ButtonTypes.buttonKind,
     filenameStatus: PropTypes.oneOf(['edit', 'complete', 'uploading'])
       .isRequired,
     labelDescription: PropTypes.string,
     labelTitle: PropTypes.string,
     multiple: PropTypes.bool,
-    onChange: PropTypes.func,
+    name: PropTypes.string,
     onClick: PropTypes.func,
     className: PropTypes.string,
     accept: PropTypes.arrayOf(PropTypes.string),
@@ -183,25 +190,33 @@ export default class FileUploader extends Component {
     buttonLabel: '',
     buttonKind: 'primary',
     multiple: false,
-    onChange: () => {},
     onClick: () => {},
     accept: [],
   };
 
   state = {
     filenames: [],
-    filenameStatus: '',
   };
 
   nodes = [];
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.filenameStatus !== this.props.filenameStatus) {
-      this.setState({ filenameStatus: nextProps.filenameStatus });
-    }
+  static getDerivedStateFromProps({ filenameStatus }, state) {
+    const { prevFilenameStatus } = state;
+    return prevFilenameStatus === filenameStatus
+      ? null
+      : {
+          filenameStatus,
+          prevFilenameStatus: filenameStatus,
+        };
   }
+
   handleChange = evt => {
-    this.setState({ filenames: [...evt.target.files].map(file => file.name) });
+    evt.stopPropagation();
+    this.setState({
+      filenames: this.state.filenames.concat(
+        [...evt.target.files].map(file => file.name)
+      ),
+    });
     this.props.onChange(evt);
   };
 
@@ -229,6 +244,7 @@ export default class FileUploader extends Component {
       className,
       multiple,
       accept,
+      name,
       ...other
     } = this.props;
 
@@ -248,6 +264,7 @@ export default class FileUploader extends Component {
           onChange={this.handleChange}
           disableLabelChanges
           accept={accept}
+          name={name}
         />
         <div className="bx--file-container">
           {this.state.filenames.length === 0
@@ -263,12 +280,6 @@ export default class FileUploader extends Component {
                     <Filename
                       iconDescription={iconDescription}
                       status={filenameStatus}
-                      onClick={evt => {
-                        if (filenameStatus === 'edit') {
-                          this.handleClick(evt, index);
-                        }
-                      }}
-                      iconDescription={iconDescription}
                       onKeyDown={evt => {
                         if (evt.which === 13 || evt.which === 32) {
                           this.handleClick(evt, index);

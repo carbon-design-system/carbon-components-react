@@ -2,12 +2,18 @@ import React from 'react';
 import Icon from '../Icon';
 import Select from '../Select';
 import SelectItem from '../SelectItem';
-import { mount } from 'enzyme';
+import SelectSkeleton from '../Select/Select.Skeleton';
+import { mount, shallow } from 'enzyme';
+import { iconCaretDown } from 'carbon-icons';
 
 describe('Select', () => {
   describe('Renders as expected', () => {
     const wrapper = mount(
-      <Select id="testing" labelText="Select" className="extra-class">
+      <Select
+        id="testing"
+        labelText="Select"
+        className="extra-class"
+        helperText="Helper text">
         <SelectItem />
         <SelectItem />
       </Select>
@@ -16,6 +22,7 @@ describe('Select', () => {
     const selectContainer = wrapper.find('.bx--form-item > div');
     const label = wrapper.find('label');
     const select = wrapper.find('select');
+    const helper = wrapper.find('.bx--form__helper-text');
 
     describe('selectContainer', () => {
       it('renders a container', () => {
@@ -28,7 +35,7 @@ describe('Select', () => {
 
       it('should use correct icon', () => {
         const icon = wrapper.find(Icon);
-        expect(icon.props().name).toEqual('caret--down');
+        expect(icon.props().icon).toEqual(iconCaretDown);
       });
 
       it('has the expected classes', () => {
@@ -54,6 +61,12 @@ describe('Select', () => {
           wrapper.find(Icon).props().description;
         expect(matches).toEqual(true);
       });
+
+      it('should specify light select as expected', () => {
+        expect(wrapper.props().light).toEqual(false);
+        wrapper.setProps({ light: true });
+        expect(wrapper.props().light).toEqual(true);
+      });
     });
 
     describe('select', () => {
@@ -75,7 +88,7 @@ describe('Select', () => {
       });
 
       it('should set disabled as expected', () => {
-        expect(select.props().disabled).toEqual(false);
+        expect(select.props().disabled).toEqual(undefined);
         wrapper.setProps({ disabled: true });
         expect(wrapper.find('select').props().disabled).toEqual(true);
       });
@@ -102,6 +115,33 @@ describe('Select', () => {
         expect(label.props().children).toEqual('Select');
       });
     });
+
+    describe('helper', () => {
+      it('renders a helper', () => {
+        expect(helper.length).toEqual(1);
+      });
+
+      it('renders children as expected', () => {
+        wrapper.setProps({
+          helperText: (
+            <span>
+              This helper text has <a href="#">a link</a>.
+            </span>
+          ),
+        });
+        const renderedHelper = wrapper.find('.bx--form__helper-text');
+        expect(renderedHelper.props().children).toEqual(
+          <span>
+            This helper text has <a href="#">a link</a>.
+          </span>
+        );
+      });
+
+      it('should set helper text as expected', () => {
+        wrapper.setProps({ helperText: 'Helper text' });
+        expect(helper.text()).toEqual('Helper text');
+      });
+    });
   });
   describe('Renders as expected', () => {
     const wrapper = mount(
@@ -115,6 +155,18 @@ describe('Select', () => {
 
     it('has the expected classes', () => {
       expect(selectContainer.hasClass('bx--select--inline')).toEqual(true);
+    });
+  });
+});
+
+describe('SelectSkeleton', () => {
+  describe('Renders as expected', () => {
+    const wrapper = shallow(<SelectSkeleton />);
+
+    const select = wrapper.find('.bx--select');
+
+    it('Has the expected classes', () => {
+      expect(select.hasClass('bx--skeleton')).toEqual(true);
     });
   });
 });

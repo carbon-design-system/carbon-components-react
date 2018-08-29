@@ -5,7 +5,13 @@ import { mount, shallow } from 'enzyme';
 describe('TextInput', () => {
   describe('renders as expected', () => {
     const wrapper = mount(
-      <TextInput id="test" className="extra-class" labelText="testlabel" />
+      <TextInput
+        id="test"
+        className="extra-class"
+        labelText="testlabel"
+        helperText="testHelper"
+        light
+      />
     );
 
     const textInput = () => wrapper.find('input');
@@ -21,6 +27,11 @@ describe('TextInput', () => {
 
       it('should add extra classes that are passed via className', () => {
         expect(textInput().hasClass('extra-class')).toEqual(true);
+      });
+
+      it('has the expected classes for light', () => {
+        wrapper.setProps({ light: true });
+        expect(textInput().hasClass('bx--text-input--light')).toEqual(true);
       });
 
       it('should set type as expected', () => {
@@ -62,6 +73,35 @@ describe('TextInput', () => {
 
       it('should set label as expected', () => {
         expect(renderedLabel.text()).toEqual('Email Input');
+      });
+    });
+
+    describe('helper', () => {
+      it('renders a helper', () => {
+        const renderedHelper = wrapper.find('.bx--form__helper-text');
+        expect(renderedHelper.length).toEqual(1);
+      });
+
+      it('renders children as expected', () => {
+        wrapper.setProps({
+          helperText: (
+            <span>
+              This helper text has <a href="#">a link</a>.
+            </span>
+          ),
+        });
+        const renderedHelper = wrapper.find('.bx--form__helper-text');
+        expect(renderedHelper.props().children).toEqual(
+          <span>
+            This helper text has <a href="#">a link</a>.
+          </span>
+        );
+      });
+
+      it('should set helper text as expected', () => {
+        wrapper.setProps({ helperText: 'Helper text' });
+        const renderedHelper = wrapper.find('.bx--form__helper-text');
+        expect(renderedHelper.text()).toEqual('Helper text');
       });
     });
   });

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { iconClose } from 'carbon-icons';
 import Button from '../Button';
 import Icon from '../Icon';
 import classNames from 'classnames';
@@ -13,10 +14,6 @@ export default class ComposedModal extends Component {
     className: PropTypes.string,
     containerClassName: PropTypes.string,
     onKeyDown: PropTypes.func,
-  };
-
-  state = {
-    open: this.props.open,
   };
 
   handleKeyDown = evt => {
@@ -33,12 +30,14 @@ export default class ComposedModal extends Component {
     }
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.open !== this.state.open) {
-      this.setState({
-        open: nextProps.open,
-      });
-    }
+  static getDerivedStateFromProps({ open }, state) {
+    const { prevOpen } = state || {};
+    return state && prevOpen === open
+      ? null
+      : {
+          open,
+          prevOpen: open,
+        };
   }
 
   closeModal = () => {
@@ -74,11 +73,12 @@ export default class ComposedModal extends Component {
 
     return (
       <div
+        {...other}
         role="presentation"
         ref={modal => (this.modal = modal)}
         onKeyDown={this.handleKeyDown}
         className={modalClass}
-        {...other}>
+        tabIndex={-1}>
         <div className={containerClass}>{childrenWithProps}</div>
       </div>
     );
@@ -164,7 +164,7 @@ export class ModalHeader extends Component {
           className={closeClass}
           type="button">
           <Icon
-            name="close"
+            icon={iconClose}
             className={closeIconClass}
             description={iconDescription}
           />

@@ -1,7 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Icon from '../Icon';
+import { iconInfoGlyph } from 'carbon-icons';
 import classNames from 'classnames';
+import warning from 'warning';
+import Icon from '../Icon';
+
+let didWarnAboutDeprecation = false;
 
 const TooltipSimple = ({
   children,
@@ -9,17 +13,27 @@ const TooltipSimple = ({
   position,
   text,
   showIcon,
+  icon,
   iconName,
   iconDescription,
   ...other
 }) => {
+  if (__DEV__) {
+    warning(
+      didWarnAboutDeprecation,
+      'The `TooltipSimple` component has been deprecated and will be removed ' +
+        'in the next major release of `carbon-components-react`. Please use ' +
+        '`TooltipDefinition` or `TooltipIcon` instead.'
+    );
+    didWarnAboutDeprecation = true;
+  }
   const tooltipClasses = classNames(`bx--tooltip--simple__${position}`);
 
   const tooltipWrapperClasses = classNames(`bx--tooltip--simple`, className);
   return (
-    <div>
+    <div className={tooltipWrapperClasses}>
       {showIcon ? (
-        <div className={tooltipWrapperClasses}>
+        <React.Fragment>
           {children}
           <div
             className={tooltipClasses}
@@ -27,19 +41,22 @@ const TooltipSimple = ({
             tabIndex="0"
             role="button"
             {...other}>
-            <Icon role="img" name={iconName} description={iconDescription} />
+            <Icon
+              role="img"
+              icon={!icon && !iconName ? iconInfoGlyph : icon}
+              name={iconName}
+              description={iconDescription}
+            />
           </div>
-        </div>
+        </React.Fragment>
       ) : (
-        <div className={tooltipWrapperClasses}>
-          <div
-            className={tooltipClasses}
-            data-tooltip-text={text}
-            tabIndex="0"
-            role="button"
-            {...other}>
-            {children}
-          </div>
+        <div
+          className={tooltipClasses}
+          data-tooltip-text={text}
+          tabIndex="0"
+          role="button"
+          {...other}>
+          {children}
         </div>
       )}
     </div>
@@ -52,6 +69,12 @@ TooltipSimple.propTypes = {
   position: PropTypes.oneOf(['bottom', 'top']),
   text: PropTypes.string.isRequired,
   showIcon: PropTypes.bool,
+  icon: PropTypes.shape({
+    width: PropTypes.string,
+    height: PropTypes.string,
+    viewBox: PropTypes.string.isRequired,
+    svgData: PropTypes.object.isRequired,
+  }),
   iconName: PropTypes.string,
   iconDescription: PropTypes.string,
 };
@@ -59,7 +82,6 @@ TooltipSimple.propTypes = {
 TooltipSimple.defaultProps = {
   position: 'top',
   showIcon: true,
-  iconName: 'info--glyph',
   iconDescription: 'tooltip',
   text: 'Provide text',
 };

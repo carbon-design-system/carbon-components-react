@@ -53,18 +53,27 @@ export default class DropdownV2 extends React.Component {
      */
     label: PropTypes.node.isRequired,
 
+    /**
+     * The dropdown type, `default` or `inline`
+     */
     type: ListBoxPropTypes.ListBoxType,
 
     /**
      * In the case you want to control the dropdown selection entirely.
      */
     selectedItem: PropTypes.object,
+
+    /**
+     * `true` to use the light version.
+     */
+    light: PropTypes.bool,
   };
 
   static defaultProps = {
     disabled: false,
     type: 'default',
     itemToString: defaultItemToString,
+    light: false,
   };
 
   handleOnChange = selectedItem => {
@@ -83,10 +92,15 @@ export default class DropdownV2 extends React.Component {
       type,
       initialSelectedItem,
       selectedItem,
+      light,
+      id,
     } = this.props;
-    const className = cx('bx--dropdown-v2', containerClassName);
+    const className = cx('bx--dropdown', containerClassName, {
+      'bx--dropdown--light': light,
+    });
     return (
       <Downshift
+        id={id}
         onChange={this.handleOnChange}
         itemToString={itemToString}
         defaultSelectedItem={initialSelectedItem}

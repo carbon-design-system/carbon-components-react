@@ -62,7 +62,9 @@ exports[`DataTable selection should have select-all default to un-checked if no 
       >
         DataTable with selection
       </h4>
-      <Table>
+      <Table
+        zebra={true}
+      >
         <table
           className="bx--data-table-v2 bx--data-table-v2--zebra"
         >
@@ -74,6 +76,7 @@ exports[`DataTable selection should have select-all default to un-checked if no 
                     ariaLabel="Select all rows"
                     checked={false}
                     id="data-table-7__select-all"
+                    indeterminate={false}
                     name="select-all"
                     onSelect={[Function]}
                   >
@@ -84,6 +87,7 @@ exports[`DataTable selection should have select-all default to un-checked if no 
                         ariaLabel="Select all rows"
                         checked={false}
                         id="data-table-7__select-all"
+                        indeterminate={false}
                         name="select-all"
                         onClick={[Function]}
                       >
@@ -128,7 +132,29 @@ exports[`DataTable selection should have select-all default to un-checked if no 
                           className="bx--table-sort-v2__icon"
                           description="Sort rows by this header in descending order"
                           fillRule="evenodd"
-                          name="caret--down"
+                          icon={
+                            Object {
+                              "height": "5",
+                              "id": "icon--caret--up",
+                              "name": "icon--caret--up",
+                              "styles": "",
+                              "svgData": Object {
+                                "circles": "",
+                                "ellipses": "",
+                                "paths": Array [
+                                  Object {
+                                    "d": "M0 5L5 .002 10 5z",
+                                  },
+                                ],
+                                "polygons": "",
+                                "polylines": "",
+                                "rects": "",
+                              },
+                              "tags": "icon--caret--up",
+                              "viewBox": "0 0 10 5",
+                              "width": "10",
+                            }
+                          }
                           role="img"
                         >
                           <svg
@@ -137,7 +163,6 @@ exports[`DataTable selection should have select-all default to un-checked if no 
                             className="bx--table-sort-v2__icon"
                             fillRule="evenodd"
                             height="5"
-                            name="caret--down"
                             role="img"
                             viewBox="0 0 10 5"
                             width="10"
@@ -146,7 +171,7 @@ exports[`DataTable selection should have select-all default to un-checked if no 
                               Sort rows by this header in descending order
                             </title>
                             <path
-                              d="M10 0L5 5 0 0z"
+                              d="M0 5L5 .002 10 5z"
                               key="key0"
                             />
                           </svg>
@@ -179,7 +204,29 @@ exports[`DataTable selection should have select-all default to un-checked if no 
                           className="bx--table-sort-v2__icon"
                           description="Sort rows by this header in descending order"
                           fillRule="evenodd"
-                          name="caret--down"
+                          icon={
+                            Object {
+                              "height": "5",
+                              "id": "icon--caret--up",
+                              "name": "icon--caret--up",
+                              "styles": "",
+                              "svgData": Object {
+                                "circles": "",
+                                "ellipses": "",
+                                "paths": Array [
+                                  Object {
+                                    "d": "M0 5L5 .002 10 5z",
+                                  },
+                                ],
+                                "polygons": "",
+                                "polylines": "",
+                                "rects": "",
+                              },
+                              "tags": "icon--caret--up",
+                              "viewBox": "0 0 10 5",
+                              "width": "10",
+                            }
+                          }
                           role="img"
                         >
                           <svg
@@ -188,7 +235,6 @@ exports[`DataTable selection should have select-all default to un-checked if no 
                             className="bx--table-sort-v2__icon"
                             fillRule="evenodd"
                             height="5"
-                            name="caret--down"
                             role="img"
                             viewBox="0 0 10 5"
                             width="10"
@@ -197,7 +243,7 @@ exports[`DataTable selection should have select-all default to un-checked if no 
                               Sort rows by this header in descending order
                             </title>
                             <path
-                              d="M10 0L5 5 0 0z"
+                              d="M0 5L5 .002 10 5z"
                               key="key0"
                             />
                           </svg>
@@ -387,7 +433,9 @@ exports[`DataTable selection should render 1`] = `
       >
         DataTable with selection
       </h4>
-      <Table>
+      <Table
+        zebra={true}
+      >
         <table
           className="bx--data-table-v2 bx--data-table-v2--zebra"
         >
@@ -399,6 +447,7 @@ exports[`DataTable selection should render 1`] = `
                     ariaLabel="Select all rows"
                     checked={false}
                     id="data-table-6__select-all"
+                    indeterminate={false}
                     name="select-all"
                     onSelect={[Function]}
                   >
@@ -409,6 +458,7 @@ exports[`DataTable selection should render 1`] = `
                         ariaLabel="Select all rows"
                         checked={false}
                         id="data-table-6__select-all"
+                        indeterminate={false}
                         name="select-all"
                         onClick={[Function]}
                       >
@@ -453,7 +503,29 @@ exports[`DataTable selection should render 1`] = `
                           className="bx--table-sort-v2__icon"
                           description="Sort rows by this header in descending order"
                           fillRule="evenodd"
-                          name="caret--down"
+                          icon={
+                            Object {
+                              "height": "5",
+                              "id": "icon--caret--up",
+                              "name": "icon--caret--up",
+                              "styles": "",
+                              "svgData": Object {
+                                "circles": "",
+                                "ellipses": "",
+                                "paths": Array [
+                                  Object {
+                                    "d": "M0 5L5 .002 10 5z",
+                                  },
+                                ],
+                                "polygons": "",
+                                "polylines": "",
+                                "rects": "",
+                              },
+                              "tags": "icon--caret--up",
+                              "viewBox": "0 0 10 5",
+                              "width": "10",
+                            }
+                          }
                           role="img"
                         >
                           <svg
@@ -462,7 +534,6 @@ exports[`DataTable selection should render 1`] = `
                             className="bx--table-sort-v2__icon"
                             fillRule="evenodd"
                             height="5"
-                            name="caret--down"
                             role="img"
                             viewBox="0 0 10 5"
                             width="10"
@@ -471,7 +542,7 @@ exports[`DataTable selection should render 1`] = `
                               Sort rows by this header in descending order
                             </title>
                             <path
-                              d="M10 0L5 5 0 0z"
+                              d="M0 5L5 .002 10 5z"
                               key="key0"
                             />
                           </svg>
@@ -504,7 +575,29 @@ exports[`DataTable selection should render 1`] = `
                           className="bx--table-sort-v2__icon"
                           description="Sort rows by this header in descending order"
                           fillRule="evenodd"
-                          name="caret--down"
+                          icon={
+                            Object {
+                              "height": "5",
+                              "id": "icon--caret--up",
+                              "name": "icon--caret--up",
+                              "styles": "",
+                              "svgData": Object {
+                                "circles": "",
+                                "ellipses": "",
+                                "paths": Array [
+                                  Object {
+                                    "d": "M0 5L5 .002 10 5z",
+                                  },
+                                ],
+                                "polygons": "",
+                                "polylines": "",
+                                "rects": "",
+                              },
+                              "tags": "icon--caret--up",
+                              "viewBox": "0 0 10 5",
+                              "width": "10",
+                            }
+                          }
                           role="img"
                         >
                           <svg
@@ -513,7 +606,6 @@ exports[`DataTable selection should render 1`] = `
                             className="bx--table-sort-v2__icon"
                             fillRule="evenodd"
                             height="5"
-                            name="caret--down"
                             role="img"
                             viewBox="0 0 10 5"
                             width="10"
@@ -522,7 +614,7 @@ exports[`DataTable selection should render 1`] = `
                               Sort rows by this header in descending order
                             </title>
                             <path
-                              d="M10 0L5 5 0 0z"
+                              d="M0 5L5 .002 10 5z"
                               key="key0"
                             />
                           </svg>
@@ -873,6 +965,7 @@ exports[`DataTable should render 1`] = `
           <TableToolbarSearch
             id="custom-id"
             onChange={[Function]}
+            translateWithId={[Function]}
           >
             <div
               className="bx--toolbar-search-container"
@@ -880,43 +973,62 @@ exports[`DataTable should render 1`] = `
               <Search
                 id="custom-id"
                 labelText="Filter table"
+                light={true}
                 onChange={[Function]}
                 placeHolderText="Search"
                 small={true}
                 type="text"
               >
                 <div
-                  className="bx--search bx--search-with-options bx--search--sm"
+                  className="bx--search bx--search--sm bx--search--light"
                   role="search"
                 >
                   <Icon
                     className="bx--search-magnifier"
-                    description="search"
+                    description="Filter table"
                     fillRule="evenodd"
-                    name="search--glyph"
+                    icon={
+                      Object {
+                        "height": "16",
+                        "id": "icon--search",
+                        "name": "icon--search",
+                        "styles": "",
+                        "svgData": Object {
+                          "circles": "",
+                          "ellipses": "",
+                          "paths": Array [
+                            Object {
+                              "d": "M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zm4.936-1.27l4.563 4.557-.707.708-4.563-4.558a6.5 6.5 0 1 1 .707-.707z",
+                              "fill-rule": "nonzero",
+                            },
+                          ],
+                          "polygons": "",
+                          "polylines": "",
+                          "rects": "",
+                        },
+                        "tags": "icon--search",
+                        "viewBox": "0 0 16 16",
+                        "width": "16",
+                      }
+                    }
                     role="img"
                   >
                     <svg
-                      alt="search"
-                      aria-label="search"
+                      alt="Filter table"
+                      aria-label="Filter table"
                       className="bx--search-magnifier"
                       fillRule="evenodd"
                       height="16"
-                      name="search--glyph"
                       role="img"
                       viewBox="0 0 16 16"
                       width="16"
                     >
                       <title>
-                        search
+                        Filter table
                       </title>
                       <path
-                        d="M6 2c2.2 0 4 1.8 4 4s-1.8 4-4 4-4-1.8-4-4 1.8-4 4-4zm0-2C2.7 0 0 2.7 0 6s2.7 6 6 6 6-2.7 6-6-2.7-6-6-6zm10 13.8L13.8 16l-3.6-3.6 2.2-2.2z"
+                        d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zm4.936-1.27l4.563 4.557-.707.708-4.563-4.558a6.5 6.5 0 1 1 .707-.707z"
                         key="key0"
-                      />
-                      <path
-                        d="M16 13.8L13.8 16l-3.6-3.6 2.2-2.2z"
-                        key="key1"
                       />
                     </svg>
                   </Icon>
@@ -933,35 +1045,58 @@ exports[`DataTable should render 1`] = `
                     placeholder="Search"
                     type="text"
                   />
-                  <Icon
+                  <button
                     className="bx--search-close bx--search-close--hidden"
-                    description="close"
-                    fillRule="evenodd"
-                    name="close--glyph"
                     onClick={[Function]}
-                    role="img"
+                    type="button"
                   >
-                    <svg
-                      alt="close"
-                      aria-label="close"
-                      className="bx--search-close bx--search-close--hidden"
+                    <Icon
+                      description="Provide a description that will be used as the title"
                       fillRule="evenodd"
-                      height="16"
-                      name="close--glyph"
-                      onClick={[Function]}
+                      icon={
+                        Object {
+                          "height": "16",
+                          "id": "icon--close--solid",
+                          "name": "icon--close--solid",
+                          "styles": "",
+                          "svgData": Object {
+                            "circles": "",
+                            "ellipses": "",
+                            "paths": Array [
+                              Object {
+                                "d": "M8 6.586L5.879 4.464 4.464 5.88 6.586 8l-2.122 2.121 1.415 1.415L8 9.414l2.121 2.122 1.415-1.415L9.414 8l2.122-2.121-1.415-1.415L8 6.586zM8 16A8 8 0 1 1 8 0a8 8 0 0 1 0 16z",
+                              },
+                            ],
+                            "polygons": "",
+                            "polylines": "",
+                            "rects": "",
+                          },
+                          "tags": "icon--close--solid",
+                          "viewBox": "0 0 16 16",
+                          "width": "16",
+                        }
+                      }
                       role="img"
-                      viewBox="0 0 16 16"
-                      width="16"
                     >
-                      <title>
-                        close
-                      </title>
-                      <path
-                        d="M8 0C3.6 0 0 3.6 0 8s3.6 8 8 8 8-3.6 8-8-3.6-8-8-8zm3.5 10.1l-1.4 1.4L8 9.4l-2.1 2.1-1.4-1.4L6.6 8 4.5 5.9l1.4-1.4L8 6.6l2.1-2.1 1.4 1.4L9.4 8l2.1 2.1z"
-                        key="key0"
-                      />
-                    </svg>
-                  </Icon>
+                      <svg
+                        alt="Provide a description that will be used as the title"
+                        aria-label="Provide a description that will be used as the title"
+                        fillRule="evenodd"
+                        height="16"
+                        role="img"
+                        viewBox="0 0 16 16"
+                        width="16"
+                      >
+                        <title>
+                          Provide a description that will be used as the title
+                        </title>
+                        <path
+                          d="M8 6.586L5.879 4.464 4.464 5.88 6.586 8l-2.122 2.121 1.415 1.415L8 9.414l2.121 2.122 1.415-1.415L9.414 8l2.122-2.121-1.415-1.415L8 6.586zM8 16A8 8 0 1 1 8 0a8 8 0 0 1 0 16z"
+                          key="key0"
+                        />
+                      </svg>
+                    </Icon>
+                  </button>
                 </div>
               </Search>
             </div>
@@ -971,8 +1106,30 @@ exports[`DataTable should render 1`] = `
               className="bx--toolbar-content"
             >
               <TableToolbarAction
+                icon={
+                  Object {
+                    "height": "16",
+                    "id": "icon--download",
+                    "name": "icon--download",
+                    "styles": "",
+                    "svgData": Object {
+                      "circles": "",
+                      "ellipses": "",
+                      "paths": Array [
+                        Object {
+                          "d": "M7.5 11l4.1-4.4.7.7L7 13 1.6 7.3l.7-.7L6.5 11V0h1v11zm5.5 4v-2h1v2c0 .6-.4 1-1 1H1c-.6 0-1-.4-1-1v-2h1v2h12z",
+                        },
+                      ],
+                      "polygons": "",
+                      "polylines": "",
+                      "rects": "",
+                    },
+                    "tags": "icon--download",
+                    "viewBox": "0 0 14 16",
+                    "width": "14",
+                  }
+                }
                 iconDescription="Download"
-                iconName="download"
                 onClick={[MockFunction]}
               >
                 <button
@@ -983,7 +1140,29 @@ exports[`DataTable should render 1`] = `
                     className="bx--toolbar-action__icon"
                     description="Download"
                     fillRule="evenodd"
-                    name="download"
+                    icon={
+                      Object {
+                        "height": "16",
+                        "id": "icon--download",
+                        "name": "icon--download",
+                        "styles": "",
+                        "svgData": Object {
+                          "circles": "",
+                          "ellipses": "",
+                          "paths": Array [
+                            Object {
+                              "d": "M7.5 11l4.1-4.4.7.7L7 13 1.6 7.3l.7-.7L6.5 11V0h1v11zm5.5 4v-2h1v2c0 .6-.4 1-1 1H1c-.6 0-1-.4-1-1v-2h1v2h12z",
+                            },
+                          ],
+                          "polygons": "",
+                          "polylines": "",
+                          "rects": "",
+                        },
+                        "tags": "icon--download",
+                        "viewBox": "0 0 14 16",
+                        "width": "14",
+                      }
+                    }
                     role="img"
                   >
                     <svg
@@ -991,30 +1170,48 @@ exports[`DataTable should render 1`] = `
                       aria-label="Download"
                       className="bx--toolbar-action__icon"
                       fillRule="evenodd"
-                      height="24"
-                      name="download"
+                      height="16"
                       role="img"
-                      viewBox="0 0 24 24"
-                      width="24"
+                      viewBox="0 0 14 16"
+                      width="14"
                     >
                       <title>
                         Download
                       </title>
                       <path
-                        d="M19 9.4l-1.2-1.1L13 13V0h-2v13L6.2 8.3 5 9.4l7 6.6z"
+                        d="M7.5 11l4.1-4.4.7.7L7 13 1.6 7.3l.7-.7L6.5 11V0h1v11zm5.5 4v-2h1v2c0 .6-.4 1-1 1H1c-.6 0-1-.4-1-1v-2h1v2h12z"
                         key="key0"
-                      />
-                      <path
-                        d="M22 14v6H2v-6H0v10h24V14z"
-                        key="key1"
                       />
                     </svg>
                   </Icon>
                 </button>
               </TableToolbarAction>
               <TableToolbarAction
+                icon={
+                  Object {
+                    "height": "16",
+                    "id": "icon--edit",
+                    "name": "icon--edit",
+                    "styles": "",
+                    "svgData": Object {
+                      "circles": "",
+                      "ellipses": "",
+                      "paths": Array [
+                        Object {
+                          "d": "M7.926 3.38L1.002 9.72V12h2.304l6.926-6.316L7.926 3.38zm.738-.675l2.308 2.304 1.451-1.324-2.308-2.309-1.451 1.329zM.002 9.28L9.439.639a1 1 0 0 1 1.383.03l2.309 2.309a1 1 0 0 1-.034 1.446L3.694 13H.002V9.28zM0 16.013v-1h16v1z",
+                          "fill-rule": "nonzero",
+                        },
+                      ],
+                      "polygons": "",
+                      "polylines": "",
+                      "rects": "",
+                    },
+                    "tags": "icon--edit",
+                    "viewBox": "0 0 16 16",
+                    "width": "16",
+                  }
+                }
                 iconDescription="Edit"
-                iconName="edit"
                 onClick={[MockFunction]}
               >
                 <button
@@ -1025,7 +1222,30 @@ exports[`DataTable should render 1`] = `
                     className="bx--toolbar-action__icon"
                     description="Edit"
                     fillRule="evenodd"
-                    name="edit"
+                    icon={
+                      Object {
+                        "height": "16",
+                        "id": "icon--edit",
+                        "name": "icon--edit",
+                        "styles": "",
+                        "svgData": Object {
+                          "circles": "",
+                          "ellipses": "",
+                          "paths": Array [
+                            Object {
+                              "d": "M7.926 3.38L1.002 9.72V12h2.304l6.926-6.316L7.926 3.38zm.738-.675l2.308 2.304 1.451-1.324-2.308-2.309-1.451 1.329zM.002 9.28L9.439.639a1 1 0 0 1 1.383.03l2.309 2.309a1 1 0 0 1-.034 1.446L3.694 13H.002V9.28zM0 16.013v-1h16v1z",
+                              "fill-rule": "nonzero",
+                            },
+                          ],
+                          "polygons": "",
+                          "polylines": "",
+                          "rects": "",
+                        },
+                        "tags": "icon--edit",
+                        "viewBox": "0 0 16 16",
+                        "width": "16",
+                      }
+                    }
                     role="img"
                   >
                     <svg
@@ -1033,17 +1253,16 @@ exports[`DataTable should render 1`] = `
                       aria-label="Edit"
                       className="bx--toolbar-action__icon"
                       fillRule="evenodd"
-                      height="29"
-                      name="edit"
+                      height="16"
                       role="img"
-                      viewBox="0 0 29 29"
-                      width="29"
+                      viewBox="0 0 16 16"
+                      width="16"
                     >
                       <title>
                         Edit
                       </title>
                       <path
-                        d="M20.297 2.932l2.9-2.9 5.806 5.805-2.9 2.9zM3.867 19.385l5.8 5.807 14.5-14.517-5.8-5.806-14.5 14.515zm5.8 3.07L6.6 19.384 18.367 7.607l3.066 3.068-11.766 11.78zM0 29.062l4.833-1.936-2.9-2.903z"
+                        d="M7.926 3.38L1.002 9.72V12h2.304l6.926-6.316L7.926 3.38zm.738-.675l2.308 2.304 1.451-1.324-2.308-2.309-1.451 1.329zM.002 9.28L9.439.639a1 1 0 0 1 1.383.03l2.309 2.309a1 1 0 0 1-.034 1.446L3.694 13H.002V9.28zM0 16.013v-1h16v1z"
                         key="key0"
                       />
                     </svg>
@@ -1051,8 +1270,33 @@ exports[`DataTable should render 1`] = `
                 </button>
               </TableToolbarAction>
               <TableToolbarAction
+                icon={
+                  Object {
+                    "height": "16",
+                    "id": "icon--settings",
+                    "name": "icon--settings",
+                    "styles": "",
+                    "svgData": Object {
+                      "circles": "",
+                      "ellipses": "",
+                      "paths": Array [
+                        Object {
+                          "d": "M7.5 10.5C8.9 10.5 10 9.4 10 8S8.9 5.5 7.5 5.5 5 6.6 5 8s1.2 2.5 2.5 2.5zm0 1C5.6 11.5 4 9.9 4 8s1.6-3.5 3.5-3.5S11 6.1 11 8s-1.5 3.5-3.5 3.5z",
+                        },
+                        Object {
+                          "d": "M6.3 2.6l-.3.1c-.7.2-1.3.5-1.9 1l-.2.2-1.4-.8-1.3 1.8L2.4 6l-.1.2C2.1 6.8 2 7.4 2 8c0 .3 0 .7.1 1l.1.3-1.2 1L2.2 12l1.1-.6.3.3c.6.8 1.4 1.3 2.4 1.6l.3.1.2 1.6h2.1l.2-1.6.3-.1c.8-.2 1.6-.7 2.2-1.3l.3-.2 1.1.6 1.2-1.7-1.1-1 .1-.3c.1-.5.1-1 .1-1.4 0-.5-.1-1.1-.2-1.6l-.1-.3 1.2-1-1.2-1.7-1.4.6-.3-.2c-.6-.5-1.3-.9-2-1.1l-.2-.1L8.6 1H6.5l-.2 1.6zM5.5.9c0-.5.5-.9 1-.9h2.1c.5 0 .9.4 1 .9l.1 1c.6.2 1.2.5 1.8 1l.7-.4c.4-.2 1-.1 1.3.3l1.2 1.7c.3.4.2 1-.1 1.3l-.7.6c.1.5.1 1.1.1 1.6 0 .4 0 .8-.1 1.3l.6.6c.4.3.4.9.1 1.3l-1.2 1.7c-.3.4-.8.5-1.3.3l-.4-.2c-.6.5-1.3.9-2 1.2l-.1 1c-.1.5-.5.9-1 .9H6.5c-.5 0-.9-.4-1-.9l-.1-1c-.8-.3-1.6-.8-2.3-1.4l-.4.2c-.4.2-1 .1-1.3-.3L.2 11c-.3-.4-.2-1 .1-1.3l.8-.7c0-.4-.1-.7-.1-1 0-.6.1-1.2.2-1.8l-.6-.6C.2 5.3.1 4.7.4 4.3l1.2-1.7c.3-.5.9-.6 1.3-.4l.9.5c.5-.3 1-.6 1.6-.8l.1-1z",
+                        },
+                      ],
+                      "polygons": "",
+                      "polylines": "",
+                      "rects": "",
+                    },
+                    "tags": "icon--settings",
+                    "viewBox": "0 0 15 16",
+                    "width": "15",
+                  }
+                }
                 iconDescription="Settings"
-                iconName="settings"
                 onClick={[MockFunction]}
               >
                 <button
@@ -1063,7 +1307,32 @@ exports[`DataTable should render 1`] = `
                     className="bx--toolbar-action__icon"
                     description="Settings"
                     fillRule="evenodd"
-                    name="settings"
+                    icon={
+                      Object {
+                        "height": "16",
+                        "id": "icon--settings",
+                        "name": "icon--settings",
+                        "styles": "",
+                        "svgData": Object {
+                          "circles": "",
+                          "ellipses": "",
+                          "paths": Array [
+                            Object {
+                              "d": "M7.5 10.5C8.9 10.5 10 9.4 10 8S8.9 5.5 7.5 5.5 5 6.6 5 8s1.2 2.5 2.5 2.5zm0 1C5.6 11.5 4 9.9 4 8s1.6-3.5 3.5-3.5S11 6.1 11 8s-1.5 3.5-3.5 3.5z",
+                            },
+                            Object {
+                              "d": "M6.3 2.6l-.3.1c-.7.2-1.3.5-1.9 1l-.2.2-1.4-.8-1.3 1.8L2.4 6l-.1.2C2.1 6.8 2 7.4 2 8c0 .3 0 .7.1 1l.1.3-1.2 1L2.2 12l1.1-.6.3.3c.6.8 1.4 1.3 2.4 1.6l.3.1.2 1.6h2.1l.2-1.6.3-.1c.8-.2 1.6-.7 2.2-1.3l.3-.2 1.1.6 1.2-1.7-1.1-1 .1-.3c.1-.5.1-1 .1-1.4 0-.5-.1-1.1-.2-1.6l-.1-.3 1.2-1-1.2-1.7-1.4.6-.3-.2c-.6-.5-1.3-.9-2-1.1l-.2-.1L8.6 1H6.5l-.2 1.6zM5.5.9c0-.5.5-.9 1-.9h2.1c.5 0 .9.4 1 .9l.1 1c.6.2 1.2.5 1.8 1l.7-.4c.4-.2 1-.1 1.3.3l1.2 1.7c.3.4.2 1-.1 1.3l-.7.6c.1.5.1 1.1.1 1.6 0 .4 0 .8-.1 1.3l.6.6c.4.3.4.9.1 1.3l-1.2 1.7c-.3.4-.8.5-1.3.3l-.4-.2c-.6.5-1.3.9-2 1.2l-.1 1c-.1.5-.5.9-1 .9H6.5c-.5 0-.9-.4-1-.9l-.1-1c-.8-.3-1.6-.8-2.3-1.4l-.4.2c-.4.2-1 .1-1.3-.3L.2 11c-.3-.4-.2-1 .1-1.3l.8-.7c0-.4-.1-.7-.1-1 0-.6.1-1.2.2-1.8l-.6-.6C.2 5.3.1 4.7.4 4.3l1.2-1.7c.3-.5.9-.6 1.3-.4l.9.5c.5-.3 1-.6 1.6-.8l.1-1z",
+                            },
+                          ],
+                          "polygons": "",
+                          "polylines": "",
+                          "rects": "",
+                        },
+                        "tags": "icon--settings",
+                        "viewBox": "0 0 15 16",
+                        "width": "15",
+                      }
+                    }
                     role="img"
                   >
                     <svg
@@ -1071,18 +1340,21 @@ exports[`DataTable should render 1`] = `
                       aria-label="Settings"
                       className="bx--toolbar-action__icon"
                       fillRule="evenodd"
-                      height="24"
-                      name="settings"
+                      height="16"
                       role="img"
-                      viewBox="0 0 24 24"
-                      width="24"
+                      viewBox="0 0 15 16"
+                      width="15"
                     >
                       <title>
                         Settings
                       </title>
                       <path
-                        d="M21.2 12c0-.5 0-1-.1-1.4L24 8l-2.5-4.1L18 5.1c-.8-.7-1.8-1.3-2.9-1.7L14.4 0H9.6l-.8 3.4c-1.1.4-2 1-2.9 1.7L2.5 3.9 0 8l2.9 2.6c-.1.4-.1.9-.1 1.4 0 .5 0 1 .1 1.4L0 16l2.5 4.1L6 18.9c.8.7 1.8 1.3 2.9 1.7l.7 3.4h4.8l.8-3.4c1.1-.4 2-1 2.9-1.7l3.5 1.1 2.4-4-2.9-2.6c.1-.4.1-.9.1-1.4zM12 15c-1.7 0-3-1.3-3-3s1.3-3 3-3 3 1.3 3 3-1.3 3-3 3z"
+                        d="M7.5 10.5C8.9 10.5 10 9.4 10 8S8.9 5.5 7.5 5.5 5 6.6 5 8s1.2 2.5 2.5 2.5zm0 1C5.6 11.5 4 9.9 4 8s1.6-3.5 3.5-3.5S11 6.1 11 8s-1.5 3.5-3.5 3.5z"
                         key="key0"
+                      />
+                      <path
+                        d="M6.3 2.6l-.3.1c-.7.2-1.3.5-1.9 1l-.2.2-1.4-.8-1.3 1.8L2.4 6l-.1.2C2.1 6.8 2 7.4 2 8c0 .3 0 .7.1 1l.1.3-1.2 1L2.2 12l1.1-.6.3.3c.6.8 1.4 1.3 2.4 1.6l.3.1.2 1.6h2.1l.2-1.6.3-.1c.8-.2 1.6-.7 2.2-1.3l.3-.2 1.1.6 1.2-1.7-1.1-1 .1-.3c.1-.5.1-1 .1-1.4 0-.5-.1-1.1-.2-1.6l-.1-.3 1.2-1-1.2-1.7-1.4.6-.3-.2c-.6-.5-1.3-.9-2-1.1l-.2-.1L8.6 1H6.5l-.2 1.6zM5.5.9c0-.5.5-.9 1-.9h2.1c.5 0 .9.4 1 .9l.1 1c.6.2 1.2.5 1.8 1l.7-.4c.4-.2 1-.1 1.3.3l1.2 1.7c.3.4.2 1-.1 1.3l-.7.6c.1.5.1 1.1.1 1.6 0 .4 0 .8-.1 1.3l.6.6c.4.3.4.9.1 1.3l-1.2 1.7c-.3.4-.8.5-1.3.3l-.4-.2c-.6.5-1.3.9-2 1.2l-.1 1c-.1.5-.5.9-1 .9H6.5c-.5 0-.9-.4-1-.9l-.1-1c-.8-.3-1.6-.8-2.3-1.4l-.4.2c-.4.2-1 .1-1.3-.3L.2 11c-.3-.4-.2-1 .1-1.3l.8-.7c0-.4-.1-.7-.1-1 0-.6.1-1.2.2-1.8l-.6-.6C.2 5.3.1 4.7.4 4.3l1.2-1.7c.3-.5.9-.6 1.3-.4l.9.5c.5-.3 1-.6 1.6-.8l.1-1z"
+                        key="key1"
                       />
                     </svg>
                   </Icon>
@@ -1111,7 +1383,9 @@ exports[`DataTable should render 1`] = `
           </TableToolbarContent>
         </section>
       </TableToolbar>
-      <Table>
+      <Table
+        zebra={true}
+      >
         <table
           className="bx--data-table-v2 bx--data-table-v2--zebra"
         >
@@ -1144,7 +1418,29 @@ exports[`DataTable should render 1`] = `
                           className="bx--table-sort-v2__icon"
                           description="Sort rows by this header in descending order"
                           fillRule="evenodd"
-                          name="caret--down"
+                          icon={
+                            Object {
+                              "height": "5",
+                              "id": "icon--caret--up",
+                              "name": "icon--caret--up",
+                              "styles": "",
+                              "svgData": Object {
+                                "circles": "",
+                                "ellipses": "",
+                                "paths": Array [
+                                  Object {
+                                    "d": "M0 5L5 .002 10 5z",
+                                  },
+                                ],
+                                "polygons": "",
+                                "polylines": "",
+                                "rects": "",
+                              },
+                              "tags": "icon--caret--up",
+                              "viewBox": "0 0 10 5",
+                              "width": "10",
+                            }
+                          }
                           role="img"
                         >
                           <svg
@@ -1153,7 +1449,6 @@ exports[`DataTable should render 1`] = `
                             className="bx--table-sort-v2__icon"
                             fillRule="evenodd"
                             height="5"
-                            name="caret--down"
                             role="img"
                             viewBox="0 0 10 5"
                             width="10"
@@ -1162,7 +1457,7 @@ exports[`DataTable should render 1`] = `
                               Sort rows by this header in descending order
                             </title>
                             <path
-                              d="M10 0L5 5 0 0z"
+                              d="M0 5L5 .002 10 5z"
                               key="key0"
                             />
                           </svg>
@@ -1195,7 +1490,29 @@ exports[`DataTable should render 1`] = `
                           className="bx--table-sort-v2__icon"
                           description="Sort rows by this header in descending order"
                           fillRule="evenodd"
-                          name="caret--down"
+                          icon={
+                            Object {
+                              "height": "5",
+                              "id": "icon--caret--up",
+                              "name": "icon--caret--up",
+                              "styles": "",
+                              "svgData": Object {
+                                "circles": "",
+                                "ellipses": "",
+                                "paths": Array [
+                                  Object {
+                                    "d": "M0 5L5 .002 10 5z",
+                                  },
+                                ],
+                                "polygons": "",
+                                "polylines": "",
+                                "rects": "",
+                              },
+                              "tags": "icon--caret--up",
+                              "viewBox": "0 0 10 5",
+                              "width": "10",
+                            }
+                          }
                           role="img"
                         >
                           <svg
@@ -1204,7 +1521,6 @@ exports[`DataTable should render 1`] = `
                             className="bx--table-sort-v2__icon"
                             fillRule="evenodd"
                             height="5"
-                            name="caret--down"
                             role="img"
                             viewBox="0 0 10 5"
                             width="10"
@@ -1213,7 +1529,7 @@ exports[`DataTable should render 1`] = `
                               Sort rows by this header in descending order
                             </title>
                             <path
-                              d="M10 0L5 5 0 0z"
+                              d="M0 5L5 .002 10 5z"
                               key="key0"
                             />
                           </svg>

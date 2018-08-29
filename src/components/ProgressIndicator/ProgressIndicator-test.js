@@ -1,5 +1,6 @@
 import React from 'react';
 import { ProgressIndicator, ProgressStep } from '../ProgressIndicator';
+import ProgressIndicatorSkeleton from '../ProgressIndicator/ProgressIndicator.Skeleton';
 import { shallow, mount } from 'enzyme';
 
 describe('ProgressIndicator', () => {
@@ -35,6 +36,10 @@ describe('ProgressIndicator', () => {
     const list = shallow(progress);
     const mountedList = mount(progress);
 
+    beforeEach(() => {
+      mountedList.setProps({ currentIndex: 3 });
+    });
+
     it('should be a ul element', () => {
       expect(list.find('ul').length).toEqual(1);
     });
@@ -48,12 +53,22 @@ describe('ProgressIndicator', () => {
       expect(list.find(ProgressStep).length).toEqual(6);
     });
 
+    it('should have the initial currentIndex from props', () => {
+      expect(list.state().currentIndex).toEqual(3);
+    });
+
     it('should update state when currentIndex is changed', () => {
-      mountedList.setProps({ currentIndex: 1 });
-      expect(mountedList.state().currentIndex).toEqual(
-        mountedList.props().currentIndex
-      );
-      mountedList.setProps({ currentIndex: 3 });
+      list.setProps({ currentIndex: 1 });
+      expect(list.state().currentIndex).toEqual(1);
+      list.setProps({ currentIndex: 0 });
+      expect(list.state().currentIndex).toEqual(0);
+    });
+
+    it('should avoid updating state unless actual change in currentIndex is detected', () => {
+      list.setProps({ currentIndex: 1 });
+      list.setState({ currentIndex: 2 });
+      list.setProps({ currentIndex: 1 });
+      expect(list.state().currentIndex).toEqual(2);
     });
 
     describe('ProgressStep', () => {
@@ -107,7 +122,7 @@ describe('ProgressIndicator', () => {
 
         it('should render a current ProgressStep with correct props', () => {
           expect(
-            list
+            mountedList
               .find(ProgressStep)
               .at(3)
               .prop('current')
@@ -145,7 +160,7 @@ describe('ProgressIndicator', () => {
               .hasClass('bx--progress-step--incomplete')
           ).toEqual(true);
         });
-        it('should render any incompleted ProgressSteps with correct className', () => {
+        it('should render any incompleted ProgressSteps with correct props', () => {
           expect(
             list
               .find(ProgressStep)
@@ -154,6 +169,17 @@ describe('ProgressIndicator', () => {
           ).toBe(false);
         });
       });
+    });
+  });
+});
+
+describe('ProgressIndicatorSkeleton', () => {
+  describe('Renders as expected', () => {
+    const wrapper = shallow(<ProgressIndicatorSkeleton />);
+
+    it('Has the expected classes', () => {
+      expect(wrapper.hasClass('bx--skeleton')).toEqual(true);
+      expect(wrapper.hasClass('bx--progress')).toEqual(true);
     });
   });
 });

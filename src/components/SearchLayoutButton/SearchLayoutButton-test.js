@@ -1,7 +1,8 @@
 import React from 'react';
+import { iconList, iconGrid } from 'carbon-icons';
 import Icon from '../Icon';
 import SearchLayoutButton from '../SearchLayoutButton';
-import { mount } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 
 describe('SearchLayoutButton', () => {
   const wrapper = mount(<SearchLayoutButton labelText="testlabel" />);
@@ -22,22 +23,30 @@ describe('SearchLayoutButton', () => {
   describe('icons', () => {
     it('should use "list" icon for toggle button', () => {
       const icon = wrapper.find(Icon);
-      expect(icon.props().name).toEqual('list');
+      expect(icon.props().icon).toEqual(iconList);
     });
 
     it('should use "grid" icon when format state is not "list"', () => {
       wrapper.setState({ format: 'not-list' });
       const icon = wrapper.find(Icon);
-      expect(icon.props().name).toEqual('grid');
+      expect(icon.props().icon).toEqual(iconGrid);
     });
 
     it('should support specifying the layout via props', () => {
       const wrapperWithFormatProps = mount(
         <SearchLayoutButton format="grid" />
       );
-      expect(wrapperWithFormatProps.find(Icon).props().name).toEqual('grid');
+      expect(wrapperWithFormatProps.find(Icon).props().icon).toEqual(iconGrid);
       wrapperWithFormatProps.setProps({ format: 'list' });
-      expect(wrapperWithFormatProps.find(Icon).props().name).toEqual('list');
+      expect(wrapperWithFormatProps.find(Icon).props().icon).toEqual(iconList);
+    });
+
+    it('should avoid change the format upon setting props, unless there the value actually changes', () => {
+      const wrapperWithFormatProps = shallow(<SearchLayoutButton />);
+      wrapperWithFormatProps.setProps({ format: 'grid' });
+      wrapperWithFormatProps.setState({ format: 'list' });
+      wrapperWithFormatProps.setProps({ format: 'grid' });
+      expect(wrapperWithFormatProps.state().format).toEqual('list');
     });
 
     it('should support being notified of change in layout', () => {

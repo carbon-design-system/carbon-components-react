@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
+import { iconCaretUp, iconCaretDown } from 'carbon-icons';
 import Icon from '../Icon';
 import classNames from 'classnames';
 
@@ -9,7 +10,7 @@ export default class NumberInput extends Component {
     disabled: PropTypes.bool,
     iconDescription: PropTypes.string.isRequired,
     id: PropTypes.string.isRequired,
-    label: PropTypes.string,
+    label: PropTypes.node,
     max: PropTypes.number,
     min: PropTypes.number,
     /**
@@ -22,6 +23,11 @@ export default class NumberInput extends Component {
     value: PropTypes.number,
     invalid: PropTypes.bool,
     invalidText: PropTypes.string,
+    helperText: PropTypes.node,
+    /**
+     * `true` to use the light version.
+     */
+    light: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -34,6 +40,8 @@ export default class NumberInput extends Component {
     value: 0,
     invalid: false,
     invalidText: 'Provide invalidText',
+    helperText: '',
+    light: false,
   };
 
   /**
@@ -42,23 +50,14 @@ export default class NumberInput extends Component {
    */
   _inputRef = null;
 
-  constructor(props) {
-    super(props);
-
-    let value = props.value;
-    if (props.min || props.min === 0) {
-      value = Math.max(props.min, value);
-    }
-
-    this.state = {
-      value,
-    };
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.value !== this.props.value) {
-      this.setState({ value: nextProps.value });
-    }
+  static getDerivedStateFromProps({ min, value }, state) {
+    const { prevValue } = state || {};
+    return state && prevValue === value
+      ? null
+      : {
+          value: state || isNaN(min) ? value : Math.max(min, value),
+          prevValue: value,
+        };
   }
 
   handleChange = evt => {
@@ -123,10 +122,14 @@ export default class NumberInput extends Component {
       step,
       invalid,
       invalidText,
+      helperText,
+      light,
       ...other
     } = this.props;
 
-    const numberInputClasses = classNames('bx--number', className);
+    const numberInputClasses = classNames('bx--number', className, {
+      'bx--number--light': light,
+    });
 
     const props = {
       disabled,
@@ -141,22 +144,49 @@ export default class NumberInput extends Component {
     const buttonProps = {
       disabled,
       type: 'button',
-      className: 'bx--number__control-btn',
     };
 
     const inputWrapperProps = {};
     let error = null;
-    if (invalid) {
+    if (invalid || this.state.value === '') {
       inputWrapperProps['data-invalid'] = true;
       error = <div className="bx--form-requirement">{invalidText}</div>;
     }
 
+    const helper = helperText ? (
+      <div className="bx--form__helper-text">{helperText}</div>
+    ) : null;
+
     return (
       <div className="bx--form-item">
-        <label htmlFor={id} className="bx--label">
-          {label}
-        </label>
         <div className={numberInputClasses} {...inputWrapperProps}>
+          <div className="bx--number__controls">
+            <button
+              className="bx--number__control-btn up-icon"
+              {...buttonProps}
+              onClick={evt => this.handleArrowClick(evt, 'up')}>
+              <Icon
+                className="up-icon"
+                icon={iconCaretUp}
+                description={this.props.iconDescription}
+                viewBox="0 0 10 5"
+              />
+            </button>
+            <button
+              className="bx--number__control-btn down-icon"
+              {...buttonProps}
+              onClick={evt => this.handleArrowClick(evt, 'down')}>
+              <Icon
+                className="down-icon"
+                icon={iconCaretDown}
+                viewBox="0 0 10 5"
+                description={this.props.iconDescription}
+              />
+            </button>
+          </div>
+          <label htmlFor={id} className="bx--label">
+            {label}
+          </label>
           <input
             type="number"
             pattern="[0-9]*"
@@ -164,30 +194,9 @@ export default class NumberInput extends Component {
             {...props}
             ref={this._handleInputRef}
           />
-          <div className="bx--number__controls">
-            <button
-              {...buttonProps}
-              onClick={evt => this.handleArrowClick(evt, 'up')}>
-              <Icon
-                className="up-icon"
-                name="caret--up"
-                description={this.props.iconDescription}
-                viewBox="0 2 10 5"
-              />
-            </button>
-            <button
-              {...buttonProps}
-              onClick={evt => this.handleArrowClick(evt, 'down')}>
-              <Icon
-                className="down-icon"
-                name="caret--down"
-                viewBox="0 2 10 5"
-                description={this.props.iconDescription}
-              />
-            </button>
-          </div>
+          {error}
+          {helper}
         </div>
-        {error}
       </div>
     );
   }

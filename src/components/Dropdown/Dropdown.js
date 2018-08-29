@@ -1,8 +1,12 @@
 import PropTypes from 'prop-types';
 import React, { PureComponent } from 'react';
 import classNames from 'classnames';
+import warning from 'warning';
+import { iconCaretDown } from 'carbon-icons';
 import ClickListener from '../../internal/ClickListener';
 import Icon from '../Icon';
+
+let didWarnAboutDeprecation = false;
 
 export default class Dropdown extends PureComponent {
   static propTypes = {
@@ -20,12 +24,14 @@ export default class Dropdown extends PureComponent {
     open: PropTypes.bool,
     iconDescription: PropTypes.string,
     disabled: PropTypes.bool,
+    light: PropTypes.bool,
   };
 
   static defaultProps = {
     tabIndex: 0,
     open: false,
     disabled: false,
+    light: false,
     iconDescription: 'open list of options',
     onChange: () => {},
     onOpen: () => {},
@@ -35,9 +41,17 @@ export default class Dropdown extends PureComponent {
   constructor(props) {
     super(props);
     this.state = this.resetState(props);
+    if (__DEV__) {
+      warning(
+        didWarnAboutDeprecation,
+        'The `Dropdown` component is being updated in the next release of ' +
+          '`carbon-components-react`. Please use `DropdownV2` instead.'
+      );
+      didWarnAboutDeprecation = true;
+    }
   }
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     this.setState(this.resetState(nextProps));
   }
 
@@ -122,6 +136,7 @@ export default class Dropdown extends PureComponent {
       defaultText, // eslint-disable-line no-unused-vars
       iconDescription,
       disabled,
+      light,
       selectedText, // eslint-disable-line no-unused-vars
       onOpen, // eslint-disable-line no-unused-vars
       onClose, // eslint-disable-line no-unused-vars
@@ -144,6 +159,7 @@ export default class Dropdown extends PureComponent {
       'bx--dropdown': true,
       'bx--dropdown--open': this.state.open,
       'bx--dropdown--disabled': disabled,
+      'bx--dropdown--light': light,
       [this.props.className]: this.props.className,
     });
 
@@ -161,7 +177,7 @@ export default class Dropdown extends PureComponent {
           <li className="bx--dropdown-text">{this.state.selectedText}</li>
           <li>
             <Icon
-              name="caret--down"
+              icon={iconCaretDown}
               className="bx--dropdown__arrow"
               description={iconDescription}
             />

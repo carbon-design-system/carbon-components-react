@@ -45,6 +45,21 @@ describe('TimePicker', () => {
         expect(textInput().props().placeholder).toEqual('ss:mm');
       });
     });
+    /*
+    describe('Light', () => {
+      describe('Renders as expected', () => {
+        wrapper = mount(<TimePicker id="test" light className="extra-class" />);
+    
+        it('Has the expected classes for light', () => {
+          expect(wrapper.hasClass('bx--time-picker--light')).toEqual(true);
+        });
+    
+        it('Should add extra classes that are passed via className', () => {
+          expect(wrapper.hasClass('extra-class')).toEqual(true);
+        });
+      });
+    });
+    */
 
     describe('label', () => {
       let wrapper;
@@ -137,6 +152,24 @@ describe('TimePicker', () => {
         input.simulate('change', eventObject);
         expect(onChange).toBeCalledWith(eventObject);
       });
+    });
+  });
+
+  describe('Getting derived state from props', () => {
+    const wrapper = shallow(<TimePicker />);
+
+    it('should change the value upon change in props', () => {
+      wrapper.setProps({ value: 'foo' });
+      wrapper.setState({ value: 'foo' });
+      wrapper.setProps({ value: 'bar' });
+      expect(wrapper.state().value).toEqual('bar');
+    });
+
+    it('should avoid change the value upon setting props, unless there the value actually changes', () => {
+      wrapper.setProps({ value: 'foo' });
+      wrapper.setState({ value: 'bar' });
+      wrapper.setProps({ value: 'foo' });
+      expect(wrapper.state().value).toEqual('bar');
     });
   });
 });

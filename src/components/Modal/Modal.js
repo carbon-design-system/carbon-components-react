@@ -1,8 +1,15 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import classNames from 'classnames';
+import { iconClose } from 'carbon-icons';
 import Icon from '../Icon';
 import Button from '../Button';
+
+const matchesFuncName =
+  typeof Element !== 'undefined' &&
+  ['matches', 'webkitMatchesSelector', 'msMatchesSelector'].filter(
+    name => typeof Element.prototype[name] === 'function'
+  )[0];
 
 export default class Modal extends Component {
   static propTypes = {
@@ -24,6 +31,8 @@ export default class Modal extends Component {
     onSecondarySubmit: PropTypes.func,
     danger: PropTypes.bool,
     shouldSubmitOnEnter: PropTypes.bool,
+    selectorsFloatingMenus: PropTypes.arrayOf(PropTypes.string),
+    selectorPrimaryFocus: PropTypes.string,
   };
 
   static defaultProps = {
@@ -35,6 +44,37 @@ export default class Modal extends Component {
     iconDescription: 'close the modal',
     modalHeading: '',
     modalLabel: '',
+    selectorsFloatingMenus: [
+      '.bx--overflow-menu-options',
+      '.bx--tooltip',
+      '.flatpickr-calendar',
+    ],
+    selectorPrimaryFocus: '[data-modal-primary-focus]',
+  };
+
+  button = React.createRef();
+
+  elementOrParentIsFloatingMenu = target => {
+    if (target && typeof target.closest === 'function') {
+      return this.props.selectorsFloatingMenus.some(selector =>
+        target.closest(selector)
+      );
+    } else {
+      // Alternative if closest does not exist.
+      while (target) {
+        if (typeof target[matchesFuncName] === 'function') {
+          if (
+            this.props.selectorsFloatingMenus.some(selector =>
+              target[matchesFuncName](selector)
+            )
+          ) {
+            return true;
+          }
+        }
+        target = target.parentNode;
+      }
+      return false;
+    }
   };
 
   handleKeyDown = evt => {
@@ -47,8 +87,62 @@ export default class Modal extends Component {
   };
 
   handleClick = evt => {
-    if (this.innerModal && !this.innerModal.contains(evt.target)) {
+    if (
+      this.innerModal &&
+      !this.innerModal.contains(evt.target) &&
+      !this.elementOrParentIsFloatingMenu(evt.target)
+    ) {
       this.props.onRequestClose();
+    }
+  };
+
+  handleBlur = evt => {
+    // Keyboard trap
+    if (
+      this.innerModal &&
+      this.props.open &&
+      (!evt.relatedTarget || !this.innerModal.contains(evt.relatedTarget)) &&
+      !this.elementOrParentIsFloatingMenu(evt.relatedTarget)
+    ) {
+      this.focusModal();
+    }
+  };
+
+  componentDidUpdate(prevProps) {
+    if (!prevProps.open && this.props.open) {
+      this.beingOpen = true;
+    } else if (prevProps.open && !this.props.open) {
+      this.beingOpen = false;
+    }
+  }
+
+  focusModal = () => {
+    if (this.outerModal) {
+      this.outerModal.focus();
+    }
+  };
+
+  focusButton = evt => {
+    const primaryFocusElement = evt.currentTarget.querySelector(
+      this.props.selectorPrimaryFocus
+    );
+    if (primaryFocusElement) {
+      primaryFocusElement.focus();
+      return;
+    }
+    if (this.button) {
+      this.button.current.focus();
+    }
+  };
+
+  handleTransitionEnd = evt => {
+    if (
+      this.outerModal.offsetWidth &&
+      this.outerModal.offsetHeight &&
+      this.beingOpen
+    ) {
+      this.focusButton(evt);
+      this.beingOpen = false;
     }
   };
 
@@ -67,6 +161,9 @@ export default class Modal extends Component {
       iconDescription,
       primaryButtonDisabled,
       danger,
+      selectorPrimaryFocus, // eslint-disable-line
+      selectorsFloatingMenus, // eslint-disable-line
+      shouldSubmitOnEnter, // eslint-disable-line
       ...other
     } = this.props;
 
@@ -86,9 +183,10 @@ export default class Modal extends Component {
       <button
         className="bx--modal-close"
         type="button"
-        onClick={onRequestClose}>
+        onClick={onRequestClose}
+        ref={this.button}>
         <Icon
-          name="close"
+          icon={iconClose}
           className="bx--modal-close__icon"
           description={iconDescription}
         />
@@ -123,7 +221,8 @@ export default class Modal extends Component {
               <Button
                 kind={danger ? 'danger--primary' : 'primary'}
                 disabled={primaryButtonDisabled}
-                onClick={onRequestSubmit}>
+                onClick={onRequestSubmit}
+                inputref={this.button}>
                 {primaryButtonText}
               </Button>
             </div>
@@ -137,9 +236,14 @@ export default class Modal extends Component {
         {...other}
         onKeyDown={this.handleKeyDown}
         onClick={this.handleClick}
+        onBlur={this.handleBlur}
         className={modalClasses}
         role="presentation"
-        tabIndex={-1}>
+        tabIndex={-1}
+        onTransitionEnd={this.props.open ? this.handleTransitionEnd : undefined}
+        ref={outerModal => {
+          this.outerModal = outerModal;
+        }}>
         {modalBody}
       </div>
     );

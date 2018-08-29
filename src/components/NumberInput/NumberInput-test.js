@@ -1,7 +1,9 @@
 import React from 'react';
 import { mount, shallow } from 'enzyme';
+import { iconCaretUp, iconCaretDown } from 'carbon-icons';
 import Icon from '../Icon';
 import NumberInput from '../NumberInput';
+import NumberInputSkeleton from '../NumberInput/NumberInput.Skeleton';
 
 describe('NumberInput', () => {
   describe('should render as expected', () => {
@@ -11,6 +13,7 @@ describe('NumberInput', () => {
     let container;
     let formItem;
     let icons;
+    let helper;
 
     beforeEach(() => {
       wrapper = mount(
@@ -21,6 +24,7 @@ describe('NumberInput', () => {
           label="Number Input"
           className="extra-class"
           invalidText="invalid text"
+          helperText="testHelper"
         />
       );
 
@@ -29,6 +33,7 @@ describe('NumberInput', () => {
       container = wrapper.find('.bx--number');
       formItem = wrapper.find('.bx--form-item');
       icons = wrapper.find(Icon);
+      helper = wrapper.find('.bx--form__helper-text');
     });
 
     describe('input', () => {
@@ -86,6 +91,12 @@ describe('NumberInput', () => {
         expect(invalidText.text()).toEqual('invalid text');
       });
 
+      it('should specify light number input as expected', () => {
+        expect(wrapper.props().light).toEqual(false);
+        wrapper.setProps({ light: true });
+        expect(wrapper.props().light).toEqual(true);
+      });
+
       describe('initial rendering', () => {
         const getWrapper = (min, max, value) =>
           mount(
@@ -123,6 +134,27 @@ describe('NumberInput', () => {
           let numberInput = wrapper.find('input');
           expect(numberInput.prop('value')).toEqual(5);
         });
+
+        it('should set invalidText when value is empty string', () => {
+          wrapper.setProps({ value: '' });
+          const invalidText = wrapper.find('.bx--form-requirement');
+          expect(invalidText.length).toEqual(1);
+          expect(invalidText.text()).toEqual('invalid text');
+        });
+
+        it('should change the value upon change in props', () => {
+          wrapper.setProps({ value: 1 });
+          wrapper.setState({ value: 1 });
+          wrapper.setProps({ value: 2 });
+          expect(wrapper.state().value).toEqual(2);
+        });
+
+        it('should avoid change the value upon setting props, unless there the value actually changes', () => {
+          wrapper.setProps({ value: 1 });
+          wrapper.setState({ value: 2 });
+          wrapper.setProps({ value: 1 });
+          expect(wrapper.state().value).toEqual(2);
+        });
       });
     });
 
@@ -136,8 +168,8 @@ describe('NumberInput', () => {
       });
 
       it('should use correct icons', () => {
-        expect(icons.at(0).prop('name')).toEqual('caret--up');
-        expect(icons.at(1).prop('name')).toEqual('caret--down');
+        expect(icons.at(0).prop('icon')).toEqual(iconCaretUp);
+        expect(icons.at(1).prop('icon')).toEqual(iconCaretDown);
       });
 
       it('adds new iconDescription when passed via props', () => {
@@ -165,6 +197,33 @@ describe('NumberInput', () => {
         expect(label.hasClass('bx--label')).toEqual(true);
       });
     });
+
+    describe('helper', () => {
+      it('renders a helper', () => {
+        expect(helper.length).toEqual(1);
+      });
+
+      it('renders children as expected', () => {
+        wrapper.setProps({
+          helperText: (
+            <span>
+              This helper text has <a href="#">a link</a>.
+            </span>
+          ),
+        });
+        const renderedHelper = wrapper.find('.bx--form__helper-text');
+        expect(renderedHelper.props().children).toEqual(
+          <span>
+            This helper text has <a href="#">a link</a>.
+          </span>
+        );
+      });
+
+      it('should set helper text as expected', () => {
+        wrapper.setProps({ helperText: 'Helper text' });
+        expect(helper.text()).toEqual('Helper text');
+      });
+    });
   });
 
   describe('events', () => {
@@ -177,8 +236,8 @@ describe('NumberInput', () => {
       );
 
       const input = wrapper.find('input');
-      const upArrow = wrapper.find('.up-icon').parent();
-      const downArrow = wrapper.find('.down-icon').parent();
+      const upArrow = wrapper.find('button.up-icon');
+      const downArrow = wrapper.find('button.down-icon');
 
       it('should be disabled when numberInput is disabled', () => {
         expect(upArrow.prop('disabled')).toEqual(true);
@@ -291,6 +350,20 @@ describe('NumberInput', () => {
         expect(onChange).toBeCalled();
         expect(onChange).toHaveBeenCalledWith(expect.anything());
       });
+    });
+  });
+});
+
+describe('NumberInputSkeleton', () => {
+  describe('Renders as expected', () => {
+    const wrapper = shallow(<NumberInputSkeleton />);
+
+    const container = wrapper.find('.bx--number');
+    const label = wrapper.find('.bx--label');
+
+    it('has the expected classes', () => {
+      expect(container.hasClass('bx--skeleton')).toEqual(true);
+      expect(label.hasClass('bx--skeleton')).toEqual(true);
     });
   });
 });

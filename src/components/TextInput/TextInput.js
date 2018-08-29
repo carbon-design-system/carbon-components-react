@@ -13,6 +13,8 @@ const TextInput = ({
   hideLabel,
   invalid,
   invalidText,
+  helperText,
+  light,
   ...other
 }) => {
   const textInputProps = {
@@ -32,7 +34,9 @@ const TextInput = ({
   };
 
   const errorId = id + '-error-msg';
-  const textInputClasses = classNames('bx--text-input', className);
+  const textInputClasses = classNames('bx--text-input', className, {
+    'bx--text-input--light': light,
+  });
   const labelClasses = classNames('bx--label', {
     'bx--visually-hidden': hideLabel,
   });
@@ -62,10 +66,15 @@ const TextInput = ({
     <input {...other} {...textInputProps} className={textInputClasses} />
   );
 
+  const helper = helperText ? (
+    <div className="bx--form__helper-text">{helperText}</div>
+  ) : null;
+
   return (
     <div className="bx--form-item">
       {label}
       {input}
+      {helper}
       {error}
     </div>
   );
@@ -76,7 +85,7 @@ TextInput.propTypes = {
   defaultValue: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   disabled: PropTypes.bool,
   id: PropTypes.string.isRequired,
-  labelText: PropTypes.string.isRequired,
+  labelText: PropTypes.node.isRequired,
   onChange: PropTypes.func,
   onClick: PropTypes.func,
   placeholder: PropTypes.string,
@@ -85,6 +94,11 @@ TextInput.propTypes = {
   hideLabel: PropTypes.bool,
   invalid: PropTypes.bool,
   invalidText: PropTypes.string,
+  helperText: PropTypes.node,
+  /**
+   * `true` to use the light version.
+   */
+  light: PropTypes.bool,
 };
 
 TextInput.defaultProps = {
@@ -95,6 +109,8 @@ TextInput.defaultProps = {
   onClick: () => {},
   invalid: false,
   invalidText: '',
+  helperText: '',
+  light: false,
 };
 
 export default TextInput;

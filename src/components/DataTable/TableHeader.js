@@ -1,6 +1,7 @@
 import cx from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
+import { iconCaretUp } from 'carbon-icons';
 import Icon from '../Icon';
 import { sortStates } from './state/sorting';
 
@@ -49,12 +50,12 @@ const TableHeader = ({
   });
 
   return (
-    <th scope={scope}>
+    <th scope={scope} className={headerClassName}>
       <button className={className} onClick={onClick} {...rest}>
         <span className="bx--table-header-label">{children}</span>
         <Icon
           className="bx--table-sort-v2__icon"
-          name="caret--down"
+          icon={iconCaretUp}
           description={t('carbon.table.header.icon.description', {
             header: children,
             sortDirection,
@@ -76,7 +77,7 @@ TableHeader.propTypes = {
   /**
    * Pass in children that will be embedded in the table header label
    */
-  children: PropTypes.string,
+  children: PropTypes.node,
 
   /**
    * Specify whether this header is one through which a user can sort the table

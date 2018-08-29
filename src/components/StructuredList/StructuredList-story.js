@@ -1,5 +1,7 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
+import { withInfo } from '@storybook/addon-info';
+import { iconCheckmarkSolid } from 'carbon-icons';
 import Icon from '../Icon';
 import {
   StructuredListWrapper,
@@ -9,14 +11,16 @@ import {
   StructuredListInput,
   StructuredListCell,
 } from '../StructuredList';
+import StructuredListSkeleton from '../StructuredList/StructuredList.Skeleton';
 
 storiesOf('StructuredList', module)
-  .addWithInfo(
+  .add(
     'Simple',
-    `
-      description here
-    `,
-    () => (
+    withInfo({
+      text: `
+        Structured Lists group content that is similar or related, such as terms or definitions.
+      `,
+    })(() => (
       <StructuredListWrapper>
         <StructuredListHead>
           <StructuredListRow head>
@@ -48,14 +52,15 @@ storiesOf('StructuredList', module)
           </StructuredListRow>
         </StructuredListBody>
       </StructuredListWrapper>
-    )
+    ))
   )
-  .addWithInfo(
+  .add(
     'Selection',
-    `
-      description here
-    `,
-    () => (
+    withInfo({
+      text: `
+        Structured Lists with selection allow a row of list content to be selected.
+      `,
+    })(() => (
       <StructuredListWrapper selection border>
         <StructuredListHead>
           <StructuredListRow head>
@@ -77,7 +82,7 @@ storiesOf('StructuredList', module)
             <StructuredListCell>
               <Icon
                 className="bx--structured-list-svg"
-                name="checkmark--glyph"
+                icon={iconCheckmarkSolid}
                 description="select an option"
               />
             </StructuredListCell>
@@ -100,7 +105,7 @@ storiesOf('StructuredList', module)
             <StructuredListCell>
               <Icon
                 className="bx--structured-list-svg"
-                name="checkmark--glyph"
+                icon={iconCheckmarkSolid}
                 description="select an option"
               />
             </StructuredListCell>
@@ -115,5 +120,18 @@ storiesOf('StructuredList', module)
           </StructuredListRow>
         </StructuredListBody>
       </StructuredListWrapper>
-    )
+    ))
+  )
+  .add(
+    'skeleton',
+    withInfo({
+      text: `
+        Placeholder skeleton state to use when content is loading.
+      `,
+    })(() => (
+      <div style={{ width: '800px' }}>
+        <StructuredListSkeleton />
+        <StructuredListSkeleton border />
+      </div>
+    ))
   );

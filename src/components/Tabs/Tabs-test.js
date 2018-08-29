@@ -1,7 +1,9 @@
 import React from 'react';
+import { iconCaretDown } from 'carbon-icons';
 import Icon from '../Icon';
 import Tabs from '../Tabs';
 import Tab from '../Tab';
+import TabsSkeleton from '../Tabs/Tabs.Skeleton';
 import { shallow, mount } from 'enzyme';
 
 describe('Tabs', () => {
@@ -55,7 +57,7 @@ describe('Tabs', () => {
       });
 
       it('renders <Icon>', () => {
-        expect(trigger.find(Icon).props().name).toEqual('caret--down');
+        expect(trigger.find(Icon).props().icon).toEqual(iconCaretDown);
       });
     });
 
@@ -270,6 +272,13 @@ describe('props update', () => {
     wrapper.setProps({ selected: 0 });
     expect(wrapper.state().selected).toEqual(0);
   });
+
+  it('avoids updating state upon setting props, unless there the value actually changes', () => {
+    wrapper.setProps({ selected: 1 });
+    wrapper.setState({ selected: 2 });
+    wrapper.setProps({ selected: 1 });
+    expect(wrapper.state().selected).toEqual(2);
+  });
 });
 
 describe('selection change', () => {
@@ -288,5 +297,16 @@ describe('selection change', () => {
       .last()
       .simulate('click');
     expect(wrapper.props().onSelectionChange).toHaveBeenCalledWith(1);
+  });
+});
+
+describe('TabsSkeleton', () => {
+  describe('Renders as expected', () => {
+    const wrapper = shallow(<TabsSkeleton />);
+
+    it('Has the expected classes', () => {
+      expect(wrapper.hasClass('bx--skeleton')).toEqual(true);
+      expect(wrapper.hasClass('bx--tabs')).toEqual(true);
+    });
   });
 });

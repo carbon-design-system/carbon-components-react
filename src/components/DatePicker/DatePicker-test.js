@@ -1,6 +1,8 @@
 import React from 'react';
 import DatePicker from '../DatePicker';
-import { mount } from 'enzyme';
+import DatePickerSkeleton from '../DatePicker/DatePicker.Skeleton';
+import { mount, shallow } from 'enzyme';
+import DatePickerInput from '../DatePickerInput/DatePickerInput';
 
 describe('DatePicker', () => {
   describe('Renders as expected', () => {
@@ -30,6 +32,12 @@ describe('DatePicker', () => {
       expect(wrapper.props().short).toEqual(false);
       wrapper.setProps({ short: true });
       expect(wrapper.props().short).toEqual(true);
+    });
+
+    it('should specify light date picker as expected', () => {
+      expect(wrapper.props().light).toEqual(false);
+      wrapper.setProps({ light: true });
+      expect(wrapper.props().light).toEqual(true);
     });
 
     it('should add the date format as expected', () => {
@@ -118,6 +126,31 @@ describe('DatePicker', () => {
     });
   });
 
+  describe('Single date picker with initial value', () => {
+    const wrapper = mount(
+      <DatePicker
+        datePickerType="single"
+        dateFormat="m/d/Y"
+        value={'02/26/2017'}
+        onChange={() => {}}>
+        <DatePickerInput
+          key="label"
+          labelText="Controlled Date"
+          id="date-picker-input-id"
+        />
+      </DatePicker>
+    );
+
+    it('has the value as expected', () => {
+      // MOUNT
+      expect(wrapper.props().value).toEqual('02/26/2017');
+
+      // UPDATE
+      wrapper.setProps({ value: '02/17/2017' });
+      expect(wrapper.props().value).toEqual('02/17/2017');
+    });
+  });
+
   describe('Range date picker', () => {
     const wrapper = mount(
       <DatePicker
@@ -165,6 +198,103 @@ describe('DatePicker', () => {
 
     it('should render an icon', () => {
       expect(icon.length).toEqual(1);
+    });
+  });
+
+  describe('Date picker with locale', () => {
+    const wrapper = mount(
+      <DatePicker
+        onChange={() => {}}
+        datePickerType="range"
+        className="extra-class"
+        locale="es">
+        <div className="test-child">
+          <input
+            type="text"
+            className="bx--date-picker__input"
+            id="input-from"
+          />
+        </div>
+        <div className="test-child">
+          <input type="text" className="bx--date-picker__input" id="input-to" />
+        </div>
+      </DatePicker>
+    );
+
+    const wrapperNoLocale = mount(
+      <DatePicker
+        onChange={() => {}}
+        datePickerType="range"
+        className="extra-class">
+        <div className="test-child">
+          <input
+            type="text"
+            className="bx--date-picker__input"
+            id="input-from"
+          />
+        </div>
+        <div className="test-child">
+          <input type="text" className="bx--date-picker__input" id="input-to" />
+        </div>
+      </DatePicker>
+    );
+
+    it('has the range date picker locale', () => {
+      const datepicker = wrapper.find('DatePicker');
+      expect(datepicker.props().locale).toBe('es');
+    });
+
+    it('has the range date picker without locale defined', () => {
+      const datepicker = wrapperNoLocale.find('DatePicker');
+      expect(datepicker.props().locale).toBe('en');
+    });
+  });
+
+  describe('Date picker with minDate and maxDate', () => {
+    console.error = jest.genMockFn(); // eslint-disable-line no-console
+
+    const wrapper = mount(
+      <DatePicker
+        onChange={() => {}}
+        datePickerType="range"
+        className="extra-class"
+        minDate="01/01/2018"
+        maxDate="01/30/2018">
+        <div className="test-child">
+          <input
+            type="text"
+            className="bx--date-picker__input"
+            id="input-from"
+          />
+        </div>
+        <div className="test-child">
+          <input type="text" className="bx--date-picker__input" id="input-to" />
+        </div>
+      </DatePicker>
+    );
+
+    it('has the range date picker with min and max dates', () => {
+      const datepicker = wrapper.find('DatePicker');
+      expect(datepicker.props().minDate).toBe('01/01/2018');
+      expect(datepicker.props().maxDate).toBe('01/30/2018');
+    });
+
+    it('should not have "console.error" being created', () => {
+      expect(console.error).not.toBeCalled(); // eslint-disable-line no-console
+    });
+  });
+});
+
+describe('DatePickerSkeleton', () => {
+  describe('Renders as expected', () => {
+    const wrapper = shallow(<DatePickerSkeleton range />);
+
+    it('Has the expected classes', () => {
+      expect(wrapper.children().hasClass('bx--skeleton')).toEqual(true);
+      expect(wrapper.children().hasClass('bx--date-picker')).toEqual(true);
+      expect(wrapper.children().hasClass('bx--date-picker--range')).toEqual(
+        true
+      );
     });
   });
 });

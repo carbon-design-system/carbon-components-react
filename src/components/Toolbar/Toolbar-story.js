@@ -1,6 +1,8 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
+import { withInfo } from '@storybook/addon-info';
+import { iconFilter } from 'carbon-icons';
 import Toolbar, {
   ToolbarItem,
   ToolbarTitle,
@@ -21,16 +23,17 @@ const checkboxEvents = {
   onChange: action('onChange'),
 };
 
-storiesOf('Toolbar', module).addWithInfo(
+storiesOf('Toolbar', module).add(
   'Default',
-  `
-    Toolbar stuff
-  `,
-  () => (
+  withInfo({
+    text: `
+      Toolbar stuff
+    `,
+  })(() => (
     <Toolbar {...toolbarProps} className="some-class">
       <ToolbarItem type="search" placeHolderText="Search" />
       <ToolbarItem>
-        <OverflowMenu iconName="filter" floatingMenu>
+        <OverflowMenu icon={iconFilter} floatingMenu>
           <ToolbarTitle title="FILTER BY" />
           <ToolbarOption>
             <Checkbox
@@ -79,5 +82,5 @@ storiesOf('Toolbar', module).addWithInfo(
         </OverflowMenu>
       </ToolbarItem>
     </Toolbar>
-  )
+  ))
 );

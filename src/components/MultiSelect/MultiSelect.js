@@ -58,6 +58,19 @@ export default class MultiSelect extends React.Component {
      * Specify 'inline' to create an inline multi-select.
      */
     type: PropTypes.oneOf(['default', 'inline']),
+
+    /**
+     * `true` to use the light version.
+     */
+    light: PropTypes.bool,
+    /**
+     * Is the current selection invalid?
+     */
+    invalid: PropTypes.bool,
+    /**
+     * If invalid, what is the error?
+     */
+    invalidText: PropTypes.string,
   };
 
   static defaultProps = {
@@ -68,6 +81,7 @@ export default class MultiSelect extends React.Component {
     initialSelectedItems: [],
     sortItems: defaultSortItems,
     type: 'default',
+    light: false,
   };
 
   constructor(props) {
@@ -82,12 +96,6 @@ export default class MultiSelect extends React.Component {
     if (this.props.onChange) {
       this.props.onChange(changes);
     }
-  };
-
-  handleOnToggleMenu = () => {
-    this.setState(state => ({
-      isOpen: !state.isOpen,
-    }));
   };
 
   handleOnOuterClick = () => {
@@ -113,7 +121,19 @@ export default class MultiSelect extends React.Component {
       // Reference: https://github.com/paypal/downshift/issues/206
       case Downshift.stateChangeTypes.clickButton:
       case Downshift.stateChangeTypes.keyDownSpaceButton:
-        this.handleOnToggleMenu();
+        this.setState(() => {
+          let nextIsOpen = changes.isOpen || false;
+          if (changes.isOpen === false) {
+            // If Downshift is trying to close the menu, but we know the input
+            // is the active element in the document, then keep the menu open
+            if (this.inputNode === document.activeElement) {
+              nextIsOpen = true;
+            }
+          }
+          return {
+            isOpen: nextIsOpen,
+          };
+        });
         break;
     }
   };
@@ -130,8 +150,13 @@ export default class MultiSelect extends React.Component {
       initialSelectedItems,
       sortItems,
       compareItems,
+      light,
+      invalid,
+      invalidText,
     } = this.props;
-    const className = cx('bx--multi-select', containerClassName);
+    const className = cx('bx--multi-select', containerClassName, {
+      'bx--list-box--light': light,
+    });
     return (
       <Selection
         onChange={this.handleOnChange}
@@ -158,6 +183,8 @@ export default class MultiSelect extends React.Component {
                 type={type}
                 className={className}
                 disabled={disabled}
+                invalid={invalid}
+                invalidText={invalidText}
                 {...getRootProps({ refKey: 'innerRef' })}>
                 <ListBox.Field {...getButtonProps({ disabled })}>
                   {selectedItem.length > 0 && (
@@ -179,11 +206,16 @@ export default class MultiSelect extends React.Component {
                     }).map((item, index) => {
                       const itemProps = getItemProps({ item });
                       const itemText = itemToString(item);
-                      const isChecked = selectedItem.indexOf(item) !== -1;
+                      const isChecked =
+                        selectedItem
+                          .map(selected => {
+                            return selected.id;
+                          })
+                          .indexOf(item.id) !== -1;
                       return (
                         <ListBox.MenuItem
                           key={itemProps.id}
-                          isActive={selectedItem.indexOf(item) !== -1}
+                          isActive={isChecked}
                           isHighlighted={highlightedIndex === index}
                           {...itemProps}>
                           <Checkbox
