@@ -1,4 +1,5 @@
 import React from 'react';
+import { createProxy } from 'react-proxy';
 import childrenOfType from '../childrenOfType';
 
 const Element = <span />;
@@ -27,6 +28,17 @@ describe('childrenOfType', () => {
     spy.mockRestore();
   });
 
+  it('should validate RHL Proxied children of a given element type', () => {
+    const ProxiedChildValidTest = ({ children }) => createProxy(children);
+    ProxiedChildValidTest.propTypes = {
+      children: childrenOfType(StatelessComponent),
+    };
+    <ProxiedChildValidTest>
+      <StatelessComponent />
+    </ProxiedChildValidTest>;
+    expect(spy).not.toHaveBeenCalled();
+  });
+
   it('should validate children of a given element type', () => {
     const ChildElementValidTest = ({ children }) => <div>{children}</div>;
     ChildElementValidTest.propTypes = {
@@ -41,7 +53,7 @@ describe('childrenOfType', () => {
   });
 
   it('should warn with an invalid prop type for an invalid element child type', () => {
-    const ChildElementInvalidTest = ({ children }) => <div>{children}</div>;
+    const ChildElementInvalidTest = ({ children }) => children;
     ChildElementInvalidTest.propTypes = {
       children: childrenOfType(Element),
     };
@@ -53,9 +65,9 @@ describe('childrenOfType', () => {
     expect(spy).toHaveBeenCalledTimes(1);
     expect(spy).toHaveBeenCalledWith(
       expect.stringContaining(
-        'Invalid prop `children` of type `div` supplied to ' +
-          '`ChildElementInvalidTest`, expected each child to be a ' +
-          '`span` component.'
+        'Warning: Failed prop type: Invalid prop `children` of type `div` ' +
+        'supplied to `ChildElementInvalidTest`, expected each child to be a ' +
+        '`span` component.'
       )
     );
   });
@@ -75,7 +87,7 @@ describe('childrenOfType', () => {
 
   it('should warn with an invalid prop type for an invalid SFC child type', () => {
     const BadStatelessComponent = () => <div />;
-    const ChildSFCInvalidTest = ({ children }) => <div>{children}</div>;
+    const ChildSFCInvalidTest = ({ children }) => children;
     ChildSFCInvalidTest.propTypes = {
       children: childrenOfType(StatelessComponent),
     };
@@ -88,9 +100,9 @@ describe('childrenOfType', () => {
     expect(spy).toHaveBeenCalledTimes(1);
     expect(spy).toHaveBeenCalledWith(
       expect.stringContaining(
-        'Invalid prop `children` of type `BadStatelessComponent` supplied to ' +
-          '`ChildSFCInvalidTest`, expected each child to be a ' +
-          '`StatelessComponent` component.'
+        'Warning: Failed prop type: Invalid prop `children` of type ' +
+        '`BadStatelessComponent` supplied to `ChildSFCInvalidTest`, expected ' +
+        'each child to be a `StatelessComponent` component.'
       )
     );
   });
@@ -114,7 +126,7 @@ describe('childrenOfType', () => {
         return <div />;
       }
     }
-    const ChildClassInvalidTest = ({ children }) => <div>{children}</div>;
+    const ChildClassInvalidTest = ({ children }) => children;
     ChildClassInvalidTest.propTypes = {
       children: childrenOfType(ClassComponent),
     };
@@ -126,9 +138,9 @@ describe('childrenOfType', () => {
     expect(spy).toHaveBeenCalledTimes(1);
     expect(spy).toHaveBeenCalledWith(
       expect.stringContaining(
-        'Invalid prop `children` of type `BadClassComponent` supplied to ' +
-          '`ChildClassInvalidTest`, expected each child to be a ' +
-          '`ClassComponent` component.'
+        'Warning: Failed prop type: Invalid prop `children` of type ' +
+        '`BadClassComponent` supplied to `ChildClassInvalidTest`, expected ' +
+        'each child to be a `ClassComponent` component.'
       )
     );
   });
@@ -143,7 +155,7 @@ describe('childrenOfType', () => {
     expect(spy).toHaveBeenCalledWith(
       expect.stringContaining(
         'The prop `children` is marked as required in RequiredTest, but its ' +
-          'value is `undefined`.'
+        'value is `undefined`.'
       )
     );
   });
