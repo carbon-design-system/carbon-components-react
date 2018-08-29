@@ -35,6 +35,7 @@ export default class Slider extends PureComponent {
      */
     value: PropTypes.number.isRequired,
 
+
     /**
      * The minimum value.
      */
@@ -59,6 +60,11 @@ export default class Slider extends PureComponent {
      * The callback to format the label associated with the minimum/maximum value.
      */
     formatLabel: PropTypes.func,
+
+    /**
+     * The callback to format the input value
+     */
+    formatValue: PropTypes.func,
 
     /**
      * The label for the slider.
@@ -131,9 +137,16 @@ export default class Slider extends PureComponent {
 
   UNSAFE_componentWillReceiveProps(nextProps) {
     if (!isEqual(nextProps, this.props)) {
+      if (nextProps.value !== this.props.value) {
+        this.resetPosition(nextProps.value);
+      }
       this.updatePosition();
     }
   }
+
+  resetPosition = value => {
+    this.setState({ value })
+  };
 
   updatePosition = evt => {
     if (evt && this.props.disabled) {
@@ -306,6 +319,7 @@ export default class Slider extends PureComponent {
       max,
       maxLabel,
       formatLabel = defaultFormatLabel,
+      formatValue = value => value,
       labelText,
       step,
       stepMuliplier, // eslint-disable-line no-unused-vars
@@ -397,7 +411,7 @@ export default class Slider extends PureComponent {
               type={inputType}
               id="input-for-slider"
               className={inputClasses}
-              value={value}
+              value={formatValue(value)}
               onChange={this.handleChange}
               labelText=""
               aria-label={ariaLabelInput}

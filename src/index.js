@@ -38,6 +38,7 @@ export Loading from './components/Loading';
 export Modal from './components/Modal';
 export ModalWrapper from './components/ModalWrapper';
 export MultiSelect from './components/MultiSelect';
+export MultiSelectV2 from './components/MultiSelectV2';
 export Notification, {
   ToastNotification,
   InlineNotification,

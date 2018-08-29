@@ -21,10 +21,25 @@ describe('childrenOf', () => {
     // on the number of times this is called to make sure we aren't swallowing
     // any errors unexpectedly.
     spy = jest.spyOn(console, 'error').mockImplementation(() => {});
+    reactHotLoader.disableProxyCreation = true;
   });
 
   afterEach(() => {
     spy.mockRestore();
+    reactHotLoader.reset();
+  });
+
+  it('should Validate RHL proxied children of given a enum of types', () => {
+    reactHotLoader.disableProxyCreation = false;
+    const ProxiedChildrenEnumValid = ({ children }) => <div>{children}</div>;
+    ProxiedChildrenEnumValid.propTypes = {
+      children: childrenOf([StatelessComponent, ClassComponent]),
+    };
+    <ProxiedChildrenEnumValid>
+      <StatelessComponent />
+      <ClassComponent />
+    </ProxiedChildrenEnumValid>;
+    expect(spy).not.toHaveBeenCalled();
   });
 
   it('should Validate RHL proxied children of given a enum of types', () => {
