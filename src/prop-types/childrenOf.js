@@ -32,8 +32,8 @@ const childrenOf = expectedChildTypes => {
       invariant(
         areComponentsEqual(child.type, expectedChildType),
         `Invalid prop \`children\` of type \`${childDisplayName}\` ` +
-        `supplied to \`${componentName}\`, expected each child to be one ` +
-        `of: \`[${expectedDisplayNames}]\`.`
+          `supplied to \`${componentName}\`, expected each child to be one ` +
+          `of: \`[${expectedDisplayNames}]\`.`
       );
     });
   };

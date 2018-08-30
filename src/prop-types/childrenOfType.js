@@ -23,10 +23,10 @@ const childrenOfType = expectedChildType => {
       const childDisplayName = getDisplayName(childType);
       invariant(
         areComponentsEqual(childType, expectedChildType) ||
-        areComponentsEqual(childType, expectedChildType.type),
+          areComponentsEqual(childType, expectedChildType.type),
         `Invalid prop \`children\` of type \`${childDisplayName}\` ` +
-        `supplied to \`${componentName}\`, expected each child to be a ` +
-        `\`${expectedDisplayName}\` component.`
+          `supplied to \`${componentName}\`, expected each child to be a ` +
+          `\`${expectedDisplayName}\` component.`
       );
     });
   };

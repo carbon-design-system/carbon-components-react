@@ -65,8 +65,8 @@ describe('childrenOf', () => {
     expect(spy).toHaveBeenCalledWith(
       expect.stringContaining(
         'Warning: Failed prop type: Invalid prop `children` of type `div` ' +
-        'supplied to `ChildEnumInvalid`, expected each child to be one of: ' +
-        '`[StatelessComponent, ClassComponent]`.'
+          'supplied to `ChildEnumInvalid`, expected each child to be one of: ' +
+          '`[StatelessComponent, ClassComponent]`.'
       )
     );
   });
@@ -81,7 +81,7 @@ describe('childrenOf', () => {
     expect(spy).toHaveBeenCalledWith(
       expect.stringContaining(
         'The prop `children` is marked as required in ' +
-        'RequiredChildrenOfTest, but its value is `undefined`.'
+          'RequiredChildrenOfTest, but its value is `undefined`.'
       )
     );
   });
