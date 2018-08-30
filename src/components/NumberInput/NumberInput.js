@@ -5,6 +5,8 @@ import Icon from '../Icon';
 import classNames from 'classnames';
 
 export default class NumberInput extends Component {
+  state = {};
+
   static propTypes = {
     className: PropTypes.string,
     disabled: PropTypes.bool,
@@ -52,10 +54,12 @@ export default class NumberInput extends Component {
 
   static getDerivedStateFromProps({ min, value }, state) {
     const { prevValue } = state || {};
-    return state && prevValue === value
+    let emptyState =
+      Object.keys(state).length === 0 && state.constructor === Object;
+    return !emptyState && prevValue === value
       ? null
       : {
-          value: state || isNaN(min) ? value : Math.max(min, value),
+          value: !emptyState || isNaN(min) ? value : Math.max(min, value),
           prevValue: value,
         };
   }

@@ -7,6 +7,8 @@ import Icon from '../Icon';
  * The layout button for `<Search>`.
  */
 class SearchLayoutButton extends Component {
+  state = {};
+
   static propTypes = {
     /**
      * The layout.
@@ -42,7 +44,9 @@ class SearchLayoutButton extends Component {
 
   static getDerivedStateFromProps({ format }, state) {
     const { prevFormat } = state || {};
-    return state && prevFormat === format
+    let emptyState =
+      Object.keys(state).length === 0 && state.constructor === Object;
+    return !emptyState && prevFormat === format
       ? null
       : {
           format: format || 'list',

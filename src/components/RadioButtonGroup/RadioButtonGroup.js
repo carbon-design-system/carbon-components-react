@@ -4,6 +4,8 @@ import RadioButton from '../RadioButton';
 import warning from 'warning';
 
 export default class RadioButtonGroup extends React.Component {
+  state = {};
+
   static propTypes = {
     children: PropTypes.node,
     className: PropTypes.string,
@@ -21,7 +23,9 @@ export default class RadioButtonGroup extends React.Component {
 
   static getDerivedStateFromProps({ valueSelected, defaultSelected }, state) {
     const { prevValueSelected } = state || {};
-    return state && prevValueSelected === valueSelected
+    let emptyState =
+      Object.keys(state).length === 0 && state.constructor === Object;
+    return !emptyState && prevValueSelected === valueSelected
       ? null
       : {
           selected: valueSelected || defaultSelected,

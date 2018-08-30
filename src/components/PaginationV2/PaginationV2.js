@@ -10,6 +10,8 @@ import { equals } from '../../tools/array';
 let instanceId = 0;
 
 export default class PaginationV2 extends Component {
+  state = {};
+
   static propTypes = {
     /**
      * The description for the backward icon.
@@ -131,7 +133,7 @@ export default class PaginationV2 extends Component {
   }
 
   static getDerivedStateFromProps({ pageSizes, page, pageSize }, state) {
-    if (!state) {
+    if (Object.keys(state).length === 0 && state.constructor === Object) {
       return {
         page: page,
         pageSize:

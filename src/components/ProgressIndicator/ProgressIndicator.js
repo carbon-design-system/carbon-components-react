@@ -56,6 +56,8 @@ ProgressStep.propTypes = {
 };
 
 export class ProgressIndicator extends Component {
+  state = {};
+
   static propTypes = {
     children: PropTypes.node,
     className: PropTypes.string,
