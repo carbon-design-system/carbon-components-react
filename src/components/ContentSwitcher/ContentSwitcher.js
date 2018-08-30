@@ -3,6 +3,8 @@ import React from 'react';
 import classNames from 'classnames';
 
 export default class ContentSwitcher extends React.Component {
+  state = {};
+
   static propTypes = {
     children: PropTypes.node,
     className: PropTypes.string,

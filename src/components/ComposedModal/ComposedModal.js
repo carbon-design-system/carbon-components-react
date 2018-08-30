@@ -6,6 +6,8 @@ import Icon from '../Icon';
 import classNames from 'classnames';
 
 export default class ComposedModal extends Component {
+  state = {};
+
   static defaultProps = {
     onKeyDown: () => {},
   };

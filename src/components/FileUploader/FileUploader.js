@@ -8,6 +8,8 @@ import { ButtonTypes } from '../../prop-types/types';
 import { iconCloseSolid, iconCheckmarkSolid } from 'carbon-icons';
 
 export class FileUploaderButton extends Component {
+  state = {};
+
   static propTypes = {
     className: PropTypes.string,
     disableLabelChanges: PropTypes.bool,
