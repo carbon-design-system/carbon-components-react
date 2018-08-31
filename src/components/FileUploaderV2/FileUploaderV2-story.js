@@ -3,6 +3,15 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import fetchMock from 'fetch-mock';
+import { withInfo } from '@storybook/addon-info';
+import {
+  withKnobs,
+  array,
+  boolean,
+  number,
+  select,
+  text,
+} from '@storybook/addon-knobs';
 import FileUploaderV2, { FileUploaderButtonV2 } from '../FileUploaderV2';
 import FileUploaderSkeletonV2 from '../FileUploaderV2/FileUploaderV2.Skeleton';
 import Button from '../Button';
@@ -17,6 +26,42 @@ fetchMock.mock({
       setTimeout(() => (coinToss() ? resolve('200') : reject(500)), 500)
     ),
 });
+
+const buttonKinds = {
+  primary: 'Primary (primary)',
+  secondary: 'Secondary (secondary)',
+  danger: 'Danger (danger)',
+  ghost: 'Ghost (ghost)',
+  'danger--primary': 'Danger Primary (danger--primary)',
+  tertiary: 'Tertiary (tertiary)',
+};
+const props = {
+  FileUploaderButtonV2: () => {
+    const buttonKind = select('Button kind (buttonKind)', buttonKinds, '');
+    return {
+      labelText: text('Label text (labelText)', 'Add files'),
+      name: text('Form item name: (name)', ''),
+      multiple: boolean('Supports multiple files (multiple)', true),
+      buttonKind: buttonKind || 'primary',
+      role: text('ARIA role of the button (role)', ''),
+      tabIndex: number('Tab index (tabIndex)', -1),
+    };
+  },
+  FileUploaderV2: () => {
+    const buttonKind = select('Button kind (buttonKind)', buttonKinds, '');
+    return {
+      labelTitle: text('The label title (labelTitle)', 'Upload'),
+      labelDescription: text(
+        'The label description (labelDescription)',
+        'only .jpg or .png files at 500mb or less'
+      ),
+      buttonLabel: text('The button label (buttonLabel)', 'Add files'),
+      buttonKind: buttonKind || 'primary',
+      accept: array('Accepted file extensions (accept)', ['.jpg', '.png'], ','),
+      multiple: boolean('Supports multiple files (multiple)', true),
+    };
+  },
+};
 
 class App extends React.Component {
   state = { files: [] };
@@ -77,6 +122,7 @@ class App extends React.Component {
           files={this.state.files}
           onChange={this.handleChange}
           onClick={this.handleClick}
+          {...props.FileUploaderV2()}
         />
         <Button
           kind="secondary"
@@ -91,36 +137,34 @@ class App extends React.Component {
 }
 
 storiesOf('FileUploaderV2', module)
-  .addWithInfo(
+  .addDecorator(withKnobs)
+  .add(
     'FileUploaderButton',
-    `
-      The FileUploaderButton can be used as a standalone component if you do not need the extra UI that comes with FileUploader. The FileUploaderButton is used in FileUploader.
-    `,
-    () => (
+    withInfo({
+      text:
+        'The FileUploaderButton can be used as a standalone component if you do not need the extra UI that comes with FileUploader. The FileUploaderButton is used in FileUploader.',
+    })(() => (
       <FileUploaderButtonV2
         labelText="Add files"
         className="bob"
         name="file"
         onChange={() => console.log('hi')}
         multiple
+        {...props.FileUploaderButtonV2()}
       />
-    )
+    ))
   )
-  .addWithInfo(
+  .add(
     'FileUploader example application',
-    `
-      example application
-    `,
-    () => <App />
+    withInfo({ text: 'example application' })(() => <App />)
   )
-  .addWithInfo(
+  .add(
     'skeleton',
-    `
-      Placeholder skeleton state to use when content is loading.
-    `,
-    () => (
+    withInfo({
+      text: 'Placeholder skeleton state to use when content is loading.',
+    })(() => (
       <div style={{ width: '500px' }}>
         <FileUploaderSkeletonV2 />
       </div>
-    )
+    ))
   );
