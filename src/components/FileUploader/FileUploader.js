@@ -188,6 +188,7 @@ export class Filename extends Component {
     onKeyDown: () => {},
     status: 'uploading',
     style: {},
+    tabIndex: 0,
   };
 
   render() {
