@@ -1,12 +1,29 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import classNames from 'classnames';
+import { composeEventHandlers } from '../../tools/events';
 
 export default class ContentSwitcher extends React.Component {
   static propTypes = {
+    /**
+     * Pass in Switch components to be rendered in the ContentSwitcher
+     */
     children: PropTypes.node,
+
+    /**
+     * Specify an optional className to be added to the container node
+     */
     className: PropTypes.string,
+
+    /**
+     * Specify an `onChange` handler that is called whenever the ContentSwitcher
+     * changes which item is selected
+     */
     onChange: PropTypes.func.isRequired,
+
+    /**
+     * Specify a selected index for the initially selected content
+     */
     selectedIndex: PropTypes.number,
   };
 
@@ -28,7 +45,10 @@ export default class ContentSwitcher extends React.Component {
     return React.Children.map(children, (child, index) =>
       React.cloneElement(child, {
         index,
-        onClick: this.handleChildChange,
+        onClick: composeEventHandlers([
+          this.handleChildChange,
+          child.props.onClick,
+        ]),
         onKeyDown: this.handleChildChange,
         selected: index === this.state.selectedIndex,
       })
