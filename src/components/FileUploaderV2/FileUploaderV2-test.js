@@ -1,21 +1,7 @@
 import React from 'react';
 import FileUploaderV2, { FileUploaderButtonV2 } from '../FileUploaderV2';
 import FileUploaderSkeletonV2 from '../FileUploaderV2/FileUploaderV2.Skeleton';
-import FileUploaderItem from '../FileUploaderItem/FileUploaderItem';
 import { mount, shallow } from 'enzyme';
-
-describe('Filename', () => {
-  const mountWrapper = mount(<FileUploaderItem name={'trees.jpg'} />);
-
-  describe('click on edit icon (close--solid)', () => {
-    it('should have a click event', () => {
-      const onClick = jest.fn();
-      mountWrapper.setProps({ onClick, status: 'edit' });
-      mountWrapper.find('Icon').simulate('click');
-      expect(onClick).toBeCalled();
-    });
-  });
-});
 
 describe('FileUploaderButton', () => {
   const button = <FileUploaderButtonV2 className="extra-class" />;
