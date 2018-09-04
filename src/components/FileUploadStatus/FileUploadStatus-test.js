@@ -1,7 +1,7 @@
 import React from 'react';
 import { iconCloseSolid, iconCheckmarkSolid } from 'carbon-icons';
 import { shallow, mount } from 'enzyme';
-import FileUploaderItem from './FileUploaderItem';
+import FileUploadStatus from './FileUploadStatus';
 import Icon from '../Icon';
 
 const rand3 = () => {
@@ -30,11 +30,11 @@ const possibleProps = {
   statuses: ['uploading', 'edit', 'complete'],
 };
 
-describe('FileUploaderItem', () => {
+describe('FileUploadStatus', () => {
   describe('Renders as expected', () => {
     const n = rand3();
     const element = (
-      <FileUploaderItem
+      <FileUploadStatus
         iconDescription="Upload complete"
         status={possibleProps.statuses[n]}
       />
@@ -68,7 +68,7 @@ describe('FileUploaderItem', () => {
     const onClick = jest.fn();
     const onKeyDown = jest.fn();
     const wrapper = mount(
-      <FileUploaderItem
+      <FileUploadStatus
         onClick={onClick}
         onKeyDown={onKeyDown}
         status="complete"

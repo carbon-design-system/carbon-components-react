@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import uid from '../../tools/uniqueId';
 import { ButtonTypes } from '../../prop-types/types';
-import FileUploaderItem from '../FileUploaderItem/FileUploaderItem';
+import FileUploadStatus from '../FileUploadStatus/FileUploadStatus';
 
 export class FileUploaderButtonV2 extends Component {
   static propTypes = {
@@ -122,7 +122,7 @@ export default function FileUploaderV2(props) {
               <span key={uid()} className="bx--file__selected-file" {...other}>
                 <p className="bx--file-filename">{file.name}</p>
                 <span className="bx--file__state-container">
-                  <FileUploaderItem
+                  <FileUploadStatus
                     iconDescription={file.iconDescription}
                     status={file.status}
                     onKeyDown={evt => {
