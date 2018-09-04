@@ -58,9 +58,23 @@ export default function FileUploaderItem({
 }
 
 FileUploaderItem.propTypes = {
+  /**
+   * Provide an optional `onKeyDown` hook that is called if Space or Return is
+   * pressed while the component is focused
+   */
   onKeyDown: PropTypes.func,
+  /**
+   * Specify an optional object of styles to be applied inline to the root
+   * node
+   */
   style: PropTypes.object,
+  /**
+   * Specify the status of the File Upload
+   */
   status: PropTypes.oneOf(['edit', 'complete', 'uploading']),
+  /**
+   * Provide a custom tabIndex value for the <FileUploaderItem>
+   */
   tabIndex: PropTypes.number,
 };
 FileUploaderItem.defaultProps = {
