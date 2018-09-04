@@ -10,7 +10,18 @@ import { equals } from '../../tools/array';
 let instanceId = 0;
 
 export default class PaginationV2 extends Component {
-  state = {};
+  constructor(props) {
+    super(props);
+    const { pageSizes, page, pageSize } = this.props;
+    this.state = {
+      page: page,
+      pageSize:
+        pageSize && pageSizes.includes(pageSize) ? pageSize : pageSizes[0],
+      prevPageSizes: pageSizes,
+      prevPage: page,
+      prevPageSize: pageSize,
+    };
+  }
 
   static propTypes = {
     /**
@@ -133,16 +144,6 @@ export default class PaginationV2 extends Component {
   }
 
   static getDerivedStateFromProps({ pageSizes, page, pageSize }, state) {
-    if (Object.keys(state).length === 0 && state.constructor === Object) {
-      return {
-        page: page,
-        pageSize:
-          pageSize && pageSizes.includes(pageSize) ? pageSize : pageSizes[0],
-        prevPageSizes: pageSizes,
-        prevPage: page,
-        prevPageSize: pageSize,
-      };
-    }
     const {
       prevPageSizes,
       prevPage,
