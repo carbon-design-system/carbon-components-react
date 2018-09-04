@@ -85,7 +85,6 @@ export class FileUploaderButtonV2 extends Component {
 
 export default function FileUploaderV2(props) {
   const {
-    iconDescription,
     buttonLabel,
     buttonKind,
     labelDescription,
@@ -124,7 +123,7 @@ export default function FileUploaderV2(props) {
                 <p className="bx--file-filename">{file.name}</p>
                 <span className="bx--file__state-container">
                   <FileUploaderItem
-                    iconDescription={iconDescription}
+                    iconDescription={file.iconDescription}
                     status={file.status}
                     onKeyDown={evt => {
                       if (evt.which === 13 || evt.which === 32) {
@@ -147,7 +146,6 @@ export default function FileUploaderV2(props) {
 }
 
 FileUploaderV2.propTypes = {
-  iconDescription: PropTypes.string,
   buttonLabel: PropTypes.string,
   buttonKind: ButtonTypes.buttonKind,
   labelDescription: PropTypes.string,
@@ -162,7 +160,6 @@ FileUploaderV2.propTypes = {
 };
 
 FileUploaderV2.defaultProps = {
-  iconDescription: 'Provide icon description',
   buttonLabel: 'Upload',
   buttonKind: 'primary',
   multiple: false,

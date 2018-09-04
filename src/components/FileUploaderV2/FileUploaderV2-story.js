@@ -82,16 +82,19 @@ class App extends React.Component {
         name: file.name,
         size: file.size,
         status: 'uploading',
+        iconDescription: 'Uploading',
       });
       const index = files.findIndex(file => file.uuid === uuid);
       this.upload({ file })
         .then(() => {
           fetchMock.restore();
           files[index].status = 'complete';
+          files[index].iconDescription = 'Upload complete';
           this.setState({ files });
         })
         .catch(error => {
           files[index].status = 'edit';
+          files[index].iconDescription = 'Upload failed';
           this.setState({ files });
           return new Error(error);
         });
