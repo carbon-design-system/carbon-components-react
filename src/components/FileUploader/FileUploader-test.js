@@ -1,10 +1,11 @@
 import React from 'react';
-import FileUploader, { FileUploaderButton, Filename } from '../FileUploader';
+import FileUploader, { FileUploaderButton } from '../FileUploader';
 import FileUploaderSkeleton from '../FileUploader/FileUploader.Skeleton';
+import FileUploaderItem from '../FileUploaderItem/FileUploaderItem';
 import { mount, shallow } from 'enzyme';
 
 describe('Filename', () => {
-  const mountWrapper = mount(<Filename name={'trees.jpg'} />);
+  const mountWrapper = mount(<FileUploaderItem name={'trees.jpg'} />);
 
   describe('click on edit icon (close--solid)', () => {
     it('should have a click event', () => {
@@ -139,11 +140,13 @@ describe('FileUploader', () => {
       });
 
       // Test to make sure that the Filename is rendered
-      expect(mountUploadedWrapper.find(Filename)).toHaveLength(1);
+      expect(mountUploadedWrapper.find(FileUploaderItem)).toHaveLength(1);
 
       // Test to make sure it was properly removed
       mountUploadedWrapper.instance().clearFiles();
-      expect(mountUploadedWrapper.update().find(Filename)).toHaveLength(0);
+      expect(mountUploadedWrapper.update().find(FileUploaderItem)).toHaveLength(
+        0
+      );
     });
   });
 

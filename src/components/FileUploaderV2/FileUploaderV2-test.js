@@ -1,13 +1,11 @@
 import React from 'react';
-import FileUploaderV2, {
-  FileUploaderButtonV2,
-  FilenameV2,
-} from '../FileUploaderV2';
+import FileUploaderV2, { FileUploaderButtonV2 } from '../FileUploaderV2';
 import FileUploaderSkeletonV2 from '../FileUploaderV2/FileUploaderV2.Skeleton';
+import FileUploaderItem from '../FileUploaderItem/FileUploaderItem';
 import { mount, shallow } from 'enzyme';
 
 describe('Filename', () => {
-  const mountWrapper = mount(<FilenameV2 name={'trees.jpg'} />);
+  const mountWrapper = mount(<FileUploaderItem name={'trees.jpg'} />);
 
   describe('click on edit icon (close--solid)', () => {
     it('should have a click event', () => {

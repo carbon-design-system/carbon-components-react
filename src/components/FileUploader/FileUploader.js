@@ -2,10 +2,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import Icon from '../Icon';
 import uid from '../../tools/uniqueId';
 import { ButtonTypes } from '../../prop-types/types';
-import { iconCloseSolid, iconCheckmarkSolid } from 'carbon-icons';
+import FileUploaderItem from '../FileUploaderItem/FileUploaderItem';
 
 export class FileUploaderButton extends Component {
   state = {};
@@ -165,72 +164,6 @@ export class FileUploaderButton extends Component {
   }
 }
 
-export function Filename({
-  iconDescription,
-  onKeyDown,
-  status,
-  style,
-  tabIndex,
-  ...other
-}) {
-  switch (status) {
-    case 'uploading':
-      return (
-        <div
-          className="bx--loading"
-          style={{ ...style }}
-          tabIndex={tabIndex}
-          onKeyDown={onKeyDown}
-          role="button"
-          {...other}>
-          <svg className="bx--loading__svg" viewBox="-42 -42 84 84">
-            <circle cx="0" cy="0" r="37.5" />
-          </svg>
-        </div>
-      );
-    case 'edit':
-      return (
-        <Icon
-          description={iconDescription}
-          className="bx--file-close"
-          icon={iconCloseSolid}
-          style={style}
-          tabIndex={tabIndex}
-          onKeyDown={onKeyDown}
-          role="button"
-          {...other}
-        />
-      );
-    case 'complete':
-      return (
-        <Icon
-          description={iconDescription}
-          className="bx--file-complete"
-          icon={iconCheckmarkSolid}
-          style={style}
-          tabIndex={tabIndex}
-          onKeyDown={onKeyDown}
-          role="button"
-          {...other}
-        />
-      );
-    default:
-      return null;
-  }
-}
-Filename.propTypes = {
-  onKeyDown: PropTypes.func,
-  style: PropTypes.object,
-  status: PropTypes.oneOf(['edit', 'complete', 'uploading']),
-  tabIndex: PropTypes.number,
-};
-Filename.defaultProps = {
-  onKeyDown: () => {},
-  status: 'uploading',
-  style: {},
-  tabIndex: 0,
-};
-
 export default class FileUploader extends Component {
   static propTypes = {
     iconDescription: PropTypes.string,
@@ -342,7 +275,7 @@ export default class FileUploader extends Component {
                   {...other}>
                   <p className="bx--file-filename">{name}</p>
                   <span className="bx--file__state-container">
-                    <Filename
+                    <FileUploaderItem
                       iconDescription={iconDescription}
                       status={filenameStatus}
                       onKeyDown={evt => {
