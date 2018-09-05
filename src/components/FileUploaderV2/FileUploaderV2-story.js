@@ -13,7 +13,7 @@ import {
   text,
 } from '@storybook/addon-knobs';
 import FileUploaderV2, { FileUploaderButtonV2 } from '../FileUploaderV2';
-import FileUploaderSkeletonV2 from '../FileUploaderV2/FileUploaderV2.Skeleton';
+import FileUploaderSkeleton from '../FileUploaderSkeleton/FileUploader.Skeleton';
 import Button from '../Button';
 import uid from '../../tools/uniqueId';
 
@@ -167,7 +167,7 @@ storiesOf('FileUploaderV2', module)
       text: 'Placeholder skeleton state to use when content is loading.',
     })(() => (
       <div style={{ width: '500px' }}>
-        <FileUploaderSkeletonV2 />
+        <FileUploaderSkeleton />
       </div>
     ))
   );

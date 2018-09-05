@@ -1,6 +1,6 @@
 import React from 'react';
 import FileUploaderV2, { FileUploaderButtonV2 } from '../FileUploaderV2';
-import FileUploaderSkeletonV2 from '../FileUploaderV2/FileUploaderV2.Skeleton';
+import FileUploaderSkeleton from '../FileUploaderSkeleton/FileUploader.Skeleton';
 import { mount, shallow } from 'enzyme';
 
 describe('FileUploaderButton', () => {
@@ -92,7 +92,7 @@ describe('FileUploader', () => {
 
 describe('FileUploaderSkeleton', () => {
   describe('Renders as expected', () => {
-    const wrapper = shallow(<FileUploaderSkeletonV2 />);
+    const wrapper = shallow(<FileUploaderSkeleton />);
 
     it('Has the expected classes', () => {
       expect(wrapper.hasClass('bx--form-item')).toEqual(true);

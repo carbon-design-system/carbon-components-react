@@ -120,7 +120,7 @@ export ButtonSkeleton from './components/Button/Button.Skeleton';
 export CheckboxSkeleton from './components/Checkbox/Checkbox.Skeleton';
 export CodeSnippetSkeleton from './components/CodeSnippet/CodeSnippet.Skeleton';
 export DropdownSkeleton from './components/DropdownV2/Dropdown.Skeleton';
-export FileUploaderSkeleton from './components/FileUploader/FileUploader.Skeleton';
+export FileUploaderSkeleton from './components/FileUploaderSkeleton/FileUploader.Skeleton';
 export NumberInputSkeleton from './components/NumberInput/NumberInput.Skeleton';
 export ProgressIndicatorSkeleton from './components/ProgressIndicator/ProgressIndicator.Skeleton';
 export RadioButtonSkeleton from './components/RadioButton/RadioButton.Skeleton';

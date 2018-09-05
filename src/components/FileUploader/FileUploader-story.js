@@ -13,7 +13,7 @@ import {
   text,
 } from '@storybook/addon-knobs';
 import FileUploader, { FileUploaderButton } from '../FileUploader';
-import FileUploaderSkeleton from '../FileUploader/FileUploader.Skeleton';
+import FileUploaderSkeleton from '../FileUploaderSkeleton/FileUploader.Skeleton';
 import Button from '../Button';
 
 const buttonKinds = {
