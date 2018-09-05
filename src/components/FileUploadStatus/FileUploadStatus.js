@@ -21,7 +21,12 @@ export default function FileUploadStatus({
           onKeyDown={onKeyDown}
           role="button"
           {...other}>
-          <svg className="bx--loading__svg" viewBox="-42 -42 84 84">
+          <svg
+            className="bx--loading__svg"
+            viewBox="-42 -42 84 84"
+            aria-label={iconDescription}
+            alt={iconDescription}>
+            <title>{iconDescription}</title>
             <circle cx="0" cy="0" r="37.5" />
           </svg>
         </div>
@@ -59,6 +64,10 @@ export default function FileUploadStatus({
 
 FileUploadStatus.propTypes = {
   /**
+   * Provide a description of the SVG icon to denote file upload status
+   */
+  iconDescription: PropTypes.string,
+  /**
    * Provide an optional `onKeyDown` hook that is called if Space or Return is
    * pressed while the component is focused
    */
@@ -78,6 +87,7 @@ FileUploadStatus.propTypes = {
   tabIndex: PropTypes.number,
 };
 FileUploadStatus.defaultProps = {
+  iconDescription: 'Uploading file',
   onKeyDown: () => {},
   status: 'uploading',
   style: {},
