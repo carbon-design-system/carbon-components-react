@@ -120,24 +120,23 @@ export class FileUploaderButtonV2 extends Component {
   }
 }
 
-export default function FileUploaderV2(props) {
-  const {
-    buttonLabel,
-    buttonKind,
-    labelDescription,
-    labelTitle,
-    className,
-    multiple,
-    accept,
-    name,
-    onChange,
-    onClick,
-    files,
-    tabIndex,
-    role,
-    id,
-    ...other
-  } = props;
+export default function FileUploaderV2({
+  buttonLabel,
+  buttonKind,
+  labelDescription,
+  labelTitle,
+  className,
+  multiple,
+  accept,
+  name,
+  onChange,
+  onClick,
+  files,
+  tabIndex,
+  role,
+  id,
+  ...other
+}) {
   const handleChange = evt => onChange({ evt, multiple });
   const classes = classNames({
     'bx--form-item': true,
