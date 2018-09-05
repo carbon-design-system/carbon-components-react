@@ -43,8 +43,8 @@ export default class TimePicker extends Component {
   };
 
   static getDerivedStateFromProps({ value }, state) {
-    const { prevValue } = state || {};
-    return state && prevValue === value
+    const { prevValue } = state;
+    return prevValue === value
       ? null
       : {
           value,

@@ -100,8 +100,8 @@ export class ProgressIndicator extends Component {
   };
 
   static getDerivedStateFromProps({ currentIndex }, state) {
-    const { prevCurrentIndex } = state || {};
-    return state && prevCurrentIndex === currentIndex
+    const { prevCurrentIndex } = state;
+    return prevCurrentIndex === currentIndex
       ? null
       : {
           currentIndex,

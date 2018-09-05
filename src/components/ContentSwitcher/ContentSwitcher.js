@@ -34,8 +34,8 @@ export default class ContentSwitcher extends React.Component {
   };
 
   static getDerivedStateFromProps({ selectedIndex }, state) {
-    const { prevSelectedIndex } = state || {};
-    return state && prevSelectedIndex === selectedIndex
+    const { prevSelectedIndex } = state;
+    return prevSelectedIndex === selectedIndex
       ? null
       : {
           selectedIndex,
