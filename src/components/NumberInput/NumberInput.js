@@ -5,7 +5,14 @@ import Icon from '../Icon';
 import classNames from 'classnames';
 
 export default class NumberInput extends Component {
-  state = { value: '' };
+  constructor(props) {
+    super(props);
+    let value = props.value;
+    if (props.min || props.min === 0) {
+      value = Math.max(props.min, value);
+    }
+    this.state = { value };
+  }
 
   static propTypes = {
     className: PropTypes.string,
