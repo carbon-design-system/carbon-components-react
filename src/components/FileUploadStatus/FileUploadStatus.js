@@ -5,22 +5,13 @@ import Icon from '../Icon';
 
 export default function FileUploadStatus({
   iconDescription,
-  onKeyDown,
   status,
-  style,
-  tabIndex,
   ...other
 }) {
   switch (status) {
     case 'uploading':
       return (
-        <div
-          className="bx--loading"
-          style={{ ...style }}
-          tabIndex={tabIndex}
-          onKeyDown={onKeyDown}
-          role="button"
-          {...other}>
+        <div className="bx--loading" role="button" {...other}>
           <svg
             className="bx--loading__svg"
             viewBox="-42 -42 84 84"
@@ -37,9 +28,6 @@ export default function FileUploadStatus({
           description={iconDescription}
           className="bx--file-close"
           icon={iconCloseSolid}
-          style={style}
-          tabIndex={tabIndex}
-          onKeyDown={onKeyDown}
           role="button"
           {...other}
         />
@@ -50,9 +38,6 @@ export default function FileUploadStatus({
           description={iconDescription}
           className="bx--file-complete"
           icon={iconCheckmarkSolid}
-          style={style}
-          tabIndex={tabIndex}
-          onKeyDown={onKeyDown}
           role="button"
           {...other}
         />

@@ -70,8 +70,6 @@ export class FileUploaderButtonV2 extends Component {
     const {
       className,
       multiple,
-      role,
-      tabIndex,
       buttonKind,
       accept,
       name,
@@ -96,9 +94,7 @@ export class FileUploaderButtonV2 extends Component {
         }}>
         <label
           className={`bx--btn bx--btn--${buttonKind}`}
-          tabIndex={tabIndex}
           htmlFor={this.uid}
-          role={role}
           {...other}>
           {labelText}
         </label>
