@@ -77,7 +77,6 @@ export class ClickableTile extends Component {
     const {
       children,
       href,
-      rel,
       className,
       handleClick, // eslint-disable-line
       handleKeyDown, // eslint-disable-line
@@ -97,7 +96,6 @@ export class ClickableTile extends Component {
     return (
       <a
         href={href}
-        rel={rel}
         className={classes}
         {...other}
         onClick={this.handleClick}
