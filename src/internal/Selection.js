@@ -3,7 +3,9 @@ import PropTypes from 'prop-types';
 
 export default class Selection extends React.Component {
   static propTypes = {
-    initialSelectedItems: PropTypes.array.isRequired,
+    initialSelectedItems: PropTypes.arrayOf(
+      PropTypes.shape({ id: PropTypes.string.isRequired })
+    ).isRequired,
   };
 
   static defaultProps = {
@@ -47,7 +49,9 @@ export default class Selection extends React.Component {
 
   handleOnItemChange = item => {
     const { selectedItems } = this.state;
-    const selectedIndex = selectedItems.indexOf(item);
+    const selectedIndex = selectedItems.findIndex(
+      selectedItem => selectedItem.id === item.id
+    );
 
     if (selectedIndex === -1) {
       this.handleSelectItem(item);

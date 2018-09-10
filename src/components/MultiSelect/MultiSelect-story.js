@@ -80,7 +80,12 @@ storiesOf('MultiSelect', module)
             {...multiSelectProps}
             items={items}
             itemToString={item => (item ? item.text : '')}
-            initialSelectedItems={[items[0], items[1]]}
+            initialSelectedItems={[
+              {
+                id: 'item-2',
+                text: 'Item 2',
+              },
+            ]}
             placeholder={placeholder}
           />
         </div>
