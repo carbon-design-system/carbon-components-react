@@ -3,5 +3,6 @@
 exports[`DataTable.BatchEditableTable should render 1`] = `
 <Table
   className="bx--data-table-v2--batch-editable"
+  zebra={true}
 />
 `;

@@ -1,11 +1,10 @@
 import React from 'react';
-import { TableCell } from '../..';
-import Select from '../../../Select';
+import { TableCell, BatchEditableTableSelect } from '../..';
 import SelectItem from '../../../SelectItem';
 
 export default ({ id, type, items, onChange }) => (
   <TableCell>
-    <Select
+    <BatchEditableTableSelect
       id={`${id}__select`}
       data-id={id}
       data-field="port-range-type"
@@ -14,6 +13,6 @@ export default ({ id, type, items, onChange }) => (
       {items.map(item => (
         <SelectItem key={item.id} value={item.id} text={item.label} />
       ))}
-    </Select>
+    </BatchEditableTableSelect>
   </TableCell>
 );

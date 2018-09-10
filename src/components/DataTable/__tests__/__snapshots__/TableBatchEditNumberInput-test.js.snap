@@ -2,7 +2,9 @@
 
 exports[`DataTable.BatchEditableTableNumberInput should render 1`] = `
 <NumberInput
+  className="bx--number--batch-edit"
   disabled={false}
+  helperText=""
   iconDescription="choose a number"
   id="id-foo"
   invalid={false}

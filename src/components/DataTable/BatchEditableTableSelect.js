@@ -1,29 +1,29 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import cx from 'classnames';
-import NumberInput from '../NumberInput';
+import Select from '../Select';
 import InvalidIcon from './InvalidIcon';
 
 /**
- * `<NumberInput>` for table batch editing.
+ * `<Select>` for table batch editing.
  */
-const BatchEditableTableNumberInput = ({
+const BatchEditableTableSelect = ({
   className: customClassName,
   invalidText,
   ...other
 }) => {
-  const className = cx('bx--number--batch-edit', customClassName);
+  const className = cx('bx--select--batch-edit', customClassName);
   return (
-    <NumberInput
+    <Select
       {...other}
       className={className}
-      label=""
+      labelText=""
       invalidText={<InvalidIcon>{invalidText}</InvalidIcon>}
     />
   );
 };
 
-BatchEditableTableNumberInput.propTypes = {
+BatchEditableTableSelect.propTypes = {
   /**
    * Specify an optional className to be applied to the container node
    */
@@ -35,4 +35,4 @@ BatchEditableTableNumberInput.propTypes = {
   invalidText: PropTypes.node,
 };
 
-export default BatchEditableTableNumberInput;
+export default BatchEditableTableSelect;

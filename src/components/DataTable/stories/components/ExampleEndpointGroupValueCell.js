@@ -1,6 +1,9 @@
 import React from 'react';
-import { TableCell, BatchEditableTableTextInput } from '../..';
-import Select from '../../../Select';
+import {
+  TableCell,
+  BatchEditableTableSelect,
+  BatchEditableTableTextInput,
+} from '../..';
 import SelectItem from '../../../SelectItem';
 
 export default ({ id, type, value, items, invalid, invalidText, onChange }) => {
@@ -37,7 +40,7 @@ export default ({ id, type, value, items, invalid, invalidText, onChange }) => {
   if (type === 'security_group') {
     return (
       <TableCell>
-        <Select
+        <BatchEditableTableSelect
           id={`${id}__security_group__select`}
           data-id={id}
           data-field="endpoint-group-value"
@@ -46,7 +49,7 @@ export default ({ id, type, value, items, invalid, invalidText, onChange }) => {
           {items.map(item => (
             <SelectItem key={item.id} value={item.id} text={item.label} />
           ))}
-        </Select>
+        </BatchEditableTableSelect>
       </TableCell>
     );
   }

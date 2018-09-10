@@ -24,6 +24,7 @@ import BatchEditableTableActions from './BatchEditableTableActions';
 import BatchEditableTableDeleteCell from './BatchEditableTableDeleteCell';
 import BatchEditableTableDeleteHeader from './BatchEditableTableDeleteHeader';
 import BatchEditableTableNumberInput from './BatchEditableTableNumberInput';
+import BatchEditableTableSelect from './BatchEditableTableSelect';
 import BatchEditableTableTextInput from './BatchEditableTableTextInput';
 
 DataTable.Table = Table;
@@ -51,6 +52,7 @@ DataTable.BatchEditableTableActions = BatchEditableTableActions;
 DataTable.BatchEditableTableDeleteCell = BatchEditableTableDeleteCell;
 DataTable.BatchEditableTableDeleteHeader = BatchEditableTableDeleteHeader;
 DataTable.BatchEditableTableNumberInput = BatchEditableTableNumberInput;
+DataTable.BatchEditableTableSelect = BatchEditableTableSelect;
 DataTable.BatchEditableTableTextInput = BatchEditableTableTextInput;
 
 export {
@@ -79,6 +81,7 @@ export {
   BatchEditableTableDeleteCell,
   BatchEditableTableDeleteHeader,
   BatchEditableTableNumberInput,
+  BatchEditableTableSelect,
   BatchEditableTableTextInput,
 };
 

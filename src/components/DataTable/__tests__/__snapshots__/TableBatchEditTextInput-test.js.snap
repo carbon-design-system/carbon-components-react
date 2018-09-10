@@ -2,8 +2,9 @@
 
 exports[`DataTable.BatchEditableTableTextInput should render 1`] = `
 <TextInput
-  className="bx--text__input"
+  className="bx--text-input--batch-edit"
   disabled={false}
+  helperText=""
   id="id-foo"
   invalid={false}
   invalidText={<InvalidIcon />}
