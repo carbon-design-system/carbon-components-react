@@ -24,6 +24,8 @@ export class Tile extends Component {
 }
 
 export class ClickableTile extends Component {
+  state = {};
+
   static propTypes = {
     children: PropTypes.node,
     className: PropTypes.string,
