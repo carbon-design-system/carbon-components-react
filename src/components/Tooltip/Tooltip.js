@@ -96,6 +96,8 @@ const getMenuOffset = (menuBody, menuDirection) => {
 };
 
 export default class Tooltip extends Component {
+  state = {};
+
   static propTypes = {
     /**
      * The ID of the trigger button.
@@ -201,26 +203,23 @@ export default class Tooltip extends Component {
    */
   _tooltipEl = null;
 
-  state = {
-    open: this.props.open,
-  };
-
   componentDidMount() {
     requestAnimationFrame(() => {
       this.getTriggerPosition();
     });
   }
 
-  UNSAFE_componentWillReceiveProps({ open }) {
+  static getDerivedStateFromProps({ open }, state) {
     /**
      * so that tooltip can be controlled programmatically through this `open` prop
      */
-    const { open: origOpen } = this.props;
-    if (origOpen !== open) {
-      this.setState({
-        open,
-      });
-    }
+    const { prevOpen } = state;
+    return prevOpen === open
+      ? null
+      : {
+          open,
+          prevOpen: open,
+        };
   }
 
   getTriggerPosition = () => {

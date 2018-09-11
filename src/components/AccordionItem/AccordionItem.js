@@ -5,14 +5,16 @@ import { iconChevronRight } from 'carbon-icons';
 import Icon from '../Icon';
 
 export default class AccordionItem extends Component {
+  state = {};
+
   static propTypes = {
     /**
-     * The child nodes.
+     * Provide the contents of your AccordionItem
      */
     children: PropTypes.node,
 
     /**
-     * The CSS class names.
+     * Specify an optional className to be applied to the container node
      */
     className: PropTypes.string,
 
@@ -50,14 +52,14 @@ export default class AccordionItem extends Component {
     onHeadingClick: () => {},
   };
 
-  state = {
-    open: this.props.open,
-  };
-
-  UNSAFE_componentWillReceiveProps({ open }) {
-    if (open !== this.props.open) {
-      this.setState({ open });
-    }
+  static getDerivedStateFromProps({ open }, state) {
+    const { prevOpen } = state || {};
+    return state && prevOpen === open
+      ? null
+      : {
+          open,
+          prevOpen: open,
+        };
   }
 
   handleClick = evt => {

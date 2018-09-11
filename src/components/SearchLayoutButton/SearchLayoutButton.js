@@ -7,6 +7,8 @@ import Icon from '../Icon';
  * The layout button for `<Search>`.
  */
 class SearchLayoutButton extends Component {
+  state = { format: 'list' };
+
   static propTypes = {
     /**
      * The layout.
@@ -40,19 +42,15 @@ class SearchLayoutButton extends Component {
     iconDescriptionGrid: 'grid',
   };
 
-  state = {
-    /**
-     * The current layout.
-     * @type {string}
-     */
-    format: this.props.format || 'list',
-  };
+  static getDerivedStateFromProps({ format }, state) {
+    const { prevFormat } = state;
 
-  UNSAFE_componentWillReceiveProps({ format }) {
-    const { format: prevFormat } = this.props;
-    if (prevFormat !== format) {
-      this.setState({ format: format || 'list' });
-    }
+    return prevFormat === format
+      ? null
+      : {
+          format: format || 'list',
+          prevFormat: format,
+        };
   }
 
   /**

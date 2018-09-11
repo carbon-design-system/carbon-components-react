@@ -3,11 +3,13 @@ import React, { Component } from 'react';
 import classNames from 'classnames';
 
 export default class TimePicker extends Component {
+  state = {};
+
   static propTypes = {
     children: PropTypes.node,
     className: PropTypes.string,
     id: PropTypes.string.isRequired,
-    labelText: PropTypes.string,
+    labelText: PropTypes.node,
     onClick: PropTypes.func,
     onChange: PropTypes.func,
     onBlur: PropTypes.func,
@@ -40,18 +42,14 @@ export default class TimePicker extends Component {
     light: false,
   };
 
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      value: props.value,
-    };
-  }
-
-  UNSAFE_componentWillReceiveProps(nextProps) {
-    if (nextProps.value !== this.props.value) {
-      this.setState({ value: nextProps.value });
-    }
+  static getDerivedStateFromProps({ value }, state) {
+    const { prevValue } = state;
+    return prevValue === value
+      ? null
+      : {
+          value,
+          prevValue: value,
+        };
   }
 
   render() {

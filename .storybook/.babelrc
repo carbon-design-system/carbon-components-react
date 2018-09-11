@@ -5,15 +5,17 @@
       {
         "modules": false,
         "targets": {
-          "browsers": [
-            "last 1 version",
-            "ie >= 11"
-          ]
+          "browsers": ["last 1 version", "ie >= 11"]
         }
       }
     ],
     "@babel/preset-react",
-    ["@babel/preset-stage-1", { "decoratorsLegacy": true }]
+    [
+      "@babel/preset-stage-1",
+      {
+        "decoratorsLegacy": true
+      }
+    ]
   ],
-  "plugins": ["dev-expression"]
+  "plugins": ["dev-expression", "react-docgen"]
 }
