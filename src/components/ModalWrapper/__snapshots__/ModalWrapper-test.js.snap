@@ -23,6 +23,7 @@ exports[`ModalWrapper should render 1`] = `
       className="btn-trigger"
       disabled={false}
       iconDescription="Provide icon description if icon is used"
+      inputref={[Function]}
       kind="primary"
       onClick={[Function]}
       small={false}
@@ -32,6 +33,7 @@ exports[`ModalWrapper should render 1`] = `
       <button
         className="btn-trigger bx--btn bx--btn--primary"
         disabled={false}
+        inputref={[Function]}
         onClick={[Function]}
         tabIndex={0}
         type="button"
