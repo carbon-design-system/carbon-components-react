@@ -29,9 +29,24 @@ export class ClickableTile extends Component {
   };
 
   static propTypes = {
+    /**
+     * The child nodes.
+     */
     children: PropTypes.node,
+
+    /**
+     * The CSS class names.
+     */
     className: PropTypes.string,
+
+    /**
+     * The href for the link.
+     */
     href: PropTypes.string,
+
+    /**
+     * The rel property for the link.
+     */
     rel: PropTypes.string,
   };
 
