@@ -5,6 +5,15 @@ import Icon from '../Icon';
 import classNames from 'classnames';
 
 export default class NumberInput extends Component {
+  constructor(props) {
+    super(props);
+    let value = props.value;
+    if (props.min || props.min === 0) {
+      value = Math.max(props.min, value);
+    }
+    this.state = { value };
+  }
+
   static propTypes = {
     className: PropTypes.string,
     disabled: PropTypes.bool,
@@ -23,6 +32,7 @@ export default class NumberInput extends Component {
     value: PropTypes.number,
     invalid: PropTypes.bool,
     invalidText: PropTypes.string,
+    helperText: PropTypes.node,
     /**
      * `true` to use the light version.
      */
@@ -39,6 +49,7 @@ export default class NumberInput extends Component {
     value: 0,
     invalid: false,
     invalidText: 'Provide invalidText',
+    helperText: '',
     light: false,
   };
 
@@ -48,23 +59,14 @@ export default class NumberInput extends Component {
    */
   _inputRef = null;
 
-  constructor(props) {
-    super(props);
-
-    let value = props.value;
-    if (props.min || props.min === 0) {
-      value = Math.max(props.min, value);
-    }
-
-    this.state = {
-      value,
-    };
-  }
-
-  UNSAFE_componentWillReceiveProps(nextProps) {
-    if (nextProps.value !== this.props.value) {
-      this.setState({ value: nextProps.value });
-    }
+  static getDerivedStateFromProps({ min, value }, state) {
+    const { prevValue } = state || {};
+    return prevValue === value
+      ? null
+      : {
+          value: isNaN(min) ? value : Math.max(min, value),
+          prevValue: value,
+        };
   }
 
   handleChange = evt => {
@@ -129,6 +131,7 @@ export default class NumberInput extends Component {
       step,
       invalid,
       invalidText,
+      helperText,
       light,
       ...other
     } = this.props;
@@ -158,6 +161,10 @@ export default class NumberInput extends Component {
       inputWrapperProps['data-invalid'] = true;
       error = <div className="bx--form-requirement">{invalidText}</div>;
     }
+
+    const helper = helperText ? (
+      <div className="bx--form__helper-text">{helperText}</div>
+    ) : null;
 
     return (
       <div className="bx--form-item">
@@ -197,6 +204,7 @@ export default class NumberInput extends Component {
             ref={this._handleInputRef}
           />
           {error}
+          {helper}
         </div>
       </div>
     );

@@ -12,11 +12,17 @@ const handleOnKeyDown = event => {
   }
 };
 
+const handleClick = event => {
+  event.preventDefault();
+  event.stopPropagation();
+};
+
 /**
  * `ListBox` is a generic container component that handles creating the
  * container class name in response to certain props.
  */
 const ListBox = ({
+  ariaLabel,
   children,
   className: containerClassName,
   disabled,
@@ -37,10 +43,12 @@ const ListBox = ({
       <div
         {...rest}
         role="listbox"
+        aria-label={ariaLabel}
         tabIndex="0"
         className={className}
         ref={innerRef}
         onKeyDown={handleOnKeyDown}
+        onClick={handleClick}
         data-invalid={invalid || undefined}
         aria-invalid={invalid || undefined}>
         {children}
@@ -76,12 +84,18 @@ ListBox.propTypes = {
    * `inline` as an option.
    */
   type: ListBoxType.isRequired,
+
+  /**
+   * Specify the "aria-label" of the ListBox.
+   */
+  ariaLabel: PropTypes.string,
 };
 
 ListBox.defaultProps = {
   innerRef: () => {},
   disabled: false,
   type: 'default',
+  ariaLabel: 'Choose an item',
 };
 
 export default ListBox;

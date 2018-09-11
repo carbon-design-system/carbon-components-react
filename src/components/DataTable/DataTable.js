@@ -4,7 +4,7 @@ import isEqual from 'lodash.isequal';
 import getDerivedStateFromProps from './state/getDerivedStateFromProps';
 import { getNextSortState } from './state/sorting';
 import denormalize from './tools/denormalize';
-import { composeEventHandlers } from './tools/events';
+import { composeEventHandlers } from '../../tools/events';
 import { defaultFilterRows } from './tools/filter';
 import { defaultSortRow } from './tools/sorting';
 import setupGetInstanceId from './tools/instanceId';
@@ -139,13 +139,13 @@ export default class DataTable extends React.Component {
    * @param {Function} config.onClick a custom click handler for the header
    * @returns {Object}
    */
-  getHeaderProps = ({ header, onClick, ...rest }) => {
+  getHeaderProps = ({ header, onClick, isSortable = true, ...rest }) => {
     const { sortDirection, sortHeaderKey } = this.state;
     return {
       ...rest,
       key: header.key,
       sortDirection,
-      isSortable: true,
+      isSortable,
       isSortHeader: sortHeaderKey === header.key,
       // Compose the event handlers so we don't overwrite a consumer's `onClick`
       // handler
