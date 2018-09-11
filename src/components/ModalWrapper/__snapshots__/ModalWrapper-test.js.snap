@@ -23,7 +23,18 @@ exports[`ModalWrapper should render 1`] = `
       className="btn-trigger"
       disabled={false}
       iconDescription="Provide icon description if icon is used"
-      inputref={[Function]}
+      inputref={
+        Object {
+          "current": <button
+            class="btn-trigger bx--btn bx--btn--primary"
+            inputref="[object Object]"
+            tabindex="0"
+            type="button"
+          >
+            Test Modal
+          </button>,
+        }
+      }
       kind="primary"
       onClick={[Function]}
       small={false}
@@ -33,7 +44,18 @@ exports[`ModalWrapper should render 1`] = `
       <button
         className="btn-trigger bx--btn bx--btn--primary"
         disabled={false}
-        inputref={[Function]}
+        inputref={
+          Object {
+            "current": <button
+              class="btn-trigger bx--btn bx--btn--primary"
+              inputref="[object Object]"
+              tabindex="0"
+              type="button"
+            >
+              Test Modal
+            </button>,
+          }
+        }
         onClick={[Function]}
         tabIndex={0}
         type="button"
