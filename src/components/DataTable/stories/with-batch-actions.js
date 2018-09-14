@@ -82,7 +82,7 @@ export default () => (
           </TableHead>
           <TableBody>
             {rows.map(row => (
-              <TableRow key={row.id}>
+              <TableRow key={row.id} selected={row.isSelected}>
                 <TableSelectRow {...getSelectionProps({ row })} />
                 {row.cells.map(cell => (
                   <TableCell key={cell.id}>{cell.value}</TableCell>
