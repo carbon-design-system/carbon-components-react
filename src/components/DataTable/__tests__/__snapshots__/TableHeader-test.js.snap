@@ -10,7 +10,9 @@ exports[`DataTable.TableHeader should have an active and ascending class if sort
     <TableHead>
       <thead>
         <TableRow>
-          <tr>
+          <tr
+            className=""
+          >
             <TableHeader
               isSortHeader={true}
               isSortable={false}
@@ -43,7 +45,9 @@ exports[`DataTable.TableHeader should have an active class if it is the sort hea
     <TableHead>
       <thead>
         <TableRow>
-          <tr>
+          <tr
+            className=""
+          >
             <TableHeader
               isSortHeader={true}
               isSortable={false}
@@ -76,7 +80,9 @@ exports[`DataTable.TableHeader should render 1`] = `
     <TableHead>
       <thead>
         <TableRow>
-          <tr>
+          <tr
+            className=""
+          >
             <TableHeader
               isSortHeader={false}
               isSortable={false}
@@ -109,7 +115,9 @@ exports[`DataTable.TableHeader should render 2`] = `
     <TableHead>
       <thead>
         <TableRow>
-          <tr>
+          <tr
+            className=""
+          >
             <TableHeader
               isSortHeader={true}
               isSortable={false}

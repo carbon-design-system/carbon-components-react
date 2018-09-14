@@ -10,7 +10,9 @@ exports[`DataTable.TableExpandHeader should render 1`] = `
     <TableHead>
       <thead>
         <TableRow>
-          <tr>
+          <tr
+            className=""
+          >
             <TableExpandHeader
               className="custom-class"
             >
