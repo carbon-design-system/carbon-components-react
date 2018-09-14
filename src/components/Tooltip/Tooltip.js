@@ -359,7 +359,7 @@ export default class Tooltip extends Component {
         };
 
     return (
-      <React.Fragment>
+      <>
         <ClickListener onClickOutside={this.handleClickOutside}>
           {showIcon ? (
             <div className={triggerClasses}>
@@ -431,7 +431,7 @@ export default class Tooltip extends Component {
             </div>
           </FloatingMenu>
         )}
-      </React.Fragment>
+      </>
     );
   }
 }
