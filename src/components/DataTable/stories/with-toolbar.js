@@ -21,7 +21,7 @@ export default () => (
   <DataTable
     rows={initialRows}
     headers={headers}
-    render={({ rows, headers, getHeaderProps, onInputChange }) => (
+    render={({ rows, headers, getHeaderProps, getRowProps, onInputChange }) => (
       <TableContainer title="DataTable with toolbar">
         <TableToolbar>
           <TableToolbarSearch onChange={onInputChange} />
@@ -58,7 +58,7 @@ export default () => (
           </TableHead>
           <TableBody>
             {rows.map(row => (
-              <TableRow key={row.id} selected={row.isSelected}>
+              <TableRow {...getRowProps({ row })}>
                 {row.cells.map(cell => (
                   <TableCell key={cell.id}>{cell.value}</TableCell>
                 ))}
