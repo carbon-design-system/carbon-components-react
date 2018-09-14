@@ -47,13 +47,15 @@ export default class Selection extends React.Component {
   };
   handleOnItemChange = item => {
     const { selectedItems } = this.state;
-    const selectedIndex = selectedItems.indexOf(
-      selectedItems.find(selectedItem => {
-        return isEqual(selectedItem, item);
-      })
-    );
 
-    if (selectedIndex === -1) {
+    let selectedIndex;
+    selectedItems.forEach((selectedItem, index) => {
+      if (isEqual(selectedItem, item)) {
+        selectedIndex = index;
+      }
+    });
+
+    if (selectedIndex === undefined) {
       this.handleSelectItem(item);
       return;
     }

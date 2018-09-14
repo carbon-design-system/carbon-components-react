@@ -252,11 +252,8 @@ export default class FilterableMultiSelect extends React.Component {
                       const itemProps = getItemProps({ item });
                       const itemText = itemToString(item);
                       const isChecked =
-                        selectedItem.indexOf(
-                          selectedItem.find(selected => {
-                            return isEqual(selected, item);
-                          })
-                        ) !== -1;
+                        selectedItem.filter(selected => isEqual(selected, item))
+                          .length > 0;
                       return (
                         <ListBox.MenuItem
                           key={itemProps.id}
