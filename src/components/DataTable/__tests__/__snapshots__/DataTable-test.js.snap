@@ -16,6 +16,7 @@ exports[`DataTable selection should have select-all default to un-checked if no 
     ]
   }
   locale="en"
+  onSelectChange={[Function]}
   render={
     [MockFunction] {
       "calls": Array [
@@ -327,6 +328,7 @@ exports[`DataTable selection should render 1`] = `
     ]
   }
   locale="en"
+  onSelectChange={[Function]}
   render={
     [MockFunction] {
       "calls": Array [
@@ -944,6 +946,7 @@ exports[`DataTable should render 1`] = `
     ]
   }
   locale="en"
+  onSelectChange={[Function]}
   render={
     [MockFunction] {
       "calls": Array [

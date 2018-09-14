@@ -90,6 +90,11 @@ export default class DataTable extends React.Component {
      * available message ids.
      */
     translateWithId: PropTypes.func,
+
+    /**
+     * Optional method that returns a list of selected rows
+     */
+    onSelectChange: PropTypes.func,
   };
 
   static defaultProps = {
@@ -97,6 +102,7 @@ export default class DataTable extends React.Component {
     filterRows: defaultFilterRows,
     locale: 'en',
     translateWithId,
+    onSelectChange: () => {},
   };
 
   static translationKeys = Object.values(translationKeys);
@@ -284,26 +290,39 @@ export default class DataTable extends React.Component {
    * deselect all selected rows
    */
   handleOnCancel = () => {
-    this.setState(state => {
-      return {
-        shouldShowBatchActions: false,
-        ...this.setAllSelectedState(state, false),
-      };
+    const selectState = this.setAllSelectedState(this.state, false);
+    this.setState({
+      shouldShowBatchActions: false,
+      ...selectState,
     });
+
+    Object.keys(selectState.rowsById).forEach(rowId => {
+      this.props.onSelectChange({
+        rowId,
+        isSelected: selectState.rowsById[rowId].isSelected,
+      });
+    }, this);
   };
 
   /**
    * Handler for toggling the selection state of all rows in the database
    */
   handleSelectAll = () => {
-    this.setState(state => {
-      const { rowIds } = state;
-      const isSelected = this.getSelectedRows().length !== rowIds.length;
-      return {
-        shouldShowBatchActions: isSelected,
-        ...this.setAllSelectedState(state, isSelected),
-      };
+    const { rowIds } = this.state;
+    const isSelected = this.getSelectedRows().length !== rowIds.length;
+    const selectState = this.setAllSelectedState(this.state, isSelected);
+
+    this.setState({
+      shouldShowBatchActions: isSelected,
+      ...selectState,
     });
+
+    Object.keys(selectState.rowsById).forEach(rowId => {
+      this.props.onSelectChange({
+        rowId,
+        isSelected: selectState.rowsById[rowId].isSelected,
+      });
+    }, this);
   };
 
   /**
@@ -313,29 +332,34 @@ export default class DataTable extends React.Component {
    * @returns {Function}
    */
   handleOnSelectRow = rowId => () => {
-    this.setState(state => {
-      const row = state.rowsById[rowId];
-      const selectedRows = state.rowIds.filter(id => {
-        return state.rowsById[id].isSelected;
-      }).length;
-      // Predict the length of the selected rows after this change occurs
-      const selectedRowsCount = !row.isSelected
-        ? selectedRows + 1
-        : selectedRows - 1;
-      return {
-        // Basic assumption here is that we want to show the batch action bar if
-        // the row is being selected. If it's being unselected, then see if we
-        // have a non-zero number of selected rows that batch actions could
-        // still apply to
-        shouldShowBatchActions: !row.isSelected || selectedRowsCount > 0,
-        rowsById: {
-          ...state.rowsById,
-          [rowId]: {
-            ...row,
-            isSelected: !row.isSelected,
-          },
+    const row = this.state.rowsById[rowId];
+    const selectedRows = this.state.rowIds.filter(id => {
+      return this.state.rowsById[id].isSelected;
+    }).length;
+    // Predict the length of the selected rows after this change occurs
+    const selectedRowsCount = !row.isSelected
+      ? selectedRows + 1
+      : selectedRows - 1;
+    const isSelected = !this.state.rowsById[rowId].isSelected;
+
+    this.setState({
+      // Basic assumption here is that we want to show the batch action bar if
+      // the row is being selected. If it's being unselected, then see if we
+      // have a non-zero number of selected rows that batch actions could
+      // still apply to
+      shouldShowBatchActions: !row.isSelected || selectedRowsCount > 0,
+      rowsById: {
+        ...this.state.rowsById,
+        [rowId]: {
+          ...row,
+          isSelected: isSelected,
         },
-      };
+      },
+    });
+
+    this.props.onSelectChange({
+      rowId,
+      isSelected: isSelected,
     });
   };
 
