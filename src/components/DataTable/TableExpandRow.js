@@ -12,14 +12,14 @@ const TableExpandRow = ({
   isExpanded,
   onExpand,
   expandIconDescription,
-  selected,
+  isSelected,
   ...rest
 }) => {
   const className = cx(
     {
       'bx--parent-row-v2': true,
       'bx--expandable-row-v2': isExpanded,
-      'bx--data-table-v2--selected': selected,
+      'bx--data-table-v2--selected': isSelected,
     },
     rowClassName
   );

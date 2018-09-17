@@ -174,7 +174,7 @@ export default class DataTable extends React.Component {
       onExpand: composeEventHandlers([this.handleOnExpandRow(row.id), onClick]),
       isExpanded: row.isExpanded,
       ariaLabel: t(translationKey),
-      selected: row.isSelected,
+      isSelected: row.isSelected,
     };
   };
 
