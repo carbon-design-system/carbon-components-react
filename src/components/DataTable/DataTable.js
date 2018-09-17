@@ -52,6 +52,7 @@ export default class DataTable extends React.Component {
     rows: PropTypes.arrayOf(
       PropTypes.shape({
         id: PropTypes.string.isRequired,
+        isSelected: PropTypes.bool,
       })
     ).isRequired,
 
