@@ -10,9 +10,7 @@ exports[`DataTable.TableCell should render 1`] = `
     <TableBody>
       <tbody>
         <TableRow>
-          <tr
-            className=""
-          >
+          <tr>
             <TableCell
               className="custom-class"
             >

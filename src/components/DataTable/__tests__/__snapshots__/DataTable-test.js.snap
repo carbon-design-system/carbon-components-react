@@ -117,9 +117,7 @@ exports[`DataTable selection should have select-all default to un-checked if no 
           <TableHead>
             <thead>
               <TableRow>
-                <tr
-                  className=""
-                >
+                <tr>
                   <TableSelectAll
                     ariaLabel="Select all rows"
                     checked={false}
@@ -582,9 +580,7 @@ exports[`DataTable selection should render 1`] = `
           <TableHead>
             <thead>
               <TableRow>
-                <tr
-                  className=""
-                >
+                <tr>
                   <TableSelectAll
                     ariaLabel="Select all rows"
                     checked={false}
@@ -773,9 +769,7 @@ exports[`DataTable selection should render 1`] = `
               <TableRow
                 key="b"
               >
-                <tr
-                  className=""
-                >
+                <tr>
                   <TableSelectRow
                     ariaLabel="Select row"
                     checked={false}
@@ -826,9 +820,7 @@ exports[`DataTable selection should render 1`] = `
               <TableRow
                 key="a"
               >
-                <tr
-                  className=""
-                >
+                <tr>
                   <TableSelectRow
                     ariaLabel="Select row"
                     checked={false}
@@ -879,9 +871,7 @@ exports[`DataTable selection should render 1`] = `
               <TableRow
                 key="c"
               >
-                <tr
-                  className=""
-                >
+                <tr>
                   <TableSelectRow
                     ariaLabel="Select row"
                     checked={false}
@@ -1708,9 +1698,7 @@ exports[`DataTable should render 1`] = `
           <TableHead>
             <thead>
               <TableRow>
-                <tr
-                  className=""
-                >
+                <tr>
                   <TableHeader
                     isSortHeader={false}
                     isSortable={true}
@@ -1864,9 +1852,7 @@ exports[`DataTable should render 1`] = `
               <TableRow
                 key="b"
               >
-                <tr
-                  className=""
-                >
+                <tr>
                   <TableCell
                     key="b:fieldA"
                   >
@@ -1886,9 +1872,7 @@ exports[`DataTable should render 1`] = `
               <TableRow
                 key="a"
               >
-                <tr
-                  className=""
-                >
+                <tr>
                   <TableCell
                     key="a:fieldA"
                   >
@@ -1908,9 +1892,7 @@ exports[`DataTable should render 1`] = `
               <TableRow
                 key="c"
               >
-                <tr
-                  className=""
-                >
+                <tr>
                   <TableCell
                     key="c:fieldA"
                   >

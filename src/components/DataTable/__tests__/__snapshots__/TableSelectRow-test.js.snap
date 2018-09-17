@@ -10,9 +10,7 @@ exports[`DataTable.TableSelectRow should render 1`] = `
     <TableHead>
       <thead>
         <TableRow>
-          <tr
-            className=""
-          >
+          <tr>
             <TableSelectRow
               ariaLabel="Aria label"
               checked={false}

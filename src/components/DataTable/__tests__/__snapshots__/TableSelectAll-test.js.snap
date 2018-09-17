@@ -10,9 +10,7 @@ exports[`DataTable.TableSelectAll should render 1`] = `
     <TableHead>
       <thead>
         <TableRow>
-          <tr
-            className=""
-          >
+          <tr>
             <TableSelectAll
               ariaLabel="Select all rows in the table"
               checked={false}

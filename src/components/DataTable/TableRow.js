@@ -10,7 +10,7 @@ const TableRow = props => {
   });
   const cleanProps = {
     ...omit(props, ['ariaLabel', 'onExpand', 'isExpanded']),
-    className,
+    className: className || undefined,
   };
   return <tr {...cleanProps} />;
 };
