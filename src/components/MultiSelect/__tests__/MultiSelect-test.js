@@ -55,6 +55,23 @@ describe('MultiSelect', () => {
     });
   });
 
+  describe('when `initialSelectedItems` is given as indexes', () => {
+    it('should initialize `selectedItems` with the given initial selected items', () => {
+      const items = generateItems(5, generateGenericItem);
+      const wrapper = mount(
+        <MultiSelect
+          label="Field"
+          items={items}
+          initialSelectedItems={[2, 3]}
+        />
+      );
+      expect(wrapper.find('Selection').instance().state.selectedItems).toEqual([
+        items[2],
+        items[3],
+      ]);
+    });
+  });
+
   describe('MultiSelect with InitialSelectedItems', () => {
     let mockProps;
     const items = generateItems(5, generateGenericItem);
@@ -186,17 +203,17 @@ describe('MultiSelect', () => {
       const getHighlightedId = () =>
         wrapper.find('.bx--list-box__menu-item--highlighted').prop('id');
       simulateArrowDown();
-      expect(getHighlightedId()).toBe('downshift-10-item-0');
+      expect(getHighlightedId()).toBe('downshift-11-item-0');
       simulateArrowDown();
-      expect(getHighlightedId()).toBe('downshift-10-item-1');
+      expect(getHighlightedId()).toBe('downshift-11-item-1');
       // Simulate "wrap" behavior
       simulateArrowDown();
       simulateArrowDown();
       simulateArrowDown();
       simulateArrowDown();
-      expect(getHighlightedId()).toBe('downshift-10-item-0');
+      expect(getHighlightedId()).toBe('downshift-11-item-0');
       simulateArrowUp();
-      expect(getHighlightedId()).toBe('downshift-10-item-4');
+      expect(getHighlightedId()).toBe('downshift-11-item-4');
     });
 
     it('should close the menu when a user clicks outside of the control', () => {

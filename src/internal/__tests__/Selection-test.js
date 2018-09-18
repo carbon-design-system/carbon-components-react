@@ -1,5 +1,5 @@
 import React from 'react';
-import Selection from '../Selection';
+import Selection, { findItemIndex } from '../Selection';
 import { mount } from 'enzyme';
 
 describe('Selection', () => {
@@ -12,6 +12,14 @@ describe('Selection', () => {
     };
   });
 
+  it('findItemIndex', () => {
+    const objectItems = [
+      { id: 'item1', label: 'Item1' },
+      { id: 'item2', label: 'Item2' },
+    ];
+    expect(findItemIndex('item1', objectItems)).toEqual(0);
+    expect(findItemIndex({ id: 'item1' }, objectItems)).toEqual(0);
+  });
   it('should render', () => {
     const wrapper = mount(<Selection {...mockProps} />);
     expect(wrapper).toMatchSnapshot();

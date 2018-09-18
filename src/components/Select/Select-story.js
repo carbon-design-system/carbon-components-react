@@ -68,6 +68,28 @@ storiesOf('Select', module)
     })
   )
   .add(
+    'Selected',
+    withInfo({
+      text: `
+       Populates previous value into select
+      `,
+    })(() => {
+      const groupProps = props.group();
+      return (
+        <Select {...props.select()} id="select-1" defaultValue="option-3">
+          <SelectItemGroup label="Category 1" {...groupProps}>
+            <SelectItem value="option-1" text="Option 1" />
+            <SelectItem value="option-2" text="Option 2" />
+          </SelectItemGroup>
+          <SelectItemGroup label="Category 2" {...groupProps}>
+            <SelectItem value="option-3" text="Option 3" />
+            <SelectItem value="option-4" text="Option 4" />
+          </SelectItemGroup>
+        </Select>
+      );
+    })
+  )
+  .add(
     'skeleton',
     withInfo({
       text: `

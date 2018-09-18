@@ -4,10 +4,11 @@ import PropTypes from 'prop-types';
 import Downshift from 'downshift';
 import ListBox from '../ListBox';
 import Checkbox from '../Checkbox';
-import Selection from '../../internal/Selection';
+import Selection, { isItemSelected } from '../../internal/Selection';
 import { sortingPropTypes } from './MultiSelectPropTypes';
 import { defaultItemToString } from './tools/itemToString';
 import { defaultSortItems, defaultCompareItems } from './tools/sorting';
+import { MultiSelectItemsType } from '../../prop-types/selectionTypes';
 
 export default class MultiSelect extends React.Component {
   static propTypes = {
@@ -28,7 +29,7 @@ export default class MultiSelect extends React.Component {
      * Allow users to pass in arbitrary items from their collection that are
      * pre-selected
      */
-    initialSelectedItems: PropTypes.array,
+    initialSelectedItems: MultiSelectItemsType,
 
     /**
      * Helper function passed to downshift that allows the library to render a
@@ -154,13 +155,19 @@ export default class MultiSelect extends React.Component {
       invalid,
       invalidText,
     } = this.props;
+
+    const selectedItems =
+      initialSelectedItems.length > 0 &&
+      typeof initialSelectedItems[0] === 'number' // If it's number its assumed to be indices
+        ? initialSelectedItems.map(index => items[index])
+        : initialSelectedItems;
     const className = cx('bx--multi-select', containerClassName, {
       'bx--list-box--light': light,
     });
     return (
       <Selection
         onChange={this.handleOnChange}
-        initialSelectedItems={initialSelectedItems}
+        initialSelectedItems={selectedItems}
         render={({ selectedItems, onItemChange, clearSelection }) => (
           <Downshift
             highlightedIndex={highlightedIndex}
@@ -206,12 +213,7 @@ export default class MultiSelect extends React.Component {
                     }).map((item, index) => {
                       const itemProps = getItemProps({ item });
                       const itemText = itemToString(item);
-                      const isChecked =
-                        selectedItem
-                          .map(selected => {
-                            return selected.id;
-                          })
-                          .indexOf(item.id) !== -1;
+                      const isChecked = isItemSelected(item, selectedItem);
                       return (
                         <ListBox.MenuItem
                           key={itemProps.id}

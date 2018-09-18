@@ -1,11 +1,18 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { MultiSelectItemsType } from '../prop-types/selectionTypes';
 
+export const isItemSelected = (item, selectedItems) =>
+  findItemIndex(item, selectedItems) !== -1;
+
+export const findItemIndex = (item, items) =>
+  items
+    .map(it => {
+      return it.id || it;
+    })
+    .indexOf(item.id || item);
 export default class Selection extends React.Component {
   static propTypes = {
-    initialSelectedItems: PropTypes.arrayOf(
-      PropTypes.shape({ id: PropTypes.string.isRequired })
-    ).isRequired,
+    initialSelectedItems: MultiSelectItemsType,
   };
 
   static defaultProps = {
@@ -14,6 +21,7 @@ export default class Selection extends React.Component {
 
   constructor(props) {
     super(props);
+
     this.state = {
       selectedItems: props.initialSelectedItems,
     };
@@ -49,15 +57,12 @@ export default class Selection extends React.Component {
 
   handleOnItemChange = item => {
     const { selectedItems } = this.state;
-    const selectedIndex = selectedItems.findIndex(
-      selectedItem => selectedItem.id === item.id
-    );
 
-    if (selectedIndex === -1) {
+    if (!isItemSelected(item, selectedItems)) {
       this.handleSelectItem(item);
       return;
     }
-    this.handleRemoveItem(selectedIndex);
+    this.handleRemoveItem(findItemIndex(item, selectedItems));
   };
 
   render() {
