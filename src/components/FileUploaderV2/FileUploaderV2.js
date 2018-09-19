@@ -103,6 +103,7 @@ export class FileUploaderButtonV2 extends Component {
           ref={input => (this.input = input)}
           id={this.uid}
           type="file"
+          tabIndex="-1"
           multiple={multiple}
           accept={accept}
           name={name}
