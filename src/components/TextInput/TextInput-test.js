@@ -4,104 +4,209 @@ import { mount, shallow } from 'enzyme';
 
 describe('TextInput', () => {
   describe('renders as expected', () => {
-    const wrapper = mount(
-      <TextInput
-        id="test"
-        className="extra-class"
-        labelText="testlabel"
-        helperText="testHelper"
-        light
-      />
-    );
+    describe('default', () => {
+      const wrapper = mount(
+        <TextInput
+          id="test"
+          className="extra-class"
+          labelText="testlabel"
+          helperText="testHelper"
+          light
+        />
+      );
 
-    const textInput = () => wrapper.find('input');
+      const textInput = () => wrapper.find('input');
 
-    describe('input', () => {
-      it('renders as expected', () => {
-        expect(textInput().length).toBe(1);
+      describe('input', () => {
+        it('renders as expected', () => {
+          expect(textInput().length).toBe(1);
+        });
+
+        it('has the expected classes', () => {
+          expect(textInput().hasClass('bx--text-input')).toEqual(true);
+        });
+
+        it('should add extra classes that are passed via className', () => {
+          expect(textInput().hasClass('extra-class')).toEqual(true);
+        });
+
+        it('has the expected classes for light', () => {
+          wrapper.setProps({ light: true });
+          expect(textInput().hasClass('bx--text-input--light')).toEqual(true);
+        });
+
+        it('should set type as expected', () => {
+          expect(textInput().props().type).toEqual('text');
+          wrapper.setProps({ type: 'email' });
+          expect(textInput().props().type).toEqual('email');
+        });
+
+        it('should set value as expected', () => {
+          expect(textInput().props().defaultValue).toEqual(undefined);
+          wrapper.setProps({ defaultValue: 'test' });
+          expect(textInput().props().defaultValue).toEqual('test');
+        });
+
+        it('should set disabled as expected', () => {
+          expect(textInput().props().disabled).toEqual(false);
+          wrapper.setProps({ disabled: true });
+          expect(textInput().props().disabled).toEqual(true);
+        });
+
+        it('should set placeholder as expected', () => {
+          expect(textInput().props().placeholder).not.toBeDefined();
+          wrapper.setProps({ placeholder: 'Enter text' });
+          expect(textInput().props().placeholder).toEqual('Enter text');
+        });
       });
 
-      it('has the expected classes', () => {
-        expect(textInput().hasClass('bx--text-input')).toEqual(true);
+      describe('label', () => {
+        wrapper.setProps({ labelText: 'Email Input' });
+        const renderedLabel = wrapper.find('label');
+
+        it('renders a label', () => {
+          expect(renderedLabel.length).toBe(1);
+        });
+
+        it('has the expected classes', () => {
+          expect(renderedLabel.hasClass('bx--label')).toEqual(true);
+        });
+
+        it('should set label as expected', () => {
+          expect(renderedLabel.text()).toEqual('Email Input');
+        });
       });
 
-      it('should add extra classes that are passed via className', () => {
-        expect(textInput().hasClass('extra-class')).toEqual(true);
-      });
+      describe('helper', () => {
+        it('renders a helper', () => {
+          const renderedHelper = wrapper.find('.bx--form__helper-text');
+          expect(renderedHelper.length).toEqual(1);
+        });
 
-      it('has the expected classes for light', () => {
-        wrapper.setProps({ light: true });
-        expect(textInput().hasClass('bx--text-input--light')).toEqual(true);
-      });
-
-      it('should set type as expected', () => {
-        expect(textInput().props().type).toEqual('text');
-        wrapper.setProps({ type: 'email' });
-        expect(textInput().props().type).toEqual('email');
-      });
-
-      it('should set value as expected', () => {
-        expect(textInput().props().defaultValue).toEqual(undefined);
-        wrapper.setProps({ defaultValue: 'test' });
-        expect(textInput().props().defaultValue).toEqual('test');
-      });
-
-      it('should set disabled as expected', () => {
-        expect(textInput().props().disabled).toEqual(false);
-        wrapper.setProps({ disabled: true });
-        expect(textInput().props().disabled).toEqual(true);
-      });
-
-      it('should set placeholder as expected', () => {
-        expect(textInput().props().placeholder).not.toBeDefined();
-        wrapper.setProps({ placeholder: 'Enter text' });
-        expect(textInput().props().placeholder).toEqual('Enter text');
-      });
-    });
-
-    describe('label', () => {
-      wrapper.setProps({ labelText: 'Email Input' });
-      const renderedLabel = wrapper.find('label');
-
-      it('renders a label', () => {
-        expect(renderedLabel.length).toBe(1);
-      });
-
-      it('has the expected classes', () => {
-        expect(renderedLabel.hasClass('bx--label')).toEqual(true);
-      });
-
-      it('should set label as expected', () => {
-        expect(renderedLabel.text()).toEqual('Email Input');
-      });
-    });
-
-    describe('helper', () => {
-      it('renders a helper', () => {
-        const renderedHelper = wrapper.find('.bx--form__helper-text');
-        expect(renderedHelper.length).toEqual(1);
-      });
-
-      it('renders children as expected', () => {
-        wrapper.setProps({
-          helperText: (
+        it('renders children as expected', () => {
+          wrapper.setProps({
+            helperText: (
+              <span>
+                This helper text has <a href="#">a link</a>.
+              </span>
+            ),
+          });
+          const renderedHelper = wrapper.find('.bx--form__helper-text');
+          expect(renderedHelper.props().children).toEqual(
             <span>
               This helper text has <a href="#">a link</a>.
             </span>
-          ),
+          );
         });
-        const renderedHelper = wrapper.find('.bx--form__helper-text');
-        expect(renderedHelper.props().children).toEqual(
-          <span>
-            This helper text has <a href="#">a link</a>.
-          </span>
-        );
+
+        it('should set helper text as expected', () => {
+          wrapper.setProps({ helperText: 'Helper text' });
+          const renderedHelper = wrapper.find('.bx--form__helper-text');
+          expect(renderedHelper.text()).toEqual('Helper text');
+        });
+      });
+    });
+    describe('password visibility toggle', () => {
+      const wrapper = mount(
+        <TextInput
+          id="test"
+          className="extra-class"
+          labelText="testlabel"
+          helperText="testHelper"
+          light
+          passwordVisibilityToggle
+        />
+      );
+
+      const textInput = () => wrapper.find('input');
+
+      describe('input', () => {
+        it('renders as expected', () => {
+          expect(textInput().length).toBe(1);
+        });
+
+        it('has the expected classes', () => {
+          expect(textInput().hasClass('bx--text-input')).toEqual(true);
+        });
+
+        it('should add extra classes that are passed via className', () => {
+          expect(textInput().hasClass('extra-class')).toEqual(true);
+        });
+
+        it('has the expected classes for light', () => {
+          wrapper.setProps({ light: true });
+          expect(textInput().hasClass('bx--text-input--light')).toEqual(true);
+        });
+
+        it('should set type as expected', () => {
+          expect(textInput().props().type).toEqual('text');
+          wrapper.find('button').simulate('click');
+          expect(textInput().props().type).toEqual('password');
+        });
+
+        it('should set value as expected', () => {
+          expect(textInput().props().defaultValue).toEqual(undefined);
+          wrapper.setProps({ defaultValue: 'test' });
+          expect(textInput().props().defaultValue).toEqual('test');
+        });
+
+        it('should set disabled as expected', () => {
+          expect(textInput().props().disabled).toEqual(false);
+          wrapper.setProps({ disabled: true });
+          expect(textInput().props().disabled).toEqual(true);
+        });
+
+        it('should set placeholder as expected', () => {
+          expect(textInput().props().placeholder).not.toBeDefined();
+          wrapper.setProps({ placeholder: 'Enter text' });
+          expect(textInput().props().placeholder).toEqual('Enter text');
+        });
       });
 
-      it('should set helper text as expected', () => {
-        wrapper.setProps({ helperText: 'Helper text' });
-        const renderedHelper = wrapper.find('.bx--form__helper-text');
-        expect(renderedHelper.text()).toEqual('Helper text');
+      describe('label', () => {
+        wrapper.setProps({ labelText: 'Email Input' });
+        const renderedLabel = wrapper.find('label');
+
+        it('renders a label', () => {
+          expect(renderedLabel.length).toBe(1);
+        });
+
+        it('has the expected classes', () => {
+          expect(renderedLabel.hasClass('bx--label')).toEqual(true);
+        });
+
+        it('should set label as expected', () => {
+          expect(renderedLabel.text()).toEqual('Email Input');
+        });
+      });
+
+      describe('helper', () => {
+        it('renders a helper', () => {
+          const renderedHelper = wrapper.find('.bx--form__helper-text');
+          expect(renderedHelper.length).toEqual(1);
+        });
+
+        it('renders children as expected', () => {
+          wrapper.setProps({
+            helperText: (
+              <span>
+                This helper text has <a href="#">a link</a>.
+              </span>
+            ),
+          });
+          const renderedHelper = wrapper.find('.bx--form__helper-text');
+          expect(renderedHelper.props().children).toEqual(
+            <span>
+              This helper text has <a href="#">a link</a>.
+            </span>
+          );
+        });
+
+        it('should set helper text as expected', () => {
+          wrapper.setProps({ helperText: 'Helper text' });
+          const renderedHelper = wrapper.find('.bx--form__helper-text');
+          expect(renderedHelper.text()).toEqual('Helper text');
+        });
       });
     });
   });
