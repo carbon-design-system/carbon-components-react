@@ -3250,11 +3250,6 @@ carbon-components@^9.36.0:
     lodash.debounce "^4.0.8"
     warning "^3.0.0"
 
-carbon-icons@^7.0.5:
-  version "7.0.5"
-  resolved "https://registry.yarnpkg.com/carbon-icons/-/carbon-icons-7.0.5.tgz#cd0c44dd96c6853544445bd9a71da6e602793b9c"
-  integrity sha512-VaHoJcQhtJV9RI5zgvq6sNsMYfJQDH4SvJLo7Kifip3jKbBFZicEHJGvMhfQBblXE/0RJvZDclLQDiUD/jNyOg==
-
 carbon-icons@^7.0.7:
   version "7.0.7"
   resolved "https://registry.yarnpkg.com/carbon-icons/-/carbon-icons-7.0.7.tgz#ebafe3e9fa25df973796a8eca06d8a7c501cc610"
