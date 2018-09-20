@@ -172,6 +172,10 @@ TextInput.propTypes = {
    * Specify light version or default version of this control
    */
   light: PropTypes.bool,
+  /**
+   * Specify whether or not password visibility toggle is added
+   */
+  passwordVisibilityToggle: PropTypes.bool,
 };
 
 TextInput.defaultProps = {
@@ -183,6 +187,5 @@ TextInput.defaultProps = {
   invalidText: '',
   helperText: '',
   light: false,
+  passwordVisibilityToggle: false,
 };
-
-export default TextInput;
