@@ -1,84 +1,120 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import classNames from 'classnames';
+import Icon from '../Icon';
 
-const TextInput = ({
-  labelText,
-  className,
-  id,
-  placeholder,
-  type,
-  onChange,
-  onClick,
-  hideLabel,
-  invalid,
-  invalidText,
-  helperText,
-  light,
-  ...other
-}) => {
-  const textInputProps = {
-    id,
-    onChange: evt => {
-      if (!other.disabled) {
-        onChange(evt);
-      }
-    },
-    onClick: evt => {
-      if (!other.disabled) {
-        onClick(evt);
-      }
-    },
-    placeholder,
-    type,
+export default class TextInput extends React.Component {
+  state = {
+    type: this.props.type,
   };
 
-  const errorId = id + '-error-msg';
-  const textInputClasses = classNames('bx--text-input', className, {
-    'bx--text-input--light': light,
-  });
-  const labelClasses = classNames('bx--label', {
-    'bx--visually-hidden': hideLabel,
-  });
+  togglePasswordVisibility = () => {
+    this.setState({
+      type: this.state.type === 'password' ? 'text' : 'password',
+    });
+  };
 
-  const label = labelText ? (
-    <label htmlFor={id} className={labelClasses}>
-      {labelText}
-    </label>
-  ) : null;
+  togglePasswordVisibilityIconProps = () => {
+    const passwordIsVisible = this.state.type === 'text';
+    return {
+      alt: `${passwordIsVisible ? 'Hide' : 'Show'} password`,
+      name: `visibility-${passwordIsVisible ? 'off' : 'on'}`,
+      description: `${passwordIsVisible ? 'Hide' : 'Show'} password`,
+    };
+  };
 
-  const error = invalid ? (
-    <div className="bx--form-requirement" id={errorId}>
-      {invalidText}
-    </div>
-  ) : null;
+  render() {
+    const {
+      labelText,
+      className,
+      id,
+      placeholder,
+      type,
+      onChange,
+      onClick,
+      hideLabel,
+      invalid,
+      invalidText,
+      helperText,
+      light,
+      passwordVisibilityToggle,
+      ...other
+    } = this.props;
+    const errorId = id + '-error-msg';
+    const textInputClasses = classNames('bx--text-input', className, {
+      'bx--text-input--light': light,
+    });
+    const labelClasses = classNames('bx--label', {
+      'bx--visually-hidden': hideLabel,
+    });
+    const label = labelText ? (
+      <label htmlFor={id} className={labelClasses}>
+        {labelText}
+      </label>
+    ) : null;
+    const sharedTextInputProps = {
+      id,
+      onChange: evt => {
+        if (!other.disabled) {
+          onChange(evt);
+        }
+      },
+      onClick: evt => {
+        if (!other.disabled) {
+          onClick(evt);
+        }
+      },
+      placeholder,
+      type: passwordVisibilityToggle ? this.state.type : type,
+      className: textInputClasses,
+      ...other,
+    };
+    const invalidProps = {
+      'data-invalid': invalid,
+      'aria-invalid': invalid,
+      'aria-describedby': errorId,
+    };
+    const textInputProps = ({ invalid }) => ({
+      ...sharedTextInputProps,
+      ...(invalid ? invalidProps : {}),
+      ...{
+        'data-toggle-password-visibility':
+          passwordVisibilityToggle || undefined,
+      },
+    });
+    const error = invalid ? (
+      <div className="bx--form-requirement" id={errorId}>
+        {invalidText}
+      </div>
+    ) : null;
+    const input = passwordVisibilityToggle ? (
+      <>
+        <input {...textInputProps({ invalid })} />
+        <button
+          class="bx--text-input--password__visibility"
+          onClick={this.togglePasswordVisibility}>
+          <Icon {...this.togglePasswordVisibilityIconProps()} />
+        </button>
+      </>
+    ) : (
+      <input {...textInputProps({ invalid })} />
+    );
+    const helper = helperText ? (
+      <div className="bx--form__helper-text">{helperText}</div>
+    ) : null;
 
-  const input = invalid ? (
-    <input
-      {...other}
-      {...textInputProps}
-      data-invalid
-      aria-invalid
-      aria-describedby={errorId}
-      className={textInputClasses}
-    />
-  ) : (
-    <input {...other} {...textInputProps} className={textInputClasses} />
-  );
-
-  const helper = helperText ? (
-    <div className="bx--form__helper-text">{helperText}</div>
-  ) : null;
-
-  return (
-    <div className="bx--form-item">
-      {label}
-      {input}
-      {helper}
-      {error}
-    </div>
-  );
-};
+    return (
+      <div
+        data-text-input={passwordVisibilityToggle || undefined}
+        className="bx--form-item bx--text-input-wrapper">
+        {label}
+        {input}
+        {helper}
+        {error}
+      </div>
+    );
+  }
+}
 
 TextInput.propTypes = {
   /**
@@ -145,6 +181,10 @@ TextInput.propTypes = {
    * Specify light version or default version of this control
    */
   light: PropTypes.bool,
+  /**
+   * Specify whether or not password visibility toggle is added
+   */
+  passwordVisibilityToggle: PropTypes.bool,
 };
 
 TextInput.defaultProps = {
@@ -157,6 +197,5 @@ TextInput.defaultProps = {
   invalidText: '',
   helperText: '',
   light: false,
+  passwordVisibilityToggle: false,
 };
-
-export default TextInput;
