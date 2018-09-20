@@ -16,6 +16,8 @@ const peerDependencies = Object.keys(packageJson.peerDependencies || {}).concat(
   ['classnames', 'prop-types']
 );
 
+const featureFlags = require('../lib/featureFlags');
+
 const env = process.env.NODE_ENV || 'development';
 const prodSettings =
   env === 'development'
@@ -80,6 +82,14 @@ module.exports = {
     }),
     babel({
       exclude: ['node_modules/**'], // only transpile our source code
+      plugins: [
+        [
+          './scripts/babel-plugin-transform-carbon-feature-flags',
+          {
+            flags: featureFlags,
+          },
+        ],
+      ],
     }),
     replace({
       'process.env.NODE_ENV': JSON.stringify(env),
