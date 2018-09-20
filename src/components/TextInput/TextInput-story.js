@@ -8,7 +8,6 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
-
 import { withKnobs, boolean, select, text } from '@storybook/addon-knobs';
 import TextInput from '../TextInput';
 import TextInputSkeleton from '../TextInput/TextInput.Skeleton';
@@ -27,7 +26,6 @@ const TextInputProps = () => ({
     'This is not a default value'
   ),
   labelText: text('Label text (labelText)', 'Text Input label'),
-  type: select('Form control type (type)', types, ''),
   placeholder: text('Placeholder text (placeholder)', 'Placeholder text'),
   light: boolean('Light variant (light)', false),
   disabled: boolean('Disabled (disabled)', false),
@@ -44,16 +42,25 @@ const TextInputProps = () => ({
 
 storiesOf('TextInput', module)
   .addDecorator(withKnobs)
-  .add('Default', () => <TextInput {...TextInputProps()} />, {
-    info: {
-      text: `
+  .add(
+    'Default',
+    () => (
+      <TextInput
+        type={select('Form control type (type)', types, 'text')}
+        {...TextInputProps()}
+      />
+    ),
+    {
+      info: {
+        text: `
             Text fields enable the user to interact with and input data. A single line
             field is used when the input anticipated by the user is a single line of
             text as opposed to a paragraph.
             The default type is 'text' and its value can be either 'string' or 'number'.
           `,
-    },
-  })
+      },
+    }
+  )
   .add(
     'skeleton',
     () => (
