@@ -14,6 +14,7 @@ import TextInputSkeleton from '../TextInput/TextInput.Skeleton';
 
 const types = {
   None: '',
+  'Text (text)': 'text',
   'For email (email)': 'email',
   'For password (password)': 'password',
 };
