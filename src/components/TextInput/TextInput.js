@@ -91,7 +91,7 @@ export default class TextInput extends React.Component {
       <>
         <input {...textInputProps({ invalid })} />
         <button
-          class="bx--text-input--password__visibility"
+          className="bx--text-input--password__visibility"
           onClick={this.togglePasswordVisibility}>
           <Icon {...this.togglePasswordVisibilityIconProps()} />
         </button>
