@@ -171,7 +171,7 @@ export default class Tooltip extends Component {
     iconName: PropTypes.string,
 
     /**
-     * The description of the default tooltip icon, to be put in its SVG `aria-lable` and 'alt' .
+     * The description of the default tooltip icon, to be put in its SVG 'aria-label' and 'alt' .
      */
     iconDescription: PropTypes.string,
 
