@@ -24,6 +24,7 @@ const props = () => ({
   light: boolean('Light variant (light)', false),
   onChange: action('onChange'),
   onClick: action('onClick'),
+  strict: boolean('Strict mode (strict)', true)
 });
 
 storiesOf('NumberInput', module)

@@ -143,6 +143,13 @@ describe('NumberInput', () => {
           expect(invalidText.text()).toEqual('invalid text');
         });
 
+        it('not set invalidText when value is empty string and disabled strict mode', () => {
+          wrapper.setState({ value: '' });
+          wrapper.setProps({ strict: false });
+          const invalidText = wrapper.find('.bx--form-requirement');
+          expect(invalidText.length).toEqual(0);
+        });
+
         it('should change the value upon change in props', () => {
           wrapper.setProps({ value: 1 });
           wrapper.setState({ value: 1 });
