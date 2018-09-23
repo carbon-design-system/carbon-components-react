@@ -37,7 +37,7 @@ export default class NumberInput extends Component {
      * `true` to use the light version.
      */
     light: PropTypes.bool,
-    /** 
+    /**
      * `false` to disable strict mode.
      */
     strict: PropTypes.bool,
