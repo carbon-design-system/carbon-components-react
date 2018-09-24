@@ -1,18 +1,35 @@
-import PropTypes from 'prop-types';
 import React from 'react';
 import classNames from 'classnames';
-import PasswordInput from './PasswordInput';
+import PropTypes from 'prop-types';
+import Icon from '../Icon';
 import { textInputProps } from './util';
 
-export default class TextInput extends React.Component {
-  static PasswordInput = PasswordInput;
+export default class PasswordInput extends React.Component {
+  state = {
+    type: 'password',
+  };
+
+  togglePasswordVisibility = () => {
+    this.setState({
+      type: this.state.type === 'password' ? 'text' : 'password',
+    });
+  };
+
+  togglePasswordVisibilityIconProps = () => {
+    const passwordIsVisible = this.state.type === 'text';
+    return {
+      alt: `${passwordIsVisible ? 'Hide' : 'Show'} password`,
+      name: `visibility-${passwordIsVisible ? 'off' : 'on'}`,
+      description: `${passwordIsVisible ? 'Hide' : 'Show'} password`,
+    };
+  };
+
   render() {
     const {
       labelText,
       className,
       id,
       placeholder,
-      type,
       onChange,
       onClick,
       hideLabel,
@@ -47,7 +64,7 @@ export default class TextInput extends React.Component {
         }
       },
       placeholder,
-      type,
+      type: this.state.type,
       className: textInputClasses,
       ...other,
     };
@@ -57,7 +74,17 @@ export default class TextInput extends React.Component {
       </div>
     ) : null;
     const input = (
-      <input {...textInputProps({ invalid, sharedTextInputProps, errorId })} />
+      <>
+        <input
+          {...textInputProps({ invalid, sharedTextInputProps, errorId })}
+          data-toggle-password-visibility={this.state.type === 'password'}
+        />
+        <button
+          className="bx--text-input--password__visibility"
+          onClick={this.togglePasswordVisibility}>
+          <Icon {...this.togglePasswordVisibilityIconProps()} />
+        </button>
+      </>
     );
     const helper = helperText ? (
       <div className="bx--form__helper-text">{helperText}</div>
@@ -74,7 +101,7 @@ export default class TextInput extends React.Component {
   }
 }
 
-TextInput.propTypes = {
+PasswordInput.propTypes = {
   /**
    * Provide a custom className that is applied directly to the underlying
    * <input> node
@@ -112,10 +139,6 @@ TextInput.propTypes = {
    */
   placeholder: PropTypes.string,
   /**
-   * Specify the type attribute for the <input>
-   */
-  type: PropTypes.string,
-  /**
    * Provide the current value of the <input>
    */
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
@@ -141,10 +164,9 @@ TextInput.propTypes = {
   light: PropTypes.bool,
 };
 
-TextInput.defaultProps = {
+PasswordInput.defaultProps = {
   className: 'bx--text__input',
   disabled: false,
-  type: 'text',
   onChange: () => {},
   onClick: () => {},
   invalid: false,

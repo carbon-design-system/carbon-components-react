@@ -1,11 +1,11 @@
 import React from 'react';
-import TextInput from '../TextInput';
+import PasswordInput from './PasswordInput';
 import { mount, shallow } from 'enzyme';
 
 describe('TextInput', () => {
   describe('renders as expected', () => {
     const wrapper = mount(
-      <TextInput
+      <PasswordInput
         id="test"
         className="extra-class"
         labelText="testlabel"
@@ -35,9 +35,9 @@ describe('TextInput', () => {
       });
 
       it('should set type as expected', () => {
+        expect(textInput().props().type).toEqual('password');
+        wrapper.find('button').simulate('click');
         expect(textInput().props().type).toEqual('text');
-        wrapper.setProps({ type: 'email' });
-        expect(textInput().props().type).toEqual('email');
       });
 
       it('should set value as expected', () => {
@@ -60,7 +60,7 @@ describe('TextInput', () => {
     });
 
     describe('label', () => {
-      wrapper.setProps({ labelText: 'Email Input' });
+      wrapper.setProps({ labelText: 'Password Input' });
       const renderedLabel = wrapper.find('label');
 
       it('renders a label', () => {
@@ -72,7 +72,7 @@ describe('TextInput', () => {
       });
 
       it('should set label as expected', () => {
-        expect(renderedLabel.text()).toEqual('Email Input');
+        expect(renderedLabel.text()).toEqual('Password Input');
       });
     });
 
@@ -86,14 +86,14 @@ describe('TextInput', () => {
         wrapper.setProps({
           helperText: (
             <span>
-              This helper text has <a href="#">a link</a>.
+              This helper text has <a href="/">a link</a>.
             </span>
           ),
         });
         const renderedHelper = wrapper.find('.bx--form__helper-text');
         expect(renderedHelper.props().children).toEqual(
           <span>
-            This helper text has <a href="#">a link</a>.
+            This helper text has <a href="/">a link</a>.
           </span>
         );
       });
@@ -112,7 +112,7 @@ describe('TextInput', () => {
       const onChange = jest.fn();
 
       const wrapper = shallow(
-        <TextInput
+        <PasswordInput
           id="test"
           labelText="testlabel"
           onClick={onClick}
@@ -139,7 +139,7 @@ describe('TextInput', () => {
       const onChange = jest.fn();
 
       const wrapper = shallow(
-        <TextInput
+        <PasswordInput
           labelText="testlabel"
           id="test"
           onClick={onClick}
