@@ -1,11 +1,11 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { Component } from 'react';
 import uid from '../../tools/uniqueId';
 import Icon from '../Icon';
 import { iconCheckmarkSolid } from 'carbon-icons';
 import classNames from 'classnames';
 
-export default class RadioTile extends React.Component {
+export default class RadioTile extends Component {
   static propTypes = {
     /**
      * `true` if this tile should be selected.

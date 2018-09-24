@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component, Fragment } from 'react';
 import { action } from '@storybook/addon-actions';
 import { iconDownload, iconEdit, iconSettings } from 'carbon-icons';
 import DataTable, {
@@ -30,7 +30,7 @@ export default () => {
     return [...array.slice(0, index), element, ...array.slice(index)];
   };
 
-  class DynamicRows extends React.Component {
+  class DynamicRows extends Component {
     state = {
       rows: initialRows,
       headers: headers,
@@ -152,7 +152,7 @@ export default () => {
                 </TableHead>
                 <TableBody>
                   {rows.map(row => (
-                    <React.Fragment key={row.id}>
+                    <Fragment key={row.id}>
                       <TableExpandRow {...getRowProps({ row })}>
                         <TableSelectRow {...getSelectionProps({ row })} />
                         {row.cells.map(cell => (
@@ -167,7 +167,7 @@ export default () => {
                           </TableCell>
                         </TableExpandedRow>
                       )}
-                    </React.Fragment>
+                    </Fragment>
                   ))}
                 </TableBody>
               </Table>

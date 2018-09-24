@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-export default class ProgressIndicatorSkeleton extends React.Component {
+export default class ProgressIndicatorSkeleton extends Component {
   render() {
     const step = (
       <li className="bx--progress-step bx--progress-step--incomplete">

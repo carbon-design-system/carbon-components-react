@@ -1,9 +1,9 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { Component, Children } from 'react';
 import RadioTile from '../RadioTile';
 import warning from 'warning';
 
-export default class TileGroup extends React.Component {
+export default class TileGroup extends Component {
   static propTypes = {
     children: PropTypes.node,
     className: PropTypes.string,
@@ -30,7 +30,7 @@ export default class TileGroup extends React.Component {
   }
 
   getRadioTiles = () => {
-    const childrenArray = React.Children.toArray(this.props.children);
+    const childrenArray = Children.toArray(this.props.children);
     const children = childrenArray.map(tileRadio => {
       const { value, ...other } = tileRadio.props;
       /* istanbul ignore if */

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import DataTable, {
   Table,
   TableBody,
@@ -32,7 +32,7 @@ export default () => (
           </TableHead>
           <TableBody>
             {rows.map(row => (
-              <React.Fragment key={row.id}>
+              <Fragment key={row.id}>
                 <TableExpandRow {...getRowProps({ row })}>
                   {row.cells.map(cell => (
                     <TableCell key={cell.id}>{cell.value}</TableCell>
@@ -46,7 +46,7 @@ export default () => (
                     </TableCell>
                   </TableExpandedRow>
                 )}
-              </React.Fragment>
+              </Fragment>
             ))}
           </TableBody>
         </Table>

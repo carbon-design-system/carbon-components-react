@@ -1,6 +1,6 @@
 import invariant from 'invariant';
 import PropTypes from 'prop-types';
-import React, { Component } from 'react';
+import React, { Component, Children, cloneElement } from 'react';
 import classNames from 'classnames';
 import warning from 'warning';
 import { iconOverflowMenu } from 'carbon-icons';
@@ -481,8 +481,8 @@ export default class OverflowMenu extends Component {
       iconClass
     );
 
-    const childrenWithProps = React.Children.toArray(children).map(child =>
-      React.cloneElement(child, {
+    const childrenWithProps = Children.toArray(children).map(child =>
+      cloneElement(child, {
         closeMenu: this.closeMenu,
         floatingMenu: floatingMenu || undefined,
       })
@@ -508,7 +508,7 @@ export default class OverflowMenu extends Component {
           menuRef={this._bindMenuBody}
           target={this._getTarget}
           onPlace={this._handlePlace}>
-          {React.cloneElement(menuBody, {
+          {cloneElement(menuBody, {
             'data-floating-menu-direction': direction,
           })}
         </FloatingMenu>

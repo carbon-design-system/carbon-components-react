@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import ClickListener from '../ClickListener';
 import { shallow, mount } from 'enzyme';
 
@@ -70,7 +70,7 @@ describe('ClickListener', () => {
 
   it('should not overwrite any children function refs', () => {
     const mockRef = jest.fn();
-    class Child extends React.Component {
+    class Child extends Component {
       render() {
         return <div />;
       }
@@ -85,7 +85,7 @@ describe('ClickListener', () => {
   });
 
   it('should not call any string refs on children', () => {
-    class Child extends React.Component {
+    class Child extends Component {
       render() {
         return <div />;
       }

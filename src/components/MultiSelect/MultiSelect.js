@@ -1,5 +1,5 @@
 import cx from 'classnames';
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Downshift from 'downshift';
 import isEqual from 'lodash.isequal';
@@ -10,7 +10,7 @@ import { sortingPropTypes } from './MultiSelectPropTypes';
 import { defaultItemToString } from './tools/itemToString';
 import { defaultSortItems, defaultCompareItems } from './tools/sorting';
 
-export default class MultiSelect extends React.Component {
+export default class MultiSelect extends Component {
   static propTypes = {
     ...sortingPropTypes,
 

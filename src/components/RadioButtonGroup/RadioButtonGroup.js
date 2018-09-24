@@ -1,9 +1,9 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { Component, Children } from 'react';
 import RadioButton from '../RadioButton';
 import warning from 'warning';
 
-export default class RadioButtonGroup extends React.Component {
+export default class RadioButtonGroup extends Component {
   state = { selected: this.props.valueSelected || this.props.defaultSelected };
 
   static propTypes = {
@@ -60,7 +60,7 @@ export default class RadioButtonGroup extends React.Component {
   }
 
   getRadioButtons = () => {
-    const children = React.Children.map(this.props.children, radioButton => {
+    const children = Children.map(this.props.children, radioButton => {
       const { value, ...other } = radioButton.props;
       /* istanbul ignore if */
       if (radioButton.props.hasOwnProperty('checked')) {

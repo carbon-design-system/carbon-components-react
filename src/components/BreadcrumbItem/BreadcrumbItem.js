@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { Children, cloneElement } from 'react';
 import classnames from 'classnames';
 import Link from '../Link';
 
@@ -7,7 +7,7 @@ const newChild = (children, href) => {
   if (typeof children === 'string' && !(href === undefined)) {
     return <Link href={href}>{children}</Link>;
   } else {
-    return React.cloneElement(React.Children.only(children), {
+    return cloneElement(Children.only(children), {
       className: 'bx--link',
     });
   }

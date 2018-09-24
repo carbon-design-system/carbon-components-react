@@ -1,9 +1,9 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { Component } from 'react';
 import classNames from 'classnames';
 import uid from '../../tools/uniqueId';
 
-export default class RadioButton extends React.Component {
+export default class RadioButton extends Component {
   static propTypes = {
     /**
      * Specify whether the <RadioButton> is currently checked

@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React, { Component } from 'react';
+import React, { Component, Children, cloneElement } from 'react';
 import classnames from 'classnames';
 
 export const ProgressStep = ({ ...props }) => {
@@ -110,17 +110,17 @@ export class ProgressIndicator extends Component {
   }
 
   renderSteps = () =>
-    React.Children.map(this.props.children, (child, index) => {
+    Children.map(this.props.children, (child, index) => {
       if (index === this.state.currentIndex) {
-        return React.cloneElement(child, {
+        return cloneElement(child, {
           current: true,
         });
       } else if (index < this.state.currentIndex) {
-        return React.cloneElement(child, {
+        return cloneElement(child, {
           complete: true,
         });
       } else if (index > this.state.currentIndex) {
-        return React.cloneElement(child, {
+        return cloneElement(child, {
           complete: false,
         });
       }

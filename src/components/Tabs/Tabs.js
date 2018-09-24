@@ -1,11 +1,11 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { Component, Children, cloneElement } from 'react';
 import classNames from 'classnames';
 import { iconCaretDown } from 'carbon-icons';
 import Icon from '../Icon';
 import TabContent from '../TabContent';
 
-export default class Tabs extends React.Component {
+export default class Tabs extends Component {
   static propTypes = {
     /**
      * Specify the text to be read by screen-readers when visiting the <Tabs>
@@ -95,13 +95,11 @@ export default class Tabs extends React.Component {
   }
 
   getTabs() {
-    return React.Children.map(this.props.children, tab => tab);
+    return Children.map(this.props.children, tab => tab);
   }
 
   getTabAt = index => {
-    return (
-      this[`tab${index}`] || React.Children.toArray(this.props.children)[index]
-    );
+    return this[`tab${index}`] || Children.toArray(this.props.children)[index];
   };
 
   setTabAt = (index, tabRef) => {
@@ -134,7 +132,7 @@ export default class Tabs extends React.Component {
 
   handleTabAnchorFocus = onSelectionChange => {
     return index => {
-      const tabCount = React.Children.count(this.props.children) - 1;
+      const tabCount = Children.count(this.props.children) - 1;
       let tabIndex = index;
 
       if (index < 0) {
@@ -183,7 +181,7 @@ export default class Tabs extends React.Component {
     } = this.props;
 
     const tabsWithProps = this.getTabs().map((tab, index) => {
-      const newTab = React.cloneElement(tab, {
+      const newTab = cloneElement(tab, {
         index,
         selected: index === this.state.selected,
         handleTabClick: this.handleTabClick(onSelectionChange),
@@ -197,7 +195,7 @@ export default class Tabs extends React.Component {
       return newTab;
     });
 
-    const tabContentWithProps = React.Children.map(tabsWithProps, tab => {
+    const tabContentWithProps = Children.map(tabsWithProps, tab => {
       const { children, selected } = tab.props;
 
       return (

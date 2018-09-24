@@ -1,9 +1,9 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { Component, Children, cloneElement } from 'react';
 import classNames from 'classnames';
 import { composeEventHandlers } from '../../tools/events';
 
-export default class ContentSwitcher extends React.Component {
+export default class ContentSwitcher extends Component {
   state = {};
 
   static propTypes = {
@@ -44,8 +44,8 @@ export default class ContentSwitcher extends React.Component {
   }
 
   getChildren(children) {
-    return React.Children.map(children, (child, index) =>
-      React.cloneElement(child, {
+    return Children.map(children, (child, index) =>
+      cloneElement(child, {
         index,
         onClick: composeEventHandlers([
           this.handleChildChange,

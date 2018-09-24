@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { Component } from 'react';
 import classNames from 'classnames';
 
-export default class Loading extends React.Component {
+export default class Loading extends Component {
   static propTypes = {
     /**
      * Specify whether you want the loading indicator to be spinning or not

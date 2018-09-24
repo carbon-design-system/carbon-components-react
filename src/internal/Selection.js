@@ -1,8 +1,8 @@
-import React from 'react';
+import { Component } from 'react';
 import PropTypes from 'prop-types';
 import isEqual from 'lodash.isequal';
 
-export default class Selection extends React.Component {
+export default class Selection extends Component {
   static propTypes = {
     initialSelectedItems: PropTypes.array.isRequired,
   };

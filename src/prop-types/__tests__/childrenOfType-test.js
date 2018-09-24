@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { Component } from 'react';
 import childrenOfType from '../childrenOfType';
 
 const Element = <span />;
 const StatelessComponent = () => <div />;
-class ClassComponent extends React.Component {
+class ClassComponent extends Component {
   render() {
     return <div />;
   }
@@ -109,7 +109,7 @@ describe('childrenOfType', () => {
   });
 
   it('should warn with an invalid prop type for an invalid class component child type', () => {
-    class BadClassComponent extends React.Component {
+    class BadClassComponent extends Component {
       render() {
         return <div />;
       }

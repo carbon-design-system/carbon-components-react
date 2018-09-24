@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-export default class ToggleSkeleton extends React.Component {
+export default class ToggleSkeleton extends Component {
   render() {
     const { id } = this.props;
     return (

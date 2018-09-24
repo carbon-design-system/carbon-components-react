@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-export default class TagSkeleton extends React.Component {
+export default class TagSkeleton extends Component {
   render() {
     return <span className="bx--tag bx--skeleton" />;
   }

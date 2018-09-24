@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { Component } from 'react';
 import classNames from 'classnames';
 
-export default class Tab extends React.Component {
+export default class Tab extends Component {
   static propTypes = {
     className: PropTypes.string,
     handleTabClick: PropTypes.func,

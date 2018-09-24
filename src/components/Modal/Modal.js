@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React, { Component } from 'react';
+import React, { Component, createRef } from 'react';
 import classNames from 'classnames';
 import { iconClose } from 'carbon-icons';
 import Icon from '../Icon';
@@ -52,9 +52,9 @@ export default class Modal extends Component {
     selectorPrimaryFocus: '[data-modal-primary-focus]',
   };
 
-  button = React.createRef();
-  outerModal = React.createRef();
-  innerModal = React.createRef();
+  button = createRef();
+  outerModal = createRef();
+  innerModal = createRef();
 
   elementOrParentIsFloatingMenu = target => {
     if (target && typeof target.closest === 'function') {

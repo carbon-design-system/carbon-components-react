@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { Children, cloneElement } from 'react';
 import classNames from 'classnames';
 import TableRow from '../TableRow';
 
@@ -21,7 +21,7 @@ const handleRowStriping = rows => {
       const even = 'even' in child.props ? child.props.even : count % 2 === 1;
 
       // Return a clone of the element with the `even` prop set.
-      return React.cloneElement(child, { even });
+      return cloneElement(child, { even });
     }
 
     return child;
@@ -33,7 +33,7 @@ const TableBody = props => {
 
   const tableBodyClasses = classNames(className, 'bx--table-body');
 
-  const childArray = React.Children.toArray(children);
+  const childArray = Children.toArray(children);
   const childrenWithProps = handleRowStriping(childArray);
 
   return (

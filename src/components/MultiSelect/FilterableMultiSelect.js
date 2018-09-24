@@ -1,6 +1,6 @@
 import cx from 'classnames';
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { Component } from 'react';
 import Downshift from 'downshift';
 import isEqual from 'lodash.isequal';
 import ListBox from '../ListBox';
@@ -11,7 +11,7 @@ import { defaultItemToString } from './tools/itemToString';
 import { defaultSortItems, defaultCompareItems } from './tools/sorting';
 import { defaultFilterItems } from '../ComboBox/tools/filter';
 
-export default class FilterableMultiSelect extends React.Component {
+export default class FilterableMultiSelect extends Component {
   static propTypes = {
     ...sortingPropTypes,
 

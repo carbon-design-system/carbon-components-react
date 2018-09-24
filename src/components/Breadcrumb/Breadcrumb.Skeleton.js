@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-export default class BreadcrumbSkeleton extends React.Component {
+export default class BreadcrumbSkeleton extends Component {
   render() {
     const item = (
       <div className="bx--breadcrumb-item">

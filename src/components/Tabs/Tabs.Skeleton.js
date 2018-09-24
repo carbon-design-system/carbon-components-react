@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-export default class TabsSkeleton extends React.Component {
+export default class TabsSkeleton extends Component {
   render() {
     const tab = (
       <li className="bx--tabs__nav-item">

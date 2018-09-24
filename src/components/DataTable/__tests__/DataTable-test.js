@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { iconDownload, iconEdit, iconSettings } from 'carbon-icons';
 import Button from '../../Button';
 import DataTable, {
@@ -374,7 +374,7 @@ describe('DataTable', () => {
                 </TableHead>
                 <TableBody>
                   {rows.map(row => (
-                    <React.Fragment key={row.id}>
+                    <Fragment key={row.id}>
                       <TableExpandRow {...getRowProps({ row })}>
                         <TableSelectRow {...getSelectionProps({ row })} />
                         {row.cells.map(cell => (
@@ -389,7 +389,7 @@ describe('DataTable', () => {
                           </TableCell>
                         </TableExpandedRow>
                       )}
-                    </React.Fragment>
+                    </Fragment>
                   ))}
                 </TableBody>
               </Table>

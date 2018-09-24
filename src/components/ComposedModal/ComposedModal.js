@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Children, cloneElement } from 'react';
 import PropTypes from 'prop-types';
 import { iconClose } from 'carbon-icons';
 import Button from '../Button';
@@ -75,9 +75,9 @@ export default class ComposedModal extends Component {
       [containerClassName]: containerClassName,
     });
 
-    const childrenWithProps = React.Children.toArray(children).map(child => {
+    const childrenWithProps = Children.toArray(children).map(child => {
       if (child.type === ModalHeader || child.type === ModalFooter) {
-        return React.cloneElement(child, {
+        return cloneElement(child, {
           closeModal: this.closeModal,
         });
       }

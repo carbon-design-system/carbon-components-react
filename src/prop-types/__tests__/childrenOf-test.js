@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { Component } from 'react';
 import childrenOf from '../childrenOf';
 
 const StatelessComponent = () => <div />;
-class ClassComponent extends React.Component {
+class ClassComponent extends Component {
   render() {
     return <div />;
   }

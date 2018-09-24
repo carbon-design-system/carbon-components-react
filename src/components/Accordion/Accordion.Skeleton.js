@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { Component } from 'react';
 import Icon from '../Icon';
 import SkeletonText from '../SkeletonText';
 import { iconChevronRight } from 'carbon-icons';
 
-export default class AccordionSkeleton extends React.Component {
+export default class AccordionSkeleton extends Component {
   render() {
     const item = (
       <li className="bx--accordion__item">
