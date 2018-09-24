@@ -104,9 +104,7 @@ export default class TextInput extends React.Component {
     ) : null;
 
     return (
-      <div
-        data-text-input={passwordVisibilityToggle || undefined}
-        className="bx--form-item bx--text-input-wrapper">
+      <div className="bx--form-item bx--text-input-wrapper">
         {label}
         {input}
         {helper}
