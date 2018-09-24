@@ -64,17 +64,14 @@ storiesOf('TextInput', module)
   )
   .add(
     'Toggle password visibility',
-    withInfo({
-      text: `
-        Text field with password visibility toggle.
-      `,
-    })(() => (
-      <TextInput
-        {...TextInputProps()}
-        type="password"
-        passwordVisibilityToggle
-      />
-    ))
+    () => <TextInput.PasswordInput {...TextInputProps()} />,
+    {
+      info: {
+        text: `
+          Text field with password visibility toggle.
+        `,
+      },
+    }
   )
   .add(
     'skeleton',
