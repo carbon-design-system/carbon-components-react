@@ -14,7 +14,9 @@
  *     [
  *       "/path/to/babel-plugin-transform-carbon-feature-flags",
  *       {
- *         "aFeatureFlag": true
+ *         "flags": {
+ *           "aFeatureFlag": true
+ *         }
  *       }
  *     ],
  *   ],
