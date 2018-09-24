@@ -18,7 +18,7 @@ export default class PasswordInput extends React.Component {
   togglePasswordVisibilityIconProps = () => {
     const passwordIsVisible = this.state.type === 'text';
     return {
-      alt: `${passwordIsVisible ? 'Hide' : 'Show'} password`,
+      alt: this.props.alt || `${passwordIsVisible ? 'Hide' : 'Show'} password`,
       name: `visibility-${passwordIsVisible ? 'off' : 'on'}`,
       description: `${passwordIsVisible ? 'Hide' : 'Show'} password`,
     };
@@ -103,6 +103,10 @@ export default class PasswordInput extends React.Component {
 
 PasswordInput.propTypes = {
   /**
+   * Provide custom alt text for the password visibility toggle button
+   */
+  alt: PropTypes.string,
+  /**
    * Provide a custom className that is applied directly to the underlying
    * <input> node
    */
@@ -165,6 +169,7 @@ PasswordInput.propTypes = {
 };
 
 PasswordInput.defaultProps = {
+  alt: '',
   className: 'bx--text__input',
   disabled: false,
   onChange: () => {},
