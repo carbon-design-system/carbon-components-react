@@ -77,10 +77,7 @@ export default class TextInput extends React.Component {
     const textInputProps = ({ invalid }) => ({
       ...sharedTextInputProps,
       ...(invalid ? invalidProps : {}),
-      ...{
-        'data-toggle-password-visibility':
-          passwordVisibilityToggle || undefined,
-      },
+      'data-toggle-password-visibility': passwordVisibilityToggle || undefined,
     });
     const error = invalid ? (
       <div className="bx--form-requirement" id={errorId}>
