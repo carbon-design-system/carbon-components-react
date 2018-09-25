@@ -38,9 +38,9 @@ export default class NumberInput extends Component {
      */
     light: PropTypes.bool,
     /**
-     * `false` to disable strict mode.
+     * `true` to allow empty string.
      */
-    strict: PropTypes.bool,
+    allowEmpty: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -55,10 +55,7 @@ export default class NumberInput extends Component {
     invalidText: 'Provide invalidText',
     helperText: '',
     light: false,
-    /**
-     * By default used `true` value for backward compatibility.
-     */
-    strict: true,
+    allowEmpty: false,
   };
 
   /**
@@ -141,7 +138,7 @@ export default class NumberInput extends Component {
       invalidText,
       helperText,
       light,
-      strict,
+      allowEmpty,
       ...other
     } = this.props;
 
@@ -166,7 +163,7 @@ export default class NumberInput extends Component {
 
     const inputWrapperProps = {};
     let error = null;
-    if (invalid || (strict && this.state.value === '')) {
+    if (invalid || (!allowEmpty && this.state.value === '')) {
       inputWrapperProps['data-invalid'] = true;
       error = <div className="bx--form-requirement">{invalidText}</div>;
     }
