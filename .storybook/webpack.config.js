@@ -11,7 +11,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\/featureFlags\.js$/,
+        test: /\/FeatureFlags\.js$/,
         loader: 'string-replace-loader',
         options: {
           multiple: Object.keys(replaceTable).map(key => ({
