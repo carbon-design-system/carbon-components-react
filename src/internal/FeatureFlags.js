@@ -5,7 +5,7 @@
  * in order to apply non-default values to those feature flags.
  *
  * @example Render `foo` if `aFeatureFlag` is `true`, render `bar` otherwise.
- * import { aFeatureFlag } from '/path/to/featureFlags';
+ * import { aFeatureFlag } from '/path/to/FeatureFlags';
  * ...
  * const MyComponent = props => (<div {...props}>{aFeatureFlag ? 'foo' : 'bar'}</div>);
  */
