@@ -39,6 +39,7 @@ export default class DatePickerInput extends Component {
       datePickerType,
       pattern,
       iconDescription,
+      openCalendar,
       ...other
     } = this.props;
 
@@ -69,6 +70,7 @@ export default class DatePickerInput extends Component {
           name="calendar"
           className="bx--date-picker__icon"
           description={iconDescription}
+          onClick={openCalendar}
         />
       ) : (
         ''
@@ -83,6 +85,10 @@ export default class DatePickerInput extends Component {
     const error = invalid ? (
       <div className="bx--form-requirement">{invalidText}</div>
     ) : null;
+
+    const containerClasses = classNames('bx--date-picker-container', {
+      'bx--date-picker--nolabel': !label,
+    });
 
     const input = invalid ? (
       <input
@@ -106,7 +112,7 @@ export default class DatePickerInput extends Component {
     );
 
     return (
-      <div className="bx--date-picker-container">
+      <div className={containerClasses}>
         {datePickerIcon}
         {label}
         {input}
