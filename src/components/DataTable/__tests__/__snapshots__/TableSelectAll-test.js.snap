@@ -2,15 +2,20 @@
 
 exports[`DataTable.TableSelectAll should render 1`] = `
 <Table
+  prefix="bx"
   short={false}
   zebra={true}
 >
   <table
     className="bx--data-table-v2 bx--data-table-v2--zebra"
   >
-    <TableHead>
+    <TableHead
+      prefix="bx"
+    >
       <thead>
-        <TableRow>
+        <TableRow
+          prefix="bx"
+        >
           <tr>
             <TableSelectAll
               ariaLabel="Select all rows in the table"
@@ -29,6 +34,7 @@ exports[`DataTable.TableSelectAll should render 1`] = `
                   id="id"
                   name="select-all"
                   onClick={[MockFunction]}
+                  prefix="bx"
                 >
                   <input
                     checked={false}

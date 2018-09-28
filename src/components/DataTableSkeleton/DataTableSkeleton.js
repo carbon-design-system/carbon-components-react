@@ -2,12 +2,12 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import classNames from 'classnames';
 
-const DataTableSkeleton = ({ rowCount, zebra, compact, ...other }) => {
+const DataTableSkeleton = ({ rowCount, zebra, compact, prefix, ...other }) => {
   const dataTableSkeletonClasses = classNames({
-    'bx--skeleton': true,
-    'bx--data-table-v2': true,
-    'bx--data-table-v2--zebra': zebra,
-    'bx--data-table-v2--compact': compact,
+    [`${prefix}--skeleton`]: true,
+    [`${prefix}--data-table-v2`]: true,
+    [`${prefix}--data-table-v2--zebra`]: zebra,
+    [`${prefix}--data-table-v2--compact`]: compact,
   });
 
   const rows = [];
@@ -75,12 +75,18 @@ DataTableSkeleton.propTypes = {
    * compact DataTable
    */
   compact: PropTypes.bool,
+
+  /**
+   * The selector prefix
+   */
+  prefix: PropTypes.string,
 };
 
 DataTableSkeleton.defaultProps = {
   rowCount: 5,
   zebra: false,
   compact: false,
+  prefix: 'bx',
 };
 
 export default DataTableSkeleton;

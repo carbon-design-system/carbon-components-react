@@ -2,19 +2,23 @@
 
 exports[`DataTable.TableExpandRow should render 1`] = `
 <Table
+  prefix="bx"
   short={false}
   zebra={true}
 >
   <table
     className="bx--data-table-v2 bx--data-table-v2--zebra"
   >
-    <TableBody>
+    <TableBody
+      prefix="bx"
+    >
       <tbody>
         <TableExpandRow
           ariaLabel="Aria label"
           className="custom-class"
           isExpanded={false}
           onExpand={[MockFunction]}
+          prefix="bx"
         >
           <tr
             className="bx--parent-row-v2 custom-class"
@@ -22,6 +26,7 @@ exports[`DataTable.TableExpandRow should render 1`] = `
           >
             <TableCell
               className="bx--table-expand-v2"
+              prefix="bx"
             >
               <td
                 className="bx--table-expand-v2"
@@ -85,7 +90,9 @@ exports[`DataTable.TableExpandRow should render 1`] = `
             </TableCell>
           </tr>
         </TableExpandRow>
-        <TableExpandedRow>
+        <TableExpandedRow
+          prefix="bx"
+        >
           <tr
             className="bx--expandable-row-v2"
             data-child-row={true}

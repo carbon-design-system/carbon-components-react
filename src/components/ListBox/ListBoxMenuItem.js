@@ -7,11 +7,17 @@ import PropTypes from 'prop-types';
  * name, alongside any classes for any corresponding states, for a generic list
  * box menu item.
  */
-const ListBoxMenuItem = ({ children, isActive, isHighlighted, ...rest }) => {
+const ListBoxMenuItem = ({
+  children,
+  isActive,
+  isHighlighted,
+  prefix,
+  ...rest
+}) => {
   const className = cx({
-    'bx--list-box__menu-item': true,
-    'bx--list-box__menu-item--active': isActive,
-    'bx--list-box__menu-item--highlighted': isHighlighted,
+    [`${prefix}--list-box__menu-item`]: true,
+    [`${prefix}--list-box__menu-item--active`]: isActive,
+    [`${prefix}--list-box__menu-item--highlighted`]: isHighlighted,
   });
   return (
     <div className={className} {...rest}>
@@ -36,11 +42,17 @@ ListBoxMenuItem.propTypes = {
    * Specify whether the current menu item is "highlighed".
    */
   isHighlighted: PropTypes.bool.isRequired,
+
+  /**
+   * The selector prefix.
+   */
+  prefix: PropTypes.string,
 };
 
 ListBoxMenuItem.defaultProps = {
   isActive: false,
   isHighlighted: false,
+  prefix: 'bx',
 };
 
 export default ListBoxMenuItem;

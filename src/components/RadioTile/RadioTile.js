@@ -46,10 +46,16 @@ export default class RadioTile extends React.Component {
      * The `value` of the `<input>`.
      */
     value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+
+    /**
+     * The selector prefix.
+     */
+    prefix: PropTypes.string,
   };
 
   static defaultProps = {
     iconDescription: 'Tile checkmark',
+    prefix: 'bx',
     onChange: () => {},
   };
 
@@ -62,26 +68,37 @@ export default class RadioTile extends React.Component {
   };
 
   render() {
-    const { children, className, iconDescription, ...other } = this.props;
+    const {
+      children,
+      className,
+      iconDescription,
+      prefix,
+      ...other
+    } = this.props;
 
-    const classes = classNames(className, 'bx--tile', 'bx--tile--selectable', {
-      'bx--tile--is-selected': this.props.checked,
-    });
+    const classes = classNames(
+      className,
+      `${prefix}--tile`,
+      `${prefix}--tile--selectable`,
+      {
+        [`${prefix}--tile--is-selected`]: this.props.checked,
+      }
+    );
 
     return (
       <label htmlFor={this.uid} className={classes}>
         <input
           {...other}
           type="radio"
-          className="bx--tile-input"
+          className={`${prefix}--tile-input`}
           onChange={this.handleChange}
           id={this.uid}
         />
 
-        <div className="bx--tile__checkmark">
+        <div className={`${prefix}--tile__checkmark`}>
           <Icon icon={iconCheckmarkSolid} description={iconDescription} />
         </div>
-        <div className="bx--tile-content">{children}</div>
+        <div className={`${prefix}--tile-content`}>{children}</div>
       </label>
     );
   }

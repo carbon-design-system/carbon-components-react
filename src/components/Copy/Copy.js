@@ -26,6 +26,11 @@ export default class Copy extends Component {
     feedbackTimeout: PropTypes.number,
 
     /**
+     * The selector prefix
+     */
+    prefix: PropTypes.string,
+
+    /**
      * Specify an optional `onClick` handler that is called when the underlying
      * <button> is clicked
      */
@@ -35,6 +40,7 @@ export default class Copy extends Component {
   static defaultProps = {
     feedback: 'Copied!',
     feedbackTimeout: 2000,
+    prefix: 'bx',
     onClick: () => {},
   };
 
@@ -65,11 +71,12 @@ export default class Copy extends Component {
       feedback,
       children,
       feedbackTimeout, // eslint-disable-line no-unused-vars
+      prefix,
       onClick, // eslint-disable-line no-unused-vars
       ...other
     } = this.props;
-    const feedbackClassNames = classnames('bx--btn--copy__feedback', {
-      'bx--btn--copy__feedback--displayed': this.state.showFeedback,
+    const feedbackClassNames = classnames(`${prefix}--btn--copy__feedback`, {
+      [`${prefix}--btn--copy__feedback--displayed`]: this.state.showFeedback,
     });
 
     return (

@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import ToolbarSearch from '../ToolbarSearch';
 import classNames from 'classnames';
 
-const Toolbar = ({ children, className, ...other }) => {
-  const wrapperClasses = classNames('bx--toolbar', className);
+const Toolbar = ({ children, className, prefix, ...other }) => {
+  const wrapperClasses = classNames(`${prefix}--toolbar`, className);
 
   return (
     <div className={wrapperClasses} {...other}>
@@ -23,6 +23,15 @@ Toolbar.propTypes = {
    * Specify an optional className to be applied to the containing Toolbar node
    */
   className: PropTypes.string,
+
+  /**
+   * The selector prefix
+   */
+  prefix: PropTypes.string,
+};
+
+Toolbar.defaultProps = {
+  prefix: 'bx',
 };
 
 export const ToolbarItem = ({ children, type, placeHolderText }) => {
@@ -58,8 +67,8 @@ ToolbarItem.defaultProps = {
   placeHolderText: 'Provide placeHolderText',
 };
 
-export const ToolbarTitle = ({ title }) => (
-  <li className="bx--toolbar-menu__title">{title}</li>
+export const ToolbarTitle = ({ title, prefix }) => (
+  <li className={`${prefix}--toolbar-menu__title`}>{title}</li>
 );
 
 ToolbarTitle.propTypes = {
@@ -67,10 +76,19 @@ ToolbarTitle.propTypes = {
    * Specify the title of the Toolbar
    */
   title: PropTypes.string,
+
+  /**
+   * The selector prefix
+   */
+  prefix: PropTypes.string,
 };
 
-export const ToolbarOption = ({ children }) => (
-  <li className="bx--toolbar-menu__option">{children}</li>
+ToolbarTitle.defaultProps = {
+  prefix: 'bx',
+};
+
+export const ToolbarOption = ({ children, prefix }) => (
+  <li className={`${prefix}--toolbar-menu__option`}>{children}</li>
 );
 
 ToolbarOption.propTypes = {
@@ -78,10 +96,30 @@ ToolbarOption.propTypes = {
    * Specify the contents of the ToolbarOption
    */
   children: PropTypes.node,
+
+  /**
+   * The selector prefix
+   */
+  prefix: PropTypes.string,
 };
 
-export const ToolbarDivider = () => (
-  <hr className="bx--toolbar-menu__divider" />
+ToolbarOption.defaultProps = {
+  prefix: 'bx',
+};
+
+export const ToolbarDivider = ({ prefix }) => (
+  <hr className={`${prefix}--toolbar-menu__divider`} />
 );
+
+ToolbarDivider.propTypes = {
+  /**
+   * The selector prefix
+   */
+  prefix: PropTypes.string,
+};
+
+ToolbarDivider.defaultProps = {
+  prefix: 'bx',
+};
 
 export default Toolbar;

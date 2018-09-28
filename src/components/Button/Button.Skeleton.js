@@ -2,11 +2,11 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import classNames from 'classnames';
 
-const ButtonSkeleton = ({ small, href }) => {
+const ButtonSkeleton = ({ small, href, prefix }) => {
   const buttonClasses = classNames({
-    'bx--skeleton': true,
-    'bx--btn': true,
-    'bx--btn--sm': small,
+    [`${prefix}--skeleton`]: true,
+    [`${prefix}--btn`]: true,
+    [`${prefix}--btn--sm`]: small,
   });
 
   const commonProps = {
@@ -21,12 +21,25 @@ const ButtonSkeleton = ({ small, href }) => {
 };
 
 ButtonSkeleton.propTypes = {
+  /**
+   * Specify whether the Button should be a small variant
+   */
   small: PropTypes.bool,
+
+  /**
+   * Optionally specify an href for your Button to become an <a> element
+   */
   href: PropTypes.string,
+
+  /**
+   * The selector prefix
+   */
+  prefix: PropTypes.string,
 };
 
 ButtonSkeleton.defaultProps = {
   small: false,
+  prefix: 'bx',
 };
 
 export default ButtonSkeleton;

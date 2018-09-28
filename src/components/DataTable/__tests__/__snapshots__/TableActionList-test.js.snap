@@ -3,6 +3,7 @@
 exports[`DataTable.TableActionList should render 1`] = `
 <TableActionList
   className="custom-class"
+  prefix="bx"
 >
   <div
     className="bx--action-list custom-class"

@@ -46,6 +46,11 @@ export default class ToolbarSearch extends Component {
      * The ID of the `<input>`.
      */
     id: PropTypes.string,
+
+    /**
+     * The selector prefix
+     */
+    prefix: PropTypes.string,
   };
 
   static defaultProps = {
@@ -55,6 +60,7 @@ export default class ToolbarSearch extends Component {
     iconDescription: 'search',
     placeHolderText: '',
     role: 'search',
+    prefix: 'bx',
   };
 
   state = {
@@ -83,25 +89,26 @@ export default class ToolbarSearch extends Component {
       placeHolderText,
       labelText,
       role,
+      prefix,
       ...other
     } = this.props;
 
     const searchClasses = classNames({
-      'bx--search bx--search--sm bx--toolbar-search': true,
-      'bx--toolbar-search--active': this.state.expanded,
+      [`${prefix}--search ${prefix}--search--sm ${prefix}--toolbar-search`]: true,
+      [`${prefix}--toolbar-search--active`]: this.state.expanded,
       [className]: className,
     });
 
     return (
       <ClickListener onClickOutside={this.handleClickOutside}>
         <div className={searchClasses} role={role}>
-          <label htmlFor={id} className="bx--label">
+          <label htmlFor={id} className={`${prefix}--label`}>
             {labelText}
           </label>
           <input
             {...other}
             type={type}
-            className="bx--search-input"
+            className={`${prefix}--search-input`}
             id={id}
             placeholder={placeHolderText}
             ref={input => {
@@ -109,12 +116,12 @@ export default class ToolbarSearch extends Component {
             }}
           />
           <button
-            className="bx--toolbar-search__btn"
+            className={`${prefix}--toolbar-search__btn`}
             onClick={this.expandSearch}>
             <Icon
               icon={iconSearch}
               description={iconDescription}
-              className="bx--search-magnifier"
+              className={`${prefix}--search-magnifier`}
             />
           </button>
         </div>

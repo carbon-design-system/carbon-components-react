@@ -203,6 +203,11 @@ export default class DatePicker extends Component {
      * The maximum date that a user can pick to.
      */
     maxDate: PropTypes.string,
+
+    /**
+     * The selector prefix.
+     */
+    prefix: PropTypes.string,
   };
 
   static defaultProps = {
@@ -210,6 +215,7 @@ export default class DatePicker extends Component {
     light: false,
     dateFormat: 'm/d/Y',
     locale: 'en',
+    prefix: 'bx',
   };
 
   UNSAFE_componentWillUpdate(nextProps) {
@@ -341,27 +347,28 @@ export default class DatePicker extends Component {
     const calendarContainer = calendar.calendarContainer;
     const daysContainer = calendar.days;
     if (calendarContainer && daysContainer) {
+      const { prefix } = this.props;
       // calendarContainer and daysContainer are undefined if flatpickr detects a mobile device
-      calendarContainer.classList.add('bx--date-picker__calendar');
+      calendarContainer.classList.add(`${prefix}--date-picker__calendar`);
       calendarContainer
         .querySelector('.flatpickr-month')
-        .classList.add('bx--date-picker__month');
+        .classList.add(`${prefix}--date-picker__month`);
       calendarContainer
         .querySelector('.flatpickr-weekdays')
-        .classList.add('bx--date-picker__weekdays');
+        .classList.add(`${prefix}--date-picker__weekdays`);
       calendarContainer
         .querySelector('.flatpickr-days')
-        .classList.add('bx--date-picker__days');
+        .classList.add(`${prefix}--date-picker__days`);
       forEach.call(
         calendarContainer.querySelectorAll('.flatpickr-weekday'),
         item => {
           const currentItem = item;
           currentItem.innerHTML = currentItem.innerHTML.replace(/\s+/g, '');
-          currentItem.classList.add('bx--date-picker__weekday');
+          currentItem.classList.add(`${prefix}--date-picker__weekday`);
         }
       );
       forEach.call(daysContainer.querySelectorAll('.flatpickr-day'), item => {
-        item.classList.add('bx--date-picker__day');
+        item.classList.add(`${prefix}--date-picker__day`);
         if (
           item.classList.contains('today') &&
           calendar.selectedDates.length > 0
@@ -378,11 +385,12 @@ export default class DatePicker extends Component {
   };
 
   assignInputFieldRef = node => {
+    const { prefix } = this.props;
     this.inputField = !node
       ? null
       : // Child is a regular DOM node, seen in tests
         node.nodeType === Node.ELEMENT_NODE
-        ? node.querySelector('.bx--date-picker__input')
+        ? node.querySelector(`.${prefix}--date-picker__input`)
         : // Child is a React component
           node.input && node.input.nodeType === Node.ELEMENT_NODE
           ? node.input
@@ -390,11 +398,12 @@ export default class DatePicker extends Component {
   };
 
   assignToInputFieldRef = node => {
+    const { prefix } = this.props;
     this.toInputField = !node
       ? null
       : // Child is a regular DOM node, seen in tests
         node.nodeType === Node.ELEMENT_NODE
-        ? node.querySelector('.bx--date-picker__input')
+        ? node.querySelector(`.${prefix}--date-picker__input`)
         : // Child is a React component
           node.input && node.input.nodeType === Node.ELEMENT_NODE
           ? node.input
@@ -419,16 +428,17 @@ export default class DatePicker extends Component {
       locale, // eslint-disable-line
       value, // eslint-disable-line
       iconDescription,
+      prefix,
       ...other
     } = this.props;
 
-    const datePickerClasses = classNames('bx--date-picker', className, {
-      'bx--date-picker--short': short,
-      'bx--date-picker--light': light,
-      'bx--date-picker--simple': datePickerType === 'simple',
-      'bx--date-picker--single': datePickerType === 'single',
-      'bx--date-picker--range': datePickerType === 'range',
-      'bx--date-picker--nolabel':
+    const datePickerClasses = classNames(`${prefix}--date-picker`, className, {
+      [`${prefix}--date-picker--short`]: short,
+      [`${prefix}--date-picker--light`]: light,
+      [`${prefix}--date-picker--simple`]: datePickerType === 'simple',
+      [`${prefix}--date-picker--single`]: datePickerType === 'single',
+      [`${prefix}--date-picker--range`]: datePickerType === 'range',
+      [`${prefix}--date-picker--nolabel`]:
         datePickerType === 'range' && this.isLabelTextEmpty(children),
     });
 
@@ -436,7 +446,7 @@ export default class DatePicker extends Component {
       datePickerType === 'range' ? (
         <Icon
           name="calendar"
-          className="bx--date-picker__icon"
+          className={`${prefix}--date-picker__icon`}
           description={iconDescription}
           onClick={this.openCalendar}
         />
@@ -468,7 +478,7 @@ export default class DatePicker extends Component {
       }
     });
     return (
-      <div className="bx--form-item">
+      <div className={`${prefix}--form-item`}>
         <div className={datePickerClasses} {...other}>
           {childrenWithProps}
           {datePickerIcon}

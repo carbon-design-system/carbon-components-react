@@ -55,6 +55,7 @@ export default class MultiSelect extends React.Component {
      * consuming component what kind of internal state changes are occuring.
      */
     onChange: PropTypes.func,
+
     /**
      * Specify 'inline' to create an inline multi-select.
      */
@@ -69,14 +70,21 @@ export default class MultiSelect extends React.Component {
      * `true` to use the light version.
      */
     light: PropTypes.bool,
+
     /**
      * Is the current selection invalid?
      */
     invalid: PropTypes.bool,
+
     /**
      * If invalid, what is the error?
      */
     invalidText: PropTypes.string,
+
+    /**
+     * The selector prefix.
+     */
+    prefix: PropTypes.string,
   };
 
   static defaultProps = {
@@ -89,6 +97,7 @@ export default class MultiSelect extends React.Component {
     type: 'default',
     light: false,
     title: false,
+    prefix: 'bx',
   };
 
   constructor(props) {
@@ -161,9 +170,10 @@ export default class MultiSelect extends React.Component {
       invalid,
       invalidText,
       useTitleInItem,
+      prefix,
     } = this.props;
-    const className = cx('bx--multi-select', containerClassName, {
-      'bx--list-box--light': light,
+    const className = cx(`${prefix}--multi-select`, containerClassName, {
+      [`${prefix}--list-box--light`]: light,
     });
     return (
       <Selection
@@ -201,7 +211,7 @@ export default class MultiSelect extends React.Component {
                       selectionCount={selectedItem.length}
                     />
                   )}
-                  <span className="bx--list-box__label">{label}</span>
+                  <span className={`${prefix}--list-box__label`}>{label}</span>
                   <ListBox.MenuIcon isOpen={isOpen} />
                 </ListBox.Field>
                 {isOpen && (

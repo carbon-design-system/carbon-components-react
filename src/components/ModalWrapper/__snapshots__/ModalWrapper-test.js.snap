@@ -37,6 +37,7 @@ exports[`ModalWrapper should render 1`] = `
       }
       kind="primary"
       onClick={[Function]}
+      prefix="bx"
       small={false}
       tabIndex={0}
       type="button"
@@ -73,17 +74,11 @@ exports[`ModalWrapper should render 1`] = `
       onRequestSubmit={[Function]}
       open={false}
       passiveModal={false}
+      prefix="bx"
       primaryButtonDisabled={false}
       primaryButtonText="Save"
       secondaryButtonText="Cancel"
       selectorPrimaryFocus="[data-modal-primary-focus]"
-      selectorsFloatingMenus={
-        Array [
-          ".bx--overflow-menu-options",
-          ".bx--tooltip",
-          ".flatpickr-calendar",
-        ]
-      }
     >
       <div
         className="bx--modal bx--modal-tall"
@@ -187,6 +182,7 @@ exports[`ModalWrapper should render 1`] = `
                 iconDescription="Provide icon description if icon is used"
                 kind="secondary"
                 onClick={[Function]}
+                prefix="bx"
                 small={false}
                 tabIndex={0}
                 type="button"
@@ -218,6 +214,7 @@ exports[`ModalWrapper should render 1`] = `
                 }
                 kind="primary"
                 onClick={[Function]}
+                prefix="bx"
                 small={false}
                 tabIndex={0}
                 type="button"

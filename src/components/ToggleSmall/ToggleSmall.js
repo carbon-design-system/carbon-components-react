@@ -10,11 +10,12 @@ const ToggleSmall = ({
   onToggle,
   id,
   ariaLabel,
+  prefix,
   ...other
 }) => {
   let input;
   const wrapperClasses = classNames({
-    'bx--form-item': true,
+    [`${prefix}--form-item`]: true,
     [className]: className,
   });
 
@@ -33,7 +34,7 @@ const ToggleSmall = ({
         {...checkedProps}
         type="checkbox"
         id={id}
-        className="bx--toggle bx--toggle--small"
+        className={`${prefix}--toggle ${prefix}--toggle--small`}
         onChange={evt => {
           onChange && onChange(evt);
           onToggle(input.checked, id, evt);
@@ -44,10 +45,10 @@ const ToggleSmall = ({
         aria-label={ariaLabel}
       />
 
-      <label className="bx--toggle__label" htmlFor={id}>
-        <span className="bx--toggle__appearance">
+      <label className={`${prefix}--toggle__label`} htmlFor={id}>
+        <span className={`${prefix}--toggle__appearance`}>
           <svg
-            className="bx--toggle__check"
+            className={`${prefix}--toggle__check`}
             width="6px"
             height="5px"
             viewBox="0 0 6 5">
@@ -89,10 +90,16 @@ ToggleSmall.propTypes = {
    * The `aria-label` attribute for the toggle
    */
   ariaLabel: PropTypes.string.isRequired,
+
+  /**
+   * The selector prefix
+   */
+  prefix: PropTypes.string,
 };
 
 ToggleSmall.defaultProps = {
   defaultToggled: false,
+  prefix: 'bx',
   onToggle: () => {},
 };
 

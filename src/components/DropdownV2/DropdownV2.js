@@ -72,6 +72,11 @@ export default class DropdownV2 extends React.Component {
      * `true` to use the light version.
      */
     light: PropTypes.bool,
+
+    /**
+     * The selector prefix.
+     */
+    prefix: PropTypes.string,
   };
 
   static defaultProps = {
@@ -79,6 +84,7 @@ export default class DropdownV2 extends React.Component {
     type: 'default',
     itemToString: defaultItemToString,
     light: false,
+    prefix: 'bx',
   };
 
   handleOnChange = selectedItem => {
@@ -99,10 +105,11 @@ export default class DropdownV2 extends React.Component {
       initialSelectedItem,
       selectedItem,
       light,
+      prefix,
       id,
     } = this.props;
-    const className = cx('bx--dropdown', containerClassName, {
-      'bx--dropdown--light': light,
+    const className = cx(`${prefix}--dropdown`, containerClassName, {
+      [`${prefix}--dropdown--light`]: light,
     });
     return (
       <Downshift
@@ -128,7 +135,9 @@ export default class DropdownV2 extends React.Component {
             ariaLabel={ariaLabel}
             {...getRootProps({ refKey: 'innerRef' })}>
             <ListBox.Field {...getButtonProps({ disabled })}>
-              <span className="bx--list-box__label" {...getLabelProps()}>
+              <span
+                className={`${prefix}--list-box__label`}
+                {...getLabelProps()}>
                 {selectedItem ? itemToString(selectedItem) : label}
               </span>
               <ListBox.MenuIcon isOpen={isOpen} />

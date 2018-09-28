@@ -66,12 +66,18 @@ export default class CodeSnippet extends Component {
      * typically used for inline snippest to display an alternate color
      */
     light: PropTypes.bool,
+
+    /**
+     * The selector prefix
+     */
+    prefix: PropTypes.string,
   };
 
   static defaultProps = {
     type: 'single',
     showMoreText: 'Show more',
     showLessText: 'Show less',
+    prefix: 'bx',
   };
 
   state = {
@@ -112,16 +118,17 @@ export default class CodeSnippet extends Component {
       light,
       showMoreText,
       showLessText,
+      prefix,
       ...other
     } = this.props;
 
     const codeSnippetClasses = classNames(className, {
-      'bx--snippet': true,
-      'bx--snippet--single': type === 'single',
-      'bx--snippet--multi': type === 'multi',
-      'bx--snippet--inline': type === 'inline',
-      'bx--snippet--expand': this.state.expandedCode,
-      'bx--snippet--light': light,
+      [`${prefix}--snippet`]: true,
+      [`${prefix}--snippet--single`]: type === 'single',
+      [`${prefix}--snippet--multi`]: type === 'multi',
+      [`${prefix}--snippet--inline`]: type === 'inline',
+      [`${prefix}--snippet--expand`]: this.state.expandedCode,
+      [`${prefix}--snippet--light`]: light,
     });
 
     const expandCodeBtnText = this.state.expandedCode
@@ -130,16 +137,18 @@ export default class CodeSnippet extends Component {
 
     const moreLessBtn = (
       <button
-        className="bx--btn bx--btn--ghost bx--btn--sm bx--snippet-btn--expand"
+        className={`${prefix}--btn ${prefix}--btn--ghost ${prefix}--btn--sm ${prefix}--snippet-btn--expand`}
         type="button"
         onClick={this.expandCode}>
-        <span className="bx--snippet-btn--text">{expandCodeBtnText}</span>
+        <span className={`${prefix}--snippet-btn--text`}>
+          {expandCodeBtnText}
+        </span>
         <Icon
           aria-hidden="true"
           alt={expandCodeBtnText}
           name="chevron--down"
           description={expandCodeBtnText}
-          className="bx--icon-chevron--down"
+          className={`${prefix}--icon-chevron--down`}
         />
       </button>
     );
@@ -148,7 +157,7 @@ export default class CodeSnippet extends Component {
       <div
         role="textbox"
         tabIndex={0}
-        className="bx--snippet-container"
+        className={`${prefix}--snippet-container`}
         aria-label={ariaLabel ? ariaLabel : 'code-snippet'}>
         <code>
           <pre

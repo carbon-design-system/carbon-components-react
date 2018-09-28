@@ -30,6 +30,7 @@ const TableHeader = ({
   onClick,
   scope,
   sortDirection,
+  prefix,
   translateWithId: t,
   ...rest
 }) => {
@@ -42,19 +43,19 @@ const TableHeader = ({
   }
 
   const className = cx(headerClassName, {
-    'bx--table-sort-v2': true,
-    'bx--table-sort-v2--active':
+    [`${prefix}--table-sort-v2`]: true,
+    [`${prefix}--table-sort-v2--active`]:
       isSortHeader && sortDirection !== sortStates.NONE,
-    'bx--table-sort-v2--ascending':
+    [`${prefix}--table-sort-v2--ascending`]:
       isSortHeader && sortDirection === sortStates.ASC,
   });
 
   return (
     <th scope={scope} className={headerClassName}>
       <button className={className} onClick={onClick} {...rest}>
-        <span className="bx--table-header-label">{children}</span>
+        <span className={`${prefix}--table-header-label`}>{children}</span>
         <Icon
-          className="bx--table-sort-v2__icon"
+          className={`${prefix}--table-sort-v2__icon`}
           icon={iconCaretUp}
           description={t('carbon.table.header.icon.description', {
             header: children,
@@ -109,6 +110,11 @@ TableHeader.propTypes = {
   sortDirection: PropTypes.oneOf(Object.values(sortStates)),
 
   /**
+   * The selector prefix.
+   */
+  prefix: PropTypes.string,
+
+  /**
    * Supply a method to translate internal strings with your i18n tool of
    * choice. Translation keys are avabile on the `translationKeys` field for
    * this component.
@@ -119,6 +125,7 @@ TableHeader.propTypes = {
 TableHeader.defaultProps = {
   isSortable: false,
   scope: 'col',
+  prefix: 'bx',
   translateWithId,
 };
 

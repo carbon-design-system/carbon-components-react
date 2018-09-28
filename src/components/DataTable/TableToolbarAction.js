@@ -9,13 +9,14 @@ const TableToolbarAction = ({
   icon,
   iconName,
   iconDescription,
+  prefix,
   ...rest
 }) => {
-  const toolbarActionClasses = cx(className, 'bx--toolbar-action');
+  const toolbarActionClasses = cx(className, `${prefix}--toolbar-action`);
   return (
     <button className={toolbarActionClasses} {...rest}>
       <Icon
-        className="bx--toolbar-action__icon"
+        className={`${prefix}--toolbar-action__icon`}
         icon={icon}
         name={iconName}
         description={iconDescription}
@@ -49,6 +50,15 @@ TableToolbarAction.propTypes = {
    * Specify the description of the icon for the toolbar action
    */
   iconDescription: PropTypes.string.isRequired,
+
+  /**
+   * The selector prefix
+   */
+  prefix: PropTypes.string,
+};
+
+TableToolbarAction.defaultProps = {
+  prefix: 'bx',
 };
 
 export default TableToolbarAction;

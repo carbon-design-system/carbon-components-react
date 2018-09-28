@@ -61,6 +61,11 @@ export default class FilterableMultiSelect extends React.Component {
      * `true` to use the light version.
      */
     light: PropTypes.bool,
+
+    /**
+     * The selector prefix.
+     */
+    prefix: PropTypes.string,
   };
 
   static defaultProps = {
@@ -72,6 +77,7 @@ export default class FilterableMultiSelect extends React.Component {
     locale: 'en',
     sortItems: defaultSortItems,
     light: false,
+    prefix: 'bx',
   };
 
   constructor(props) {
@@ -176,13 +182,14 @@ export default class FilterableMultiSelect extends React.Component {
       sortItems,
       compareItems,
       light,
+      prefix,
     } = this.props;
     const className = cx(
-      'bx--multi-select',
-      'bx--combo-box',
+      `${prefix}--multi-select`,
+      `${prefix}--combo-box`,
       containerClassName,
       {
-        'bx--list-box--light': light,
+        [`${prefix}--list-box--light`]: light,
       }
     );
     return (
@@ -221,7 +228,7 @@ export default class FilterableMultiSelect extends React.Component {
                     />
                   )}
                   <input
-                    className="bx--text-input"
+                    className={`${prefix}--text-input`}
                     ref={el => (this.inputNode = el)}
                     {...getInputProps({
                       disabled,

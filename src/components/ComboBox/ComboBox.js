@@ -117,6 +117,11 @@ export default class ComboBox extends React.Component {
      * should use "light theme" (white background)?
      */
     light: PropTypes.bool,
+
+    /**
+     * The selector prefix
+     */
+    prefix: PropTypes.string,
   };
 
   static defaultProps = {
@@ -126,6 +131,7 @@ export default class ComboBox extends React.Component {
     type: 'default',
     ariaLabel: 'ListBox input field',
     light: false,
+    prefix: 'bx',
   };
 
   constructor(props) {
@@ -189,8 +195,9 @@ export default class ComboBox extends React.Component {
       invalid,
       invalidText,
       light,
+      prefix,
     } = this.props;
-    const className = cx('bx--combo-box', containerClassName);
+    const className = cx(`${prefix}--combo-box`, containerClassName);
 
     return (
       <Downshift
@@ -219,7 +226,7 @@ export default class ComboBox extends React.Component {
             {...getRootProps({ refKey: 'innerRef' })}>
             <ListBox.Field {...getButtonProps({ disabled })}>
               <input
-                className="bx--text-input"
+                className={`${prefix}--text-input`}
                 aria-label={ariaLabel}
                 {...getInputProps({
                   disabled,

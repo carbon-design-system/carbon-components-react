@@ -34,6 +34,11 @@ export default class InlineCheckbox extends React.Component {
     name: PropTypes.string.isRequired,
 
     /**
+     * The selector prefix
+     */
+    prefix: PropTypes.string,
+
+    /**
      * Provide a handler that is invoked when a user clicks on the control
      */
     onClick: PropTypes.func,
@@ -42,6 +47,10 @@ export default class InlineCheckbox extends React.Component {
      * Provide a handler that is invoked on the key down event for the control
      */
     onKeyDown: PropTypes.func,
+  };
+
+  static defaultProps = {
+    prefix: 'bx',
   };
 
   componentDidMount() {
@@ -66,6 +75,7 @@ export default class InlineCheckbox extends React.Component {
       disabled,
       ariaLabel,
       name,
+      prefix,
       onClick,
       onKeyDown,
     } = this.props;
@@ -74,7 +84,7 @@ export default class InlineCheckbox extends React.Component {
       name,
       onClick,
       onKeyDown,
-      className: 'bx--checkbox',
+      className: `${prefix}--checkbox`,
       type: 'checkbox',
       ref: this.handleRef,
       checked: false,
@@ -97,7 +107,7 @@ export default class InlineCheckbox extends React.Component {
           /* eslint-disable jsx-a11y/label-has-for */
           <label
             htmlFor={id}
-            className="bx--checkbox-label"
+            className={`${prefix}--checkbox-label`}
             aria-label={ariaLabel}
           />
         }

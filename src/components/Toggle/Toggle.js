@@ -11,11 +11,12 @@ const Toggle = ({
   id,
   labelA,
   labelB,
+  prefix,
   ...other
 }) => {
   let input;
   const wrapperClasses = classNames({
-    'bx--form-item': true,
+    [`${prefix}--form-item`]: true,
     [className]: className,
   });
 
@@ -34,7 +35,7 @@ const Toggle = ({
         {...checkedProps}
         type="checkbox"
         id={id}
-        className="bx--toggle"
+        className={`${prefix}--toggle`}
         onChange={evt => {
           onChange && onChange(evt);
           onToggle(input.checked, id, evt);
@@ -44,10 +45,10 @@ const Toggle = ({
         }}
       />
 
-      <label className="bx--toggle__label" htmlFor={id}>
-        <span className="bx--toggle__text--left">{labelA}</span>
-        <span className="bx--toggle__appearance" />
-        <span className="bx--toggle__text--right">{labelB}</span>
+      <label className={`${prefix}--toggle__label`} htmlFor={id}>
+        <span className={`${prefix}--toggle__text--left`}>{labelA}</span>
+        <span className={`${prefix}--toggle__appearance`} />
+        <span className={`${prefix}--toggle__text--right`}>{labelB}</span>
       </label>
     </div>
   );
@@ -88,12 +89,18 @@ Toggle.propTypes = {
    * Specify the label for the "on" position
    */
   labelB: PropTypes.string.isRequired,
+
+  /**
+   * The selector prefix
+   */
+  prefix: PropTypes.string,
 };
 
 Toggle.defaultProps = {
   defaultToggled: false,
   labelA: 'Off',
   labelB: 'On',
+  prefix: 'bx',
   onToggle: () => {},
 };
 

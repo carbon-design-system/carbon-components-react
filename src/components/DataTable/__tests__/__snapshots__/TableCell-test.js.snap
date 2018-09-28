@@ -2,18 +2,24 @@
 
 exports[`DataTable.TableCell should render 1`] = `
 <Table
+  prefix="bx"
   short={false}
   zebra={true}
 >
   <table
     className="bx--data-table-v2 bx--data-table-v2--zebra"
   >
-    <TableBody>
+    <TableBody
+      prefix="bx"
+    >
       <tbody>
-        <TableRow>
+        <TableRow
+          prefix="bx"
+        >
           <tr>
             <TableCell
               className="custom-class"
+              prefix="bx"
             >
               <td
                 className="custom-class"

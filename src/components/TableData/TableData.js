@@ -11,12 +11,13 @@ const TableData = props => {
     iconClassName,
     expanded,
     iconDescription,
+    prefix,
     ...other
   } = props;
 
   const tableDataClasses = classNames(className);
 
-  const iconClasses = classNames(iconClassName, 'bx--table-expand__svg');
+  const iconClasses = classNames(iconClassName, `${prefix}--table-expand__svg`);
 
   const style = expanded
     ? {
@@ -47,7 +48,14 @@ const TableData = props => {
 };
 
 TableData.propTypes = {
+  /**
+   * Provide the contents of your TableData.
+   */
   children: PropTypes.node,
+
+  /**
+   * Specify an optional className to be applied to your TableData.
+   */
   className: PropTypes.string,
 
   /**
@@ -64,10 +72,16 @@ TableData.propTypes = {
    * The expanded state for expando cell. `undefined` for regular cells.
    */
   expanded: PropTypes.bool,
+
+  /**
+   * The selector prefix.
+   */
+  prefix: PropTypes.string,
 };
 
 TableData.defaultProps = {
   iconDescription: 'expand row',
+  prefix: 'bx',
 };
 
 export default TableData;

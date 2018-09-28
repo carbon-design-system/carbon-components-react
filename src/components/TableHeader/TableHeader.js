@@ -12,12 +12,13 @@ const TableHeader = props => {
     sortDir,
     iconDescriptionAscending,
     iconDescriptionDescending,
+    prefix,
     ...other
   } = props;
 
-  const tableHeaderClasses = classNames(className, 'bx--table-header');
+  const tableHeaderClasses = classNames(className, `${prefix}--table-header`);
 
-  const iconClasses = classNames(iconClassName, 'bx--table-sort__svg');
+  const iconClasses = classNames(iconClassName, `${prefix}--table-sort__svg`);
 
   let sortContent;
   if (sortDir) {
@@ -48,7 +49,14 @@ const TableHeader = props => {
 };
 
 TableHeader.propTypes = {
+  /**
+   * Provide the contents of your TableHeader.
+   */
   children: PropTypes.node,
+
+  /**
+   * Specify an optional className to be applied to your TableHeader.
+   */
   className: PropTypes.string,
 
   /**
@@ -70,11 +78,17 @@ TableHeader.propTypes = {
    * The sorting direction, `DESC` or `ASC`.
    */
   sortDir: PropTypes.string,
+
+  /**
+   * The selector prefix.
+   */
+  prefix: PropTypes.string,
 };
 
 TableHeader.defaultProps = {
   iconDescriptionAscending: 'ascending sort',
   iconDescriptionDescending: 'descending sort',
+  prefix: 'bx',
 };
 
 export default TableHeader;

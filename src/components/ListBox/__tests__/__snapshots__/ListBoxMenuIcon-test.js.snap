@@ -3,6 +3,7 @@
 exports[`ListBoxMenuIcon should render 1`] = `
 <ListBoxMenuIcon
   isOpen={true}
+  prefix="bx"
   translateWithId={[Function]}
 >
   <div
@@ -62,6 +63,7 @@ exports[`ListBoxMenuIcon should render 1`] = `
 exports[`ListBoxMenuIcon should render 2`] = `
 <ListBoxMenuIcon
   isOpen={false}
+  prefix="bx"
   translateWithId={[Function]}
 >
   <div

@@ -31,14 +31,15 @@ const ListBox = ({
   invalid,
   invalidText,
   light,
+  prefix,
   ...rest
 }) => {
   const className = cx({
     [containerClassName]: !!containerClassName,
-    'bx--list-box': true,
-    'bx--list-box--inline': type === 'inline',
-    'bx--list-box--disabled': disabled,
-    'bx--list-box--light': light,
+    [`${prefix}--list-box`]: true,
+    [`${prefix}--list-box--inline`]: type === 'inline',
+    [`${prefix}--list-box--disabled`]: disabled,
+    [`${prefix}--list-box--light`]: light,
   });
   return (
     <>
@@ -56,7 +57,7 @@ const ListBox = ({
         {children}
       </div>
       {invalid ? (
-        <div className="bx--form-requirement">{invalidText}</div>
+        <div className={`${prefix}--form-requirement`}>{invalidText}</div>
       ) : null}
     </>
   );
@@ -91,6 +92,11 @@ ListBox.propTypes = {
    * Specify the "aria-label" of the ListBox.
    */
   ariaLabel: PropTypes.string,
+
+  /**
+   * The selector prefix.
+   */
+  prefix: PropTypes.string,
 };
 
 ListBox.defaultProps = {
@@ -98,6 +104,7 @@ ListBox.defaultProps = {
   disabled: false,
   type: 'default',
   ariaLabel: 'Choose an item',
+  prefix: 'bx',
 };
 
 export default ListBox;

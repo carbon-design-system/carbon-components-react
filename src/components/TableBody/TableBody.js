@@ -29,9 +29,9 @@ const handleRowStriping = rows => {
 };
 
 const TableBody = props => {
-  const { children, className, ...other } = props;
+  const { children, className, prefix, ...other } = props;
 
-  const tableBodyClasses = classNames(className, 'bx--table-body');
+  const tableBodyClasses = classNames(className, `${prefix}--table-body`);
 
   const childArray = React.Children.toArray(children);
   const childrenWithProps = handleRowStriping(childArray);
@@ -44,8 +44,24 @@ const TableBody = props => {
 };
 
 TableBody.propTypes = {
+  /**
+   * Provide the contents of your TableBody
+   */
   children: PropTypes.node,
+
+  /**
+   * Specify an optional className to be applied to your TableBody
+   */
   className: PropTypes.string,
+
+  /**
+   * The selector prefix
+   */
+  prefix: PropTypes.string,
+};
+
+TableBody.defaultProps = {
+  prefix: 'bx',
 };
 
 export default TableBody;

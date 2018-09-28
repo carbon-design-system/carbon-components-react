@@ -2,8 +2,8 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import classnames from 'classnames';
 
-const FormLabel = ({ className, children, id, ...other }) => {
-  const classNames = classnames('bx--label', className);
+const FormLabel = ({ className, children, id, prefix, ...other }) => {
+  const classNames = classnames(`${prefix}--label`, className);
 
   return (
     <label htmlFor={id} className={classNames} {...other}>
@@ -27,6 +27,15 @@ FormLabel.propTypes = {
    * Provide a unique id for the given <FormLabel>
    */
   id: PropTypes.string,
+
+  /**
+   * The selector prefix
+   */
+  prefix: PropTypes.string,
+};
+
+FormLabel.defaultProps = {
+  prefix: 'bx',
 };
 
 export default FormLabel;

@@ -2,9 +2,9 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import classnames from 'classnames';
 
-const OrderedList = ({ children, className, nested, ...other }) => {
-  const classNames = classnames('bx--list--ordered', className, {
-    'bx--list--nested': nested,
+const OrderedList = ({ children, className, nested, prefix, ...other }) => {
+  const classNames = classnames(`${prefix}--list--ordered`, className, {
+    [`${prefix}--list--nested`]: nested,
   });
   return (
     <ol className={classNames} {...other}>
@@ -28,10 +28,16 @@ OrderedList.propTypes = {
    * Specify whether this ordered list is nested inside of another nested list
    */
   nested: PropTypes.bool,
+
+  /**
+   * The selector prefix
+   */
+  prefix: PropTypes.string,
 };
 
 OrderedList.defaultProps = {
   nested: false,
+  prefix: 'bx',
 };
 
 export default OrderedList;

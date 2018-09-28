@@ -2,15 +2,20 @@
 
 exports[`DataTable.TableExpandHeader should render 1`] = `
 <Table
+  prefix="bx"
   short={false}
   zebra={true}
 >
   <table
     className="bx--data-table-v2 bx--data-table-v2--zebra"
   >
-    <TableHead>
+    <TableHead
+      prefix="bx"
+    >
       <thead>
-        <TableRow>
+        <TableRow
+          prefix="bx"
+        >
           <tr>
             <TableExpandHeader
               className="custom-class"

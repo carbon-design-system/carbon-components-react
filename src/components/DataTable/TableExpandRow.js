@@ -13,13 +13,14 @@ const TableExpandRow = ({
   onExpand,
   expandIconDescription,
   isSelected,
+  prefix,
   ...rest
 }) => {
   const className = cx(
     {
-      'bx--parent-row-v2': true,
-      'bx--expandable-row-v2': isExpanded,
-      'bx--data-table-v2--selected': isSelected,
+      [`${prefix}--parent-row-v2`]: true,
+      [`${prefix}--expandable-row-v2`]: isExpanded,
+      [`${prefix}--data-table-v2--selected`]: isSelected,
     },
     rowClassName
   );
@@ -28,14 +29,14 @@ const TableExpandRow = ({
   return (
     <tr {...rest} className={className} data-parent-row>
       <TableCell
-        className="bx--table-expand-v2"
+        className={`${prefix}--table-expand-v2`}
         data-previous-value={previousValue}>
         <button
-          className="bx--table-expand-v2__button"
+          className={`${prefix}--table-expand-v2__button`}
           onClick={onExpand}
           aria-label={ariaLabel}>
           <Icon
-            className="bx--table-expand-v2__svg"
+            className={`${prefix}--table-expand-v2__svg`}
             icon={iconChevronRight}
             description={expandIconDescription}
           />
@@ -69,6 +70,15 @@ TableExpandRow.propTypes = {
    * The description of the chevron right icon, to be put in its SVG `<title>` element.
    */
   expandIconDescription: PropTypes.string,
+
+  /**
+   * The selector prefix
+   */
+  prefix: PropTypes.string,
+};
+
+TableExpandRow.defaultProps = {
+  prefix: 'bx',
 };
 
 export default TableExpandRow;

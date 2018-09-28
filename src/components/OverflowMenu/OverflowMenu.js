@@ -241,6 +241,11 @@ export default class OverflowMenu extends Component {
     renderIcon: PropTypes.func,
 
     /**
+     * The selector prefix.
+     */
+    prefix: PropTypes.string,
+
+    /**
      * Function called when menu is closed
      */
     onClose: PropTypes.func,
@@ -265,6 +270,7 @@ export default class OverflowMenu extends Component {
     tabIndex: 0,
     menuOffset: getMenuOffset,
     menuOffsetFlip: getMenuOffset,
+    prefix: 'bx',
   };
 
   /**
@@ -406,6 +412,7 @@ export default class OverflowMenu extends Component {
       ).focus();
       const hasFocusin = 'onfocusin' in window;
       const focusinEventName = hasFocusin ? 'focusin' : 'focus';
+      const { prefix } = this.props;
       this._hFocusIn = on(
         menuBody.ownerDocument,
         focusinEventName,
@@ -414,7 +421,10 @@ export default class OverflowMenu extends Component {
           if (
             !menuBody.contains(target) &&
             this.menuEl &&
-            !matches(target, '.bx--overflow-menu,.bx--overflow-menu-options')
+            !matches(
+              target,
+              `.${prefix}--overflow-menu,.${prefix}--overflow-menu-options`
+            )
           ) {
             this.closeMenu();
           }
@@ -450,6 +460,7 @@ export default class OverflowMenu extends Component {
       onClick, // eslint-disable-line
       onOpen, // eslint-disable-line
       renderIcon,
+      prefix,
       ...other
     } = this.props;
 
@@ -465,19 +476,22 @@ export default class OverflowMenu extends Component {
 
     const overflowMenuClasses = classNames(
       this.props.className,
-      'bx--overflow-menu',
+      `${prefix}--overflow-menu`,
       {
-        'bx--overflow-menu--open': open,
+        [`${prefix}--overflow-menu--open`]: open,
       }
     );
 
-    const overflowMenuOptionsClasses = classNames('bx--overflow-menu-options', {
-      'bx--overflow-menu--flip': this.props.flipped,
-      'bx--overflow-menu-options--open': open,
-    });
+    const overflowMenuOptionsClasses = classNames(
+      `${prefix}--overflow-menu-options`,
+      {
+        [`${prefix}--overflow-menu--flip`]: this.props.flipped,
+        [`${prefix}--overflow-menu-options--open`]: open,
+      }
+    );
 
     const overflowMenuIconClasses = classNames(
-      'bx--overflow-menu__icon',
+      `${prefix}--overflow-menu__icon`,
       iconClass
     );
 

@@ -2,10 +2,16 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import classnames from 'classnames';
 
-const Breadcrumb = ({ children, className, noTrailingSlash, ...other }) => {
+const Breadcrumb = ({
+  children,
+  className,
+  noTrailingSlash,
+  prefix,
+  ...other
+}) => {
   const classNames = classnames(className, {
-    'bx--breadcrumb': true,
-    'bx--breadcrumb--no-trailing-slash': noTrailingSlash,
+    [`${prefix}--breadcrumb`]: true,
+    [`${prefix}--breadcrumb--no-trailing-slash`]: noTrailingSlash,
   });
   return (
     <div className={classNames} {...other}>
@@ -29,6 +35,15 @@ Breadcrumb.propTypes = {
    * Optional prop to omit the trailing slash for the breadcrumbs
    */
   noTrailingSlash: PropTypes.bool,
+
+  /**
+   * The selector prefix
+   */
+  prefix: PropTypes.string,
+};
+
+Breadcrumb.defaultProps = {
+  prefix: 'bx',
 };
 
 export default Breadcrumb;
