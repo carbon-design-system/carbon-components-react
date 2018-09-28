@@ -1,21 +1,22 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-const DatePickerSkeleton = ({ range, id }) => {
+const DatePickerSkeleton = ({ range, id, prefix }) => {
   const dateInput = (
-    <div className="bx--date-picker-container">
+    <div className={`${prefix}--date-picker-container`}>
       {
         /* eslint-disable jsx-a11y/label-has-for,jsx-a11y/label-has-associated-control */
-        <label className="bx--label" htmlFor={id} />
+        <label className={`${prefix}--label`} htmlFor={id} />
       }
-      <div className="bx--date-picker__input bx--skeleton" />
+      <div className={`${prefix}--date-picker__input ${prefix}--skeleton`} />
     </div>
   );
 
   if (range) {
     return (
-      <div className="bx--form-item">
-        <div className="bx--date-picker bx--date-picker--range bx--skeleton">
+      <div className={`${prefix}--form-item`}>
+        <div
+          className={`${prefix}--date-picker ${prefix}--date-picker--range ${prefix}--skeleton`}>
           {dateInput}
           {dateInput}
         </div>
@@ -24,8 +25,9 @@ const DatePickerSkeleton = ({ range, id }) => {
   }
 
   return (
-    <div className="bx--form-item">
-      <div className="bx--date-picker bx--date-picker--short bx--date-picker--simple bx--skeleton">
+    <div className={`${prefix}--form-item`}>
+      <div
+        className={`${prefix}--date-picker ${prefix}--date-picker--short ${prefix}--date-picker--simple ${prefix}--skeleton`}>
         {dateInput}
       </div>
     </div>
@@ -33,7 +35,19 @@ const DatePickerSkeleton = ({ range, id }) => {
 };
 
 DatePickerSkeleton.propTypes = {
+  /**
+   * Specify whether the skeleton should be of range date picker.
+   */
   range: PropTypes.bool,
+
+  /**
+   * The selector prefix.
+   */
+  prefix: PropTypes.string,
+};
+
+DatePickerSkeleton.defaultProps = {
+  prefix: 'bx',
 };
 
 export default DatePickerSkeleton;

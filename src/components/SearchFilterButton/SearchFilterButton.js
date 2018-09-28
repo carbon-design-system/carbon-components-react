@@ -6,16 +6,21 @@ import Icon from '../Icon';
 /**
  * The filter button for `<Search>`.
  */
-const SearchFilterButton = ({ labelText, iconDescription, ...other }) => (
+const SearchFilterButton = ({
+  labelText,
+  iconDescription,
+  prefix,
+  ...other
+}) => (
   <button
-    className="bx--search-button"
+    className={`${prefix}--search-button`}
     type="button"
     aria-label={labelText}
     {...other}>
     <Icon
       icon={iconFilter}
       description={iconDescription}
-      className="bx--search-filter"
+      className={`${prefix}--search-filter`}
     />
   </button>
 );
@@ -30,11 +35,17 @@ SearchFilterButton.propTypes = {
    * The icon description.
    */
   iconDescription: PropTypes.string,
+
+  /**
+   * The selector prefix.
+   */
+  prefix: PropTypes.string,
 };
 
 SearchFilterButton.defaultProps = {
   labelText: 'Search',
   iconDescription: 'filter',
+  prefix: 'bx',
 };
 
 export default SearchFilterButton;

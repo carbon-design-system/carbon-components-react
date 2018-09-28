@@ -11,16 +11,17 @@ const Checkbox = ({
   hideLabel,
   wrapperClassName,
   title = '',
+  prefix,
   ...other
 }) => {
   let input;
-  const labelClasses = classNames('bx--checkbox-label', className);
+  const labelClasses = classNames(`${prefix}--checkbox-label`, className);
   const innerLabelClasses = classNames({
-    'bx--visually-hidden': hideLabel,
+    [`${prefix}--visually-hidden`]: hideLabel,
   });
   const wrapperClasses = classNames(
-    'bx--form-item',
-    'bx--checkbox-wrapper',
+    `${prefix}--form-item`,
+    `${prefix}--checkbox-wrapper`,
     wrapperClassName
   );
 
@@ -32,7 +33,7 @@ const Checkbox = ({
         onChange={evt => {
           onChange(input.checked, id, evt);
         }}
-        className="bx--checkbox"
+        className={`${prefix}--checkbox`}
         id={id}
         ref={el => {
           input = el;
@@ -105,11 +106,17 @@ Checkbox.propTypes = {
    * The CSS class name to be placed on the wrapping element
    */
   wrapperClassName: PropTypes.string,
+
+  /**
+   * The selector prefix
+   */
+  prefix: PropTypes.string,
 };
 
 Checkbox.defaultProps = {
   onChange: () => {},
   indeterminate: false,
+  prefix: 'bx',
 };
 
 export default Checkbox;

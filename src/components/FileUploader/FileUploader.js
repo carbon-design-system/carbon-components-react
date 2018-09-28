@@ -80,6 +80,11 @@ export class FileUploaderButton extends Component {
      * Specify the types of files that this input should be able to receive
      */
     accept: PropTypes.arrayOf(PropTypes.string),
+
+    /**
+     * The selector prefix
+     */
+    prefix: PropTypes.string,
   };
 
   static defaultProps = {
@@ -91,6 +96,7 @@ export class FileUploaderButton extends Component {
     onChange: () => {},
     onClick: () => {},
     accept: [],
+    prefix: 'bx',
   };
 
   static getDerivedStateFromProps({ labelText }, state) {
@@ -126,12 +132,13 @@ export class FileUploaderButton extends Component {
       tabIndex,
       buttonKind,
       accept,
+      prefix,
       name,
       ...other
     } = this.props;
     const classes = classNames({
-      'bx--btn': true,
-      [`bx--btn--${buttonKind}`]: true,
+      [`${prefix}--btn`]: true,
+      [`${prefix}--btn--${buttonKind}`]: true,
       [className]: className,
     });
 
@@ -151,7 +158,7 @@ export class FileUploaderButton extends Component {
           {this.state.labelText}
         </label>
         <input
-          className="bx--visually-hidden"
+          className={`${prefix}--visually-hidden`}
           ref={input => (this.input = input)}
           id={this.uid}
           type="file"
@@ -181,6 +188,16 @@ export class Filename extends Component {
      * Specify the status of the File Upload
      */
     status: PropTypes.oneOf(['edit', 'complete', 'uploading']),
+
+    /**
+     * Provide a description for the complete/close icon that can be read by screen readers
+     */
+    iconDescription: PropTypes.string,
+
+    /**
+     * The selector prefix
+     */
+    prefix: PropTypes.string,
   };
 
   static defaultProps = {
@@ -188,18 +205,19 @@ export class Filename extends Component {
     status: 'uploading',
     style: {},
     tabIndex: 0,
+    prefix: 'bx',
   };
 
   render() {
-    const { iconDescription, status, style, ...other } = this.props;
+    const { iconDescription, status, style, prefix, ...other } = this.props;
 
     if (status === 'uploading') {
       return (
         <div
-          className="bx--loading"
+          className={`${prefix}--loading`}
           style={{ ...style, width: '1rem', height: '1rem' }}
           {...other}>
-          <svg className="bx--loading__svg" viewBox="-42 -42 84 84">
+          <svg className={`${prefix}--loading__svg`} viewBox="-42 -42 84 84">
             <circle cx="0" cy="0" r="37.5" />
           </svg>
         </div>
@@ -208,7 +226,7 @@ export class Filename extends Component {
       return (
         <Icon
           description={iconDescription}
-          className="bx--file-close"
+          className={`${prefix}--file-close`}
           icon={iconCloseSolid}
           style={style}
           {...other}
@@ -218,7 +236,7 @@ export class Filename extends Component {
       return (
         <Icon
           description={iconDescription}
-          className="bx--file-complete"
+          className={`${prefix}--file-complete`}
           icon={iconCheckmarkSolid}
           style={style}
           {...other}
@@ -232,18 +250,68 @@ export class Filename extends Component {
 
 export default class FileUploader extends Component {
   static propTypes = {
+    /**
+     * Provide a description for the complete/close icon that can be read by screen readers
+     */
     iconDescription: PropTypes.string,
+
+    /**
+     * Provide the label text to be read by screen readers when interacting with
+     * the <FileUploaderButton>
+     */
     buttonLabel: PropTypes.string,
+
+    /**
+     * Specify the type of the <FileUploaderButton>
+     */
     buttonKind: ButtonTypes.buttonKind,
+
+    /**
+     * Specify the status of the File Upload
+     */
     filenameStatus: PropTypes.oneOf(['edit', 'complete', 'uploading'])
       .isRequired,
+
+    /**
+     * Specify the description text of this <FileUploader>
+     */
     labelDescription: PropTypes.string,
+
+    /**
+     * Specify the title text of this <FileUploader>
+     */
     labelTitle: PropTypes.string,
+
+    /**
+     * Specify if the component should accept multiple files to upload
+     */
     multiple: PropTypes.bool,
+
+    /**
+     * Provide a name for the underlying <input> node
+     */
     name: PropTypes.string,
+
+    /**
+     * Provide an optional `onClick` hook that is called each time the button is
+     * clicked
+     */
     onClick: PropTypes.func,
+
+    /**
+     * Provide a custom className to be applied to the container node
+     */
     className: PropTypes.string,
+
+    /**
+     * Specify the types of files that this input should be able to receive
+     */
     accept: PropTypes.arrayOf(PropTypes.string),
+
+    /**
+     * The selector prefix
+     */
+    prefix: PropTypes.string,
   };
 
   static defaultProps = {
@@ -254,6 +322,7 @@ export default class FileUploader extends Component {
     multiple: false,
     onClick: () => {},
     accept: [],
+    prefix: 'bx',
   };
 
   state = {
@@ -307,18 +376,19 @@ export default class FileUploader extends Component {
       multiple,
       accept,
       name,
+      prefix,
       ...other
     } = this.props;
 
     const classes = classNames({
-      'bx--form-item': true,
+      [`${prefix}--form-item`]: true,
       [className]: className,
     });
 
     return (
       <div className={classes} {...other}>
-        <strong className="bx--label">{labelTitle}</strong>
-        <p className="bx--label-description">{labelDescription}</p>
+        <strong className={`${prefix}--label`}>{labelTitle}</strong>
+        <p className={`${prefix}--label-description`}>{labelDescription}</p>
         <FileUploaderButton
           labelText={buttonLabel}
           multiple={multiple}
@@ -328,17 +398,17 @@ export default class FileUploader extends Component {
           accept={accept}
           name={name}
         />
-        <div className="bx--file-container">
+        <div className={`${prefix}--file-container`}>
           {this.state.filenames.length === 0
             ? null
             : this.state.filenames.map((name, index) => (
                 <span
                   key={index}
-                  className="bx--file__selected-file"
+                  className={`${prefix}--file__selected-file`}
                   ref={node => (this.nodes[index] = node)} // eslint-disable-line
                   {...other}>
-                  <p className="bx--file-filename">{name}</p>
-                  <span className="bx--file__state-container">
+                  <p className={`${prefix}--file-filename`}>{name}</p>
+                  <span className={`${prefix}--file__state-container`}>
                     <Filename
                       iconDescription={iconDescription}
                       status={filenameStatus}

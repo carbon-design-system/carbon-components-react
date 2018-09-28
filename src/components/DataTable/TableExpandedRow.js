@@ -4,10 +4,11 @@ import React from 'react';
 
 const TableExpandedRow = ({
   className: customClassName,
+  prefix,
   children,
   ...rest
 }) => {
-  const className = cx('bx--expandable-row-v2', customClassName);
+  const className = cx(`${prefix}--expandable-row-v2`, customClassName);
   return (
     <tr {...rest} className={className} data-child-row>
       {children}
@@ -16,8 +17,24 @@ const TableExpandedRow = ({
 };
 
 TableExpandedRow.propTypes = {
+  /**
+   * Pass in the contents for your TableExpandedRow
+   */
   children: PropTypes.node,
+
+  /**
+   * Specify an optional className to be applied to the container node
+   */
   className: PropTypes.string,
+
+  /**
+   * The selector prefix
+   */
+  prefix: PropTypes.string,
+};
+
+TableExpandedRow.defaultProps = {
+  prefix: 'bx',
 };
 
 export default TableExpandedRow;

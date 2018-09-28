@@ -50,15 +50,21 @@ exports[`DataTable selection should have select-all default to un-checked if no 
         Object {
           "isThrow": false,
           "value": <TableContainer
+            prefix="bx"
             title="DataTable with selection"
           >
             <Table
+              prefix="bx"
               short={false}
               shouldShowBorder={true}
               zebra={true}
             >
-              <TableHead>
-                <TableRow>
+              <TableHead
+                prefix="bx"
+              >
+                <TableRow
+                  prefix="bx"
+                >
                   <TableSelectAll
                     ariaLabel="Select all rows"
                     checked={false}
@@ -71,6 +77,7 @@ exports[`DataTable selection should have select-all default to un-checked if no 
                     isSortHeader={false}
                     isSortable={true}
                     onClick={[Function]}
+                    prefix="bx"
                     scope="col"
                     sortDirection="NONE"
                     translateWithId={[Function]}
@@ -81,6 +88,7 @@ exports[`DataTable selection should have select-all default to un-checked if no 
                     isSortHeader={false}
                     isSortable={true}
                     onClick={[Function]}
+                    prefix="bx"
                     scope="col"
                     sortDirection="NONE"
                     translateWithId={[Function]}
@@ -89,7 +97,9 @@ exports[`DataTable selection should have select-all default to un-checked if no 
                   </TableHeader>
                 </TableRow>
               </TableHead>
-              <TableBody />
+              <TableBody
+                prefix="bx"
+              />
             </Table>
           </TableContainer>,
         },
@@ -103,6 +113,7 @@ exports[`DataTable selection should have select-all default to un-checked if no 
   translateWithId={[Function]}
 >
   <TableContainer
+    prefix="bx"
     title="DataTable with selection"
   >
     <div
@@ -114,6 +125,7 @@ exports[`DataTable selection should have select-all default to un-checked if no 
         DataTable with selection
       </h4>
       <Table
+        prefix="bx"
         short={false}
         shouldShowBorder={true}
         zebra={true}
@@ -121,9 +133,13 @@ exports[`DataTable selection should have select-all default to un-checked if no 
         <table
           className="bx--data-table-v2 bx--data-table-v2--zebra"
         >
-          <TableHead>
+          <TableHead
+            prefix="bx"
+          >
             <thead>
-              <TableRow>
+              <TableRow
+                prefix="bx"
+              >
                 <tr>
                   <TableSelectAll
                     ariaLabel="Select all rows"
@@ -143,6 +159,7 @@ exports[`DataTable selection should have select-all default to un-checked if no 
                         indeterminate={false}
                         name="select-all"
                         onClick={[Function]}
+                        prefix="bx"
                       >
                         <input
                           checked={false}
@@ -165,6 +182,7 @@ exports[`DataTable selection should have select-all default to un-checked if no 
                     isSortable={true}
                     key="fieldA"
                     onClick={[Function]}
+                    prefix="bx"
                     scope="col"
                     sortDirection="NONE"
                     translateWithId={[Function]}
@@ -238,6 +256,7 @@ exports[`DataTable selection should have select-all default to un-checked if no 
                     isSortable={true}
                     key="fieldB"
                     onClick={[Function]}
+                    prefix="bx"
                     scope="col"
                     sortDirection="NONE"
                     translateWithId={[Function]}
@@ -310,7 +329,9 @@ exports[`DataTable selection should have select-all default to un-checked if no 
               </TableRow>
             </thead>
           </TableHead>
-          <TableBody>
+          <TableBody
+            prefix="bx"
+          >
             <tbody />
           </TableBody>
         </table>
@@ -458,15 +479,21 @@ exports[`DataTable selection should render 1`] = `
         Object {
           "isThrow": false,
           "value": <TableContainer
+            prefix="bx"
             title="DataTable with selection"
           >
             <Table
+              prefix="bx"
               short={false}
               shouldShowBorder={true}
               zebra={true}
             >
-              <TableHead>
-                <TableRow>
+              <TableHead
+                prefix="bx"
+              >
+                <TableRow
+                  prefix="bx"
+                >
                   <TableSelectAll
                     ariaLabel="Select all rows"
                     checked={false}
@@ -479,6 +506,7 @@ exports[`DataTable selection should render 1`] = `
                     isSortHeader={false}
                     isSortable={true}
                     onClick={[Function]}
+                    prefix="bx"
                     scope="col"
                     sortDirection="NONE"
                     translateWithId={[Function]}
@@ -489,6 +517,7 @@ exports[`DataTable selection should render 1`] = `
                     isSortHeader={false}
                     isSortable={true}
                     onClick={[Function]}
+                    prefix="bx"
                     scope="col"
                     sortDirection="NONE"
                     translateWithId={[Function]}
@@ -497,8 +526,12 @@ exports[`DataTable selection should render 1`] = `
                   </TableHeader>
                 </TableRow>
               </TableHead>
-              <TableBody>
-                <TableRow>
+              <TableBody
+                prefix="bx"
+              >
+                <TableRow
+                  prefix="bx"
+                >
                   <TableSelectRow
                     ariaLabel="Select row"
                     checked={false}
@@ -506,14 +539,20 @@ exports[`DataTable selection should render 1`] = `
                     name="select-row-b"
                     onSelect={[Function]}
                   />
-                  <TableCell>
+                  <TableCell
+                    prefix="bx"
+                  >
                     Field 2:A
                   </TableCell>
-                  <TableCell>
+                  <TableCell
+                    prefix="bx"
+                  >
                     Field 2:B
                   </TableCell>
                 </TableRow>
-                <TableRow>
+                <TableRow
+                  prefix="bx"
+                >
                   <TableSelectRow
                     ariaLabel="Select row"
                     checked={false}
@@ -521,14 +560,20 @@ exports[`DataTable selection should render 1`] = `
                     name="select-row-a"
                     onSelect={[Function]}
                   />
-                  <TableCell>
+                  <TableCell
+                    prefix="bx"
+                  >
                     Field 1:A
                   </TableCell>
-                  <TableCell>
+                  <TableCell
+                    prefix="bx"
+                  >
                     Field 1:B
                   </TableCell>
                 </TableRow>
-                <TableRow>
+                <TableRow
+                  prefix="bx"
+                >
                   <TableSelectRow
                     ariaLabel="Select row"
                     checked={false}
@@ -536,10 +581,14 @@ exports[`DataTable selection should render 1`] = `
                     name="select-row-c"
                     onSelect={[Function]}
                   />
-                  <TableCell>
+                  <TableCell
+                    prefix="bx"
+                  >
                     Field 3:A
                   </TableCell>
-                  <TableCell>
+                  <TableCell
+                    prefix="bx"
+                  >
                     Field 3:B
                   </TableCell>
                 </TableRow>
@@ -575,6 +624,7 @@ exports[`DataTable selection should render 1`] = `
   translateWithId={[Function]}
 >
   <TableContainer
+    prefix="bx"
     title="DataTable with selection"
   >
     <div
@@ -586,6 +636,7 @@ exports[`DataTable selection should render 1`] = `
         DataTable with selection
       </h4>
       <Table
+        prefix="bx"
         short={false}
         shouldShowBorder={true}
         zebra={true}
@@ -593,9 +644,13 @@ exports[`DataTable selection should render 1`] = `
         <table
           className="bx--data-table-v2 bx--data-table-v2--zebra"
         >
-          <TableHead>
+          <TableHead
+            prefix="bx"
+          >
             <thead>
-              <TableRow>
+              <TableRow
+                prefix="bx"
+              >
                 <tr>
                   <TableSelectAll
                     ariaLabel="Select all rows"
@@ -615,6 +670,7 @@ exports[`DataTable selection should render 1`] = `
                         indeterminate={false}
                         name="select-all"
                         onClick={[Function]}
+                        prefix="bx"
                       >
                         <input
                           checked={false}
@@ -637,6 +693,7 @@ exports[`DataTable selection should render 1`] = `
                     isSortable={true}
                     key="fieldA"
                     onClick={[Function]}
+                    prefix="bx"
                     scope="col"
                     sortDirection="NONE"
                     translateWithId={[Function]}
@@ -710,6 +767,7 @@ exports[`DataTable selection should render 1`] = `
                     isSortable={true}
                     key="fieldB"
                     onClick={[Function]}
+                    prefix="bx"
                     scope="col"
                     sortDirection="NONE"
                     translateWithId={[Function]}
@@ -782,10 +840,13 @@ exports[`DataTable selection should render 1`] = `
               </TableRow>
             </thead>
           </TableHead>
-          <TableBody>
+          <TableBody
+            prefix="bx"
+          >
             <tbody>
               <TableRow
                 key="b"
+                prefix="bx"
               >
                 <tr>
                   <TableSelectRow
@@ -802,6 +863,7 @@ exports[`DataTable selection should render 1`] = `
                         id="data-table-6__select-row-b"
                         name="select-row-b"
                         onClick={[Function]}
+                        prefix="bx"
                       >
                         <input
                           checked={false}
@@ -821,6 +883,7 @@ exports[`DataTable selection should render 1`] = `
                   </TableSelectRow>
                   <TableCell
                     key="b:fieldA"
+                    prefix="bx"
                   >
                     <td>
                       Field 2:A
@@ -828,6 +891,7 @@ exports[`DataTable selection should render 1`] = `
                   </TableCell>
                   <TableCell
                     key="b:fieldB"
+                    prefix="bx"
                   >
                     <td>
                       Field 2:B
@@ -837,6 +901,7 @@ exports[`DataTable selection should render 1`] = `
               </TableRow>
               <TableRow
                 key="a"
+                prefix="bx"
               >
                 <tr>
                   <TableSelectRow
@@ -853,6 +918,7 @@ exports[`DataTable selection should render 1`] = `
                         id="data-table-6__select-row-a"
                         name="select-row-a"
                         onClick={[Function]}
+                        prefix="bx"
                       >
                         <input
                           checked={false}
@@ -872,6 +938,7 @@ exports[`DataTable selection should render 1`] = `
                   </TableSelectRow>
                   <TableCell
                     key="a:fieldA"
+                    prefix="bx"
                   >
                     <td>
                       Field 1:A
@@ -879,6 +946,7 @@ exports[`DataTable selection should render 1`] = `
                   </TableCell>
                   <TableCell
                     key="a:fieldB"
+                    prefix="bx"
                   >
                     <td>
                       Field 1:B
@@ -888,6 +956,7 @@ exports[`DataTable selection should render 1`] = `
               </TableRow>
               <TableRow
                 key="c"
+                prefix="bx"
               >
                 <tr>
                   <TableSelectRow
@@ -904,6 +973,7 @@ exports[`DataTable selection should render 1`] = `
                         id="data-table-6__select-row-c"
                         name="select-row-c"
                         onClick={[Function]}
+                        prefix="bx"
                       >
                         <input
                           checked={false}
@@ -923,6 +993,7 @@ exports[`DataTable selection should render 1`] = `
                   </TableSelectRow>
                   <TableCell
                     key="c:fieldA"
+                    prefix="bx"
                   >
                     <td>
                       Field 3:A
@@ -930,6 +1001,7 @@ exports[`DataTable selection should render 1`] = `
                   </TableCell>
                   <TableCell
                     key="c:fieldB"
+                    prefix="bx"
                   >
                     <td>
                       Field 3:B
@@ -1084,15 +1156,21 @@ exports[`DataTable should render 1`] = `
         Object {
           "isThrow": false,
           "value": <TableContainer
+            prefix="bx"
             title="DataTable with toolbar"
           >
-            <TableToolbar>
+            <TableToolbar
+              prefix="bx"
+            >
               <TableToolbarSearch
                 id="custom-id"
                 onChange={[Function]}
+                prefix="bx"
                 translateWithId={[Function]}
               />
-              <TableToolbarContent>
+              <TableToolbarContent
+                prefix="bx"
+              >
                 <TableToolbarAction
                   icon={
                     Object {
@@ -1119,6 +1197,7 @@ exports[`DataTable should render 1`] = `
                   }
                   iconDescription="Download"
                   onClick={[MockFunction]}
+                  prefix="bx"
                 />
                 <TableToolbarAction
                   icon={
@@ -1147,6 +1226,7 @@ exports[`DataTable should render 1`] = `
                   }
                   iconDescription="Edit"
                   onClick={[MockFunction]}
+                  prefix="bx"
                 />
                 <TableToolbarAction
                   icon={
@@ -1177,12 +1257,14 @@ exports[`DataTable should render 1`] = `
                   }
                   iconDescription="Settings"
                   onClick={[MockFunction]}
+                  prefix="bx"
                 />
                 <Button
                   disabled={false}
                   iconDescription="Provide icon description if icon is used"
                   kind="primary"
                   onClick={[MockFunction]}
+                  prefix="bx"
                   small={true}
                   tabIndex={0}
                   type="button"
@@ -1192,16 +1274,22 @@ exports[`DataTable should render 1`] = `
               </TableToolbarContent>
             </TableToolbar>
             <Table
+              prefix="bx"
               short={false}
               shouldShowBorder={true}
               zebra={true}
             >
-              <TableHead>
-                <TableRow>
+              <TableHead
+                prefix="bx"
+              >
+                <TableRow
+                  prefix="bx"
+                >
                   <TableHeader
                     isSortHeader={false}
                     isSortable={true}
                     onClick={[Function]}
+                    prefix="bx"
                     scope="col"
                     sortDirection="NONE"
                     translateWithId={[Function]}
@@ -1212,6 +1300,7 @@ exports[`DataTable should render 1`] = `
                     isSortHeader={false}
                     isSortable={true}
                     onClick={[Function]}
+                    prefix="bx"
                     scope="col"
                     sortDirection="NONE"
                     translateWithId={[Function]}
@@ -1220,28 +1309,48 @@ exports[`DataTable should render 1`] = `
                   </TableHeader>
                 </TableRow>
               </TableHead>
-              <TableBody>
-                <TableRow>
-                  <TableCell>
+              <TableBody
+                prefix="bx"
+              >
+                <TableRow
+                  prefix="bx"
+                >
+                  <TableCell
+                    prefix="bx"
+                  >
                     Field 2:A
                   </TableCell>
-                  <TableCell>
+                  <TableCell
+                    prefix="bx"
+                  >
                     Field 2:B
                   </TableCell>
                 </TableRow>
-                <TableRow>
-                  <TableCell>
+                <TableRow
+                  prefix="bx"
+                >
+                  <TableCell
+                    prefix="bx"
+                  >
                     Field 1:A
                   </TableCell>
-                  <TableCell>
+                  <TableCell
+                    prefix="bx"
+                  >
                     Field 1:B
                   </TableCell>
                 </TableRow>
-                <TableRow>
-                  <TableCell>
+                <TableRow
+                  prefix="bx"
+                >
+                  <TableCell
+                    prefix="bx"
+                  >
                     Field 3:A
                   </TableCell>
-                  <TableCell>
+                  <TableCell
+                    prefix="bx"
+                  >
                     Field 3:B
                   </TableCell>
                 </TableRow>
@@ -1277,6 +1386,7 @@ exports[`DataTable should render 1`] = `
   translateWithId={[Function]}
 >
   <TableContainer
+    prefix="bx"
     title="DataTable with toolbar"
   >
     <div
@@ -1287,13 +1397,16 @@ exports[`DataTable should render 1`] = `
       >
         DataTable with toolbar
       </h4>
-      <TableToolbar>
+      <TableToolbar
+        prefix="bx"
+      >
         <section
           className="bx--table-toolbar"
         >
           <TableToolbarSearch
             id="custom-id"
             onChange={[Function]}
+            prefix="bx"
             translateWithId={[Function]}
           >
             <div
@@ -1305,6 +1418,7 @@ exports[`DataTable should render 1`] = `
                 light={true}
                 onChange={[Function]}
                 placeHolderText="Search"
+                prefix="bx"
                 small={true}
                 type="text"
               >
@@ -1432,7 +1546,9 @@ exports[`DataTable should render 1`] = `
               </Search>
             </div>
           </TableToolbarSearch>
-          <TableToolbarContent>
+          <TableToolbarContent
+            prefix="bx"
+          >
             <div
               className="bx--toolbar-content"
             >
@@ -1462,6 +1578,7 @@ exports[`DataTable should render 1`] = `
                 }
                 iconDescription="Download"
                 onClick={[MockFunction]}
+                prefix="bx"
               >
                 <button
                   className="bx--toolbar-action"
@@ -1544,6 +1661,7 @@ exports[`DataTable should render 1`] = `
                 }
                 iconDescription="Edit"
                 onClick={[MockFunction]}
+                prefix="bx"
               >
                 <button
                   className="bx--toolbar-action"
@@ -1629,6 +1747,7 @@ exports[`DataTable should render 1`] = `
                 }
                 iconDescription="Settings"
                 onClick={[MockFunction]}
+                prefix="bx"
               >
                 <button
                   className="bx--toolbar-action"
@@ -1696,6 +1815,7 @@ exports[`DataTable should render 1`] = `
                 iconDescription="Provide icon description if icon is used"
                 kind="primary"
                 onClick={[MockFunction]}
+                prefix="bx"
                 small={true}
                 tabIndex={0}
                 type="button"
@@ -1715,6 +1835,7 @@ exports[`DataTable should render 1`] = `
         </section>
       </TableToolbar>
       <Table
+        prefix="bx"
         short={false}
         shouldShowBorder={true}
         zebra={true}
@@ -1722,15 +1843,20 @@ exports[`DataTable should render 1`] = `
         <table
           className="bx--data-table-v2 bx--data-table-v2--zebra"
         >
-          <TableHead>
+          <TableHead
+            prefix="bx"
+          >
             <thead>
-              <TableRow>
+              <TableRow
+                prefix="bx"
+              >
                 <tr>
                   <TableHeader
                     isSortHeader={false}
                     isSortable={true}
                     key="fieldA"
                     onClick={[Function]}
+                    prefix="bx"
                     scope="col"
                     sortDirection="NONE"
                     translateWithId={[Function]}
@@ -1804,6 +1930,7 @@ exports[`DataTable should render 1`] = `
                     isSortable={true}
                     key="fieldB"
                     onClick={[Function]}
+                    prefix="bx"
                     scope="col"
                     sortDirection="NONE"
                     translateWithId={[Function]}
@@ -1876,14 +2003,18 @@ exports[`DataTable should render 1`] = `
               </TableRow>
             </thead>
           </TableHead>
-          <TableBody>
+          <TableBody
+            prefix="bx"
+          >
             <tbody>
               <TableRow
                 key="b"
+                prefix="bx"
               >
                 <tr>
                   <TableCell
                     key="b:fieldA"
+                    prefix="bx"
                   >
                     <td>
                       Field 2:A
@@ -1891,6 +2022,7 @@ exports[`DataTable should render 1`] = `
                   </TableCell>
                   <TableCell
                     key="b:fieldB"
+                    prefix="bx"
                   >
                     <td>
                       Field 2:B
@@ -1900,10 +2032,12 @@ exports[`DataTable should render 1`] = `
               </TableRow>
               <TableRow
                 key="a"
+                prefix="bx"
               >
                 <tr>
                   <TableCell
                     key="a:fieldA"
+                    prefix="bx"
                   >
                     <td>
                       Field 1:A
@@ -1911,6 +2045,7 @@ exports[`DataTable should render 1`] = `
                   </TableCell>
                   <TableCell
                     key="a:fieldB"
+                    prefix="bx"
                   >
                     <td>
                       Field 1:B
@@ -1920,10 +2055,12 @@ exports[`DataTable should render 1`] = `
               </TableRow>
               <TableRow
                 key="c"
+                prefix="bx"
               >
                 <tr>
                   <TableCell
                     key="c:fieldA"
+                    prefix="bx"
                   >
                     <td>
                       Field 3:A
@@ -1931,6 +2068,7 @@ exports[`DataTable should render 1`] = `
                   </TableCell>
                   <TableCell
                     key="c:fieldB"
+                    prefix="bx"
                   >
                     <td>
                       Field 3:B

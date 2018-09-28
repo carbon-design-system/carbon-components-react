@@ -3,6 +3,7 @@
 exports[`DataTable.TableContainer should render 1`] = `
 <TableContainer
   className="custom-class"
+  prefix="bx"
 >
   <div
     className="custom-class bx--data-table-v2-container"

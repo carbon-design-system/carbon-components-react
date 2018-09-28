@@ -3,6 +3,7 @@
 exports[`DataTable.TableToolbar should render 1`] = `
 <TableToolbar
   className="custom-class"
+  prefix="bx"
 >
   <section
     className="bx--table-toolbar custom-class"

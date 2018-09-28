@@ -184,6 +184,11 @@ export default class Tooltip extends Component {
      * `true` if opening tooltip should be triggered by clicking the trigger button.
      */
     clickToOpen: PropTypes.bool,
+
+    /**
+     * The selector prefix.
+     */
+    prefix: PropTypes.string,
   };
 
   static defaultProps = {
@@ -194,6 +199,7 @@ export default class Tooltip extends Component {
     iconTitle: '',
     triggerText: 'Provide triggerText',
     menuOffset: getMenuOffset,
+    prefix: 'bx',
   };
 
   /**
@@ -343,18 +349,22 @@ export default class Tooltip extends Component {
       // Exclude `clickToOpen` from `other` to avoid passing it along to `<div>`
       // eslint-disable-next-line no-unused-vars
       clickToOpen,
+      prefix,
       ...other
     } = this.props;
 
     const { open } = this.state;
 
     const tooltipClasses = classNames(
-      'bx--tooltip',
-      { 'bx--tooltip--shown': open },
+      `${prefix}--tooltip`,
+      { [`${prefix}--tooltip--shown`]: open },
       className
     );
 
-    const triggerClasses = classNames('bx--tooltip__trigger', triggerClassName);
+    const triggerClasses = classNames(
+      `${prefix}--tooltip__trigger`,
+      triggerClassName
+    );
     const ariaOwnsProps = !open
       ? {}
       : {
@@ -432,7 +442,7 @@ export default class Tooltip extends Component {
               onFocus={evt => this.handleMouse(evt)}
               onBlur={evt => this.handleMouse(evt)}
               onContextMenu={evt => this.handleMouse(evt)}>
-              <span className="bx--tooltip__caret" />
+              <span className={`${prefix}--tooltip__caret`} />
               {children}
             </div>
           </FloatingMenu>

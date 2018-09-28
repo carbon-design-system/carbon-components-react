@@ -20,14 +20,15 @@ const TableBatchActions = ({
   children,
   shouldShowBatchActions,
   totalSelected,
+  prefix,
   onCancel,
   translateWithId: t,
   ...rest
 }) => {
   const batchActionsClasses = cx(
     {
-      'bx--batch-actions': true,
-      'bx--batch-actions--active': shouldShowBatchActions,
+      [`${prefix}--batch-actions`]: true,
+      [`${prefix}--batch-actions--active`]: shouldShowBatchActions,
     },
     className
   );
@@ -35,15 +36,17 @@ const TableBatchActions = ({
   return (
     <div {...rest} className={batchActionsClasses}>
       {children}
-      <div className="bx--batch-summary">
-        <p className="bx--batch-summary__para">
+      <div className={`${prefix}--batch-summary`}>
+        <p className={`${prefix}--batch-summary__para`}>
           <span>
             {totalSelected > 1
               ? t('carbon.table.batch.items.selected', { totalSelected })
               : t('carbon.table.batch.item.selected', { totalSelected })}
           </span>
         </p>
-        <button className="bx--batch-summary__cancel" onClick={onCancel}>
+        <button
+          className={`${prefix}--batch-summary__cancel`}
+          onClick={onCancel}>
           {t('carbon.table.batch.cancel')}
         </button>
       </div>
@@ -70,6 +73,11 @@ TableBatchActions.propTypes = {
   totalSelected: PropTypes.number.isRequired,
 
   /**
+   * The selector prefix
+   */
+  prefix: PropTypes.string,
+
+  /**
    * Hook required to listen for when the user initiates a cancel request
    * through this comopnent
    */
@@ -84,6 +92,7 @@ TableBatchActions.propTypes = {
 };
 
 TableBatchActions.defaultProps = {
+  prefix: 'bx',
   translateWithId,
 };
 

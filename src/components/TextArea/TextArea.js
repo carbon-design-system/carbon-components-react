@@ -13,6 +13,7 @@ const TextArea = ({
   invalidText,
   helperText,
   light,
+  prefix,
   ...other
 }) => {
   const textareaProps = {
@@ -30,11 +31,11 @@ const TextArea = ({
   };
 
   const errorId = id + '-error-msg';
-  const textareaClasses = classNames('bx--text-area', className, {
-    'bx--text-area--light': light,
+  const textareaClasses = classNames(`${prefix}--text-area`, className, {
+    [`${prefix}--text-area--light`]: light,
   });
-  const labelClasses = classNames('bx--label', {
-    'bx--visually-hidden': hideLabel,
+  const labelClasses = classNames(`${prefix}--label`, {
+    [`${prefix}--visually-hidden`]: hideLabel,
   });
 
   const label = labelText ? (
@@ -44,7 +45,7 @@ const TextArea = ({
   ) : null;
 
   const error = invalid ? (
-    <div className="bx--form-requirement" id={errorId}>
+    <div className={`${prefix}--form-requirement`} id={errorId}>
       {invalidText}
     </div>
   ) : null;
@@ -63,11 +64,11 @@ const TextArea = ({
   );
 
   const helper = helperText ? (
-    <div className="bx--form__helper-text">{helperText}</div>
+    <div className={`${prefix}--form__helper-text`}>{helperText}</div>
   ) : null;
 
   return (
-    <div className="bx--form-item">
+    <div className={`${prefix}--form-item`}>
       {label}
       {input}
       {helper}
@@ -160,6 +161,11 @@ TextArea.propTypes = {
    * Specify whether you want the light version of this control
    */
   light: PropTypes.bool,
+
+  /**
+   * The selector prefix
+   */
+  prefix: PropTypes.string,
 };
 
 TextArea.defaultProps = {
@@ -173,6 +179,7 @@ TextArea.defaultProps = {
   invalidText: '',
   helperText: '',
   light: false,
+  prefix: 'bx',
 };
 
 export default TextArea;

@@ -17,32 +17,33 @@ const Select = ({
   invalidText,
   helperText,
   light,
+  prefix,
   ...other
 }) => {
   const selectClasses = classNames({
-    'bx--select': true,
-    'bx--select--inline': inline,
-    'bx--select--light': light,
+    [`${prefix}--select`]: true,
+    [`${prefix}--select--inline`]: inline,
+    [`${prefix}--select--light`]: light,
     [className]: className,
   });
-  const labelClasses = classNames('bx--label', {
-    'bx--visually-hidden': hideLabel,
+  const labelClasses = classNames(`${prefix}--label`, {
+    [`${prefix}--visually-hidden`]: hideLabel,
   });
   const errorId = `${id}-error-msg`;
   const error = invalid ? (
-    <div className="bx--form-requirement" id={errorId}>
+    <div className={`${prefix}--form-requirement`} id={errorId}>
       {invalidText}
     </div>
   ) : null;
   const helper = helperText ? (
-    <div className="bx--form__helper-text">{helperText}</div>
+    <div className={`${prefix}--form__helper-text`}>{helperText}</div>
   ) : null;
   const ariaProps = {};
   if (invalid) {
     ariaProps['aria-describedby'] = errorId;
   }
   return (
-    <div className="bx--form-item">
+    <div className={`${prefix}--form-item`}>
       <div className={selectClasses}>
         <label htmlFor={id} className={labelClasses}>
           {labelText}
@@ -51,7 +52,7 @@ const Select = ({
           {...other}
           {...ariaProps}
           id={id}
-          className="bx--select-input"
+          className={`${prefix}--select-input`}
           disabled={disabled || undefined}
           data-invalid={invalid || undefined}
           aria-invalid={invalid || undefined}>
@@ -59,7 +60,7 @@ const Select = ({
         </select>
         <Icon
           icon={iconCaretDown}
-          className="bx--select__arrow"
+          className={`${prefix}--select__arrow`}
           description={iconDescription}
         />
         {helper}
@@ -70,20 +71,82 @@ const Select = ({
 };
 
 Select.propTypes = {
+  /**
+   * Provide the contents of your Select
+   */
   children: PropTypes.node,
+
+  /**
+   * Specify an optional className to be applied to the node containing the label and the select box
+   */
   className: PropTypes.string,
+
+  /**
+   * Specify a custom `id` for the `<select>`
+   */
   id: PropTypes.string.isRequired,
+
+  /**
+   * Specify whether you want the inline version of this control
+   */
   inline: PropTypes.bool,
+
+  /**
+   * Provide label text to be read by screen readers when interacting with the
+   * control
+   */
   labelText: PropTypes.node,
+
+  /**
+   * Provide an optional `onChange` hook that is called each time the value of
+   * the underlying <input> changes
+   */
   onChange: PropTypes.func,
+
+  /**
+   * Specify whether the control is disabled
+   */
   disabled: PropTypes.bool,
+
+  /**
+   * Optionally provide the default value of the `<select>`
+   */
   defaultValue: PropTypes.any,
+
+  /**
+   * Provide a description for the twistie icon that can be read by screen readers
+   */
   iconDescription: PropTypes.string.isRequired,
+
+  /**
+   * Specify whether the label should be hidden, or not
+   */
   hideLabel: PropTypes.bool,
+
+  /**
+   * Specify if the currently value is invalid.
+   */
   invalid: PropTypes.bool,
+
+  /**
+   * Message which is displayed if the value is invalid.
+   */
   invalidText: PropTypes.string,
+
+  /**
+   * Provide text that is used alongside the control label for additional help
+   */
   helperText: PropTypes.node,
+
+  /**
+   * Specify whether you want the light version of this control
+   */
   light: PropTypes.bool,
+
+  /**
+   * The selector prefix
+   */
+  prefix: PropTypes.string,
 };
 
 Select.defaultProps = {
@@ -95,6 +158,7 @@ Select.defaultProps = {
   invalidText: '',
   helperText: '',
   light: false,
+  prefix: 'bx',
 };
 
 export default Select;

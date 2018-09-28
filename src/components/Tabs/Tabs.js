@@ -70,6 +70,11 @@ export default class Tabs extends React.Component {
      * for the dropdown menu of items
      */
     iconDescription: PropTypes.string.isRequired,
+
+    /**
+     * The selector prefix
+     */
+    prefix: PropTypes.string,
   };
 
   static defaultProps = {
@@ -78,6 +83,7 @@ export default class Tabs extends React.Component {
     triggerHref: '#',
     selected: 0,
     ariaLabel: 'listbox',
+    prefix: 'bx',
   };
 
   state = {
@@ -179,6 +185,7 @@ export default class Tabs extends React.Component {
       triggerHref,
       role,
       onSelectionChange,
+      prefix,
       ...other
     } = this.props;
 
@@ -212,9 +219,9 @@ export default class Tabs extends React.Component {
     });
 
     const classes = {
-      tabs: classNames('bx--tabs', className),
-      tablist: classNames('bx--tabs__nav', {
-        'bx--tabs__nav--hidden': this.state.dropdownHidden,
+      tabs: classNames(`${prefix}--tabs`, className),
+      tablist: classNames(`${prefix}--tabs__nav`, {
+        [`${prefix}--tabs__nav--hidden`]: this.state.dropdownHidden,
       }),
     };
 
@@ -228,12 +235,12 @@ export default class Tabs extends React.Component {
             role="listbox"
             aria-label={ariaLabel}
             tabIndex={0}
-            className="bx--tabs-trigger"
+            className={`${prefix}--tabs-trigger`}
             onClick={this.handleDropdownClick}
             onKeyPress={this.handleDropdownClick}>
             <a
               tabIndex={-1}
-              className="bx--tabs-trigger-text"
+              className={`${prefix}--tabs-trigger-text`}
               href={triggerHref}
               onClick={this.handleDropdownClick}>
               {selectedLabel}

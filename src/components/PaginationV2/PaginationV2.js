@@ -122,6 +122,11 @@ export default class PaginationV2 extends Component {
      * `true` if the select box to change the page should be disabled.
      */
     pageInputDisabled: PropTypes.bool,
+
+    /**
+     * The selector prefix.
+     */
+    prefix: PropTypes.string,
   };
 
   static defaultProps = {
@@ -138,6 +143,7 @@ export default class PaginationV2 extends Component {
     pageInputDisabled: false,
     itemText: (min, max) => `${min}-${max} items`,
     pageText: page => `page ${page}`,
+    prefix: 'bx',
   };
 
   static getDerivedStateFromProps({ pageSizes, page, pageSize }, state) {
@@ -231,17 +237,18 @@ export default class PaginationV2 extends Component {
       totalItems,
       onChange, // eslint-disable-line no-unused-vars
       page: pageNumber, // eslint-disable-line no-unused-vars
+      prefix,
       ...other
     } = this.props;
 
     const statePage = this.state.page;
     const statePageSize = this.state.pageSize;
-    const classNames = classnames('bx--pagination', className);
+    const classNames = classnames(`${prefix}--pagination`, className);
     const backButtonClasses = classnames(
-      'bx--pagination__button',
-      'bx--pagination__button--backward',
+      `${prefix}--pagination__button`,
+      `${prefix}--pagination__button--backward`,
       {
-        'bx--pagination__button--no-index': pageInputDisabled,
+        [`${prefix}--pagination__button--no-index`]: pageInputDisabled,
       }
     );
     const inputId = id || this.uniqueId;
@@ -250,13 +257,13 @@ export default class PaginationV2 extends Component {
 
     return (
       <div className={classNames} {...other}>
-        <div className="bx--pagination__left">
-          <span className="bx--pagination__text">
+        <div className={`${prefix}--pagination__left`}>
+          <span className={`${prefix}--pagination__text`}>
             {itemsPerPageFollowsText || itemsPerPageText}
           </span>
 
           <Select
-            id={`bx-pagination-select-${inputId}`}
+            id={`${prefix}-pagination-select-${inputId}`}
             labelText={itemsPerPageText}
             hideLabel
             inline
@@ -266,7 +273,7 @@ export default class PaginationV2 extends Component {
               <SelectItem key={size} value={size} text={String(size)} />
             ))}
           </Select>
-          <span className="bx--pagination__text">
+          <span className={`${prefix}--pagination__text`}>
             &nbsp;|&nbsp;&nbsp;
             {pagesUnknown
               ? itemText(
@@ -280,8 +287,9 @@ export default class PaginationV2 extends Component {
                 )}
           </span>
         </div>
-        <div className="bx--pagination__right bx--pagination--inline">
-          <span className="bx--pagination__text">
+        <div
+          className={`${prefix}--pagination__right ${prefix}--pagination--inline`}>
+          <span className={`${prefix}--pagination__text`}>
             {pagesUnknown
               ? pageText(statePage)
               : pageRangeText(statePage, totalPages)}
@@ -292,14 +300,14 @@ export default class PaginationV2 extends Component {
             aria-label={backwardText}
             disabled={this.props.disabled || statePage === 1}>
             <Icon
-              className="bx--pagination__button-icon"
+              className={`${prefix}--pagination__button-icon`}
               icon={iconChevronLeft}
               description={backwardText}
             />
           </button>
           {pageInputDisabled ? null : (
             <Select
-              id={`bx-pagination-select-${inputId + 2}`}
+              id={`${prefix}-pagination-select-${inputId + 2}`}
               labelText={itemsPerPageText}
               hideLabel
               inline
@@ -309,14 +317,14 @@ export default class PaginationV2 extends Component {
             </Select>
           )}
           <button
-            className="bx--pagination__button bx--pagination__button--forward"
+            className={`${prefix}--pagination__button ${prefix}--pagination__button--forward`}
             aria-label={forwardText}
             onClick={this.incrementPage}
             disabled={
               this.props.disabled || statePage === totalPages || isLastPage
             }>
             <Icon
-              className="bx--pagination__button-icon"
+              className={`${prefix}--pagination__button-icon`}
               icon={iconChevronRight}
               description={forwardText}
             />

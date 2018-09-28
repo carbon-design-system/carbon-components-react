@@ -31,6 +31,11 @@ class SearchLayoutButton extends Component {
     iconDescriptionGrid: PropTypes.string,
 
     /**
+     * The selector prefix.
+     */
+    prefix: PropTypes.string,
+
+    /**
      * The callback called when layout switches.
      */
     onChangeFormat: PropTypes.func,
@@ -40,6 +45,7 @@ class SearchLayoutButton extends Component {
     labelText: 'Filter',
     iconDescriptionList: 'list',
     iconDescriptionGrid: 'grid',
+    prefix: 'bx',
   };
 
   static getDerivedStateFromProps({ format }, state) {
@@ -67,27 +73,32 @@ class SearchLayoutButton extends Component {
   };
 
   render() {
-    const { labelText, iconDescriptionList, iconDescriptionGrid } = this.props;
+    const {
+      labelText,
+      iconDescriptionList,
+      iconDescriptionGrid,
+      prefix,
+    } = this.props;
     return (
       <button
-        className="bx--search-button"
+        className={`${prefix}--search-button`}
         type="button"
         onClick={this.toggleLayout}
         aria-label={labelText}>
         {this.state.format === 'list' ? (
-          <div className="bx--search__toggle-layout__container">
+          <div className={`${prefix}--search__toggle-layout__container`}>
             <Icon
               icon={iconList}
               description={iconDescriptionList}
-              className="bx--search-view"
+              className={`${prefix}--search-view`}
             />
           </div>
         ) : (
-          <div className="bx--search__toggle-layout__container">
+          <div className={`${prefix}--search__toggle-layout__container`}>
             <Icon
               icon={iconGrid}
               description={iconDescriptionGrid}
-              className="bx--search-view"
+              className={`${prefix}--search-view`}
             />
           </div>
         )}

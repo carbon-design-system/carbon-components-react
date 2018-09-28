@@ -2,6 +2,7 @@
 
 exports[`DataTable.TableHead should render 1`] = `
 <Table
+  prefix="bx"
   short={false}
   shouldShowBorder={true}
   zebra={true}
@@ -11,6 +12,7 @@ exports[`DataTable.TableHead should render 1`] = `
   >
     <TableHead
       className="custom-class"
+      prefix="bx"
     >
       <thead
         className="custom-class"

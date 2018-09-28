@@ -8,11 +8,12 @@ const SkeletonText = ({
   width,
   heading,
   className,
+  prefix,
   ...other
 }) => {
   const skeletonTextClasses = classNames({
-    'bx--skeleton__text': true,
-    'bx--skeleton__heading': heading,
+    [`${prefix}--skeleton__text`]: true,
+    [`${prefix}--skeleton__heading`]: heading,
     [className]: className,
   });
 
@@ -79,7 +80,14 @@ SkeletonText.propTypes = {
    * generates skeleton text at a larger size
    */
   heading: PropTypes.bool,
+  /**
+   * Specify an optional className to be applied to the container node
+   */
   className: PropTypes.string,
+  /**
+   * The selector prefix
+   */
+  prefix: PropTypes.string,
 };
 
 SkeletonText.defaultProps = {
@@ -87,6 +95,7 @@ SkeletonText.defaultProps = {
   width: '100%',
   heading: false,
   lineCount: 3,
+  prefix: 'bx',
 };
 
 export default SkeletonText;

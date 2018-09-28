@@ -14,19 +14,20 @@ const OverflowMenuItem = ({
   floatingMenu,
   wrapperClassName,
   requireTitle,
+  prefix,
   ...other
 }) => {
   const overflowMenuBtnClasses = classNames(
-    'bx--overflow-menu-options__btn',
+    `${prefix}--overflow-menu-options__btn`,
     className
   );
 
   const overflowMenuItemClasses = classNames(
-    'bx--overflow-menu-options__option',
+    `${prefix}--overflow-menu-options__option`,
     {
-      'bx--overflow-menu--divider': hasDivider,
-      'bx--overflow-menu-options__option--danger': isDelete,
-      'bx--overflow-menu-options__option--disabled': disabled,
+      [`${prefix}--overflow-menu--divider`]: hasDivider,
+      [`${prefix}--overflow-menu-options__option--danger`]: isDelete,
+      [`${prefix}--overflow-menu-options__option--disabled`]: disabled,
     },
     wrapperClassName
   );
@@ -88,6 +89,7 @@ OverflowMenuItem.propTypes = {
    * `true` to make this menu item a "danger button".
    */
   isDelete: PropTypes.bool,
+
   /**
    * `true` to make this menu item disabled.
    */
@@ -117,10 +119,16 @@ OverflowMenuItem.propTypes = {
    * `true` if this menu item belongs to a floating OverflowMenu
    */
   floatingMenu: PropTypes.bool,
+
   /**
    * `true` if this menu item has long text and requires a browser tooltip
    */
   requireTitle: PropTypes.bool,
+
+  /**
+   * The selector prefix
+   */
+  prefix: PropTypes.string,
 };
 
 OverflowMenuItem.defaultProps = {
@@ -128,6 +136,7 @@ OverflowMenuItem.defaultProps = {
   isDelete: false,
   disabled: false,
   itemText: 'Provide itemText',
+  prefix: 'bx',
   onClick: () => {},
 };
 

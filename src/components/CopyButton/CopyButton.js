@@ -29,6 +29,11 @@ export default class CopyButton extends Component {
     feedbackTimeout: PropTypes.number,
 
     /**
+     * The selector prefix
+     */
+    prefix: PropTypes.string,
+
+    /**
      * Specify an optional `onClick` handler that is called when the underlying
      * <button> is clicked
      */
@@ -39,6 +44,7 @@ export default class CopyButton extends Component {
     iconDescription: 'Copy to clipboard',
     feedback: 'Copied!',
     feedbackTimeout: 2000,
+    prefix: 'bx',
     onClick: () => {},
   };
 
@@ -69,12 +75,13 @@ export default class CopyButton extends Component {
       className,
       feedback,
       feedbackTimeout, // eslint-disable-line no-unused-vars
+      prefix,
       onClick, // eslint-disable-line no-unused-vars
       ...other
     } = this.props;
-    const classNames = classnames('bx--snippet-button', className);
-    const feedbackClassNames = classnames('bx--btn--copy__feedback', {
-      'bx--btn--copy__feedback--displayed': this.state.showFeedback,
+    const classNames = classnames(`${prefix}--snippet-button`, className);
+    const feedbackClassNames = classnames(`${prefix}--btn--copy__feedback`, {
+      [`${prefix}--btn--copy__feedback--displayed`]: this.state.showFeedback,
     });
 
     return (
@@ -84,7 +91,7 @@ export default class CopyButton extends Component {
         onClick={this.handleClick}
         {...other}>
         <Icon
-          className="bx--snippet__icon"
+          className={`${prefix}--snippet__icon`}
           icon={iconCopy}
           description={iconDescription}
         />

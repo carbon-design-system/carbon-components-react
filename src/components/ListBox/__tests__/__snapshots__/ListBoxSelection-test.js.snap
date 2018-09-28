@@ -3,6 +3,7 @@
 exports[`ListBoxSelection should render 1`] = `
 <ListBoxSelection
   clearSelection={[MockFunction]}
+  prefix="bx"
   translateWithId={
     [MockFunction] {
       "calls": Array [
@@ -90,6 +91,7 @@ exports[`ListBoxSelection should render 1`] = `
 exports[`ListBoxSelection should render 2`] = `
 <ListBoxSelection
   clearSelection={[MockFunction]}
+  prefix="bx"
   selectionCount={3}
   translateWithId={
     [MockFunction] {

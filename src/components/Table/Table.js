@@ -14,13 +14,13 @@ const Table = props => {
     );
     didWarnAboutDeprecation = true;
   }
-  const { children, className, containerClassName, ...other } = props;
+  const { children, className, containerClassName, prefix, ...other } = props;
 
-  const tableClasses = classNames(className, 'bx--responsive-table');
+  const tableClasses = classNames(className, `${prefix}--responsive-table`);
 
   const tableContainerClasses = classNames(
     containerClassName,
-    'bx--responsive-table-container'
+    `${prefix}--responsive-table-container`
   );
 
   return (
@@ -39,9 +39,29 @@ const Table = props => {
 };
 
 Table.propTypes = {
+  /**
+   * Provide the contents of your Table
+   */
   children: PropTypes.node,
+
+  /**
+   * Specify an optional className to be applied to the <table> node
+   */
   className: PropTypes.string,
+
+  /**
+   * Specify an optional className to be applied to the container node
+   */
   containerClassName: PropTypes.string,
+
+  /**
+   * The selector prefix
+   */
+  prefix: PropTypes.string,
+};
+
+Table.defaultProps = {
+  prefix: 'bx',
 };
 
 export default Table;

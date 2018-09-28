@@ -9,6 +9,7 @@ export default class ComposedModal extends Component {
   state = {};
 
   static defaultProps = {
+    prefix: 'bx',
     onKeyDown: () => {},
   };
 
@@ -25,6 +26,11 @@ export default class ComposedModal extends Component {
      * Specify an optional className to be applied to the modal node
      */
     containerClassName: PropTypes.string,
+
+    /**
+     * The selector prefix
+     */
+    prefix: PropTypes.string,
 
     /**
      * Specify an optional handler for closing modal.
@@ -83,16 +89,22 @@ export default class ComposedModal extends Component {
 
   render() {
     const { open } = this.state;
-    const { className, containerClassName, children, ...other } = this.props;
+    const {
+      className,
+      containerClassName,
+      children,
+      prefix,
+      ...other
+    } = this.props;
 
     const modalClass = classNames({
-      'bx--modal': true,
+      [`${prefix}--modal`]: true,
       'is-visible': open,
       [className]: className,
     });
 
     const containerClass = classNames({
-      'bx--modal-container': true,
+      [`${prefix}--modal-container`]: true,
       [containerClassName]: containerClassName,
     });
 
@@ -181,11 +193,17 @@ export class ModalHeader extends Component {
      * clicked
      */
     buttonOnClick: PropTypes.func,
+
+    /**
+     * The selector prefix
+     */
+    prefix: PropTypes.string,
   };
 
   static defaultProps = {
     iconDescription: 'Close the modal',
     buttonOnClick: () => {},
+    prefix: 'bx',
   };
 
   handleCloseButtonClick = () => {
@@ -206,31 +224,32 @@ export class ModalHeader extends Component {
       iconDescription,
       closeModal, // eslint-disable-line
       buttonOnClick, // eslint-disable-line
+      prefix,
       ...other
     } = this.props;
 
     const headerClass = classNames({
-      'bx--modal-header': true,
+      [`${prefix}--modal-header`]: true,
       [className]: className,
     });
 
     const labelClass = classNames({
-      'bx--modal-header__label bx--type-delta': true,
+      [`${prefix}--modal-header__label ${prefix}--type-delta`]: true,
       [labelClassName]: labelClassName,
     });
 
     const titleClass = classNames({
-      'bx--modal-header__heading bx--type-beta': true,
+      [`${prefix}--modal-header__heading ${prefix}--type-beta`]: true,
       [titleClassName]: titleClassName,
     });
 
     const closeClass = classNames({
-      'bx--modal-close': true,
+      [`${prefix}--modal-close`]: true,
       [closeClassName]: closeClassName,
     });
 
     const closeIconClass = classNames({
-      'bx--modal-close__icon': true,
+      [`${prefix}--modal-close__icon`]: true,
       [closeIconClassName]: closeIconClassName,
     });
 
@@ -263,13 +282,22 @@ export class ModalBody extends Component {
      * Specify an optional className to be added to the Modal Body node
      */
     className: PropTypes.string,
+
+    /**
+     * The selector prefix
+     */
+    prefix: PropTypes.string,
+  };
+
+  static defaultProps = {
+    prefix: 'bx',
   };
 
   render() {
-    const { className, children, ...other } = this.props;
+    const { className, children, prefix, ...other } = this.props;
 
     const contentClass = classNames({
-      'bx--modal-content': true,
+      [`${prefix}--modal-content`]: true,
       [className]: className,
     });
 
@@ -334,11 +362,17 @@ export class ModalFooter extends Component {
      * Pass in content that will be rendered in the Modal Footer
      */
     children: PropTypes.node,
+
+    /**
+     * The selector prefix
+     */
+    prefix: PropTypes.string,
   };
 
   static defaultProps = {
     onRequestClose: () => {},
     onRequestSubmit: () => {},
+    prefix: 'bx',
   };
 
   handleRequestClose = evt => {
@@ -357,12 +391,13 @@ export class ModalFooter extends Component {
       closeModal, // eslint-disable-line
       onRequestClose, // eslint-disable-line
       onRequestSubmit, // eslint-disable-line
+      prefix,
       children,
       ...other
     } = this.props;
 
     const footerClass = classNames({
-      'bx--modal-footer': true,
+      [`${prefix}--modal-footer`]: true,
       [className]: className,
     });
 

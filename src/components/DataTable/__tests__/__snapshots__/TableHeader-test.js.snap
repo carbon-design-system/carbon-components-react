@@ -2,6 +2,7 @@
 
 exports[`DataTable.TableHeader should have an active and ascending class if sorting by ASC 1`] = `
 <Table
+  prefix="bx"
   short={false}
   shouldShowBorder={true}
   zebra={true}
@@ -9,14 +10,19 @@ exports[`DataTable.TableHeader should have an active and ascending class if sort
   <table
     className="bx--data-table-v2 bx--data-table-v2--zebra"
   >
-    <TableHead>
+    <TableHead
+      prefix="bx"
+    >
       <thead>
-        <TableRow>
+        <TableRow
+          prefix="bx"
+        >
           <tr>
             <TableHeader
               isSortHeader={true}
               isSortable={false}
               onClick={[MockFunction]}
+              prefix="bx"
               scope="col"
               sortDirection="ASC"
               translateWithId={[Function]}
@@ -37,6 +43,7 @@ exports[`DataTable.TableHeader should have an active and ascending class if sort
 
 exports[`DataTable.TableHeader should have an active class if it is the sort header and the sort state is not NONE 1`] = `
 <Table
+  prefix="bx"
   short={false}
   shouldShowBorder={true}
   zebra={true}
@@ -44,14 +51,19 @@ exports[`DataTable.TableHeader should have an active class if it is the sort hea
   <table
     className="bx--data-table-v2 bx--data-table-v2--zebra"
   >
-    <TableHead>
+    <TableHead
+      prefix="bx"
+    >
       <thead>
-        <TableRow>
+        <TableRow
+          prefix="bx"
+        >
           <tr>
             <TableHeader
               isSortHeader={true}
               isSortable={false}
               onClick={[MockFunction]}
+              prefix="bx"
               scope="col"
               sortDirection="NONE"
               translateWithId={[Function]}
@@ -72,6 +84,7 @@ exports[`DataTable.TableHeader should have an active class if it is the sort hea
 
 exports[`DataTable.TableHeader should render 1`] = `
 <Table
+  prefix="bx"
   short={false}
   shouldShowBorder={true}
   zebra={true}
@@ -79,14 +92,19 @@ exports[`DataTable.TableHeader should render 1`] = `
   <table
     className="bx--data-table-v2 bx--data-table-v2--zebra"
   >
-    <TableHead>
+    <TableHead
+      prefix="bx"
+    >
       <thead>
-        <TableRow>
+        <TableRow
+          prefix="bx"
+        >
           <tr>
             <TableHeader
               isSortHeader={false}
               isSortable={false}
               onClick={[MockFunction]}
+              prefix="bx"
               scope="col"
               sortDirection="NONE"
               translateWithId={[Function]}
@@ -107,6 +125,7 @@ exports[`DataTable.TableHeader should render 1`] = `
 
 exports[`DataTable.TableHeader should render 2`] = `
 <Table
+  prefix="bx"
   short={false}
   shouldShowBorder={true}
   zebra={true}
@@ -114,14 +133,19 @@ exports[`DataTable.TableHeader should render 2`] = `
   <table
     className="bx--data-table-v2 bx--data-table-v2--zebra"
   >
-    <TableHead>
+    <TableHead
+      prefix="bx"
+    >
       <thead>
-        <TableRow>
+        <TableRow
+          prefix="bx"
+        >
           <tr>
             <TableHeader
               isSortHeader={true}
               isSortable={false}
               onClick={[MockFunction]}
+              prefix="bx"
               scope="col"
               sortDirection="NONE"
               translateWithId={[Function]}

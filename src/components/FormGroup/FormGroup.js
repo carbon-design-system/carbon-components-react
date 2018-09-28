@@ -9,10 +9,11 @@ const FormGroup = ({
   className,
   message,
   messageText,
+  prefix,
   ...other
 }) => {
-  const classNamesLegend = classnames('bx--label', className);
-  const classNamesFieldset = classnames('bx--fieldset', className);
+  const classNamesLegend = classnames(`${prefix}--label`, className);
+  const classNamesFieldset = classnames(`${prefix}--fieldset`, className);
 
   return (
     <fieldset
@@ -22,7 +23,7 @@ const FormGroup = ({
       <legend className={classNamesLegend}>{legendText}</legend>
       {children}
       {message ? (
-        <div className="bx--form__requirements">{messageText}</div>
+        <div className={`${prefix}--form__requirements`}>{messageText}</div>
       ) : null}
     </fieldset>
   );
@@ -58,12 +59,18 @@ FormGroup.propTypes = {
    * Provide the text for the message in the <FormGroup>
    */
   messageText: PropTypes.string,
+
+  /**
+   * The selector prefix
+   */
+  prefix: PropTypes.string,
 };
 
 FormGroup.defaultProps = {
   invalid: false,
   message: false,
   messageText: '',
+  prefix: 'bx',
 };
 
 export default FormGroup;

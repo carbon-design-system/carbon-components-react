@@ -12,11 +12,12 @@ import Icon from '../Icon';
 const ListBoxSelection = ({
   clearSelection,
   selectionCount,
+  prefix,
   translateWithId: t,
 }) => {
   const className = cx({
-    'bx--list-box__selection': true,
-    'bx--list-box__selection--multi': selectionCount,
+    [`${prefix}--list-box__selection`]: true,
+    [`${prefix}--list-box__selection--multi`]: selectionCount,
   });
   const handleOnClick = event => {
     // If we have a mult-select badge, clicking it shouldn't open the menu back
@@ -72,6 +73,11 @@ ListBoxSelection.propTypes = {
   selectionCount: PropTypes.number,
 
   /**
+   * The selector prefix.
+   */
+  prefix: PropTypes.string,
+
+  /**
    * i18n hook used to provide the appropriate description for the given menu
    * icon. This function takes in an id defined in `translationIds` and should
    * return a string message for that given message id.
@@ -80,6 +86,7 @@ ListBoxSelection.propTypes = {
 };
 
 ListBoxSelection.defaultProps = {
+  prefix: 'bx',
   translateWithId: id => defaultTranslations[id],
 };
 

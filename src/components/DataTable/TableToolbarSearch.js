@@ -17,6 +17,7 @@ const translateWithId = id => {
 const TableToolbarSearch = ({
   className,
   searchContainerClass,
+  prefix,
   onChange,
   translateWithId: t,
   placeHolderText,
@@ -26,7 +27,7 @@ const TableToolbarSearch = ({
 }) => {
   const searchContainerClasses = cx(
     searchContainerClass,
-    'bx--toolbar-search-container'
+    `${prefix}--toolbar-search-container`
   );
   return (
     <div className={searchContainerClasses}>
@@ -65,6 +66,11 @@ TableToolbarSearch.propTypes = {
   searchContainerClasses: PropTypes.string,
 
   /**
+   * The selector prefix
+   */
+  prefix: PropTypes.string,
+
+  /**
    * Provide an optional hook that is called each time the input is updated
    */
   onChange: PropTypes.func,
@@ -86,6 +92,7 @@ TableToolbarSearch.propTypes = {
 };
 
 TableToolbarSearch.defaultProps = {
+  prefix: 'bx',
   translateWithId,
 };
 

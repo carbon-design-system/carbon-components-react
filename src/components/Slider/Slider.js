@@ -106,6 +106,11 @@ export default class Slider extends PureComponent {
      * `true` to use the light version.
      */
     light: PropTypes.bool,
+
+    /**
+     * The selector prefix.
+     */
+    prefix: PropTypes.string,
   };
 
   static defaultProps = {
@@ -118,6 +123,7 @@ export default class Slider extends PureComponent {
     inputType: 'number',
     ariaLabelInput: 'Slider number input',
     light: false,
+    prefix: 'bx',
   };
 
   state = {
@@ -339,19 +345,20 @@ export default class Slider extends PureComponent {
       disabled,
       name,
       light,
+      prefix,
       ...other
     } = this.props;
 
     const { value, left } = this.state;
 
     const sliderClasses = classNames(
-      'bx--slider',
-      { 'bx--slider--disabled': disabled },
+      `${prefix}--slider`,
+      { [`${prefix}--slider--disabled`]: disabled },
       className
     );
 
-    const inputClasses = classNames('bx-slider-text-input', {
-      'bx--text-input--light': light,
+    const inputClasses = classNames(`${prefix}-slider-text-input`, {
+      [`${prefix}--text-input--light`]: light,
     });
 
     const filledTrackStyle = {
@@ -362,12 +369,12 @@ export default class Slider extends PureComponent {
     };
 
     return (
-      <div className="bx--form-item">
-        <label htmlFor={id} className="bx--label">
+      <div className={`${prefix}--form-item`}>
+        <label htmlFor={id} className={`${prefix}--label`}>
           {labelText}
         </label>
-        <div className="bx--slider-container">
-          <span className="bx--slider__range-label">
+        <div className={`${prefix}--slider-container`}>
+          <span className={`${prefix}--slider__range-label`}>
             {formatLabel(min, minLabel)}
           </span>
           <div
@@ -381,17 +388,17 @@ export default class Slider extends PureComponent {
             tabIndex={-1}
             {...other}>
             <div
-              className="bx--slider__track"
+              className={`${prefix}--slider__track`}
               ref={node => {
                 this.track = node;
               }}
             />
             <div
-              className="bx--slider__filled-track"
+              className={`${prefix}--slider__filled-track`}
               style={filledTrackStyle}
             />
             <div
-              className="bx--slider__thumb"
+              className={`${prefix}--slider__thumb`}
               role="slider"
               id={id}
               tabIndex={0}
@@ -414,7 +421,7 @@ export default class Slider extends PureComponent {
               onChange={this.handleChange}
             />
           </div>
-          <span className="bx--slider__range-label">
+          <span className={`${prefix}--slider__range-label`}>
             {formatLabel(max, maxLabel)}
           </span>
           {!hideTextInput && (

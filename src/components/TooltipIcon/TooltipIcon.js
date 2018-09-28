@@ -7,16 +7,17 @@ const TooltipIcon = ({
   children,
   direction,
   tooltipText,
+  prefix,
   ...rest
 }) => {
   const tooltipClassName = cx({
     [className]: !!className,
-    'bx--tooltip-icon': true,
+    [`${prefix}--tooltip-icon`]: true,
   });
   const triggerClassName = cx({
-    'bx--tooltip__trigger': true,
-    'bx--tooltip--icon__bottom': direction === 'bottom',
-    'bx--tooltip--icon__top': direction === 'top',
+    [`${prefix}--tooltip__trigger`]: true,
+    [`${prefix}--tooltip--icon__bottom`]: direction === 'bottom',
+    [`${prefix}--tooltip--icon__top`]: direction === 'top',
   });
   return (
     <div {...rest} className={tooltipClassName}>
@@ -43,10 +44,16 @@ TooltipIcon.propTypes = {
    * Provide the text that will be displayed in the tooltip when it is rendered.
    */
   tooltipText: PropTypes.node.isRequired,
+
+  /**
+   * The selector prefix.
+   */
+  prefix: PropTypes.string,
 };
 
 TooltipIcon.defaultProps = {
   direction: 'bottom',
+  prefix: 'bx',
 };
 
 export default TooltipIcon;

@@ -51,9 +51,15 @@ export default class RadioButton extends React.Component {
      * Specify the value of the <RadioButton>
      */
     value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+
+    /**
+     * The selector prefix
+     */
+    prefix: PropTypes.string,
   };
 
   static defaultProps = {
+    prefix: 'bx',
     onChange: () => {},
   };
 
@@ -71,19 +77,19 @@ export default class RadioButton extends React.Component {
       this.props.className
     );
 
-    const { labelText, ...other } = this.props;
+    const { labelText, prefix, ...other } = this.props;
 
     return (
       <div className={wrapperClasses}>
         <input
           {...other}
           type="radio"
-          className="bx--radio-button"
+          className={`${prefix}--radio-button`}
           onChange={this.handleChange}
           id={this.uid}
         />
-        <label htmlFor={this.uid} className="bx--radio-button__label">
-          <span className="bx--radio-button__appearance" />
+        <label htmlFor={this.uid} className={`${prefix}--radio-button__label`}>
+          <span className={`${prefix}--radio-button__appearance`} />
           {labelText}
         </label>
       </div>

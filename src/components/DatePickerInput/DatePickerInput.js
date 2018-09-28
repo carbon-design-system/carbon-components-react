@@ -9,10 +9,16 @@ export default class DatePickerInput extends Component {
      * Specify an id that unique identifies the <input>
      */
     id: PropTypes.string.isRequired,
+
     /**
      * The description of the calendar icon.
      */
     iconDescription: PropTypes.string,
+
+    /**
+     * The selector prefix.
+     */
+    prefix: PropTypes.string,
   };
 
   static defaultProps = {
@@ -21,6 +27,7 @@ export default class DatePickerInput extends Component {
     disabled: false,
     invalid: false,
     labelText: '',
+    prefix: 'bx',
     onClick: () => {},
     onChange: () => {},
   };
@@ -40,6 +47,7 @@ export default class DatePickerInput extends Component {
       pattern,
       iconDescription,
       openCalendar,
+      prefix,
       ...other
     } = this.props;
 
@@ -60,15 +68,15 @@ export default class DatePickerInput extends Component {
       pattern,
     };
 
-    const labelClasses = classNames('bx--label', {
-      'bx--visually-hidden': hideLabel,
+    const labelClasses = classNames(`${prefix}--label`, {
+      [`${prefix}--visually-hidden`]: hideLabel,
     });
 
     const datePickerIcon =
       datePickerType === 'single' ? (
         <Icon
           name="calendar"
-          className="bx--date-picker__icon"
+          className={`${prefix}--date-picker__icon`}
           description={iconDescription}
           onClick={openCalendar}
         />
@@ -83,11 +91,11 @@ export default class DatePickerInput extends Component {
     ) : null;
 
     const error = invalid ? (
-      <div className="bx--form-requirement">{invalidText}</div>
+      <div className={`${prefix}--form-requirement`}>{invalidText}</div>
     ) : null;
 
-    const containerClasses = classNames('bx--date-picker-container', {
-      'bx--date-picker--nolabel': !label,
+    const containerClasses = classNames(`${prefix}--date-picker-container`, {
+      [`${prefix}--date-picker--nolabel`]: !label,
     });
 
     const input = invalid ? (
@@ -98,7 +106,7 @@ export default class DatePickerInput extends Component {
           this.input = input;
         }}
         data-invalid
-        className="bx--date-picker__input"
+        className={`${prefix}--date-picker__input`}
       />
     ) : (
       <input
@@ -107,7 +115,7 @@ export default class DatePickerInput extends Component {
         }}
         {...other}
         {...datePickerInputProps}
-        className="bx--date-picker__input"
+        className={`${prefix}--date-picker__input`}
       />
     );
 

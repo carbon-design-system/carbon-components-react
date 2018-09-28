@@ -8,12 +8,13 @@ export const Table = ({
   children,
   short,
   shouldShowBorder,
+  prefix,
   ...other
 }) => {
-  const componentClass = cx('bx--data-table-v2', className, {
-    'bx--data-table-v2--zebra': zebra,
-    'bx--data-table-v2--short': short,
-    'bx--data-table-v2--no-border': !shouldShowBorder,
+  const componentClass = cx(`${prefix}--data-table-v2`, className, {
+    [`${prefix}--data-table-v2--zebra`]: zebra,
+    [`${prefix}--data-table-v2--short`]: short,
+    [`${prefix}--data-table-v2--no-border`]: !shouldShowBorder,
   });
   return (
     <table {...other} className={componentClass}>
@@ -42,12 +43,18 @@ Table.propTypes = {
    * `true` for data table without borders.
    */
   shouldShowBorder: PropTypes.bool,
+
+  /*
+   * The selector prefix.
+   */
+  prefix: PropTypes.string,
 };
 
 Table.defaultProps = {
   zebra: true,
   short: false,
   shouldShowBorder: true,
+  prefix: 'bx',
 };
 
 export default Table;

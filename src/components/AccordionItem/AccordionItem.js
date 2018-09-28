@@ -42,6 +42,11 @@ export default class AccordionItem extends Component {
     open: PropTypes.bool,
 
     /**
+     * The selector prefix.
+     */
+    prefix: PropTypes.string,
+
+    /**
      * The handler of the massaged `click` event.
      */
     onClick: PropTypes.func,
@@ -59,6 +64,7 @@ export default class AccordionItem extends Component {
     open: false,
     onClick: () => {},
     onHeadingClick: () => {},
+    prefix: 'bx',
   };
 
   static getDerivedStateFromProps({ open }, state) {
@@ -99,14 +105,15 @@ export default class AccordionItem extends Component {
       children,
       onClick, // eslint-disable-line no-unused-vars
       onHeadingClick, // eslint-disable-line no-unused-vars
+      prefix,
       ...other
     } = this.props;
 
     const classNames = classnames(
       {
-        'bx--accordion__item--active': this.state.open,
+        [`${prefix}--accordion__item--active`]: this.state.open,
       },
-      'bx--accordion__item',
+      `${prefix}--accordion__item`,
       className
     );
     return (
@@ -118,17 +125,17 @@ export default class AccordionItem extends Component {
         {...other}>
         <Expando
           type="button"
-          className="bx--accordion__heading"
+          className={`${prefix}--accordion__heading`}
           role="tab"
           onClick={this.handleHeadingClick}>
           <Icon
-            className="bx--accordion__arrow"
+            className={`${prefix}--accordion__arrow`}
             icon={iconChevronRight}
             description={iconDescription}
           />
-          <div className="bx--accordion__title">{title}</div>
+          <div className={`${prefix}--accordion__title`}>{title}</div>
         </Expando>
-        <div className="bx--accordion__content">{children}</div>
+        <div className={`${prefix}--accordion__content`}>{children}</div>
       </li>
     );
   }

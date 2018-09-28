@@ -11,6 +11,7 @@
 * [Documentation](#documentation)
   * [File Structure](#file-structure)
   * [Storybook README](#storybook-readme)
+* [CSS class prefix](#css-class-prefix)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -74,4 +75,50 @@ storiesOf('ComponentName', module).add(
     },
   })
 );
+```
+
+## CSS class prefix
+
+Carbon CSS classes begin with `bx--` by default. It can be changed by setting `$prefix` Sass variable and building `carbon-components` Sass files.
+
+To apply your CSS class prefix to `carbon-components-react` components, you can define your CSS class prefix as a React context and create wrapper components with your React context applied. Here's an example:
+
+```javascript
+import React, { Component, createContext } from 'react';
+import mapValues from 'lodash.mapvalues';
+import { Button, Checkbox } from 'carbon-components-react';
+
+// The `PrefixConsumer` and `withOurBrandPrefix` here can be defined in a separate module
+const { Consumer: PrefixConsumer } = createContext('ourbrand');
+
+const withOurBrandPrefix = components =>
+  mapValues(components, Component => props => (
+    <PrefixConsumer>
+      {prefix => <Component {...props} prefix={prefix} />}
+    </PrefixConsumer>
+  ));
+
+// Create wrapper components with `ourbrand` CSS class prefix applied
+const {
+  Button: OurBrandButton,
+  Checkbox: OurBrandCheckbox,
+} = withOurBrandPrefix({ Button, Checkbox });
+
+class MyApp extends Component {
+  render() {
+    <>
+      {/* Uses ourbrand--btn instead of bx--btn */}
+      <OurBrandButton kind="primary">Button in our brand</OurBrandButton>
+      <fieldset className="ourbrand--fieldset">
+        <legend className="ourbrand--label">Checkbox in our brand</legend>
+        {/* Uses ourbrand--checkbox instead of bx--checkbox */}
+        <OurBrandCheckbox
+          defaultChecked
+          id="checkbox"
+          labelText="Checkbox label"
+        />
+      </fieldset>
+    </>;
+  }
+}
 ```

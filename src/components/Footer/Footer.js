@@ -14,10 +14,11 @@ const Footer = ({
   linkTextTwo,
   linkHrefTwo,
   buttonText,
+  prefix,
   ...other
 }) => {
   const classNames = classnames(
-    'bx--footer bx--footer--bottom-fixed',
+    `${prefix}--footer ${prefix}--footer--bottom-fixed`,
     className
   );
 
@@ -27,17 +28,17 @@ const Footer = ({
     </footer>
   ) : (
     <footer {...other} className={classNames}>
-      <div className="bx--footer-info">
-        <div className="bx--footer-info__item">
-          <p className="bx--footer-label">{labelOne}</p>
+      <div className={`${prefix}--footer-info`}>
+        <div className={`${prefix}--footer-info__item`}>
+          <p className={`${prefix}--footer-label`}>{labelOne}</p>
           <Link href={linkHrefOne}>{linkTextOne}</Link>
         </div>
-        <div className="bx--footer-info__item">
-          <p className="bx--footer-label">{labelTwo}</p>
+        <div className={`${prefix}--footer-info__item`}>
+          <p className={`${prefix}--footer-label`}>{labelTwo}</p>
           <Link href={linkHrefTwo}>{linkTextTwo}</Link>
         </div>
       </div>
-      <div className="bx--footer-cta">
+      <div className={`${prefix}--footer-cta`}>
         <Button type="submit">{buttonText}</Button>
       </div>
     </footer>
@@ -91,6 +92,11 @@ Footer.propTypes = {
    * Provide the text for the footer button
    */
   buttonText: PropTypes.string,
+
+  /**
+   * The selector prefix
+   */
+  prefix: PropTypes.string,
 };
 
 Footer.defaultProps = {
@@ -101,6 +107,7 @@ Footer.defaultProps = {
   linkTextTwo: 'Cost Calculator',
   linkHrefTwo: '#',
   buttonText: 'Create',
+  prefix: 'bx',
 };
 
 export default Footer;

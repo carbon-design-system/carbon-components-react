@@ -7,13 +7,14 @@ const DataTableSkeleton = ({
   columnCount,
   zebra,
   compact,
+  prefix,
   ...other
 }) => {
   const dataTableSkeletonClasses = classNames({
-    'bx--skeleton': true,
-    'bx--data-table-v2': true,
-    'bx--data-table-v2--zebra': zebra,
-    'bx--data-table-v2--compact': compact,
+    [`${prefix}--skeleton`]: true,
+    [`${prefix}--data-table-v2`]: true,
+    [`${prefix}--data-table-v2--zebra`]: zebra,
+    [`${prefix}--data-table-v2--compact`]: compact,
   });
 
   const rowRepeat = rowCount - 1;
@@ -63,6 +64,11 @@ DataTableSkeleton.propTypes = {
    * compact DataTable
    */
   compact: PropTypes.bool,
+
+  /**
+   * The selector prefix
+   */
+  prefix: PropTypes.string,
 };
 
 DataTableSkeleton.defaultProps = {
@@ -70,6 +76,7 @@ DataTableSkeleton.defaultProps = {
   columnCount: 5,
   zebra: false,
   compact: false,
+  prefix: 'bx',
 };
 
 export default DataTableSkeleton;

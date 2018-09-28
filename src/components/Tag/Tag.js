@@ -28,9 +28,9 @@ const TYPES = componentsX
       'third-party': 'Third-Party',
     };
 
-const Tag = ({ children, className, type, ...other }) => {
-  const tagClass = `bx--tag--${type}`;
-  const tagClasses = classNames('bx--tag', tagClass, className);
+const Tag = ({ children, className, type, prefix, ...other }) => {
+  const tagClass = `${prefix}--tag--${type}`;
+  const tagClasses = classNames(`${prefix}--tag`, tagClass, className);
   return (
     <span className={tagClasses} {...other}>
       {children || TYPES[type]}
@@ -53,6 +53,15 @@ Tag.propTypes = {
    * Specify the type of the <Tag>
    */
   type: PropTypes.oneOf(Object.keys(TYPES)).isRequired,
+
+  /**
+   * The selector prefix
+   */
+  prefix: PropTypes.string,
+};
+
+Tag.defaultProps = {
+  prefix: 'bx',
 };
 
 export const types = Object.keys(TYPES);

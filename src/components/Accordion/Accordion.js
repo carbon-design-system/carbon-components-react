@@ -2,8 +2,8 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import classnames from 'classnames';
 
-const Accordion = ({ children, className, ...other }) => {
-  const classNames = classnames('bx--accordion', className);
+const Accordion = ({ children, className, prefix, ...other }) => {
+  const classNames = classnames(`${prefix}--accordion`, className);
   return (
     <ul
       className={classNames}
@@ -25,6 +25,15 @@ Accordion.propTypes = {
    * Specify an optional className to be applied to the container node
    */
   className: PropTypes.string,
+
+  /**
+   * The selector prefix
+   */
+  prefix: PropTypes.string,
+};
+
+Accordion.defaultProps = {
+  prefix: 'bx',
 };
 
 export default Accordion;

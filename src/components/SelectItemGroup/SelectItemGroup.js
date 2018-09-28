@@ -7,9 +7,10 @@ const SelectItemGroup = ({
   className,
   disabled,
   label,
+  prefix,
   ...other
 }) => {
-  const classNames = classnames('bx--select-optgroup', className);
+  const classNames = classnames(`${prefix}--select-optgroup`, className);
   return (
     <optgroup
       className={classNames}
@@ -22,15 +23,36 @@ const SelectItemGroup = ({
 };
 
 SelectItemGroup.propTypes = {
+  /**
+   * Provide the contents of your <SelectItemGroup>
+   */
   children: PropTypes.node,
+
+  /**
+   * Specify an optional className to be applied to the node
+   */
   className: PropTypes.string,
+
+  /**
+   * Specify whether the <SelectItemGroup> should be disabled
+   */
   disabled: PropTypes.bool,
+
+  /**
+   * Specify the label to be displayed
+   */
   label: PropTypes.string.isRequired,
+
+  /**
+   * The selector prefix
+   */
+  prefix: PropTypes.string,
 };
 
 SelectItemGroup.defaultProps = {
   disabled: false,
   label: 'Provide label',
+  prefix: 'bx',
 };
 
 export default SelectItemGroup;

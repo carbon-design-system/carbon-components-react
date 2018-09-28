@@ -5,6 +5,7 @@ exports[`DataTable.TableToolbarSearch should render 1`] = `
   className="custom-class"
   id="custom-id"
   onChange={[MockFunction]}
+  prefix="bx"
   translateWithId={[Function]}
 >
   <div
@@ -17,6 +18,7 @@ exports[`DataTable.TableToolbarSearch should render 1`] = `
       light={true}
       onChange={[MockFunction]}
       placeHolderText="Search"
+      prefix="bx"
       small={true}
       type="text"
     >

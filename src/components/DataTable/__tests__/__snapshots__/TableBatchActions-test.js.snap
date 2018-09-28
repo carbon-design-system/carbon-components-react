@@ -4,6 +4,7 @@ exports[`DataTable.TableBatchActions should render 1`] = `
 <TableBatchActions
   className="custom-class"
   onCancel={[MockFunction]}
+  prefix="bx"
   shouldShowBatchActions={false}
   totalSelected={10}
   translateWithId={[Function]}
@@ -36,6 +37,7 @@ exports[`DataTable.TableBatchActions should render 2`] = `
 <TableBatchActions
   className="custom-class"
   onCancel={[MockFunction]}
+  prefix="bx"
   shouldShowBatchActions={true}
   totalSelected={10}
   translateWithId={[Function]}

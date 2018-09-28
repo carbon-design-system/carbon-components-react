@@ -42,11 +42,16 @@ export default class RadioButtonGroup extends React.Component {
      * Specify the value that is currently selected in the group
      */
     valueSelected: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+
+    /**
+     * The selector prefix
+     */
+    prefix: PropTypes.string,
   };
 
   static defaultProps = {
     onChange: /* istanbul ignore next */ () => {},
-    className: 'bx--radio-button-group',
+    prefix: 'bx',
   };
 
   static getDerivedStateFromProps({ valueSelected, defaultSelected }, state) {
@@ -94,10 +99,14 @@ export default class RadioButtonGroup extends React.Component {
   };
 
   render() {
-    const { disabled, className } = this.props;
+    const {
+      disabled,
+      prefix,
+      className = `${prefix}--radio-button-group`,
+    } = this.props;
 
     return (
-      <div className="bx--form-item">
+      <div className={`${prefix}--form-item`}>
         <div className={className} disabled={disabled}>
           {this.getRadioButtons()}
         </div>
