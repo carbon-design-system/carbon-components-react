@@ -336,25 +336,15 @@ export class ExpandableTile extends Component {
   };
 
   componentDidUpdate = prevProps => {
-    if (prevProps.expanded !== this.props.expanded)
-      this.setState({
-        tileMaxHeight: this.state.expanded
-          ? this.tileContent.getBoundingClientRect().height
-          : this.aboveTheFold.getBoundingClientRect().height,
-      });
+    if (prevProps.expanded !== this.props.expanded) this.setMaxHeight();
   };
 
-  setMaxHeight = () => {
-    if (this.state.expanded) {
-      this.setState({
-        tileMaxHeight: this.tileContent.getBoundingClientRect().height,
-      });
-    } else {
-      this.setState({
-        tileMaxHeight: this.aboveTheFold.getBoundingClientRect().height,
-      });
-    }
-  };
+  setMaxHeight = () =>
+    this.setState({
+      tileMaxHeight: this.state.expanded
+        ? this.tileContent.getBoundingClientRect().height
+        : this.aboveTheFold.getBoundingClientRect().height,
+    });
 
   handleClick = evt => {
     this.setState(
