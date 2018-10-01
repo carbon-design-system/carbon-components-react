@@ -17,6 +17,10 @@ export default class Search extends Component {
      * `true` to use the light version.
      */
     light: PropTypes.bool,
+    /**
+     * aria-label for the Search component
+     */
+    searchLabel: PropTypes.string,
   };
 
   static defaultProps = {
@@ -80,6 +84,7 @@ export default class Search extends Component {
       closeButtonLabelText,
       small,
       light,
+      searchLabel,
       ...other
     } = this.props;
 
@@ -99,7 +104,7 @@ export default class Search extends Component {
     });
 
     return (
-      <div className={searchClasses} role="search">
+      <div className={searchClasses} role="search" aria-label={searchLabel}>
         <Icon
           icon={iconSearch}
           description={labelText}
