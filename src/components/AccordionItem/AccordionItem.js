@@ -53,8 +53,8 @@ export default class AccordionItem extends Component {
   };
 
   static getDerivedStateFromProps({ open }, state) {
-    const { prevOpen } = state || {};
-    return state && prevOpen === open
+    const { prevOpen } = state;
+    return prevOpen === open
       ? null
       : {
           open,

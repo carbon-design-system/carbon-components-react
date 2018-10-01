@@ -284,7 +284,7 @@ export default class Tooltip extends Component {
         }
         this.setState({ open: shouldOpen });
       }
-    } else if (state && (state !== 'out' || !hadContextMenu)) {
+    } else if (state !== 'out' || !hadContextMenu) {
       this._debouncedHandleHover(state, evt.relatedTarget);
     }
   };
