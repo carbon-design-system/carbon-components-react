@@ -4,7 +4,10 @@ import RadioTile from '../RadioTile';
 import warning from 'warning';
 
 export default class TileGroup extends React.Component {
-  state = {};
+  state = {
+    selected: this.props.valueSelected || this.props.defaultSelected || null,
+    prevValueSelected: this.props.valueSelected,
+  };
 
   static propTypes = {
     children: PropTypes.node,
