@@ -273,7 +273,7 @@ export default class Tooltip extends Component {
       mouseout: 'out',
       focus: 'over',
       blur: 'out',
-      click: 'click'
+      click: 'click',
     }[evt.type];
     const hadContextMenu = this._hasContextMenu;
     this._hasContextMenu = evt.type === 'contextmenu';
