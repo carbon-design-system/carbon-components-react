@@ -17,12 +17,14 @@ describe('normalize', () => {
         fieldA: 'fieldA',
         fieldB: 'fieldB',
         fieldC: 'fieldC',
+        isSelected: true,
       },
       {
         id: 'c',
         fieldA: 'fieldA',
         fieldB: 'fieldB',
         fieldC: 'fieldC',
+        isSelected: false,
       },
     ];
     mockHeaders = [
