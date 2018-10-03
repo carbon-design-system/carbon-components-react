@@ -247,6 +247,7 @@ export default class DatePicker extends Component {
         typeof appendTo === 'string'
           ? document.querySelector(appendTo)
           : appendTo;
+      // inputField ref might not be set in enzyme tests
       if (this.inputField) {
         this.cal = new flatpickr(this.inputField, {
           defaultDate: value,
