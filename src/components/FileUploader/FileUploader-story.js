@@ -81,22 +81,20 @@ storiesOf('FileUploader', module)
     'FileUploader',
     withInfo({
       text: `
-      The FileUploader components allow the user to upload any necessary files. This uses the FileUploaderButton and Filename components. Filename components will appear below the FileUploaderButton when files are added. Use the filenameStatus prop to control what icon appears in Filename ('edit', 'complete', or 'uploading').
+        The FileUploader components allow the user to upload any necessary files. This uses the FileUploaderButton and Filename components. Filename components will appear below the FileUploaderButton when files are added. Use the filenameStatus prop to control what icon appears in Filename ('edit', 'complete', or 'uploading').
       `,
     })(() => (
       <div className="bx--file__container">
-        <div className="bx--file__container">
-          <FileUploader {...props.fileUploader()} />
-          <Button
-            kind="secondary"
-            small
-            style={{ marginTop: '1rem' }}
-            onClick={() => {
-              this.fileUploader.clearFiles();
-            }}>
-            Clear File
-          </Button>
-        </div>
+        <FileUploader {...props.fileUploader()} />
+        <Button
+          kind="secondary"
+          small
+          style={{ marginTop: '1rem' }}
+          onClick={() => {
+            this.fileUploader.clearFiles();
+          }}>
+          Clear File
+        </Button>
       </div>
     ))
   )
