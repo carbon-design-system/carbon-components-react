@@ -124,7 +124,7 @@ Object {
     ],
     "id": "b",
     "isExpanded": false,
-    "isSelected": false,
+    "isSelected": true,
   },
   "c": Object {
     "cells": Array [
