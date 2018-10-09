@@ -17,6 +17,8 @@ l10n.en.weekdays.shorthand.forEach((day, index) => {
   }
 });
 
+const forEach = Array.prototype.forEach;
+
 export default class DatePicker extends Component {
   static propTypes = {
     /**
@@ -47,6 +49,11 @@ export default class DatePicker extends Component {
      * * `range` - With calendar dropdown and a date range.
      */
     datePickerType: PropTypes.oneOf(['simple', 'single', 'range']),
+
+    /**
+     * The description of the calendar icon.
+     */
+    iconDescription: PropTypes.string,
 
     /**
      * The date format.
@@ -207,10 +214,7 @@ export default class DatePicker extends Component {
 
   UNSAFE_componentWillUpdate(nextProps) {
     if (nextProps.value !== this.props.value) {
-      if (
-        this.props.datePickerType === 'single' ||
-        this.props.datePickerType === 'range'
-      ) {
+      if (this.cal) {
         this.cal.setDate(nextProps.value);
         this.updateClassNames(this.cal);
       } else {
@@ -240,64 +244,71 @@ export default class DatePicker extends Component {
         typeof appendTo === 'string'
           ? document.querySelector(appendTo)
           : appendTo;
-      this.cal = new flatpickr(this.inputField, {
-        defaultDate: value,
-        appendTo: appendToNode,
-        mode: datePickerType,
-        allowInput: true,
-        dateFormat: dateFormat,
-        locale: l10n[locale],
-        minDate: minDate,
-        maxDate: maxDate,
-        plugins:
-          datePickerType === 'range'
-            ? [new rangePlugin({ input: this.toInputField })]
-            : '',
-        clickOpens: true,
-        nextArrow: this.rightArrowHTML(),
-        leftArrow: this.leftArrowHTML(),
-        onChange: (...args) => {
-          if (onChange) {
-            onChange(...args);
-          }
-        },
-        onReady: onHook,
-        onMonthChange: onHook,
-        onYearChange: onHook,
-        onOpen: onHook,
-        onValueUpdate: onHook,
-      });
-      this.addKeyboardEvents(this.cal);
+      // inputField ref might not be set in enzyme tests
+      if (this.inputField) {
+        this.cal = new flatpickr(this.inputField, {
+          defaultDate: value,
+          appendTo: appendToNode,
+          mode: datePickerType,
+          allowInput: true,
+          dateFormat: dateFormat,
+          locale: l10n[locale],
+          minDate: minDate,
+          maxDate: maxDate,
+          plugins:
+            datePickerType === 'range'
+              ? [new rangePlugin({ input: this.toInputField })]
+              : '',
+          clickOpens: true,
+          nextArrow: this.rightArrowHTML(),
+          leftArrow: this.leftArrowHTML(),
+          onChange: (...args) => {
+            if (onChange) {
+              onChange(...args);
+            }
+          },
+          onReady: onHook,
+          onMonthChange: onHook,
+          onYearChange: onHook,
+          onOpen: onHook,
+          onValueUpdate: onHook,
+        });
+        this.addKeyboardEvents(this.cal);
+      }
     }
   }
 
   componentWillUnmount() {
-    if (
-      this.props.datePickerType === 'range' ||
-      this.props.datePickerType === 'single'
-    ) {
+    if (this.cal) {
       this.cal.destroy();
     }
-    this.inputField.removeEventListener('change', this.onChange);
+    if (this.inputField) {
+      this.inputField.removeEventListener('change', this.onChange);
+    }
     if (this.toInputField) {
       this.toInputField.removeEventListener('change', this.onChange);
     }
   }
 
   onChange = e => {
-    if (e.target.value === '' && this.cal.selectedDates.length > 0) {
+    if (
+      e.target.value === '' &&
+      this.cal &&
+      this.cal.selectedDates.length > 0
+    ) {
       this.cal.clear();
     }
   };
 
   addKeyboardEvents = cal => {
-    const input = this.inputField;
-    input.addEventListener('keydown', e => {
-      if (e.which === 40) {
-        cal.calendarContainer.focus();
-      }
-    });
-    input.addEventListener('change', this.onChange);
+    if (this.inputField) {
+      this.inputField.addEventListener('keydown', e => {
+        if (e.which === 40) {
+          cal.calendarContainer.focus();
+        }
+      });
+      this.inputField.addEventListener('change', this.onChange);
+    }
     if (this.toInputField) {
       this.toInputField.addEventListener('blur', () => {
         this.cal.close();
@@ -321,43 +332,49 @@ export default class DatePicker extends Component {
   }
 
   openCalendar = () => {
-    this.cal.open();
+    if (this.cal) {
+      this.cal.open();
+    }
   };
 
   updateClassNames = calendar => {
     const calendarContainer = calendar.calendarContainer;
     const daysContainer = calendar.days;
-    calendarContainer.classList.add('bx--date-picker__calendar');
-    calendarContainer
-      .querySelector('.flatpickr-month')
-      .classList.add('bx--date-picker__month');
-    calendarContainer
-      .querySelector('.flatpickr-weekdays')
-      .classList.add('bx--date-picker__weekdays');
-    calendarContainer
-      .querySelector('.flatpickr-days')
-      .classList.add('bx--date-picker__days');
-    [...calendarContainer.querySelectorAll('.flatpickr-weekday')].forEach(
-      item => {
-        const currentItem = item;
-        currentItem.innerHTML = currentItem.innerHTML.replace(/\s+/g, '');
-        currentItem.classList.add('bx--date-picker__weekday');
-      }
-    );
-    [...daysContainer.querySelectorAll('.flatpickr-day')].forEach(item => {
-      item.classList.add('bx--date-picker__day');
-      if (
-        item.classList.contains('today') &&
-        calendar.selectedDates.length > 0
-      ) {
-        item.classList.add('no-border');
-      } else if (
-        item.classList.contains('today') &&
-        calendar.selectedDates.length === 0
-      ) {
-        item.classList.remove('no-border');
-      }
-    });
+    if (calendarContainer && daysContainer) {
+      // calendarContainer and daysContainer are undefined if flatpickr detects a mobile device
+      calendarContainer.classList.add('bx--date-picker__calendar');
+      calendarContainer
+        .querySelector('.flatpickr-month')
+        .classList.add('bx--date-picker__month');
+      calendarContainer
+        .querySelector('.flatpickr-weekdays')
+        .classList.add('bx--date-picker__weekdays');
+      calendarContainer
+        .querySelector('.flatpickr-days')
+        .classList.add('bx--date-picker__days');
+      forEach.call(
+        calendarContainer.querySelectorAll('.flatpickr-weekday'),
+        item => {
+          const currentItem = item;
+          currentItem.innerHTML = currentItem.innerHTML.replace(/\s+/g, '');
+          currentItem.classList.add('bx--date-picker__weekday');
+        }
+      );
+      forEach.call(daysContainer.querySelectorAll('.flatpickr-day'), item => {
+        item.classList.add('bx--date-picker__day');
+        if (
+          item.classList.contains('today') &&
+          calendar.selectedDates.length > 0
+        ) {
+          item.classList.add('no-border');
+        } else if (
+          item.classList.contains('today') &&
+          calendar.selectedDates.length === 0
+        ) {
+          item.classList.remove('no-border');
+        }
+      });
+    }
   };
 
   assignInputFieldRef = node => {
@@ -384,6 +401,9 @@ export default class DatePicker extends Component {
           : null;
   };
 
+  isLabelTextEmpty = children =>
+    children.every(child => !child.props.labelText);
+
   render() {
     const {
       appendTo, // eslint-disable-line
@@ -398,6 +418,7 @@ export default class DatePicker extends Component {
       onChange, // eslint-disable-line
       locale, // eslint-disable-line
       value, // eslint-disable-line
+      iconDescription,
       ...other
     } = this.props;
 
@@ -407,6 +428,8 @@ export default class DatePicker extends Component {
       'bx--date-picker--simple': datePickerType === 'simple',
       'bx--date-picker--single': datePickerType === 'single',
       'bx--date-picker--range': datePickerType === 'range',
+      'bx--date-picker--nolabel':
+        datePickerType === 'range' && this.isLabelTextEmpty(children),
     });
 
     const datePickerIcon =
@@ -414,6 +437,7 @@ export default class DatePicker extends Component {
         <Icon
           name="calendar"
           className="bx--date-picker__icon"
+          description={iconDescription}
           onClick={this.openCalendar}
         />
       ) : (
@@ -426,6 +450,7 @@ export default class DatePicker extends Component {
         return React.cloneElement(child, {
           datePickerType,
           ref: this.assignInputFieldRef,
+          openCalendar: this.openCalendar,
         });
       } else if (index === 1 && child.type === DatePickerInput) {
         return React.cloneElement(child, {

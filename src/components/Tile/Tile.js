@@ -24,10 +24,28 @@ export class Tile extends Component {
 }
 
 export class ClickableTile extends Component {
+  state = {};
+
   static propTypes = {
+    /**
+     * The child nodes.
+     */
     children: PropTypes.node,
+
+    /**
+     * The CSS class names.
+     */
     className: PropTypes.string,
+
+    /**
+     * The href for the link.
+     */
     href: PropTypes.string,
+
+    /**
+     * The rel property for the link.
+     */
+    rel: PropTypes.string,
   };
 
   static defaultProps = {
@@ -63,8 +81,8 @@ export class ClickableTile extends Component {
   };
 
   static getDerivedStateFromProps({ clicked }, state) {
-    const { prevClicked } = state || {};
-    return state && prevClicked === clicked
+    const { prevClicked } = state;
+    return prevClicked === clicked
       ? null
       : {
           clicked,
@@ -195,8 +213,8 @@ export class SelectableTile extends Component {
   };
 
   static getDerivedStateFromProps({ selected }, state) {
-    const { prevSelected } = state || {};
-    return state && prevSelected === selected
+    const { prevSelected } = state;
+    return prevSelected === selected
       ? null
       : {
           selected,
@@ -253,6 +271,8 @@ export class SelectableTile extends Component {
 }
 
 export class ExpandableTile extends Component {
+  state = {};
+
   static propTypes = {
     children: PropTypes.node,
     className: PropTypes.string,
@@ -282,15 +302,11 @@ export class ExpandableTile extends Component {
       expanded: currentExpanded,
       tileMaxHeight: currentTileMaxHeight,
       tilePadding: currentTilePadding,
-    } =
-      state || {};
+    } = state;
     const expandedChanged = prevExpanded !== expanded;
     const tileMaxHeightChanged = prevTileMaxHeight !== tileMaxHeight;
     const tilePaddingChanged = prevTilePadding !== tilePadding;
-    return state &&
-      !expandedChanged &&
-      !tileMaxHeightChanged &&
-      !tilePaddingChanged
+    return !expandedChanged && !tileMaxHeightChanged && !tilePaddingChanged
       ? null
       : {
           expanded: !expandedChanged ? currentExpanded : expanded,
@@ -317,17 +333,16 @@ export class ExpandableTile extends Component {
     });
   };
 
-  setMaxHeight = () => {
-    if (this.state.expanded) {
-      this.setState({
-        tileMaxHeight: this.tileContent.getBoundingClientRect().height,
-      });
-    } else {
-      this.setState({
-        tileMaxHeight: this.aboveTheFold.getBoundingClientRect().height,
-      });
-    }
+  componentDidUpdate = prevProps => {
+    if (prevProps.expanded !== this.props.expanded) this.setMaxHeight();
   };
+
+  setMaxHeight = () =>
+    this.setState({
+      tileMaxHeight: this.state.expanded
+        ? this.tileContent.getBoundingClientRect().height
+        : this.aboveTheFold.getBoundingClientRect().height,
+    });
 
   handleClick = evt => {
     this.setState(

@@ -86,6 +86,16 @@ export default class ComboBox extends React.Component {
     shouldFilterItem: PropTypes.func,
 
     /**
+     * Specify if the currently selected value is invalid.
+     */
+    invalid: PropTypes.bool,
+
+    /**
+     * Message which is displayed if the value is invalid.
+     */
+    invalidText: PropTypes.string,
+
+    /**
      * Specify a custom translation function that takes in a message identifier
      * and returns the localized string for the message
      */
@@ -102,6 +112,11 @@ export default class ComboBox extends React.Component {
      * @param {string} inputText
      */
     onInputChange: PropTypes.func,
+
+    /**
+     * should use "light theme" (white background)?
+     */
+    light: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -110,6 +125,7 @@ export default class ComboBox extends React.Component {
     shouldFilterItem: defaultShouldFilterItem,
     type: 'default',
     ariaLabel: 'ListBox input field',
+    light: false,
   };
 
   constructor(props) {
@@ -170,6 +186,9 @@ export default class ComboBox extends React.Component {
       initialSelectedItem,
       ariaLabel,
       translateWithId,
+      invalid,
+      invalidText,
+      light,
     } = this.props;
     const className = cx('bx--combo-box', containerClassName);
 
@@ -194,6 +213,9 @@ export default class ComboBox extends React.Component {
           <ListBox
             className={className}
             disabled={disabled}
+            invalid={invalid}
+            invalidText={invalidText}
+            light={light}
             {...getRootProps({ refKey: 'innerRef' })}>
             <ListBox.Field {...getButtonProps({ disabled })}>
               <input
@@ -207,7 +229,12 @@ export default class ComboBox extends React.Component {
                 })}
               />
               {inputValue &&
-                isOpen && <ListBox.Selection clearSelection={clearSelection} />}
+                isOpen && (
+                  <ListBox.Selection
+                    clearSelection={clearSelection}
+                    translateWithId={translateWithId}
+                  />
+                )}
               <ListBox.MenuIcon
                 isOpen={isOpen}
                 translateWithId={translateWithId}

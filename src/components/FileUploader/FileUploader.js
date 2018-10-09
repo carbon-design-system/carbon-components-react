@@ -8,6 +8,8 @@ import { ButtonTypes } from '../../prop-types/types';
 import { iconCloseSolid, iconCheckmarkSolid } from 'carbon-icons';
 
 export class FileUploaderButton extends Component {
+  state = {};
+
   static propTypes = {
     /**
      * Provide a custom className to be applied to the container node
@@ -92,8 +94,8 @@ export class FileUploaderButton extends Component {
   };
 
   static getDerivedStateFromProps({ labelText }, state) {
-    const { prevLabelText } = state || {};
-    return state && prevLabelText === labelText
+    const { prevLabelText } = state;
+    return prevLabelText === labelText
       ? null
       : {
           labelText,
@@ -157,6 +159,7 @@ export class FileUploaderButton extends Component {
           ref={input => (this.input = input)}
           id={this.uid}
           type="file"
+          tabIndex="-1"
           multiple={multiple}
           accept={accept}
           name={name}
@@ -277,7 +280,7 @@ export default class FileUploader extends Component {
     evt.stopPropagation();
     this.setState({
       filenames: this.state.filenames.concat(
-        [...evt.target.files].map(file => file.name)
+        Array.prototype.map.call(evt.target.files, file => file.name)
       ),
     });
     this.props.onChange(evt);

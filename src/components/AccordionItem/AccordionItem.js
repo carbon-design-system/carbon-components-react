@@ -4,7 +4,11 @@ import classnames from 'classnames';
 import { iconChevronRight } from 'carbon-icons';
 import Icon from '../Icon';
 
+const defaultRenderExpando = props => <button {...props} />;
+
 export default class AccordionItem extends Component {
+  state = {};
+
   static propTypes = {
     /**
      * Provide the contents of your AccordionItem
@@ -20,6 +24,12 @@ export default class AccordionItem extends Component {
      * The accordion title.
      */
     title: PropTypes.node,
+
+    /**
+     * The callback function to render the expando button.
+     * Can be a React component class.
+     */
+    renderExpando: PropTypes.func,
 
     /**
      * The description of the expando icon.
@@ -44,6 +54,7 @@ export default class AccordionItem extends Component {
 
   static defaultProps = {
     title: 'title',
+    renderExpando: defaultRenderExpando,
     iconDescription: 'Expand/Collapse',
     open: false,
     onClick: () => {},
@@ -51,8 +62,8 @@ export default class AccordionItem extends Component {
   };
 
   static getDerivedStateFromProps({ open }, state) {
-    const { prevOpen } = state || {};
-    return state && prevOpen === open
+    const { prevOpen } = state;
+    return prevOpen === open
       ? null
       : {
           open,
@@ -83,6 +94,7 @@ export default class AccordionItem extends Component {
     const {
       className,
       title,
+      renderExpando: Expando,
       iconDescription,
       children,
       onClick, // eslint-disable-line no-unused-vars
@@ -104,7 +116,7 @@ export default class AccordionItem extends Component {
         onKeyPress={this.handleKeyPress}
         role="presentation"
         {...other}>
-        <button
+        <Expando
           type="button"
           className="bx--accordion__heading"
           role="tab"
@@ -114,8 +126,8 @@ export default class AccordionItem extends Component {
             icon={iconChevronRight}
             description={iconDescription}
           />
-          <p className="bx--accordion__title">{title}</p>
-        </button>
+          <div className="bx--accordion__title">{title}</div>
+        </Expando>
         <div className="bx--accordion__content">{children}</div>
       </li>
     );

@@ -2,6 +2,7 @@ import cx from 'classnames';
 import React from 'react';
 import PropTypes from 'prop-types';
 import Downshift from 'downshift';
+import isEqual from 'lodash.isequal';
 import ListBox from '../ListBox';
 import Checkbox from '../Checkbox';
 import Selection from '../../internal/Selection';
@@ -60,6 +61,11 @@ export default class MultiSelect extends React.Component {
     type: PropTypes.oneOf(['default', 'inline']),
 
     /**
+     *  Specify title to show title on hover
+     */
+    useTitleInItem: PropTypes.bool,
+
+    /**
      * `true` to use the light version.
      */
     light: PropTypes.bool,
@@ -82,6 +88,7 @@ export default class MultiSelect extends React.Component {
     sortItems: defaultSortItems,
     type: 'default',
     light: false,
+    title: false,
   };
 
   constructor(props) {
@@ -153,6 +160,7 @@ export default class MultiSelect extends React.Component {
       light,
       invalid,
       invalidText,
+      useTitleInItem,
     } = this.props;
     const className = cx('bx--multi-select', containerClassName, {
       'bx--list-box--light': light,
@@ -207,11 +215,8 @@ export default class MultiSelect extends React.Component {
                       const itemProps = getItemProps({ item });
                       const itemText = itemToString(item);
                       const isChecked =
-                        selectedItem
-                          .map(selected => {
-                            return selected.id;
-                          })
-                          .indexOf(item.id) !== -1;
+                        selectedItem.filter(selected => isEqual(selected, item))
+                          .length > 0;
                       return (
                         <ListBox.MenuItem
                           key={itemProps.id}
@@ -220,6 +225,7 @@ export default class MultiSelect extends React.Component {
                           {...itemProps}>
                           <Checkbox
                             id={itemProps.id}
+                            title={useTitleInItem ? itemText : null}
                             name={itemText}
                             checked={isChecked}
                             readOnly={true}

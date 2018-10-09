@@ -5,6 +5,15 @@ import Icon from '../Icon';
 import classNames from 'classnames';
 
 export default class NumberInput extends Component {
+  constructor(props) {
+    super(props);
+    let value = props.value;
+    if (props.min || props.min === 0) {
+      value = Math.max(props.min, value);
+    }
+    this.state = { value };
+  }
+
   static propTypes = {
     className: PropTypes.string,
     disabled: PropTypes.bool,
@@ -28,6 +37,10 @@ export default class NumberInput extends Component {
      * `true` to use the light version.
      */
     light: PropTypes.bool,
+    /**
+     * `true` to allow empty string.
+     */
+    allowEmpty: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -42,6 +55,7 @@ export default class NumberInput extends Component {
     invalidText: 'Provide invalidText',
     helperText: '',
     light: false,
+    allowEmpty: false,
   };
 
   /**
@@ -51,11 +65,11 @@ export default class NumberInput extends Component {
   _inputRef = null;
 
   static getDerivedStateFromProps({ min, value }, state) {
-    const { prevValue } = state || {};
-    return state && prevValue === value
+    const { prevValue } = state;
+    return prevValue === value
       ? null
       : {
-          value: state || isNaN(min) ? value : Math.max(min, value),
+          value: isNaN(min) ? value : Math.max(min, value),
           prevValue: value,
         };
   }
@@ -124,6 +138,7 @@ export default class NumberInput extends Component {
       invalidText,
       helperText,
       light,
+      allowEmpty,
       ...other
     } = this.props;
 
@@ -148,7 +163,7 @@ export default class NumberInput extends Component {
 
     const inputWrapperProps = {};
     let error = null;
-    if (invalid || this.state.value === '') {
+    if (invalid || (!allowEmpty && this.state.value === '')) {
       inputWrapperProps['data-invalid'] = true;
       error = <div className="bx--form-requirement">{invalidText}</div>;
     }
