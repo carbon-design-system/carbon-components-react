@@ -58,6 +58,12 @@ export default class ComposedModal extends Component {
     });
   };
 
+  handleClick = evt => {
+    if (this.modal && !this.modal.contains(evt.target)) {
+      this.closeModal();
+    }
+  };
+
   render() {
     const { open } = this.state;
     const { className, containerClassName, children, ...other } = this.props;
@@ -87,11 +93,13 @@ export default class ComposedModal extends Component {
       <div
         {...other}
         role="presentation"
-        ref={modal => (this.modal = modal)}
+        onClick={this.handleClick}
         onKeyDown={this.handleKeyDown}
         className={modalClass}
         tabIndex={-1}>
-        <div className={containerClass}>{childrenWithProps}</div>
+        <div ref={modal => (this.modal = modal)} className={containerClass}>
+          {childrenWithProps}
+        </div>
       </div>
     );
   }
