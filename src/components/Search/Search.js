@@ -17,10 +17,6 @@ export default class Search extends Component {
      * `true` to use the light version.
      */
     light: PropTypes.bool,
-    /**
-     * aria-label for the Search component
-     */
-    searchLabel: PropTypes.string,
   };
 
   static defaultProps = {
@@ -84,7 +80,6 @@ export default class Search extends Component {
       closeButtonLabelText,
       small,
       light,
-      searchLabel,
       ...other
     } = this.props;
 
@@ -104,13 +99,16 @@ export default class Search extends Component {
     });
 
     return (
-      <div className={searchClasses} role="search" aria-label={searchLabel}>
+      <div
+        className={searchClasses}
+        role="search"
+        aria-labelledby={`${id}-label`}>
         <Icon
           icon={iconSearch}
           description={labelText}
           className="bx--search-magnifier"
         />
-        <label htmlFor={id} className="bx--label">
+        <label id={`${id}-label`} htmlFor={id} className="bx--label">
           {labelText}
         </label>
         <input

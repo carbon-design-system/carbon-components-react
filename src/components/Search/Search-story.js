@@ -21,10 +21,6 @@ const props = () => ({
     'The label text for the close button (closeButtonLabelText)',
     ''
   ),
-  searchLabel: text(
-    'Label text for the Search component (searchLabel)',
-    'Search Container'
-  ),
   placeHolderText: text('Placeholder text (placeHolderText)', 'Search'),
   onChange: action('onChange'),
 });
