@@ -39,8 +39,8 @@ export default class ComposedModal extends Component {
   };
 
   componentDidMount() {
-    if (this.modal) {
-      this.modal.focus();
+    if (this.modalContainer) {
+      this.modalContainer.focus();
     }
   }
 
@@ -95,6 +95,7 @@ export default class ComposedModal extends Component {
       <div
         {...other}
         role="presentation"
+        ref={modalContainer => (this.modalContainer = modalContainer)}
         onClick={this.handleClick}
         onKeyDown={this.handleKeyDown}
         className={modalClass}
