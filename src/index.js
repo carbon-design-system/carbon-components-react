@@ -74,6 +74,7 @@ export {
   StructuredListInput,
   StructuredListCell,
 } from './components/StructuredList';
+export StructuredListSkeleton from './components/StructuredList/StructuredList.Skeleton';
 export Tab from './components/Tab';
 export TabContent from './components/TabContent';
 export Table from './components/Table';
