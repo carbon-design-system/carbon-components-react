@@ -399,7 +399,7 @@ export default class DataTable extends React.Component {
   };
 
   render() {
-    const { children, filterRows, headers, render, short } = this.props;
+    const { children, filterRows, headers, render } = this.props;
     const { filterInputValue, rowIds, rowsById, cellsById } = this.state;
     const filteredRowIds =
       typeof filterInputValue === 'string'
@@ -431,8 +431,6 @@ export default class DataTable extends React.Component {
       selectAll: this.handleSelectAll,
       selectRow: rowId => this.handleOnSelectRow(rowId)(),
       expandRow: rowId => this.handleOnExpandRow(rowId)(),
-      //
-      short: short,
     };
 
     if (render !== undefined) {
