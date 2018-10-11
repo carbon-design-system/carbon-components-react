@@ -5,7 +5,7 @@ import { withInfo } from '@storybook/addon-info';
 import { withKnobs, boolean, number, text } from '@storybook/addon-knobs';
 import Slider from '../Slider';
 import SliderSkeleton from '../Slider/Slider.Skeleton';
-import { componentsX } from '../../internal/FeatureFlags';
+import { sliderValuePropSync } from '../../internal/FeatureFlags';
 
 const props = () => ({
   name: text('Form item name (name)', ''),
@@ -14,7 +14,7 @@ const props = () => ({
   disabled: boolean('Disabled (disabled)', false),
   light: boolean('Light variant (light)', false),
   hideTextInput: boolean('Without text input (hideTextInput)', false),
-  value: !componentsX ? 50 : number('The value (value)', 50),
+  value: !sliderValuePropSync ? 50 : number('The value (value)', 50),
   min: number('The minimum value (min)', 0),
   max: number('The maximum value (max)', 100),
   step: number('The step (step)', 1),

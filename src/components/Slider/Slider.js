@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import isEqual from 'lodash.isequal';
 import TextInput from '../TextInput';
-import { componentsX } from '../../internal/FeatureFlags';
+import { sliderValuePropSync } from '../../internal/FeatureFlags';
 
 const defaultFormatLabel = (value, label) => {
   return typeof label === 'function' ? label(value) : `${value}${label}`;
@@ -133,7 +133,7 @@ export default class Slider extends PureComponent {
   static getDerivedStateFromProps({ value, min, max }, state) {
     const { value: currentValue, prevValue, prevMin, prevMax } = state;
     if (
-      !componentsX ||
+      !sliderValuePropSync ||
       (prevValue === value && prevMin === min && prevMax === max)
     ) {
       return null;
@@ -152,7 +152,7 @@ export default class Slider extends PureComponent {
   }
 
   UNSAFE_componentWillReceiveProps(nextProps) {
-    if (!componentsX && !isEqual(nextProps, this.props)) {
+    if (!sliderValuePropSync && !isEqual(nextProps, this.props)) {
       this.updatePosition();
     }
   }
