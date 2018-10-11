@@ -74,7 +74,6 @@ export {
   StructuredListInput,
   StructuredListCell,
 } from './components/StructuredList';
-export StructuredListSkeleton from './components/StructuredList/StructuredList.Skeleton';
 export Tab from './components/Tab';
 export TabContent from './components/TabContent';
 export Table from './components/Table';
@@ -129,6 +128,7 @@ export RadioButtonSkeleton from './components/RadioButton/RadioButton.Skeleton';
 export SearchSkeleton from './components/Search/Search.Skeleton';
 export SelectSkeleton from './components/Select/Select.Skeleton';
 export SliderSkeleton from './components/Slider/Slider.Skeleton';
+export StructuredListSkeleton from './components/StructuredList/StructuredList.Skeleton';
 export TabsSkeleton from './components/Tabs/Tabs.Skeleton';
 export TagSkeleton from './components/Tag/Tag.Skeleton';
 export TextAreaSkeleton from './components/TextArea/TextArea.Skeleton';
