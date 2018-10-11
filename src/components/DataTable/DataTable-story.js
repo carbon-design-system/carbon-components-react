@@ -25,6 +25,22 @@ storiesOf('DataTable', module)
     )
   )
   .add(
+    'short',
+    withReadme(
+      readme,
+      withInfo({
+        /* eslint-disable no-useless-escape */
+        text: `
+        Short Data Table.
+
+        You can find more detailed information surrounding usage of this component
+        at the following url: ${readmeURL}
+      `,
+        /* eslint-enable no-useless-escape */
+      })(require('./stories/shortDataTable').default)
+    )
+  )
+  .add(
     'with toolbar',
     withReadme(
       readme,
