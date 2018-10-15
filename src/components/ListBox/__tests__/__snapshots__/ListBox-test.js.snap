@@ -1,0 +1,53 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ListBox should render 1`] = `
+<ListBox
+  ariaLabel="Choose an item"
+  className="bx--list-box__container"
+  disabled={false}
+  innerRef={
+    [MockFunction] {
+      "calls": Array [
+        Array [
+          <div
+            aria-label="Choose an item"
+            class="bx--list-box__container bx--list-box"
+            role="listbox"
+            tabindex="0"
+          >
+            <div
+              class="bx--list-box__field"
+              role="button"
+              tabindex="0"
+            />
+          </div>,
+        ],
+      ],
+      "results": Array [
+        Object {
+          "isThrow": false,
+          "value": undefined,
+        },
+      ],
+    }
+  }
+  type="default"
+>
+  <div
+    aria-label="Choose an item"
+    className="bx--list-box__container bx--list-box"
+    onClick={[Function]}
+    onKeyDown={[Function]}
+    role="listbox"
+    tabIndex="0"
+  >
+    <ListBoxField>
+      <div
+        className="bx--list-box__field"
+        role="button"
+        tabIndex="0"
+      />
+    </ListBoxField>
+  </div>
+</ListBox>
+`;

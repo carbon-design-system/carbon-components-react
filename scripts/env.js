@@ -1,15 +1,17 @@
+'use strict';
+
 const BABEL_ENV = process.env.BABEL_ENV;
 
-module.exports = {
+module.exports = () => ({
   presets: [
     [
-      "env",
+      '@babel/preset-env',
       {
-        "modules": BABEL_ENV === 'es' ? false : "commonjs",
-        "targets": {
-          "browsers": ['last 1 versions', 'Firefox ESR']
-        }
-      }
+        modules: BABEL_ENV === 'es' ? false : 'commonjs',
+        targets: {
+          browsers: ['last 1 versions', 'Firefox ESR'],
+        },
+      },
     ],
   ],
-};
+});

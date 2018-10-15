@@ -1,0 +1,147 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DataTable.TableToolbarSearch should render 1`] = `
+<TableToolbarSearch
+  className="custom-class"
+  id="custom-id"
+  onChange={[MockFunction]}
+  translateWithId={[Function]}
+>
+  <div
+    className="bx--toolbar-search-container"
+  >
+    <Search
+      className="custom-class"
+      id="custom-id"
+      labelText="Filter table"
+      light={true}
+      onChange={[MockFunction]}
+      placeHolderText="Search"
+      small={true}
+      type="text"
+    >
+      <div
+        aria-labelledby="custom-id-label"
+        className="bx--search bx--search--sm bx--search--light custom-class"
+        role="search"
+      >
+        <Icon
+          className="bx--search-magnifier"
+          description="Filter table"
+          fillRule="evenodd"
+          icon={
+            Object {
+              "height": "16",
+              "id": "icon--search",
+              "name": "icon--search",
+              "styles": "",
+              "svgData": Object {
+                "circles": "",
+                "ellipses": "",
+                "paths": Array [
+                  Object {
+                    "d": "M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zm4.936-1.27l4.563 4.557-.707.708-4.563-4.558a6.5 6.5 0 1 1 .707-.707z",
+                    "fill-rule": "nonzero",
+                  },
+                ],
+                "polygons": "",
+                "polylines": "",
+                "rects": "",
+              },
+              "tags": "icon--search",
+              "viewBox": "0 0 16 16",
+              "width": "16",
+            }
+          }
+          role="img"
+        >
+          <svg
+            alt="Filter table"
+            aria-label="Filter table"
+            className="bx--search-magnifier"
+            fillRule="evenodd"
+            height="16"
+            role="img"
+            viewBox="0 0 16 16"
+            width="16"
+          >
+            <title>
+              Filter table
+            </title>
+            <path
+              d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zm4.936-1.27l4.563 4.557-.707.708-4.563-4.558a6.5 6.5 0 1 1 .707-.707z"
+              key="key0"
+            />
+          </svg>
+        </Icon>
+        <label
+          className="bx--label"
+          htmlFor="custom-id"
+          id="custom-id-label"
+        >
+          Filter table
+        </label>
+        <input
+          className="bx--search-input"
+          id="custom-id"
+          onChange={[Function]}
+          placeholder="Search"
+          type="text"
+        />
+        <button
+          className="bx--search-close bx--search-close--hidden"
+          onClick={[Function]}
+          type="button"
+        >
+          <Icon
+            description="Provide a description that will be used as the title"
+            fillRule="evenodd"
+            icon={
+              Object {
+                "height": "16",
+                "id": "icon--close--solid",
+                "name": "icon--close--solid",
+                "styles": "",
+                "svgData": Object {
+                  "circles": "",
+                  "ellipses": "",
+                  "paths": Array [
+                    Object {
+                      "d": "M8 6.586L5.879 4.464 4.464 5.88 6.586 8l-2.122 2.121 1.415 1.415L8 9.414l2.121 2.122 1.415-1.415L9.414 8l2.122-2.121-1.415-1.415L8 6.586zM8 16A8 8 0 1 1 8 0a8 8 0 0 1 0 16z",
+                    },
+                  ],
+                  "polygons": "",
+                  "polylines": "",
+                  "rects": "",
+                },
+                "tags": "icon--close--solid",
+                "viewBox": "0 0 16 16",
+                "width": "16",
+              }
+            }
+            role="img"
+          >
+            <svg
+              alt="Provide a description that will be used as the title"
+              aria-label="Provide a description that will be used as the title"
+              fillRule="evenodd"
+              height="16"
+              role="img"
+              viewBox="0 0 16 16"
+              width="16"
+            >
+              <title>
+                Provide a description that will be used as the title
+              </title>
+              <path
+                d="M8 6.586L5.879 4.464 4.464 5.88 6.586 8l-2.122 2.121 1.415 1.415L8 9.414l2.121 2.122 1.415-1.415L9.414 8l2.122-2.121-1.415-1.415L8 6.586zM8 16A8 8 0 1 1 8 0a8 8 0 0 1 0 16z"
+                key="key0"
+              />
+            </svg>
+          </Icon>
+        </button>
+      </div>
+    </Search>
+  </div>
+</TableToolbarSearch>
+`;

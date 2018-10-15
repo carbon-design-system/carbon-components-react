@@ -1,13 +1,23 @@
-const execSync = require('child_process').execSync;
-const inInstall = require('in-publish').inInstall;
+'use strict';
+
+const { execSync } = require('child_process');
+const { inInstall } = require('in-publish');
 const path = require('path');
 const rimraf = require('rimraf');
+const { promisify } = require('util');
 
-if (inInstall()) process.exit(0);
+if (inInstall()) {
+  process.exit(0);
+}
 
-const babelPath = path.resolve(__dirname, '../node_modules/.bin/babel');
-const dirs = ['components', 'lib', 'internal'];
 const rootDir = path.resolve(__dirname, '../');
+const babelPath = path
+  .resolve(__dirname, '../node_modules/.bin/babel')
+  .replace(/ /g, '\\ ');
+const rollupPath = path
+  .resolve(__dirname, '../node_modules/.bin/rollup')
+  .replace(/ /g, '\\ ');
+const rimrafAsync = promisify(rimraf);
 
 const exec = (command, extraEnv) =>
   execSync(command, {
@@ -15,29 +25,38 @@ const exec = (command, extraEnv) =>
     env: Object.assign({}, process.env, extraEnv),
   });
 
-const compile = (dirs, type) => {
-  dirs.forEach(dir => {
-    exec(`${babelPath} ${dir} --out-dir ${type}/${dir} --ignore __tests__`, {
-      BABEL_ENV: type,
+const ignoreGlobs = ['**/__tests__/*', '**/*-test.js', '**/*-story.js'].join(
+  ','
+);
+
+console.log('Deleting old build folders...'); // eslint-disable-line no-console
+
+Promise.all([
+  rimrafAsync(`${rootDir}/cjs`),
+  rimrafAsync(`${rootDir}/es`),
+  rimrafAsync(`${rootDir}/umd`),
+])
+  .then(() => {
+    exec(`${babelPath} src -q -d es --ignore "${ignoreGlobs}"`, {
+      BABEL_ENV: 'es',
     });
+    exec(`${babelPath} src -q -d lib --ignore "${ignoreGlobs}"`, {
+      BABEL_ENV: 'cjs',
+    });
+    exec(
+      `${rollupPath} -c scripts/rollup.config.js -o umd/carbon-components-react.js`,
+      {
+        NODE_ENV: 'development',
+      }
+    );
+    exec(
+      `${rollupPath} -c scripts/rollup.config.js -o umd/carbon-components-react.min.js`,
+      {
+        NODE_ENV: 'production',
+      }
+    );
+  })
+  .catch(error => {
+    console.error('One of the commands failed:', error.stack); // eslint-disable-line no-console
+    process.exit(1);
   });
-
-  exec(`${babelPath} index.js -d ${type}`, {
-    BABEL_ENV: type,
-  });
-};
-
-console.log('Deleting old build folders ...');
-rimraf(`${rootDir}/cjs`, err => {
-  if (err) throw err;
-
-  rimraf(`${rootDir}/es`, err => {
-    if (err) throw err;
-
-    console.log('Building CommonJS modules ...');
-    compile(dirs, 'cjs');
-
-    console.log('\nBuilding ES modules ...');
-    compile(dirs, 'es');
-  });
-});
