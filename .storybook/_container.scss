@@ -1,3 +1,6 @@
+@import '~carbon-components/scss/globals/scss/feature-flags';
+
+$feature-flags: map-merge($default-feature-flags,  (ui-shell: true));
 $css--font-face: true;
 $css--reset: true;
 
