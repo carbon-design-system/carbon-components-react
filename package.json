@@ -6,6 +6,10 @@
   "main": "lib/index.js",
   "module": "es/index.js",
   "sideEffects": false,
+  "devEngines": {
+    "node": "8.x",
+    "yarn": "1.x"
+  },
   "scripts": {
     "build": "node scripts/build.js",
     "build-storybook": "build-storybook",
@@ -14,6 +18,7 @@
     "contributors:add": "all-contributors add",
     "contributors:generate": "all-contributors generate",
     "lint": "eslint src",
+    "postinstall": "node scripts/check-dev-engines.js package.json",
     "precommit": "lint-staged",
     "prepublish": "yarn build",
     "prettier": "prettier --write \"**/*.{scss,css,js,md}\"",
