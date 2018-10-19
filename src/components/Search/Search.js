@@ -33,8 +33,8 @@ export default class Search extends Component {
   };
 
   static getDerivedStateFromProps({ value }, state) {
-    const { prevValue } = state || {};
-    return state && prevValue === value
+    const { prevValue } = state;
+    return prevValue === value
       ? null
       : {
           hasContent: !!value,
@@ -99,13 +99,16 @@ export default class Search extends Component {
     });
 
     return (
-      <div className={searchClasses} role="search">
+      <div
+        className={searchClasses}
+        role="search"
+        aria-labelledby={`${id}-label`}>
         <Icon
           icon={iconSearch}
           description={labelText}
           className="bx--search-magnifier"
         />
-        <label htmlFor={id} className="bx--label">
+        <label id={`${id}-label`} htmlFor={id} className="bx--label">
           {labelText}
         </label>
         <input

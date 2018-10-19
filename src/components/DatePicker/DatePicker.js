@@ -214,10 +214,7 @@ export default class DatePicker extends Component {
 
   UNSAFE_componentWillUpdate(nextProps) {
     if (nextProps.value !== this.props.value) {
-      if (
-        this.props.datePickerType === 'single' ||
-        this.props.datePickerType === 'range'
-      ) {
+      if (this.cal) {
         this.cal.setDate(nextProps.value);
         this.updateClassNames(this.cal);
       } else {
@@ -247,42 +244,42 @@ export default class DatePicker extends Component {
         typeof appendTo === 'string'
           ? document.querySelector(appendTo)
           : appendTo;
-      this.cal = new flatpickr(this.inputField, {
-        defaultDate: value,
-        appendTo: appendToNode,
-        mode: datePickerType,
-        allowInput: true,
-        dateFormat: dateFormat,
-        locale: l10n[locale],
-        minDate: minDate,
-        maxDate: maxDate,
-        plugins:
-          datePickerType === 'range'
-            ? [new rangePlugin({ input: this.toInputField })]
-            : '',
-        clickOpens: true,
-        nextArrow: this.rightArrowHTML(),
-        leftArrow: this.leftArrowHTML(),
-        onChange: (...args) => {
-          if (onChange) {
-            onChange(...args);
-          }
-        },
-        onReady: onHook,
-        onMonthChange: onHook,
-        onYearChange: onHook,
-        onOpen: onHook,
-        onValueUpdate: onHook,
-      });
-      this.addKeyboardEvents(this.cal);
+      // inputField ref might not be set in enzyme tests
+      if (this.inputField) {
+        this.cal = new flatpickr(this.inputField, {
+          defaultDate: value,
+          appendTo: appendToNode,
+          mode: datePickerType,
+          allowInput: true,
+          dateFormat: dateFormat,
+          locale: l10n[locale],
+          minDate: minDate,
+          maxDate: maxDate,
+          plugins:
+            datePickerType === 'range'
+              ? [new rangePlugin({ input: this.toInputField })]
+              : '',
+          clickOpens: true,
+          nextArrow: this.rightArrowHTML(),
+          leftArrow: this.leftArrowHTML(),
+          onChange: (...args) => {
+            if (onChange) {
+              onChange(...args);
+            }
+          },
+          onReady: onHook,
+          onMonthChange: onHook,
+          onYearChange: onHook,
+          onOpen: onHook,
+          onValueUpdate: onHook,
+        });
+        this.addKeyboardEvents(this.cal);
+      }
     }
   }
 
   componentWillUnmount() {
-    if (
-      this.props.datePickerType === 'range' ||
-      this.props.datePickerType === 'single'
-    ) {
+    if (this.cal) {
       this.cal.destroy();
     }
     if (this.inputField) {
@@ -294,7 +291,11 @@ export default class DatePicker extends Component {
   }
 
   onChange = e => {
-    if (e.target.value === '' && this.cal.selectedDates.length > 0) {
+    if (
+      e.target.value === '' &&
+      this.cal &&
+      this.cal.selectedDates.length > 0
+    ) {
       this.cal.clear();
     }
   };
@@ -331,7 +332,9 @@ export default class DatePicker extends Component {
   }
 
   openCalendar = () => {
-    this.cal.open();
+    if (this.cal) {
+      this.cal.open();
+    }
   };
 
   updateClassNames = calendar => {
