@@ -1,6 +1,6 @@
 export const keyCodes = {
   TAB: 9,
-  RETURN: 13,
+  ENTER: 13,
   ESC: 27,
   SPACE: 32,
   PAGEUP: 33,
