@@ -1,17 +1,14 @@
-import cx from 'classnames';
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const PlatformHeaderNavLink = ({
-  children,
-  className: customClassName,
-  href,
-  ...rest
-}) => {
-  const className = cx('bx--platform-header__link', customClassName);
+const PlatformHeaderNavLink = ({ children, className, href, ...rest }) => {
   return (
-    <li className="bx--platform-header__link-item">
-      <a {...rest} className={className} href={href}>
+    <li className={className}>
+      <a
+        {...rest}
+        className="bx--platform-header__menu-item"
+        href={href}
+        role="menuitem">
         {children}
       </a>
     </li>

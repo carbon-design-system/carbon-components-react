@@ -3949,10 +3949,10 @@ caniuse-lite@^1.0.30000884:
   resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30000885.tgz#e889e9f8e7e50e769f2a49634c932b8aee622984"
   integrity sha512-cXKbYwpxBLd7qHyej16JazPoUacqoVuDhvR61U7Fr5vSxMUiodzcYa1rQYRYfZ5GexV03vGZHd722vNPLjPJGQ==
 
-carbon-components@^9.24.0:
-  version "9.30.1"
-  resolved "https://registry.yarnpkg.com/carbon-components/-/carbon-components-9.30.1.tgz#76815de44a9651115b9bea74b4b380ca73ab7076"
-  integrity sha512-8HbWCiS0Vc2rdtHcK5MeeDuP74bz8vE7Sor6Lq9U8Ge+GWxH+VTu1Su0ButKiCTp52sFC3z8zG2m9OiALqhwIA==
+carbon-components@^9.36.0:
+  version "9.36.0"
+  resolved "https://registry.yarnpkg.com/carbon-components/-/carbon-components-9.36.0.tgz#17ff739cbb46b48245b7f4b0622278662514d11e"
+  integrity sha512-89xvSgVwV5ACIYJ+GNaRqizqKiTQxI5XV5swVhUCsmhbvEDvEEswNro8WojyjnIaMgnPp/2tzD+MkwcADSAdaQ==
   dependencies:
     "@carbon/colors" "^0.0.1-alpha.0"
     carbon-icons "^7.0.7"

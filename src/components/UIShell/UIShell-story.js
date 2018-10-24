@@ -28,10 +28,10 @@ storiesOf('UI Shell', module).add(
     })(() => (
       <PlatformHeader>
         <PlatformHeaderName platform="Cloud" />
-        <PlatformHeaderNav>
+        <PlatformHeaderNav ariaLabel="Platform Name">
           <PlatformHeaderNavLink href="#">Catalog</PlatformHeaderNavLink>
           <PlatformHeaderNavLink href="#">Docs</PlatformHeaderNavLink>
-          <PlatformHeaderNavMenu title="Support">
+          <PlatformHeaderNavMenu ariaLabel="Support" title="Support">
             <PlatformHeaderNavMenuItem href="#">
               What's new
             </PlatformHeaderNavMenuItem>
