@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import RadioButton from '../RadioButton';
 import warning from 'warning';
+import styles from '../../../.storybook/_container.scss';
 
 export default class RadioButtonGroup extends React.Component {
   state = { selected: this.props.valueSelected || this.props.defaultSelected };
@@ -46,7 +47,7 @@ export default class RadioButtonGroup extends React.Component {
 
   static defaultProps = {
     onChange: /* istanbul ignore next */ () => {},
-    className: 'bx--radio-button-group',
+    className: styles['bx--radio-button-group'],
   };
 
   static getDerivedStateFromProps({ valueSelected, defaultSelected }, state) {
@@ -97,7 +98,7 @@ export default class RadioButtonGroup extends React.Component {
     const { disabled, className } = this.props;
 
     return (
-      <div className="bx--form-item">
+      <div className={styles['bx--form-item']}>
         <div className={className} disabled={disabled}>
           {this.getRadioButtons()}
         </div>

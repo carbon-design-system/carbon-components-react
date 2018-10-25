@@ -1,9 +1,10 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import classnames from 'classnames';
+import styles from '../../../.storybook/_container.scss';
 
 const ListItem = ({ children, className, ...other }) => {
-  const classNames = classnames('bx--list__item', className);
+  const classNames = classnames(styles['bx--list__item'], className);
   return (
     <li className={classNames} {...other}>
       {children}

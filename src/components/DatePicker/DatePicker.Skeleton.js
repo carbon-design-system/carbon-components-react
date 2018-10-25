@@ -1,21 +1,33 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import classnames from 'classnames';
+import styles from '../../../.storybook/_container.scss';
 
 const DatePickerSkeleton = ({ range, id }) => {
   const dateInput = (
-    <div className="bx--date-picker-container">
+    <div className={styles['bx--date-picker-container']}>
       {
         /* eslint-disable jsx-a11y/label-has-for */
-        <label className="bx--label" htmlFor={id} />
+        <label className={styles['bx--label']} htmlFor={id} />
       }
-      <div className="bx--date-picker__input bx--skeleton" />
+      <div
+        className={classnames(
+          styles['bx--date-picker__input'],
+          styles['bx--skeleton']
+        )}
+      />
     </div>
   );
 
   if (range) {
     return (
-      <div className="bx--form-item">
-        <div className="bx--date-picker bx--date-picker--range bx--skeleton">
+      <div className={styles['bx--form-item']}>
+        <div
+          className={classnames(
+            styles['bx--date-picker'],
+            styles['bx--date-picker--range'],
+            styles['bx--skeleton']
+          )}>
           {dateInput}
           {dateInput}
         </div>
@@ -24,8 +36,14 @@ const DatePickerSkeleton = ({ range, id }) => {
   }
 
   return (
-    <div className="bx--form-item">
-      <div className="bx--date-picker bx--date-picker--short bx--date-picker--simple bx--skeleton">
+    <div className={styles['bx--form-item']}>
+      <div
+        className={classnames(
+          styles['bx--date-picker'],
+          styles['bx--date-picker--short'],
+          styles['bx--date-picker--simple'],
+          styles['bx--skeleton']
+        )}>
         {dateInput}
       </div>
     </div>

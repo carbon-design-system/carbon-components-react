@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import classnames from 'classnames';
+import styles from '../../../.storybook/_container.scss';
 
 export default class Copy extends Component {
   static propTypes = {
@@ -68,8 +69,8 @@ export default class Copy extends Component {
       onClick, // eslint-disable-line no-unused-vars
       ...other
     } = this.props;
-    const feedbackClassNames = classnames('bx--btn--copy__feedback', {
-      'bx--btn--copy__feedback--displayed': this.state.showFeedback,
+    const feedbackClassNames = classnames(styles['bx--btn--copy__feedback'], {
+      [styles['bx--btn--copy__feedback--displayed']]: this.state.showFeedback,
     });
 
     return (

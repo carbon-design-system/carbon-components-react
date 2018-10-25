@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import classNames from 'classnames';
+import styles from '../../../.storybook/_container.scss';
 
 const DataTableSkeleton = ({
   rowCount,
@@ -10,10 +11,10 @@ const DataTableSkeleton = ({
   ...other
 }) => {
   const dataTableSkeletonClasses = classNames({
-    'bx--skeleton': true,
-    'bx--data-table-v2': true,
-    'bx--data-table-v2--zebra': zebra,
-    'bx--data-table-v2--compact': compact,
+    [styles['bx--skeleton']]: true,
+    [styles['bx--data-table-v2']]: true,
+    [styles['bx--data-table-v2--zebra']]: zebra,
+    [styles['bx--data-table-v2--compact']]: compact,
   });
 
   const rows = [];

@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import classNames from 'classnames';
 import { iconSearch, iconCloseSolid } from 'carbon-icons';
 import Icon from '../Icon';
-
+import styles from '../../../.storybook/_container.scss';
 export default class Search extends Component {
   static propTypes = {
     className: PropTypes.string,
@@ -86,16 +86,16 @@ export default class Search extends Component {
     const { hasContent } = this.state;
 
     const searchClasses = classNames({
-      'bx--search': true,
-      'bx--search--lg': !small,
-      'bx--search--sm': small,
-      'bx--search--light': light,
+      [styles['bx--search']]: true,
+      [styles['bx--search--lg']]: !small,
+      [styles['bx--search--sm']]: small,
+      [styles['bx--search--light']]: light,
       [className]: className,
     });
 
     const clearClasses = classNames({
-      'bx--search-close': true,
-      'bx--search-close--hidden': !hasContent,
+      [styles['bx--search-close']]: true,
+      [styles['bx--search-close--hidden']]: !hasContent,
     });
 
     return (
@@ -106,15 +106,15 @@ export default class Search extends Component {
         <Icon
           icon={iconSearch}
           description={labelText}
-          className="bx--search-magnifier"
+          className={styles['bx--search-magnifier']}
         />
-        <label id={`${id}-label`} htmlFor={id} className="bx--label">
+        <label id={`${id}-label`} htmlFor={id} className={styles['bx--label']}>
           {labelText}
         </label>
         <input
           {...other}
           type={type}
-          className="bx--search-input"
+          className={styles['bx--search-input']}
           id={id}
           placeholder={placeHolderText}
           onChange={this.handleChange}

@@ -4,6 +4,7 @@ import React from 'react';
 import { iconCaretUp } from 'carbon-icons';
 import Icon from '../Icon';
 import { sortStates } from './state/sorting';
+import styles from '../../../.storybook/_container.scss';
 
 const translationKeys = {
   iconDescription: 'carbon.table.header.icon.description',
@@ -42,19 +43,19 @@ const TableHeader = ({
   }
 
   const className = cx(headerClassName, {
-    'bx--table-sort-v2': true,
-    'bx--table-sort-v2--active':
+    [styles['bx--table-sort-v2']]: true,
+    [styles['bx--table-sort-v2--active']]:
       isSortHeader && sortDirection !== sortStates.NONE,
-    'bx--table-sort-v2--ascending':
+    [styles['bx--table-sort-v2--ascending']]:
       isSortHeader && sortDirection === sortStates.ASC,
   });
 
   return (
     <th scope={scope} className={headerClassName}>
       <button className={className} onClick={onClick} {...rest}>
-        <span className="bx--table-header-label">{children}</span>
+        <span className={styles['bx--table-header-label']}>{children}</span>
         <Icon
-          className="bx--table-sort-v2__icon"
+          className={styles['bx--table-sort-v2__icon']}
           icon={iconCaretUp}
           description={t('carbon.table.header.icon.description', {
             header: children,

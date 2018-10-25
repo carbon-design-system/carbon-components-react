@@ -4,6 +4,7 @@ import { iconInfoGlyph } from 'carbon-icons';
 import classNames from 'classnames';
 import warning from 'warning';
 import Icon from '../Icon';
+import styles from '../../../.storybook/_container.scss';
 
 let didWarnAboutDeprecation = false;
 
@@ -27,9 +28,12 @@ const TooltipSimple = ({
     );
     didWarnAboutDeprecation = true;
   }
-  const tooltipClasses = classNames(`bx--tooltip--simple__${position}`);
+  const tooltipClasses = classNames(styles[`bx--tooltip--simple__${position}`]);
 
-  const tooltipWrapperClasses = classNames(`bx--tooltip--simple`, className);
+  const tooltipWrapperClasses = classNames(
+    styles[`bx--tooltip--simple`],
+    className
+  );
   return (
     <div className={tooltipWrapperClasses}>
       {showIcon ? (

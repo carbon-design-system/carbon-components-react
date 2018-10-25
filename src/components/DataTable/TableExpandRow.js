@@ -4,6 +4,7 @@ import React from 'react';
 import { iconChevronRight } from 'carbon-icons';
 import Icon from '../Icon';
 import TableCell from './TableCell';
+import styles from '../../../.storybook/_container.scss';
 
 const TableExpandRow = ({
   ariaLabel,
@@ -17,9 +18,9 @@ const TableExpandRow = ({
 }) => {
   const className = cx(
     {
-      'bx--parent-row-v2': true,
-      'bx--expandable-row-v2': isExpanded,
-      'bx--data-table-v2--selected': isSelected,
+      [styles['bx--parent-row-v2']]: true,
+      [styles['bx--expandable-row-v2']]: isExpanded,
+      [styles['bx--data-table-v2--selected']]: isSelected,
     },
     rowClassName
   );
@@ -28,14 +29,14 @@ const TableExpandRow = ({
   return (
     <tr {...rest} className={className} data-parent-row>
       <TableCell
-        className="bx--table-expand-v2"
+        className={styles['bx--table-expand-v2']}
         data-previous-value={previousValue}>
         <button
-          className="bx--table-expand-v2__button"
+          className={styles['bx--table-expand-v2__button']}
           onClick={onExpand}
           aria-label={ariaLabel}>
           <Icon
-            className="bx--table-expand-v2__svg"
+            className={styles['bx--table-expand-v2__svg']}
             icon={iconChevronRight}
             description={expandIconDescription}
           />

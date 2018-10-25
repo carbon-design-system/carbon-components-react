@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import classnames from 'classnames';
 import { iconChevronRight } from 'carbon-icons';
 import Icon from '../Icon';
+import styles from '../../../.storybook/_container.scss';
 
 const defaultRenderExpando = props => <button {...props} />;
 
@@ -104,9 +105,9 @@ export default class AccordionItem extends Component {
 
     const classNames = classnames(
       {
-        'bx--accordion__item--active': this.state.open,
+        [styles['bx--accordion__item--active']]: this.state.open,
       },
-      'bx--accordion__item',
+      [styles['bx--accordion__item']],
       className
     );
     return (
@@ -118,17 +119,17 @@ export default class AccordionItem extends Component {
         {...other}>
         <Expando
           type="button"
-          className="bx--accordion__heading"
+          className={styles['bx--accordion__heading']}
           role="tab"
           onClick={this.handleHeadingClick}>
           <Icon
-            className="bx--accordion__arrow"
+            className={styles['bx--accordion__arrow']}
             icon={iconChevronRight}
             description={iconDescription}
           />
-          <div className="bx--accordion__title">{title}</div>
+          <div className={styles['bx--accordion__title']}>{title}</div>
         </Expando>
-        <div className="bx--accordion__content">{children}</div>
+        <div className={styles['bx--accordion__content']}>{children}</div>
       </li>
     );
   }

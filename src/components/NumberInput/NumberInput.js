@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { iconCaretUp, iconCaretDown } from 'carbon-icons';
 import Icon from '../Icon';
 import classNames from 'classnames';
+import styles from '../../../.storybook/_container.scss';
 
 export default class NumberInput extends Component {
   constructor(props) {
@@ -142,8 +143,8 @@ export default class NumberInput extends Component {
       ...other
     } = this.props;
 
-    const numberInputClasses = classNames('bx--number', className, {
-      'bx--number--light': light,
+    const numberInputClasses = classNames(styles['bx--number'], className, {
+      [styles['bx--number--light']]: light,
     });
 
     const props = {
@@ -165,41 +166,49 @@ export default class NumberInput extends Component {
     let error = null;
     if (invalid || (!allowEmpty && this.state.value === '')) {
       inputWrapperProps['data-invalid'] = true;
-      error = <div className="bx--form-requirement">{invalidText}</div>;
+      error = (
+        <div className={styles['bx--form-requirement']}>{invalidText}</div>
+      );
     }
 
     const helper = helperText ? (
-      <div className="bx--form__helper-text">{helperText}</div>
+      <div className={styles['bx--form__helper-text']}>{helperText}</div>
     ) : null;
 
     return (
-      <div className="bx--form-item">
+      <div className={styles['bx--form-item']}>
         <div className={numberInputClasses} {...inputWrapperProps}>
-          <div className="bx--number__controls">
+          <div className={styles['bx--number__controls']}>
             <button
-              className="bx--number__control-btn up-icon"
+              className={classNames(
+                styles['bx--number__control-btn'],
+                styles['up-icon']
+              )}
               {...buttonProps}
               onClick={evt => this.handleArrowClick(evt, 'up')}>
               <Icon
-                className="up-icon"
+                className={styles['up-icon']}
                 icon={iconCaretUp}
                 description={this.props.iconDescription}
                 viewBox="0 0 10 5"
               />
             </button>
             <button
-              className="bx--number__control-btn down-icon"
+              className={classNames(
+                styles['bx--number__control-btn'],
+                styles['down-icon']
+              )}
               {...buttonProps}
               onClick={evt => this.handleArrowClick(evt, 'down')}>
               <Icon
-                className="down-icon"
+                className={styles['down-icon']}
                 icon={iconCaretDown}
                 viewBox="0 0 10 5"
                 description={this.props.iconDescription}
               />
             </button>
           </div>
-          <label htmlFor={id} className="bx--label">
+          <label htmlFor={id} className={styles['bx--label']}>
             {label}
           </label>
           <input

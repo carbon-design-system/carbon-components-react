@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import classNames from 'classnames';
+import styles from '../../../.storybook/_container.scss';
 
 export default class Tab extends React.Component {
   static propTypes = {
@@ -64,13 +65,13 @@ export default class Tab extends React.Component {
     } = this.props;
 
     const classes = classNames(
-      'bx--tabs__nav-item',
-      { 'bx--tabs__nav-item--selected': selected },
+      styles['bx--tabs__nav-item'],
+      { [styles['bx--tabs__nav-item--selected']]: selected },
       className
     );
 
     const anchorProps = {
-      className: 'bx--tabs__nav-link',
+      className: styles['bx--tabs__nav-link'],
       href,
       role: 'tab',
       tabIndex,

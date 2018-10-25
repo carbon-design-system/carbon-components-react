@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './polyfills';
-import './_container.scss';
+import styles from './_container.scss';
 
 export default class Container extends Component {
   render() {
@@ -22,7 +22,7 @@ export default class Container extends Component {
         <input
           aria-label="input-text-offleft"
           type="text"
-          className="bx--visually-hidden"
+          className={styles['bx--visually-hidden']}
         />
       </React.StrictMode>
     );

@@ -2,6 +2,7 @@ import React from 'react';
 import ListBoxMenuIcon from './ListBoxMenuIcon';
 import ListBoxSelection from './ListBoxSelection';
 import childrenOf from '../../prop-types/childrenOf';
+import styles from '../../../.storybook/_container.scss';
 
 /**
  * `ListBoxField` is responsible for creating the containing node for valid
@@ -9,7 +10,11 @@ import childrenOf from '../../prop-types/childrenOf';
  * `role` to make sure a user can focus the given field.
  */
 const ListBoxField = ({ children, ...rest }) => (
-  <div role="button" className="bx--list-box__field" tabIndex="0" {...rest}>
+  <div
+    role="button"
+    className={styles['bx--list-box__field']}
+    tabIndex="0"
+    {...rest}>
     {children}
   </div>
 );

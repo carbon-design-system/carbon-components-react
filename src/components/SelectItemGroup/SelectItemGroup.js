@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import classnames from 'classnames';
+import styles from '../../../.storybook/_container.scss';
 
 const SelectItemGroup = ({
   children,
@@ -9,7 +10,7 @@ const SelectItemGroup = ({
   label,
   ...other
 }) => {
-  const classNames = classnames('bx--select-optgroup', className);
+  const classNames = classnames(styles['bx--select-optgroup'], className);
   return (
     <optgroup
       className={classNames}

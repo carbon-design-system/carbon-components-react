@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import classNames from 'classnames';
+import styles from '../../../.storybook/_container.scss';
 
 const Checkbox = ({
   className,
@@ -14,13 +15,13 @@ const Checkbox = ({
   ...other
 }) => {
   let input;
-  const labelClasses = classNames('bx--checkbox-label', className);
+  const labelClasses = classNames(styles['bx--checkbox-label'], className);
   const innerLabelClasses = classNames({
-    'bx--visually-hidden': hideLabel,
+    [styles['bx--visually-hidden']]: hideLabel,
   });
   const wrapperClasses = classNames(
-    'bx--form-item',
-    'bx--checkbox-wrapper',
+    styles['bx--form-item'],
+    styles['bx--checkbox-wrapper'],
     wrapperClassName
   );
 
@@ -32,7 +33,7 @@ const Checkbox = ({
         onChange={evt => {
           onChange(input.checked, id, evt);
         }}
-        className="bx--checkbox"
+        className={styles['bx--checkbox']}
         id={id}
         ref={el => {
           input = el;

@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import RadioTile from '../RadioTile';
 import warning from 'warning';
-
+import styles from '../../../.storybook/_container.scss';
 export default class TileGroup extends React.Component {
   state = {
     selected: this.props.valueSelected || this.props.defaultSelected || null,
@@ -21,7 +21,7 @@ export default class TileGroup extends React.Component {
 
   static defaultProps = {
     onChange: /* istanbul ignore next */ () => {},
-    className: 'bx--tile-group',
+    className: styles['bx--tile-group'],
   };
 
   static getDerivedStateFromProps({ valueSelected, defaultSelected }, state) {

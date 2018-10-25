@@ -1,11 +1,12 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import classnames from 'classnames';
+import styles from '../../../.storybook/_container.scss';
 
 const Breadcrumb = ({ children, className, noTrailingSlash, ...other }) => {
   const classNames = classnames(className, {
-    'bx--breadcrumb': true,
-    'bx--breadcrumb--no-trailing-slash': noTrailingSlash,
+    [styles['bx--breadcrumb']]: true,
+    [styles['bx--breadcrumb--no-trailing-slash']]: noTrailingSlash,
   });
   return (
     <div className={classNames} {...other}>

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import isEqual from 'lodash.isequal';
 import TextInput from '../TextInput';
+import styles from '../../../.storybook/_container.scss';
 
 const defaultFormatLabel = (value, label) => {
   return typeof label === 'function' ? label(value) : `${value}${label}`;
@@ -158,7 +159,7 @@ export default class Slider extends PureComponent {
           evt &&
           evt.target &&
           evt.target.classList &&
-          evt.target.classList.contains('bx-slider-text-input');
+          evt.target.classList.contains(styles['bx-slider-text-input']);
         const { left, newValue: newSliderValue } = this.calcValue(
           evt,
           prevState,
@@ -323,13 +324,13 @@ export default class Slider extends PureComponent {
     const { value, left } = this.state;
 
     const sliderClasses = classNames(
-      'bx--slider',
-      { 'bx--slider--disabled': disabled },
+      styles['bx--slider'],
+      { [styles['bx--slider--disabled']]: disabled },
       className
     );
 
-    const inputClasses = classNames('bx-slider-text-input', {
-      'bx--text-input--light': light,
+    const inputClasses = classNames(styles['bx-slider-text-input'], {
+      [styles['bx--text-input--light']]: light,
     });
 
     const filledTrackStyle = {
@@ -340,12 +341,12 @@ export default class Slider extends PureComponent {
     };
 
     return (
-      <div className="bx--form-item">
-        <label htmlFor={id} className="bx--label">
+      <div className={styles['bx--form-item']}>
+        <label htmlFor={id} className={styles['bx--label']}>
           {labelText}
         </label>
-        <div className="bx--slider-container">
-          <span className="bx--slider__range-label">
+        <div className={styles['bx--slider-container']}>
+          <span className={styles['bx--slider__range-label']}>
             {formatLabel(min, minLabel)}
           </span>
           <div
@@ -359,17 +360,17 @@ export default class Slider extends PureComponent {
             tabIndex={-1}
             {...other}>
             <div
-              className="bx--slider__track"
+              className={styles['bx--slider__track']}
               ref={node => {
                 this.track = node;
               }}
             />
             <div
-              className="bx--slider__filled-track"
+              className={styles['bx--slider__filled-track']}
               style={filledTrackStyle}
             />
             <div
-              className="bx--slider__thumb"
+              className={styles['bx--slider__thumb']}
               role="slider"
               id={id}
               tabIndex={0}
@@ -392,7 +393,7 @@ export default class Slider extends PureComponent {
               onChange={this.handleChange}
             />
           </div>
-          <span className="bx--slider__range-label">
+          <span className={styles['bx--slider__range-label']}>
             {formatLabel(max, maxLabel)}
           </span>
           {!hideTextInput && (

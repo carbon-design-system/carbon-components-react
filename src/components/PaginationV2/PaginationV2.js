@@ -6,6 +6,7 @@ import Icon from '../Icon';
 import Select from '../Select';
 import SelectItem from '../SelectItem';
 import { equals } from '../../tools/array';
+import styles from '../../../.storybook/_container.scss';
 
 let instanceId = 0;
 
@@ -236,12 +237,12 @@ export default class PaginationV2 extends Component {
 
     const statePage = this.state.page;
     const statePageSize = this.state.pageSize;
-    const classNames = classnames('bx--pagination', className);
+    const classNames = classnames(styles['bx--pagination'], className);
     const backButtonClasses = classnames(
-      'bx--pagination__button',
-      'bx--pagination__button--backward',
+      [styles['bx--pagination__button']],
+      [styles['bx--pagination__button--backward']],
       {
-        'bx--pagination__button--no-index': pageInputDisabled,
+        [styles['bx--pagination__button--no-index']]: pageInputDisabled,
       }
     );
     const inputId = id || this.uniqueId;
@@ -250,8 +251,8 @@ export default class PaginationV2 extends Component {
 
     return (
       <div className={classNames} {...other}>
-        <div className="bx--pagination__left">
-          <span className="bx--pagination__text">
+        <div className={styles['bx--pagination__left']}>
+          <span className={styles['bx--pagination__text']}>
             {itemsPerPageFollowsText || itemsPerPageText}
           </span>
 
@@ -266,7 +267,7 @@ export default class PaginationV2 extends Component {
               <SelectItem key={size} value={size} text={String(size)} />
             ))}
           </Select>
-          <span className="bx--pagination__text">
+          <span className={styles['bx--pagination__text']}>
             &nbsp;|&nbsp;&nbsp;
             {pagesUnknown
               ? itemText(
@@ -280,8 +281,12 @@ export default class PaginationV2 extends Component {
                 )}
           </span>
         </div>
-        <div className="bx--pagination__right bx--pagination--inline">
-          <span className="bx--pagination__text">
+        <div
+          className={classnames(
+            styles['bx--pagination__right'],
+            styles['bx--pagination--inline']
+          )}>
+          <span className={styles['bx--pagination__text']}>
             {pagesUnknown
               ? pageText(statePage)
               : pageRangeText(statePage, totalPages)}
@@ -292,7 +297,7 @@ export default class PaginationV2 extends Component {
             aria-label={backwardText}
             disabled={this.props.disabled || statePage === 1}>
             <Icon
-              className="bx--pagination__button-icon"
+              className={styles['bx--pagination__button-icon']}
               icon={iconChevronLeft}
               description={backwardText}
             />
@@ -309,14 +314,17 @@ export default class PaginationV2 extends Component {
             </Select>
           )}
           <button
-            className="bx--pagination__button bx--pagination__button--forward"
+            className={classnames(
+              styles['bx--pagination__button'],
+              styles['bx--pagination__button--forward']
+            )}
             aria-label={forwardText}
             onClick={this.incrementPage}
             disabled={
               this.props.disabled || statePage === totalPages || isLastPage
             }>
             <Icon
-              className="bx--pagination__button-icon"
+              className={styles['bx--pagination__button-icon']}
               icon={iconChevronRight}
               description={forwardText}
             />

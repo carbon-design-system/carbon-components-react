@@ -3,6 +3,7 @@ import Downshift from 'downshift';
 import PropTypes from 'prop-types';
 import React from 'react';
 import ListBox, { PropTypes as ListBoxPropTypes } from '../ListBox';
+import styles from '../../../.storybook/_container.scss';
 
 const defaultItemToString = item => {
   if (typeof item === 'string') {
@@ -101,8 +102,8 @@ export default class DropdownV2 extends React.Component {
       light,
       id,
     } = this.props;
-    const className = cx('bx--dropdown', containerClassName, {
-      'bx--dropdown--light': light,
+    const className = cx(styles['bx--dropdown'], containerClassName, {
+      [styles['bx--dropdown--light']]: light,
     });
     return (
       <Downshift
@@ -128,7 +129,9 @@ export default class DropdownV2 extends React.Component {
             ariaLabel={ariaLabel}
             {...getRootProps({ refKey: 'innerRef' })}>
             <ListBox.Field {...getButtonProps({ disabled })}>
-              <span className="bx--list-box__label" {...getLabelProps()}>
+              <span
+                className={styles['bx--list-box__label']}
+                {...getLabelProps()}>
                 {selectedItem ? itemToString(selectedItem) : label}
               </span>
               <ListBox.MenuIcon isOpen={isOpen} />

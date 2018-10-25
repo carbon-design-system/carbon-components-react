@@ -1,15 +1,16 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import classnames from 'classnames';
+import styles from '../../../.storybook/_container.scss';
 
 export const ProgressStep = ({ ...props }) => {
   const { label, description, className, current, complete } = props;
 
   const classes = classnames({
-    'bx--progress-step': true,
-    'bx--progress-step--current': current,
-    'bx--progress-step--complete': complete,
-    'bx--progress-step--incomplete': !complete && !current,
+    [styles['bx--progress-step']]: true,
+    [styles['bx--progress-step--current']]: current,
+    [styles['bx--progress-step--complete']]: complete,
+    [styles['bx--progress-step--incomplete']]: !complete && !current,
     [className]: className,
   });
 
@@ -41,8 +42,8 @@ export const ProgressStep = ({ ...props }) => {
   return (
     <li className={classes}>
       {currentSvg || completeSvg || incompleteSvg}
-      <p className="bx--progress-label">{label}</p>
-      <span className="bx--progress-line" />
+      <p className={styles['bx--progress-label']}>{label}</p>
+      <span className={styles['bx--progress-line']} />
     </li>
   );
 };
@@ -130,7 +131,7 @@ export class ProgressIndicator extends Component {
   render() {
     const { className, currentIndex, ...other } = this.props; // eslint-disable-line no-unused-vars
     const classes = classnames({
-      'bx--progress': true,
+      [styles['bx--progress']]: true,
       [className]: className,
     });
     return (

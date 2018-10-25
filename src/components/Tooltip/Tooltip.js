@@ -11,6 +11,7 @@ import FloatingMenu, {
   DIRECTION_BOTTOM,
 } from '../../internal/FloatingMenu';
 import ClickListener from '../../internal/ClickListener';
+import styles from '../../../.storybook/_container.scss';
 
 const matchesFuncName =
   typeof Element !== 'undefined' &&
@@ -342,12 +343,15 @@ export default class Tooltip extends Component {
     const { open } = this.state;
 
     const tooltipClasses = classNames(
-      'bx--tooltip',
-      { 'bx--tooltip--shown': open },
+      styles['bx--tooltip'],
+      { [styles['bx--tooltip--shown']]: open },
       className
     );
 
-    const triggerClasses = classNames('bx--tooltip__trigger', triggerClassName);
+    const triggerClasses = classNames(
+      styles['bx--tooltip__trigger'],
+      triggerClassName
+    );
     const ariaOwnsProps = !open
       ? {}
       : {
@@ -423,7 +427,7 @@ export default class Tooltip extends Component {
               onFocus={evt => this.handleMouse(evt)}
               onBlur={evt => this.handleMouse(evt)}
               onContextMenu={evt => this.handleMouse(evt)}>
-              <span className="bx--tooltip__caret" />
+              <span className={styles['bx--tooltip__caret']} />
               {children}
             </div>
           </FloatingMenu>

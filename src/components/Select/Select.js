@@ -3,6 +3,7 @@ import React from 'react';
 import classNames from 'classnames';
 import { iconCaretDown } from 'carbon-icons';
 import Icon from '../Icon';
+import styles from '../../../.storybook/_container.scss';
 
 const Select = ({
   className,
@@ -20,29 +21,29 @@ const Select = ({
   ...other
 }) => {
   const selectClasses = classNames({
-    'bx--select': true,
-    'bx--select--inline': inline,
-    'bx--select--light': light,
+    [styles['bx--select']]: true,
+    [styles['bx--select--inline']]: inline,
+    [styles['bx--select--light']]: light,
     [className]: className,
   });
-  const labelClasses = classNames('bx--label', {
-    'bx--visually-hidden': hideLabel,
+  const labelClasses = classNames(styles['bx--label'], {
+    [styles['bx--visually-hidden']]: hideLabel,
   });
   const errorId = `${id}-error-msg`;
   const error = invalid ? (
-    <div className="bx--form-requirement" id={errorId}>
+    <div className={styles['bx--form-requirement']} id={errorId}>
       {invalidText}
     </div>
   ) : null;
   const helper = helperText ? (
-    <div className="bx--form__helper-text">{helperText}</div>
+    <div className={styles['bx--form__helper-text']}>{helperText}</div>
   ) : null;
   const ariaProps = {};
   if (invalid) {
     ariaProps['aria-describedby'] = errorId;
   }
   return (
-    <div className="bx--form-item">
+    <div className={styles['bx--form-item']}>
       <div className={selectClasses}>
         <label htmlFor={id} className={labelClasses}>
           {labelText}
@@ -51,7 +52,7 @@ const Select = ({
           {...other}
           {...ariaProps}
           id={id}
-          className="bx--select-input"
+          className={styles['bx--select-input']}
           disabled={disabled || undefined}
           data-invalid={invalid || undefined}
           aria-invalid={invalid || undefined}>
@@ -59,7 +60,7 @@ const Select = ({
         </select>
         <Icon
           icon={iconCaretDown}
-          className="bx--select__arrow"
+          className={styles['bx--select__arrow']}
           description={iconDescription}
         />
         {helper}

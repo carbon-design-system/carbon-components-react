@@ -4,6 +4,7 @@ import classNames from 'classnames';
 import { iconClose } from 'carbon-icons';
 import Icon from '../Icon';
 import Button from '../Button';
+import styles from '../../../.storybook/_container.scss';
 
 const matchesFuncName =
   typeof Element !== 'undefined' &&
@@ -45,9 +46,9 @@ export default class Modal extends Component {
     modalHeading: '',
     modalLabel: '',
     selectorsFloatingMenus: [
-      '.bx--overflow-menu-options',
-      '.bx--tooltip',
-      '.flatpickr-calendar',
+      `.${[styles['bx--overflow-menu-options']]}`,
+      `.${[styles['bx--tooltip']]}`,
+      `.${[styles['flatpickr-calendar']]}`,
     ],
     selectorPrimaryFocus: '[data-modal-primary-focus]',
   };
@@ -175,22 +176,22 @@ export default class Modal extends Component {
       : onRequestClose;
 
     const modalClasses = classNames({
-      'bx--modal': true,
-      'bx--modal-tall': !passiveModal,
-      'is-visible': open,
-      'bx--modal--danger': this.props.danger,
+      [styles['bx--modal']]: true,
+      [styles['bx--modal-tall']]: !passiveModal,
+      [styles['is-visible']]: open,
+      [styles['bx--modal--danger']]: this.props.danger,
       [this.props.className]: this.props.className,
     });
 
     const modalButton = (
       <button
-        className="bx--modal-close"
+        className={styles['bx--modal-close']}
         type="button"
         onClick={onRequestClose}
         ref={this.button}>
         <Icon
           icon={iconClose}
-          className="bx--modal-close__icon"
+          className={styles['bx--modal-close__icon']}
           description={iconDescription}
         />
       </button>
@@ -200,20 +201,22 @@ export default class Modal extends Component {
       <div
         ref={this.innerModal}
         role="dialog"
-        className="bx--modal-container"
+        className={styles['bx--modal-container']}
         aria-label={modalAriaLabel}>
-        <div className="bx--modal-header">
+        <div className={styles['bx--modal-header']}>
           {passiveModal && modalButton}
           {modalLabel && (
-            <h4 className="bx--modal-header__label">{modalLabel}</h4>
+            <h4 className={styles['bx--modal-header__label']}>{modalLabel}</h4>
           )}
-          <h2 className="bx--modal-header__heading">{modalHeading}</h2>
+          <h2 className={styles['bx--modal-header__heading']}>
+            {modalHeading}
+          </h2>
           {!passiveModal && modalButton}
         </div>
-        <div className="bx--modal-content">{this.props.children}</div>
+        <div className={styles['bx--modal-content']}>{this.props.children}</div>
         {!passiveModal && (
-          <div className="bx--modal-footer">
-            <div className="bx--modal__buttons-container">
+          <div className={styles['bx--modal-footer']}>
+            <div className={styles['bx--modal__buttons-container']}>
               <Button
                 kind={danger ? 'tertiary' : 'secondary'}
                 onClick={onSecondaryButtonClick}>

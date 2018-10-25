@@ -1,20 +1,30 @@
 import React from 'react';
-
+import classNames from 'classnames';
+import styles from '../../../.storybook/_container.scss';
 export default class ToggleSmallSkeleton extends React.Component {
   render() {
     const { id } = this.props;
     return (
-      <div className="bx--form-item">
+      <div className={styles['bx--form-item']}>
         <input
           type="checkbox"
           id={id}
-          className="bx--toggle bx--toggle--small bx--skeleton"
+          className={classNames(
+            styles['bx--toggle'],
+            styles['bx--toggle--small'],
+            styles['bx--skeleton']
+          )}
         />
 
-        <label className="bx--toggle__label bx--skeleton" htmlFor={id}>
-          <span className="bx--toggle__appearance">
+        <label
+          className={classNames(
+            styles['bx--toggle__label'],
+            styles['bx--skeleton']
+          )}
+          htmlFor={id}>
+          <span className={styles['bx--toggle__appearance']}>
             <svg
-              className="bx--toggle__check"
+              className={styles['bx--toggle__check']}
               width="6px"
               height="5px"
               viewBox="0 0 6 5">

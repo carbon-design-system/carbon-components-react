@@ -9,6 +9,7 @@ import {
   iconWarningSolid,
 } from 'carbon-icons';
 import Icon from '../Icon';
+import styles from '../../../.storybook/_container.scss';
 
 export class NotificationButton extends Component {
   static propTypes = {
@@ -45,15 +46,18 @@ export class NotificationButton extends Component {
 
     const buttonClasses = classNames(
       {
-        'bx--toast-notification__close-button': notificationType === 'toast',
-        'bx--inline-notification__close-button': notificationType === 'inline',
+        [styles['bx--toast-notification__close-button']]:
+          notificationType === 'toast',
+        [styles['bx--inline-notification__close-button']]:
+          notificationType === 'inline',
       },
       className
     );
 
     const iconClasses = classNames({
-      'bx--toast-notification__icon': notificationType === 'toast',
-      'bx--inline-notification__close-icon': notificationType === 'inline',
+      [styles['bx--toast-notification__icon']]: notificationType === 'toast',
+      [styles['bx--inline-notification__close-icon']]:
+        notificationType === 'inline',
     });
 
     return (
@@ -90,19 +94,27 @@ export class NotificationTextDetails extends Component {
 
     if (notificationType === 'toast') {
       return (
-        <div {...other} className="bx--toast-notification__details">
-          <h3 className="bx--toast-notification__title">{title}</h3>
-          <div className="bx--toast-notification__subtitle">{subtitle}</div>
-          <div className="bx--toast-notification__caption">{caption}</div>
+        <div {...other} className={styles['bx--toast-notification__details']}>
+          <h3 className={styles['bx--toast-notification__title']}>{title}</h3>
+          <div className={styles['bx--toast-notification__subtitle']}>
+            {subtitle}
+          </div>
+          <div className={styles['bx--toast-notification__caption']}>
+            {caption}
+          </div>
         </div>
       );
     }
 
     if (notificationType === 'inline') {
       return (
-        <div {...other} className="bx--inline-notification__text-wrapper">
-          <p className="bx--inline-notification__title">{title}</p>
-          <div className="bx--inline-notification__subtitle">{subtitle}</div>
+        <div
+          {...other}
+          className={styles['bx--inline-notification__text-wrapper']}>
+          <p className={styles['bx--inline-notification__title']}>{title}</p>
+          <div className={styles['bx--inline-notification__subtitle']}>
+            {subtitle}
+          </div>
         </div>
       );
     }
@@ -183,8 +195,10 @@ export class ToastNotification extends Component {
     } = this.props;
 
     const classes = classNames(
-      'bx--toast-notification',
-      { [`bx--toast-notification--${this.props.kind}`]: this.props.kind },
+      styles['bx--toast-notification'],
+      {
+        [styles[`bx--toast-notification--${this.props.kind}`]]: this.props.kind,
+      },
       className
     );
 
@@ -266,17 +280,20 @@ export class InlineNotification extends Component {
     } = this.props;
 
     const classes = classNames(
-      'bx--inline-notification',
-      { [`bx--inline-notification--${this.props.kind}`]: this.props.kind },
+      styles['bx--inline-notification'],
+      {
+        [styles[`bx--inline-notification--${this.props.kind}`]]: this.props
+          .kind,
+      },
       className
     );
 
     return (
       <div {...other} role={role} kind={kind} className={classes}>
-        <div className="bx--inline-notification__details">
+        <div className={styles['bx--inline-notification__details']}>
           <Icon
             description={this.props.iconDescription}
-            className="bx--inline-notification__icon"
+            className={styles['bx--inline-notification__icon']}
             aria-label="close"
             icon={this.useIcon(kind)}
           />
@@ -356,13 +373,19 @@ export default class Notification extends Component {
 
     const notificationClasses = {
       toast: classNames(
-        'bx--toast-notification',
-        { [`bx--toast-notification--${this.props.kind}`]: this.props.kind },
+        styles['bx--toast-notification'],
+        {
+          [styles[`bx--toast-notification--${this.props.kind}`]]: this.props
+            .kind,
+        },
         className
       ),
       inline: classNames(
-        'bx--inline-notification',
-        { [`bx--inline-notification--${this.props.kind}`]: this.props.kind },
+        styles['bx--inline-notification'],
+        {
+          [styles[`bx--inline-notification--${this.props.kind}`]]: this.props
+            .kind,
+        },
         className
       ),
     };
@@ -394,10 +417,10 @@ export default class Notification extends Component {
         role="alert"
         kind={kind}
         className={notificationClasses.inline}>
-        <div className="bx--inline-notification__details">
+        <div className={styles['bx--inline-notification__details']}>
           <Icon
             description={this.props.iconDescription}
-            className="bx--inline-notification__icon"
+            className={styles['bx--inline-notification__icon']}
             aria-label="close"
             icon={this.useIcon(kind)}
           />

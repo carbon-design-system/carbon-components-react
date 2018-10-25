@@ -2,6 +2,7 @@ import cx from 'classnames';
 import React from 'react';
 import PropTypes from 'prop-types';
 import setupGetInstanceId from '../../tools/setupGetInstanceId';
+import styles from '../../../.storybook/_container.scss';
 
 const getInstanceId = setupGetInstanceId();
 
@@ -16,15 +17,17 @@ const TooltipDefinition = ({
   const tooltipId = id || `definition-tooltip-${getInstanceId()}`;
   const definitionClassName = cx({
     [className]: !!className,
-    'bx--tooltip--definition': true,
+    [styles['bx--tooltip--definition']]: true,
   });
   const directionClassName = cx({
-    'bx--tooltip--definition__bottom': direction === 'bottom',
-    'bx--tooltip--definition__top': direction === 'top',
+    [styles['bx--tooltip--definition__bottom']]: direction === 'bottom',
+    [styles['bx--tooltip--definition__top']]: direction === 'top',
   });
   return (
     <div {...rest} className={definitionClassName}>
-      <button className="bx--tooltip__trigger" aria-describedby={tooltipId}>
+      <button
+        className={styles['bx--tooltip__trigger']}
+        aria-describedby={tooltipId}>
         {children}
       </button>
       <div
@@ -32,7 +35,7 @@ const TooltipDefinition = ({
         className={directionClassName}
         role="tooltip"
         aria-label={tooltipText}>
-        <span className="bx--tooltip__caret" />
+        <span className={styles['bx--tooltip__caret']} />
         <p>{tooltipText}</p>
       </div>
     </div>

@@ -1,13 +1,14 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import classNames from 'classnames';
+import styles from '../../../.storybook/_container.scss';
 
 const TableRow = props => {
   const { even, header, className, children, ...other } = props;
 
-  const tableRowClasses = classNames(className, 'bx--table-row', {
-    'bx--parent-row': !header,
-    'bx--parent-row--even': even,
+  const tableRowClasses = classNames(className, styles['bx--table-row'], {
+    [styles['bx--parent-row']]: !header,
+    [styles['bx--parent-row--even']]: even,
   });
 
   return (

@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import classNames from 'classnames';
+import styles from '../../../.storybook/_container.scss';
 
 const SkeletonText = ({
   paragraph,
@@ -11,8 +12,8 @@ const SkeletonText = ({
   ...other
 }) => {
   const skeletonTextClasses = classNames({
-    'bx--skeleton__text': true,
-    'bx--skeleton__heading': heading,
+    [styles['bx--skeleton__text']]: true,
+    [styles['bx--skeleton__heading']]: heading,
     [className]: className,
   });
 

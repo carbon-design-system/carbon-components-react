@@ -3,6 +3,7 @@ import React from 'react';
 import classNames from 'classnames';
 import { iconCaretDown, iconCaretUp } from 'carbon-icons';
 import Icon from '../Icon';
+import styles from '../../../.storybook/_container.scss';
 
 const TableHeader = props => {
   const {
@@ -15,9 +16,9 @@ const TableHeader = props => {
     ...other
   } = props;
 
-  const tableHeaderClasses = classNames(className, 'bx--table-header');
+  const tableHeaderClasses = classNames(className, styles['bx--table-header']);
 
-  const iconClasses = classNames(iconClassName, 'bx--table-sort__svg');
+  const iconClasses = classNames(iconClassName, styles['bx--table-sort__svg']);
 
   let sortContent;
   if (sortDir) {

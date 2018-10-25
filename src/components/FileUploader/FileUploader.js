@@ -6,6 +6,7 @@ import Icon from '../Icon';
 import uid from '../../tools/uniqueId';
 import { ButtonTypes } from '../../prop-types/types';
 import { iconCloseSolid, iconCheckmarkSolid } from 'carbon-icons';
+import styles from '../../../.storybook/_container.scss';
 
 export class FileUploaderButton extends Component {
   state = {};
@@ -130,7 +131,7 @@ export class FileUploaderButton extends Component {
       ...other
     } = this.props;
     const classes = classNames({
-      'bx--file': true,
+      [styles['bx--file']]: true,
       [className]: className,
     });
 
@@ -147,7 +148,10 @@ export class FileUploaderButton extends Component {
           }
         }}>
         <label
-          className={`bx--btn bx--btn--${buttonKind}`}
+          className={classNames(
+            styles['bx--btn'],
+            styles[`bx--btn--${buttonKind}`]
+          )}
           tabIndex={tabIndex}
           htmlFor={this.uid}
           role={role}
@@ -155,7 +159,7 @@ export class FileUploaderButton extends Component {
           {this.state.labelText}
         </label>
         <input
-          className="bx--visually-hidden"
+          className={styles['bx--visually-hidden']}
           ref={input => (this.input = input)}
           id={this.uid}
           type="file"
@@ -200,10 +204,10 @@ export class Filename extends Component {
     if (status === 'uploading') {
       return (
         <div
-          className="bx--loading"
+          className={styles['bx--loading']}
           style={{ ...style, width: '1rem', height: '1rem' }}
           {...other}>
-          <svg className="bx--loading__svg" viewBox="-42 -42 84 84">
+          <svg className={styles['bx--loading__svg']} viewBox="-42 -42 84 84">
             <circle cx="0" cy="0" r="37.5" />
           </svg>
         </div>
@@ -212,7 +216,7 @@ export class Filename extends Component {
       return (
         <Icon
           description={iconDescription}
-          className="bx--file-close"
+          className={styles['bx--file-close']}
           icon={iconCloseSolid}
           style={style}
           {...other}
@@ -222,7 +226,7 @@ export class Filename extends Component {
       return (
         <Icon
           description={iconDescription}
-          className="bx--file-complete"
+          className={styles['bx--file-complete']}
           icon={iconCheckmarkSolid}
           style={style}
           {...other}
@@ -315,14 +319,14 @@ export default class FileUploader extends Component {
     } = this.props;
 
     const classes = classNames({
-      'bx--form-item': true,
+      [styles['bx--form-item']]: true,
       [className]: className,
     });
 
     return (
       <div className={classes} {...other}>
-        <strong className="bx--label">{labelTitle}</strong>
-        <p className="bx--label-description">{labelDescription}</p>
+        <strong className={styles['bx--label']}>{labelTitle}</strong>
+        <p className={styles['bx--label-description']}>{labelDescription}</p>
         <FileUploaderButton
           labelText={buttonLabel}
           multiple={multiple}
@@ -332,17 +336,17 @@ export default class FileUploader extends Component {
           accept={accept}
           name={name}
         />
-        <div className="bx--file-container">
+        <div className={styles['bx--file-container']}>
           {this.state.filenames.length === 0
             ? null
             : this.state.filenames.map((name, index) => (
                 <span
                   key={index}
-                  className="bx--file__selected-file"
+                  className={styles['bx--file__selected-file']}
                   ref={node => (this.nodes[index] = node)} // eslint-disable-line
                   {...other}>
-                  <p className="bx--file-filename">{name}</p>
-                  <span className="bx--file__state-container">
+                  <p className={styles['bx--file-filename']}>{name}</p>
+                  <span className={styles['bx--file__state-container']}>
                     <Filename
                       iconDescription={iconDescription}
                       status={filenameStatus}

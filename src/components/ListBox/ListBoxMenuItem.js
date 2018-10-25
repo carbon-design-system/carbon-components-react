@@ -1,6 +1,7 @@
 import cx from 'classnames';
 import React from 'react';
 import PropTypes from 'prop-types';
+import styles from '../../../.storybook/_container.scss';
 
 /**
  * `ListBoxMenuItem` is a helper component for managing the container class
@@ -9,9 +10,9 @@ import PropTypes from 'prop-types';
  */
 const ListBoxMenuItem = ({ children, isActive, isHighlighted, ...rest }) => {
   const className = cx({
-    'bx--list-box__menu-item': true,
-    'bx--list-box__menu-item--active': isActive,
-    'bx--list-box__menu-item--highlighted': isHighlighted,
+    [styles['bx--list-box__menu-item']]: true,
+    [styles['bx--list-box__menu-item--active']]: isActive,
+    [styles['bx--list-box__menu-item--highlighted']]: isHighlighted,
   });
   return (
     <div className={className} {...rest}>

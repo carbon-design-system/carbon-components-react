@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import classNames from 'classnames';
+import styles from '../../../.storybook/_container.scss';
 
 const Toggle = ({
   className,
@@ -15,7 +16,7 @@ const Toggle = ({
 }) => {
   let input;
   const wrapperClasses = classNames({
-    'bx--form-item': true,
+    [styles['bx--form-item']]: true,
     [className]: className,
   });
 
@@ -34,7 +35,7 @@ const Toggle = ({
         {...checkedProps}
         type="checkbox"
         id={id}
-        className="bx--toggle"
+        className={styles['bx--toggle']}
         onChange={evt => {
           onChange && onChange(evt);
           onToggle(input.checked, id, evt);
@@ -44,10 +45,10 @@ const Toggle = ({
         }}
       />
 
-      <label className="bx--toggle__label" htmlFor={id}>
-        <span className="bx--toggle__text--left">{labelA}</span>
-        <span className="bx--toggle__appearance" />
-        <span className="bx--toggle__text--right">{labelB}</span>
+      <label className={styles['bx--toggle__label']} htmlFor={id}>
+        <span className={styles['bx--toggle__text--left']}>{labelA}</span>
+        <span className={styles['bx--toggle__appearance']} />
+        <span className={styles['bx--toggle__text--right']}>{labelB}</span>
       </label>
     </div>
   );

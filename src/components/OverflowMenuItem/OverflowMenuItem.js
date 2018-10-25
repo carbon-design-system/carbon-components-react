@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import classNames from 'classnames';
+import styles from '../../../.storybook/_container.scss';
 
 const OverflowMenuItem = ({
   className,
@@ -17,16 +18,16 @@ const OverflowMenuItem = ({
   ...other
 }) => {
   const overflowMenuBtnClasses = classNames(
-    'bx--overflow-menu-options__btn',
+    [styles['bx--overflow-menu-options__btn']],
     className
   );
 
   const overflowMenuItemClasses = classNames(
-    'bx--overflow-menu-options__option',
+    styles['bx--overflow-menu-options__option'],
     {
-      'bx--overflow-menu--divider': hasDivider,
-      'bx--overflow-menu-options__option--danger': isDelete,
-      'bx--overflow-menu-options__option--disabled': disabled,
+      [styles['bx--overflow-menu--divider']]: hasDivider,
+      [styles['bx--overflow-menu-options__option--danger']]: isDelete,
+      [styles['bx--overflow-menu-options__option--disabled']]: disabled,
     },
     wrapperClassName
   );

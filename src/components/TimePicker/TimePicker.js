@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import classNames from 'classnames';
+import styles from '../../../.storybook/_container.scss';
 
 export default class TimePicker extends Component {
   state = {};
@@ -106,13 +107,13 @@ export default class TimePicker extends Component {
     };
 
     const timePickerClasses = classNames({
-      'bx--time-picker': true,
-      'bx--time-picker--light': light,
+      [styles['bx--time-picker']]: true,
+      [styles['bx--time-picker--light']]: light,
       [className]: className,
     });
 
-    const labelClasses = classNames('bx--label', {
-      'bx--visually-hidden': hideLabel,
+    const labelClasses = classNames(styles['bx--label'], {
+      [styles['bx--visually-hidden']]: hideLabel,
     });
 
     const label = labelText ? (
@@ -122,19 +123,19 @@ export default class TimePicker extends Component {
     ) : null;
 
     const error = invalid ? (
-      <div className="bx--form-requirement">{invalidText}</div>
+      <div className={styles['bx--form-requirement']}>{invalidText}</div>
     ) : null;
 
     return (
-      <div className="bx--form-item">
+      <div className={styles['bx--form-item']}>
         <div className={timePickerClasses}>
-          <div className="bx--time-picker__input">
+          <div className={styles['bx--time-picker__input']}>
             {label}
             <input
               {...other}
               {...timePickerInputProps}
               data-invalid={invalid ? invalid : undefined}
-              className="bx--time-picker__input-field"
+              className={styles['bx--time-picker__input-field']}
             />
             {error}
           </div>

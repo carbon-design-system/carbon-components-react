@@ -1,10 +1,11 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import classNames from 'classnames';
+import styles from '../../../.storybook/_container.scss';
 
 const SelectItem = ({ className, value, disabled, hidden, text, ...other }) => {
   const selectItemClasses = classNames({
-    'bx--select-option': true,
+    [styles['bx--select-option']]: true,
     [className]: className,
   });
 

@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import classNames from 'classnames';
+import styles from '../../../.storybook/_container.scss';
 
 const ToggleSmall = ({
   className,
@@ -14,7 +15,7 @@ const ToggleSmall = ({
 }) => {
   let input;
   const wrapperClasses = classNames({
-    'bx--form-item': true,
+    [styles['bx--form-item']]: true,
     [className]: className,
   });
 
@@ -33,7 +34,10 @@ const ToggleSmall = ({
         {...checkedProps}
         type="checkbox"
         id={id}
-        className="bx--toggle bx--toggle--small"
+        className={classNames(
+          styles['bx--toggle'],
+          styles['bx--toggle--small']
+        )}
         onChange={evt => {
           onChange && onChange(evt);
           onToggle(input.checked, id, evt);
@@ -44,10 +48,10 @@ const ToggleSmall = ({
         aria-label={ariaLabel}
       />
 
-      <label className="bx--toggle__label" htmlFor={id}>
-        <span className="bx--toggle__appearance">
+      <label className={styles['bx--toggle__label']} htmlFor={id}>
+        <span className={styles['bx--toggle__appearance']}>
           <svg
-            className="bx--toggle__check"
+            className={styles['bx--toggle__check']}
             width="6px"
             height="5px"
             viewBox="0 0 6 5">

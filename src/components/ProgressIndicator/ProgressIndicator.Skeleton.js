@@ -1,21 +1,28 @@
 import React from 'react';
+import classNames from 'classnames';
+import styles from '../../../.storybook/_container.scss';
 
 export default class ProgressIndicatorSkeleton extends React.Component {
   render() {
     const step = (
-      <li className="bx--progress-step bx--progress-step--incomplete">
+      <li
+        className={classNames(
+          styles['bx--progress-step'],
+          styles['bx--progress-step--incomplete']
+        )}>
         <svg>
           <g>
             <circle cx="12" cy="12" r="12" />
           </g>
         </svg>
-        <p className="bx--progress-label" />
-        <span className="bx--progress-line" />
+        <p className={styles['bx--progress-label']} />
+        <span className={styles['bx--progress-line']} />
       </li>
     );
 
     return (
-      <ul className="bx--progress bx--skeleton">
+      <ul
+        className={classNames(styles['bx--progress'], styles['bx--skeleton'])}>
         {step}
         {step}
         {step}

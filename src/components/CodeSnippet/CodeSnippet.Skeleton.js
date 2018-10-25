@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import classNames from 'classnames';
+import styles from '../../../.storybook/_container.scss';
 
 export default class CodeSnippetSkeleton extends Component {
   static propTypes = {
@@ -20,16 +21,16 @@ export default class CodeSnippetSkeleton extends Component {
     const { className, type, ...other } = this.props;
 
     const codeSnippetClasses = classNames(className, {
-      'bx--snippet': true,
-      'bx--skeleton': true,
-      'bx--snippet--single': type === 'single',
-      'bx--snippet--multi': type === 'multi',
+      [styles['bx--snippet']]: true,
+      [styles['bx--skeleton']]: true,
+      [styles['bx--snippet--single']]: type === 'single',
+      [styles['bx--snippet--multi']]: type === 'multi',
     });
 
     if (type === 'single') {
       return (
         <div className={codeSnippetClasses} {...other}>
-          <div className="bx--snippet-container">
+          <div className={styles['bx--snippet-container']}>
             <span />
           </div>
         </div>
@@ -39,7 +40,7 @@ export default class CodeSnippetSkeleton extends Component {
     if (type === 'multi') {
       return (
         <div className={codeSnippetClasses} {...other}>
-          <div className="bx--snippet-container">
+          <div className={styles['bx--snippet-container']}>
             <span />
             <span />
             <span />

@@ -1,9 +1,10 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import classnames from 'classnames';
+import styles from '../../../.storybook/_container.scss';
 
 const Link = ({ children, className, href, ...other }) => {
-  const classNames = classnames('bx--link', className);
+  const classNames = classnames(styles['bx--link'], className);
   return (
     <a href={href} className={classNames} {...other}>
       {children}

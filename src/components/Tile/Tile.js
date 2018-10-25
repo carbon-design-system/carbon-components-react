@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { iconCheckmarkSolid, iconChevronDown } from 'carbon-icons';
 import Icon from '../Icon';
+import styles from '../../../.storybook/_container.scss';
 
 export class Tile extends Component {
   static propTypes = {
@@ -13,7 +14,7 @@ export class Tile extends Component {
 
   render() {
     const { children, className, ...other } = this.props;
-    const tileClasses = classNames('bx--tile', className);
+    const tileClasses = classNames(styles['bx--tile'], className);
 
     return (
       <div className={tileClasses} {...other}>
@@ -102,10 +103,10 @@ export class ClickableTile extends Component {
     } = this.props;
 
     const classes = classNames(
-      'bx--tile',
-      'bx--tile--clickable',
+      styles['bx--tile'],
+      styles['bx--tile--clickable'],
       {
-        'bx--tile--is-clicked': this.state.clicked,
+        [styles['bx--tile--is-clicked']]: this.state.clicked,
       },
       className
     );
@@ -237,7 +238,11 @@ export class SelectableTile extends Component {
       ...other
     } = this.props;
 
-    const classes = classNames('bx--tile', 'bx--tile--selectable', className);
+    const classes = classNames(
+      styles['bx--tile'],
+      styles['bx--tile--selectable'],
+      className
+    );
 
     return (
       // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
@@ -254,17 +259,17 @@ export class SelectableTile extends Component {
           }}
           tabIndex={-1}
           id={id}
-          className="bx--tile-input"
+          className={styles['bx--tile-input']}
           value={value}
           type="checkbox"
           name={name}
           title={title}
           checked={this.state.selected}
         />
-        <div className="bx--tile__checkmark">
+        <div className={styles['bx--tile__checkmark']}>
           <Icon icon={iconCheckmarkSolid} description={iconDescription} />
         </div>
-        <div className="bx--tile-content">{children}</div>
+        <div className={styles['bx--tile-content']}>{children}</div>
       </label>
     );
   }
@@ -374,10 +379,10 @@ export class ExpandableTile extends Component {
     } = this.props;
 
     const classes = classNames(
-      'bx--tile',
-      'bx--tile--expandable',
+      styles['bx--tile'],
+      styles['bx--tile--expandable'],
       {
-        'bx--tile--is-expanded': this.state.expanded,
+        [styles['bx--tile--is-expanded']]: this.state.expanded,
       },
       className
     );
@@ -400,7 +405,7 @@ export class ExpandableTile extends Component {
         role="button"
         onClick={this.handleClick}
         tabIndex={tabIndex}>
-        <button className="bx--tile__chevron">
+        <button className={styles['bx--tile__chevron']}>
           <Icon
             icon={iconChevronDown}
             description={
@@ -412,7 +417,7 @@ export class ExpandableTile extends Component {
           ref={tileContent => {
             this.tileContent = tileContent;
           }}
-          className="bx--tile-content">
+          className={styles['bx--tile-content']}>
           {content}
         </div>
       </div>
@@ -428,7 +433,11 @@ export class TileAboveTheFoldContent extends Component {
   render() {
     const { children } = this.props;
 
-    return <span className="bx--tile-content__above-the-fold">{children}</span>;
+    return (
+      <span className={styles['bx--tile-content__above-the-fold']}>
+        {children}
+      </span>
+    );
   }
 }
 
@@ -440,6 +449,10 @@ export class TileBelowTheFoldContent extends Component {
   render() {
     const { children } = this.props;
 
-    return <span className="bx--tile-content__below-the-fold">{children}</span>;
+    return (
+      <span className={styles['bx--tile-content__below-the-fold']}>
+        {children}
+      </span>
+    );
   }
 }

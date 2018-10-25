@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import classNames from 'classnames';
+import styles from '../../../.storybook/_container.scss';
 
 export default class Loading extends React.Component {
   static propTypes = {
@@ -34,13 +35,13 @@ export default class Loading extends React.Component {
   render() {
     const { active, className, withOverlay, small, ...other } = this.props;
 
-    const loadingClasses = classNames('bx--loading', className, {
-      'bx--loading--small': small,
-      'bx--loading--stop': !active,
+    const loadingClasses = classNames(styles['bx--loading'], className, {
+      [styles['bx--loading--small']]: small,
+      [styles['bx--loading--stop']]: !active,
     });
 
-    const overlayClasses = classNames('bx--loading-overlay', {
-      'bx--loading-overlay--stop': !active,
+    const overlayClasses = classNames(styles['bx--loading-overlay'], {
+      [styles['bx--loading-overlay--stop']]: !active,
     });
 
     const loading = (
@@ -48,7 +49,7 @@ export default class Loading extends React.Component {
         {...other}
         aria-live={active ? 'assertive' : 'off'}
         className={loadingClasses}>
-        <svg className="bx--loading__svg" viewBox="-75 -75 150 150">
+        <svg className={styles['bx--loading__svg']} viewBox="-75 -75 150 150">
           <circle cx="0" cy="0" r="37.5" />
         </svg>
       </div>

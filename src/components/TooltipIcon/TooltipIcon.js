@@ -1,6 +1,7 @@
 import cx from 'classnames';
 import React from 'react';
 import PropTypes from 'prop-types';
+import styles from '../../../.storybook/_container.scss';
 
 const TooltipIcon = ({
   className,
@@ -11,12 +12,12 @@ const TooltipIcon = ({
 }) => {
   const tooltipClassName = cx({
     [className]: !!className,
-    'bx--tooltip-icon': true,
+    [styles['bx--tooltip-icon']]: true,
   });
   const triggerClassName = cx({
-    'bx--tooltip__trigger': true,
-    'bx--tooltip--icon__bottom': direction === 'bottom',
-    'bx--tooltip--icon__top': direction === 'top',
+    [styles['bx--tooltip__trigger']]: true,
+    [styles['bx--tooltip--icon__bottom']]: direction === 'bottom',
+    [styles['bx--tooltip--icon__top']]: direction === 'top',
   });
   return (
     <div {...rest} className={tooltipClassName}>

@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import classNames from 'classnames';
 import TableRow from '../TableRow';
+import styles from '../../../.storybook/_container.scss';
 
 /**
  * Adds striping to TableRows if the `even` prop wasn’t explicitly set.
@@ -31,7 +32,7 @@ const handleRowStriping = rows => {
 const TableBody = props => {
   const { children, className, ...other } = props;
 
-  const tableBodyClasses = classNames(className, 'bx--table-body');
+  const tableBodyClasses = classNames(className, styles['bx--table-body']);
 
   const childArray = React.Children.toArray(children);
   const childrenWithProps = handleRowStriping(childArray);

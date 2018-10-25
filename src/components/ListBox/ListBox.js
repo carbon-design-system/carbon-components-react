@@ -5,6 +5,7 @@ import ListBoxField from './ListBoxField';
 import ListBoxMenu from './ListBoxMenu';
 import { ListBoxType } from './ListBoxPropTypes';
 import childrenOf from '../../prop-types/childrenOf';
+import styles from '../../../.storybook/_container.scss';
 
 const handleOnKeyDown = event => {
   if (event.keyCode === 27) {
@@ -35,10 +36,10 @@ const ListBox = ({
 }) => {
   const className = cx({
     [containerClassName]: !!containerClassName,
-    'bx--list-box': true,
-    'bx--list-box--inline': type === 'inline',
-    'bx--list-box--disabled': disabled,
-    'bx--list-box--light': light,
+    [styles['bx--list-box']]: true,
+    [styles['bx--list-box--inline']]: type === 'inline',
+    [styles['bx--list-box--disabled']]: disabled,
+    [styles['bx--list-box--light']]: light,
   });
   return (
     <>
@@ -56,7 +57,7 @@ const ListBox = ({
         {children}
       </div>
       {invalid ? (
-        <div className="bx--form-requirement">{invalidText}</div>
+        <div className={styles['bx--form-requirement']}>{invalidText}</div>
       ) : null}
     </>
   );

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import Search from '../Search';
 import setupGetInstanceId from './tools/instanceId';
+import styles from '../../../.storybook/_container.scss';
 
 const getInstanceId = setupGetInstanceId();
 const translationKeys = {
@@ -26,7 +27,7 @@ const TableToolbarSearch = ({
 }) => {
   const searchContainerClasses = cx(
     searchContainerClass,
-    'bx--toolbar-search-container'
+    styles['bx--toolbar-search-container']
   );
   return (
     <div className={searchContainerClasses}>

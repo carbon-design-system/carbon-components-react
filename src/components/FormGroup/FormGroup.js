@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import classnames from 'classnames';
+import styles from '../../../.storybook/_container.scss';
 
 const FormGroup = ({
   legendText,
@@ -11,8 +12,8 @@ const FormGroup = ({
   messageText,
   ...other
 }) => {
-  const classNamesLegend = classnames('bx--label', className);
-  const classNamesFieldset = classnames('bx--fieldset', className);
+  const classNamesLegend = classnames(styles['bx--label'], className);
+  const classNamesFieldset = classnames(styles['bx--fieldset'], className);
 
   return (
     <fieldset
@@ -22,7 +23,7 @@ const FormGroup = ({
       <legend className={classNamesLegend}>{legendText}</legend>
       {children}
       {message ? (
-        <div className="bx--form__requirements">{messageText}</div>
+        <div className={styles['bx--form__requirements']}>{messageText}</div>
       ) : null}
     </fieldset>
   );

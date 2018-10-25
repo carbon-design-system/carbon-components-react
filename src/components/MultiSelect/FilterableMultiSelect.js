@@ -10,6 +10,7 @@ import { sortingPropTypes } from './MultiSelectPropTypes';
 import { defaultItemToString } from './tools/itemToString';
 import { defaultSortItems, defaultCompareItems } from './tools/sorting';
 import { defaultFilterItems } from '../ComboBox/tools/filter';
+import styles from '../../../.storybook/_container.scss';
 
 export default class FilterableMultiSelect extends React.Component {
   static propTypes = {
@@ -178,11 +179,11 @@ export default class FilterableMultiSelect extends React.Component {
       light,
     } = this.props;
     const className = cx(
-      'bx--multi-select',
-      'bx--combo-box',
+      [styles['bx--multi-select']],
+      [styles['bx--combo-box']],
       containerClassName,
       {
-        'bx--list-box--light': light,
+        [styles['bx--list-box--light']]: light,
       }
     );
     return (
@@ -221,7 +222,7 @@ export default class FilterableMultiSelect extends React.Component {
                     />
                   )}
                   <input
-                    className="bx--text-input"
+                    className={styles['bx--text-input']}
                     ref={el => (this.inputNode = el)}
                     {...getInputProps({
                       disabled,

@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import classNames from 'classnames';
+import styles from '../../../.storybook/_container.scss';
 
 const Switch = props => {
   const {
@@ -30,8 +31,8 @@ const Switch = props => {
     }
   };
 
-  const classes = classNames(className, 'bx--content-switcher-btn', {
-    'bx--content-switcher--selected': selected,
+  const classes = classNames(className, styles['bx--content-switcher-btn'], {
+    [styles['bx--content-switcher--selected']]: selected,
   });
 
   const commonProps = {
@@ -44,7 +45,7 @@ const Switch = props => {
     ? React.cloneElement(icon, {
         className: classNames(
           icon.props.className,
-          ' bx--content-switcher__icon'
+          ` ${styles['bx--content-switcher__icon']}`
         ),
       })
     : null;

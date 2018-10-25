@@ -4,6 +4,7 @@ import classNames from 'classnames';
 import Copy from '../Copy';
 import CopyButton from '../CopyButton';
 import Icon from '../Icon';
+import styles from '../../../.storybook/_container.scss';
 
 export default class CodeSnippet extends Component {
   static propTypes = {
@@ -116,12 +117,12 @@ export default class CodeSnippet extends Component {
     } = this.props;
 
     const codeSnippetClasses = classNames(className, {
-      'bx--snippet': true,
-      'bx--snippet--single': type === 'single',
-      'bx--snippet--multi': type === 'multi',
-      'bx--snippet--inline': type === 'inline',
-      'bx--snippet--expand': this.state.expandedCode,
-      'bx--snippet--light': light,
+      [styles['bx--snippet--single']]: type === 'single',
+      [styles['bx--snippet']]: true,
+      [styles['bx--snippet--multi']]: type === 'multi',
+      [styles['bx--snippet--inline']]: type === 'inline',
+      [styles['bx--snippet--expand']]: this.state.expandedCode,
+      [styles['bx--snippet--light']]: light,
     });
 
     const expandCodeBtnText = this.state.expandedCode
@@ -130,16 +131,23 @@ export default class CodeSnippet extends Component {
 
     const moreLessBtn = (
       <button
-        className="bx--btn bx--btn--ghost bx--btn--sm bx--snippet-btn--expand"
+        className={classNames(
+          styles['bx--btn'],
+          styles['bx--btn--ghost'],
+          styles['bx--btn--sm'],
+          styles['bx--snippet-btn--expand']
+        )}
         type="button"
         onClick={this.expandCode}>
-        <span className="bx--snippet-btn--text">{expandCodeBtnText}</span>
+        <span className={styles['bx--snippet-btn--text']}>
+          {expandCodeBtnText}
+        </span>
         <Icon
           aria-hidden="true"
           alt={expandCodeBtnText}
           name="chevron--down"
           description={expandCodeBtnText}
-          className="bx--icon-chevron--down"
+          className={styles['bx--icon-chevron--down']}
         />
       </button>
     );
@@ -148,7 +156,7 @@ export default class CodeSnippet extends Component {
       <div
         role="textbox"
         tabIndex={0}
-        className="bx--snippet-container"
+        className={styles['bx--snippet-container']}
         aria-label={ariaLabel ? ariaLabel : 'code-snippet'}>
         <code>
           <pre

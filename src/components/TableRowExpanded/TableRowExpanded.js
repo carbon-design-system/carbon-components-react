@@ -1,15 +1,16 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import classNames from 'classnames';
+import styles from '../../../.storybook/_container.scss';
 
 const TableRowExpanded = props => {
   const { children, className, even, colSpan, expanded, ...other } = props;
 
   const tableRowClasses = classNames({
     [className]: className,
-    'bx--table-row': true,
-    'bx--expandable-row': true,
-    'bx--expandable-row--even': even,
+    [styles['bx--table-row']]: true,
+    [styles['bx--expandable-row']]: true,
+    [styles['bx--expandable-row--even']]: even,
   });
 
   if (!expanded) {

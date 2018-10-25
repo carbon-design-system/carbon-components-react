@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import classNames from 'classnames';
 import warning from 'warning';
+import styles from '../../../.storybook/_container.scss';
 
 let didWarnAboutDeprecation = false;
 
@@ -16,11 +17,11 @@ const Table = props => {
   }
   const { children, className, containerClassName, ...other } = props;
 
-  const tableClasses = classNames(className, 'bx--responsive-table');
+  const tableClasses = classNames(className, styles['bx--responsive-table']);
 
   const tableContainerClasses = classNames(
     containerClassName,
-    'bx--responsive-table-container'
+    styles['bx--responsive-table-container']
   );
 
   return (

@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import classNames from 'classnames';
 import uid from '../../tools/uniqueId';
+import styles from '../../../.storybook/_container.scss';
 
 export default class RadioButton extends React.Component {
   static propTypes = {
@@ -67,7 +68,7 @@ export default class RadioButton extends React.Component {
 
   render() {
     const wrapperClasses = classNames(
-      'radioButtonWrapper',
+      styles['radioButtonWrapper'],
       this.props.className
     );
 
@@ -78,12 +79,12 @@ export default class RadioButton extends React.Component {
         <input
           {...other}
           type="radio"
-          className="bx--radio-button"
+          className={styles['bx--radio-button']}
           onChange={this.handleChange}
           id={this.uid}
         />
-        <label htmlFor={this.uid} className="bx--radio-button__label">
-          <span className="bx--radio-button__appearance" />
+        <label htmlFor={this.uid} className={styles['bx--radio-button__label']}>
+          <span className={styles['bx--radio-button__appearance']} />
           {labelText}
         </label>
       </div>

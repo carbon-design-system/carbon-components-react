@@ -1,9 +1,10 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import classnames from 'classnames';
+import styles from '../../../.storybook/_container.scss';
 
 const Accordion = ({ children, className, ...other }) => {
-  const classNames = classnames('bx--accordion', className);
+  const classNames = classnames(styles['bx--accordion'], className);
   return (
     <ul
       className={classNames}

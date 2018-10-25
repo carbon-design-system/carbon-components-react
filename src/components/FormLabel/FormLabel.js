@@ -1,9 +1,10 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import classnames from 'classnames';
+import styles from '../../../.storybook/_container.scss';
 
 const FormLabel = ({ className, children, id, ...other }) => {
-  const classNames = classnames('bx--label', className);
+  const classNames = classnames(styles['bx--label'], className);
 
   return (
     <label htmlFor={id} className={classNames} {...other}>

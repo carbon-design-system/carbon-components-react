@@ -4,6 +4,7 @@ import uid from '../../tools/uniqueId';
 import Icon from '../Icon';
 import { iconCheckmarkSolid } from 'carbon-icons';
 import classNames from 'classnames';
+import styles from '../../../.storybook/_container.scss';
 
 export default class RadioTile extends React.Component {
   static propTypes = {
@@ -64,24 +65,29 @@ export default class RadioTile extends React.Component {
   render() {
     const { children, className, iconDescription, ...other } = this.props;
 
-    const classes = classNames(className, 'bx--tile', 'bx--tile--selectable', {
-      'bx--tile--is-selected': this.props.checked,
-    });
+    const classes = classNames(
+      className,
+      styles['bx--tile'],
+      styles['bx--tile--selectable'],
+      {
+        [styles['bx--tile--is-selected']]: this.props.checked,
+      }
+    );
 
     return (
       <label htmlFor={this.uid} className={classes}>
         <input
           {...other}
           type="radio"
-          className="bx--tile-input"
+          className={styles['bx--tile-input']}
           onChange={this.handleChange}
           id={this.uid}
         />
 
-        <div className="bx--tile__checkmark">
+        <div className={styles['bx--tile__checkmark']}>
           <Icon icon={iconCheckmarkSolid} description={iconDescription} />
         </div>
-        <div className="bx--tile-content">{children}</div>
+        <div className={styles['bx--tile-content']}>{children}</div>
       </label>
     );
   }

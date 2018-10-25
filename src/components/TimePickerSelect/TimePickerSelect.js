@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import classNames from 'classnames';
 import Icon from '../Icon';
 import { iconCaretDown } from 'carbon-icons';
+import styles from '../../../.storybook/_container.scss';
 
 export default class TimePickerSelect extends Component {
   static propTypes = {
@@ -38,14 +39,14 @@ export default class TimePickerSelect extends Component {
     } = this.props;
 
     const selectClasses = classNames({
-      'bx--select': true,
-      'bx--time-picker__select': true,
-      'bx--select--inline': true,
+      [styles['bx--select']]: true,
+      [styles['bx--time-picker__select']]: true,
+      [styles['bx--select--inline']]: true,
       [className]: className,
     });
 
-    const labelClasses = classNames('bx--label', {
-      'bx--visually-hidden': hideLabel,
+    const labelClasses = classNames(styles['bx--label'], {
+      [styles['bx--visually-hidden']]: hideLabel,
     });
 
     const label = labelText ? (
@@ -60,13 +61,13 @@ export default class TimePickerSelect extends Component {
         <select
           {...other}
           id={id}
-          className="bx--select-input"
+          className={styles['bx--select-input']}
           disabled={disabled}>
           {children}
         </select>
         <Icon
           icon={iconCaretDown}
-          className="bx--select__arrow"
+          className={styles['bx--select__arrow']}
           description={iconDescription}
         />
       </div>

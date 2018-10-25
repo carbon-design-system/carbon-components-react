@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import classNames from 'classnames';
+import styles from '../../../.storybook/_container.scss';
 
 const TYPES = {
   beta: 'Beta',
@@ -15,8 +16,8 @@ const TYPES = {
 };
 
 const Tag = ({ children, className, type, ...other }) => {
-  const tagClass = `bx--tag--${type}`;
-  const tagClasses = classNames('bx--tag', tagClass, className);
+  const tagClass = styles[`bx--tag--${type}`];
+  const tagClasses = classNames(styles['bx--tag'], tagClass, className);
   return (
     <span className={tagClasses} {...other}>
       {children || TYPES[type]}

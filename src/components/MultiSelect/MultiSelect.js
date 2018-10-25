@@ -9,6 +9,7 @@ import Selection from '../../internal/Selection';
 import { sortingPropTypes } from './MultiSelectPropTypes';
 import { defaultItemToString } from './tools/itemToString';
 import { defaultSortItems, defaultCompareItems } from './tools/sorting';
+import styles from '../../../.storybook/_container.scss';
 
 export default class MultiSelect extends React.Component {
   static propTypes = {
@@ -162,8 +163,8 @@ export default class MultiSelect extends React.Component {
       invalidText,
       useTitleInItem,
     } = this.props;
-    const className = cx('bx--multi-select', containerClassName, {
-      'bx--list-box--light': light,
+    const className = cx(styles['bx--multi-select'], containerClassName, {
+      [styles['bx--list-box--light']]: light,
     });
     return (
       <Selection
@@ -201,7 +202,7 @@ export default class MultiSelect extends React.Component {
                       selectionCount={selectedItem.length}
                     />
                   )}
-                  <span className="bx--list-box__label">{label}</span>
+                  <span className={styles['bx--list-box__label']}>{label}</span>
                   <ListBox.MenuIcon isOpen={isOpen} />
                 </ListBox.Field>
                 {isOpen && (

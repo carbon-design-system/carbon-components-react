@@ -1,10 +1,11 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import classnames from 'classnames';
+import styles from '../../../.storybook/_container.scss';
 
 const OrderedList = ({ children, className, nested, ...other }) => {
-  const classNames = classnames('bx--list--ordered', className, {
-    'bx--list--nested': nested,
+  const classNames = classnames(styles['bx--list--ordered'], className, {
+    [styles['bx--list--nested']]: nested,
   });
   return (
     <ol className={classNames} {...other}>

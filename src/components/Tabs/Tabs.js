@@ -4,6 +4,7 @@ import classNames from 'classnames';
 import { iconCaretDown } from 'carbon-icons';
 import Icon from '../Icon';
 import TabContent from '../TabContent';
+import styles from '../../../.storybook/_container.scss';
 
 export default class Tabs extends React.Component {
   static propTypes = {
@@ -202,7 +203,7 @@ export default class Tabs extends React.Component {
 
       return (
         <TabContent
-          className="tab-content"
+          className={styles['tab-content']}
           aria-hidden={!selected}
           hidden={!selected}
           selected={selected}>
@@ -212,9 +213,9 @@ export default class Tabs extends React.Component {
     });
 
     const classes = {
-      tabs: classNames('bx--tabs', className),
-      tablist: classNames('bx--tabs__nav', {
-        'bx--tabs__nav--hidden': this.state.dropdownHidden,
+      tabs: classNames(styles['bx--tabs'], className),
+      tablist: classNames(styles['bx--tabs__nav'], {
+        [styles['bx--tabs__nav--hidden']]: this.state.dropdownHidden,
       }),
     };
 
@@ -228,12 +229,12 @@ export default class Tabs extends React.Component {
             role="listbox"
             aria-label={ariaLabel}
             tabIndex={0}
-            className="bx--tabs-trigger"
+            className={styles['bx--tabs-trigger']}
             onClick={this.handleDropdownClick}
             onKeyPress={this.handleDropdownClick}>
             <a
               tabIndex={-1}
-              className="bx--tabs-trigger-text"
+              className={styles['bx--tabs-trigger-text']}
               href={triggerHref}
               onClick={this.handleDropdownClick}>
               {selectedLabel}

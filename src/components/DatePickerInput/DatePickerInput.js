@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import classNames from 'classnames';
 import Icon from '../Icon';
+import styles from '../../../.storybook/_container.scss';
 
 export default class DatePickerInput extends Component {
   static propTypes = {
@@ -60,15 +61,15 @@ export default class DatePickerInput extends Component {
       pattern,
     };
 
-    const labelClasses = classNames('bx--label', {
-      'bx--visually-hidden': hideLabel,
+    const labelClasses = classNames(styles['bx--label'], {
+      [styles['bx--visually-hidden']]: hideLabel,
     });
 
     const datePickerIcon =
       datePickerType === 'single' ? (
         <Icon
           name="calendar"
-          className="bx--date-picker__icon"
+          className={styles['bx--date-picker__icon']}
           description={iconDescription}
           onClick={openCalendar}
         />
@@ -83,11 +84,11 @@ export default class DatePickerInput extends Component {
     ) : null;
 
     const error = invalid ? (
-      <div className="bx--form-requirement">{invalidText}</div>
+      <div className={styles['bx--form-requirement']}>{invalidText}</div>
     ) : null;
 
-    const containerClasses = classNames('bx--date-picker-container', {
-      'bx--date-picker--nolabel': !label,
+    const containerClasses = classNames(styles['bx--date-picker-container'], {
+      [styles['bx--date-picker--nolabel']]: !label,
     });
 
     const input = invalid ? (
@@ -98,7 +99,7 @@ export default class DatePickerInput extends Component {
           this.input = input;
         }}
         data-invalid
-        className="bx--date-picker__input"
+        className={styles['bx--date-picker__input']}
       />
     ) : (
       <input
@@ -107,7 +108,7 @@ export default class DatePickerInput extends Component {
         }}
         {...other}
         {...datePickerInputProps}
-        className="bx--date-picker__input"
+        className={styles['bx--date-picker__input']}
       />
     );
 

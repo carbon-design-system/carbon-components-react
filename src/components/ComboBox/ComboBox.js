@@ -3,6 +3,7 @@ import Downshift from 'downshift';
 import PropTypes from 'prop-types';
 import React from 'react';
 import ListBox, { PropTypes as ListBoxPropTypes } from '../ListBox';
+import styles from '../../../.storybook/_container.scss';
 
 const defaultItemToString = item => {
   if (typeof item === 'string') {
@@ -190,7 +191,7 @@ export default class ComboBox extends React.Component {
       invalidText,
       light,
     } = this.props;
-    const className = cx('bx--combo-box', containerClassName);
+    const className = cx(styles['bx--combo-box'], containerClassName);
 
     return (
       <Downshift
@@ -219,7 +220,7 @@ export default class ComboBox extends React.Component {
             {...getRootProps({ refKey: 'innerRef' })}>
             <ListBox.Field {...getButtonProps({ disabled })}>
               <input
-                className="bx--text-input"
+                className={styles['bx--text-input']}
                 aria-label={ariaLabel}
                 {...getInputProps({
                   disabled,

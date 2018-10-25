@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import classNames from 'classnames';
+import styles from '../../../.storybook/_container.scss';
 
 const TextInput = ({
   labelText,
@@ -34,11 +35,11 @@ const TextInput = ({
   };
 
   const errorId = id + '-error-msg';
-  const textInputClasses = classNames('bx--text-input', className, {
-    'bx--text-input--light': light,
+  const textInputClasses = classNames(styles['bx--text-input'], className, {
+    [styles['bx--text-input--light']]: light,
   });
-  const labelClasses = classNames('bx--label', {
-    'bx--visually-hidden': hideLabel,
+  const labelClasses = classNames(styles['bx--label'], {
+    [styles['bx--visually-hidden']]: hideLabel,
   });
 
   const label = labelText ? (
@@ -48,7 +49,7 @@ const TextInput = ({
   ) : null;
 
   const error = invalid ? (
-    <div className="bx--form-requirement" id={errorId}>
+    <div className={styles['bx--form-requirement']} id={errorId}>
       {invalidText}
     </div>
   ) : null;
@@ -67,11 +68,11 @@ const TextInput = ({
   );
 
   const helper = helperText ? (
-    <div className="bx--form__helper-text">{helperText}</div>
+    <div className={styles['bx--form__helper-text']}>{helperText}</div>
   ) : null;
 
   return (
-    <div className="bx--form-item">
+    <div className={styles['bx--form-item']}>
       {label}
       {input}
       {helper}
@@ -102,7 +103,7 @@ TextInput.propTypes = {
 };
 
 TextInput.defaultProps = {
-  className: 'bx--text__input',
+  className: styles['bx--text__input'],
   disabled: false,
   type: 'text',
   onChange: () => {},

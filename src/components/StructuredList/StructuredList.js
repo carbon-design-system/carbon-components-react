@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import uid from '../../tools/uniqueId';
+import styles from '../../../.storybook/_container.scss';
 
 export class StructuredListWrapper extends Component {
   static propTypes = {
@@ -28,9 +29,9 @@ export class StructuredListWrapper extends Component {
       ...other
     } = this.props;
 
-    const classes = classNames('bx--structured-list', className, {
-      'bx--structured-list--border': border,
-      'bx--structured-list--selection': selection,
+    const classes = classNames(styles['bx--structured-list'], className, {
+      [styles['bx--structured-list--border']]: border,
+      [styles['bx--structured-list--selection']]: selection,
     });
 
     return (
@@ -50,7 +51,7 @@ export class StructuredListHead extends Component {
   render() {
     const { children, className, ...other } = this.props;
 
-    const classes = classNames('bx--structured-list-thead', className);
+    const classes = classNames(styles['bx--structured-list-thead'], className);
     return (
       <div className={classes} {...other}>
         {children}
@@ -82,7 +83,7 @@ export class StructuredListInput extends Component {
 
   render() {
     const { className, value, name, title, ...other } = this.props;
-    const classes = classNames('bx--structured-list-input', className);
+    const classes = classNames(styles['bx--structured-list-input'], className);
     return (
       <input
         {...other}
@@ -126,8 +127,8 @@ export class StructuredListRow extends Component {
       ...other
     } = this.props;
 
-    const classes = classNames('bx--structured-list-row', className, {
-      'bx--structured-list-row--header-row': head,
+    const classes = classNames(styles['bx--structured-list-row'], className, {
+      [styles['bx--structured-list-row--header-row']]: head,
     });
 
     return label ? (
@@ -166,7 +167,7 @@ export class StructuredListBody extends Component {
 
   render() {
     const { children, className, ...other } = this.props;
-    const classes = classNames('bx--structured-list-tbody', className);
+    const classes = classNames(styles['bx--structured-list-tbody'], className);
     return (
       <div className={classes} {...other}>
         {children}
@@ -192,9 +193,9 @@ export class StructuredListCell extends Component {
     const { children, className, head, noWrap, ...other } = this.props;
 
     const classes = classNames(className, {
-      'bx--structured-list-th': head,
-      'bx--structured-list-td': !head,
-      'bx--structured-list-content--nowrap': noWrap,
+      [styles['bx--structured-list-th']]: head,
+      [styles['bx--structured-list-td']]: !head,
+      [styles['bx--structured-list-content--nowrap']]: noWrap,
     });
 
     return (

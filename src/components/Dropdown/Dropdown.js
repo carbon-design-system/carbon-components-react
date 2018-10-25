@@ -5,6 +5,7 @@ import warning from 'warning';
 import { iconCaretDown } from 'carbon-icons';
 import ClickListener from '../../internal/ClickListener';
 import Icon from '../Icon';
+import styles from '../../../.storybook/_container.scss';
 
 let didWarnAboutDeprecation = false;
 
@@ -156,10 +157,10 @@ export default class Dropdown extends PureComponent {
       );
 
     const dropdownClasses = classNames({
-      'bx--dropdown': true,
-      'bx--dropdown--open': this.state.open,
-      'bx--dropdown--disabled': disabled,
-      'bx--dropdown--light': light,
+      [styles['bx--dropdown']]: true,
+      [styles['bx--dropdown--open']]: this.state.open,
+      [styles['bx--dropdown--disabled']]: disabled,
+      [styles['bx--dropdown--light']]: light,
       [this.props.className]: this.props.className,
     });
 
@@ -174,18 +175,20 @@ export default class Dropdown extends PureComponent {
           tabIndex={tabIndex}
           aria-label={ariaLabel}
           role="listbox">
-          <li className="bx--dropdown-text">{this.state.selectedText}</li>
+          <li className={styles['bx--dropdown-text']}>
+            {this.state.selectedText}
+          </li>
           <li>
             <Icon
               icon={iconCaretDown}
-              className="bx--dropdown__arrow"
+              className={styles['bx--dropdown__arrow']}
               description={iconDescription}
             />
           </li>
           <li>
             <ul
               role="menu"
-              className="bx--dropdown-list"
+              className={styles['bx--dropdown-list']}
               aria-label="inner dropdown menu">
               {children}
             </ul>

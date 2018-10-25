@@ -1,6 +1,7 @@
 import React from 'react';
 import ListBoxMenuItem from './ListBoxMenuItem';
 import childrenOfType from '../../prop-types/childrenOfType';
+import styles from '../../../.storybook/_container.scss';
 
 /**
  * `ListBoxMenu` is a simple container node that isolates the `list-box__menu`
@@ -9,7 +10,7 @@ import childrenOfType from '../../prop-types/childrenOfType';
  */
 const ListBoxMenu = ({ children, ...rest }) => {
   return (
-    <div className="bx--list-box__menu" {...rest}>
+    <div className={styles['bx--list-box__menu']} {...rest}>
       {children}
     </div>
   );

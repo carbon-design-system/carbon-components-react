@@ -11,6 +11,7 @@ import FloatingMenu, {
 } from '../../internal/FloatingMenu';
 import OptimizedResize from '../../internal/OptimizedResize';
 import Icon from '../Icon';
+import styles from '../../../.storybook/_container.scss';
 
 const matchesFuncName =
   typeof Element !== 'undefined' &&
@@ -414,7 +415,10 @@ export default class OverflowMenu extends Component {
           if (
             !menuBody.contains(target) &&
             this.menuEl &&
-            !matches(target, '.bx--overflow-menu,.bx--overflow-menu-options')
+            !matches(
+              target,
+              `.${styles['bx--overflow-menu,.bx--overflow-menu-options']}`
+            )
           ) {
             this.closeMenu();
           }
@@ -465,19 +469,22 @@ export default class OverflowMenu extends Component {
 
     const overflowMenuClasses = classNames(
       this.props.className,
-      'bx--overflow-menu',
+      [styles['bx--overflow-menu']],
       {
-        'bx--overflow-menu--open': open,
+        [styles['bx--overflow-menu--open']]: open,
       }
     );
 
-    const overflowMenuOptionsClasses = classNames('bx--overflow-menu-options', {
-      'bx--overflow-menu--flip': this.props.flipped,
-      'bx--overflow-menu-options--open': open,
-    });
+    const overflowMenuOptionsClasses = classNames(
+      styles['bx--overflow-menu-options'],
+      {
+        [styles['bx--overflow-menu--flip']]: this.props.flipped,
+        [styles['bx--overflow-menu-options--open']]: open,
+      }
+    );
 
     const overflowMenuIconClasses = classNames(
-      'bx--overflow-menu__icon',
+      [styles['bx--overflow-menu__icon']],
       iconClass
     );
 

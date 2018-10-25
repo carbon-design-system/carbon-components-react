@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import styles from '../../../.storybook/_container.scss';
 
 export default class InlineCheckbox extends React.Component {
   static propTypes = {
@@ -74,7 +75,7 @@ export default class InlineCheckbox extends React.Component {
       name,
       onClick,
       onKeyDown,
-      className: 'bx--checkbox',
+      className: styles['bx--checkbox'],
       type: 'checkbox',
       ref: this.handleRef,
       checked: false,
@@ -97,7 +98,7 @@ export default class InlineCheckbox extends React.Component {
           /* eslint-disable jsx-a11y/label-has-for */
           <label
             htmlFor={id}
-            className="bx--checkbox-label"
+            className={styles['bx--checkbox-label']}
             aria-label={ariaLabel}
           />
         }

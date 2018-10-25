@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import classNames from 'classnames';
 import warning from 'warning';
+import styles from '../../../.storybook/_container.scss';
 
 let didWarnAboutDeprecation = false;
 
@@ -27,7 +28,7 @@ const DropdownItem = ({
   }
 
   const dropdownItemClasses = classNames({
-    'bx--dropdown-item': true,
+    [styles['bx--dropdown-item']]: true,
     [className]: className,
   });
 
@@ -61,7 +62,7 @@ const DropdownItem = ({
         tabIndex={isDropdownOpen ? 0 : -1}
         href={href}
         onClick={/* istanbul ignore next */ evt => evt.preventDefault()}
-        className="bx--dropdown-link">
+        className={styles['bx--dropdown-link']}>
         {itemText}
       </a>
     </li>

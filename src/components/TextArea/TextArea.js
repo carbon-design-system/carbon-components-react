@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import classNames from 'classnames';
+import styles from '../../../.storybook/_container.scss';
 
 const TextArea = ({
   className,
@@ -29,11 +30,11 @@ const TextArea = ({
     },
   };
 
-  const textareaClasses = classNames('bx--text-area', className, {
-    'bx--text-area--light': light,
+  const textareaClasses = classNames(styles['bx--text-area'], className, {
+    [styles['bx--text-area--light']]: light,
   });
-  const labelClasses = classNames('bx--label', {
-    'bx--visually-hidden': hideLabel,
+  const labelClasses = classNames(styles['bx--label'], {
+    [styles['bx--visually-hidden']]: hideLabel,
   });
 
   const label = labelText ? (
@@ -43,7 +44,7 @@ const TextArea = ({
   ) : null;
 
   const error = invalid ? (
-    <div className="bx--form-requirement">{invalidText}</div>
+    <div className={styles['bx--form-requirement']}>{invalidText}</div>
   ) : null;
 
   const input = invalid ? (
@@ -58,11 +59,11 @@ const TextArea = ({
   );
 
   const helper = helperText ? (
-    <div className="bx--form__helper-text">{helperText}</div>
+    <div className={styles['bx--form__helper-text']}>{helperText}</div>
   ) : null;
 
   return (
-    <div className="bx--form-item">
+    <div className={styles['bx--form-item']}>
       {label}
       {input}
       {helper}

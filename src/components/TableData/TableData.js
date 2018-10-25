@@ -3,6 +3,7 @@ import React from 'react';
 import classNames from 'classnames';
 import { iconChevronRight } from 'carbon-icons';
 import Icon from '../Icon';
+import styles from '../../../.storybook/_container.scss';
 
 const TableData = props => {
   const {
@@ -16,7 +17,10 @@ const TableData = props => {
 
   const tableDataClasses = classNames(className);
 
-  const iconClasses = classNames(iconClassName, 'bx--table-expand__svg');
+  const iconClasses = classNames(
+    iconClassName,
+    styles['bx--table-expand__svg']
+  );
 
   const style = expanded
     ? {

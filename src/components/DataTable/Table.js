@@ -1,11 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
+import styles from '../../../.storybook/_container.scss';
 
 export const Table = ({ zebra, className, children, short, ...other }) => {
-  const componentClass = cx('bx--data-table-v2', className, {
-    'bx--data-table-v2--zebra': zebra,
-    'bx--data-table-v2--short': short,
+  const componentClass = cx(styles['bx--data-table-v2'], className, {
+    [styles['bx--data-table-v2--zebra']]: zebra,
+    [styles['bx--data-table-v2--short']]: short,
   });
   return (
     <table {...other} className={componentClass}>

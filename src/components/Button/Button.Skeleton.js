@@ -1,12 +1,13 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import classNames from 'classnames';
+import styles from '../../../.storybook/_container.scss';
 
 const ButtonSkeleton = ({ small, href }) => {
   const buttonClasses = classNames({
-    'bx--skeleton': true,
-    'bx--btn': true,
-    'bx--btn--sm': small,
+    [styles['bx--skeleton']]: true,
+    [styles['bx--btn']]: true,
+    [styles['bx--btn--sm']]: small,
   });
 
   const commonProps = {

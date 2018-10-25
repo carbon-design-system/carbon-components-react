@@ -3,6 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { iconCaretDown } from 'carbon-icons';
 import Icon from '../Icon';
+import styles from '../../../.storybook/_container.scss';
 
 export const translationIds = {
   'close.menu': 'close.menu',
@@ -20,8 +21,8 @@ const defaultTranslations = {
  */
 const ListBoxMenuIcon = ({ isOpen, translateWithId: t }) => {
   const className = cx({
-    'bx--list-box__menu-icon': true,
-    'bx--list-box__menu-icon--open': isOpen,
+    [styles['bx--list-box__menu-icon']]: true,
+    [styles['bx--list-box__menu-icon--open']]: isOpen,
   });
   const description = isOpen ? t('close.menu') : t('open.menu');
   return (

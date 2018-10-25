@@ -1,9 +1,10 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import classnames from 'classnames';
+import styles from '../../../.storybook/_container.scss';
 
 const Form = ({ className, children, ...other }) => {
-  const classNames = classnames('bx--form', className);
+  const classNames = classnames(styles['bx--form'], className);
 
   return (
     <form className={classNames} {...other}>

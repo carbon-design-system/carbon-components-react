@@ -3,6 +3,7 @@ import React from 'react';
 import Icon from '../Icon';
 import classNames from 'classnames';
 import { ButtonTypes } from '../../prop-types/types';
+import styles from '../../../.storybook/_container.scss';
 
 const Button = ({
   children,
@@ -18,14 +19,14 @@ const Button = ({
   ...other
 }) => {
   const buttonClasses = classNames(className, {
-    'bx--btn': true,
-    'bx--btn--sm': small,
-    'bx--btn--primary': kind === 'primary',
-    'bx--btn--danger': kind === 'danger',
-    'bx--btn--secondary': kind === 'secondary',
-    'bx--btn--ghost': kind === 'ghost',
-    'bx--btn--danger--primary': kind === 'danger--primary',
-    'bx--btn--tertiary': kind === 'tertiary',
+    [styles['bx--btn']]: true,
+    [styles['bx--btn--sm']]: small,
+    [styles['bx--btn--primary']]: kind === 'primary',
+    [styles['bx--btn--danger']]: kind === 'danger',
+    [styles['bx--btn--secondary']]: kind === 'secondary',
+    [styles['bx--btn--ghost']]: kind === 'ghost',
+    [styles['bx--btn--danger--primary']]: kind === 'danger--primary',
+    [styles['bx--btn--tertiary']]: kind === 'tertiary',
   });
 
   const commonProps = {
@@ -38,7 +39,7 @@ const Button = ({
       icon={Object(icon) === icon ? icon : undefined}
       name={Object(icon) !== icon ? icon : undefined}
       description={iconDescription}
-      className="bx--btn__icon"
+      className={styles['bx--btn__icon']}
     />
   ) : null;
 
