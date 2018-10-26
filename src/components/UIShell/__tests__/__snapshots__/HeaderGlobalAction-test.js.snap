@@ -2,12 +2,15 @@
 
 exports[`HeaderGlobalAction should render 1`] = `
 <HeaderGlobalAction
-  aria-label="Label"
+  aria-label="Accessibility label"
   className="custom-class"
+  isActive={false}
+  onClick={[MockFunction]}
 >
   <button
-    aria-label="Label"
+    aria-label="Accessibility label"
     className="bx--platform-header__action custom-class"
+    onClick={[MockFunction]}
     type="button"
   >
     <Fade32>
