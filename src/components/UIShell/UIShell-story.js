@@ -19,7 +19,7 @@ import HeaderGlobalAction from './HeaderGlobalAction';
 // components much simpler. In the interim, we're going to create presentational
 // components and try and piece them together to figure out what are standard
 // usage patterns for each to see what kind of component API we should expose
-storiesOf('UI Shell', module).add(
+storiesOf('[Experimental] UI Shell', module).add(
   'Header',
   withReadme(
     readme,
