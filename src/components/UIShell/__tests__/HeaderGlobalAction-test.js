@@ -17,7 +17,7 @@ describe('HeaderGlobalAction', () => {
 
   it('should render', () => {
     const wrapper = mount(
-      <HeaderGlobalAction aria-label="Label" className="custom-class">
+      <HeaderGlobalAction {...mockProps}>
         <Fade32 />
       </HeaderGlobalAction>
     );

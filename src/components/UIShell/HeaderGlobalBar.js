@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import wrapComponent from '../../tools/wrapComponent';
 import { global } from './classNames';
 

@@ -113,15 +113,12 @@ export default class HeaderNavigation extends React.Component {
     // that matches the label on the menubar.
     // https://www.w3.org/TR/wai-aria-practices/examples/menubar/menubar-1/menubar-1.html#
     return (
-      <nav
-        {...rest}
-        {...accessibilityLabel}
-        className={className}
-        onKeyDown={this.handleOnKeyDown}>
+      <nav {...rest} {...accessibilityLabel} className={className}>
         <ul
           {...accessibilityLabel}
           className={navigation.menubar}
-          role="menubar">
+          role="menubar"
+          onKeyDown={this.handleOnKeyDown}>
           {React.Children.map(children, this._renderNavItem)}
         </ul>
       </nav>

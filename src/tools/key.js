@@ -25,7 +25,7 @@ export const keys = {
  *   }
  * }
  * @param {Event} event
- * @param {Array<number>} keyCodesToMatch
+ * @param {Array<number>} keysToMatch
  * @returns {boolean}
  */
 export function matches(event, keysToMatch) {

@@ -187,7 +187,6 @@ class HeaderMenu extends React.Component {
       'aria-labelledby': ariaLabelledBy,
       className: customClassName,
       children,
-      focusRef,
       tabIndex,
     } = this.props;
     const accessibilityLabel = {
@@ -195,15 +194,22 @@ class HeaderMenu extends React.Component {
       'aria-labelledby': ariaLabelledBy,
     };
     const className = cx(navigation.submenu, customClassName);
+    // Notes on eslint comments and based on the examples in:
+    // https://www.w3.org/TR/wai-aria-practices/examples/menubar/menubar-1/menubar-1.html#
+    // - The focus is handled by the <a> menuitem, onMouseOver is for mouse
+    // users
+    // - aria-haspopup can definitely have the value "menu"
+    // - aria-expanded is on their example node with role="menuitem"
+    // - href can be set to javascript:void(0), ideally this will be a button
     return (
-      <li
+      <li // eslint-disable-line jsx-a11y/mouse-events-have-key-events,jsx-a11y/no-noninteractive-element-interactions
         className={className}
         onKeyDown={this.handleOnKeyDown}
         onMouseOver={this.handleOnMouseOver}
         onMouseLeave={this.handleOnMouseLeave}
         onBlur={this.handleOnBlur}>
-        <a
-          aria-haspopup="menu"
+        <a // eslint-disable-line jsx-a11y/role-supports-aria-props,jsx-a11y/anchor-is-valid
+          aria-haspopup="menu" // eslint-disable-line jsx-a11y/aria-proptypes
           aria-expanded={this.state.expanded}
           className={cx(navigation.menuitem, navigation.menutitle)}
           href="javascript:void(0)"
