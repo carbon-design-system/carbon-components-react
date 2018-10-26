@@ -14,11 +14,22 @@ import isRequiredOneOf from '../../prop-types/isRequiredOneOf';
  */
 class HeaderMenu extends React.Component {
   static propTypes = {
+    /**
+     * Required props for accessibility label on the underlying menu
+     */
     ...isRequiredOneOf({
       'aria-label': PropTypes.string,
       'aria-labelledby': PropTypes.string,
     }),
+
+    /**
+     * Provide a custom ref handler for the menu button
+     */
     focusRef: PropTypes.func,
+
+    /**
+     * Optionally provide a tabIndex for the underlying menu button
+     */
     tabIndex: PropTypes.number,
   };
 

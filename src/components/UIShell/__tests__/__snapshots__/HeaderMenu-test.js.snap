@@ -56,22 +56,29 @@ exports[`HeaderMenu should render 1`] = `
           role="none"
           tabIndex={0}
         >
-          <li
+          <HeaderMenuItem
+            href="/a"
+            innerRef={[Function]}
             role="none"
+            tabIndex={0}
           >
-            <a
-              className="bx--platform-header__menu-item"
-              href="/a"
-              role="menuitem"
-              tabIndex={0}
+            <li
+              role="none"
             >
-              <span
-                className="bx--text-truncate--end"
+              <a
+                className="bx--platform-header__menu-item"
+                href="/a"
+                role="menuitem"
+                tabIndex={0}
               >
-                A
-              </span>
-            </a>
-          </li>
+                <span
+                  className="bx--text-truncate--end"
+                >
+                  A
+                </span>
+              </a>
+            </li>
+          </HeaderMenuItem>
         </ForwardRef>
         <ForwardRef
           href="/b"
@@ -79,22 +86,29 @@ exports[`HeaderMenu should render 1`] = `
           role="none"
           tabIndex={-1}
         >
-          <li
+          <HeaderMenuItem
+            href="/b"
+            innerRef={[Function]}
             role="none"
+            tabIndex={-1}
           >
-            <a
-              className="bx--platform-header__menu-item"
-              href="/b"
-              role="menuitem"
-              tabIndex={-1}
+            <li
+              role="none"
             >
-              <span
-                className="bx--text-truncate--end"
+              <a
+                className="bx--platform-header__menu-item"
+                href="/b"
+                role="menuitem"
+                tabIndex={-1}
               >
-                B
-              </span>
-            </a>
-          </li>
+                <span
+                  className="bx--text-truncate--end"
+                >
+                  B
+                </span>
+              </a>
+            </li>
+          </HeaderMenuItem>
         </ForwardRef>
         <ForwardRef
           href="/c"
@@ -102,22 +116,29 @@ exports[`HeaderMenu should render 1`] = `
           role="none"
           tabIndex={-1}
         >
-          <li
+          <HeaderMenuItem
+            href="/c"
+            innerRef={[Function]}
             role="none"
+            tabIndex={-1}
           >
-            <a
-              className="bx--platform-header__menu-item"
-              href="/c"
-              role="menuitem"
-              tabIndex={-1}
+            <li
+              role="none"
             >
-              <span
-                className="bx--text-truncate--end"
+              <a
+                className="bx--platform-header__menu-item"
+                href="/c"
+                role="menuitem"
+                tabIndex={-1}
               >
-                C
-              </span>
-            </a>
-          </li>
+                <span
+                  className="bx--text-truncate--end"
+                >
+                  C
+                </span>
+              </a>
+            </li>
+          </HeaderMenuItem>
         </ForwardRef>
       </ul>
     </li>

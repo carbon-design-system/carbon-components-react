@@ -1,10 +1,13 @@
+import { Fade32 } from '@carbon/icons-react';
 import cx from 'classnames';
 import React from 'react';
-import { Fade32 } from '@carbon/icons-react';
+import PropTypes from 'prop-types';
 import { action, button } from './classNames';
+import isRequiredOneOf from '../../prop-types/isRequiredOneOf';
 
 const HeaderMenuButton = ({
   'aria-label': ariaLabel,
+  'aria-labelledby': ariaLabelledBy,
   className: customClassName,
   onClick,
   isActive,
@@ -16,10 +19,14 @@ const HeaderMenuButton = ({
     [button.button]: true,
     [action.state.active]: isActive,
   });
+  const accessibilityLabel = {
+    'aria-label': ariaLabel,
+    'aria-labelledby': ariaLabelledBy,
+  };
   return (
     <button
       {...rest}
-      aria-label={ariaLabel}
+      {...accessibilityLabel}
       className={className}
       title={ariaLabel}
       type="button"
@@ -31,6 +38,33 @@ const HeaderMenuButton = ({
       )}
     </button>
   );
+};
+
+HeaderMenuButton.propTypes = {
+  /**
+   * Required props for accessibility label on the underlying menu
+   */
+  ...isRequiredOneOf({
+    'aria-label': PropTypes.string,
+    'aria-labelledby': PropTypes.string,
+  }),
+
+  /**
+   * Optionally provide a custom class name that is applied to the underlying
+   * button
+   */
+  className: PropTypes.string,
+
+  /**
+   * Optionally provide an onClick handler that is called when the underlying
+   * button fires it's onclick event
+   */
+  onClick: PropTypes.func,
+
+  /**
+   * Specify whether the action is currently active
+   */
+  isActive: PropTypes.bool,
 };
 
 export default HeaderMenuButton;

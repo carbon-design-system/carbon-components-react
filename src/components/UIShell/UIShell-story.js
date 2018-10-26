@@ -27,7 +27,10 @@ storiesOf('UI Shell', module).add(
       text: '[Experimental] UI Shell',
     })(() => (
       <Header>
-        <HeaderMenuButton onClick={action('Menu clicked')} />
+        <HeaderMenuButton
+          aria-label="Open menu"
+          onClick={action('Menu clicked')}
+        />
         <HeaderName href="#" prefix="IBM">
           [Platform]
         </HeaderName>

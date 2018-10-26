@@ -7,11 +7,23 @@ import { navigation } from './classNames';
 
 export default class HeaderNavigation extends React.Component {
   static propTypes = {
+    /**
+     * Required props for accessibility label on the underlying menu
+     */
     ...isRequiredOneOf({
       'aria-label': PropTypes.string,
       'aria-labelledby': PropTypes.string,
     }),
+
+    /**
+     * Optionally provide a custom class to apply to the underlying <nav> node
+     */
     className: PropTypes.string,
+
+    /**
+     * Provide valid children of HeaderNavigation, for example `HeaderMenuItem`
+     * or `HeaderMenu`
+     */
     children: PropTypes.node,
   };
 
