@@ -10,6 +10,7 @@ export default class ModalWrapper extends React.Component {
     handleOpen: PropTypes.func,
     children: PropTypes.node,
     id: PropTypes.string,
+    danger: PropTypes.bool,
     buttonTriggerText: PropTypes.node,
     buttonTriggerClassName: PropTypes.string,
     modalLabel: PropTypes.string,
@@ -63,6 +64,7 @@ export default class ModalWrapper extends React.Component {
     const {
       children,
       onKeyDown,
+      danger,
       buttonTriggerText,
       buttonTriggerClassName,
       triggerButtonKind,
@@ -74,6 +76,7 @@ export default class ModalWrapper extends React.Component {
 
     const props = {
       ...other,
+      danger: danger,
       open: this.state.isOpen,
       onRequestClose: this.handleClose,
       onRequestSubmit: this.handleOnRequestSubmit,
