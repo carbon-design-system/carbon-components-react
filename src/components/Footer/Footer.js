@@ -38,7 +38,7 @@ const Footer = ({
         </div>
       </div>
       <div className="bx--footer-cta">
-        <Button type="submit">{buttonText}</Button>
+        {buttonText ? <Button type="submit">{buttonText}</Button> : ''}
       </div>
     </footer>
   );
@@ -100,7 +100,6 @@ Footer.defaultProps = {
   labelTwo: 'Estimate Monthly Cost',
   linkTextTwo: 'Cost Calculator',
   linkHrefTwo: '#',
-  buttonText: 'Create',
 };
 
 export default Footer;
