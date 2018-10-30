@@ -39,6 +39,15 @@ describe('DropdownV2', () => {
     assertMenuOpen(wrapper, mockProps);
   });
 
+  it('should render custom item components', () => {
+    const wrapper = mount(<DropdownV2 {...mockProps} />);
+    wrapper.setProps({
+      itemToElement: item => <div className="mock-item">{item.label}</div>,
+    });
+    openMenu(wrapper);
+    expect(wrapper).toMatchSnapshot();
+  });
+
   it('should specify light version as expected', () => {
     const wrapper = mount(<DropdownV2 {...mockProps} />);
     expect(wrapper.props().light).toEqual(false);
