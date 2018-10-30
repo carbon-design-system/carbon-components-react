@@ -1,6 +1,6 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import { withInfo } from '@storybook/addon-info';
+
 import { withKnobs, select, text } from '@storybook/addon-knobs';
 import TooltipDefinition from '../TooltipDefinition';
 
@@ -21,13 +21,16 @@ storiesOf('TooltipDefinition', module)
   .addDecorator(withKnobs)
   .add(
     'default',
-    withInfo({
-      text: `
-        Definition Tooltip
-      `,
-    })(() => (
+    () => (
       <div style={{ marginTop: '2rem' }}>
         <TooltipDefinition {...props()}>Definition Tooltip</TooltipDefinition>
       </div>
-    ))
+    ),
+    {
+      info: {
+        text: `
+            Definition Tooltip
+          `,
+      },
+    }
   );

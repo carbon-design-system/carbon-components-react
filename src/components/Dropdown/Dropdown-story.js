@@ -3,7 +3,7 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
-import { withInfo } from '@storybook/addon-info';
+
 import {
   withKnobs,
   boolean,
@@ -75,12 +75,7 @@ storiesOf('Dropdown', module)
   .addDecorator(story => <div style={{ minWidth: '20em' }}>{story()}</div>)
   .add(
     'Default',
-    withInfo({
-      text: `
-        The Dropdown component is used for navigating or filtering existing content.
-        Create Dropdown Item components for each option in the dropdown menu.
-      `,
-    })(() => {
+    () => {
       const dropdownItemProps = props.dropdownItem();
       return (
         <Dropdown {...props.dropdown()}>
@@ -111,5 +106,13 @@ storiesOf('Dropdown', module)
           />
         </Dropdown>
       );
-    })
+    },
+    {
+      info: {
+        text: `
+            The Dropdown component is used for navigating or filtering existing content.
+            Create Dropdown Item components for each option in the dropdown menu.
+          `,
+      },
+    }
   );
