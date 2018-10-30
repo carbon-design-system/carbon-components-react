@@ -39,6 +39,16 @@ const props = () => ({
   light: boolean('Light variant (light)', false),
 });
 
+const itemToElement = item => {
+  const itemAsArray = item.text.split(' ');
+  return (
+    <div>
+      <span>{itemAsArray[0]}</span>
+      <span style={{ color: 'red' }}> {itemAsArray[1]}</span>
+    </div>
+  );
+};
+
 storiesOf('DropdownV2', module)
   .addDecorator(withKnobs)
   .add(
@@ -51,6 +61,24 @@ storiesOf('DropdownV2', module)
           {...props()}
           items={items}
           itemToString={item => (item ? item.text : '')}
+          onChange={action('onChange')}
+        />
+      </div>
+    ))
+  )
+  .add(
+    'items as components',
+    withInfo({
+      text: `
+        Rendering items as custom components
+      `,
+    })(() => (
+      <div style={{ width: 300 }}>
+        <DropdownV2
+          {...props()}
+          items={items}
+          itemToString={item => (item ? item.text : '')}
+          itemToElement={itemToElement}
           onChange={action('onChange')}
         />
       </div>
@@ -88,7 +116,8 @@ storiesOf('DropdownV2', module)
       `,
     })(() => (
       <div style={{ width: 300 }}>
-        <DropdownSkeleton />&nbsp;
+        <DropdownSkeleton />
+        &nbsp;
         <DropdownSkeleton inline />
       </div>
     ))
