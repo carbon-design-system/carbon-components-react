@@ -27,11 +27,21 @@ const findHighlightedIndex = ({ items, itemToString }, inputValue) => {
     return -1;
   }
 
-  return items.findIndex(item =>
-    itemToString(item)
-      .toLowerCase()
-      .includes(inputValue.toLowerCase())
-  );
+  let i = 0;
+
+  while (i < items.length) {
+    if (
+      itemToString(items[i])
+        .toLowerCase()
+        .includes(inputValue.toLowerCase())
+    ) {
+      return i;
+    }
+
+    i++;
+  }
+
+  return -1;
 };
 
 export default class ComboBox extends React.Component {
