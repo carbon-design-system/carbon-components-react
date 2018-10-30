@@ -9,8 +9,8 @@ import OverflowMenuItem from '../OverflowMenuItem';
 import Icon from '../Icon';
 
 const directions = {
-  bottom: 'Bottom of the trigger button (bottom)',
-  top: 'Top of the trigger button (top)',
+  'Bottom of the trigger button (bottom)': 'bottom',
+  'Top of the trigger button (top)': 'top',
 };
 
 const props = {

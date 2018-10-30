@@ -5,8 +5,8 @@ import { withKnobs, select, text } from '@storybook/addon-knobs';
 import TooltipIcon from '../TooltipIcon';
 
 const directions = {
-  bottom: 'Bottom (bottom)',
-  top: 'Top (top)',
+  'Bottom (bottom)': 'bottom',
+  'Top (top)': 'top',
 };
 
 const props = () => ({

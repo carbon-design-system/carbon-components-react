@@ -17,18 +17,18 @@ import FileUploaderSkeleton from '../FileUploader/FileUploader.Skeleton';
 import Button from '../Button';
 
 const buttonKinds = {
-  primary: 'Primary (primary)',
-  secondary: 'Secondary (secondary)',
-  danger: 'Danger (danger)',
-  ghost: 'Ghost (ghost)',
-  'danger--primary': 'Danger Primary (danger--primary)',
-  tertiary: 'Tertiary (tertiary)',
+  'Primary (primary)': 'primary',
+  'Secondary (secondary)': 'secondary',
+  'Danger (danger)': 'danger',
+  'Ghost (ghost)': 'ghost',
+  'Danger Primary (danger--primary)': 'danger--primary',
+  'Tertiary (tertiary)': 'tertiary',
 };
 
 const filenameStatuses = {
-  edit: 'Edit (edit)',
-  complete: 'Complete (complete)',
-  uploading: 'Uploading (uploading)',
+  'Edit (edit)': 'edit',
+  'Complete (complete)': 'complete',
+  'Uploading (uploading)': 'uploading',
 };
 
 const props = {

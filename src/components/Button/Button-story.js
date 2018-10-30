@@ -8,9 +8,9 @@ import Button from '../Button';
 import ButtonSkeleton from '../Button/Button.Skeleton';
 
 const icons = {
-  none: 'None',
-  iconAddSolid: 'Add with filled circle (iconAddSolid from `carbon-icons`)',
-  iconSearch: 'Search (iconSearch from `carbon-icons`)',
+  None: 'None',
+  'Add with filled circle (iconAddSolid from `carbon-icons`)': 'iconAddSolid',
+  'Search (iconSearch from `carbon-icons`)': 'iconSearch',
 };
 
 const iconMap = {
@@ -19,11 +19,11 @@ const iconMap = {
 };
 
 const kinds = {
-  primary: 'Primary button (primary)',
-  secondary: 'Secondary button (secondary)',
-  danger: 'Danger button (danger)',
-  'danger--primary': 'Danger primary button (danger--primary)',
-  ghost: 'Ghost button (ghost)',
+  'Primary button (primary)': 'primary',
+  'Secondary button (secondary)': 'secondary',
+  'Danger button (danger)': 'danger',
+  'Danger primary button (danger--primary)': 'danger--primary',
+  'Ghost button (ghost)': 'ghost',
 };
 
 const props = {

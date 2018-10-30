@@ -5,10 +5,10 @@ import { withKnobs, boolean, select, text } from '@storybook/addon-knobs';
 import Tooltip from '../Tooltip';
 
 const directions = {
-  bottom: 'Bottom (bottom)',
-  left: 'Left (left)',
-  top: 'Top (top)',
-  right: 'Right (right)',
+  'Bottom (bottom)': 'bottom',
+  'Left (left)': 'left',
+  'Top (top)': 'top',
+  'Right (right)': 'right',
 };
 
 const props = {

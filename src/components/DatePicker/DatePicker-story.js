@@ -15,8 +15,8 @@ const datePickerOnChangeActions = decorateAction([
 ]);
 
 const patterns = {
-  'd{1,2}/d{4}': 'Short (d{1,2}/d{4})',
-  'd{1,2}/d{1,2}/d{4}': 'Regular (d{1,2}/d{1,2}/d{4})',
+  'Short (d{1,2}/d{4})': 'd{1,2}/d{4}',
+  'Regular (d{1,2}/d{1,2}/d{4})': 'd{1,2}/d{1,2}/d{4}',
 };
 
 const props = {

@@ -8,7 +8,7 @@ import TagSkeleton from '../Tag/Tag.Skeleton';
 const types = typesList.reduce(
   (o, type) => ({
     ...o,
-    [type]: `${type} (${type})`,
+    [`${type} (${type})`]: type,
   }),
   {}
 );

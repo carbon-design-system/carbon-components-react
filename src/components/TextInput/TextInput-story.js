@@ -7,9 +7,9 @@ import TextInput from '../TextInput';
 import TextInputSkeleton from '../TextInput/TextInput.Skeleton';
 
 const types = {
-  '': 'None',
-  email: 'For email (email)',
-  password: 'For password (password)',
+  None: '',
+  'For email (email)': 'email',
+  'For password (password)': 'password',
 };
 
 const TextInputProps = () => ({

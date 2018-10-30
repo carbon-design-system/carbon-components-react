@@ -15,16 +15,16 @@ import Dropdown from '../Dropdown';
 import DropdownItem from '../DropdownItem';
 
 const values = {
-  none: 'None ()',
-  option1: 'Option 1 (option1)',
-  option2: 'Option 2 (option2)',
-  option3: 'Option 3 (option3)',
-  option4: 'Option 4 (option4)',
-  option5: 'Option 5 (option5)',
+  'None ()': 'none',
+  'Option 1 (option1)': 'option1',
+  'Option 2 (option2)': 'option2',
+  'Option 3 (option3)': 'option3',
+  'Option 4 (option4)': 'option4',
+  'Option 5 (option5)': 'option5',
 };
 
 const texts = {
-  none: 'None ()',
+  'None ()': 'none',
   'Option 1': 'Option 1',
   'Option 2': 'Option 2',
   'Option 3': 'Option 3',

@@ -20,8 +20,8 @@ const defaultLabel = 'MultiSelect Label';
 const defaultPlaceholder = 'Filter';
 
 const types = {
-  default: 'Default (default)',
-  inline: 'Inline (inline)',
+  'Default (default)': 'default',
+  'Inline (inline)': 'inline',
 };
 
 const props = () => ({

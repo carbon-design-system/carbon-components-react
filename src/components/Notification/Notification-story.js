@@ -9,10 +9,10 @@ import Notification, {
 } from '../Notification';
 
 const kinds = {
-  error: 'Error (error)',
-  info: 'Info (info)',
-  success: 'Success (success)',
-  warning: 'Warning (warning)',
+  'Error (error)': 'error',
+  'Info (info)': 'info',
+  'Success (success)': 'success',
+  'Warning (warning)': 'warning',
 };
 
 const notificationProps = () => ({

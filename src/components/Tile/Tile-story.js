@@ -21,7 +21,7 @@ import TileGroup from '../TileGroup';
 import RadioTile from '../RadioTile';
 
 const radioValues = {
-  '': 'None',
+  None: '',
   standard: 'standard',
   'default-selected': 'default-selected',
   selected: 'selected',

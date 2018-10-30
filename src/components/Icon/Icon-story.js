@@ -10,12 +10,12 @@ import IconSkeleton from '../Icon/Icon.Skeleton';
 setIconsList(iconsList);
 
 const icons = {
-  iconAdd: 'Add (iconAdd from `carbon-icons`)',
-  iconAddSolid: 'Add with filled circle (iconAddSolid from `carbon-icons`)',
-  iconAddOutline: 'Add with circle (iconAddOutline from `carbon-icons`)',
-  'icon--add': 'Legacy add (icon--add)',
-  'add--solid': 'Legacy add with filled circle (add--solid)',
-  'add--outline': 'Legacy add with circle (add--outline)',
+  'Add (iconAdd from `carbon-icons`)': 'iconAdd',
+  'Add with filled circle (iconAddSolid from `carbon-icons`)': 'iconAddSolid',
+  'Add with circle (iconAddOutline from `carbon-icons`)': 'iconAddOutline',
+  'Legacy add (icon--add)': 'icon--add',
+  'Legacy add with filled circle (add--solid)': 'add--solid',
+  'Legacy add with circle (add--outline)': 'add--outline',
 };
 
 const iconMap = {

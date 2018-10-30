@@ -9,9 +9,9 @@ import ContentSwitcher from '../ContentSwitcher';
 import Switch from '../Switch';
 
 const icons = {
-  none: 'None',
-  iconAddSolid: 'Add with filled circle (iconAddSolid from `carbon-icons`)',
-  iconSearch: 'Search (iconSearch from `carbon-icons`)',
+  None: 'None',
+  'Add with filled circle (iconAddSolid from `carbon-icons`)': 'iconAddSolid',
+  'Search (iconSearch from `carbon-icons`)': 'iconSearch',
 };
 
 const iconMap = {
@@ -20,8 +20,8 @@ const iconMap = {
 };
 
 const kinds = {
-  anchor: 'Anchor (anchor)',
-  button: 'Button (button)',
+  'Anchor (anchor)': 'anchor',
+  'Button (button)': 'button',
 };
 
 const props = {

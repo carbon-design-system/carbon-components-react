@@ -6,8 +6,8 @@ import { iconInfoGlyph, iconAdd } from 'carbon-icons';
 import TooltipSimple from '../TooltipSimple';
 
 const icons = {
-  iconInfoGlyph: 'Info (iconInfo from `carbon-icons`)',
-  iconAdd: 'Add (iconAdd from `carbon-icons`)',
+  'Info (iconInfo from `carbon-icons`)': 'iconInfoGlyph',
+  'Add (iconAdd from `carbon-icons`)': 'iconAdd',
 };
 
 const iconMap = {
@@ -16,8 +16,8 @@ const iconMap = {
 };
 
 const directions = {
-  bottom: 'Bottom (bottom)',
-  top: 'Top (top)',
+  'Bottom (bottom)': 'bottom',
+  'Top (top)': 'top',
 };
 
 const props = {
