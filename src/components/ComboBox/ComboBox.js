@@ -148,6 +148,9 @@ export default class ComboBox extends React.Component {
 
   constructor(props) {
     super(props);
+
+    this.textInput = React.createRef();
+
     this.state = {
       inputValue: getInputValue(props, {}),
     };
@@ -194,6 +197,13 @@ export default class ComboBox extends React.Component {
         }
       }
     );
+  };
+
+  onToggleClick = isOpen => event => {
+    if (event.target === this.textInput.current && isOpen) {
+      event.preventDownshiftDefault = true;
+      event.persist();
+    }
   };
 
   render() {
@@ -243,10 +253,15 @@ export default class ComboBox extends React.Component {
             invalidText={invalidText}
             light={light}
             {...getRootProps({ refKey: 'innerRef' })}>
-            <ListBox.Field {...getButtonProps({ disabled })}>
+            <ListBox.Field
+              {...getButtonProps({
+                disabled,
+                onClick: this.onToggleClick(isOpen),
+              })}>
               <input
                 className="bx--text-input"
                 aria-label={ariaLabel}
+                ref={this.textInput}
                 {...rest}
                 {...getInputProps({
                   disabled,
