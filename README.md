@@ -34,7 +34,7 @@ yarn add carbon-components-react carbon-components carbon-icons
 
 If you just want to try out `carbon-components-react`, you can also use [CodeSandbox](https://codesandbox.io).
 
-[![Edit carbon-components-react](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/x2mjypo6pp)
+[![Edit carbon-components-react](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/IBM/carbon-components-react/tree/master/examples/helloworld)
 
 ## Development
 
