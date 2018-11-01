@@ -945,11 +945,6 @@
     lodash "^4.17.10"
     to-fast-properties "^2.0.0"
 
-"@carbon/colors@^0.0.1-alpha.0":
-  version "0.0.1-alpha.0"
-  resolved "https://registry.yarnpkg.com/@carbon/colors/-/colors-0.0.1-alpha.0.tgz#8c53ef65f864106a63cfc412d8ff083a8a04905f"
-  integrity sha512-/v5d1iw5MuHQgBgArItzHF04VgqeE5u/oSXwx/FDrZOZiJQ2IAlq3ocCglAq0P2xd8Wkzy2jKKIcL7LOGQYfww==
-
 "@carbon/icons-react@^0.0.1-alpha.2":
   version "0.0.1-alpha.2"
   resolved "https://registry.yarnpkg.com/@carbon/icons-react/-/icons-react-0.0.1-alpha.2.tgz#d46a8bcb1986a7d57d10894c02db6b56040d5699"
@@ -4012,26 +4007,10 @@ caniuse-lite@^1.0.30000884:
   resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30000885.tgz#e889e9f8e7e50e769f2a49634c932b8aee622984"
   integrity sha512-cXKbYwpxBLd7qHyej16JazPoUacqoVuDhvR61U7Fr5vSxMUiodzcYa1rQYRYfZ5GexV03vGZHd722vNPLjPJGQ==
 
-carbon-components@^9.36.0:
-  version "9.36.0"
-  resolved "https://registry.yarnpkg.com/carbon-components/-/carbon-components-9.36.0.tgz#17ff739cbb46b48245b7f4b0622278662514d11e"
-  integrity sha512-89xvSgVwV5ACIYJ+GNaRqizqKiTQxI5XV5swVhUCsmhbvEDvEEswNro8WojyjnIaMgnPp/2tzD+MkwcADSAdaQ==
-  dependencies:
-    "@carbon/colors" "^0.0.1-alpha.0"
-    carbon-icons "^7.0.7"
-    flatpickr "2.6.3"
-    lodash.debounce "^4.0.8"
-    warning "^3.0.0"
-
 carbon-icons@^7.0.5:
   version "7.0.5"
   resolved "https://registry.yarnpkg.com/carbon-icons/-/carbon-icons-7.0.5.tgz#cd0c44dd96c6853544445bd9a71da6e602793b9c"
   integrity sha512-VaHoJcQhtJV9RI5zgvq6sNsMYfJQDH4SvJLo7Kifip3jKbBFZicEHJGvMhfQBblXE/0RJvZDclLQDiUD/jNyOg==
-
-carbon-icons@^7.0.7:
-  version "7.0.7"
-  resolved "https://registry.yarnpkg.com/carbon-icons/-/carbon-icons-7.0.7.tgz#ebafe3e9fa25df973796a8eca06d8a7c501cc610"
-  integrity sha512-3vgkdXJRgCViCrH3fLUdyAXo0I8wmohO6QETv7vWFx6yc7s+SirWFBSFL38zUx4MHtR8iTxIlLEzkeU6FlFtXg==
 
 cardinal@^1.0.0:
   version "1.0.0"
@@ -6467,11 +6446,6 @@ flat-cache@^1.2.1:
     del "^2.0.2"
     graceful-fs "^4.1.2"
     write "^0.2.1"
-
-flatpickr@2.6.3:
-  version "2.6.3"
-  resolved "https://registry.yarnpkg.com/flatpickr/-/flatpickr-2.6.3.tgz#457357532deb135f3da64b425bf4435737961564"
-  integrity sha1-RXNXUy3rE189pktCW/RDVzeWFWQ=
 
 flatpickr@4.5.1:
   version "4.5.1"
