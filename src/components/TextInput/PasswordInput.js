@@ -73,7 +73,8 @@ export default class PasswordInput extends React.Component {
           data-toggle-password-visibility={this.state.type === 'password'}
         />
         <button
-          className="bx--text-input--password__visibility"
+          className="bx--text-input--password__visibility bx--tooltip__trigger bx--tooltip--icon__bottom"
+          aria-label={alt || `${passwordIsVisible ? 'Hide' : 'Show'} password`}
           onClick={this.togglePasswordVisibility}>
           <Icon
             {...togglePasswordVisibilityIconProps({
