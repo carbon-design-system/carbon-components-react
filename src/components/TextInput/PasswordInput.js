@@ -2,7 +2,7 @@ import React from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import Icon from '../Icon';
-import { textInputProps } from './util';
+import { textInputProps, togglePasswordVisibilityIconProps } from './util';
 
 export default class PasswordInput extends React.Component {
   state = {
@@ -15,17 +15,9 @@ export default class PasswordInput extends React.Component {
     });
   };
 
-  togglePasswordVisibilityIconProps = () => {
-    const passwordIsVisible = this.state.type === 'text';
-    return {
-      alt: this.props.alt || `${passwordIsVisible ? 'Hide' : 'Show'} password`,
-      name: `visibility-${passwordIsVisible ? 'off' : 'on'}`,
-      description: `${passwordIsVisible ? 'Hide' : 'Show'} password`,
-    };
-  };
-
   render() {
     const {
+      alt,
       labelText,
       className,
       id,
@@ -73,6 +65,7 @@ export default class PasswordInput extends React.Component {
         {invalidText}
       </div>
     ) : null;
+    const passwordIsVisible = this.state.type === 'text';
     const input = (
       <>
         <input
@@ -82,7 +75,12 @@ export default class PasswordInput extends React.Component {
         <button
           className="bx--text-input--password__visibility"
           onClick={this.togglePasswordVisibility}>
-          <Icon {...this.togglePasswordVisibilityIconProps()} />
+          <Icon
+            {...togglePasswordVisibilityIconProps({
+              passwordIsVisible,
+              alt,
+            })}
+          />
         </button>
       </>
     );
