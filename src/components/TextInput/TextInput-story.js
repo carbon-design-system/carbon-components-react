@@ -19,6 +19,28 @@ const types = {
   'For password (password)': 'password',
 };
 
+class ControlledPasswordInputApp extends React.Component {
+  state = {
+    type: 'password',
+  };
+
+  togglePasswordVisibility = () => {
+    this.setState({
+      type: this.state.type === 'password' ? 'text' : 'password',
+    });
+  };
+
+  render() {
+    return (
+      <TextInput.ControlledPasswordInput
+        type={this.state.type}
+        togglePasswordVisibility={this.togglePasswordVisibility}
+        {...TextInputProps()}
+      />
+    );
+  }
+}
+
 const TextInputProps = () => ({
   className: 'some-class',
   id: 'test2',
@@ -72,6 +94,14 @@ storiesOf('TextInput', module)
         `,
       },
     }
+  )
+  .add(
+    'Fully controlled toggle password visibility',
+    withInfo({
+      text: `
+        Fully controlled text field with password visibility toggle.
+      `,
+    })(() => <ControlledPasswordInputApp />)
   )
   .add(
     'skeleton',
