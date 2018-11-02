@@ -24,7 +24,7 @@
 
 <!--
 Please try to re-create the issue using our CodeSandbox template available here:
-https://codesandbox.io/s/github/IBM/carbon-components-react/tree/master/examples/helloworld
+https://codesandbox.io/s/x2mjypo6pp
 
 This helps reduce the issue to an isolated case that helps us out when debugging.
 If you're able to reproduce using the CodeSandbox link above, please include the
