@@ -27,18 +27,13 @@ const findHighlightedIndex = ({ items, itemToString }, inputValue) => {
     return -1;
   }
 
-  let i = 0;
+  const searchValue = inputValue.toLowerCase();
 
-  while (i < items.length) {
-    if (
-      itemToString(items[i])
-        .toLowerCase()
-        .includes(inputValue.toLowerCase())
-    ) {
+  for (let i = 0; i < items.length; i++) {
+    const item = itemToString(items[i]).toLowerCase();
+    if (item.indexOf(searchValue) !== -1) {
       return i;
     }
-
-    i++;
   }
 
   return -1;
