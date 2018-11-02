@@ -2,10 +2,12 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import classNames from 'classnames';
 import PasswordInput from './PasswordInput';
+import ControlledPasswordInput from './ControlledPasswordInput';
 import { textInputProps } from './util';
 
 export default class TextInput extends React.Component {
   static PasswordInput = PasswordInput;
+  static ControlledPasswordInput = ControlledPasswordInput;
   render() {
     const {
       labelText,
