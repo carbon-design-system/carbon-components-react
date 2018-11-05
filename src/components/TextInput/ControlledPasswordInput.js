@@ -18,7 +18,7 @@ export default function ControlledPasswordInput(props) {
     invalidText,
     helperText,
     light,
-    type,
+    type = 'password',
     togglePasswordVisibility,
     ...other
   } = props;
