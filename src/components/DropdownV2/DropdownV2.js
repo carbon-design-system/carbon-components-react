@@ -116,6 +116,7 @@ export default class DropdownV2 extends React.Component {
     const className = cx('bx--dropdown', containerClassName, {
       'bx--dropdown--light': light,
     });
+    const ItemToElement = this.itemToElement;
     return (
       <Downshift
         id={id}
@@ -153,7 +154,7 @@ export default class DropdownV2 extends React.Component {
                     isActive={selectedItem === item}
                     isHighlighted={highlightedIndex === index}
                     {...getItemProps({ item, index })}>
-                    {this.itemToElement(item)}
+                    <ItemToElement key={itemToString(item)} {...item} />
                   </ListBox.MenuItem>
                 ))}
               </ListBox.Menu>

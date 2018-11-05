@@ -4,6 +4,7 @@ import { action } from '@storybook/addon-actions';
 import { withInfo } from '@storybook/addon-info';
 import { withKnobs, boolean, select, text } from '@storybook/addon-knobs';
 import DropdownV2 from '../DropdownV2';
+import DropdownItem from '../DropdownItem';
 import DropdownSkeleton from '../DropdownV2/Dropdown.Skeleton';
 import WithState from '../../tools/withState';
 
@@ -24,6 +25,11 @@ const items = [
     id: 'option-4',
     text: 'Option 4',
   },
+];
+
+const dropdownItems = [
+  { itemText: 'hello', value: 'hello', style: { opacity: 1 } },
+  { itemText: 'world', value: 'world', style: { opacity: 1 } },
 ];
 
 const types = {
@@ -79,6 +85,24 @@ storiesOf('DropdownV2', module)
           items={items}
           itemToString={item => (item ? item.text : '')}
           itemToElement={itemToElement}
+          onChange={action('onChange')}
+        />
+      </div>
+    ))
+  )
+  .add(
+    'with DropdownItems',
+    withInfo({
+      text: `
+        Using DropdownItem as the components to render. Has some kinks due to the onClick in the DropdownItem.
+      `,
+    })(() => (
+      <div style={{ width: 300 }}>
+        <DropdownV2
+          {...props()}
+          items={dropdownItems}
+          itemToString={item => (item ? item.itemText : '')}
+          itemToElement={DropdownItem}
           onChange={action('onChange')}
         />
       </div>
