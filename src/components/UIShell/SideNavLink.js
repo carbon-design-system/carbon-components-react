@@ -7,6 +7,7 @@ import SideNavItem from './SideNavItem';
 const SideNavLink = ({
   className: customClassName,
   children,
+  element,
   href,
   icon,
   ...rest
@@ -14,10 +15,16 @@ const SideNavLink = ({
   const className = cx('bx--side-nav__item', customClassName);
   return (
     <SideNavItem>
-      <a {...rest} className="bx--side-nav__link" href={href}>
-        <SideNavIcon small>{icon}</SideNavIcon>
+      {React.createElement(
+        element,
+        {
+          ...rest,
+          className: 'bx--side-nav__link',
+          href,
+        },
+        <SideNavIcon small>{icon}</SideNavIcon>,
         <span className="bx--side-nav__link-text">{children}</span>
-      </a>
+      )}
     </SideNavItem>
   );
 };
@@ -33,7 +40,17 @@ SideNavLink.propTypes = {
    */
   children: PropTypes.string.isRequired,
 
+  element: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
+
   href: PropTypes.string.isRequired,
+};
+
+SideNavLink.defaultProps = {
+  element: 'a',
+};
+
+export const createCustomSideNavLink = element => props => {
+  return <SideNavLink element={element} {...props} />;
 };
 
 export default SideNavLink;
