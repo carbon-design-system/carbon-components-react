@@ -1,4 +1,5 @@
-$feature-flags: (ui-shell: true);
+$feature-flags: () !default;
+$feature-flags: map-merge($feature-flags,  (ui-shell: true));
 $css--font-face: true;
 $css--reset: true;
 

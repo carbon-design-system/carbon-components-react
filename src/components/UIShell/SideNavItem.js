@@ -2,13 +2,9 @@ import cx from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-const SideNavItem = ({ children }) => {
-  // TODO
-  // Category? Category Active?
-  //   Category header, custom icon
-  //   Category title
-  //   Category Items
-  return <li className="bx--side-nav__nav-item">{children}</li>;
+const SideNavItem = ({ className: customClassName, children }) => {
+  const className = cx('bx--side-nav__item', customClassName);
+  return <li className={className}>{children}</li>;
 };
 
 export default SideNavItem;
