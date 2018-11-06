@@ -86,6 +86,7 @@ module.exports = {
       },
       {
         test: /\.scss$/,
+        sideEffects: true,
         use: !useExternalCss
           ? [{ loader: 'style-loader' }, ...styleLoaders]
           : [{ loader: MiniCssExtractPlugin.loader }, ...styleLoaders],
