@@ -131,6 +131,7 @@ export class FileUploaderButton extends Component {
     } = this.props;
     const classes = classNames({
       'bx--btn': true,
+      [`bx--btn--${buttonKind}`]: true,
       [className]: className,
     });
 
@@ -140,7 +141,7 @@ export class FileUploaderButton extends Component {
       <div
         role="button"
         tabIndex="0"
-        className={`bx--btn--${buttonKind} ${classes}`}
+        className={classes}
         onKeyDown={evt => {
           if (evt.which === 13 || evt.which === 32) {
             this.input.click();
