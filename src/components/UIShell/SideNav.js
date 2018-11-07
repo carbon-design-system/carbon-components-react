@@ -2,25 +2,7 @@ import cx from 'classnames';
 import React from 'react';
 import PropTypes from 'prop-types';
 import isRequiredOneOf from '../../prop-types/isRequiredOneOf';
-import SideNavHeader from './SideNavHeader';
-import SideNavItems from './SideNavItems';
 import SideNavFooter from './SideNavFooter';
-
-// Variants
-// Header -> with menu, without menu, with long title, with normal title
-// Items
-// Link with no icon, active/non-active
-// Link with icon, active/non-active
-// Menu with icon, non-collapsible, active/non-active child link
-// Menu with icon, collapsible, active/non-active child link
-// Menu without icon, non-collapsible, active/non-active child link
-// Menu without icon, collapsible, active/non-active child link
-// Sections
-// Side nav with items that trigger overflow
-// Side nav with typical items
-// Side nav footer section (fixed?)
-// Each item with a lot of text
-// Text with RTL support?
 
 const translations = {
   'carbon.sidenav.state.open': 'Close',

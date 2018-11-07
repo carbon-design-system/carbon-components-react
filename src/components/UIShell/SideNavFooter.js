@@ -2,9 +2,6 @@ import cx from 'classnames';
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const assistiveText = 'TODO';
-const isExpanded = true;
-
 // TODO: replace with @carbon/icons-react
 const Close = () => (
   <svg
@@ -45,7 +42,7 @@ const SideNavFooter = ({
     <footer className={className}>
       <button
         className="bx--side-nav__toggle"
-        role="button"
+        type="button"
         onClick={onToggle}
         title={assistiveText}>
         <div className="bx--side-nav__icon">

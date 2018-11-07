@@ -1,35 +1,37 @@
 import cx from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
+import Link, { LinkPropTypes } from './Link';
 import SideNavIcon from './SideNavIcon';
 import SideNavItem from './SideNavItem';
+import SideNavLinkText from './SideNavLinkText';
 
 const SideNavLink = ({
   className: customClassName,
   children,
-  element,
-  href,
   icon,
+  isActive,
   ...rest
 }) => {
-  const className = cx('bx--side-nav__item', customClassName);
+  const className = cx({
+    'bx--side-nav__link': true,
+    'bx--side-nav__link--current': isActive,
+    [customClassName]: !!customClassName,
+  });
+
   return (
     <SideNavItem>
-      {React.createElement(
-        element,
-        {
-          ...rest,
-          className: 'bx--side-nav__link',
-          href,
-        },
-        <SideNavIcon small>{icon}</SideNavIcon>,
-        <span className="bx--side-nav__link-text">{children}</span>
-      )}
+      <Link {...rest} className={className}>
+        <SideNavIcon small>{icon}</SideNavIcon>
+        <SideNavLinkText>{children}</SideNavLinkText>
+      </Link>
     </SideNavItem>
   );
 };
 
 SideNavLink.propTypes = {
+  ...LinkPropTypes,
+
   /**
    * Provide an optional class to be applied to the containing node
    */
@@ -39,10 +41,6 @@ SideNavLink.propTypes = {
    * Specify the text content for the link
    */
   children: PropTypes.string.isRequired,
-
-  element: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
-
-  href: PropTypes.string.isRequired,
 };
 
 SideNavLink.defaultProps = {
