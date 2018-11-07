@@ -1,5 +1,5 @@
 const path = require('path');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const useExperimentalFeatures =
   process.env.CARBON_USE_EXPERIMENTAL_FEATURES === 'true';
@@ -41,12 +41,10 @@ const styleLoaders = [
         $feature-flags: (
           components-x: ${useExperimentalFeatures},
           grid: ${useExperimentalFeatures},
-          ui-shell: ${useExperimentalFeatures},
+          ui-shell: true,
         );
       `,
       sourceMap: useStyleSourceMap,
-      // Ref: webpack-contrib/sass-loader#272
-      outputStyle: useStyleSourceMap ? 'compressed' : 'expanded',
     },
   },
 ];
@@ -55,7 +53,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\/FeatureFlags\.js$/,
+        test: /(\/|\\)FeatureFlags\.js$/,
         loader: 'string-replace-loader',
         options: {
           multiple: Object.keys(replaceTable).map(key => ({
@@ -66,7 +64,7 @@ module.exports = {
         },
       },
       {
-        test: /\-story\.jsx?$/,
+        test: /-story\.jsx?$/,
         loaders: [
           {
             loader: require.resolve('@storybook/addon-storysource/loader'),
@@ -86,18 +84,18 @@ module.exports = {
       },
       {
         test: /\.scss$/,
+        sideEffects: true,
         use: !useExternalCss
           ? [{ loader: 'style-loader' }, ...styleLoaders]
-          : ExtractTextPlugin.extract({
-              use: styleLoaders,
-            }),
+          : [{ loader: MiniCssExtractPlugin.loader }, ...styleLoaders],
       },
     ],
   },
+  devtool: !useStyleSourceMap ? '' : 'source-map',
   plugins: !useExternalCss
     ? []
     : [
-        new ExtractTextPlugin({
+        new MiniCssExtractPlugin({
           filename: '[name].[contenthash].css',
         }),
       ],
