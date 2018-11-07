@@ -5,77 +5,73 @@ import PasswordInput from './PasswordInput';
 import ControlledPasswordInput from './ControlledPasswordInput';
 import { textInputProps } from './util';
 
-export default class TextInput extends React.Component {
-  static PasswordInput = PasswordInput;
-  static ControlledPasswordInput = ControlledPasswordInput;
-  render() {
-    const {
-      labelText,
-      className,
-      id,
-      placeholder,
-      type,
-      onChange,
-      onClick,
-      hideLabel,
-      invalid,
-      invalidText,
-      helperText,
-      light,
-      ...other
-    } = this.props;
-    const errorId = id + '-error-msg';
-    const textInputClasses = classNames('bx--text-input', className, {
-      'bx--text-input--light': light,
-    });
-    const labelClasses = classNames('bx--label', {
-      'bx--visually-hidden': hideLabel,
-    });
-    const label = labelText ? (
-      <label htmlFor={id} className={labelClasses}>
-        {labelText}
-      </label>
-    ) : null;
-    const sharedTextInputProps = {
-      id,
-      onChange: evt => {
-        if (!other.disabled) {
-          onChange(evt);
-        }
-      },
-      onClick: evt => {
-        if (!other.disabled) {
-          onClick(evt);
-        }
-      },
-      placeholder,
-      type,
-      className: textInputClasses,
-      ...other,
-    };
-    const error = invalid ? (
-      <div className="bx--form-requirement" id={errorId}>
-        {invalidText}
-      </div>
-    ) : null;
-    const input = (
-      <input {...textInputProps({ invalid, sharedTextInputProps, errorId })} />
-    );
-    const helper = helperText ? (
-      <div className="bx--form__helper-text">{helperText}</div>
-    ) : null;
+export default function TextInput({
+  labelText,
+  className,
+  id,
+  placeholder,
+  type,
+  onChange,
+  onClick,
+  hideLabel,
+  invalid,
+  invalidText,
+  helperText,
+  light,
+  ...other
+}) {
+  const errorId = id + '-error-msg';
+  const textInputClasses = classNames('bx--text-input', className, {
+    'bx--text-input--light': light,
+  });
+  const labelClasses = classNames('bx--label', {
+    'bx--visually-hidden': hideLabel,
+  });
+  const label = labelText ? (
+    <label htmlFor={id} className={labelClasses}>
+      {labelText}
+    </label>
+  ) : null;
+  const sharedTextInputProps = {
+    id,
+    onChange: evt => {
+      if (!other.disabled) {
+        onChange(evt);
+      }
+    },
+    onClick: evt => {
+      if (!other.disabled) {
+        onClick(evt);
+      }
+    },
+    placeholder,
+    type,
+    className: textInputClasses,
+    ...other,
+  };
+  const error = invalid ? (
+    <div className="bx--form-requirement" id={errorId}>
+      {invalidText}
+    </div>
+  ) : null;
+  const input = (
+    <input {...textInputProps({ invalid, sharedTextInputProps, errorId })} />
+  );
+  const helper = helperText ? (
+    <div className="bx--form__helper-text">{helperText}</div>
+  ) : null;
 
-    return (
-      <div className="bx--form-item bx--text-input-wrapper">
-        {label}
-        {input}
-        {helper}
-        {error}
-      </div>
-    );
-  }
+  return (
+    <div className="bx--form-item bx--text-input-wrapper">
+      {label}
+      {input}
+      {helper}
+      {error}
+    </div>
+  );
 }
-
+TextInput.PasswordInput = PasswordInput;
+TextInput.ControlledPasswordInput = ControlledPasswordInput;
 TextInput.propTypes = {
   /**
    * Provide a custom className that is applied directly to the underlying
