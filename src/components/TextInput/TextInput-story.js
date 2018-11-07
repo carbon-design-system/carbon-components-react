@@ -97,11 +97,14 @@ storiesOf('TextInput', module)
   )
   .add(
     'Fully controlled toggle password visibility',
-    withInfo({
-      text: `
+    () => <ControlledPasswordInputApp />,
+    {
+      info: {
+        text: `
         Fully controlled text field with password visibility toggle.
       `,
-    })(() => <ControlledPasswordInputApp />)
+      },
+    }
   )
   .add(
     'skeleton',
