@@ -190,6 +190,12 @@ export class ToastNotification extends Component {
 
     return (
       <div {...other} role={role} kind={kind} className={classes}>
+        <Icon
+          description={this.props.iconDescription}
+          className="bx--toast-notification__icon"
+          aria-label="close"
+          icon={this.useIcon(kind)}
+        />
         <NotificationTextDetails
           title={title}
           subtitle={subtitle}
