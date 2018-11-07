@@ -20,6 +20,8 @@ export default function ControlledPasswordInput(props) {
     light,
     type = 'password',
     togglePasswordVisibility,
+    hidePasswordText = 'Hide',
+    showPasswordText = 'Show',
     ...other
   } = props;
   const errorId = id + '-error-msg';
@@ -65,7 +67,10 @@ export default function ControlledPasswordInput(props) {
       />
       <button
         className="bx--text-input--password__visibility bx--tooltip__trigger bx--tooltip--icon__bottom"
-        aria-label={alt || `${passwordIsVisible ? 'Hide' : 'Show'} password`}
+        aria-label={
+          alt ||
+          `${passwordIsVisible ? hidePasswordText : showPasswordText} password`
+        }
         onClick={togglePasswordVisibility}>
         <Icon
           {...togglePasswordVisibilityIconProps({
