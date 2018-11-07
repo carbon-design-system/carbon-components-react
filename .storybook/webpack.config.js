@@ -45,8 +45,6 @@ const styleLoaders = [
         );
       `,
       sourceMap: useStyleSourceMap,
-      // Ref: webpack-contrib/sass-loader#272
-      outputStyle: useStyleSourceMap ? 'compressed' : 'expanded',
     },
   },
 ];
@@ -93,6 +91,7 @@ module.exports = {
       },
     ],
   },
+  devtool: !useStyleSourceMap ? '' : 'source-map',
   plugins: !useExternalCss
     ? []
     : [
