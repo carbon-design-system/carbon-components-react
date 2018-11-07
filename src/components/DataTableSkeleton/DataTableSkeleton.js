@@ -18,7 +18,7 @@ const DataTableSkeleton = ({
 
   const rows = [];
   const rowRepeat = rowCount - 1;
-  const columnsArray = Array.from(Array(columnCount).map((i, idx) => idx)); // [0,1,2...columnCount-1]
+  const columnsArray = Array.from({ length: columnCount }, (_, index) => index); // [0,1,2...columnCount-1]
   for (var i = 0; i < rowRepeat; i++) {
     rows.push(<tr key={i}>{columnsArray.map(j => <td key={j} />)}</tr>);
   }
