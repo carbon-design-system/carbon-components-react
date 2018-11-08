@@ -172,6 +172,7 @@ export default class CodeSnippet extends Component {
     if (type === 'inline') {
       return (
         <Copy
+          {...other}
           onClick={onClick}
           className={codeSnippetClasses}
           aria-label={copyLabel}
