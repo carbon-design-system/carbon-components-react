@@ -3,6 +3,9 @@ import React, { Component } from 'react';
 import { iconCaretUp, iconCaretDown } from 'carbon-icons';
 import Icon from '../Icon';
 import classNames from 'classnames';
+import { settings } from 'carbon-components';
+
+const { prefix } = settings;
 
 export default class NumberInput extends Component {
   constructor(props) {
@@ -101,11 +104,6 @@ export default class NumberInput extends Component {
      * `true` to allow empty string.
      */
     allowEmpty: PropTypes.bool,
-
-    /**
-     * The selector prefix.
-     */
-    prefix: PropTypes.string,
   };
 
   static defaultProps = {
@@ -122,7 +120,6 @@ export default class NumberInput extends Component {
     helperText: '',
     light: false,
     allowEmpty: false,
-    prefix: 'bx',
   };
 
   /**
@@ -207,7 +204,6 @@ export default class NumberInput extends Component {
       helperText,
       light,
       allowEmpty,
-      prefix,
       ...other
     } = this.props;
 

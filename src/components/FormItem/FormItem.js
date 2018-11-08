@@ -1,8 +1,11 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import classnames from 'classnames';
+import { settings } from 'carbon-components';
 
-const FormItem = ({ className, children, prefix, ...other }) => {
+const { prefix } = settings;
+
+const FormItem = ({ className, children, ...other }) => {
   const classNames = classnames(`${prefix}--form-item`, className);
 
   return (
@@ -22,15 +25,6 @@ FormItem.propTypes = {
    * Provide a custom className to be applied to the containing node
    */
   className: PropTypes.string,
-
-  /**
-   * The selector prefix
-   */
-  prefix: PropTypes.string,
-};
-
-FormItem.defaultProps = {
-  prefix: 'bx',
 };
 
 export default FormItem;

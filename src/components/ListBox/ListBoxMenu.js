@@ -1,14 +1,16 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { settings } from 'carbon-components';
 import ListBoxMenuItem from './ListBoxMenuItem';
 import childrenOfType from '../../prop-types/childrenOfType';
+
+const { prefix } = settings;
 
 /**
  * `ListBoxMenu` is a simple container node that isolates the `list-box__menu`
  * class into a single component. It is also being used to validate given
  * `children` components.
  */
-const ListBoxMenu = ({ children, prefix, ...rest }) => {
+const ListBoxMenu = ({ children, ...rest }) => {
   return (
     <div className={`${prefix}--list-box__menu`} {...rest}>
       {children}
@@ -21,15 +23,6 @@ ListBoxMenu.propTypes = {
    * Provide the contents of your ListBoxMenu
    */
   children: childrenOfType(ListBoxMenuItem),
-
-  /**
-   * The selector prefix
-   */
-  prefix: PropTypes.string,
-};
-
-ListBoxMenu.defaultProps = {
-  prefix: 'bx',
 };
 
 export default ListBoxMenu;

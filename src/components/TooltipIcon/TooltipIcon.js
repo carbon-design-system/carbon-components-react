@@ -1,13 +1,15 @@
 import cx from 'classnames';
 import React from 'react';
 import PropTypes from 'prop-types';
+import { settings } from 'carbon-components';
+
+const { prefix } = settings;
 
 const TooltipIcon = ({
   className,
   children,
   direction,
   tooltipText,
-  prefix,
   ...rest
 }) => {
   const tooltipClassName = cx({
@@ -44,16 +46,10 @@ TooltipIcon.propTypes = {
    * Provide the text that will be displayed in the tooltip when it is rendered.
    */
   tooltipText: PropTypes.node.isRequired,
-
-  /**
-   * The selector prefix.
-   */
-  prefix: PropTypes.string,
 };
 
 TooltipIcon.defaultProps = {
   direction: 'bottom',
-  prefix: 'bx',
 };
 
 export default TooltipIcon;

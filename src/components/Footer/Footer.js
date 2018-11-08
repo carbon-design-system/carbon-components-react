@@ -1,8 +1,11 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import classnames from 'classnames';
+import { settings } from 'carbon-components';
 import Link from '../Link';
 import Button from '../Button';
+
+const { prefix } = settings;
 
 const Footer = ({
   className,
@@ -14,7 +17,6 @@ const Footer = ({
   linkTextTwo,
   linkHrefTwo,
   buttonText,
-  prefix,
   ...other
 }) => {
   const classNames = classnames(
@@ -92,11 +94,6 @@ Footer.propTypes = {
    * Provide the text for the footer button
    */
   buttonText: PropTypes.string,
-
-  /**
-   * The selector prefix
-   */
-  prefix: PropTypes.string,
 };
 
 Footer.defaultProps = {
@@ -107,7 +104,6 @@ Footer.defaultProps = {
   linkTextTwo: 'Cost Calculator',
   linkHrefTwo: '#',
   buttonText: 'Create',
-  prefix: 'bx',
 };
 
 export default Footer;

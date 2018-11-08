@@ -1,16 +1,11 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import classNames from 'classnames';
+import { settings } from 'carbon-components';
 
-const SelectItem = ({
-  className,
-  value,
-  disabled,
-  hidden,
-  text,
-  prefix,
-  ...other
-}) => {
+const { prefix } = settings;
+
+const SelectItem = ({ className, value, disabled, hidden, text, ...other }) => {
   const selectItemClasses = classNames({
     [`${prefix}--select-option`]: true,
     [className]: className,
@@ -53,11 +48,6 @@ SelectItem.propTypes = {
    * Provide the contents of your <SelectItem>
    */
   text: PropTypes.string.isRequired,
-
-  /**
-   * The selector prefix
-   */
-  prefix: PropTypes.string,
 };
 
 SelectItem.defaultProps = {
@@ -65,7 +55,6 @@ SelectItem.defaultProps = {
   hidden: false,
   value: '',
   text: '',
-  prefix: 'bx',
 };
 
 export default SelectItem;

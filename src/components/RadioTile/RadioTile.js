@@ -4,6 +4,9 @@ import uid from '../../tools/uniqueId';
 import Icon from '../Icon';
 import { iconCheckmarkSolid } from 'carbon-icons';
 import classNames from 'classnames';
+import { settings } from 'carbon-components';
+
+const { prefix } = settings;
 
 export default class RadioTile extends React.Component {
   static propTypes = {
@@ -46,16 +49,10 @@ export default class RadioTile extends React.Component {
      * The `value` of the `<input>`.
      */
     value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
-
-    /**
-     * The selector prefix.
-     */
-    prefix: PropTypes.string,
   };
 
   static defaultProps = {
     iconDescription: 'Tile checkmark',
-    prefix: 'bx',
     onChange: () => {},
   };
 
@@ -68,13 +65,7 @@ export default class RadioTile extends React.Component {
   };
 
   render() {
-    const {
-      children,
-      className,
-      iconDescription,
-      prefix,
-      ...other
-    } = this.props;
+    const { children, className, iconDescription, ...other } = this.props;
 
     const classes = classNames(
       className,

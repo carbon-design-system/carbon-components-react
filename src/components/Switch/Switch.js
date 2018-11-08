@@ -1,6 +1,9 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import classNames from 'classnames';
+import { settings } from 'carbon-components';
+
+const { prefix } = settings;
 
 const Switch = props => {
   const {
@@ -14,7 +17,6 @@ const Switch = props => {
     text,
     icon,
     href,
-    prefix,
     ...other
   } = props;
 
@@ -121,11 +123,6 @@ Switch.propTypes = {
    * if Switch is used as an <a> element
    */
   href: PropTypes.string,
-
-  /**
-   * The selector prefix
-   */
-  prefix: PropTypes.string,
 };
 
 Switch.defaultProps = {
@@ -133,7 +130,6 @@ Switch.defaultProps = {
   kind: 'anchor',
   text: 'Provide text',
   href: '',
-  prefix: 'bx',
   onClick: () => {},
   onKeyDown: () => {},
 };

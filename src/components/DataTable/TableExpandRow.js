@@ -2,8 +2,11 @@ import cx from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { iconChevronRight } from 'carbon-icons';
+import { settings } from 'carbon-components';
 import Icon from '../Icon';
 import TableCell from './TableCell';
+
+const { prefix } = settings;
 
 const TableExpandRow = ({
   ariaLabel,
@@ -13,7 +16,6 @@ const TableExpandRow = ({
   onExpand,
   expandIconDescription,
   isSelected,
-  prefix,
   ...rest
 }) => {
   const className = cx(
@@ -70,15 +72,6 @@ TableExpandRow.propTypes = {
    * The description of the chevron right icon, to be put in its SVG `<title>` element.
    */
   expandIconDescription: PropTypes.string,
-
-  /**
-   * The selector prefix
-   */
-  prefix: PropTypes.string,
-};
-
-TableExpandRow.defaultProps = {
-  prefix: 'bx',
 };
 
 export default TableExpandRow;

@@ -1,13 +1,15 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import classnames from 'classnames';
+import { settings } from 'carbon-components';
+
+const { prefix } = settings;
 
 const SelectItemGroup = ({
   children,
   className,
   disabled,
   label,
-  prefix,
   ...other
 }) => {
   const classNames = classnames(`${prefix}--select-optgroup`, className);
@@ -42,17 +44,11 @@ SelectItemGroup.propTypes = {
    * Specify the label to be displayed
    */
   label: PropTypes.string.isRequired,
-
-  /**
-   * The selector prefix
-   */
-  prefix: PropTypes.string,
 };
 
 SelectItemGroup.defaultProps = {
   disabled: false,
   label: 'Provide label',
-  prefix: 'bx',
 };
 
 export default SelectItemGroup;

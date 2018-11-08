@@ -1,14 +1,11 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import classnames from 'classnames';
+import { settings } from 'carbon-components';
 
-const Breadcrumb = ({
-  children,
-  className,
-  noTrailingSlash,
-  prefix,
-  ...other
-}) => {
+const { prefix } = settings;
+
+const Breadcrumb = ({ children, className, noTrailingSlash, ...other }) => {
   const classNames = classnames(className, {
     [`${prefix}--breadcrumb`]: true,
     [`${prefix}--breadcrumb--no-trailing-slash`]: noTrailingSlash,
@@ -35,15 +32,6 @@ Breadcrumb.propTypes = {
    * Optional prop to omit the trailing slash for the breadcrumbs
    */
   noTrailingSlash: PropTypes.bool,
-
-  /**
-   * The selector prefix
-   */
-  prefix: PropTypes.string,
-};
-
-Breadcrumb.defaultProps = {
-  prefix: 'bx',
 };
 
 export default Breadcrumb;

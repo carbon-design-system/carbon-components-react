@@ -2,7 +2,10 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import classNames from 'classnames';
 import { iconCaretDown } from 'carbon-icons';
+import { settings } from 'carbon-components';
 import Icon from '../Icon';
+
+const { prefix } = settings;
 
 const Select = ({
   className,
@@ -17,7 +20,6 @@ const Select = ({
   invalidText,
   helperText,
   light,
-  prefix,
   ...other
 }) => {
   const selectClasses = classNames({
@@ -142,11 +144,6 @@ Select.propTypes = {
    * Specify whether you want the light version of this control
    */
   light: PropTypes.bool,
-
-  /**
-   * The selector prefix
-   */
-  prefix: PropTypes.string,
 };
 
 Select.defaultProps = {
@@ -158,7 +155,6 @@ Select.defaultProps = {
   invalidText: '',
   helperText: '',
   light: false,
-  prefix: 'bx',
 };
 
 export default Select;

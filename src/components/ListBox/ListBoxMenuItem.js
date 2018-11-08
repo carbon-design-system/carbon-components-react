@@ -1,19 +1,16 @@
 import cx from 'classnames';
 import React from 'react';
 import PropTypes from 'prop-types';
+import { settings } from 'carbon-components';
+
+const { prefix } = settings;
 
 /**
  * `ListBoxMenuItem` is a helper component for managing the container class
  * name, alongside any classes for any corresponding states, for a generic list
  * box menu item.
  */
-const ListBoxMenuItem = ({
-  children,
-  isActive,
-  isHighlighted,
-  prefix,
-  ...rest
-}) => {
+const ListBoxMenuItem = ({ children, isActive, isHighlighted, ...rest }) => {
   const className = cx({
     [`${prefix}--list-box__menu-item`]: true,
     [`${prefix}--list-box__menu-item--active`]: isActive,
@@ -42,17 +39,11 @@ ListBoxMenuItem.propTypes = {
    * Specify whether the current menu item is "highlighed".
    */
   isHighlighted: PropTypes.bool.isRequired,
-
-  /**
-   * The selector prefix.
-   */
-  prefix: PropTypes.string,
 };
 
 ListBoxMenuItem.defaultProps = {
   isActive: false,
   isHighlighted: false,
-  prefix: 'bx',
 };
 
 export default ListBoxMenuItem;

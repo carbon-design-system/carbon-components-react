@@ -1,9 +1,12 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import classNames from 'classnames';
+import { settings } from 'carbon-components';
+
+const { prefix } = settings;
 
 const TableRow = props => {
-  const { even, header, className, children, prefix, ...other } = props;
+  const { even, header, className, children, ...other } = props;
 
   const tableRowClasses = classNames(className, `${prefix}--table-row`, {
     [`${prefix}--parent-row`]: !header,
@@ -37,16 +40,10 @@ TableRow.propTypes = {
    * Specify whether the TableRow is at an even position
    */
   even: PropTypes.bool,
-
-  /**
-   * The selector prefix
-   */
-  prefix: PropTypes.string,
 };
 
 TableRow.defaultProps = {
   header: false,
-  prefix: 'bx',
 };
 
 export default TableRow;

@@ -2,7 +2,10 @@ import cx from 'classnames';
 import Downshift from 'downshift';
 import PropTypes from 'prop-types';
 import React from 'react';
+import { settings } from 'carbon-components';
 import ListBox, { PropTypes as ListBoxPropTypes } from '../ListBox';
+
+const { prefix } = settings;
 
 const defaultItemToString = item => {
   if (typeof item === 'string') {
@@ -78,11 +81,6 @@ export default class DropdownV2 extends React.Component {
      * `true` to use the light version.
      */
     light: PropTypes.bool,
-
-    /**
-     * The selector prefix.
-     */
-    prefix: PropTypes.string,
   };
 
   static defaultProps = {
@@ -91,7 +89,6 @@ export default class DropdownV2 extends React.Component {
     itemToString: defaultItemToString,
     itemToElement: null,
     light: false,
-    prefix: 'bx',
   };
 
   handleOnChange = selectedItem => {
@@ -117,7 +114,6 @@ export default class DropdownV2 extends React.Component {
       initialSelectedItem,
       selectedItem,
       light,
-      prefix,
       id,
     } = this.props;
     const className = cx(`${prefix}--dropdown`, containerClassName, {

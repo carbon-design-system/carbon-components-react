@@ -2,10 +2,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { settings } from 'carbon-components';
 import Icon from '../Icon';
 import uid from '../../tools/uniqueId';
 import { ButtonTypes } from '../../prop-types/types';
 import { iconCloseSolid, iconCheckmarkSolid } from 'carbon-icons';
+
+const { prefix } = settings;
 
 export class FileUploaderButton extends Component {
   state = {};
@@ -80,11 +83,6 @@ export class FileUploaderButton extends Component {
      * Specify the types of files that this input should be able to receive
      */
     accept: PropTypes.arrayOf(PropTypes.string),
-
-    /**
-     * The selector prefix
-     */
-    prefix: PropTypes.string,
   };
 
   static defaultProps = {
@@ -96,7 +94,6 @@ export class FileUploaderButton extends Component {
     onChange: () => {},
     onClick: () => {},
     accept: [],
-    prefix: 'bx',
   };
 
   static getDerivedStateFromProps({ labelText }, state) {
@@ -132,7 +129,6 @@ export class FileUploaderButton extends Component {
       tabIndex,
       buttonKind,
       accept,
-      prefix,
       name,
       ...other
     } = this.props;
@@ -193,11 +189,6 @@ export class Filename extends Component {
      * Provide a description for the complete/close icon that can be read by screen readers
      */
     iconDescription: PropTypes.string,
-
-    /**
-     * The selector prefix
-     */
-    prefix: PropTypes.string,
   };
 
   static defaultProps = {
@@ -205,11 +196,10 @@ export class Filename extends Component {
     status: 'uploading',
     style: {},
     tabIndex: 0,
-    prefix: 'bx',
   };
 
   render() {
-    const { iconDescription, status, style, prefix, ...other } = this.props;
+    const { iconDescription, status, style, ...other } = this.props;
 
     if (status === 'uploading') {
       return (
@@ -307,11 +297,6 @@ export default class FileUploader extends Component {
      * Specify the types of files that this input should be able to receive
      */
     accept: PropTypes.arrayOf(PropTypes.string),
-
-    /**
-     * The selector prefix
-     */
-    prefix: PropTypes.string,
   };
 
   static defaultProps = {
@@ -322,7 +307,6 @@ export default class FileUploader extends Component {
     multiple: false,
     onClick: () => {},
     accept: [],
-    prefix: 'bx',
   };
 
   state = {
@@ -376,7 +360,6 @@ export default class FileUploader extends Component {
       multiple,
       accept,
       name,
-      prefix,
       ...other
     } = this.props;
 

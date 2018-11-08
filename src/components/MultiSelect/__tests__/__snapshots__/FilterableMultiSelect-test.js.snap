@@ -40,7 +40,6 @@ exports[`MultiSelect.Filterable should render 1`] = `
   locale="en"
   onChange={[MockFunction]}
   placeholder="Placeholder..."
-  prefix="bx"
   sortItems={[Function]}
 >
   <Selection
@@ -76,7 +75,6 @@ exports[`MultiSelect.Filterable should render 1`] = `
         className="bx--multi-select bx--combo-box"
         disabled={false}
         innerRef={[Function]}
-        prefix="bx"
         type="default"
       >
         <div
@@ -96,7 +94,6 @@ exports[`MultiSelect.Filterable should render 1`] = `
             onBlur={[Function]}
             onClick={[Function]}
             onKeyDown={[Function]}
-            prefix="bx"
             role="button"
             type="button"
           >
@@ -131,7 +128,6 @@ exports[`MultiSelect.Filterable should render 1`] = `
               />
               <ListBoxMenuIcon
                 isOpen={false}
-                prefix="bx"
                 translateWithId={[Function]}
               >
                 <div

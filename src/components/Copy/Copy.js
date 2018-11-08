@@ -1,6 +1,9 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import classnames from 'classnames';
+import { settings } from 'carbon-components';
+
+const { prefix } = settings;
 
 export default class Copy extends Component {
   static propTypes = {
@@ -26,11 +29,6 @@ export default class Copy extends Component {
     feedbackTimeout: PropTypes.number,
 
     /**
-     * The selector prefix
-     */
-    prefix: PropTypes.string,
-
-    /**
      * Specify an optional `onClick` handler that is called when the underlying
      * <button> is clicked
      */
@@ -40,7 +38,6 @@ export default class Copy extends Component {
   static defaultProps = {
     feedback: 'Copied!',
     feedbackTimeout: 2000,
-    prefix: 'bx',
     onClick: () => {},
   };
 
@@ -71,7 +68,6 @@ export default class Copy extends Component {
       feedback,
       children,
       feedbackTimeout, // eslint-disable-line no-unused-vars
-      prefix,
       onClick, // eslint-disable-line no-unused-vars
       ...other
     } = this.props;

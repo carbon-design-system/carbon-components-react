@@ -1,6 +1,9 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import classNames from 'classnames';
+import { settings } from 'carbon-components';
+
+const { prefix } = settings;
 
 export default class TimePicker extends Component {
   state = {};
@@ -94,11 +97,6 @@ export default class TimePicker extends Component {
      * `true` to use the light version.
      */
     light: PropTypes.bool,
-
-    /**
-     * The selector prefix
-     */
-    prefix: PropTypes.string,
   };
 
   static defaultProps = {
@@ -113,7 +111,6 @@ export default class TimePicker extends Component {
     onClick: () => {},
     onBlur: () => {},
     light: false,
-    prefix: 'bx',
   };
 
   static getDerivedStateFromProps({ value }, state) {
@@ -143,7 +140,6 @@ export default class TimePicker extends Component {
       invalid,
       hideLabel,
       light,
-      prefix,
       ...other
     } = this.props;
 

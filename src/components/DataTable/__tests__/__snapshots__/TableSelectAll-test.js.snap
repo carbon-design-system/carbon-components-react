@@ -2,7 +2,6 @@
 
 exports[`DataTable.TableSelectAll should render 1`] = `
 <Table
-  prefix="bx"
   short={false}
   shouldShowBorder={true}
   zebra={true}
@@ -10,13 +9,9 @@ exports[`DataTable.TableSelectAll should render 1`] = `
   <table
     className="bx--data-table-v2 bx--data-table-v2--zebra"
   >
-    <TableHead
-      prefix="bx"
-    >
+    <TableHead>
       <thead>
-        <TableRow
-          prefix="bx"
-        >
+        <TableRow>
           <tr>
             <TableSelectAll
               ariaLabel="Select all rows in the table"
@@ -35,7 +30,6 @@ exports[`DataTable.TableSelectAll should render 1`] = `
                   id="id"
                   name="select-all"
                   onClick={[MockFunction]}
-                  prefix="bx"
                 >
                   <input
                     checked={false}

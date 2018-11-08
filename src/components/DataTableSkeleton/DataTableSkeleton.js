@@ -1,13 +1,15 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import classNames from 'classnames';
+import { settings } from 'carbon-components';
+
+const { prefix } = settings;
 
 const DataTableSkeleton = ({
   rowCount,
   columnCount,
   zebra,
   compact,
-  prefix,
   ...other
 }) => {
   const dataTableSkeletonClasses = classNames({
@@ -64,11 +66,6 @@ DataTableSkeleton.propTypes = {
    * compact DataTable
    */
   compact: PropTypes.bool,
-
-  /**
-   * The selector prefix
-   */
-  prefix: PropTypes.string,
 };
 
 DataTableSkeleton.defaultProps = {
@@ -76,7 +73,6 @@ DataTableSkeleton.defaultProps = {
   columnCount: 5,
   zebra: false,
   compact: false,
-  prefix: 'bx',
 };
 
 export default DataTableSkeleton;

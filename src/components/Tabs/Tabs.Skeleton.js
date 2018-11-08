@@ -1,20 +1,10 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { settings } from 'carbon-components';
+
+const { prefix } = settings;
 
 export default class TabsSkeleton extends React.Component {
-  static propTypes = {
-    /**
-     * The selector prefix.
-     */
-    prefix: PropTypes.string,
-  };
-
-  static defaultProps = {
-    prefix: 'bx',
-  };
-
   render() {
-    const { prefix } = this.props;
     const tab = (
       <li className={`${prefix}--tabs__nav-item`}>
         <div className={`${prefix}--tabs__nav-link`}>&nbsp;</div>

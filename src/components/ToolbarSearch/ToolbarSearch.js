@@ -2,8 +2,11 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { iconSearch } from 'carbon-icons';
+import { settings } from 'carbon-components';
 import Icon from '../Icon';
 import ClickListener from '../../internal/ClickListener';
+
+const { prefix } = settings;
 
 export default class ToolbarSearch extends Component {
   static propTypes = {
@@ -46,11 +49,6 @@ export default class ToolbarSearch extends Component {
      * The ID of the `<input>`.
      */
     id: PropTypes.string,
-
-    /**
-     * The selector prefix
-     */
-    prefix: PropTypes.string,
   };
 
   static defaultProps = {
@@ -60,7 +58,6 @@ export default class ToolbarSearch extends Component {
     iconDescription: 'search',
     placeHolderText: '',
     role: 'search',
-    prefix: 'bx',
   };
 
   state = {
@@ -89,7 +86,6 @@ export default class ToolbarSearch extends Component {
       placeHolderText,
       labelText,
       role,
-      prefix,
       ...other
     } = this.props;
 

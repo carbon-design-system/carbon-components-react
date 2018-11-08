@@ -1,7 +1,10 @@
 import cx from 'classnames';
 import React from 'react';
 import PropTypes from 'prop-types';
+import { settings } from 'carbon-components';
 import setupGetInstanceId from '../../tools/setupGetInstanceId';
+
+const { prefix } = settings;
 
 const getInstanceId = setupGetInstanceId();
 
@@ -11,7 +14,6 @@ const TooltipDefinition = ({
   children,
   direction,
   tooltipText,
-  prefix,
   ...rest
 }) => {
   const tooltipId = id || `definition-tooltip-${getInstanceId()}`;
@@ -64,16 +66,10 @@ TooltipDefinition.propTypes = {
    * Provide the text that will be displayed in the tooltip when it is rendered.
    */
   tooltipText: PropTypes.node.isRequired,
-
-  /**
-   * The selector prefix.
-   */
-  prefix: PropTypes.string,
 };
 
 TooltipDefinition.defaultProps = {
   direction: 'bottom',
-  prefix: 'bx',
 };
 
 export default TooltipDefinition;

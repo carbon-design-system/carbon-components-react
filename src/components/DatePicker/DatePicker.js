@@ -4,8 +4,11 @@ import classNames from 'classnames';
 import flatpickr from 'flatpickr';
 import l10n from 'flatpickr/dist/l10n/index';
 import rangePlugin from 'flatpickr/dist/plugins/rangePlugin';
+import { settings } from 'carbon-components';
 import DatePickerInput from '../DatePickerInput';
 import Icon from '../Icon';
+
+const { prefix } = settings;
 
 // Weekdays shorthand for english locale
 l10n.en.weekdays.shorthand.forEach((day, index) => {
@@ -203,11 +206,6 @@ export default class DatePicker extends Component {
      * The maximum date that a user can pick to.
      */
     maxDate: PropTypes.string,
-
-    /**
-     * The selector prefix.
-     */
-    prefix: PropTypes.string,
   };
 
   static defaultProps = {
@@ -215,7 +213,6 @@ export default class DatePicker extends Component {
     light: false,
     dateFormat: 'm/d/Y',
     locale: 'en',
-    prefix: 'bx',
   };
 
   UNSAFE_componentWillUpdate(nextProps) {
@@ -347,7 +344,6 @@ export default class DatePicker extends Component {
     const calendarContainer = calendar.calendarContainer;
     const daysContainer = calendar.days;
     if (calendarContainer && daysContainer) {
-      const { prefix } = this.props;
       // calendarContainer and daysContainer are undefined if flatpickr detects a mobile device
       calendarContainer.classList.add(`${prefix}--date-picker__calendar`);
       calendarContainer
@@ -385,7 +381,6 @@ export default class DatePicker extends Component {
   };
 
   assignInputFieldRef = node => {
-    const { prefix } = this.props;
     this.inputField = !node
       ? null
       : // Child is a regular DOM node, seen in tests
@@ -398,7 +393,6 @@ export default class DatePicker extends Component {
   };
 
   assignToInputFieldRef = node => {
-    const { prefix } = this.props;
     this.toInputField = !node
       ? null
       : // Child is a regular DOM node, seen in tests
@@ -428,7 +422,6 @@ export default class DatePicker extends Component {
       locale, // eslint-disable-line
       value, // eslint-disable-line
       iconDescription,
-      prefix,
       ...other
     } = this.props;
 

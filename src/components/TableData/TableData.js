@@ -2,7 +2,10 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import classNames from 'classnames';
 import { iconChevronRight } from 'carbon-icons';
+import { settings } from 'carbon-components';
 import Icon from '../Icon';
+
+const { prefix } = settings;
 
 const TableData = props => {
   const {
@@ -11,7 +14,6 @@ const TableData = props => {
     iconClassName,
     expanded,
     iconDescription,
-    prefix,
     ...other
   } = props;
 
@@ -72,16 +74,10 @@ TableData.propTypes = {
    * The expanded state for expando cell. `undefined` for regular cells.
    */
   expanded: PropTypes.bool,
-
-  /**
-   * The selector prefix.
-   */
-  prefix: PropTypes.string,
 };
 
 TableData.defaultProps = {
   iconDescription: 'expand row',
-  prefix: 'bx',
 };
 
 export default TableData;

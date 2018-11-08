@@ -1,7 +1,10 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import classNames from 'classnames';
+import { settings } from 'carbon-components';
 import TableRow from '../TableRow';
+
+const { prefix } = settings;
 
 /**
  * Adds striping to TableRows if the `even` prop wasn’t explicitly set.
@@ -29,7 +32,7 @@ const handleRowStriping = rows => {
 };
 
 const TableBody = props => {
-  const { children, className, prefix, ...other } = props;
+  const { children, className, ...other } = props;
 
   const tableBodyClasses = classNames(className, `${prefix}--table-body`);
 
@@ -53,15 +56,6 @@ TableBody.propTypes = {
    * Specify an optional className to be applied to your TableBody
    */
   className: PropTypes.string,
-
-  /**
-   * The selector prefix
-   */
-  prefix: PropTypes.string,
-};
-
-TableBody.defaultProps = {
-  prefix: 'bx',
 };
 
 export default TableBody;

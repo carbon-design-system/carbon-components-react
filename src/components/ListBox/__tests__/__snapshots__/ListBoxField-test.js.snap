@@ -1,9 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`ListBoxField should render 1`] = `
-<ListBoxField
-  prefix="bx"
->
+<ListBoxField>
   <div
     className="bx--list-box__field"
     role="button"
@@ -11,7 +9,6 @@ exports[`ListBoxField should render 1`] = `
   >
     <ListBoxSelection
       clearSelection={[MockFunction]}
-      prefix="bx"
       translateWithId={[Function]}
     >
       <div

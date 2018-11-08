@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { settings } from 'carbon-components';
 import uid from '../../tools/uniqueId';
+
+const { prefix } = settings;
 
 export class StructuredListWrapper extends Component {
   static propTypes = {
@@ -29,18 +32,12 @@ export class StructuredListWrapper extends Component {
      * Specify a label to be read by screen readers on the container node
      */
     ariaLabel: PropTypes.string,
-
-    /**
-     * The selector prefix
-     */
-    prefix: PropTypes.string,
   };
 
   static defaultProps = {
     border: false,
     selection: false,
     ariaLabel: 'Structured list section',
-    prefix: 'bx',
   };
 
   render() {
@@ -50,7 +47,6 @@ export class StructuredListWrapper extends Component {
       className,
       border,
       ariaLabel,
-      prefix,
       ...other
     } = this.props;
 
@@ -80,12 +76,8 @@ export class StructuredListHead extends Component {
     className: PropTypes.string,
   };
 
-  static defaultProps = {
-    prefix: 'bx',
-  };
-
   render() {
-    const { children, className, prefix, ...other } = this.props;
+    const { children, className, ...other } = this.props;
 
     const classes = classNames(`${prefix}--structured-list-thead`, className);
     return (
@@ -129,11 +121,6 @@ export class StructuredListInput extends Component {
     defaultChecked: PropTypes.bool,
 
     /**
-     * The selector prefix
-     */
-    prefix: PropTypes.string,
-
-    /**
      * Provide an optional hook that is called each time the input is updated
      */
     onChange: PropTypes.func,
@@ -143,7 +130,6 @@ export class StructuredListInput extends Component {
     onChange: () => {},
     value: 'value',
     title: 'title',
-    prefix: 'bx',
   };
 
   UNSAFE_componentWillMount() {
@@ -151,7 +137,7 @@ export class StructuredListInput extends Component {
   }
 
   render() {
-    const { className, value, name, title, prefix, ...other } = this.props;
+    const { className, value, name, title, ...other } = this.props;
     const classes = classNames(`${prefix}--structured-list-input`, className);
     return (
       <input
@@ -196,11 +182,6 @@ export class StructuredListRow extends Component {
     tabIndex: PropTypes.number,
 
     /**
-     * The selector prefix
-     */
-    prefix: PropTypes.string,
-
-    /**
      * Provide a handler that is invoked on the key down event for the control,
      * if `<label>` is in use
      */
@@ -211,7 +192,6 @@ export class StructuredListRow extends Component {
     head: false,
     label: false,
     tabIndex: 0,
-    prefix: 'bx',
     onKeyDown: () => {},
   };
 
@@ -223,7 +203,6 @@ export class StructuredListRow extends Component {
       className,
       head,
       label,
-      prefix,
       ...other
     } = this.props;
 
@@ -264,18 +243,12 @@ export class StructuredListBody extends Component {
     head: PropTypes.bool,
 
     /**
-     * The selector prefix
-     */
-    prefix: PropTypes.string,
-
-    /**
      * Provide a handler that is invoked on the key down event for the control
      */
     onKeyDown: PropTypes.func,
   };
 
   static defaultProps = {
-    prefix: 'bx',
     onKeyDown: () => {},
   };
 
@@ -285,7 +258,7 @@ export class StructuredListBody extends Component {
   };
 
   render() {
-    const { children, className, prefix, ...other } = this.props;
+    const { children, className, ...other } = this.props;
     const classes = classNames(`${prefix}--structured-list-tbody`, className);
     return (
       <div className={classes} {...other}>
@@ -316,21 +289,15 @@ export class StructuredListCell extends Component {
      * Specify whether your StructuredListCell should have text wrapping
      */
     noWrap: PropTypes.bool,
-
-    /**
-     * The selector prefix
-     */
-    prefix: PropTypes.string,
   };
 
   static defaultProps = {
     head: false,
     noWrap: false,
-    prefix: 'bx',
   };
 
   render() {
-    const { children, className, head, noWrap, prefix, ...other } = this.props;
+    const { children, className, head, noWrap, ...other } = this.props;
 
     const classes = classNames(className, {
       [`${prefix}--structured-list-th`]: head,

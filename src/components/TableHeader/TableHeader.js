@@ -2,7 +2,10 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import classNames from 'classnames';
 import { iconCaretDown, iconCaretUp } from 'carbon-icons';
+import { settings } from 'carbon-components';
 import Icon from '../Icon';
+
+const { prefix } = settings;
 
 const TableHeader = props => {
   const {
@@ -12,7 +15,6 @@ const TableHeader = props => {
     sortDir,
     iconDescriptionAscending,
     iconDescriptionDescending,
-    prefix,
     ...other
   } = props;
 
@@ -78,17 +80,11 @@ TableHeader.propTypes = {
    * The sorting direction, `DESC` or `ASC`.
    */
   sortDir: PropTypes.string,
-
-  /**
-   * The selector prefix.
-   */
-  prefix: PropTypes.string,
 };
 
 TableHeader.defaultProps = {
   iconDescriptionAscending: 'ascending sort',
   iconDescriptionDescending: 'descending sort',
-  prefix: 'bx',
 };
 
 export default TableHeader;

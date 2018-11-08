@@ -1,6 +1,9 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import classNames from 'classnames';
+import { settings } from 'carbon-components';
+
+const { prefix } = settings;
 
 export default class Tab extends React.Component {
   static propTypes = {
@@ -74,11 +77,6 @@ export default class Tab extends React.Component {
      * side router libraries.
      **/
     renderAnchor: PropTypes.func,
-
-    /**
-     * The selector prefix
-     */
-    prefix: PropTypes.string,
   };
 
   static defaultProps = {
@@ -87,7 +85,6 @@ export default class Tab extends React.Component {
     tabIndex: 0,
     href: '#',
     selected: false,
-    prefix: 'bx',
     onClick: () => {},
     onKeyDown: () => {},
   };
@@ -118,7 +115,6 @@ export default class Tab extends React.Component {
       onClick,
       onKeyDown,
       renderAnchor,
-      prefix,
       ...other
     } = this.props;
 

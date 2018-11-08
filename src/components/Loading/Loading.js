@@ -1,6 +1,9 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import classNames from 'classnames';
+import { settings } from 'carbon-components';
+
+const { prefix } = settings;
 
 export default class Loading extends React.Component {
   static propTypes = {
@@ -23,29 +26,16 @@ export default class Loading extends React.Component {
      * Specify whether you would like the small variant of <Loading>
      */
     small: PropTypes.bool,
-
-    /**
-     * The selector prefix
-     */
-    prefix: PropTypes.string,
   };
 
   static defaultProps = {
     active: true,
     withOverlay: true,
     small: false,
-    prefix: 'bx',
   };
 
   render() {
-    const {
-      active,
-      className,
-      withOverlay,
-      small,
-      prefix,
-      ...other
-    } = this.props;
+    const { active, className, withOverlay, small, ...other } = this.props;
 
     const loadingClasses = classNames(`${prefix}--loading`, className, {
       [`${prefix}--loading--small`]: small,

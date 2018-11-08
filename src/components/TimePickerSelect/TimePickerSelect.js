@@ -3,6 +3,9 @@ import React, { Component } from 'react';
 import classNames from 'classnames';
 import Icon from '../Icon';
 import { iconCaretDown } from 'carbon-icons';
+import { settings } from 'carbon-components';
+
+const { prefix } = settings;
 
 export default class TimePickerSelect extends Component {
   static propTypes = {
@@ -51,11 +54,6 @@ export default class TimePickerSelect extends Component {
      * control
      */
     labelText: PropTypes.node.isRequired,
-
-    /**
-     * The selector prefix
-     */
-    prefix: PropTypes.string,
   };
 
   static defaultProps = {
@@ -63,7 +61,6 @@ export default class TimePickerSelect extends Component {
     inline: true,
     iconDescription: 'open list of options',
     hideLabel: true,
-    prefix: 'bx',
   };
 
   render() {
@@ -76,7 +73,6 @@ export default class TimePickerSelect extends Component {
       hideLabel,
       labelText,
       inline, // eslint-disable-line
-      prefix,
       ...other
     } = this.props;
 

@@ -3,7 +3,10 @@ import PropTypes from 'prop-types';
 import { iconInfoGlyph } from 'carbon-icons';
 import classNames from 'classnames';
 import warning from 'warning';
+import { settings } from 'carbon-components';
 import Icon from '../Icon';
+
+const { prefix } = settings;
 
 let didWarnAboutDeprecation = false;
 
@@ -16,7 +19,6 @@ const TooltipSimple = ({
   icon,
   iconName,
   iconDescription,
-  prefix,
   ...other
 }) => {
   if (__DEV__) {
@@ -119,7 +121,6 @@ TooltipSimple.defaultProps = {
   showIcon: true,
   iconDescription: 'tooltip',
   text: 'Provide text',
-  prefix: 'bx',
 };
 
 export default TooltipSimple;

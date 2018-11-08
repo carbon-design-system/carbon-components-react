@@ -2,6 +2,9 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import classNames from 'classnames';
 import warning from 'warning';
+import { settings } from 'carbon-components';
+
+const { prefix } = settings;
 
 let didWarnAboutDeprecation = false;
 
@@ -14,7 +17,7 @@ const Table = props => {
     );
     didWarnAboutDeprecation = true;
   }
-  const { children, className, containerClassName, prefix, ...other } = props;
+  const { children, className, containerClassName, ...other } = props;
 
   const tableClasses = classNames(className, `${prefix}--responsive-table`);
 
@@ -53,15 +56,6 @@ Table.propTypes = {
    * Specify an optional className to be applied to the container node
    */
   containerClassName: PropTypes.string,
-
-  /**
-   * The selector prefix
-   */
-  prefix: PropTypes.string,
-};
-
-Table.defaultProps = {
-  prefix: 'bx',
 };
 
 export default Table;

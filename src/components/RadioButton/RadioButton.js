@@ -1,7 +1,10 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import classNames from 'classnames';
+import { settings } from 'carbon-components';
 import uid from '../../tools/uniqueId';
+
+const { prefix } = settings;
 
 export default class RadioButton extends React.Component {
   static propTypes = {
@@ -51,15 +54,9 @@ export default class RadioButton extends React.Component {
      * Specify the value of the <RadioButton>
      */
     value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
-
-    /**
-     * The selector prefix
-     */
-    prefix: PropTypes.string,
   };
 
   static defaultProps = {
-    prefix: 'bx',
     onChange: () => {},
   };
 
@@ -77,7 +74,7 @@ export default class RadioButton extends React.Component {
       this.props.className
     );
 
-    const { labelText, prefix, ...other } = this.props;
+    const { labelText, ...other } = this.props;
 
     return (
       <div className={wrapperClasses}>

@@ -2,6 +2,9 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import RadioButton from '../RadioButton';
 import warning from 'warning';
+import { settings } from 'carbon-components';
+
+const { prefix } = settings;
 
 export default class RadioButtonGroup extends React.Component {
   state = { selected: this.props.valueSelected || this.props.defaultSelected };
@@ -42,16 +45,10 @@ export default class RadioButtonGroup extends React.Component {
      * Specify the value that is currently selected in the group
      */
     valueSelected: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-
-    /**
-     * The selector prefix
-     */
-    prefix: PropTypes.string,
   };
 
   static defaultProps = {
     onChange: /* istanbul ignore next */ () => {},
-    prefix: 'bx',
   };
 
   static getDerivedStateFromProps({ valueSelected, defaultSelected }, state) {
@@ -101,7 +98,6 @@ export default class RadioButtonGroup extends React.Component {
   render() {
     const {
       disabled,
-      prefix,
       className = `${prefix}--radio-button-group`,
     } = this.props;
 

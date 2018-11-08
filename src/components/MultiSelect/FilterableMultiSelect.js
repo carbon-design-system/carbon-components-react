@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import Downshift from 'downshift';
 import isEqual from 'lodash.isequal';
+import { settings } from 'carbon-components';
 import ListBox from '../ListBox';
 import Checkbox from '../Checkbox';
 import Selection from '../../internal/Selection';
@@ -10,6 +11,8 @@ import { sortingPropTypes } from './MultiSelectPropTypes';
 import { defaultItemToString } from './tools/itemToString';
 import { defaultSortItems, defaultCompareItems } from './tools/sorting';
 import { defaultFilterItems } from '../ComboBox/tools/filter';
+
+const { prefix } = settings;
 
 export default class FilterableMultiSelect extends React.Component {
   static propTypes = {
@@ -60,11 +63,6 @@ export default class FilterableMultiSelect extends React.Component {
      * `true` to use the light version.
      */
     light: PropTypes.bool,
-
-    /**
-     * The selector prefix.
-     */
-    prefix: PropTypes.string,
   };
 
   static defaultProps = {
@@ -76,7 +74,6 @@ export default class FilterableMultiSelect extends React.Component {
     locale: 'en',
     sortItems: defaultSortItems,
     light: false,
-    prefix: 'bx',
   };
 
   constructor(props) {
@@ -181,7 +178,6 @@ export default class FilterableMultiSelect extends React.Component {
       sortItems,
       compareItems,
       light,
-      prefix,
     } = this.props;
     const className = cx(
       `${prefix}--multi-select`,

@@ -1,7 +1,10 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import classNames from 'classnames';
+import { settings } from 'carbon-components';
 import Loading from '../Loading';
+
+const { prefix } = settings;
 
 export default class InlineLoading extends React.Component {
   static propTypes = {
@@ -30,17 +33,11 @@ export default class InlineLoading extends React.Component {
      * Provide a delay for the `setTimeout` for success
      */
     successDelay: PropTypes.number,
-
-    /**
-     * The selector prefix
-     */
-    prefix: PropTypes.string,
   };
 
   static defaultProps = {
     success: false,
     successDelay: 1500,
-    prefix: 'bx',
   };
 
   render() {
@@ -50,7 +47,6 @@ export default class InlineLoading extends React.Component {
       description,
       onSuccess,
       successDelay,
-      prefix,
       ...other
     } = this.props;
 

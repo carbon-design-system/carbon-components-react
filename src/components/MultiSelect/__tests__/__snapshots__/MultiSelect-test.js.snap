@@ -38,7 +38,6 @@ exports[`MultiSelect should render 1`] = `
   label="Field"
   light={false}
   locale="en"
-  prefix="bx"
   sortItems={[Function]}
   title={false}
   type="default"
@@ -75,7 +74,6 @@ exports[`MultiSelect should render 1`] = `
         className="bx--multi-select"
         disabled={false}
         innerRef={[Function]}
-        prefix="bx"
         type="default"
       >
         <div
@@ -95,7 +93,6 @@ exports[`MultiSelect should render 1`] = `
             onBlur={[Function]}
             onClick={[Function]}
             onKeyDown={[Function]}
-            prefix="bx"
             role="button"
             type="button"
           >
@@ -120,7 +117,6 @@ exports[`MultiSelect should render 1`] = `
               </span>
               <ListBoxMenuIcon
                 isOpen={false}
-                prefix="bx"
                 translateWithId={[Function]}
               >
                 <div

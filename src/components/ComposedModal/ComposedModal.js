@@ -4,12 +4,14 @@ import { iconClose } from 'carbon-icons';
 import Button from '../Button';
 import Icon from '../Icon';
 import classNames from 'classnames';
+import { settings } from 'carbon-components';
+
+const { prefix } = settings;
 
 export default class ComposedModal extends Component {
   state = {};
 
   static defaultProps = {
-    prefix: 'bx',
     onKeyDown: () => {},
   };
 
@@ -26,11 +28,6 @@ export default class ComposedModal extends Component {
      * Specify an optional className to be applied to the modal node
      */
     containerClassName: PropTypes.string,
-
-    /**
-     * The selector prefix
-     */
-    prefix: PropTypes.string,
 
     /**
      * Specify an optional handler for closing modal.
@@ -89,13 +86,7 @@ export default class ComposedModal extends Component {
 
   render() {
     const { open } = this.state;
-    const {
-      className,
-      containerClassName,
-      children,
-      prefix,
-      ...other
-    } = this.props;
+    const { className, containerClassName, children, ...other } = this.props;
 
     const modalClass = classNames({
       [`${prefix}--modal`]: true,
@@ -193,17 +184,11 @@ export class ModalHeader extends Component {
      * clicked
      */
     buttonOnClick: PropTypes.func,
-
-    /**
-     * The selector prefix
-     */
-    prefix: PropTypes.string,
   };
 
   static defaultProps = {
     iconDescription: 'Close the modal',
     buttonOnClick: () => {},
-    prefix: 'bx',
   };
 
   handleCloseButtonClick = () => {
@@ -224,7 +209,6 @@ export class ModalHeader extends Component {
       iconDescription,
       closeModal, // eslint-disable-line
       buttonOnClick, // eslint-disable-line
-      prefix,
       ...other
     } = this.props;
 
@@ -282,19 +266,10 @@ export class ModalBody extends Component {
      * Specify an optional className to be added to the Modal Body node
      */
     className: PropTypes.string,
-
-    /**
-     * The selector prefix
-     */
-    prefix: PropTypes.string,
-  };
-
-  static defaultProps = {
-    prefix: 'bx',
   };
 
   render() {
-    const { className, children, prefix, ...other } = this.props;
+    const { className, children, ...other } = this.props;
 
     const contentClass = classNames({
       [`${prefix}--modal-content`]: true,
@@ -362,17 +337,11 @@ export class ModalFooter extends Component {
      * Pass in content that will be rendered in the Modal Footer
      */
     children: PropTypes.node,
-
-    /**
-     * The selector prefix
-     */
-    prefix: PropTypes.string,
   };
 
   static defaultProps = {
     onRequestClose: () => {},
     onRequestSubmit: () => {},
-    prefix: 'bx',
   };
 
   handleRequestClose = evt => {
@@ -391,7 +360,6 @@ export class ModalFooter extends Component {
       closeModal, // eslint-disable-line
       onRequestClose, // eslint-disable-line
       onRequestSubmit, // eslint-disable-line
-      prefix,
       children,
       ...other
     } = this.props;

@@ -1,7 +1,10 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import { settings } from 'carbon-components';
 
-const IconSkeleton = ({ style, prefix }) => {
+const { prefix } = settings;
+
+const IconSkeleton = ({ style }) => {
   const props = {
     style,
   };
@@ -14,15 +17,6 @@ IconSkeleton.propTypes = {
    * The CSS styles.
    */
   style: PropTypes.object,
-
-  /**
-   * The selector prefix.
-   */
-  prefix: PropTypes.string,
-};
-
-IconSkeleton.defaultProps = {
-  prefix: 'bx',
 };
 
 export default IconSkeleton;

@@ -1,6 +1,9 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import classNames from 'classnames';
+import { settings } from 'carbon-components';
+
+const { prefix } = settings;
 
 const Toggle = ({
   className,
@@ -11,7 +14,6 @@ const Toggle = ({
   id,
   labelA,
   labelB,
-  prefix,
   ...other
 }) => {
   let input;
@@ -89,18 +91,12 @@ Toggle.propTypes = {
    * Specify the label for the "on" position
    */
   labelB: PropTypes.string.isRequired,
-
-  /**
-   * The selector prefix
-   */
-  prefix: PropTypes.string,
 };
 
 Toggle.defaultProps = {
   defaultToggled: false,
   labelA: 'Off',
   labelB: 'On',
-  prefix: 'bx',
   onToggle: () => {},
 };
 

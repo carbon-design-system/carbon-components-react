@@ -38,7 +38,6 @@ exports[`DropdownV2 should render 1`] = `
   light={false}
   onChange={[MockFunction]}
   placeholder="Filter..."
-  prefix="bx"
   type="default"
 >
   <Downshift
@@ -64,7 +63,6 @@ exports[`DropdownV2 should render 1`] = `
       className="bx--dropdown"
       disabled={false}
       innerRef={[Function]}
-      prefix="bx"
       type="default"
     >
       <div
@@ -84,7 +82,6 @@ exports[`DropdownV2 should render 1`] = `
           onBlur={[Function]}
           onClick={[Function]}
           onKeyDown={[Function]}
-          prefix="bx"
           role="button"
           type="button"
         >
@@ -110,7 +107,6 @@ exports[`DropdownV2 should render 1`] = `
             </span>
             <ListBoxMenuIcon
               isOpen={false}
-              prefix="bx"
               translateWithId={[Function]}
             >
               <div

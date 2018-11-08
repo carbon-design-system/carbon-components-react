@@ -1,6 +1,9 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import classNames from 'classnames';
+import { settings } from 'carbon-components';
+
+const { prefix } = settings;
 
 const Checkbox = ({
   className,
@@ -11,7 +14,6 @@ const Checkbox = ({
   hideLabel,
   wrapperClassName,
   title = '',
-  prefix,
   ...other
 }) => {
   let input;
@@ -106,17 +108,11 @@ Checkbox.propTypes = {
    * The CSS class name to be placed on the wrapping element
    */
   wrapperClassName: PropTypes.string,
-
-  /**
-   * The selector prefix
-   */
-  prefix: PropTypes.string,
 };
 
 Checkbox.defaultProps = {
   onChange: () => {},
   indeterminate: false,
-  prefix: 'bx',
 };
 
 export default Checkbox;

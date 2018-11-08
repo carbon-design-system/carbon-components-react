@@ -1,20 +1,10 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { settings } from 'carbon-components';
+
+const { prefix } = settings;
 
 export default class ProgressIndicatorSkeleton extends React.Component {
-  static propTypes = {
-    /**
-     * The selector prefix.
-     */
-    prefix: PropTypes.string,
-  };
-
-  static defaultProps = {
-    prefix: 'bx',
-  };
-
   render() {
-    const { prefix } = this.props;
     const step = (
       <li
         className={`${prefix}--progress-step ${prefix}--progress-step--incomplete`}>

@@ -1,7 +1,10 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import { settings } from 'carbon-components';
 
-const TextAreaSkeleton = ({ hideLabel, id, prefix }) => {
+const { prefix } = settings;
+
+const TextAreaSkeleton = ({ hideLabel, id }) => {
   const label = hideLabel ? null : (
     // eslint-disable-next-line jsx-a11y/label-has-for,jsx-a11y/label-has-associated-control
     <label className={`${prefix}--label ${prefix}--skeleton`} htmlFor={id} />
@@ -20,15 +23,6 @@ TextAreaSkeleton.propTypes = {
    * Specify whether the label should be hidden, or not
    */
   hideLabel: PropTypes.bool,
-
-  /**
-   * The selector prefix
-   */
-  prefix: PropTypes.string,
-};
-
-TextAreaSkeleton.defaultProps = {
-  prefix: 'bx',
 };
 
 export default TextAreaSkeleton;

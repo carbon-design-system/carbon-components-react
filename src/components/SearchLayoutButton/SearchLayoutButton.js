@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { iconList, iconGrid } from 'carbon-icons';
+import { settings } from 'carbon-components';
 import Icon from '../Icon';
+
+const { prefix } = settings;
 
 /**
  * The layout button for `<Search>`.
@@ -31,11 +34,6 @@ class SearchLayoutButton extends Component {
     iconDescriptionGrid: PropTypes.string,
 
     /**
-     * The selector prefix.
-     */
-    prefix: PropTypes.string,
-
-    /**
      * The callback called when layout switches.
      */
     onChangeFormat: PropTypes.func,
@@ -45,7 +43,6 @@ class SearchLayoutButton extends Component {
     labelText: 'Filter',
     iconDescriptionList: 'list',
     iconDescriptionGrid: 'grid',
-    prefix: 'bx',
   };
 
   static getDerivedStateFromProps({ format }, state) {
@@ -73,12 +70,7 @@ class SearchLayoutButton extends Component {
   };
 
   render() {
-    const {
-      labelText,
-      iconDescriptionList,
-      iconDescriptionGrid,
-      prefix,
-    } = this.props;
+    const { labelText, iconDescriptionList, iconDescriptionGrid } = this.props;
     return (
       <button
         className={`${prefix}--search-button`}

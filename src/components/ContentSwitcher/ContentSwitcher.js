@@ -1,7 +1,10 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import classNames from 'classnames';
+import { settings } from 'carbon-components';
 import { composeEventHandlers } from '../../tools/events';
+
+const { prefix } = settings;
 
 export default class ContentSwitcher extends React.Component {
   state = {};
@@ -27,16 +30,10 @@ export default class ContentSwitcher extends React.Component {
      * Specify a selected index for the initially selected content
      */
     selectedIndex: PropTypes.number,
-
-    /**
-     * The selector prefix
-     */
-    prefix: PropTypes.string,
   };
 
   static defaultProps = {
     selectedIndex: 0,
-    prefix: 'bx',
   };
 
   static getDerivedStateFromProps({ selectedIndex }, state) {
@@ -78,7 +75,6 @@ export default class ContentSwitcher extends React.Component {
       children,
       className,
       selectedIndex, // eslint-disable-line no-unused-vars
-      prefix,
       ...other
     } = this.props;
 

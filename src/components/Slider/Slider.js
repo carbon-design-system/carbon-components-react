@@ -2,8 +2,11 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import isEqual from 'lodash.isequal';
+import { settings } from 'carbon-components';
 import TextInput from '../TextInput';
 import { sliderValuePropSync } from '../../internal/FeatureFlags';
+
+const { prefix } = settings;
 
 const defaultFormatLabel = (value, label) => {
   return typeof label === 'function' ? label(value) : `${value}${label}`;
@@ -106,11 +109,6 @@ export default class Slider extends PureComponent {
      * `true` to use the light version.
      */
     light: PropTypes.bool,
-
-    /**
-     * The selector prefix.
-     */
-    prefix: PropTypes.string,
   };
 
   static defaultProps = {
@@ -123,7 +121,6 @@ export default class Slider extends PureComponent {
     inputType: 'number',
     ariaLabelInput: 'Slider number input',
     light: false,
-    prefix: 'bx',
   };
 
   state = {
@@ -345,7 +342,6 @@ export default class Slider extends PureComponent {
       disabled,
       name,
       light,
-      prefix,
       ...other
     } = this.props;
 

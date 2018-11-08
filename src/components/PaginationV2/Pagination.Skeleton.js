@@ -1,21 +1,11 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { settings } from 'carbon-components';
 import SkeletonText from '../SkeletonText';
 
+const { prefix } = settings;
+
 export default class PaginationSkeleton extends React.Component {
-  static propTypes = {
-    /**
-     * The selector prefix.
-     */
-    prefix: PropTypes.string,
-  };
-
-  static defaultProps = {
-    prefix: 'bx',
-  };
-
   render() {
-    const { prefix } = this.props;
     return (
       <div className={`${prefix}--pagination ${prefix}--skeleton`}>
         <div className={`${prefix}--pagination__left`}>

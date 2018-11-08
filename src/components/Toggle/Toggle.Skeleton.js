@@ -1,20 +1,11 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { settings } from 'carbon-components';
+
+const { prefix } = settings;
 
 export default class ToggleSkeleton extends React.Component {
-  static propTypes = {
-    /**
-     * The selector prefix.
-     */
-    prefix: PropTypes.string,
-  };
-
-  static defaultProps = {
-    prefix: 'bx',
-  };
-
   render() {
-    const { id, prefix } = this.props;
+    const { id } = this.props;
     return (
       <div className={`${prefix}--form-item`}>
         <input

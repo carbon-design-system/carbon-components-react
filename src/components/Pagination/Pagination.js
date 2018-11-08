@@ -4,11 +4,14 @@ import classnames from 'classnames';
 import debounce from 'lodash.debounce';
 import warning from 'warning';
 import { iconChevronLeft, iconChevronRight } from 'carbon-icons';
+import { settings } from 'carbon-components';
 import Icon from '../Icon';
 import Select from '../Select';
 import SelectItem from '../SelectItem';
 import TextInput from '../TextInput';
 import { equals } from '../../tools/array';
+
+const { prefix } = settings;
 
 let didWarnAboutDeprecation = false;
 
@@ -124,11 +127,6 @@ export default class Pagination extends Component {
      * A function returning PII showing how many items there are.
      */
     defaultItemText: PropTypes.func,
-
-    /**
-     * The selector prefix.
-     */
-    prefix: PropTypes.string,
   };
 
   static defaultProps = {
@@ -149,7 +147,6 @@ export default class Pagination extends Component {
     defaultPageText: totalPages => `${totalPages} pages`,
     defaultItemText: totalItems => `${totalItems} items`,
     onChangeInterval: 250,
-    prefix: 'bx',
   };
 
   constructor(props) {
@@ -298,7 +295,6 @@ export default class Pagination extends Component {
       onChange, // eslint-disable-line no-unused-vars
       onChangeInterval, // eslint-disable-line no-unused-vars
       page: pageNumber, // eslint-disable-line no-unused-vars
-      prefix,
       ...other
     } = this.props;
 

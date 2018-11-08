@@ -1,7 +1,10 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import { settings } from 'carbon-components';
 
-const DatePickerSkeleton = ({ range, id, prefix }) => {
+const { prefix } = settings;
+
+const DatePickerSkeleton = ({ range, id }) => {
   const dateInput = (
     <div className={`${prefix}--date-picker-container`}>
       {
@@ -39,15 +42,6 @@ DatePickerSkeleton.propTypes = {
    * Specify whether the skeleton should be of range date picker.
    */
   range: PropTypes.bool,
-
-  /**
-   * The selector prefix.
-   */
-  prefix: PropTypes.string,
-};
-
-DatePickerSkeleton.defaultProps = {
-  prefix: 'bx',
 };
 
 export default DatePickerSkeleton;

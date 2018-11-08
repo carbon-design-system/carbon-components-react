@@ -1,7 +1,10 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import classnames from 'classnames';
+import { settings } from 'carbon-components';
 import Link from '../Link';
+
+const { prefix } = settings;
 
 const newChild = (children, href, prefix) => {
   if (typeof children === 'string' && !(href === undefined)) {
@@ -13,7 +16,7 @@ const newChild = (children, href, prefix) => {
   }
 };
 
-const BreadcrumbItem = ({ children, className, href, prefix, ...other }) => {
+const BreadcrumbItem = ({ children, className, href, ...other }) => {
   const classNames = classnames(`${prefix}--breadcrumb-item`, className);
   return (
     <div className={classNames} {...other}>
@@ -37,15 +40,6 @@ BreadcrumbItem.propTypes = {
    * Optional string representing the link location for the BreadcrumbItem
    */
   href: PropTypes.string,
-
-  /**
-   * The selector prefix
-   */
-  prefix: PropTypes.string,
-};
-
-BreadcrumbItem.defaultProps = {
-  prefix: 'bx',
 };
 
 export default BreadcrumbItem;

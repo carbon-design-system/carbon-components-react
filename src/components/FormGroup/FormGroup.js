@@ -1,6 +1,9 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import classnames from 'classnames';
+import { settings } from 'carbon-components';
+
+const { prefix } = settings;
 
 const FormGroup = ({
   legendText,
@@ -9,7 +12,6 @@ const FormGroup = ({
   className,
   message,
   messageText,
-  prefix,
   ...other
 }) => {
   const classNamesLegend = classnames(`${prefix}--label`, className);
@@ -59,18 +61,12 @@ FormGroup.propTypes = {
    * Provide the text for the message in the <FormGroup>
    */
   messageText: PropTypes.string,
-
-  /**
-   * The selector prefix
-   */
-  prefix: PropTypes.string,
 };
 
 FormGroup.defaultProps = {
   invalid: false,
   message: false,
   messageText: '',
-  prefix: 'bx',
 };
 
 export default FormGroup;

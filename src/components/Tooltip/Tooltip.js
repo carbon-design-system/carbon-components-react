@@ -4,6 +4,7 @@ import debounce from 'lodash.debounce';
 import Icon from '../Icon';
 import classNames from 'classnames';
 import { iconInfoGlyph } from 'carbon-icons';
+import { settings } from 'carbon-components';
 import FloatingMenu, {
   DIRECTION_LEFT,
   DIRECTION_TOP,
@@ -11,6 +12,8 @@ import FloatingMenu, {
   DIRECTION_BOTTOM,
 } from '../../internal/FloatingMenu';
 import ClickListener from '../../internal/ClickListener';
+
+const { prefix } = settings;
 
 const matchesFuncName =
   typeof Element !== 'undefined' &&
@@ -184,11 +187,6 @@ export default class Tooltip extends Component {
      * `true` if opening tooltip should be triggered by clicking the trigger button.
      */
     clickToOpen: PropTypes.bool,
-
-    /**
-     * The selector prefix.
-     */
-    prefix: PropTypes.string,
   };
 
   static defaultProps = {
@@ -199,7 +197,6 @@ export default class Tooltip extends Component {
     iconTitle: '',
     triggerText: 'Provide triggerText',
     menuOffset: getMenuOffset,
-    prefix: 'bx',
   };
 
   /**
@@ -349,7 +346,6 @@ export default class Tooltip extends Component {
       // Exclude `clickToOpen` from `other` to avoid passing it along to `<div>`
       // eslint-disable-next-line no-unused-vars
       clickToOpen,
-      prefix,
       ...other
     } = this.props;
 

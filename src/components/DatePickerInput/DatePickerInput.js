@@ -1,7 +1,10 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import classNames from 'classnames';
+import { settings } from 'carbon-components';
 import Icon from '../Icon';
+
+const { prefix } = settings;
 
 export default class DatePickerInput extends Component {
   static propTypes = {
@@ -14,11 +17,6 @@ export default class DatePickerInput extends Component {
      * The description of the calendar icon.
      */
     iconDescription: PropTypes.string,
-
-    /**
-     * The selector prefix.
-     */
-    prefix: PropTypes.string,
   };
 
   static defaultProps = {
@@ -27,7 +25,6 @@ export default class DatePickerInput extends Component {
     disabled: false,
     invalid: false,
     labelText: '',
-    prefix: 'bx',
     onClick: () => {},
     onChange: () => {},
   };
@@ -47,7 +44,6 @@ export default class DatePickerInput extends Component {
       pattern,
       iconDescription,
       openCalendar,
-      prefix,
       ...other
     } = this.props;
 

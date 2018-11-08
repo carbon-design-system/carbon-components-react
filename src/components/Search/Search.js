@@ -2,7 +2,10 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import classNames from 'classnames';
 import { iconSearch, iconCloseSolid } from 'carbon-icons';
+import { settings } from 'carbon-components';
 import Icon from '../Icon';
+
+const { prefix } = settings;
 
 export default class Search extends Component {
   static propTypes = {
@@ -45,11 +48,6 @@ export default class Search extends Component {
      * `true` to use the light version.
      */
     light: PropTypes.bool,
-
-    /**
-     * The selector prefix
-     */
-    prefix: PropTypes.string,
   };
 
   static defaultProps = {
@@ -58,7 +56,6 @@ export default class Search extends Component {
     placeHolderText: '',
     onChange: () => {},
     light: false,
-    prefix: 'bx',
   };
 
   state = {
@@ -114,7 +111,6 @@ export default class Search extends Component {
       closeButtonLabelText,
       small,
       light,
-      prefix,
       ...other
     } = this.props;
 

@@ -3,12 +3,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Downshift from 'downshift';
 import isEqual from 'lodash.isequal';
+import { settings } from 'carbon-components';
 import ListBox from '../ListBox';
 import Checkbox from '../Checkbox';
 import Selection from '../../internal/Selection';
 import { sortingPropTypes } from './MultiSelectPropTypes';
 import { defaultItemToString } from './tools/itemToString';
 import { defaultSortItems, defaultCompareItems } from './tools/sorting';
+
+const { prefix } = settings;
 
 export default class MultiSelect extends React.Component {
   static propTypes = {
@@ -80,11 +83,6 @@ export default class MultiSelect extends React.Component {
      * If invalid, what is the error?
      */
     invalidText: PropTypes.string,
-
-    /**
-     * The selector prefix.
-     */
-    prefix: PropTypes.string,
   };
 
   static defaultProps = {
@@ -97,7 +95,6 @@ export default class MultiSelect extends React.Component {
     type: 'default',
     light: false,
     title: false,
-    prefix: 'bx',
   };
 
   constructor(props) {
@@ -170,7 +167,6 @@ export default class MultiSelect extends React.Component {
       invalid,
       invalidText,
       useTitleInItem,
-      prefix,
     } = this.props;
     const className = cx(`${prefix}--multi-select`, containerClassName, {
       [`${prefix}--list-box--light`]: light,

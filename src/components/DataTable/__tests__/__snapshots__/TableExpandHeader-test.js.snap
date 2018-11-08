@@ -2,7 +2,6 @@
 
 exports[`DataTable.TableExpandHeader should render 1`] = `
 <Table
-  prefix="bx"
   short={false}
   shouldShowBorder={true}
   zebra={true}
@@ -10,13 +9,9 @@ exports[`DataTable.TableExpandHeader should render 1`] = `
   <table
     className="bx--data-table-v2 bx--data-table-v2--zebra"
   >
-    <TableHead
-      prefix="bx"
-    >
+    <TableHead>
       <thead>
-        <TableRow
-          prefix="bx"
-        >
+        <TableRow>
           <tr>
             <TableExpandHeader
               className="custom-class"

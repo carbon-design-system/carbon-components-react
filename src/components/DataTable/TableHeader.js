@@ -2,8 +2,11 @@ import cx from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { iconCaretUp } from 'carbon-icons';
+import { settings } from 'carbon-components';
 import Icon from '../Icon';
 import { sortStates } from './state/sorting';
+
+const { prefix } = settings;
 
 const translationKeys = {
   iconDescription: 'carbon.table.header.icon.description',
@@ -43,7 +46,6 @@ const TableHeader = ({
   onClick,
   scope,
   sortDirection,
-  prefix,
   translateWithId: t,
   ...rest
 }) => {
@@ -124,11 +126,6 @@ TableHeader.propTypes = {
   sortDirection: PropTypes.oneOf(Object.values(sortStates)),
 
   /**
-   * The selector prefix.
-   */
-  prefix: PropTypes.string,
-
-  /**
    * Supply a method to translate internal strings with your i18n tool of
    * choice. Translation keys are avabile on the `translationKeys` field for
    * this component.
@@ -139,7 +136,6 @@ TableHeader.propTypes = {
 TableHeader.defaultProps = {
   isSortable: false,
   scope: 'col',
-  prefix: 'bx',
   translateWithId,
 };
 

@@ -1,8 +1,11 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import classNames from 'classnames';
+import { settings } from 'carbon-components';
 
-const StructuredListSkeleton = ({ rowCount, border, prefix }) => {
+const { prefix } = settings;
+
+const StructuredListSkeleton = ({ rowCount, border }) => {
   const StructuredListSkeletonClasses = classNames({
     [`${prefix}--skeleton`]: true,
     [`${prefix}--structured-list`]: true,
@@ -51,17 +54,11 @@ StructuredListSkeleton.propTypes = {
    * Specify whether a border should be added to your StructuredListSkeleton
    */
   border: PropTypes.bool,
-
-  /**
-   * The selector prefix
-   */
-  prefix: PropTypes.string,
 };
 
 StructuredListSkeleton.defaultProps = {
   rowCount: 5,
   border: false,
-  prefix: 'bx',
 };
 
 export default StructuredListSkeleton;

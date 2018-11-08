@@ -1,6 +1,9 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import classNames from 'classnames';
+import { settings } from 'carbon-components';
+
+const { prefix } = settings;
 
 const ToggleSmall = ({
   className,
@@ -10,7 +13,6 @@ const ToggleSmall = ({
   onToggle,
   id,
   ariaLabel,
-  prefix,
   ...other
 }) => {
   let input;
@@ -90,16 +92,10 @@ ToggleSmall.propTypes = {
    * The `aria-label` attribute for the toggle
    */
   ariaLabel: PropTypes.string.isRequired,
-
-  /**
-   * The selector prefix
-   */
-  prefix: PropTypes.string,
 };
 
 ToggleSmall.defaultProps = {
   defaultToggled: false,
-  prefix: 'bx',
   onToggle: () => {},
 };
 

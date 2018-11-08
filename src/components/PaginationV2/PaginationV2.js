@@ -2,10 +2,13 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import classnames from 'classnames';
 import { iconChevronLeft, iconChevronRight } from 'carbon-icons';
+import { settings } from 'carbon-components';
 import Icon from '../Icon';
 import Select from '../Select';
 import SelectItem from '../SelectItem';
 import { equals } from '../../tools/array';
+
+const { prefix } = settings;
 
 let instanceId = 0;
 
@@ -122,11 +125,6 @@ export default class PaginationV2 extends Component {
      * `true` if the select box to change the page should be disabled.
      */
     pageInputDisabled: PropTypes.bool,
-
-    /**
-     * The selector prefix.
-     */
-    prefix: PropTypes.string,
   };
 
   static defaultProps = {
@@ -143,7 +141,6 @@ export default class PaginationV2 extends Component {
     pageInputDisabled: false,
     itemText: (min, max) => `${min}-${max} items`,
     pageText: page => `page ${page}`,
-    prefix: 'bx',
   };
 
   static getDerivedStateFromProps({ pageSizes, page, pageSize }, state) {
@@ -237,7 +234,6 @@ export default class PaginationV2 extends Component {
       totalItems,
       onChange, // eslint-disable-line no-unused-vars
       page: pageNumber, // eslint-disable-line no-unused-vars
-      prefix,
       ...other
     } = this.props;
 

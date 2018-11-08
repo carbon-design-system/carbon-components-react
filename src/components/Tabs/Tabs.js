@@ -2,8 +2,11 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import classNames from 'classnames';
 import { iconCaretDown } from 'carbon-icons';
+import { settings } from 'carbon-components';
 import Icon from '../Icon';
 import TabContent from '../TabContent';
+
+const { prefix } = settings;
 
 export default class Tabs extends React.Component {
   static propTypes = {
@@ -70,11 +73,6 @@ export default class Tabs extends React.Component {
      * for the dropdown menu of items
      */
     iconDescription: PropTypes.string.isRequired,
-
-    /**
-     * The selector prefix
-     */
-    prefix: PropTypes.string,
   };
 
   static defaultProps = {
@@ -83,7 +81,6 @@ export default class Tabs extends React.Component {
     triggerHref: '#',
     selected: 0,
     ariaLabel: 'listbox',
-    prefix: 'bx',
   };
 
   state = {
@@ -185,7 +182,6 @@ export default class Tabs extends React.Component {
       triggerHref,
       role,
       onSelectionChange,
-      prefix,
       ...other
     } = this.props;
 

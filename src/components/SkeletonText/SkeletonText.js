@@ -1,6 +1,9 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import classNames from 'classnames';
+import { settings } from 'carbon-components';
+
+const { prefix } = settings;
 
 const SkeletonText = ({
   paragraph,
@@ -8,7 +11,6 @@ const SkeletonText = ({
   width,
   heading,
   className,
-  prefix,
   ...other
 }) => {
   const skeletonTextClasses = classNames({
@@ -84,10 +86,6 @@ SkeletonText.propTypes = {
    * Specify an optional className to be applied to the container node
    */
   className: PropTypes.string,
-  /**
-   * The selector prefix
-   */
-  prefix: PropTypes.string,
 };
 
 SkeletonText.defaultProps = {
@@ -95,7 +93,6 @@ SkeletonText.defaultProps = {
   width: '100%',
   heading: false,
   lineCount: 3,
-  prefix: 'bx',
 };
 
 export default SkeletonText;

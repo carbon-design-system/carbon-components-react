@@ -1,9 +1,12 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import classnames from 'classnames';
+import { settings } from 'carbon-components';
+
+const { prefix } = settings;
 
 export const ProgressStep = ({ ...props }) => {
-  const { label, description, className, current, complete, prefix } = props;
+  const { label, description, className, current, complete } = props;
 
   const classes = classnames({
     [`${prefix}--progress-step`]: true,
@@ -72,15 +75,6 @@ ProgressStep.propTypes = {
    * Provide a description for the <ProgressStep>
    */
   description: PropTypes.string,
-
-  /**
-   * The selector prefix
-   */
-  prefix: PropTypes.string,
-};
-
-ProgressStep.defaultProps = {
-  prefix: 'bx',
 };
 
 export class ProgressIndicator extends Component {
@@ -102,16 +96,10 @@ export class ProgressIndicator extends Component {
      * Optionally specify the current step array index
      */
     currentIndex: PropTypes.number,
-
-    /**
-     * The selector prefix
-     */
-    prefix: PropTypes.string,
   };
 
   static defaultProps = {
     currentIndex: 0,
-    prefix: 'bx',
   };
 
   static getDerivedStateFromProps({ currentIndex }, state) {
@@ -143,7 +131,7 @@ export class ProgressIndicator extends Component {
     });
 
   render() {
-    const { className, currentIndex, prefix, ...other } = this.props; // eslint-disable-line no-unused-vars
+    const { className, currentIndex, ...other } = this.props; // eslint-disable-line no-unused-vars
     const classes = classnames({
       [`${prefix}--progress`]: true,
       [className]: className,

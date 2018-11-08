@@ -2,7 +2,10 @@ import cx from 'classnames';
 import Downshift from 'downshift';
 import PropTypes from 'prop-types';
 import React from 'react';
+import { settings } from 'carbon-components';
 import ListBox, { PropTypes as ListBoxPropTypes } from '../ListBox';
+
+const { prefix } = settings;
 
 const defaultItemToString = item => {
   if (typeof item === 'string') {
@@ -130,11 +133,6 @@ export default class ComboBox extends React.Component {
      * should use "light theme" (white background)?
      */
     light: PropTypes.bool,
-
-    /**
-     * The selector prefix
-     */
-    prefix: PropTypes.string,
   };
 
   static defaultProps = {
@@ -144,7 +142,6 @@ export default class ComboBox extends React.Component {
     type: 'default',
     ariaLabel: 'ListBox input field',
     light: false,
-    prefix: 'bx',
   };
 
   constructor(props) {
@@ -225,7 +222,6 @@ export default class ComboBox extends React.Component {
       shouldFilterItem, // eslint-disable-line no-unused-vars
       onChange, // eslint-disable-line no-unused-vars
       onInputChange, // eslint-disable-line no-unused-vars
-      prefix,
       ...rest
     } = this.props;
     const className = cx(`${prefix}--combo-box`, containerClassName);

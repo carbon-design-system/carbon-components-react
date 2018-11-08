@@ -1,9 +1,12 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import classNames from 'classnames';
+import { settings } from 'carbon-components';
+
+const { prefix } = settings;
 
 const TableHead = props => {
-  const { children, className, prefix, ...other } = props;
+  const { children, className, ...other } = props;
 
   const tableHeadClasses = classNames(className, `${prefix}--table-head`);
 
@@ -24,15 +27,6 @@ TableHead.propTypes = {
    * Specify an optional className to be applied to your TableHead
    */
   className: PropTypes.string,
-
-  /**
-   * The selector prefix
-   */
-  prefix: PropTypes.string,
-};
-
-TableHead.defaultProps = {
-  prefix: 'bx',
 };
 
 export default TableHead;

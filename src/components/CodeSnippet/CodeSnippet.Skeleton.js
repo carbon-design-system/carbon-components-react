@@ -1,6 +1,9 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import classNames from 'classnames';
+import { settings } from 'carbon-components';
+
+const { prefix } = settings;
 
 export default class CodeSnippetSkeleton extends Component {
   static propTypes = {
@@ -14,20 +17,14 @@ export default class CodeSnippetSkeleton extends Component {
      * Specify an optional className to be applied to the container node
      */
     className: PropTypes.string,
-
-    /**
-     * The selector prefix
-     */
-    prefix: PropTypes.string,
   };
 
   static defaultProps = {
     type: 'single',
-    prefix: 'bx',
   };
 
   render() {
-    const { className, type, prefix, ...other } = this.props;
+    const { className, type, ...other } = this.props;
 
     const codeSnippetClasses = classNames(className, {
       [`${prefix}--snippet`]: true,

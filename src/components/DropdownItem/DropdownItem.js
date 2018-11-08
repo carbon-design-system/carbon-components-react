@@ -2,6 +2,9 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import classNames from 'classnames';
 import warning from 'warning';
+import { settings } from 'carbon-components';
+
+const { prefix } = settings;
 
 let didWarnAboutDeprecation = false;
 
@@ -14,7 +17,6 @@ const DropdownItem = ({
   onKeyPress,
   href,
   selected,
-  prefix,
   ...other
 }) => {
   if (__DEV__) {
@@ -105,11 +107,6 @@ DropdownItem.propTypes = {
    * Specify whether the <DropdownItem> is selected
    */
   selected: PropTypes.bool,
-
-  /**
-   * The selector prefix
-   */
-  prefix: PropTypes.string,
 };
 
 DropdownItem.defaultProps = {
@@ -117,7 +114,6 @@ DropdownItem.defaultProps = {
   onKeyPress: /* istanbul ignore next */ () => {},
   href: '',
   selected: false,
-  prefix: 'bx',
 };
 
 export default DropdownItem;

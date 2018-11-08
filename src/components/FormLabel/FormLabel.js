@@ -1,8 +1,11 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import classnames from 'classnames';
+import { settings } from 'carbon-components';
 
-const FormLabel = ({ className, children, id, prefix, ...other }) => {
+const { prefix } = settings;
+
+const FormLabel = ({ className, children, id, ...other }) => {
   const classNames = classnames(`${prefix}--label`, className);
 
   return (
@@ -27,15 +30,6 @@ FormLabel.propTypes = {
    * Provide a unique id for the given <FormLabel>
    */
   id: PropTypes.string,
-
-  /**
-   * The selector prefix
-   */
-  prefix: PropTypes.string,
-};
-
-FormLabel.defaultProps = {
-  prefix: 'bx',
 };
 
 export default FormLabel;

@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import classNames from 'classnames';
 import warning from 'warning';
 import { iconOverflowMenu } from 'carbon-icons';
+import { settings } from 'carbon-components';
 import ClickListener from '../../internal/ClickListener';
 import FloatingMenu, {
   DIRECTION_TOP,
@@ -11,6 +12,8 @@ import FloatingMenu, {
 } from '../../internal/FloatingMenu';
 import OptimizedResize from '../../internal/OptimizedResize';
 import Icon from '../Icon';
+
+const { prefix } = settings;
 
 const matchesFuncName =
   typeof Element !== 'undefined' &&
@@ -241,11 +244,6 @@ export default class OverflowMenu extends Component {
     renderIcon: PropTypes.func,
 
     /**
-     * The selector prefix.
-     */
-    prefix: PropTypes.string,
-
-    /**
      * Function called when menu is closed
      */
     onClose: PropTypes.func,
@@ -270,7 +268,6 @@ export default class OverflowMenu extends Component {
     tabIndex: 0,
     menuOffset: getMenuOffset,
     menuOffsetFlip: getMenuOffset,
-    prefix: 'bx',
   };
 
   /**
@@ -412,7 +409,6 @@ export default class OverflowMenu extends Component {
       ).focus();
       const hasFocusin = 'onfocusin' in window;
       const focusinEventName = hasFocusin ? 'focusin' : 'focus';
-      const { prefix } = this.props;
       this._hFocusIn = on(
         menuBody.ownerDocument,
         focusinEventName,
@@ -460,7 +456,6 @@ export default class OverflowMenu extends Component {
       onClick, // eslint-disable-line
       onOpen, // eslint-disable-line
       renderIcon,
-      prefix,
       ...other
     } = this.props;
 

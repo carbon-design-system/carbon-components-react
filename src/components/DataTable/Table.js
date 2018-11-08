@@ -1,6 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
+import { settings } from 'carbon-components';
+
+const { prefix } = settings;
 
 export const Table = ({
   zebra,
@@ -8,7 +11,6 @@ export const Table = ({
   children,
   short,
   shouldShowBorder,
-  prefix,
   ...other
 }) => {
   const componentClass = cx(`${prefix}--data-table-v2`, className, {
@@ -43,18 +45,12 @@ Table.propTypes = {
    * `true` for data table without borders.
    */
   shouldShowBorder: PropTypes.bool,
-
-  /*
-   * The selector prefix.
-   */
-  prefix: PropTypes.string,
 };
 
 Table.defaultProps = {
   zebra: true,
   short: false,
   shouldShowBorder: true,
-  prefix: 'bx',
 };
 
 export default Table;

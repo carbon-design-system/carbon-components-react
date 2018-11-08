@@ -4,7 +4,6 @@ exports[`<ComposedModal /> renders 1`] = `
 <ComposedModal
   onKeyDown={[Function]}
   open={true}
-  prefix="bx"
 >
   <div
     className="bx--modal is-visible"

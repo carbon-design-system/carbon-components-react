@@ -1,10 +1,12 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import classNames from 'classnames';
+import { settings } from 'carbon-components';
+
+const { prefix } = settings;
 
 const TextInput = ({
   labelText,
-  prefix,
   className = `${prefix}--text__input`,
   id,
   placeholder,
@@ -159,11 +161,6 @@ TextInput.propTypes = {
    * `true` to use the light version.
    */
   light: PropTypes.bool,
-
-  /**
-   * The selector prefix
-   */
-  prefix: PropTypes.string,
 };
 
 TextInput.defaultProps = {
@@ -175,7 +172,6 @@ TextInput.defaultProps = {
   invalidText: '',
   helperText: '',
   light: false,
-  prefix: 'bx',
 };
 
 export default TextInput;

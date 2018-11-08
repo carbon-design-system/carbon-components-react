@@ -1,5 +1,8 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import { settings } from 'carbon-components';
+
+const { prefix } = settings;
 
 export default class InlineCheckbox extends React.Component {
   static propTypes = {
@@ -34,11 +37,6 @@ export default class InlineCheckbox extends React.Component {
     name: PropTypes.string.isRequired,
 
     /**
-     * The selector prefix
-     */
-    prefix: PropTypes.string,
-
-    /**
      * Provide a handler that is invoked when a user clicks on the control
      */
     onClick: PropTypes.func,
@@ -51,10 +49,6 @@ export default class InlineCheckbox extends React.Component {
      * Provide an optional tooltip for the InlineCheckbox
      */
     title: PropTypes.string,
-  };
-
-  static defaultProps = {
-    prefix: 'bx',
   };
 
   componentDidMount() {
@@ -79,7 +73,6 @@ export default class InlineCheckbox extends React.Component {
       disabled,
       ariaLabel,
       name,
-      prefix,
       onClick,
       onKeyDown,
       title = undefined,

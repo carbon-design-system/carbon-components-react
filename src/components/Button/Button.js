@@ -2,7 +2,10 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import Icon from '../Icon';
 import classNames from 'classnames';
+import { settings } from 'carbon-components';
 import { ButtonTypes } from '../../prop-types/types';
+
+const { prefix } = settings;
 
 const Button = ({
   children,
@@ -15,7 +18,6 @@ const Button = ({
   type,
   icon,
   iconDescription,
-  prefix,
   ...other
 }) => {
   const buttonClasses = classNames(className, {
@@ -142,11 +144,6 @@ Button.propTypes = {
     }
     return undefined;
   },
-
-  /**
-   * The selector prefix
-   */
-  prefix: PropTypes.string,
 };
 
 Button.defaultProps = {
@@ -156,7 +153,6 @@ Button.defaultProps = {
   disabled: false,
   small: false,
   kind: 'primary',
-  prefix: 'bx',
 };
 
 export default Button;

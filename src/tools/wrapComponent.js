@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import cx from 'classnames';
 
 const wrapComponent = ({ name, className, type }) => {
-  const Component = ({ className: baseClassName, prefix, ...other }) => {
-    const componentClass = cx(className && className(prefix), baseClassName);
+  const Component = ({ className: baseClassName, ...other }) => {
+    const componentClass = cx(className, baseClassName);
     return React.createElement(type, {
       ...other,
       // Prevent Weird quirk where `cx` will evaluate to an empty string, '',
@@ -16,10 +16,6 @@ const wrapComponent = ({ name, className, type }) => {
   Component.displayName = name;
   Component.propTypes = {
     className: PropTypes.string,
-    prefix: PropTypes.string,
-  };
-  Component.defaultProps = {
-    prefix: 'bx',
   };
   return Component;
 };

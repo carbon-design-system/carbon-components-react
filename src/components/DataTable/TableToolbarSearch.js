@@ -1,8 +1,11 @@
 import cx from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
+import { settings } from 'carbon-components';
 import Search from '../Search';
 import setupGetInstanceId from './tools/instanceId';
+
+const { prefix } = settings;
 
 const getInstanceId = setupGetInstanceId();
 const translationKeys = {
@@ -17,7 +20,6 @@ const translateWithId = id => {
 const TableToolbarSearch = ({
   className,
   searchContainerClass,
-  prefix,
   onChange,
   translateWithId: t,
   placeHolderText,
@@ -66,11 +68,6 @@ TableToolbarSearch.propTypes = {
   searchContainerClasses: PropTypes.string,
 
   /**
-   * The selector prefix
-   */
-  prefix: PropTypes.string,
-
-  /**
    * Provide an optional hook that is called each time the input is updated
    */
   onChange: PropTypes.func,
@@ -92,7 +89,6 @@ TableToolbarSearch.propTypes = {
 };
 
 TableToolbarSearch.defaultProps = {
-  prefix: 'bx',
   translateWithId,
 };
 

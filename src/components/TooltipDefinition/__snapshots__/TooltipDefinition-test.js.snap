@@ -4,7 +4,6 @@ exports[`TooltipDefinition should allow the user to specify the direction 1`] = 
 <TooltipDefinition
   className="custom-class"
   direction="top"
-  prefix="bx"
   tooltipText="tooltip text"
 >
   <div
@@ -37,7 +36,6 @@ exports[`TooltipDefinition should render 1`] = `
 <TooltipDefinition
   className="custom-class"
   direction="bottom"
-  prefix="bx"
   tooltipText="tooltip text"
 >
   <div

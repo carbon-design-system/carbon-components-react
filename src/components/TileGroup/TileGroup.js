@@ -2,6 +2,9 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import RadioTile from '../RadioTile';
 import warning from 'warning';
+import { settings } from 'carbon-components';
+
+const { prefix } = settings;
 
 export default class TileGroup extends React.Component {
   state = {
@@ -45,16 +48,10 @@ export default class TileGroup extends React.Component {
      * Specify the value that is currently selected in the group
      */
     valueSelected: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-
-    /**
-     * The selector prefix
-     */
-    prefix: PropTypes.string,
   };
 
   static defaultProps = {
     onChange: /* istanbul ignore next */ () => {},
-    prefix: 'bx',
   };
 
   static getDerivedStateFromProps({ valueSelected, defaultSelected }, state) {
@@ -103,11 +100,7 @@ export default class TileGroup extends React.Component {
   };
 
   render() {
-    const {
-      disabled,
-      prefix,
-      className = `${prefix}--tile-group`,
-    } = this.props;
+    const { disabled, className = `${prefix}--tile-group` } = this.props;
 
     return (
       <div className={className} disabled={disabled}>

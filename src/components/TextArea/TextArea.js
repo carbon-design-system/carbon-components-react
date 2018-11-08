@@ -1,6 +1,9 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import classNames from 'classnames';
+import { settings } from 'carbon-components';
+
+const { prefix } = settings;
 
 const TextArea = ({
   className,
@@ -13,7 +16,6 @@ const TextArea = ({
   invalidText,
   helperText,
   light,
-  prefix,
   ...other
 }) => {
   const textareaProps = {
@@ -161,11 +163,6 @@ TextArea.propTypes = {
    * Specify whether you want the light version of this control
    */
   light: PropTypes.bool,
-
-  /**
-   * The selector prefix
-   */
-  prefix: PropTypes.string,
 };
 
 TextArea.defaultProps = {
@@ -179,7 +176,6 @@ TextArea.defaultProps = {
   invalidText: '',
   helperText: '',
   light: false,
-  prefix: 'bx',
 };
 
 export default TextArea;

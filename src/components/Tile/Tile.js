@@ -3,7 +3,10 @@ import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { iconCheckmarkSolid, iconChevronDown } from 'carbon-icons';
+import { settings } from 'carbon-components';
 import Icon from '../Icon';
+
+const { prefix } = settings;
 
 export class Tile extends Component {
   static propTypes = {
@@ -16,19 +19,10 @@ export class Tile extends Component {
      * The CSS class names.
      */
     className: PropTypes.string,
-
-    /**
-     * The selector prefix.
-     */
-    prefix: PropTypes.string,
-  };
-
-  static defaultProps = {
-    prefix: 'bx',
   };
 
   render() {
-    const { children, className, prefix, ...other } = this.props;
+    const { children, className, ...other } = this.props;
     const tileClasses = classNames(`${prefix}--tile`, className);
 
     return (
@@ -62,18 +56,12 @@ export class ClickableTile extends Component {
      * The rel property for the link.
      */
     rel: PropTypes.string,
-
-    /**
-     * The selector prefix.
-     */
-    prefix: PropTypes.string,
   };
 
   static defaultProps = {
     clicked: false,
     handleClick: () => {},
     handleKeyDown: () => {},
-    prefix: 'bx',
   };
 
   handleClick = evt => {
@@ -120,7 +108,6 @@ export class ClickableTile extends Component {
       handleClick, // eslint-disable-line
       handleKeyDown, // eslint-disable-line
       clicked, // eslint-disable-line
-      prefix,
       ...other
     } = this.props;
 
@@ -191,11 +178,6 @@ export class SelectableTile extends Component {
      * The description of the checkmark icon.
      */
     iconDescription: PropTypes.string,
-
-    /**
-     * The selector prefix.
-     */
-    prefix: PropTypes.string,
   };
 
   static defaultProps = {
@@ -203,7 +185,6 @@ export class SelectableTile extends Component {
     title: 'title',
     iconDescription: 'Tile checkmark',
     selected: false,
-    prefix: 'bx',
     handleClick: () => {},
     handleKeyDown: () => {},
   };
@@ -263,7 +244,6 @@ export class SelectableTile extends Component {
       className,
       handleClick, // eslint-disable-line
       handleKeyDown, // eslint-disable-line
-      prefix,
       ...other
     } = this.props;
 
@@ -337,11 +317,6 @@ export class ExpandableTile extends Component {
      * The description of the "expanded" icon that can be read by screen readers.
      */
     tileExpandedIconText: PropTypes.string,
-
-    /**
-     * The selector prefix.
-     */
-    prefix: PropTypes.string,
   };
 
   static defaultProps = {
@@ -351,7 +326,6 @@ export class ExpandableTile extends Component {
     handleClick: () => {},
     tileCollapsedIconText: 'Expand',
     tileExpandedIconText: 'Collapse',
-    prefix: 'bx',
   };
 
   static getDerivedStateFromProps(
@@ -433,7 +407,6 @@ export class ExpandableTile extends Component {
       expanded, // eslint-disable-line
       tileCollapsedIconText, // eslint-disable-line
       tileExpandedIconText, // eslint-disable-line
-      prefix,
       ...other
     } = this.props;
 
@@ -490,19 +463,10 @@ export class TileAboveTheFoldContent extends Component {
      * The child nodes.
      */
     children: PropTypes.node,
-
-    /**
-     * The selector prefix.
-     */
-    prefix: PropTypes.string,
-  };
-
-  static defaultProps = {
-    prefix: 'bx',
   };
 
   render() {
-    const { children, prefix } = this.props;
+    const { children } = this.props;
 
     return (
       <span className={`${prefix}--tile-content__above-the-fold`}>
@@ -518,19 +482,10 @@ export class TileBelowTheFoldContent extends Component {
      * The child nodes.
      */
     children: PropTypes.node,
-
-    /**
-     * The selector prefix.
-     */
-    prefix: PropTypes.string,
-  };
-
-  static defaultProps = {
-    prefix: 'bx',
   };
 
   render() {
-    const { children, prefix } = this.props;
+    const { children } = this.props;
 
     return (
       <span className={`${prefix}--tile-content__below-the-fold`}>

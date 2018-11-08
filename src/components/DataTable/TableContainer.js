@@ -1,8 +1,11 @@
 import cx from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
+import { settings } from 'carbon-components';
 
-const TableContainer = ({ className, children, title, prefix, ...rest }) => {
+const { prefix } = settings;
+
+const TableContainer = ({ className, children, title, ...rest }) => {
   const tableContainerClasses = cx(
     className,
     `${prefix}--data-table-v2-container`
@@ -22,14 +25,6 @@ TableContainer.propTypes = {
    * Provide a title for the Table
    */
   title: PropTypes.node,
-  /**
-   * The selector prefix
-   */
-  prefix: PropTypes.string,
-};
-
-TableContainer.defaultProps = {
-  prefix: 'bx',
 };
 
 export default TableContainer;

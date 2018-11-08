@@ -1,6 +1,9 @@
 import cx from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
+import { settings } from 'carbon-components';
+
+const { prefix } = settings;
 
 const translationKeys = {
   'carbon.table.batch.cancel': 'Cancel',
@@ -20,7 +23,6 @@ const TableBatchActions = ({
   children,
   shouldShowBatchActions,
   totalSelected,
-  prefix,
   onCancel,
   translateWithId: t,
   ...rest
@@ -73,11 +75,6 @@ TableBatchActions.propTypes = {
   totalSelected: PropTypes.number.isRequired,
 
   /**
-   * The selector prefix
-   */
-  prefix: PropTypes.string,
-
-  /**
    * Hook required to listen for when the user initiates a cancel request
    * through this comopnent
    */
@@ -92,7 +89,6 @@ TableBatchActions.propTypes = {
 };
 
 TableBatchActions.defaultProps = {
-  prefix: 'bx',
   translateWithId,
 };
 

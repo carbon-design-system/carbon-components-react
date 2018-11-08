@@ -1,17 +1,12 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import classNames from 'classnames';
+import { settings } from 'carbon-components';
+
+const { prefix } = settings;
 
 const TableRowExpanded = props => {
-  const {
-    children,
-    className,
-    even,
-    colSpan,
-    expanded,
-    prefix,
-    ...other
-  } = props;
+  const { children, className, even, colSpan, expanded, ...other } = props;
 
   const tableRowClasses = classNames({
     [className]: className,
@@ -56,16 +51,10 @@ TableRowExpanded.propTypes = {
    * Specify whether your TableRowExpanded is at an even position
    */
   even: PropTypes.bool,
-
-  /**
-   * The selector prefix
-   */
-  prefix: PropTypes.string,
 };
 
 TableRowExpanded.defaultProps = {
   expanded: false,
-  prefix: 'bx',
 };
 
 export default TableRowExpanded;

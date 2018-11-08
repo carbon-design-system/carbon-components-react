@@ -1,15 +1,17 @@
 import cx from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
+import { settings } from 'carbon-components';
 import Icon from '../Icon';
 import isRequiredOneOf from '../../prop-types/isRequiredOneOf';
+
+const { prefix } = settings;
 
 const TableToolbarAction = ({
   className,
   icon,
   iconName,
   iconDescription,
-  prefix,
   ...rest
 }) => {
   const toolbarActionClasses = cx(className, `${prefix}--toolbar-action`);
@@ -50,15 +52,6 @@ TableToolbarAction.propTypes = {
    * Specify the description of the icon for the toolbar action
    */
   iconDescription: PropTypes.string.isRequired,
-
-  /**
-   * The selector prefix
-   */
-  prefix: PropTypes.string,
-};
-
-TableToolbarAction.defaultProps = {
-  prefix: 'bx',
 };
 
 export default TableToolbarAction;

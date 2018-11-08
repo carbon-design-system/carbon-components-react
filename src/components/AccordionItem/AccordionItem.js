@@ -2,7 +2,10 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import classnames from 'classnames';
 import { iconChevronRight } from 'carbon-icons';
+import { settings } from 'carbon-components';
 import Icon from '../Icon';
+
+const { prefix } = settings;
 
 const defaultRenderExpando = props => <button {...props} />;
 
@@ -42,11 +45,6 @@ export default class AccordionItem extends Component {
     open: PropTypes.bool,
 
     /**
-     * The selector prefix.
-     */
-    prefix: PropTypes.string,
-
-    /**
      * The handler of the massaged `click` event.
      */
     onClick: PropTypes.func,
@@ -64,7 +62,6 @@ export default class AccordionItem extends Component {
     open: false,
     onClick: () => {},
     onHeadingClick: () => {},
-    prefix: 'bx',
   };
 
   static getDerivedStateFromProps({ open }, state) {
@@ -105,7 +102,6 @@ export default class AccordionItem extends Component {
       children,
       onClick, // eslint-disable-line no-unused-vars
       onHeadingClick, // eslint-disable-line no-unused-vars
-      prefix,
       ...other
     } = this.props;
 

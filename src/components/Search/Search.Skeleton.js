@@ -1,6 +1,9 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import classNames from 'classnames';
+import { settings } from 'carbon-components';
+
+const { prefix } = settings;
 
 export default class SearchSkeleton extends Component {
   static propTypes = {
@@ -8,20 +11,14 @@ export default class SearchSkeleton extends Component {
      * Specify whether the Search should be a small variant
      */
     small: PropTypes.bool,
-
-    /**
-     * The selector prefix
-     */
-    prefix: PropTypes.string,
   };
 
   static defaultProps = {
     small: false,
-    prefix: 'bx',
   };
 
   render() {
-    const { small, id, prefix } = this.props;
+    const { small, id } = this.props;
 
     const searchClasses = classNames({
       [`${prefix}--skeleton`]: true,

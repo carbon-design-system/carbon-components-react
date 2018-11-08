@@ -8,9 +8,12 @@ import {
   iconInfoSolid,
   iconWarningSolid,
 } from 'carbon-icons';
+import { settings } from 'carbon-components';
 import Icon from '../Icon';
 // temporary workaround for a11y warning icon. TODO: for @carbon/icons-react
 import a11yIconWarningSolid from './a11yIconWarningSolid';
+
+const { prefix } = settings;
 
 export class NotificationButton extends Component {
   static propTypes = {
@@ -55,11 +58,6 @@ export class NotificationButton extends Component {
      * Specify the notification type
      */
     notificationType: PropTypes.oneOf(['toast', 'inline']),
-
-    /**
-     * The selector prefix
-     */
-    prefix: PropTypes.string,
   };
 
   static defaultProps = {
@@ -67,7 +65,6 @@ export class NotificationButton extends Component {
     notificationType: 'toast',
     type: 'button',
     iconDescription: 'close icon',
-    prefix: 'bx',
   };
 
   render() {
@@ -79,7 +76,6 @@ export class NotificationButton extends Component {
       icon,
       name,
       notificationType,
-      prefix,
       ...other
     } = this.props;
 
@@ -94,8 +90,10 @@ export class NotificationButton extends Component {
     );
 
     const iconClasses = classNames({
-      [`${prefix}--toast-notification__close-icon`]: notificationType === 'toast',
-      [`${prefix}--inline-notification__close-icon`]: notificationType === 'inline',
+      [`${prefix}--toast-notification__close-icon`]:
+        notificationType === 'toast',
+      [`${prefix}--inline-notification__close-icon`]:
+        notificationType === 'inline',
     });
 
     return (
@@ -133,11 +131,6 @@ export class NotificationTextDetails extends Component {
      * Specify the notification type
      */
     notificationType: PropTypes.oneOf(['toast', 'inline']),
-
-    /**
-     * The selector prefix
-     */
-    prefix: PropTypes.string,
   };
 
   static defaultProps = {
@@ -145,11 +138,10 @@ export class NotificationTextDetails extends Component {
     subtitle: 'subtitle',
     caption: 'caption',
     notificationType: 'toast',
-    prefix: 'bx',
   };
 
   render() {
-    const { title, subtitle, caption, notificationType, prefix, ...other } = this.props;
+    const { title, subtitle, caption, notificationType, ...other } = this.props;
     if (notificationType === 'toast') {
       return (
         <div {...other} className={`${prefix}--toast-notification__details`}>
@@ -239,11 +231,6 @@ export class ToastNotification extends Component {
      * Specify an optional duration the notification should be closed in
      */
     timeout: PropTypes.number,
-
-    /**
-     * The selector prefix
-     */
-    prefix: PropTypes.string,
   };
 
   static defaultProps = {
@@ -257,7 +244,6 @@ export class ToastNotification extends Component {
     onCloseButtonClick: () => {},
     hideCloseButton: false,
     timeout: 0,
-    prefix: 'bx',
   };
 
   state = {
@@ -300,7 +286,6 @@ export class ToastNotification extends Component {
       title,
       kind,
       hideCloseButton,
-      prefix,
       ...other
     } = this.props;
 
@@ -316,7 +301,7 @@ export class ToastNotification extends Component {
         case 'info':
           return null;
         case 'warning':
-          return a11yIconWarningSolid(notificationType);
+          return a11yIconWarningSolid(prefix, notificationType);
         default:
           return (
             <Icon
@@ -400,11 +385,6 @@ export class InlineNotification extends Component {
      * Specify the close button should be disabled, or not
      */
     hideCloseButton: PropTypes.bool,
-
-    /**
-     * The selector prefix
-     */
-    prefix: PropTypes.string,
   };
 
   static defaultProps = {
@@ -413,7 +393,6 @@ export class InlineNotification extends Component {
     iconDescription: 'closes notification',
     onCloseButtonClick: () => {},
     hideCloseButton: false,
-    prefix: 'bx',
   };
 
   state = {
@@ -447,7 +426,6 @@ export class InlineNotification extends Component {
       title,
       kind,
       hideCloseButton,
-      prefix,
       ...other
     } = this.props;
 
@@ -464,7 +442,7 @@ export class InlineNotification extends Component {
         case 'info':
           return null;
         case 'warning':
-          return a11yIconWarningSolid(notificationType);
+          return a11yIconWarningSolid(prefix, notificationType);
         default:
           return (
             <Icon
@@ -544,11 +522,6 @@ export default class Notification extends Component {
      * Specify the close button should be disabled, or not
      */
     hideCloseButton: PropTypes.bool,
-
-    /**
-     * The selector prefix
-     */
-    prefix: PropTypes.string,
   };
 
   static defaultProps = {
@@ -557,7 +530,6 @@ export default class Notification extends Component {
     title: 'Provide a title',
     subtitle: 'Provide a subtitle',
     hideCloseButton: false,
-    prefix: 'bx',
   };
 
   state = {
@@ -591,7 +563,6 @@ export default class Notification extends Component {
       title,
       kind,
       hideCloseButton,
-      prefix,
       ...other
     } = this.props;
 

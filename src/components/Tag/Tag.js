@@ -1,7 +1,10 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import classNames from 'classnames';
+import { settings } from 'carbon-components';
 import { componentsX } from '../../internal/FeatureFlags';
+
+const { prefix } = settings;
 
 const TYPES = componentsX
   ? {
@@ -28,7 +31,7 @@ const TYPES = componentsX
       'third-party': 'Third-Party',
     };
 
-const Tag = ({ children, className, type, prefix, ...other }) => {
+const Tag = ({ children, className, type, ...other }) => {
   const tagClass = `${prefix}--tag--${type}`;
   const tagClasses = classNames(`${prefix}--tag`, tagClass, className);
   return (
@@ -53,15 +56,6 @@ Tag.propTypes = {
    * Specify the type of the <Tag>
    */
   type: PropTypes.oneOf(Object.keys(TYPES)).isRequired,
-
-  /**
-   * The selector prefix
-   */
-  prefix: PropTypes.string,
-};
-
-Tag.defaultProps = {
-  prefix: 'bx',
 };
 
 export const types = Object.keys(TYPES);

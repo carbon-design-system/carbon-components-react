@@ -1,8 +1,11 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import classnames from 'classnames';
+import { settings } from 'carbon-components';
 
-const UnorderedList = ({ children, className, nested, prefix, ...other }) => {
+const { prefix } = settings;
+
+const UnorderedList = ({ children, className, nested, ...other }) => {
   const classNames = classnames(`${prefix}--list--unordered`, className, {
     [`${prefix}--list--nested`]: nested,
   });
@@ -28,16 +31,10 @@ UnorderedList.propTypes = {
    * Specify whether the list is nested, or not
    */
   nested: PropTypes.bool,
-
-  /**
-   * The selector prefix
-   */
-  prefix: PropTypes.string,
 };
 
 UnorderedList.defaultProps = {
   nested: false,
-  prefix: 'bx',
 };
 
 export default UnorderedList;

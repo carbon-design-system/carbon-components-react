@@ -1,9 +1,12 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import classNames from 'classnames';
+import { settings } from 'carbon-components';
 import Copy from '../Copy';
 import CopyButton from '../CopyButton';
 import Icon from '../Icon';
+
+const { prefix } = settings;
 
 export default class CodeSnippet extends Component {
   static propTypes = {
@@ -66,18 +69,12 @@ export default class CodeSnippet extends Component {
      * typically used for inline snippest to display an alternate color
      */
     light: PropTypes.bool,
-
-    /**
-     * The selector prefix
-     */
-    prefix: PropTypes.string,
   };
 
   static defaultProps = {
     type: 'single',
     showMoreText: 'Show more',
     showLessText: 'Show less',
-    prefix: 'bx',
   };
 
   state = {
@@ -118,7 +115,6 @@ export default class CodeSnippet extends Component {
       light,
       showMoreText,
       showLessText,
-      prefix,
       ...other
     } = this.props;
 

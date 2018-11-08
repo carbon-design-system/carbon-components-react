@@ -1,7 +1,10 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import { settings } from 'carbon-components';
 
-const SliderSkeleton = ({ hideLabel, id, prefix }) => {
+const { prefix } = settings;
+
+const SliderSkeleton = ({ hideLabel, id }) => {
   const label = hideLabel ? null : (
     // eslint-disable-next-line jsx-a11y/label-has-for,jsx-a11y/label-has-associated-control
     <label className={`${prefix}--label ${prefix}--skeleton`} htmlFor={id} />
@@ -28,15 +31,6 @@ SliderSkeleton.propTypes = {
    * Specify whether the label should be hidden, or not
    */
   hideLabel: PropTypes.bool,
-
-  /**
-   * The selector prefix
-   */
-  prefix: PropTypes.string,
-};
-
-SliderSkeleton.defaultProps = {
-  prefix: 'bx',
 };
 
 export default SliderSkeleton;

@@ -1,17 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { iconFilter } from 'carbon-icons';
+import { settings } from 'carbon-components';
 import Icon from '../Icon';
+
+const { prefix } = settings;
 
 /**
  * The filter button for `<Search>`.
  */
-const SearchFilterButton = ({
-  labelText,
-  iconDescription,
-  prefix,
-  ...other
-}) => (
+const SearchFilterButton = ({ labelText, iconDescription, ...other }) => (
   <button
     className={`${prefix}--search-button`}
     type="button"
@@ -35,17 +33,11 @@ SearchFilterButton.propTypes = {
    * The icon description.
    */
   iconDescription: PropTypes.string,
-
-  /**
-   * The selector prefix.
-   */
-  prefix: PropTypes.string,
 };
 
 SearchFilterButton.defaultProps = {
   labelText: 'Search',
   iconDescription: 'filter',
-  prefix: 'bx',
 };
 
 export default SearchFilterButton;

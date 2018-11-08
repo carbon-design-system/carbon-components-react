@@ -1,8 +1,11 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import classnames from 'classnames';
+import { settings } from 'carbon-components';
 
-const ListItem = ({ children, className, prefix, ...other }) => {
+const { prefix } = settings;
+
+const ListItem = ({ children, className, ...other }) => {
   const classNames = classnames(`${prefix}--list__item`, className);
   return (
     <li className={classNames} {...other}>
@@ -21,15 +24,6 @@ ListItem.propTypes = {
    * Specify an optional className to apply to the underlying <li> node
    */
   className: PropTypes.string,
-
-  /**
-   * The selector prefix
-   */
-  prefix: PropTypes.string,
-};
-
-ListItem.defaultProps = {
-  prefix: 'bx',
 };
 
 export default ListItem;

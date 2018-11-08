@@ -1,6 +1,9 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import classNames from 'classnames';
+import { settings } from 'carbon-components';
+
+const { prefix } = settings;
 
 const OverflowMenuItem = ({
   className,
@@ -14,7 +17,6 @@ const OverflowMenuItem = ({
   floatingMenu,
   wrapperClassName,
   requireTitle,
-  prefix,
   ...other
 }) => {
   const overflowMenuBtnClasses = classNames(
@@ -124,11 +126,6 @@ OverflowMenuItem.propTypes = {
    * `true` if this menu item has long text and requires a browser tooltip
    */
   requireTitle: PropTypes.bool,
-
-  /**
-   * The selector prefix
-   */
-  prefix: PropTypes.string,
 };
 
 OverflowMenuItem.defaultProps = {
@@ -136,7 +133,6 @@ OverflowMenuItem.defaultProps = {
   isDelete: false,
   disabled: false,
   itemText: 'Provide itemText',
-  prefix: 'bx',
   onClick: () => {},
 };
 

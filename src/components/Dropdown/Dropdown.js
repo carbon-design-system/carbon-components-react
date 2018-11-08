@@ -3,8 +3,11 @@ import React, { PureComponent } from 'react';
 import classNames from 'classnames';
 import warning from 'warning';
 import { iconCaretDown } from 'carbon-icons';
+import { settings } from 'carbon-components';
 import ClickListener from '../../internal/ClickListener';
 import Icon from '../Icon';
+
+const { prefix } = settings;
 
 let didWarnAboutDeprecation = false;
 
@@ -83,11 +86,6 @@ export default class Dropdown extends PureComponent {
      * Specify whether you want the light version of this control
      */
     light: PropTypes.bool,
-
-    /**
-     * The selector prefix
-     */
-    prefix: PropTypes.string,
   };
 
   static defaultProps = {
@@ -96,7 +94,6 @@ export default class Dropdown extends PureComponent {
     disabled: false,
     light: false,
     iconDescription: 'open list of options',
-    prefix: 'bx',
     onChange: () => {},
     onOpen: () => {},
     onClose: () => {},
@@ -202,7 +199,6 @@ export default class Dropdown extends PureComponent {
       disabled,
       light,
       selectedText, // eslint-disable-line no-unused-vars
-      prefix,
       onOpen, // eslint-disable-line no-unused-vars
       onClose, // eslint-disable-line no-unused-vars
       ...other

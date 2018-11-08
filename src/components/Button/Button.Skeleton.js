@@ -1,8 +1,11 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import classNames from 'classnames';
+import { settings } from 'carbon-components';
 
-const ButtonSkeleton = ({ small, href, prefix }) => {
+const { prefix } = settings;
+
+const ButtonSkeleton = ({ small, href }) => {
   const buttonClasses = classNames({
     [`${prefix}--skeleton`]: true,
     [`${prefix}--btn`]: true,
@@ -30,16 +33,10 @@ ButtonSkeleton.propTypes = {
    * Optionally specify an href for your Button to become an <a> element
    */
   href: PropTypes.string,
-
-  /**
-   * The selector prefix
-   */
-  prefix: PropTypes.string,
 };
 
 ButtonSkeleton.defaultProps = {
   small: false,
-  prefix: 'bx',
 };
 
 export default ButtonSkeleton;

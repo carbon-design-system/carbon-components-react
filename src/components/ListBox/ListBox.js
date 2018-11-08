@@ -1,10 +1,13 @@
 import cx from 'classnames';
 import React from 'react';
 import PropTypes from 'prop-types';
+import { settings } from 'carbon-components';
 import ListBoxField from './ListBoxField';
 import ListBoxMenu from './ListBoxMenu';
 import { ListBoxType } from './ListBoxPropTypes';
 import childrenOf from '../../prop-types/childrenOf';
+
+const { prefix } = settings;
 
 const handleOnKeyDown = event => {
   if (event.keyCode === 27) {
@@ -31,7 +34,6 @@ const ListBox = ({
   invalid,
   invalidText,
   light,
-  prefix,
   ...rest
 }) => {
   const className = cx({
@@ -92,11 +94,6 @@ ListBox.propTypes = {
    * Specify the "aria-label" of the ListBox.
    */
   ariaLabel: PropTypes.string,
-
-  /**
-   * The selector prefix.
-   */
-  prefix: PropTypes.string,
 };
 
 ListBox.defaultProps = {
@@ -104,7 +101,6 @@ ListBox.defaultProps = {
   disabled: false,
   type: 'default',
   ariaLabel: 'Choose an item',
-  prefix: 'bx',
 };
 
 export default ListBox;

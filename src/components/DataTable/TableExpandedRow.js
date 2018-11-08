@@ -1,10 +1,12 @@
 import cx from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
+import { settings } from 'carbon-components';
+
+const { prefix } = settings;
 
 const TableExpandedRow = ({
   className: customClassName,
-  prefix,
   children,
   ...rest
 }) => {
@@ -26,15 +28,6 @@ TableExpandedRow.propTypes = {
    * Specify an optional className to be applied to the container node
    */
   className: PropTypes.string,
-
-  /**
-   * The selector prefix
-   */
-  prefix: PropTypes.string,
-};
-
-TableExpandedRow.defaultProps = {
-  prefix: 'bx',
 };
 
 export default TableExpandedRow;

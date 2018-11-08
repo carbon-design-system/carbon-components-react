@@ -4,6 +4,9 @@ import classNames from 'classnames';
 import { iconClose } from 'carbon-icons';
 import Icon from '../Icon';
 import Button from '../Button';
+import { settings } from 'carbon-components';
+
+const { prefix } = settings;
 
 const matchesFuncName =
   typeof Element !== 'undefined' &&
@@ -114,11 +117,6 @@ export default class Modal extends Component {
      * when the Modal becomes open
      */
     selectorPrimaryFocus: PropTypes.string,
-
-    /**
-     * The selector prefix
-     */
-    prefix: PropTypes.string,
   };
 
   static defaultProps = {
@@ -131,7 +129,6 @@ export default class Modal extends Component {
     modalHeading: '',
     modalLabel: '',
     selectorPrimaryFocus: '[data-modal-primary-focus]',
-    prefix: 'bx',
   };
 
   button = React.createRef();
@@ -140,7 +137,6 @@ export default class Modal extends Component {
 
   elementOrParentIsFloatingMenu = target => {
     const {
-      prefix,
       selectorsFloatingMenus = [
         `.${prefix}--overflow-menu-options`,
         `.${prefix}--tooltip`,
@@ -255,7 +251,6 @@ export default class Modal extends Component {
       selectorPrimaryFocus, // eslint-disable-line
       selectorsFloatingMenus, // eslint-disable-line
       shouldSubmitOnEnter, // eslint-disable-line
-      prefix,
       ...other
     } = this.props;
 

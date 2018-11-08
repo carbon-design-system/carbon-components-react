@@ -1,8 +1,11 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import classnames from 'classnames';
+import { settings } from 'carbon-components';
 
-const OrderedList = ({ children, className, nested, prefix, ...other }) => {
+const { prefix } = settings;
+
+const OrderedList = ({ children, className, nested, ...other }) => {
   const classNames = classnames(`${prefix}--list--ordered`, className, {
     [`${prefix}--list--nested`]: nested,
   });
@@ -28,16 +31,10 @@ OrderedList.propTypes = {
    * Specify whether this ordered list is nested inside of another nested list
    */
   nested: PropTypes.bool,
-
-  /**
-   * The selector prefix
-   */
-  prefix: PropTypes.string,
 };
 
 OrderedList.defaultProps = {
   nested: false,
-  prefix: 'bx',
 };
 
 export default OrderedList;

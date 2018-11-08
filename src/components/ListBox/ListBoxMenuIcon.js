@@ -2,7 +2,10 @@ import cx from 'classnames';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { iconCaretDown } from 'carbon-icons';
+import { settings } from 'carbon-components';
 import Icon from '../Icon';
+
+const { prefix } = settings;
 
 export const translationIds = {
   'close.menu': 'close.menu',
@@ -18,7 +21,7 @@ const defaultTranslations = {
  * `ListBoxMenuIcon` is used to orient the icon up or down depending on the
  * state of the menu for a given `ListBox`
  */
-const ListBoxMenuIcon = ({ isOpen, prefix, translateWithId: t }) => {
+const ListBoxMenuIcon = ({ isOpen, translateWithId: t }) => {
   const className = cx({
     [`${prefix}--list-box__menu-icon`]: true,
     [`${prefix}--list-box__menu-icon--open`]: isOpen,
@@ -39,11 +42,6 @@ ListBoxMenuIcon.propTypes = {
   isOpen: PropTypes.bool.isRequired,
 
   /**
-   * The selector prefix
-   */
-  prefix: PropTypes.string,
-
-  /**
    * i18n hook used to provide the appropriate description for the given menu
    * icon. This function takes in an id defined in `translationIds` and should
    * return a string message for that given message id.
@@ -52,7 +50,6 @@ ListBoxMenuIcon.propTypes = {
 };
 
 ListBoxMenuIcon.defaultProps = {
-  prefix: 'bx',
   translateWithId: id => defaultTranslations[id],
 };
 
