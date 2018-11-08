@@ -42,6 +42,7 @@ export class NotificationButton extends Component {
       notificationType,
       ...other
     } = this.props;
+
     const buttonClasses = classNames(
       {
         'bx--toast-notification__close-button': notificationType === 'toast',
@@ -49,10 +50,12 @@ export class NotificationButton extends Component {
       },
       className
     );
+
     const iconClasses = classNames({
       'bx--toast-notification-icon': notificationType === 'toast',
       'bx--inline-notification__close-icon': notificationType === 'inline',
     });
+
     return (
       <button {...other} type={type} className={buttonClasses}>
         <Icon
@@ -74,12 +77,14 @@ export class NotificationTextDetails extends Component {
     caption: PropTypes.node,
     notificationType: PropTypes.oneOf(['toast', 'inline']),
   };
+
   static defaultProps = {
     title: 'title',
     subtitle: 'subtitle',
     caption: 'caption',
     notificationType: 'toast',
   };
+
   render() {
     const { title, subtitle, caption, notificationType, ...other } = this.props;
     if (notificationType === 'toast') {
@@ -91,6 +96,7 @@ export class NotificationTextDetails extends Component {
         </div>
       );
     }
+
     if (notificationType === 'inline') {
       return (
         <div {...other} className="bx--inline-notification__text-wrapper">
@@ -152,13 +158,14 @@ export class ToastNotification extends Component {
     ({
       error: iconErrorSolid,
       success: iconCheckmarkSolid,
-      warning: iconErrorSolid,
+      warning: iconWarningSolid,
     }[kindProp]);
 
   render() {
     if (!this.state.open) {
       return null;
     }
+
     const {
       role,
       notificationType,
@@ -172,6 +179,7 @@ export class ToastNotification extends Component {
       hideCloseButton,
       ...other
     } = this.props;
+
     const classes = classNames(
       'bx--toast-notification',
       { [`bx--toast-notification--${this.props.kind}`]: this.props.kind },
@@ -353,7 +361,7 @@ export class InlineNotification extends Component {
           return (
             <Icon
               description={this.props.iconDescription}
-              className="bx--toast-notification__icon"
+              className="bx--inline-notification__icon"
               aria-label="close"
               icon={this.useIcon(kind)}
             />
