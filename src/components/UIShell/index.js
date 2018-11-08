@@ -7,6 +7,8 @@ export HeaderMenuItem from './HeaderMenuItem';
 export HeaderName from './HeaderName';
 export HeaderNavigation from './HeaderNavigation';
 
+export SkipToContent from './SkipToContent';
+
 export SideNav from './SideNav';
 export SideNavDetails from './SideNavDetails';
 export SideNavFooter from './SideNavFooter';

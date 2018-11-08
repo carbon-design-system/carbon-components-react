@@ -15,6 +15,8 @@ import HeaderMenuItem from './HeaderMenuItem';
 import HeaderGlobalBar from './HeaderGlobalBar';
 import HeaderGlobalAction from './HeaderGlobalAction';
 
+import SkipToContent from './SkipToContent';
+
 import SideNav from './SideNav';
 import SideNavHeader from './SideNavHeader';
 import SideNavDetails from './SideNavDetails';
@@ -86,6 +88,7 @@ storiesOf('[Experimental] UI Shell', module)
     withReadme(readme, () => (
       <>
         <Header>
+          <SkipToContent />
           <HeaderMenuButton
             aria-label="Open menu"
             onClick={action('Menu clicked')}
