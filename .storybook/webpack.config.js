@@ -41,7 +41,7 @@ const styleLoaders = [
         $feature-flags: (
           components-x: ${useExperimentalFeatures},
           grid: ${useExperimentalFeatures},
-          ui-shell: ${useExperimentalFeatures},
+          ui-shell: true,
         );
       `,
       sourceMap: useStyleSourceMap,
@@ -53,7 +53,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\/FeatureFlags\.js$/,
+        test: /(\/|\\)FeatureFlags\.js$/,
         loader: 'string-replace-loader',
         options: {
           multiple: Object.keys(replaceTable).map(key => ({
@@ -64,7 +64,7 @@ module.exports = {
         },
       },
       {
-        test: /\-story\.jsx?$/,
+        test: /-story\.jsx?$/,
         loaders: [
           {
             loader: require.resolve('@storybook/addon-storysource/loader'),
