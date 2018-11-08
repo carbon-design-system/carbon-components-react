@@ -52,7 +52,7 @@ export class NotificationButton extends Component {
     );
 
     const iconClasses = classNames({
-      'bx--toast-notification-icon': notificationType === 'toast',
+      'bx--toast-notification__close-icon': notificationType === 'toast',
       'bx--inline-notification__close-icon': notificationType === 'inline',
     });
 
