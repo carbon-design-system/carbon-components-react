@@ -6,4 +6,3 @@ applications:
   routes:
   - route: react-experimental.carbondesignsystem.com
   - route: carbon-react-storybook-experimental.mybluemix.net
-

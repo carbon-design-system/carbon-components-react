@@ -43,15 +43,15 @@ jobs:
               # Default storybook build
               yarn build-storybook
 
-              # ibmcloud cf blue-green-deploy carbon-storybook \
-                # -f .circleci/manifest.yml \
-                # --delete-old-apps
+              ibmcloud cf blue-green-deploy carbon-storybook \
+                -f .circleci/manifest.yml \
+                --delete-old-apps
 
-              # Build experimental storybook
+              # Experimental storybook build
               rm -rf storybook-static
-              CARBON_USE_EXPERIMENTAL_FEATURES=true yarn build-styorybook
+              CARBON_USE_EXPERIMENTAL_FEATURES=true yarn build-storybook
 
-              # ibmcloud cf blue-green-deploy carbon-storybook-experimental \
-                # -f .circleci/manifest.experimental.yml \
-                # --delete-old-apps
+              ibmcloud cf blue-green-deploy carbon-storybook-experimental \
+                -f .circleci/manifest.experimental.yml \
+                --delete-old-apps
             fi
