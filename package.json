@@ -18,6 +18,7 @@
     "prettier:diff": "prettier --list-different \"**/*.{scss,css,js,md}\"",
     "semantic-release": "semantic-release",
     "start": "yarn storybook",
+    "start:experimental": "cross-env CARBON_USE_EXPERIMENTAL_FEATURES=true yarn start",
     "storybook": "start-storybook -p 9000",
     "test": "jest",
     "test-ssr": "yarn build && node ssr-tests/*.js"
@@ -177,6 +178,7 @@
     "chalk": "^2.3.0",
     "cli-table": "^0.3.0",
     "commitizen": "^2.9.5",
+    "cross-env": "^5.2.0",
     "css-loader": "^1.0.1",
     "cz-conventional-changelog-components": "^1.0.0",
     "enzyme": "^3.7.0",
