@@ -18,7 +18,7 @@ const translateWithId = (key, { sortDirection, isSortHeader, sortStates }) => {
         return 'Sort rows by this header in ascending order';
       }
       if (sortDirection === sortStates.ASC) {
-        return 'Rort rows by this header in descending order';
+        return 'Sort rows by this header in descending order';
       }
 
       return 'Unsort rows by this header';
