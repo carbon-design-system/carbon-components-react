@@ -167,6 +167,7 @@ exports[`DataTable selection should have select-all default to un-checked if no 
                     translateWithId={[Function]}
                   >
                     <th
+                      aria-sort="none"
                       scope="col"
                     >
                       <button
@@ -239,6 +240,7 @@ exports[`DataTable selection should have select-all default to un-checked if no 
                     translateWithId={[Function]}
                   >
                     <th
+                      aria-sort="none"
                       scope="col"
                     >
                       <button
@@ -634,6 +636,7 @@ exports[`DataTable selection should render 1`] = `
                     translateWithId={[Function]}
                   >
                     <th
+                      aria-sort="none"
                       scope="col"
                     >
                       <button
@@ -706,6 +709,7 @@ exports[`DataTable selection should render 1`] = `
                     translateWithId={[Function]}
                   >
                     <th
+                      aria-sort="none"
                       scope="col"
                     >
                       <button
@@ -1723,6 +1727,7 @@ exports[`DataTable should render 1`] = `
                     translateWithId={[Function]}
                   >
                     <th
+                      aria-sort="none"
                       scope="col"
                     >
                       <button
@@ -1795,6 +1800,7 @@ exports[`DataTable should render 1`] = `
                     translateWithId={[Function]}
                   >
                     <th
+                      aria-sort="none"
                       scope="col"
                     >
                       <button

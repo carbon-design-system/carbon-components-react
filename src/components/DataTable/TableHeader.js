@@ -29,6 +29,12 @@ const translateWithId = (key, { sortDirection, isSortHeader, sortStates }) => {
   return '';
 };
 
+const sortDirections = {
+  [sortStates.NONE]: 'none',
+  [sortStates.ASC]: 'ascending',
+  [sortStates.DESC]: 'descending',
+};
+
 const TableHeader = ({
   className: headerClassName,
   children,
@@ -55,9 +61,10 @@ const TableHeader = ({
     'bx--table-sort-v2--ascending':
       isSortHeader && sortDirection === sortStates.DESC,
   });
+  const ariaSort = !isSortHeader ? 'none' : sortDirections[sortDirection];
 
   return (
-    <th scope={scope} className={headerClassName}>
+    <th scope={scope} className={headerClassName} aria-sort={ariaSort}>
       <button className={className} onClick={onClick} {...rest}>
         <span className="bx--table-header-label">{children}</span>
         <Icon
