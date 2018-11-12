@@ -17,6 +17,7 @@ export default class NumberInput extends Component {
   static propTypes = {
     className: PropTypes.string,
     disabled: PropTypes.bool,
+    hideLabel: PropTypes.bool,
     iconDescription: PropTypes.string.isRequired,
     id: PropTypes.string.isRequired,
     label: PropTypes.node,
@@ -45,6 +46,7 @@ export default class NumberInput extends Component {
 
   static defaultProps = {
     disabled: false,
+    hideLabel: false,
     iconDescription: 'choose a number',
     label: ' ',
     onChange: () => {},
@@ -130,6 +132,7 @@ export default class NumberInput extends Component {
       disabled,
       iconDescription, // eslint-disable-line
       id,
+      hideLabel,
       label,
       max,
       min,
@@ -144,6 +147,7 @@ export default class NumberInput extends Component {
 
     const numberInputClasses = classNames('bx--number', className, {
       'bx--number--light': light,
+      'bx--number--helpertext': helperText,
     });
 
     const props = {
@@ -170,6 +174,16 @@ export default class NumberInput extends Component {
 
     const helper = helperText ? (
       <div className="bx--form__helper-text">{helperText}</div>
+    ) : null;
+
+    const labelClasses = classNames('bx--label', {
+      'bx--visually-hidden': hideLabel,
+    });
+
+    const labelText = label ? (
+      <label htmlFor={id} className={labelClasses}>
+        {label}
+      </label>
     ) : null;
 
     return (
@@ -199,9 +213,7 @@ export default class NumberInput extends Component {
               />
             </button>
           </div>
-          <label htmlFor={id} className="bx--label">
-            {label}
-          </label>
+          {labelText}
           <input
             type="number"
             pattern="[0-9]*"
