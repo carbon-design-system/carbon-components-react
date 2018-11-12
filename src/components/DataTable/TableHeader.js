@@ -15,10 +15,10 @@ const translateWithId = (key, { sortDirection, isSortHeader, sortStates }) => {
       // When transitioning, we know that the sequence of states is as follows:
       // NONE -> ASC -> DESC -> NONE
       if (sortDirection === sortStates.NONE) {
-        return 'Rort rows by this header in ascending order';
+        return 'Sort rows by this header in ascending order';
       }
       if (sortDirection === sortStates.ASC) {
-        return 'Rort rows by this header in descending order';
+        return 'Sort rows by this header in descending order';
       }
 
       return 'Unsort rows by this header';
