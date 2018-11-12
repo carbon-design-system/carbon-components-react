@@ -17,6 +17,8 @@ export default class TimePickerSelect extends Component {
     labelText: PropTypes.node.isRequired,
   };
 
+  static displayName = 'TimePickerSelect';
+
   static defaultProps = {
     disabled: false,
     inline: true,

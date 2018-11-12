@@ -6,6 +6,8 @@ import { iconCheckmarkSolid, iconChevronDown } from 'carbon-icons';
 import Icon from '../Icon';
 
 export class Tile extends Component {
+  static displayName = 'Tile';
+
   static propTypes = {
     children: PropTypes.node,
     className: PropTypes.string,
@@ -25,6 +27,8 @@ export class Tile extends Component {
 
 export class ClickableTile extends Component {
   state = {};
+
+  static displayName = 'ClickableTile';
 
   static propTypes = {
     /**
@@ -124,6 +128,8 @@ export class ClickableTile extends Component {
 }
 
 export class SelectableTile extends Component {
+  static displayName = 'SelectableTile';
+
   state = {
     selected: this.props.selected,
   };
@@ -271,6 +277,8 @@ export class SelectableTile extends Component {
 }
 
 export class ExpandableTile extends Component {
+  static displayName = 'ExpandableTile';
+
   state = {};
 
   static propTypes = {
@@ -421,6 +429,8 @@ export class ExpandableTile extends Component {
 }
 
 export class TileAboveTheFoldContent extends Component {
+  static displayName = 'TileAboveTheFoldContent';
+
   static propTypes = {
     children: PropTypes.node,
   };
@@ -433,6 +443,8 @@ export class TileAboveTheFoldContent extends Component {
 }
 
 export class TileBelowTheFoldContent extends Component {
+  static displayName = 'TileBelowTheFoldContent';
+
   static propTypes = {
     children: PropTypes.node,
   };

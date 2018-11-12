@@ -11,6 +11,8 @@ const TabContent = props => {
   );
 };
 
+TabContent.displayName = 'TabContent';
+
 TabContent.propTypes = {
   /**
    * Specify whether the TabContent is selected

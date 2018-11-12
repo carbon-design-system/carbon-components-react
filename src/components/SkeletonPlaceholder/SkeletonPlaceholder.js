@@ -11,6 +11,8 @@ const SkeletonPlaceholder = ({ className, ...other }) => {
   return <div className={skeletonPlaceholderClasses} {...other} />;
 };
 
+SkeletonPlaceholder.displayName = 'SkeletonPlaceholder';
+
 SkeletonPlaceholder.propTypes = {
   /**
    * the class to be applied to the component

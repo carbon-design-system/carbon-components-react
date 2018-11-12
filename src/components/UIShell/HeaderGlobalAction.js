@@ -40,6 +40,8 @@ const HeaderGlobalAction = ({
   );
 };
 
+HeaderGlobalAction.displayName = 'HeaderGlobalAction';
+
 HeaderGlobalAction.propTypes = {
   /**
    * Required props for the accessibility label of the button

@@ -7,6 +7,8 @@ const SideNavItem = ({ className: customClassName, children }) => {
   return <li className={className}>{children}</li>;
 };
 
+SideNavItem.displayName = 'SideNavItem';
+
 SideNavItem.propTypes = {
   /**
    * Provide an optional class to be applied to the containing node

@@ -3,6 +3,8 @@ import SkeletonText from '../SkeletonText';
 import ButtonSkeleton from '../Button/Button.Skeleton';
 
 export default class FileUploaderSkeleton extends React.Component {
+  static displayName = 'FileUploaderSkeleton';
+
   render() {
     return (
       <div className="bx--form-item">

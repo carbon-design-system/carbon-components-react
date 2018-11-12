@@ -17,6 +17,8 @@ const SelectSkeleton = ({ hideLabel, id }) => {
   );
 };
 
+SelectSkeleton.displayName = 'SelectSkeleton';
+
 SelectSkeleton.propTypes = {
   hideLabel: PropTypes.bool,
 };

@@ -40,6 +40,8 @@ const HeaderMenuButton = ({
   );
 };
 
+HeaderMenuButton.displayName = 'HeaderMenuButton';
+
 HeaderMenuButton.propTypes = {
   /**
    * Required props for accessibility label on the underlying menu

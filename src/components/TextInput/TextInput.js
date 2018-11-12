@@ -80,6 +80,8 @@ const TextInput = ({
   );
 };
 
+TextInput.displayName = 'TextInput';
+
 TextInput.propTypes = {
   className: PropTypes.string,
   defaultValue: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),

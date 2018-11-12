@@ -23,6 +23,8 @@ const SliderSkeleton = ({ hideLabel, id }) => {
   );
 };
 
+SliderSkeleton.displayName = 'SliderSkeleton';
+
 SliderSkeleton.propTypes = {
   hideLabel: PropTypes.bool,
 };

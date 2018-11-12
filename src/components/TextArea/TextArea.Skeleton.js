@@ -15,6 +15,8 @@ const TextAreaSkeleton = ({ hideLabel, id }) => {
   );
 };
 
+TextAreaSkeleton.displayName = 'TextAreaSkeleton';
+
 TextAreaSkeleton.propTypes = {
   hideLabel: PropTypes.bool,
 };

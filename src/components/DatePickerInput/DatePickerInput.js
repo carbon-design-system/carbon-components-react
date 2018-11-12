@@ -4,6 +4,8 @@ import classNames from 'classnames';
 import Icon from '../Icon';
 
 export default class DatePickerInput extends Component {
+  static displayName = 'DatePickerInput';
+
   static propTypes = {
     /**
      * Specify an id that unique identifies the <input>

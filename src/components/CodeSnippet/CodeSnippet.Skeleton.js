@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 import classNames from 'classnames';
 
 export default class CodeSnippetSkeleton extends Component {
+  static displayName = 'CodeSnippetSkeleton';
+
   static propTypes = {
     /**
      * The type of code snippet

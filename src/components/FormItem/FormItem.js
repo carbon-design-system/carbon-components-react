@@ -12,6 +12,8 @@ const FormItem = ({ className, children, ...other }) => {
   );
 };
 
+FormItem.displayName = 'FormItem';
+
 FormItem.propTypes = {
   /**
    * Provide content to be rendered in the form item

@@ -143,6 +143,8 @@ const Icon = ({
   );
 };
 
+Icon.displayName = 'Icon';
+
 Icon.propTypes = {
   /**
    * The CSS class name.

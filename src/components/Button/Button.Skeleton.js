@@ -29,4 +29,6 @@ ButtonSkeleton.defaultProps = {
   small: false,
 };
 
+ButtonSkeleton.displayName = 'ButtonSkeleton';
+
 export default ButtonSkeleton;

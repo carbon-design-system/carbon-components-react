@@ -10,6 +10,8 @@ const defaultFormatLabel = (value, label) => {
 };
 
 export default class Slider extends PureComponent {
+  static displayName = 'Slider';
+
   static propTypes = {
     /**
      * The CSS class name for the slider.

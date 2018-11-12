@@ -69,6 +69,8 @@ const Button = ({
   return href ? anchor : button;
 };
 
+Button.displayName = 'Button';
+
 Button.propTypes = {
   /**
    * Specify the content of your Button

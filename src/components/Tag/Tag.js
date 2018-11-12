@@ -38,6 +38,8 @@ const Tag = ({ children, className, type, ...other }) => {
   );
 };
 
+Tag.displayName = 'Tag';
+
 Tag.propTypes = {
   /**
    * Provide content to be rendered inside of a <Tag>

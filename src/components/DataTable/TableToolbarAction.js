@@ -24,6 +24,8 @@ const TableToolbarAction = ({
   );
 };
 
+TableToolbarAction.displayName = 'TableToolbarAction';
+
 TableToolbarAction.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,

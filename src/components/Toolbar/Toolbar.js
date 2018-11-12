@@ -13,6 +13,8 @@ const Toolbar = ({ children, className, ...other }) => {
   );
 };
 
+Toolbar.displayName = 'Toolbar';
+
 Toolbar.propTypes = {
   /**
    * Specify a collection of ToolbarItem's that should render in the Toolbar
@@ -34,6 +36,8 @@ export const ToolbarItem = ({ children, type, placeHolderText }) => {
     );
   return toolbarItem;
 };
+
+ToolbarItem.displayName = 'ToolbarItem';
 
 ToolbarItem.propTypes = {
   /**
@@ -62,6 +66,8 @@ export const ToolbarTitle = ({ title }) => (
   <li className="bx--toolbar-menu__title">{title}</li>
 );
 
+ToolbarTitle.displayName = 'ToolbarTitle';
+
 ToolbarTitle.propTypes = {
   /**
    * Specify the title of the Toolbar
@@ -73,6 +79,8 @@ export const ToolbarOption = ({ children }) => (
   <li className="bx--toolbar-menu__option">{children}</li>
 );
 
+ToolbarOption.displayName = 'ToolbarOption';
+
 ToolbarOption.propTypes = {
   /**
    * Specify the contents of the ToolbarOption
@@ -83,5 +91,7 @@ ToolbarOption.propTypes = {
 export const ToolbarDivider = () => (
   <hr className="bx--toolbar-menu__divider" />
 );
+
+ToolbarDivider.displayName = 'ToolbarDivider';
 
 export default Toolbar;

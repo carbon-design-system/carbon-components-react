@@ -9,6 +9,8 @@ import Icon from '../Icon';
 let didWarnAboutDeprecation = false;
 
 export default class Dropdown extends PureComponent {
+  static displayName = 'Dropdown';
+
   static propTypes = {
     ariaLabel: PropTypes.string.isRequired,
     children: PropTypes.node,

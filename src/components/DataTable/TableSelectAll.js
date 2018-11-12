@@ -24,6 +24,8 @@ const TableSelectAll = ({
   </th>
 );
 
+TableSelectAll.displayName = 'TableSelectAll';
+
 TableSelectAll.propTypes = {
   /**
    * Specify the aria label for the underlying input control

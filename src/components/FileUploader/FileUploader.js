@@ -8,6 +8,8 @@ import { ButtonTypes } from '../../prop-types/types';
 import { iconCloseSolid, iconCheckmarkSolid } from 'carbon-icons';
 
 export class FileUploaderButton extends Component {
+  static displayName = 'FileUploaderButton';
+
   state = {};
 
   static propTypes = {
@@ -170,6 +172,8 @@ export class FileUploaderButton extends Component {
 }
 
 export class Filename extends Component {
+  static displayName = 'Filename';
+
   static propTypes = {
     /**
      * Specify an optional object of styles to be applied inline to the root
@@ -231,6 +235,8 @@ export class Filename extends Component {
 }
 
 export default class FileUploader extends Component {
+  static displayName = 'FileUploader';
+
   static propTypes = {
     iconDescription: PropTypes.string,
     buttonLabel: PropTypes.string,

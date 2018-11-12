@@ -16,6 +16,8 @@ const ChevronDown = () => (
 );
 
 export class SideNavMenu extends React.Component {
+  static displayName = 'SideNavMenu';
+
   static propTypes = {
     /**
      * Provide an optional class to be applied to the containing node

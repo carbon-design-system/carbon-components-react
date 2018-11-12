@@ -5,6 +5,8 @@ import Button from '../Button';
 import { ButtonTypes } from '../../prop-types/types';
 
 export default class ModalWrapper extends React.Component {
+  static displayName = 'ModalWrapper';
+
   static propTypes = {
     status: PropTypes.string,
     handleOpen: PropTypes.func,

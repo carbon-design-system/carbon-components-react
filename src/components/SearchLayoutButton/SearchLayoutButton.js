@@ -9,6 +9,8 @@ import Icon from '../Icon';
 class SearchLayoutButton extends Component {
   state = { format: 'list' };
 
+  static displayName = 'SearchLayoutButton';
+
   static propTypes = {
     /**
      * The layout.

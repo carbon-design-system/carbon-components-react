@@ -58,6 +58,8 @@ const defaultTranslations = {
   [translationIds['clear.selection']]: 'Clear selected item',
 };
 
+ListBoxSelection.displayName = 'ListBoxSelection';
+
 ListBoxSelection.propTypes = {
   /**
    * Specify a function to be invoked when a user interacts with the clear

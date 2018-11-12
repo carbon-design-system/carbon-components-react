@@ -22,6 +22,8 @@ const BreadcrumbItem = ({ children, className, href, ...other }) => {
   );
 };
 
+BreadcrumbItem.displayName = 'BreadcrumbItem';
+
 BreadcrumbItem.propTypes = {
   /**
    * Pass in content that will be inside of the BreadcrumbItem

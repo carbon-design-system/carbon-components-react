@@ -48,6 +48,8 @@ const Checkbox = ({
   );
 };
 
+Checkbox.displayName = 'Checkbox';
+
 Checkbox.propTypes = {
   /**
    * Specify whether the underlying input should be checked

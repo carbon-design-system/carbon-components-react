@@ -11,6 +11,8 @@ const SideNavLinkText = ({ className: customClassName, children, ...rest }) => {
   );
 };
 
+SideNavLinkText.displayName = 'SideNavLinkText';
+
 SideNavLinkText.propTypes = {
   /**
    * Provide the content for the link text

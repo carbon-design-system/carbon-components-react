@@ -3,6 +3,8 @@ import React from 'react';
 import classNames from 'classnames';
 
 export default class Tab extends React.Component {
+  static displayName = 'Tab';
+
   static propTypes = {
     className: PropTypes.string,
     handleTabClick: PropTypes.func,

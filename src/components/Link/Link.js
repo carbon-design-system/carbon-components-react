@@ -11,6 +11,8 @@ const Link = ({ children, className, href, ...other }) => {
   );
 };
 
+Link.displayName = 'Link';
+
 Link.propTypes = {
   /**
    * Provide the content for the Link

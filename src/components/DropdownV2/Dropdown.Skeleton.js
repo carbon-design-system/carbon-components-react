@@ -19,6 +19,8 @@ const DropdownSkeleton = ({ inline }) => {
   );
 };
 
+DropdownSkeleton.displayName = 'DropdownSkeleton';
+
 DropdownSkeleton.propTypes = {
   inline: PropTypes.bool,
 };

@@ -6,6 +6,8 @@ import { composeEventHandlers } from '../../tools/events';
 export default class ContentSwitcher extends React.Component {
   state = {};
 
+  static displayName = 'ContentSwitcher';
+
   static propTypes = {
     /**
      * Pass in Switch components to be rendered in the ContentSwitcher

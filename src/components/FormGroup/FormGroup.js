@@ -60,6 +60,8 @@ FormGroup.propTypes = {
   messageText: PropTypes.string,
 };
 
+FormGroup.displayName = 'FormGroup';
+
 FormGroup.defaultProps = {
   invalid: false,
   message: false,

@@ -14,6 +14,8 @@ export const Table = ({ zebra, className, children, short, ...other }) => {
   );
 };
 
+Table.displayName = 'Table';
+
 Table.propTypes = {
   /**
    * The CSS class names.

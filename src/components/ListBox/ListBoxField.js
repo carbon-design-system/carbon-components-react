@@ -14,6 +14,8 @@ const ListBoxField = ({ children, ...rest }) => (
   </div>
 );
 
+ListBoxField.displayName = 'ListBoxField';
+
 ListBoxField.propTypes = {
   children: childrenOf([ListBoxMenuIcon, ListBoxSelection, 'span', 'input']),
 };

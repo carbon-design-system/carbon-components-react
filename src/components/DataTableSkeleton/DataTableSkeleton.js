@@ -42,6 +42,8 @@ const DataTableSkeleton = ({
   );
 };
 
+DataTableSkeleton.displayName = 'DataTableSkeleton';
+
 DataTableSkeleton.propTypes = {
   /**
    * Specify the number of rows that you want to render in the skeleton state

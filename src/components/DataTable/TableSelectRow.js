@@ -22,6 +22,8 @@ const TableSelectRow = ({
   </td>
 );
 
+TableSelectRow.displayName = 'TableSelectRow';
+
 TableSelectRow.propTypes = {
   /**
    * Specify the aria label for the underlying input control

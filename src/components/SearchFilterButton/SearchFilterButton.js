@@ -20,6 +20,8 @@ const SearchFilterButton = ({ labelText, iconDescription, ...other }) => (
   </button>
 );
 
+SearchFilterButton.displayName = 'SearchFilterButton';
+
 SearchFilterButton.propTypes = {
   /**
    * The a11y label text.

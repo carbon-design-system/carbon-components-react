@@ -17,6 +17,8 @@ const SkipToContent = ({
   );
 };
 
+SkipToContent.displayName = 'SkipToContent';
+
 SkipToContent.propTypes = {
   /**
    * Provide an optional class to be applied to the containing node

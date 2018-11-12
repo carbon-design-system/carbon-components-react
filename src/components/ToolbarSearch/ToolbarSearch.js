@@ -6,6 +6,8 @@ import Icon from '../Icon';
 import ClickListener from '../../internal/ClickListener';
 
 export default class ToolbarSearch extends Component {
+  static displayName = 'ToolbarSearch';
+
   static propTypes = {
     /**
      * The child nodes.

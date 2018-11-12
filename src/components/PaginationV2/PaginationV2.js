@@ -24,6 +24,8 @@ export default class PaginationV2 extends Component {
     this.uniqueId = ++instanceId;
   }
 
+  static displayName = 'PaginationV2';
+
   static propTypes = {
     /**
      * The description for the backward icon.

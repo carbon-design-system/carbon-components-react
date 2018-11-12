@@ -46,6 +46,8 @@ const Footer = ({
   return footer;
 };
 
+Footer.displayName = 'Footer';
+
 Footer.propTypes = {
   /**
    * Provide children to be rendered instead of the default footer information

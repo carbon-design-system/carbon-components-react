@@ -42,6 +42,8 @@ const translateWithId = id => defaultTranslations[id];
  * consumer.
  */
 export default class DataTable extends React.Component {
+  static displayName = 'DataTable';
+
   static propTypes = {
     /**
      * The `rows` prop is where you provide us with a list of all the rows that

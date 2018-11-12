@@ -20,6 +20,8 @@ l10n.en.weekdays.shorthand.forEach((day, index) => {
 const forEach = Array.prototype.forEach;
 
 export default class DatePicker extends Component {
+  static displayName = 'DatePicker';
+
   static propTypes = {
     /**
      * The child nodes.

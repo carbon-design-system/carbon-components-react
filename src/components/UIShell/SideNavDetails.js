@@ -14,6 +14,8 @@ const SideNavDetails = ({ children, className: customClassName, title }) => {
   );
 };
 
+SideNavDetails.displayName = 'SideNavDetails';
+
 SideNavDetails.propTypes = {
   /**
    * Optionally provide a custom class to apply to the underlying <li> node

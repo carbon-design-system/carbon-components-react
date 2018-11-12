@@ -11,6 +11,8 @@ const ListItem = ({ children, className, ...other }) => {
   );
 };
 
+ListItem.displayName = 'ListItem';
+
 ListItem.propTypes = {
   /**
    * Specify the content for the ListItem

@@ -1,6 +1,8 @@
 import React from 'react';
 
 export default class ProgressIndicatorSkeleton extends React.Component {
+  static displayName = 'ProgressIndicatorSkeleton';
+
   render() {
     const step = (
       <li className="bx--progress-step bx--progress-step--incomplete">

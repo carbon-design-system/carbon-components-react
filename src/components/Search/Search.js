@@ -19,6 +19,8 @@ export default class Search extends Component {
     light: PropTypes.bool,
   };
 
+  static displayName = 'Search';
+
   static defaultProps = {
     type: 'text',
     small: false,

@@ -9,6 +9,8 @@ export default class TileGroup extends React.Component {
     prevValueSelected: this.props.valueSelected,
   };
 
+  static displayName = 'TileGroup';
+
   static propTypes = {
     children: PropTypes.node,
     className: PropTypes.string,

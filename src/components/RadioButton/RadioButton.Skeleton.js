@@ -1,6 +1,8 @@
 import React from 'react';
 
 export default class RadioButtonSkeleton extends React.Component {
+  static displayName = 'RadioButtonSkeleton';
+
   render() {
     const { id } = this.props;
     return (

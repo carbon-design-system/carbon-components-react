@@ -14,6 +14,8 @@ export default class NumberInput extends Component {
     this.state = { value };
   }
 
+  static displayName = 'NumberInput';
+
   static propTypes = {
     className: PropTypes.string,
     disabled: PropTypes.bool,

@@ -54,6 +54,8 @@ const SideNavFooter = ({
   );
 };
 
+SideNavFooter.displayName = 'SideNavFooter';
+
 SideNavFooter.propTypes = {
   /**
    * Provide text to be read to screen readers and shown as a tooltip when

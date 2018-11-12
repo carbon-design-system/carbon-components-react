@@ -27,6 +27,8 @@ const getInputValue = (props, state) => {
 };
 
 export default class ComboBox extends React.Component {
+  static displayName = 'ComboBox';
+
   static propTypes = {
     /**
      * An optional className to add to the container node

@@ -29,6 +29,8 @@ const SideNavLink = ({
   );
 };
 
+SideNavLink.displayName = 'SideNavLink';
+
 SideNavLink.propTypes = {
   ...LinkPropTypes,
 

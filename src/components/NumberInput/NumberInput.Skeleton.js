@@ -15,6 +15,8 @@ const NumberInputSkeleton = ({ hideLabel, id }) => {
   );
 };
 
+NumberInputSkeleton.displayName = 'NumberInputSkeleton';
+
 NumberInputSkeleton.propTypes = {
   hideLabel: PropTypes.bool,
 };

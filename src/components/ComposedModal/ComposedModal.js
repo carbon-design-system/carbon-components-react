@@ -8,6 +8,8 @@ import classNames from 'classnames';
 export default class ComposedModal extends Component {
   state = {};
 
+  static displayName = 'ComposedModal';
+
   static defaultProps = {
     onKeyDown: () => {},
   };
@@ -124,6 +126,8 @@ export default class ComposedModal extends Component {
 }
 
 export class ModalHeader extends Component {
+  static displayName = 'ModalHeader';
+
   static propTypes = {
     /**
      * Specify an optional className to be applied to the modal header
@@ -258,6 +262,8 @@ export class ModalHeader extends Component {
 }
 
 export class ModalBody extends Component {
+  static displayName = 'ModalBody';
+
   static propTypes = {
     /**
      * Specify an optional className to be added to the Modal Body node
@@ -282,6 +288,8 @@ export class ModalBody extends Component {
 }
 
 export class ModalFooter extends Component {
+  static displayName = 'ModalFooter';
+
   static propTypes = {
     /**
      * Specify a custom className to be applied to the Modal Footer container

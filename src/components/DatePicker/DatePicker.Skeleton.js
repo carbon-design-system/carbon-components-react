@@ -32,6 +32,8 @@ const DatePickerSkeleton = ({ range, id }) => {
   );
 };
 
+DatePickerSkeleton.displayName = 'DatePickerSkeleton';
+
 DatePickerSkeleton.propTypes = {
   range: PropTypes.bool,
 };

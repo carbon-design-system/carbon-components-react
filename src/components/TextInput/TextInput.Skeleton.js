@@ -15,6 +15,8 @@ const TextInputSkeleton = ({ hideLabel, id }) => {
   );
 };
 
+TextInputSkeleton.displayName = 'TextInputSkeleton';
+
 TextInputSkeleton.propTypes = {
   hideLabel: PropTypes.bool,
 };

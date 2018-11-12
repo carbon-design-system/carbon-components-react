@@ -48,6 +48,8 @@ export default class RadioTile extends React.Component {
     value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   };
 
+  static displayName = 'RadioTile';
+
   static defaultProps = {
     iconDescription: 'Tile checkmark',
     onChange: () => {},

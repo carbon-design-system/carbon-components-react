@@ -69,6 +69,8 @@ const Select = ({
   );
 };
 
+Select.displayName = 'Select';
+
 Select.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,

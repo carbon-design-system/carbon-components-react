@@ -13,6 +13,8 @@ const defaultItemToString = item => {
 };
 
 export default class DropdownV2 extends React.Component {
+  static displayName = 'DropdownV2';
+
   static propTypes = {
     /**
      * Disable the control

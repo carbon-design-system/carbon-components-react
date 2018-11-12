@@ -53,6 +53,8 @@ const Toggle = ({
   );
 };
 
+Toggle.displayName = 'Toggle';
+
 Toggle.propTypes = {
   /**
    * Specify a custom className to apply to the form-item node

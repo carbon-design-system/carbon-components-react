@@ -6,6 +6,8 @@ import warning from 'warning';
 export default class RadioButtonGroup extends React.Component {
   state = { selected: this.props.valueSelected || this.props.defaultSelected };
 
+  static displayName = 'RadioButtonGroup';
+
   static propTypes = {
     /**
      * Provide a collection of <RadioButton> components to render in the group

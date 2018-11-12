@@ -13,6 +13,8 @@ const UnorderedList = ({ children, className, nested, ...other }) => {
   );
 };
 
+UnorderedList.displayName = 'UnorderedList';
+
 UnorderedList.propTypes = {
   /**
    * Specify a collection of ListItem's to be rendered in the UnorderedList

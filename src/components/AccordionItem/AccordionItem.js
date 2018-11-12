@@ -9,6 +9,8 @@ const defaultRenderExpando = props => <button {...props} />;
 export default class AccordionItem extends Component {
   state = {};
 
+  static displayName = 'AccordionItem';
+
   static propTypes = {
     /**
      * Provide the contents of your AccordionItem

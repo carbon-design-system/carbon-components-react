@@ -15,4 +15,6 @@ const TableRow = props => {
   return <tr {...cleanProps} />;
 };
 
+TableRow.displayName = 'TableRow';
+
 export default TableRow;

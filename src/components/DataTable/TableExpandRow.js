@@ -46,6 +46,8 @@ const TableExpandRow = ({
   );
 };
 
+TableExpandRow.displayName = 'TableExpandRow';
+
 TableExpandRow.propTypes = {
   /**
    * Specify the string read by a voice reader when the expand trigger is

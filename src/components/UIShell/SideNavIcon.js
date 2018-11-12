@@ -11,6 +11,8 @@ const SideNavIcon = ({ children, className: customClassName, small }) => {
   return <div className={className}>{children}</div>;
 };
 
+SideNavIcon.displayName = 'SideNavIcon';
+
 SideNavIcon.propTypes = {
   /**
    * Provide an optional class to be applied to the containing node

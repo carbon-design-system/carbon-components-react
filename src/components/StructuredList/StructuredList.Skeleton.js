@@ -40,6 +40,8 @@ const StructuredListSkeleton = ({ rowCount, border }) => {
   );
 };
 
+StructuredListSkeleton.displayName = 'StructuredListSkeleton';
+
 StructuredListSkeleton.propTypes = {
   /**
    * number of table rows

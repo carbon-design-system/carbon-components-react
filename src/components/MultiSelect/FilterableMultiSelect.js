@@ -12,6 +12,8 @@ import { defaultSortItems, defaultCompareItems } from './tools/sorting';
 import { defaultFilterItems } from '../ComboBox/tools/filter';
 
 export default class FilterableMultiSelect extends React.Component {
+  static displayName = 'FilterableMultiSelect';
+
   static propTypes = {
     ...sortingPropTypes,
 

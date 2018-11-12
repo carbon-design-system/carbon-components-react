@@ -31,6 +31,8 @@ const ListBoxMenuIcon = ({ isOpen, translateWithId: t }) => {
   );
 };
 
+ListBoxMenuIcon.displayName = 'ListBoxMenuIcon';
+
 ListBoxMenuIcon.propTypes = {
   /**
    * Specify whether the menu is currently open, which will influence the

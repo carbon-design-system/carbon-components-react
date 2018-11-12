@@ -1,6 +1,8 @@
 import React from 'react';
 
 export default class TabsSkeleton extends React.Component {
+  static displayName = 'TabsSkeleton';
+
   render() {
     const tab = (
       <li className="bx--tabs__nav-item">

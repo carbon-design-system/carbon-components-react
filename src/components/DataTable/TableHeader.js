@@ -68,6 +68,8 @@ const TableHeader = ({
   );
 };
 
+TableHeader.displayName = 'TableHeader';
+
 TableHeader.propTypes = {
   /**
    * Specify an optional className to be applied to the container node

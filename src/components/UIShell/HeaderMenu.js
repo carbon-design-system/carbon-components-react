@@ -13,6 +13,8 @@ import isRequiredOneOf from '../../prop-types/isRequiredOneOf';
  * help manage focus state of its children.
  */
 class HeaderMenu extends React.Component {
+  static displayName = 'HeaderMenu';
+
   static propTypes = {
     /**
      * Required props for accessibility label on the underlying menu

@@ -15,6 +15,8 @@ const ListBoxMenu = ({ children, ...rest }) => {
   );
 };
 
+ListBoxMenu.displayName = 'ListBoxMenu';
+
 ListBoxMenu.propTypes = {
   children: childrenOfType(ListBoxMenuItem),
 };

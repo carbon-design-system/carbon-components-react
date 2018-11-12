@@ -1,6 +1,8 @@
 import React from 'react';
 
 export default class ToggleSkeleton extends React.Component {
+  static displayName = 'ToggleSkeleton';
+
   render() {
     const { id } = this.props;
     return (

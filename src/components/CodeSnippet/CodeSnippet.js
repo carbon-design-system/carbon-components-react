@@ -6,6 +6,8 @@ import CopyButton from '../CopyButton';
 import Icon from '../Icon';
 
 export default class CodeSnippet extends Component {
+  static displayName = 'CodeSnippet';
+
   static propTypes = {
     /**
      * Provide the type of Code Snippet

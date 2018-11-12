@@ -20,6 +20,8 @@ const HeaderName = ({
   );
 };
 
+HeaderName.displayName = 'HeaderName';
+
 HeaderName.propTypes = {
   /**
    * Pass in children that are either a string or can be read as a string by

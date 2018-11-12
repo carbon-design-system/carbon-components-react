@@ -47,6 +47,8 @@ export const ProgressStep = ({ ...props }) => {
   );
 };
 
+ProgressStep.displayName = 'ProgressStep';
+
 ProgressStep.propTypes = {
   /**
    * Provide the label for the <ProgressStep>
@@ -75,6 +77,8 @@ ProgressStep.propTypes = {
 };
 
 export class ProgressIndicator extends Component {
+  static displayName = 'ProgressIndicator';
+
   state = {};
 
   static propTypes = {

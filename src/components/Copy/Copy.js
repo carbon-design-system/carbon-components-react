@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 import classnames from 'classnames';
 
 export default class Copy extends Component {
+  static displayName = 'Copy';
+
   static propTypes = {
     /**
      * Pass in content to be rendred in the underlying <button>

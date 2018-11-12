@@ -20,9 +20,11 @@ const ListBoxMenuItem = ({ children, isActive, isHighlighted, ...rest }) => {
   );
 };
 
+ListBoxMenuItem.displayName = 'ListBoxMenuItem';
+
 ListBoxMenuItem.propTypes = {
   /**
-   * Specify any children nodes that hsould be rendered inside of the ListBox
+   * Specify any children nodes that should be rendered inside of the ListBox
    * Menu Item
    */
   children: PropTypes.node,

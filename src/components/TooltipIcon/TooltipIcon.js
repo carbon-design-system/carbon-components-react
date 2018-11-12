@@ -27,6 +27,8 @@ const TooltipIcon = ({
   );
 };
 
+TooltipIcon.displayName = 'TooltipIcon';
+
 TooltipIcon.propTypes = {
   /**
    * Specify an icon as children that will be used as the tooltip trigger. This

@@ -7,6 +7,8 @@ const TableBatchAction = props => (
   <Button small kind="ghost" icon={iconAddSolid} {...props} />
 );
 
+TableBatchAction.displayName = 'TableBatchAction';
+
 TableBatchAction.propTypes = {
   /**
    * Provide a text description for the icon in the button

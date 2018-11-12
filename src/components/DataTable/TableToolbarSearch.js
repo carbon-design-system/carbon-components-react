@@ -46,6 +46,8 @@ const TableToolbarSearch = ({
   );
 };
 
+TableToolbarSearch.displayName = 'TableToolbarSearch';
+
 TableToolbarSearch.propTypes = {
   children: PropTypes.node,
 

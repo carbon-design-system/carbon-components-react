@@ -47,6 +47,8 @@ const TableHeader = props => {
   );
 };
 
+TableHeader.displayName = 'TableHeader';
+
 TableHeader.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,

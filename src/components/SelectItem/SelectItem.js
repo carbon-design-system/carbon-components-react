@@ -20,6 +20,8 @@ const SelectItem = ({ className, value, disabled, hidden, text, ...other }) => {
   );
 };
 
+SelectItem.displayName = 'SelectItem';
+
 SelectItem.propTypes = {
   value: PropTypes.any.isRequired,
   className: PropTypes.string,

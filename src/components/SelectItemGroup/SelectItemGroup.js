@@ -21,6 +21,8 @@ const SelectItemGroup = ({
   );
 };
 
+SelectItemGroup.displayName = 'SelectItemGroup';
+
 SelectItemGroup.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,

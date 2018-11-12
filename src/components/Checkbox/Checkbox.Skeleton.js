@@ -1,6 +1,8 @@
 import React from 'react';
 
 export default class CheckboxSkeleton extends React.Component {
+  static displayName = 'CheckboxSkeleton';
+
   render() {
     const { id } = this.props;
     return (

@@ -5,6 +5,8 @@ import { iconCopy } from 'carbon-icons';
 import Icon from '../Icon';
 
 export default class CopyButton extends Component {
+  static displayName = 'CopyButton';
+
   static propTypes = {
     /**
      * Specify an optional className to be applied to the underlying <button>

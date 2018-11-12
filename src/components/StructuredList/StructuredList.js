@@ -4,6 +4,8 @@ import classNames from 'classnames';
 import uid from '../../tools/uniqueId';
 
 export class StructuredListWrapper extends Component {
+  static displayName = 'StructuredListWrapper';
+
   static propTypes = {
     children: PropTypes.node,
     className: PropTypes.string,
@@ -42,6 +44,8 @@ export class StructuredListWrapper extends Component {
 }
 
 export class StructuredListHead extends Component {
+  static displayName = 'StructuredListHead';
+
   static propTypes = {
     children: PropTypes.node,
     className: PropTypes.string,
@@ -60,6 +64,8 @@ export class StructuredListHead extends Component {
 }
 
 export class StructuredListInput extends Component {
+  static displayName = 'StructuredListInput';
+
   static propTypes = {
     className: PropTypes.string,
     id: PropTypes.string,
@@ -99,6 +105,8 @@ export class StructuredListInput extends Component {
 }
 
 export class StructuredListRow extends Component {
+  static displayName = 'StructuredListRow';
+
   static propTypes = {
     children: PropTypes.node,
     className: PropTypes.string,
@@ -149,6 +157,8 @@ export class StructuredListRow extends Component {
 }
 
 export class StructuredListBody extends Component {
+  static displayName = 'StructuredListBody';
+
   static propTypes = {
     children: PropTypes.node,
     className: PropTypes.string,
@@ -177,6 +187,8 @@ export class StructuredListBody extends Component {
 }
 
 export class StructuredListCell extends Component {
+  static displayName = 'StructuredListCell';
+
   static propTypes = {
     children: PropTypes.node,
     className: PropTypes.string,

@@ -12,6 +12,8 @@ const TableContainer = ({ className, children, title, ...rest }) => {
   );
 };
 
+TableContainer.displayName = 'TableContainer';
+
 TableContainer.propTypes = {
   className: PropTypes.string,
   children: PropTypes.node,

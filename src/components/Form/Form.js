@@ -13,6 +13,8 @@ const Form = ({ className, children, ...other }) => {
   );
 };
 
+Form.displayName = 'Form';
+
 Form.propTypes = {
   /**
    * Provide children to be rendered inside of the <form> element

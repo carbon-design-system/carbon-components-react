@@ -15,6 +15,8 @@ const TableExpandedRow = ({
   );
 };
 
+TableExpandedRow.displayName = 'TableExpandedRow';
+
 TableExpandedRow.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,

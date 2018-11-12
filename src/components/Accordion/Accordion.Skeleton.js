@@ -4,6 +4,8 @@ import SkeletonText from '../SkeletonText';
 import { iconChevronRight } from 'carbon-icons';
 
 export default class AccordionSkeleton extends React.Component {
+  static displayName = 'AccordionSkeleton';
+
   render() {
     const item = (
       <li className="bx--accordion__item">

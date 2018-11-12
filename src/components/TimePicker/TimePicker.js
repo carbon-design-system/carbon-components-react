@@ -5,6 +5,8 @@ import classNames from 'classnames';
 export default class TimePicker extends Component {
   state = {};
 
+  static displayName = 'TimePicker';
+
   static propTypes = {
     children: PropTypes.node,
     className: PropTypes.string,

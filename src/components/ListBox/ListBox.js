@@ -62,6 +62,8 @@ const ListBox = ({
   );
 };
 
+ListBox.displayName = 'ListBox';
+
 ListBox.propTypes = {
   children: childrenOf([ListBoxField, ListBoxMenu]),
 

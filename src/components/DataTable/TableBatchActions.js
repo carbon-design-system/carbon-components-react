@@ -53,6 +53,8 @@ const TableBatchActions = ({
 
 TableBatchActions.translationKeys = Object.keys(translationKeys);
 
+TableBatchActions.displayName = 'TableBatchActions';
+
 TableBatchActions.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,

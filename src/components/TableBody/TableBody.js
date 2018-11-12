@@ -43,6 +43,8 @@ const TableBody = props => {
   );
 };
 
+TableBody.displayName = 'TableBody';
+
 TableBody.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,

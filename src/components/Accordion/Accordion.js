@@ -15,6 +15,8 @@ const Accordion = ({ children, className, ...other }) => {
   );
 };
 
+Accordion.displayName = 'Accordion';
+
 Accordion.propTypes = {
   /**
    * Pass in the children that will be rendered within the Accordion

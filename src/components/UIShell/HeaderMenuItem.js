@@ -17,6 +17,8 @@ const HeaderMenuItem = props => {
   );
 };
 
+HeaderMenuItem.displayName = 'HeaderMenuItem';
+
 HeaderMenuItem.propTypes = {
   /**
    * Optionally provide a custom class to apply to the underlying <li> node

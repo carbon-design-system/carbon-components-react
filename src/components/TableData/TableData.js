@@ -46,6 +46,8 @@ const TableData = props => {
   );
 };
 
+TableData.displayName = 'TableData';
+
 TableData.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,

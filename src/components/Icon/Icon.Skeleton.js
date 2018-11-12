@@ -9,6 +9,8 @@ const IconSkeleton = ({ style }) => {
   return <div className="bx--icon--skeleton" {...props} />;
 };
 
+IconSkeleton.displayName = 'IconSkeleton';
+
 IconSkeleton.propTypes = {
   /**
    * The CSS styles.

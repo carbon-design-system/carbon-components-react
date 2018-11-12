@@ -17,6 +17,8 @@ const TableRow = props => {
   );
 };
 
+TableRow.displayName = 'TableRow';
+
 TableRow.propTypes = {
   header: PropTypes.bool,
   className: PropTypes.string,

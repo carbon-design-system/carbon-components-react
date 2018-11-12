@@ -6,6 +6,8 @@ import { keys, match, matches, getCharacterFor } from '../../tools/key';
 import { navigation } from './classNames';
 
 export default class HeaderNavigation extends React.Component {
+  static displayName = 'HeaderNavigation';
+
   static propTypes = {
     /**
      * Required props for accessibility label on the underlying menu

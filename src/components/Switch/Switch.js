@@ -66,6 +66,8 @@ const Switch = props => {
   );
 };
 
+Switch.displayName = 'Switch';
+
 Switch.propTypes = {
   className: PropTypes.string,
   index: PropTypes.number,

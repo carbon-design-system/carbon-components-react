@@ -68,6 +68,8 @@ const DropdownItem = ({
   );
 };
 
+DropdownItem.displayName = 'DropdownItem';
+
 DropdownItem.propTypes = {
   value: PropTypes.string.isRequired,
   itemText: PropTypes.string.isRequired,

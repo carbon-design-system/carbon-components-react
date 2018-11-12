@@ -12,6 +12,8 @@ const FormLabel = ({ className, children, id, ...other }) => {
   );
 };
 
+FormLabel.displayName = 'FormLabel';
+
 FormLabel.propTypes = {
   /**
    * Specify the content of the form label

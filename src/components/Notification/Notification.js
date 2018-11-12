@@ -11,6 +11,8 @@ import {
 import Icon from '../Icon';
 
 export class NotificationButton extends Component {
+  static displayName = 'NotificationButton';
+
   static propTypes = {
     className: PropTypes.string,
     ariaLabel: PropTypes.string,
@@ -71,6 +73,8 @@ export class NotificationButton extends Component {
 }
 
 export class NotificationTextDetails extends Component {
+  static displayName = 'NotificationTextDetails';
+
   static propTypes = {
     title: PropTypes.string,
     subtitle: PropTypes.node,
@@ -110,6 +114,8 @@ export class NotificationTextDetails extends Component {
 }
 
 export class ToastNotification extends Component {
+  static displayName = 'ToastNotification';
+
   static propTypes = {
     children: PropTypes.node,
     className: PropTypes.string,
@@ -209,6 +215,8 @@ export class ToastNotification extends Component {
 }
 
 export class InlineNotification extends Component {
+  static displayName = 'InlineNotification';
+
   static propTypes = {
     children: PropTypes.node,
     className: PropTypes.string,
@@ -300,6 +308,8 @@ export class InlineNotification extends Component {
 // Deprecated
 
 export default class Notification extends Component {
+  static displayName = 'Notification';
+
   static propTypes = {
     children: PropTypes.node,
     className: PropTypes.string,

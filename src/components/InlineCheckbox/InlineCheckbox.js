@@ -2,6 +2,8 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 export default class InlineCheckbox extends React.Component {
+  static displayName = 'InlineCheckbox';
+
   static propTypes = {
     /**
      * Specify the label for the control

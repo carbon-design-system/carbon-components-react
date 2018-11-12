@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 import classNames from 'classnames';
 
 export default class SearchSkeleton extends Component {
+  static displayName = 'SearchSkeleton';
+
   static propTypes = {
     small: PropTypes.bool,
   };

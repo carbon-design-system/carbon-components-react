@@ -1,6 +1,8 @@
 import React from 'react';
 
 export default class ToggleSmallSkeleton extends React.Component {
+  static displayName = 'ToggleSmallSkeleton';
+
   render() {
     const { id } = this.props;
     return (

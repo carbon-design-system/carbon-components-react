@@ -6,6 +6,8 @@ import Icon from '../Icon';
 import TabContent from '../TabContent';
 
 export default class Tabs extends React.Component {
+  static displayName = 'Tabs';
+
   static propTypes = {
     /**
      * Specify the text to be read by screen-readers when visiting the <Tabs>

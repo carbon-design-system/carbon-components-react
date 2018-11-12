@@ -13,6 +13,8 @@ const OrderedList = ({ children, className, nested, ...other }) => {
   );
 };
 
+OrderedList.displayName = 'OrderedList';
+
 OrderedList.propTypes = {
   /**
    * Provide list items to be rendered in the ordered list

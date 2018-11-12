@@ -13,6 +13,8 @@ const SideNavHeader = ({ className: customClassName, children, icon }) => {
   );
 };
 
+SideNavHeader.displayName = 'SideNavHeader';
+
 SideNavHeader.propTypes = {
   /**
    * Provide an optional class to be applied to the containing node

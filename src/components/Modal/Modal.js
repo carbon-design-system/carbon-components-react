@@ -12,6 +12,8 @@ const matchesFuncName =
   )[0];
 
 export default class Modal extends Component {
+  static displayName = 'Modal';
+
   static propTypes = {
     children: PropTypes.node,
     className: PropTypes.string,

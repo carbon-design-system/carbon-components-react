@@ -59,6 +59,8 @@ const ToggleSmall = ({
   );
 };
 
+ToggleSmall.displayName = 'ToggleSmall';
+
 ToggleSmall.propTypes = {
   /**
    * The CSS class for the toggle

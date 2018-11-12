@@ -4,6 +4,8 @@ import classNames from 'classnames';
 import uid from '../../tools/uniqueId';
 
 export default class RadioButton extends React.Component {
+  static displayName = 'RadioButton';
+
   static propTypes = {
     /**
      * Specify whether the <RadioButton> is currently checked

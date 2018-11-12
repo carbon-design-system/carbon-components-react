@@ -4,6 +4,8 @@ import classNames from 'classnames';
 import Loading from '../Loading';
 
 export default class InlineLoading extends React.Component {
+  static displayName = 'InlineLoading';
+
   static propTypes = {
     /**
      * Specify a custom className to be applied to the container node

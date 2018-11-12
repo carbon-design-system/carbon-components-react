@@ -62,6 +62,8 @@ const SkeletonText = ({
   );
 };
 
+SkeletonText.displayName = 'SkeletonText';
+
 SkeletonText.propTypes = {
   /**
    * will generate multiple lines of text

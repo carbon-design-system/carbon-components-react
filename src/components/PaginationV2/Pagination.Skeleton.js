@@ -2,6 +2,8 @@ import React from 'react';
 import SkeletonText from '../SkeletonText';
 
 export default class PaginationSkeleton extends React.Component {
+  static displayName = 'PaginationSkeleton';
+
   render() {
     return (
       <div className="bx--pagination bx--skeleton">

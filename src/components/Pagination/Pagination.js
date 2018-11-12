@@ -13,6 +13,8 @@ import { equals } from '../../tools/array';
 let didWarnAboutDeprecation = false;
 
 export default class Pagination extends Component {
+  static displayName = 'Pagination';
+
   static propTypes = {
     backwardText: PropTypes.string,
     className: PropTypes.string,

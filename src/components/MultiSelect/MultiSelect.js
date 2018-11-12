@@ -11,6 +11,8 @@ import { defaultItemToString } from './tools/itemToString';
 import { defaultSortItems, defaultCompareItems } from './tools/sorting';
 
 export default class MultiSelect extends React.Component {
+  static displayName = 'MultiSelect';
+
   static propTypes = {
     ...sortingPropTypes,
 

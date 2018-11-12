@@ -14,6 +14,8 @@ const Breadcrumb = ({ children, className, noTrailingSlash, ...other }) => {
   );
 };
 
+Breadcrumb.displayName = 'Breadcrumb';
+
 Breadcrumb.propTypes = {
   /**
    * Pass in the BreadcrumbItem's for your Breadcrumb

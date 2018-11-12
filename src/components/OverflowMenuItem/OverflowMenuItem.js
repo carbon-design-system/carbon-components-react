@@ -63,6 +63,8 @@ const OverflowMenuItem = ({
   return item;
 };
 
+OverflowMenuItem.displayName = 'OverflowMenuItem';
+
 OverflowMenuItem.propTypes = {
   /**
    * The CSS class name to be placed on the button element

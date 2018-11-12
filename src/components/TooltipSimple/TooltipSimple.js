@@ -63,6 +63,8 @@ const TooltipSimple = ({
   );
 };
 
+TooltipSimple.displayName = 'TooltipSimple';
+
 TooltipSimple.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
