@@ -1,7 +1,7 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
-import { withInfo } from '@storybook/addon-info';
+
 import { withKnobs, boolean, select, text } from '@storybook/addon-knobs';
 import DropdownV2 from '../DropdownV2';
 import DropdownItem from '../DropdownItem';
@@ -33,8 +33,8 @@ const dropdownItems = [
 ];
 
 const types = {
-  default: 'Default (default)',
-  inline: 'Inline (inline)',
+  'Default (default)': 'default',
+  'Inline (inline)': 'inline',
 };
 
 const props = () => ({
@@ -59,9 +59,7 @@ storiesOf('DropdownV2', module)
   .addDecorator(withKnobs)
   .add(
     'default',
-    withInfo({
-      text: 'DropdownV2',
-    })(() => (
+    () => (
       <div style={{ width: 300 }}>
         <DropdownV2
           {...props()}
@@ -70,7 +68,12 @@ storiesOf('DropdownV2', module)
           onChange={action('onChange')}
         />
       </div>
-    ))
+    ),
+    {
+      info: {
+        text: 'DropdownV2',
+      },
+    }
   )
   .add(
     'items as components',
@@ -110,11 +113,7 @@ storiesOf('DropdownV2', module)
   )
   .add(
     'fully controlled',
-    withInfo({
-      text: `
-        Sometimes you want to control everything.
-      `,
-    })(() => (
+    () => (
       <WithState initialState={{ selectedItem: items[0] }}>
         {({ state, setState }) => (
           <div style={{ width: 300 }}>
@@ -130,19 +129,29 @@ storiesOf('DropdownV2', module)
           </div>
         )}
       </WithState>
-    ))
+    ),
+    {
+      info: {
+        text: `
+            Sometimes you want to control everything.
+          `,
+      },
+    }
   )
   .add(
     'skeleton',
-    withInfo({
-      text: `
-        Placeholder skeleton state to use when content is loading.
-      `,
-    })(() => (
+    () => (
       <div style={{ width: 300 }}>
         <DropdownSkeleton />
         &nbsp;
         <DropdownSkeleton inline />
       </div>
-    ))
+    ),
+    {
+      info: {
+        text: `
+            Placeholder skeleton state to use when content is loading.
+          `,
+      },
+    }
   );
