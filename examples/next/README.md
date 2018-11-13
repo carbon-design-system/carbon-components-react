@@ -9,4 +9,4 @@ To run this example, all you need to do is `cd` into the directory, run `yarn in
 
 ## Learn Next.js
 
-Next has some great tutorials at [nextjs.org](https://www.nextjs.org/learn).
+Next has some great tutorials at [nextjs.org](https://nextjs.org/learn/).
