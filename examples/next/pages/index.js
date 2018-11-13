@@ -18,7 +18,7 @@ class App extends Component {
           <p className="App-intro">
             To get started, edit <code>pages/index.js</code> and save to reload.
             Then, check out the{' '}
-            <a href="https://www.nexjs.org/learn">Next.js</a> tutorial.
+            <a href="https://nextjs.org/learn/">Next.js</a> tutorial.
           </p>
         </div>
         <article className="App__demo">
