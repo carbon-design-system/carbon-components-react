@@ -124,6 +124,7 @@ If you decide to not install a linter addon, or cannot, you can run `yarn lint` 
 We use commit message guidelines based on the [Angular Commit Conventions](https://github.com/angular/angular.js/blob/master/DEVELOPERS.md#commits).
 
 Please stick to the following format: `git commit -m "<type>(<scope>): <message>"`
+
 * Replace `<type>` with one of following: feat, fix, docs, style, refactor, perf, test, chore, revert.
 * The `(<scope>)` is optional and could be anything specifying the place of the commit change.
 
