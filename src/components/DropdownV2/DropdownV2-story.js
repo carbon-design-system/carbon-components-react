@@ -1,7 +1,6 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
-
 import { withKnobs, boolean, select, text } from '@storybook/addon-knobs';
 import DropdownV2 from '../DropdownV2';
 import DropdownItem from '../DropdownItem';
@@ -77,11 +76,7 @@ storiesOf('DropdownV2', module)
   )
   .add(
     'items as components',
-    withInfo({
-      text: `
-        Rendering items as custom components
-      `,
-    })(() => (
+    () => (
       <div style={{ width: 300 }}>
         <DropdownV2
           {...props()}
@@ -91,15 +86,16 @@ storiesOf('DropdownV2', module)
           onChange={action('onChange')}
         />
       </div>
-    ))
+    ),
+    {
+      info: {
+        text: `Rendering items as custom components`,
+      },
+    }
   )
   .add(
     'with DropdownItems',
-    withInfo({
-      text: `
-        Using DropdownItem as the components to render. Has some kinks due to the onClick in the DropdownItem.
-      `,
-    })(() => (
+    () => (
       <div style={{ width: 300 }}>
         <DropdownV2
           {...props()}
@@ -109,7 +105,14 @@ storiesOf('DropdownV2', module)
           onChange={action('onChange')}
         />
       </div>
-    ))
+    ),
+    {
+      info: {
+        text: `
+          Using DropdownItem as the components to render. Has some kinks due to the onClick in the DropdownItem.
+        `,
+      },
+    }
   )
   .add(
     'fully controlled',
