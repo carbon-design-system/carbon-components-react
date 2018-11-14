@@ -6,6 +6,7 @@ import l10n from 'flatpickr/dist/l10n/index';
 import rangePlugin from 'flatpickr/dist/plugins/rangePlugin';
 import DatePickerInput from '../DatePickerInput';
 import Icon from '../Icon';
+import isEqual from 'lodash.isequal';
 
 // Weekdays shorthand for english locale
 l10n.en.weekdays.shorthand.forEach((day, index) => {
@@ -212,14 +213,14 @@ export default class DatePicker extends Component {
     locale: 'en',
   };
 
-  UNSAFE_componentWillUpdate(nextProps) {
-    if (nextProps.value !== this.props.value) {
+  componentDidUpdate(prevProps) {
+    if (!isEqual(prevProps.value, this.props.value)) {
       if (this.cal) {
-        this.cal.setDate(nextProps.value);
+        this.cal.setDate(this.props.value, true);
         this.updateClassNames(this.cal);
       } else {
         if (this.inputField) {
-          this.inputField.value = nextProps.value;
+          this.inputField.value = this.props.value;
         }
       }
     }
