@@ -271,7 +271,7 @@ export default class Slider extends PureComponent {
   };
 
   handleMouseEnd = () => {
-    this.props.onRelease({value: this.state.value})
+    this.props.onRelease({value: this.state.value});
     this.element.ownerDocument.removeEventListener(
       'mousemove',
       this.updatePosition
@@ -299,7 +299,7 @@ export default class Slider extends PureComponent {
   };
 
   handleTouchEnd = () => {
-    this.props.onRelease({value: this.state.value})
+    this.props.onRelease({value: this.state.value});
     this.element.ownerDocument.removeEventListener(
       'touchmove',
       this.updatePosition
