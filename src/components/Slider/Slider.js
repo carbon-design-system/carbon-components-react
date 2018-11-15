@@ -32,6 +32,11 @@ export default class Slider extends PureComponent {
     onChange: PropTypes.func,
 
     /**
+     * The callback to get notified of value on handle release.
+     */
+    onRelease: PropTypes.func,
+
+    /**
      * The value.
      */
     value: PropTypes.number.isRequired,
@@ -266,6 +271,7 @@ export default class Slider extends PureComponent {
   };
 
   handleMouseEnd = () => {
+    this.props.onRelease({value: this.state.value})
     this.element.ownerDocument.removeEventListener(
       'mousemove',
       this.updatePosition
@@ -293,6 +299,7 @@ export default class Slider extends PureComponent {
   };
 
   handleTouchEnd = () => {
+    this.props.onRelease({value: this.state.value})
     this.element.ownerDocument.removeEventListener(
       'touchmove',
       this.updatePosition

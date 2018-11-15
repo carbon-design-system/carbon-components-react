@@ -26,6 +26,7 @@ const props = () => ({
   minLabel: text('Label for minimum value (minLabel)', ''),
   maxLabel: text('Label for maximum value (maxLabel)', ''),
   onChange: action('onChange'),
+  onRelease: action('Callback for handle release'),
 });
 
 storiesOf('Slider', module)
