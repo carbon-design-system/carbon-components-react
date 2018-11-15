@@ -123,6 +123,7 @@ export default class Slider extends PureComponent {
     inputType: 'number',
     ariaLabelInput: 'Slider number input',
     light: false,
+    onRelease: () => true,
   };
 
   state = {
