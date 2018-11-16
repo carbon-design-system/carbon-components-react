@@ -80,6 +80,11 @@ export class FileUploaderButton extends Component {
      * Specify the types of files that this input should be able to receive
      */
     accept: PropTypes.arrayOf(PropTypes.string),
+
+    /**
+     * Specify whether file input is disabled
+     */
+    disabled: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -91,6 +96,7 @@ export class FileUploaderButton extends Component {
     onChange: () => {},
     onClick: () => {},
     accept: [],
+    disabled: false,
   };
 
   static getDerivedStateFromProps({ labelText }, state) {
@@ -127,6 +133,7 @@ export class FileUploaderButton extends Component {
       buttonKind,
       accept,
       name,
+      disabled,
       ...other
     } = this.props;
     const classes = classNames({
@@ -154,6 +161,7 @@ export class FileUploaderButton extends Component {
           className="bx--visually-hidden"
           ref={input => (this.input = input)}
           id={this.uid}
+          disabled={disabled}
           type="file"
           tabIndex="-1"
           multiple={multiple}
