@@ -19,7 +19,7 @@ export default class Modal extends Component {
     onRequestClose: PropTypes.func,
     id: PropTypes.string,
     modalHeading: PropTypes.string,
-    modalLabel: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+    modalLabel: PropTypes.node,
     modalAriaLabel: PropTypes.string,
     secondaryButtonText: PropTypes.string,
     primaryButtonText: PropTypes.string,
