@@ -2,21 +2,6 @@ import { settings } from 'carbon-components';
 
 const { prefix } = settings;
 
-export const header = {
-  header: `${prefix}--header`,
-};
-
-export const action = {
-  action: `${prefix}--header__action`,
-  state: {
-    active: `${prefix}--header__action--active`,
-  },
-};
-
-export const button = {
-  button: `${prefix}--header__menu-trigger`,
-};
-
 export const navigation = {
   navigation: `${prefix}--header__nav`,
   menu: `${prefix}--header__menu`,
