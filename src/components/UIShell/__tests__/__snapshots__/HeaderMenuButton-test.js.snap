@@ -15,7 +15,6 @@ exports[`HeaderMenuButton should render 1`] = `
     type="button"
   >
     <Fade20
-      focusable={false}
       height={20}
       preserveAspectRatio="xMidYMid meet"
       viewBox="0 0 32 32"
@@ -24,7 +23,7 @@ exports[`HeaderMenuButton should render 1`] = `
     >
       <svg
         aria-hidden={true}
-        focusable={false}
+        focusable="false"
         height={20}
         preserveAspectRatio="xMidYMid meet"
         viewBox="0 0 32 32"

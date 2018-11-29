@@ -14,7 +14,6 @@ exports[`HeaderGlobalAction should render 1`] = `
     type="button"
   >
     <Fade32
-      focusable={false}
       height={32}
       preserveAspectRatio="xMidYMid meet"
       viewBox="0 0 32 32"
@@ -23,7 +22,7 @@ exports[`HeaderGlobalAction should render 1`] = `
     >
       <svg
         aria-hidden={true}
-        focusable={false}
+        focusable="false"
         height={32}
         preserveAspectRatio="xMidYMid meet"
         viewBox="0 0 32 32"

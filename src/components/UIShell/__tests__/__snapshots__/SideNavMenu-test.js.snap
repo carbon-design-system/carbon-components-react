@@ -29,6 +29,7 @@ exports[`SideNavMenu should render 1`] = `
             >
               <svg
                 aria-hidden="true"
+                focusable="false"
                 height="20"
                 preserveAspectRatio="xMidYMid meet"
                 viewBox="0 0 32 32"
@@ -95,7 +96,6 @@ exports[`SideNavMenu should render 1`] = `
           className="bx--side-nav__icon bx--side-nav__icon--small bx--side-nav__submenu-chevron"
         >
           <ChevronDown20
-            focusable={false}
             height={20}
             preserveAspectRatio="xMidYMid meet"
             viewBox="0 0 32 32"
@@ -104,7 +104,7 @@ exports[`SideNavMenu should render 1`] = `
           >
             <svg
               aria-hidden={true}
-              focusable={false}
+              focusable="false"
               height={20}
               preserveAspectRatio="xMidYMid meet"
               viewBox="0 0 32 32"
