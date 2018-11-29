@@ -83,6 +83,11 @@ export class FileUploaderButton extends Component {
      * Specify the types of files that this input should be able to receive
      */
     accept: PropTypes.arrayOf(PropTypes.string),
+
+    /**
+     * Specify whether file input is disabled
+     */
+    disabled: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -94,6 +99,7 @@ export class FileUploaderButton extends Component {
     onChange: () => {},
     onClick: () => {},
     accept: [],
+    disabled: false,
   };
 
   static getDerivedStateFromProps({ labelText }, state) {
@@ -130,6 +136,7 @@ export class FileUploaderButton extends Component {
       buttonKind,
       accept,
       name,
+      disabled,
       ...other
     } = this.props;
     const classes = classNames({
@@ -141,22 +148,26 @@ export class FileUploaderButton extends Component {
     this.uid = this.props.id || uid();
 
     return (
-      <div
-        role="button"
-        tabIndex={tabIndex || 0}
-        className={classes}
-        onKeyDown={evt => {
-          if (evt.which === 13 || evt.which === 32) {
-            this.input.click();
-          }
-        }}>
-        <label htmlFor={this.uid} role={role} {...other}>
+      <>
+        <label
+          role="button"
+          tabIndex={tabIndex || 0}
+          className={classes}
+          onKeyDown={evt => {
+            if (evt.which === 13 || evt.which === 32) {
+              this.input.click();
+            }
+          }}
+          htmlFor={this.uid}
+          role={role}
+          {...other}>
           {this.state.labelText}
         </label>
         <input
           className={`${prefix}--visually-hidden`}
           ref={input => (this.input = input)}
           id={this.uid}
+          disabled={disabled}
           type="file"
           tabIndex="-1"
           multiple={multiple}
@@ -167,7 +178,7 @@ export class FileUploaderButton extends Component {
             evt.target.value = null;
           }}
         />
-      </div>
+      </>
     );
   }
 }
