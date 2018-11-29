@@ -1,30 +1,10 @@
+import { Close20, ChevronRight20 } from '@carbon/icons-react';
+import { settings } from 'carbon-components';
 import cx from 'classnames';
 import React from 'react';
 import PropTypes from 'prop-types';
 
-// TODO: replace with @carbon/icons-react
-const Close = () => (
-  <svg
-    aria-hidden="true"
-    width="20"
-    height="20"
-    xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 32 32">
-    <path d="M17.414 16L24 9.414 22.586 8 16 14.586 9.414 8 8 9.414 14.586 16 8 22.586 9.414 24 16 17.414 22.586 24 24 22.586 17.414 16z" />
-  </svg>
-);
-
-// TODO: replace with @carbon/icons-react
-const ChevronRight = () => (
-  <svg
-    aria-hidden="true"
-    width="20"
-    height="20"
-    xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 32 32">
-    <path d="M22 16L12 26l-1.414-1.414L19.172 16l-8.586-8.586L12 6l10 10z" />
-  </svg>
-);
+const { prefix } = settings;
 
 /**
  * SideNavFooter is used for rendering the button at the bottom of the side
@@ -37,18 +17,18 @@ const SideNavFooter = ({
   isExpanded,
   onToggle,
 }) => {
-  const className = cx('bx--side-nav__footer', customClassName);
+  const className = cx(`${prefix}--side-nav__footer`, customClassName);
   return (
     <footer className={className}>
       <button
-        className="bx--side-nav__toggle"
+        className={`${prefix}--side-nav__toggle`}
         type="button"
         onClick={onToggle}
         title={assistiveText}>
-        <div className="bx--side-nav__icon">
-          {isExpanded ? <Close /> : <ChevronRight />}
+        <div className={`${prefix}--side-nav__icon`}>
+          {isExpanded ? <Close20 /> : <ChevronRight20 />}
         </div>
-        <span className="bx--assistive-text">{assistiveText}</span>
+        <span className={`${prefix}--assistive-text`}>{assistiveText}</span>
       </button>
     </footer>
   );

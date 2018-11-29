@@ -22,7 +22,7 @@ describe('FileUploaderButton', () => {
 
   describe('Renders as expected with default props', () => {
     it('renders with expected className', () => {
-      expect(mountWrapper.children().hasClass('bx--btn')).toBe(true);
+      expect(mountWrapper.find('label').hasClass('bx--btn')).toBe(true);
     });
 
     it('renders with given className', () => {
@@ -51,6 +51,16 @@ describe('FileUploaderButton', () => {
 
     it('renders with default accept prop', () => {
       expect(mountWrapper.props().accept).toEqual([]);
+    });
+
+    it('renders with default disabled prop', () => {
+      expect(mountWrapper.props().disabled).toBe(false);
+    });
+
+    it('disables file upload input', () => {
+      const wrapper = shallow(button);
+      wrapper.setProps({ disabled: true });
+      expect(wrapper.find('input').prop('disabled')).toEqual(true);
     });
 
     it('does not have default role', () => {
