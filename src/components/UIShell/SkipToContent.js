@@ -1,6 +1,9 @@
+import { settings } from 'carbon-components';
 import cx from 'classnames';
 import React from 'react';
 import PropTypes from 'prop-types';
+
+const { prefix } = settings;
 
 const SkipToContent = ({
   children,
@@ -9,7 +12,7 @@ const SkipToContent = ({
   tabIndex,
   ...rest
 }) => {
-  const className = cx('bx--skip-to-content', customClassName);
+  const className = cx(`${prefix}--skip-to-content`, customClassName);
   return (
     <a {...rest} className={className} href={href} tabIndex={tabIndex}>
       {children}

@@ -1,46 +1,47 @@
+import { ChevronDown20 } from '@carbon/icons-react';
+import { settings } from 'carbon-components';
 import cx from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-// TODO: sync with @carbon/icons-react
-const ChevronDown = () => (
-  <svg
-    aria-hidden="true"
-    width="20"
-    height="20"
-    xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 32 32">
-    <path d="M16 22L6 12l1.414-1.414L16 19.172l8.586-8.586L26 12 16 22z" />
-  </svg>
-);
+const { prefix } = settings;
 
 const SideNavSwitcher = React.forwardRef((props, ref) => {
   const { className: customClassName, labelText, onChange, options } = props;
-  const className = cx('bx--side-nav__switcher', customClassName);
+  const className = cx(`${prefix}--side-nav__switcher`, customClassName);
   // Note for usage around `onBlur`: https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/no-onchange.md
   return (
     <div className={className}>
-      <label htmlFor="side-nav-switcher" className="bx--assistive-text">
+      <label
+        htmlFor="side-nav-switcher"
+        className={`${prefix}--assistive-text`}>
         {labelText}
       </label>
       <select
         id="carbon-side-nav-switcher"
-        className="bx--side-nav__select"
+        className={`${prefix}--side-nav__select`}
         defaultValue=""
         onBlur={onChange}
         onChange={onChange}
         ref={ref}>
-        <option className="bx--side-nav__option" disabled hidden value="">
+        <option
+          className={`${prefix}--side-nav__option`}
+          disabled
+          hidden
+          value="">
           {labelText}
         </option>
         {options.map(option => (
-          <option key={option} className="bx--side-nav__option" value={option}>
+          <option
+            key={option}
+            className={`${prefix}--side-nav__option`}
+            value={option}>
             {option}
           </option>
         ))}
       </select>
-      <div className="bx--side-nav__switcher-chevron">
-        <ChevronDown />
+      <div className={`${prefix}--side-nav__switcher-chevron`}>
+        <ChevronDown20 />
       </div>
     </div>
   );

@@ -2,8 +2,11 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import isEqual from 'lodash.isequal';
+import { settings } from 'carbon-components';
 import TextInput from '../TextInput';
 import { sliderValuePropSync } from '../../internal/FeatureFlags';
+
+const { prefix } = settings;
 
 const defaultFormatLabel = (value, label) => {
   return typeof label === 'function' ? label(value) : `${value}${label}`;
@@ -144,7 +147,7 @@ export default class Slider extends PureComponent {
     );
     return {
       value: effectiveValue,
-      left: (effectiveValue - min) / (max - min) * 100,
+      left: ((effectiveValue - min) / (max - min)) * 100,
       prevValue: value,
       prevMin: min,
       prevMax: max,
@@ -208,7 +211,7 @@ export default class Slider extends PureComponent {
     const { value } = prevState;
 
     const range = max - min;
-    const valuePercentage = (value - min) / range * 100;
+    const valuePercentage = ((value - min) / range) * 100;
 
     let left;
     let newValue;
@@ -230,7 +233,7 @@ export default class Slider extends PureComponent {
           const multiplier =
             evt.shiftKey === true ? range / step / stepMuliplier : 1;
           const stepMultiplied = step * multiplier;
-          const stepSize = stepMultiplied / range * 100;
+          const stepSize = (stepMultiplied / range) * 100;
           left = valuePercentage + stepSize * direction;
           newValue = Number(value) + stepMultiplied * direction;
         }
@@ -239,8 +242,8 @@ export default class Slider extends PureComponent {
         const clientX = evt.touches ? evt.touches[0].clientX : evt.clientX;
         const track = this.track.getBoundingClientRect();
         const ratio = (clientX - track.left) / track.width;
-        const rounded = min + Math.round(range * ratio / step) * step;
-        left = (rounded - min) / range * 100;
+        const rounded = min + Math.round((range * ratio) / step) * step;
+        left = ((rounded - min) / range) * 100;
         newValue = rounded;
       }
     }
@@ -345,13 +348,13 @@ export default class Slider extends PureComponent {
     const { value, left } = this.state;
 
     const sliderClasses = classNames(
-      'bx--slider',
-      { 'bx--slider--disabled': disabled },
+      `${prefix}--slider`,
+      { [`${prefix}--slider--disabled`]: disabled },
       className
     );
 
-    const inputClasses = classNames('bx-slider-text-input', {
-      'bx--text-input--light': light,
+    const inputClasses = classNames(`${prefix}-slider-text-input`, {
+      [`${prefix}--text-input--light`]: light,
     });
 
     const filledTrackStyle = {
@@ -362,12 +365,12 @@ export default class Slider extends PureComponent {
     };
 
     return (
-      <div className="bx--form-item">
-        <label htmlFor={id} className="bx--label">
+      <div className={`${prefix}--form-item`}>
+        <label htmlFor={id} className={`${prefix}--label`}>
           {labelText}
         </label>
-        <div className="bx--slider-container">
-          <span className="bx--slider__range-label">
+        <div className={`${prefix}--slider-container`}>
+          <span className={`${prefix}--slider__range-label`}>
             {formatLabel(min, minLabel)}
           </span>
           <div
@@ -381,17 +384,17 @@ export default class Slider extends PureComponent {
             tabIndex={-1}
             {...other}>
             <div
-              className="bx--slider__track"
+              className={`${prefix}--slider__track`}
               ref={node => {
                 this.track = node;
               }}
             />
             <div
-              className="bx--slider__filled-track"
+              className={`${prefix}--slider__filled-track`}
               style={filledTrackStyle}
             />
             <div
-              className="bx--slider__thumb"
+              className={`${prefix}--slider__thumb`}
               role="slider"
               id={id}
               tabIndex={0}
@@ -414,7 +417,7 @@ export default class Slider extends PureComponent {
               onChange={this.handleChange}
             />
           </div>
-          <span className="bx--slider__range-label">
+          <span className={`${prefix}--slider__range-label`}>
             {formatLabel(max, maxLabel)}
           </span>
           {!hideTextInput && (
