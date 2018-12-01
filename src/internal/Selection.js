@@ -46,6 +46,9 @@ export default class Selection extends React.Component {
     }));
   };
   handleOnItemChange = item => {
+    if (this.props.disabled) {
+      return;
+    }
     const { selectedItems } = this.state;
 
     let selectedIndex;

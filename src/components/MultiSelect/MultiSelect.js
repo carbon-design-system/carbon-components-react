@@ -174,6 +174,7 @@ export default class MultiSelect extends React.Component {
     });
     return (
       <Selection
+        disabled={disabled}
         onChange={this.handleOnChange}
         initialSelectedItems={initialSelectedItems}
         render={({ selectedItems, onItemChange, clearSelection }) => (
