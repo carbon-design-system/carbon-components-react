@@ -16,12 +16,16 @@ const ListBoxSelection = ({
   clearSelection,
   selectionCount,
   translateWithId: t,
+  disabled,
 }) => {
   const className = cx({
     [`${prefix}--list-box__selection`]: true,
     [`${prefix}--list-box__selection--multi`]: selectionCount,
   });
   const handleOnClick = event => {
+    if (disabled) {
+      return;
+    }
     // If we have a mult-select badge, clicking it shouldn't open the menu back
     // up. However, if we have a clear badge then we want the click to have this
     // behavior.
@@ -31,6 +35,9 @@ const ListBoxSelection = ({
     clearSelection(event);
   };
   const handleOnKeyDown = event => {
+    if (disabled) {
+      return;
+    }
     // When a user hits ENTER, we'll clear the selection
     if (event.keyCode === 13) {
       clearSelection(event);
