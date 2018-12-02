@@ -203,7 +203,7 @@ export default class MultiSelect extends React.Component {
                 <ListBox.Field {...getButtonProps({ disabled })}>
                   {selectedItem.length > 0 && (
                     <ListBox.Selection
-                      clearSelection={clearSelection}
+                      clearSelection={!disabled ? clearSelection : () => null}
                       selectionCount={selectedItem.length}
                     />
                   )}
