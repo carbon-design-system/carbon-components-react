@@ -29,6 +29,9 @@ export default class Selection extends React.Component {
     });
 
   handleClearSelection = () => {
+    if (this.props.disabled) {
+      return;
+    }
     this.internalSetState({
       selectedItems: [],
     });
