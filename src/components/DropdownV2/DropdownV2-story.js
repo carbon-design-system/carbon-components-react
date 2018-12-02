@@ -90,7 +90,8 @@ storiesOf('DropdownV2', module)
     'skeleton',
     () => (
       <div style={{ width: 300 }}>
-        <DropdownSkeleton />&nbsp;
+        <DropdownSkeleton />
+        &nbsp;
         <DropdownSkeleton inline />
       </div>
     ),
