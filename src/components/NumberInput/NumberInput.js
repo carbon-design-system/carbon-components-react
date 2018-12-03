@@ -210,7 +210,7 @@ export default class NumberInput extends Component {
     const numberInputClasses = classNames(`${prefix}--number`, className, {
       [`${prefix}--number--light`]: light,
       [`${prefix}--number--helpertext`]: helperText,
-      [`${prefix}--number--nolabel`]: hideLabel,
+      [`${prefix}--number--nolabel`]: hideLabel || (!label && !helperText),
     });
 
     const props = {
