@@ -108,6 +108,28 @@ describe('NumberInput', () => {
         ).toEqual(true);
       });
 
+      it('should add a no label class if no labels specified', () => {
+        wrapper.setProps({ label: 'Label', helperText: 'Helper' });
+        expect(
+          wrapper.find('.bx--number').hasClass('bx--number--nolabel')
+        ).toEqual(false);
+
+        wrapper.setProps({ label: 'Label', helperText: '' });
+        expect(
+          wrapper.find('.bx--number').hasClass('bx--number--nolabel')
+        ).toEqual(false);
+
+        wrapper.setProps({ label: '', helperText: 'Helper' });
+        expect(
+          wrapper.find('.bx--number').hasClass('bx--number--nolabel')
+        ).toEqual(false);
+
+        wrapper.setProps({ label: '', helperText: '' });
+        expect(
+          wrapper.find('.bx--number').hasClass('bx--number--nolabel')
+        ).toEqual(true);
+      });
+
       describe('initial rendering', () => {
         const getWrapper = (min, max, value) =>
           mount(
