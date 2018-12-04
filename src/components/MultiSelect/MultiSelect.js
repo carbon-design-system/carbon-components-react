@@ -207,7 +207,6 @@ export default class MultiSelect extends React.Component {
                     <ListBox.Selection
                       clearSelection={!disabled ? clearSelection : noop}
                       selectionCount={selectedItem.length}
-                      disabled={disabled}
                     />
                   )}
                   <span className={`${prefix}--list-box__label`}>{label}</span>

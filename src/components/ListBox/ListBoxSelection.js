@@ -16,11 +16,9 @@ const ListBoxSelection = ({
   clearSelection,
   selectionCount,
   translateWithId: t,
-  disabled,
 }) => {
   const className = cx({
     [`${prefix}--list-box__selection`]: true,
-    [`${prefix}--list-box__selection--disabled`]: disabled,
     [`${prefix}--list-box__selection--multi`]: selectionCount,
   });
   const handleOnClick = event => {
