@@ -97,11 +97,6 @@ export default class DropdownV2 extends React.Component {
     }
   };
 
-  get itemToElement() {
-    const { itemToString, itemToElement } = this.props;
-    return itemToElement || itemToString;
-  }
-
   render() {
     const {
       className: containerClassName,
@@ -110,6 +105,7 @@ export default class DropdownV2 extends React.Component {
       label,
       ariaLabel,
       itemToString,
+      itemToElement,
       type,
       initialSelectedItem,
       selectedItem,
@@ -119,7 +115,8 @@ export default class DropdownV2 extends React.Component {
     const className = cx(`${prefix}--dropdown`, containerClassName, {
       [`${prefix}--dropdown--light`]: light,
     });
-    const ItemToElement = this.itemToElement;
+    // needs to be Capitalized for react to render it correctly
+    const ItemToElement = itemToElement;
     return (
       <Downshift
         id={id}
@@ -147,7 +144,7 @@ export default class DropdownV2 extends React.Component {
               <span
                 className={`${prefix}--list-box__label`}
                 {...getLabelProps()}>
-                {selectedItem ? this.itemToElement(selectedItem) : label}
+                {selectedItem ? itemToString(selectedItem) : label}
               </span>
               <ListBox.MenuIcon isOpen={isOpen} />
             </ListBox.Field>
@@ -159,7 +156,11 @@ export default class DropdownV2 extends React.Component {
                     isActive={selectedItem === item}
                     isHighlighted={highlightedIndex === index}
                     {...getItemProps({ item, index })}>
-                    <ItemToElement key={itemToString(item)} {...item} />
+                    {itemToElement ? (
+                      <ItemToElement key={itemToString(item)} {...item} />
+                    ) : (
+                      itemToString(item)
+                    )}
                   </ListBox.MenuItem>
                 ))}
               </ListBox.Menu>

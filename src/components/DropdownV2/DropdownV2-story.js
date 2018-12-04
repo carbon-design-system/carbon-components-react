@@ -26,6 +26,8 @@ const items = [
   },
 ];
 
+const stringItems = ['Option 1', 'Option 2', 'Option 3'];
+
 const dropdownItems = [
   { itemText: 'hello', value: 'hello', style: { opacity: 1 } },
   { itemText: 'world', value: 'world', style: { opacity: 1 } },
@@ -71,6 +73,23 @@ storiesOf('DropdownV2', module)
     {
       info: {
         text: 'DropdownV2',
+      },
+    }
+  )
+  .add(
+    'items as strings',
+    () => (
+      <div style={{ width: 300 }}>
+        <DropdownV2
+          {...props()}
+          items={stringItems}
+          onChange={action('onChange')}
+        />
+      </div>
+    ),
+    {
+      info: {
+        text: 'Rendering an array of strings as `items`',
       },
     }
   )

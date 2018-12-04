@@ -40,6 +40,12 @@ describe('DropdownV2', () => {
     assertMenuOpen(wrapper, mockProps);
   });
 
+  it('should render with strings as items', () => {
+    const wrapper = mount(<DropdownV2 {...mockProps} items={['zar', 'doz']} />);
+    openMenu(wrapper);
+    expect(wrapper).toMatchSnapshot();
+  });
+
   it('should render custom item components', () => {
     const wrapper = mount(<DropdownV2 {...mockProps} />);
     wrapper.setProps({
