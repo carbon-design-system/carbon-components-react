@@ -31,7 +31,7 @@ about: Create a report to help us improve
 4. etc.
 
 > Please create a reduced test case in CodeSandbox
-> https://codesandbox.io/s/github/IBM/carbon-components-react/tree/master/examples/playground
+> https://codesandbox.io/s/github/IBM/carbon-components-react/tree/master/examples/codesandbox
 
 ## Additional information
 
