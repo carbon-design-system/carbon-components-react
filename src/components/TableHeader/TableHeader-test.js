@@ -9,9 +9,10 @@ import React from 'react';
 import { iconCaretDown } from 'carbon-icons';
 import TableHeader from '../TableHeader';
 import Icon from '../Icon';
+import describeBreakingChangesXFeatures from '../../tools/describeBreakingChangesXFeatures';
 import { shallow } from 'enzyme';
 
-describe('TableHeader', () => {
+describeBreakingChangesXFeatures('TableHeader', () => {
   describe('Renders as expected', () => {
     const theader = shallow(
       <TableHeader>

@@ -7,9 +7,10 @@
 
 import React from 'react';
 import DropdownItem from '../DropdownItem';
+import describeBreakingChangesXFeatures from '../../tools/describeBreakingChangesXFeatures';
 import { mount } from 'enzyme';
 
-describe('DropdownItem', () => {
+describeBreakingChangesXFeatures('DropdownItem', () => {
   describe('Renders as expected', () => {
     const wrapper = mount(
       <DropdownItem className="extra-class" itemText="test" value="test" />

@@ -11,9 +11,10 @@ import Dropdown from '../Dropdown';
 import DropdownItem from '../DropdownItem';
 import Icon from '../Icon';
 import ClickListener from '../../internal/ClickListener';
+import describeBreakingChangesXFeatures from '../../tools/describeBreakingChangesXFeatures';
 import { shallow, mount } from 'enzyme';
 
-describe('Dropdown', () => {
+describeBreakingChangesXFeatures('Dropdown', () => {
   describe('Renders as expected', () => {
     const wrapper = shallow(
       <Dropdown className="extra-class" defaultText="Choose something.." />

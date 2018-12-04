@@ -8,9 +8,10 @@
 import React from 'react';
 import Icon from '../Icon';
 import TooltipSimple from '../TooltipSimple';
+import describeBreakingChangesXFeatures from '../../tools/describeBreakingChangesXFeatures';
 import { mount } from 'enzyme';
 
-describe('TooltipSimple', () => {
+describeBreakingChangesXFeatures('TooltipSimple', () => {
   describe('Renders as expected with defaults', () => {
     const wrapper = mount(
       <TooltipSimple text="Basic TooltipSimple Text" className="extra-class">

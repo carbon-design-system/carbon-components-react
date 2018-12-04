@@ -7,9 +7,10 @@
 
 import React from 'react';
 import TableRowExpanded from '../TableRowExpanded';
+import describeBreakingChangesXFeatures from '../../tools/describeBreakingChangesXFeatures';
 import { shallow } from 'enzyme';
 
-describe('TableRowExpanded', () => {
+describeBreakingChangesXFeatures('TableRowExpanded', () => {
   describe('Renders as expected', () => {
     const tableRow = shallow(
       <TableRowExpanded>
