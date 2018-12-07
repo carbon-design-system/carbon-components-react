@@ -221,12 +221,12 @@ export default class Modal extends Component {
     }
   };
 
-  componentDidMount = () => {
+  componentDidMount() {
     if (!this.props.open) {
       return;
     }
     this.focusButton(this.innerModal.current);
-  };
+  }
 
   handleTransitionEnd = evt => {
     if (
