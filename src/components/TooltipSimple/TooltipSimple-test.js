@@ -8,7 +8,6 @@
 import React from 'react';
 import Icon from '../Icon';
 import TooltipSimple from '../TooltipSimple';
-import describeBreakingChangesXFeatures from '../../tools/describeBreakingChangesXFeatures';
 import { mount } from 'enzyme';
 
 describeBreakingChangesXFeatures('TooltipSimple', () => {

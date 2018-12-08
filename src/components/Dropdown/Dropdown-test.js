@@ -11,7 +11,6 @@ import Dropdown from '../Dropdown';
 import DropdownItem from '../DropdownItem';
 import Icon from '../Icon';
 import ClickListener from '../../internal/ClickListener';
-import describeBreakingChangesXFeatures from '../../tools/describeBreakingChangesXFeatures';
 import { shallow, mount } from 'enzyme';
 
 describeBreakingChangesXFeatures('Dropdown', () => {

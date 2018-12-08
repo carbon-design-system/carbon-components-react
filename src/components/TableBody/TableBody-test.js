@@ -7,7 +7,6 @@
 
 import React from 'react';
 import TableBody from '../TableBody';
-import describeBreakingChangesXFeatures from '../../tools/describeBreakingChangesXFeatures';
 import { shallow } from 'enzyme';
 
 describeBreakingChangesXFeatures('TableBody', () => {

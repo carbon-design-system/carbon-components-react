@@ -8,7 +8,6 @@
 import React from 'react';
 import Table from '../Table';
 import { shallow } from 'enzyme';
-import describeBreakingChangesXFeatures from '../../tools/describeBreakingChangesXFeatures';
 
 describeBreakingChangesXFeatures('Table', () => {
   describe('Renders as expected', () => {
