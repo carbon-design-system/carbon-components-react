@@ -47,28 +47,23 @@ const OverflowMenuItem = ({
     primaryFocusProp = { 'data-overflow-menu-primary-focus': true };
   }
 
-  const itemProps = {
-    ...other,
-    ...primaryFocusProp,
-    className: overflowMenuBtnClasses,
-    disabled,
-    onClick: handleClick,
-    title: requireTitle ? itemText : null,
-    tabIndex: disabled ? -1 : 0,
-    href,
-  };
+  const TagToUse = href ? 'a' : 'button';
 
-  const item = (
+  return (
     <li className={overflowMenuItemClasses} role="menuitem">
-      {href ? (
-        <a {...itemProps}>{itemText}</a>
-      ) : (
-        <button {...itemProps}>{itemText}</button>
-      )}
+      <TagToUse
+        {...other}
+        {...primaryFocusProp}
+        href={href}
+        className={overflowMenuBtnClasses}
+        disabled={disabled}
+        onClick={handleClick}
+        title={requireTitle ? itemText : null}
+        tabIndex={disabled ? -1 : 0}>
+        {itemText}
+      </TagToUse>
     </li>
   );
-
-  return item;
 };
 
 OverflowMenuItem.propTypes = {
