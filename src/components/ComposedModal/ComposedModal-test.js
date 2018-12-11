@@ -148,7 +148,7 @@ describe('<ComposedModal />', () => {
   });
 
   it('changes the open state upon change in props', () => {
-    const wrapper = shallow(<ComposedModal open />);
+    const wrapper = mount(<ComposedModal open />);
     expect(wrapper.state().open).toEqual(true);
     wrapper.setProps({ open: false });
     expect(wrapper.state().open).toEqual(false);
