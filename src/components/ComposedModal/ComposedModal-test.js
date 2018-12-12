@@ -186,4 +186,27 @@ describe('<ComposedModal />', () => {
     button.simulate('click');
     expect(wrapper.state().open).toEqual(true);
   });
+
+  it('should focus on the primary actionable button in ModalFooter by default', () => {
+    mount(
+      <ComposedModal open>
+        <ModalFooter primaryButtonText="Save" />
+      </ComposedModal>
+    );
+    expect(
+      document.activeElement.classList.contains('bx--btn--primary')
+    ).toEqual(true);
+  });
+
+  it('should focus on the element that matches selectorPrimaryFocus', () => {
+    mount(
+      <ComposedModal open selectorPrimaryFocus=".bx--modal-close">
+        <ModalHeader label="Optional Label" title="Example" />
+        <ModalFooter primaryButtonText="Save" />
+      </ComposedModal>
+    );
+    expect(
+      document.activeElement.classList.contains('bx--modal-close')
+    ).toEqual(true);
+  });
 });
