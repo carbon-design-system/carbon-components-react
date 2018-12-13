@@ -121,8 +121,8 @@ export default class AccordionItem extends Component {
         {...other}>
         <Expando
           type="button"
+          aria-expanded={this.state.open}
           className={`${prefix}--accordion__heading`}
-          role="tab"
           onClick={this.handleHeadingClick}>
           <Icon
             className={`${prefix}--accordion__arrow`}
