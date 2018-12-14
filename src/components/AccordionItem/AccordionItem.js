@@ -4,6 +4,7 @@ import classnames from 'classnames';
 import { iconChevronRight } from 'carbon-icons';
 import { settings } from 'carbon-components';
 import Icon from '../Icon';
+import { match, keys } from '../../tools/key';
 
 const { prefix } = settings;
 
@@ -85,9 +86,8 @@ export default class AccordionItem extends Component {
   };
 
   handleKeyDown = evt => {
-    // Esc key
     if (
-      evt.which === 27 &&
+      match(evt.which, keys.ESC) &&
       this.state.open &&
       evt.target.classList.contains(`${prefix}--accordion__heading`)
     ) {
