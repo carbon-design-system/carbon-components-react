@@ -84,11 +84,9 @@ export default class AccordionItem extends Component {
     this.props.onHeadingClick({ isOpen: open, event: evt });
   };
 
-  handleKeyPress = evt => {
-    const isKeyPressTarget = evt.target === evt.currentTarget;
-    const isValidKeyPress = [13, 32].indexOf(evt.which) !== -1;
-
-    if (isKeyPressTarget && isValidKeyPress) {
+  handleKeyDown = evt => {
+    // Esc key
+    if (evt.which === 27 && this.state.open) {
       this.handleHeadingClick(evt);
     }
   };
@@ -116,7 +114,7 @@ export default class AccordionItem extends Component {
       <li
         className={classNames}
         onClick={this.handleClick}
-        onKeyPress={this.handleKeyPress}
+        onKeyDown={this.handleKeyDown}
         role="presentation"
         {...other}>
         <Expando
