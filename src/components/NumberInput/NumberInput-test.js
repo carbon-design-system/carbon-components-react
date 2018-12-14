@@ -18,7 +18,6 @@ describe('NumberInput', () => {
     let label;
     let numberInput;
     let container;
-    let formItem;
     let icons;
     let helper;
 
@@ -38,7 +37,6 @@ describe('NumberInput', () => {
       label = wrapper.find('label');
       numberInput = wrapper.find('input');
       container = wrapper.find('.bx--number');
-      formItem = wrapper.find('.bx--form-item');
       icons = wrapper.find(Icon);
       helper = wrapper.find('.bx--form__helper-text');
     });
@@ -52,10 +50,6 @@ describe('NumberInput', () => {
         expect(container.hasClass('bx--number bx--number--helpertext')).toEqual(
           true
         );
-      });
-
-      it('has renders with form-item wrapper', () => {
-        expect(formItem.hasClass('bx--form-item')).toEqual(true);
       });
 
       it('applies extra classes via className', () => {
