@@ -282,7 +282,11 @@ export default class Modal extends Component {
         onClick={onRequestClose}
         ref={this.button}>
         {componentsX ? (
-          <Close20 />
+          <Close20
+            alt={iconDescription}
+            aria-label={iconDescription}
+            className={`${prefix}--modal-close__icon`}
+          />
         ) : (
           <Icon
             icon={iconClose}
