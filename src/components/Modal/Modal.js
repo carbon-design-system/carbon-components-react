@@ -5,6 +5,8 @@ import { iconClose } from 'carbon-icons';
 import Icon from '../Icon';
 import Button from '../Button';
 import { settings } from 'carbon-components';
+import { Close20 } from '@carbon/icons-react';
+import { componentsX } from '../../internal/FeatureFlags';
 
 const { prefix } = settings;
 
@@ -278,11 +280,15 @@ export default class Modal extends Component {
         type="button"
         onClick={onRequestClose}
         ref={this.button}>
-        <Icon
-          icon={iconClose}
-          className={`${prefix}--modal-close__icon`}
-          description={iconDescription}
-        />
+        {componentsX ? (
+          <Close20 />
+        ) : (
+          <Icon
+            icon={iconClose}
+            className={`${prefix}--modal-close__icon`}
+            description={iconDescription}
+          />
+        )}
       </button>
     );
 
