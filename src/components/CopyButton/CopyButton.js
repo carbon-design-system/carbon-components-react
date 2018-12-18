@@ -3,7 +3,9 @@ import React, { Component } from 'react';
 import classnames from 'classnames';
 import { settings } from 'carbon-components';
 import { iconCopy } from 'carbon-icons';
+import { Copy16 } from '@carbon/icons-react';
 import Icon from '../Icon';
+import { componentsX } from '../../internal/FeatureFlags';
 
 const { prefix } = settings;
 
@@ -86,11 +88,19 @@ export default class CopyButton extends Component {
         className={classNames}
         onClick={this.handleClick}
         {...other}>
-        <Icon
-          className={`${prefix}--snippet__icon`}
-          icon={iconCopy}
-          description={iconDescription}
-        />
+        {componentsX ? (
+          <Copy16
+            className={`${prefix}--snippet__icon`}
+            aria-label={iconDescription}
+            alt={iconDescription}
+          />
+        ) : (
+          <Icon
+            className={`${prefix}--snippet__icon`}
+            icon={iconCopy}
+            description={iconDescription}
+          />
+        )}
         <div className={feedbackClassNames} data-feedback={feedback} />
       </button>
     );
