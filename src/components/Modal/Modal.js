@@ -5,7 +5,8 @@ import { iconClose } from 'carbon-icons';
 import Icon from '../Icon';
 import Button from '../Button';
 import { settings } from 'carbon-components';
-import { Close20 } from '@carbon/icons-react';
+// TODO: import { Close20 } from '@carbon/icons-react';
+import Close20 from '@carbon/icons-react/lib/close/20';
 import { componentsX } from '../../internal/FeatureFlags';
 
 const { prefix } = settings;
