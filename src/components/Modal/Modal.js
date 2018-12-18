@@ -295,28 +295,26 @@ export default class Modal extends Component {
         <div className={`${prefix}--modal-header`}>
           {passiveModal && modalButton}
           {modalLabel && (
-            <h4 className={`${prefix}--modal-header__label`}>{modalLabel}</h4>
+            <p className={`${prefix}--modal-header__label`}>{modalLabel}</p>
           )}
-          <h2 className={`${prefix}--modal-header__heading`}>{modalHeading}</h2>
+          <p className={`${prefix}--modal-header__heading`}>{modalHeading}</p>
           {!passiveModal && modalButton}
         </div>
         <div className={`${prefix}--modal-content`}>{this.props.children}</div>
         {!passiveModal && (
           <div className={`${prefix}--modal-footer`}>
-            <div className={`${prefix}--modal__buttons-container`}>
-              <Button
-                kind={danger ? 'tertiary' : 'secondary'}
-                onClick={onSecondaryButtonClick}>
-                {secondaryButtonText}
-              </Button>
-              <Button
-                kind={danger ? 'danger--primary' : 'primary'}
-                disabled={primaryButtonDisabled}
-                onClick={onRequestSubmit}
-                inputref={this.button}>
-                {primaryButtonText}
-              </Button>
-            </div>
+            <Button
+              kind={danger ? 'tertiary' : 'secondary'}
+              onClick={onSecondaryButtonClick}>
+              {secondaryButtonText}
+            </Button>
+            <Button
+              kind={danger ? 'danger--primary' : 'primary'}
+              disabled={primaryButtonDisabled}
+              onClick={onRequestSubmit}
+              inputref={this.button}>
+              {primaryButtonText}
+            </Button>
           </div>
         )}
       </div>
