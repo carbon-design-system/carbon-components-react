@@ -1,10 +1,12 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import classNames from 'classnames';
+import { ChevronDown16 } from '@carbon/icons-react';
 import { settings } from 'carbon-components';
 import Copy from '../Copy';
 import CopyButton from '../CopyButton';
 import Icon from '../Icon';
+import { componentsX } from '../../internal/FeatureFlags';
 
 const { prefix } = settings;
 
@@ -139,13 +141,23 @@ export default class CodeSnippet extends Component {
         <span className={`${prefix}--snippet-btn--text`}>
           {expandCodeBtnText}
         </span>
-        <Icon
-          aria-hidden="true"
-          alt={expandCodeBtnText}
-          name="chevron--down"
-          description={expandCodeBtnText}
-          className={`${prefix}--icon-chevron--down`}
-        />
+        {componentsX ? (
+          <ChevronDown16
+            aria-hidden={true}
+            aria-label={expandCodeBtnText}
+            alt={expandCodeBtnText}
+            className={`${prefix}--icon-chevron--down ${prefix}--snippet__icon`}
+            name="chevron--down"
+          />
+        ) : (
+          <Icon
+            aria-hidden="true"
+            alt={expandCodeBtnText}
+            name="chevron--down"
+            description={expandCodeBtnText}
+            className={`${prefix}--icon-chevron--down`}
+          />
+        )}
       </button>
     );
 
