@@ -5,6 +5,7 @@ import classNames from 'classnames';
 import { iconCheckmarkSolid, iconChevronDown } from 'carbon-icons';
 import { settings } from 'carbon-components';
 import Icon from '../Icon';
+import { keys, matches } from '../../tools/key';
 
 const { prefix } = settings;
 
@@ -24,7 +25,6 @@ export class Tile extends Component {
   render() {
     const { children, className, ...other } = this.props;
     const tileClasses = classNames(`${prefix}--tile`, className);
-
     return (
       <div className={tileClasses} {...other}>
         {children}
@@ -76,7 +76,7 @@ export class ClickableTile extends Component {
   };
 
   handleKeyDown = evt => {
-    if (evt.which === 13 || evt.which === 32) {
+    if (matches(evt, [keys.ENTER, keys.SPACE])) {
       this.setState(
         {
           clicked: !this.state.clicked,
@@ -178,6 +178,11 @@ export class SelectableTile extends Component {
      * The description of the checkmark icon.
      */
     iconDescription: PropTypes.string,
+
+    /**
+     * Specify the tab index of the wrapper element
+     */
+    tabIndex: PropTypes.number,
   };
 
   static defaultProps = {
@@ -187,6 +192,7 @@ export class SelectableTile extends Component {
     selected: false,
     handleClick: () => {},
     handleKeyDown: () => {},
+    tabIndex: 0,
   };
 
   handleClick = evt => {
@@ -207,8 +213,8 @@ export class SelectableTile extends Component {
   };
 
   handleKeyDown = evt => {
-    evt.preventDefault();
-    if (evt.which === 13 || evt.which === 32) {
+    if (matches(evt, [keys.ENTER, keys.SPACE])) {
+      evt.preventDefault();
       this.setState(
         {
           selected: !this.state.selected,
@@ -250,6 +256,9 @@ export class SelectableTile extends Component {
     const classes = classNames(
       `${prefix}--tile`,
       `${prefix}--tile--selectable`,
+      {
+        [`${prefix}--tile--is-selected`]: this.state.selected,
+      },
       className
     );
 
