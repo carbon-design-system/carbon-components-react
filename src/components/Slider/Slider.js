@@ -417,9 +417,6 @@ export default class Slider extends PureComponent {
           {labelText}
         </label>
         <div className={`${prefix}--slider-container`}>
-          <span className={`${prefix}--slider__range-label`}>
-            {formatLabel(min, minLabel)}
-          </span>
           <div
             className={sliderClasses}
             ref={node => {
@@ -430,16 +427,6 @@ export default class Slider extends PureComponent {
             role="presentation"
             tabIndex={-1}
             {...other}>
-            <div
-              className={`${prefix}--slider__track`}
-              ref={node => {
-                this.track = node;
-              }}
-            />
-            <div
-              className={`${prefix}--slider__filled-track`}
-              style={filledTrackStyle}
-            />
             <div
               className={`${prefix}--slider__thumb`}
               role="slider"
@@ -453,6 +440,16 @@ export default class Slider extends PureComponent {
               onTouchStart={this.handleTouchStart}
               onKeyDown={this.updatePosition}
             />
+            <div
+              className={`${prefix}--slider__track`}
+              ref={node => {
+                this.track = node;
+              }}
+            />
+            <div
+              className={`${prefix}--slider__filled-track`}
+              style={filledTrackStyle}
+            />
             <input
               type="hidden"
               name={name}
@@ -464,6 +461,9 @@ export default class Slider extends PureComponent {
               onChange={this.handleChange}
             />
           </div>
+          <span className={`${prefix}--slider__range-label`}>
+            {formatLabel(min, minLabel)}
+          </span>
           <span className={`${prefix}--slider__range-label`}>
             {formatLabel(max, maxLabel)}
           </span>
