@@ -11,10 +11,10 @@ const TextAreaSkeleton = ({ hideLabel, id }) => {
   );
 
   return (
-    <div className={`${prefix}--form-item`}>
+    <>
       {label}
       <div className={`${prefix}--skeleton ${prefix}--text-area`} />
-    </div>
+    </>
   );
 };
 

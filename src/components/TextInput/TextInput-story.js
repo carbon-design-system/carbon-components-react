@@ -3,6 +3,7 @@ import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 
 import { withKnobs, boolean, select, text } from '@storybook/addon-knobs';
+import FormItem from '../FormItem';
 import TextInput from '../TextInput';
 import TextInputSkeleton from '../TextInput/TextInput.Skeleton';
 
@@ -33,23 +34,35 @@ const TextInputProps = () => ({
 
 storiesOf('TextInput', module)
   .addDecorator(withKnobs)
-  .add('Default', () => <TextInput {...TextInputProps()} />, {
-    info: {
-      text: `
+  .add(
+    'Default',
+    () => (
+      <FormItem>
+        <TextInput {...TextInputProps()} />
+      </FormItem>
+    ),
+    {
+      info: {
+        text: `
             Text fields enable the user to interact with and input data. A single line
             field is used when the input anticipated by the user is a single line of
             text as opposed to a paragraph.
             The default type is 'text' and its value can be either 'string' or 'number'.
           `,
-    },
-  })
+      },
+    }
+  )
   .add(
     'skeleton',
     () => (
       <div>
-        <TextInputSkeleton />
+        <FormItem>
+          <TextInputSkeleton />
+        </FormItem>
         <br />
-        <TextInputSkeleton hideLabel />
+        <FormItem>
+          <TextInputSkeleton hideLabel />
+        </FormItem>
       </div>
     ),
     {

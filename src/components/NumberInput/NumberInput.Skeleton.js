@@ -11,10 +11,10 @@ const NumberInputSkeleton = ({ hideLabel, id }) => {
   );
 
   return (
-    <div className={`${prefix}--form-item`}>
+    <>
       {label}
       <div className={`${prefix}--number ${prefix}--skeleton`} />
-    </div>
+    </>
   );
 };
 

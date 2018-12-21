@@ -11,12 +11,12 @@ const SelectSkeleton = ({ hideLabel, id }) => {
   );
 
   return (
-    <div className={`${prefix}--form-item`}>
+    <>
       {label}
       <div className={`${prefix}--select ${prefix}--skeleton`}>
         <select className={`${prefix}--select-input`} />
       </div>
-    </div>
+    </>
   );
 };
 

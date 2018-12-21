@@ -38,25 +38,27 @@ storiesOf('Select', module)
     () => {
       const groupProps = props.group();
       return (
-        <Select
-          {...props.select()}
-          id="select-1"
-          defaultValue="placeholder-item">
-          <SelectItem
-            disabled
-            hidden
-            value="placeholder-item"
-            text="Choose an option"
-          />
-          <SelectItemGroup label="Category 1" {...groupProps}>
-            <SelectItem value="option-1" text="Option 1" />
-            <SelectItem value="option-2" text="Option 2" />
-          </SelectItemGroup>
-          <SelectItemGroup label="Category 2" {...groupProps}>
-            <SelectItem value="option-3" text="Option 3" />
-            <SelectItem value="option-4" text="Option 4" />
-          </SelectItemGroup>
-        </Select>
+        <FormItem>
+          <Select
+            {...props.select()}
+            id="select-1"
+            defaultValue="placeholder-item">
+            <SelectItem
+              disabled
+              hidden
+              value="placeholder-item"
+              text="Choose an option"
+            />
+            <SelectItemGroup label="Category 1" {...groupProps}>
+              <SelectItem value="option-1" text="Option 1" />
+              <SelectItem value="option-2" text="Option 2" />
+            </SelectItemGroup>
+            <SelectItemGroup label="Category 2" {...groupProps}>
+              <SelectItem value="option-3" text="Option 3" />
+              <SelectItem value="option-4" text="Option 4" />
+            </SelectItemGroup>
+          </Select>
+        </FormItem>
       );
     },
     {
@@ -74,7 +76,9 @@ storiesOf('Select', module)
     'skeleton',
     () => (
       <div style={{ width: '300px' }}>
-        <SelectSkeleton />
+        <FormItem>
+          <SelectSkeleton />
+        </FormItem>
       </div>
     ),
     {

@@ -45,7 +45,7 @@ const Select = ({
     ariaProps['aria-describedby'] = errorId;
   }
   return (
-    <div className={`${prefix}--form-item`}>
+    <>
       <div className={selectClasses}>
         <label htmlFor={id} className={labelClasses}>
           {labelText}
@@ -68,7 +68,7 @@ const Select = ({
         {helper}
         {error}
       </div>
-    </div>
+    </>
   );
 };
 
