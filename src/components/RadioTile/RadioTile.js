@@ -5,6 +5,9 @@ import Icon from '../Icon';
 import { iconCheckmarkSolid } from 'carbon-icons';
 import classNames from 'classnames';
 import { settings } from 'carbon-components';
+// TODO: import { CheckmarkFilled16 } from '@carbon/icons-react';
+import CheckmarkFilled from '@carbon/icons-react/lib/checkmark--filled/16';
+import { componentsX } from '../../internal/FeatureFlags';
 import { keys, matches } from '../../tools/key';
 
 const { prefix } = settings;
@@ -101,7 +104,14 @@ export default class RadioTile extends React.Component {
           id={this.uid}
         />
         <div className={`${prefix}--tile__checkmark`}>
-          <Icon icon={iconCheckmarkSolid} description={iconDescription} />
+          {componentsX ? (
+            <CheckmarkFilled
+              aria-label={iconDescription}
+              alt={iconDescription}
+              description={iconDescription}
+            />
+          ) : (
+            <Icon icon={iconCheckmarkSolid} description={iconDescription} />
           )}
         </div>
         <div className={`${prefix}--tile-content`}>{children}</div>
