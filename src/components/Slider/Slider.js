@@ -8,7 +8,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import isEqual from 'lodash.isequal';
 import { settings } from 'carbon-components';
 import TextInput from '../TextInput';
 import { sliderValuePropSync } from '../../internal/FeatureFlags';
@@ -165,12 +164,6 @@ export default class Slider extends PureComponent {
       prevMin: min,
       prevMax: max,
     };
-  }
-
-  UNSAFE_componentWillReceiveProps(nextProps) {
-    if (!sliderValuePropSync && !isEqual(nextProps, this.props)) {
-      this.updatePosition();
-    }
   }
 
   updatePosition = evt => {
