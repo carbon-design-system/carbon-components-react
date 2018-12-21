@@ -117,7 +117,7 @@ export default class NumberInput extends Component {
     disabled: false,
     hideLabel: false,
     iconDescription: 'choose a number',
-    label: ' ',
+    label: '',
     onChange: () => {},
     onClick: () => {},
     step: 1,
