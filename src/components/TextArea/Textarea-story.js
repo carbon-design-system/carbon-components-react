@@ -10,7 +10,6 @@ const TextAreaProps = () => ({
   className: 'some-class',
   disabled: boolean('Disabled (disabled)', false),
   light: boolean('Light variant (light)', false),
-  hideLabel: boolean('No label (hideLabel)', false),
   labelText: text('Label text (labelText)', 'Text Area label'),
   invalid: boolean('Show form validation UI (invalid)', false),
   invalidText: text(

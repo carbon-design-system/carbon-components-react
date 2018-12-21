@@ -20,7 +20,6 @@ const TextInputProps = () => ({
   placeholder: text('Placeholder text (placeholder)', 'Placeholder text'),
   light: boolean('Light variant (light)', false),
   disabled: boolean('Disabled (disabled)', false),
-  hideLabel: boolean('No label (hideLabel)', false),
   invalid: boolean('Show form validation UI (invalid)', false),
   invalidText: text(
     'Form validation UI content (invalidText)',

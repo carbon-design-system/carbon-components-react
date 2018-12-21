@@ -9,7 +9,6 @@ const TextArea = ({
   className,
   id,
   labelText,
-  hideLabel,
   onChange,
   onClick,
   invalid,
@@ -37,7 +36,7 @@ const TextArea = ({
     [`${prefix}--text-area--light`]: light,
   });
   const labelClasses = classNames(`${prefix}--label`, {
-    [`${prefix}--visually-hidden`]: hideLabel,
+    [`${prefix}--visually-hidden`]: !labelText,
   });
 
   const label = labelText ? (
@@ -155,11 +154,6 @@ TextArea.propTypes = {
   helperText: PropTypes.node,
 
   /**
-   * Specify whether you want the underlying label to be visually hidden
-   */
-  hideLabel: PropTypes.bool,
-
-  /**
    * Specify whether you want the light version of this control
    */
   light: PropTypes.bool,
@@ -176,6 +170,7 @@ TextArea.defaultProps = {
   invalidText: '',
   helperText: '',
   light: false,
+  labelText: '',
 };
 
 export default TextArea;

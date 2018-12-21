@@ -13,7 +13,6 @@ const TextInput = ({
   type,
   onChange,
   onClick,
-  hideLabel,
   invalid,
   invalidText,
   helperText,
@@ -41,7 +40,7 @@ const TextInput = ({
     [`${prefix}--text-input--light`]: light,
   });
   const labelClasses = classNames(`${prefix}--label`, {
-    [`${prefix}--visually-hidden`]: hideLabel,
+    [`${prefix}--visually-hidden`]: !labelText,
   });
 
   const label = labelText ? (
@@ -138,11 +137,6 @@ TextInput.propTypes = {
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 
   /**
-   * Specify whether you want the underlying label to be visually hidden
-   */
-  hideLabel: PropTypes.bool,
-
-  /**
    * Specify whether the control is currently invalid
    */
   invalid: PropTypes.bool,
@@ -171,6 +165,7 @@ TextInput.defaultProps = {
   invalid: false,
   invalidText: '',
   helperText: '',
+  labelText: '',
   light: false,
 };
 

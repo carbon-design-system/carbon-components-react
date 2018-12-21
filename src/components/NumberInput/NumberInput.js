@@ -4,6 +4,7 @@ import { iconCaretUp, iconCaretDown } from 'carbon-icons';
 import Icon from '../Icon';
 import classNames from 'classnames';
 import { settings } from 'carbon-components';
+import { componentsX } from '../../internal/FeatureFlags';
 
 const { prefix } = settings;
 
@@ -110,7 +111,7 @@ export default class NumberInput extends Component {
     disabled: false,
     hideLabel: false,
     iconDescription: 'choose a number',
-    label: ' ',
+    label: '',
     onChange: () => {},
     onClick: () => {},
     step: 1,
@@ -210,7 +211,7 @@ export default class NumberInput extends Component {
     const numberInputClasses = classNames(`${prefix}--number`, className, {
       [`${prefix}--number--light`]: light,
       [`${prefix}--number--helpertext`]: helperText,
-      [`${prefix}--number--nolabel`]: hideLabel,
+      [`${prefix}--number--nolabel`]: componentsX ? !label : hideLabel,
     });
 
     const props = {
@@ -241,9 +242,11 @@ export default class NumberInput extends Component {
       <div className={`${prefix}--form__helper-text`}>{helperText}</div>
     ) : null;
 
-    const labelClasses = classNames(`${prefix}--label`, {
-      [`${prefix}--visually-hidden`]: hideLabel,
-    });
+    const labelClasses = componentsX
+      ? `${prefix}--label`
+      : classNames(`${prefix}--label`, {
+          [`${prefix}--visually-hidden`]: hideLabel,
+        });
 
     const labelText = label ? (
       <label htmlFor={id} className={labelClasses}>
@@ -252,43 +255,41 @@ export default class NumberInput extends Component {
     ) : null;
 
     return (
-      <div className={`${prefix}--form-item`}>
-        <div className={numberInputClasses} {...inputWrapperProps}>
-          <div className={`${prefix}--number__controls`}>
-            <button
-              className={`${prefix}--number__control-btn up-icon`}
-              {...buttonProps}
-              onClick={evt => this.handleArrowClick(evt, 'up')}>
-              <Icon
-                className="up-icon"
-                icon={iconCaretUp}
-                description={this.props.iconDescription}
-                viewBox="0 0 10 5"
-              />
-            </button>
-            <button
-              className={`${prefix}--number__control-btn down-icon`}
-              {...buttonProps}
-              onClick={evt => this.handleArrowClick(evt, 'down')}>
-              <Icon
-                className="down-icon"
-                icon={iconCaretDown}
-                viewBox="0 0 10 5"
-                description={this.props.iconDescription}
-              />
-            </button>
-          </div>
-          {labelText}
-          <input
-            type="number"
-            pattern="[0-9]*"
-            {...other}
-            {...props}
-            ref={this._handleInputRef}
-          />
-          {error}
-          {helper}
+      <div className={numberInputClasses} {...inputWrapperProps}>
+        {labelText}
+        <input
+          type="number"
+          pattern="[0-9]*"
+          {...other}
+          {...props}
+          ref={this._handleInputRef}
+        />
+        <div className={`${prefix}--number__controls`}>
+          <button
+            className={`${prefix}--number__control-btn up-icon`}
+            {...buttonProps}
+            onClick={evt => this.handleArrowClick(evt, 'up')}>
+            <Icon
+              className="up-icon"
+              icon={iconCaretUp}
+              description={this.props.iconDescription}
+              viewBox="0 0 10 5"
+            />
+          </button>
+          <button
+            className={`${prefix}--number__control-btn down-icon`}
+            {...buttonProps}
+            onClick={evt => this.handleArrowClick(evt, 'down')}>
+            <Icon
+              className="down-icon"
+              icon={iconCaretDown}
+              viewBox="0 0 10 5"
+              description={this.props.iconDescription}
+            />
+          </button>
         </div>
+        {error}
+        {helper}
       </div>
     );
   }
