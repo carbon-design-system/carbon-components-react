@@ -393,7 +393,7 @@ export default class Slider extends PureComponent {
       className
     );
 
-    const inputClasses = classNames(`${prefix}-slider-text-input`, {
+    const inputClasses = classNames(`${prefix}--slider-text-input`, {
       [`${prefix}--text-input--light`]: light,
     });
 
