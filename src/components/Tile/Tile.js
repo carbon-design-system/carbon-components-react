@@ -434,7 +434,6 @@ export class ExpandableTile extends Component {
         style={tileStyle}
         className={classes}
         {...other}
-        role="button"
         onClick={this.handleClick}
         tabIndex={tabIndex}>
         <button className={`${prefix}--tile__chevron`}>
