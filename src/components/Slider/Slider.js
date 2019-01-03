@@ -314,9 +314,13 @@ export default class Slider extends PureComponent {
   };
 
   handleTouchEnd = () => {
-    this.setState({
-      holding: false,
-    });
+    this.setState(
+      {
+        holding: false,
+      },
+      this.updatePosition
+    );
+
     this.element.ownerDocument.removeEventListener(
       'touchmove',
       this.updatePosition
