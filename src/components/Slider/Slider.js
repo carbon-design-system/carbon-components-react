@@ -123,7 +123,6 @@ export default class Slider extends PureComponent {
     inputType: 'number',
     ariaLabelInput: 'Slider number input',
     light: false,
-    onRelease: () => true,
   };
 
   state = {
@@ -176,8 +175,9 @@ export default class Slider extends PureComponent {
     if (this.state.dragging) {
       return;
     }
-
     this.setState({ dragging: true });
+
+    this.handleDrag();
 
     requestAnimationFrame(() => {
       this.setState((prevState, props) => {
@@ -199,9 +199,6 @@ export default class Slider extends PureComponent {
         }
         if (typeof props.onChange === 'function') {
           props.onChange({ value: newValue });
-        }
-        if (!this.state.holding) {
-          props.onRelease({ value: newValue });
         }
         return {
           dragging: false,
@@ -280,10 +277,13 @@ export default class Slider extends PureComponent {
   };
 
   handleMouseEnd = () => {
-    this.setState({
-      holding: false,
-    });
-    this.props.onRelease({ value: this.state.value });
+    this.setState(
+      {
+        holding: false,
+      },
+      this.updatePosition
+    );
+
     this.element.ownerDocument.removeEventListener(
       'mousemove',
       this.updatePosition
@@ -317,7 +317,6 @@ export default class Slider extends PureComponent {
     this.setState({
       holding: false,
     });
-    this.props.onRelease({ value: this.state.value });
     this.element.ownerDocument.removeEventListener(
       'touchmove',
       this.updatePosition
@@ -339,6 +338,16 @@ export default class Slider extends PureComponent {
   handleChange = evt => {
     this.setState({ value: evt.target.value });
     this.updatePosition(evt);
+  };
+
+  handleDrag = () => {
+    if (
+      typeof this.props.onRelease === 'function' &&
+      !this.props.disabled &&
+      !this.state.holding
+    ) {
+      this.props.onRelease({ value: this.state.value });
+    }
   };
 
   render() {
@@ -366,6 +375,8 @@ export default class Slider extends PureComponent {
       light,
       ...other
     } = this.props;
+
+    delete other.onRelease;
 
     const { value, left } = this.state;
 
