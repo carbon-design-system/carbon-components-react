@@ -6,9 +6,6 @@ import 'requestanimationframe';
 
 describe('Slider', () => {
   describe('Renders as expected', () => {
-    const handleChange = jest.fn();
-    const handleRelease = jest.fn();
-
     const wrapper = mount(
       <Slider
         id="slider"
@@ -17,8 +14,6 @@ describe('Slider', () => {
         min={0}
         max={100}
         step={1}
-        onChange={handleChange}
-        onRelease={handleRelease}
       />
     );
 
