@@ -102,6 +102,37 @@ storiesOf('DatePicker', module)
     }
   )
   .add(
+    'single with calendar and time picker with min/max time',
+    () => (
+      <DatePicker
+        {...props.datePicker()}
+        datePickerType="single"
+        enableTime="true"
+        time_24hr="true"
+        minTime="11:30"
+        maxTime="12:30"
+        dateFormat={text(
+          'The date format (dateFormat in <DatePicker>)',
+          'm/d/Y H:i:S'
+        )}>
+        <DatePickerInput
+          {...props.datePickerInput()}
+          iconDescription={text(
+            'Icon description (iconDescription in <DatePickerInput>)',
+            'Icon description'
+          )}
+        />
+      </DatePicker>
+    ),
+    {
+      info: {
+        text: `
+            A single Date Picker consists of an input field and a calendar with time picker in 24hr format.
+          `,
+      },
+    }
+  )
+  .add(
     'range with calendar',
     () => {
       const datePickerInputProps = props.datePickerInput();
@@ -166,6 +197,7 @@ storiesOf('DatePicker', module)
       },
     }
   )
+
   .add(
     'fully controlled',
     () => (

@@ -206,6 +206,26 @@ export default class DatePicker extends Component {
      * The maximum date that a user can pick to.
      */
     maxDate: PropTypes.string,
+
+    /**
+     * `true` to add timepicker.
+     */
+    enableTime: PropTypes.bool,
+
+    /**
+     * `true` to use 24hr format for timepicker.
+     */
+    time_24hr: PropTypes.bool,
+
+    /**
+     * The maximum time that a user can pick to.
+     */
+    maxTime: PropTypes.string,
+
+    /**
+     * The minimum time that a user can pick to.
+     */
+    minTime: PropTypes.string,
   };
 
   static defaultProps = {
@@ -237,6 +257,10 @@ export default class DatePicker extends Component {
       onChange,
       minDate,
       maxDate,
+      enableTime,
+      time_24hr,
+      minTime,
+      maxTime,
       value,
     } = this.props;
     if (datePickerType === 'single' || datePickerType === 'range') {
@@ -258,6 +282,10 @@ export default class DatePicker extends Component {
           locale: l10n[locale],
           minDate: minDate,
           maxDate: maxDate,
+          enableTime: enableTime,
+          time_24hr: time_24hr,
+          minTime: minTime,
+          maxTime: maxTime,
           plugins:
             datePickerType === 'range'
               ? [new rangePlugin({ input: this.toInputField })]
@@ -421,6 +449,10 @@ export default class DatePicker extends Component {
       onChange, // eslint-disable-line
       locale, // eslint-disable-line
       value, // eslint-disable-line
+      enableTime, // eslint-disable-line
+      time_24hr, // eslint-disable-line
+      minTime, // eslint-disable-line
+      maxTime, // eslint-disable-line
       iconDescription,
       ...other
     } = this.props;
