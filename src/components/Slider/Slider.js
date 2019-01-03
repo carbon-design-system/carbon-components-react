@@ -128,6 +128,7 @@ export default class Slider extends PureComponent {
 
   state = {
     dragging: false,
+    holding: false,
     value: this.props.value,
     left: 0,
   };
@@ -199,6 +200,9 @@ export default class Slider extends PureComponent {
         if (typeof props.onChange === 'function') {
           props.onChange({ value: newValue });
         }
+        if (!this.state.holding) {
+          props.onRelease({ value: newValue });
+        }
         return {
           dragging: false,
           left,
@@ -264,6 +268,10 @@ export default class Slider extends PureComponent {
   };
 
   handleMouseStart = () => {
+    this.setState({
+      holding: true,
+    });
+
     this.element.ownerDocument.addEventListener(
       'mousemove',
       this.updatePosition
@@ -272,6 +280,9 @@ export default class Slider extends PureComponent {
   };
 
   handleMouseEnd = () => {
+    this.setState({
+      holding: false,
+    });
     this.props.onRelease({ value: this.state.value });
     this.element.ownerDocument.removeEventListener(
       'mousemove',
@@ -284,6 +295,9 @@ export default class Slider extends PureComponent {
   };
 
   handleTouchStart = () => {
+    this.setState({
+      holding: true,
+    });
     this.element.ownerDocument.addEventListener(
       'touchmove',
       this.updatePosition
@@ -300,6 +314,9 @@ export default class Slider extends PureComponent {
   };
 
   handleTouchEnd = () => {
+    this.setState({
+      holding: false,
+    });
     this.props.onRelease({ value: this.state.value });
     this.element.ownerDocument.removeEventListener(
       'touchmove',
