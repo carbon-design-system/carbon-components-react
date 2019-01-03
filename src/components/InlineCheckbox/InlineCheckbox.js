@@ -49,6 +49,10 @@ export default class InlineCheckbox extends React.Component {
      * Provide an optional tooltip for the InlineCheckbox
      */
     title: PropTypes.string,
+    /**
+     * Provide an optional onChange function for the input in InlineCheckbox
+     */
+    onChange: PropTypes.func
   };
 
   componentDidMount() {
@@ -76,6 +80,7 @@ export default class InlineCheckbox extends React.Component {
       onClick,
       onKeyDown,
       title = undefined,
+      onChange = () => {}
     } = this.props;
     const inputProps = {
       id,
@@ -87,6 +92,7 @@ export default class InlineCheckbox extends React.Component {
       ref: this.handleRef,
       checked: false,
       disabled,
+      onChange: onChange
     };
 
     if (checked) {
