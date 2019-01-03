@@ -434,9 +434,8 @@ export class ExpandableTile extends Component {
         style={tileStyle}
         className={classes}
         {...other}
-        onClick={this.handleClick}
-        tabIndex={tabIndex}>
-        <button className={`${prefix}--tile__chevron`}>
+        onClick={this.handleClick}>
+        <button className={`${prefix}--tile__chevron`} tabIndex={tabIndex}>
           <Icon
             icon={iconChevronDown}
             description={
