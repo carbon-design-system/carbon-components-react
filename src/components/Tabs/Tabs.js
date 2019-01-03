@@ -191,7 +191,7 @@ export default class Tabs extends React.Component {
         selected: index === this.state.selected,
         handleTabClick: this.handleTabClick(onSelectionChange),
         handleTabAnchorFocus: this.handleTabAnchorFocus(onSelectionChange),
-        tabIndex: index + 1,
+        tabIndex: index === this.state.selected ? 0 : -1,
         ref: e => {
           this.setTabAt(index, e);
         },
