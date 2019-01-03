@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import Downshift from 'downshift';
 import isEqual from 'lodash.isequal';
+import { settings } from 'carbon-components';
 import ListBox from '../ListBox';
 import Checkbox from '../Checkbox';
 import Selection from '../../internal/Selection';
@@ -10,6 +11,8 @@ import { sortingPropTypes } from './MultiSelectPropTypes';
 import { defaultItemToString } from './tools/itemToString';
 import { defaultSortItems, defaultCompareItems } from './tools/sorting';
 import { defaultFilterItems } from '../ComboBox/tools/filter';
+
+const { prefix } = settings;
 
 export default class FilterableMultiSelect extends React.Component {
   static propTypes = {
@@ -60,6 +63,16 @@ export default class FilterableMultiSelect extends React.Component {
      * `true` to use the light version.
      */
     light: PropTypes.bool,
+
+    /**
+     * Is the current selection invalid?
+     */
+    invalid: PropTypes.bool,
+
+    /**
+     * If invalid, what is the error?
+     */
+    invalidText: PropTypes.string,
   };
 
   static defaultProps = {
@@ -97,15 +110,13 @@ export default class FilterableMultiSelect extends React.Component {
   handleOnOuterClick = () => {
     this.setState({
       isOpen: false,
+      inputValue: '',
     });
   };
 
   handleOnStateChange = changes => {
     const { type } = changes;
     switch (type) {
-      case Downshift.stateChangeTypes.changeInput:
-        this.setState({ inputValue: changes.inputValue });
-        break;
       case Downshift.stateChangeTypes.keyDownArrowDown:
       case Downshift.stateChangeTypes.keyDownArrowUp:
       case Downshift.stateChangeTypes.itemMouseEnter:
@@ -141,17 +152,18 @@ export default class FilterableMultiSelect extends React.Component {
     event.stopPropagation();
   };
 
-  handleOnInputValueChange = inputValue => {
-    this.setState(() => {
-      if (Array.isArray(inputValue)) {
+  handleOnInputValueChange = (inputValue, { type }) => {
+    if (type === Downshift.stateChangeTypes.changeInput)
+      this.setState(() => {
+        if (Array.isArray(inputValue)) {
+          return {
+            inputValue: '',
+          };
+        }
         return {
-          inputValue: '',
+          inputValue: inputValue || '',
         };
-      }
-      return {
-        inputValue: inputValue || '',
-      };
-    });
+      });
   };
 
   clearInputValue = event => {
@@ -175,13 +187,15 @@ export default class FilterableMultiSelect extends React.Component {
       sortItems,
       compareItems,
       light,
+      invalid,
+      invalidText,
     } = this.props;
     const className = cx(
-      'bx--multi-select',
-      'bx--combo-box',
+      `${prefix}--multi-select`,
+      `${prefix}--combo-box`,
       containerClassName,
       {
-        'bx--list-box--light': light,
+        [`${prefix}--list-box--light`]: light,
       }
     );
     return (
@@ -211,6 +225,8 @@ export default class FilterableMultiSelect extends React.Component {
               <ListBox
                 className={className}
                 disabled={disabled}
+                invalid={invalid}
+                invalidText={invalidText}
                 {...getRootProps({ refKey: 'innerRef' })}>
                 <ListBox.Field {...getButtonProps({ disabled })}>
                   {selectedItem.length > 0 && (
@@ -220,7 +236,7 @@ export default class FilterableMultiSelect extends React.Component {
                     />
                   )}
                   <input
-                    className="bx--text-input"
+                    className={`${prefix}--text-input`}
                     ref={el => (this.inputNode = el)}
                     {...getInputProps({
                       disabled,
@@ -229,12 +245,9 @@ export default class FilterableMultiSelect extends React.Component {
                       onKeyDown: this.handleOnInputKeyDown,
                     })}
                   />
-                  {inputValue &&
-                    isOpen && (
-                      <ListBox.Selection
-                        clearSelection={this.clearInputValue}
-                      />
-                    )}
+                  {inputValue && isOpen && (
+                    <ListBox.Selection clearSelection={this.clearInputValue} />
+                  )}
                   <ListBox.MenuIcon isOpen={isOpen} />
                 </ListBox.Field>
                 {isOpen && (

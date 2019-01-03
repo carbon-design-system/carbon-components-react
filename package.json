@@ -13,8 +13,10 @@
     "contributors:add": "all-contributors add",
     "contributors:generate": "all-contributors generate",
     "lint": "eslint src",
+    "lint:staged": "eslint",
     "prepublish": "yarn build",
     "prettier": "prettier --write \"**/*.{scss,css,js,md}\"",
+    "prettier:staged": "prettier",
     "prettier:diff": "prettier --list-different \"**/*.{scss,css,js,md}\"",
     "semantic-release": "semantic-release",
     "start": "yarn storybook",
@@ -116,16 +118,16 @@
     }
   },
   "peerDependencies": {
-    "carbon-components": "^9.21.0",
+    "carbon-components": "^9.48.2",
     "carbon-icons": "^7.0.5",
     "react": "^16.4.0",
     "react-dom": "^16.4.0"
   },
   "dependencies": {
-    "@carbon/icons-react": "^0.0.1-alpha.2",
+    "@carbon/icons-react": "^0.0.1-alpha.26",
     "classnames": "2.2.6",
     "downshift": "^1.31.14",
-    "flatpickr": "4.5.1",
+    "flatpickr": "4.5.2",
     "invariant": "^2.2.3",
     "lodash.debounce": "^4.0.8",
     "lodash.isequal": "^4.5.0",
@@ -172,7 +174,7 @@
     "babel-plugin-dev-expression": "^0.2.1",
     "babel-plugin-react-docgen": "^2.0.0",
     "bowser": "^1.6.1",
-    "carbon-components": "^9.48.0",
+    "carbon-components": "^9.61.4",
     "carbon-icons": "^7.0.5",
     "chalk": "^2.3.0",
     "cli-table": "^0.3.0",
@@ -274,12 +276,12 @@
   },
   "lint-staged": {
     "*.js": [
-      "yarn prettier",
-      "yarn lint",
+      "yarn prettier:staged",
+      "yarn lint:staged",
       "git add"
     ],
     "*.{css,md,scss}": [
-      "yarn prettier",
+      "yarn prettier:staged",
       "git add"
     ]
   },
@@ -352,5 +354,5 @@
       "enzyme-to-json/serializer"
     ]
   },
-  "bundleSizeThreshold": 80000
+  "bundleSizeThreshold": 85000
 }

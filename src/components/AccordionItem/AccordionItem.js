@@ -2,7 +2,10 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import classnames from 'classnames';
 import { iconChevronRight } from 'carbon-icons';
+import { settings } from 'carbon-components';
 import Icon from '../Icon';
+
+const { prefix } = settings;
 
 const defaultRenderExpando = props => <button {...props} />;
 
@@ -104,9 +107,9 @@ export default class AccordionItem extends Component {
 
     const classNames = classnames(
       {
-        'bx--accordion__item--active': this.state.open,
+        [`${prefix}--accordion__item--active`]: this.state.open,
       },
-      'bx--accordion__item',
+      `${prefix}--accordion__item`,
       className
     );
     return (
@@ -118,17 +121,18 @@ export default class AccordionItem extends Component {
         {...other}>
         <Expando
           type="button"
-          className="bx--accordion__heading"
-          role="tab"
+          aria-expanded={this.state.open}
+          className={`${prefix}--accordion__heading`}
           onClick={this.handleHeadingClick}>
           <Icon
-            className="bx--accordion__arrow"
+            className={`${prefix}--accordion__arrow`}
             icon={iconChevronRight}
             description={iconDescription}
+            role={null} // eslint-disable-line jsx-a11y/aria-role
           />
-          <div className="bx--accordion__title">{title}</div>
+          <div className={`${prefix}--accordion__title`}>{title}</div>
         </Expando>
-        <div className="bx--accordion__content">{children}</div>
+        <div className={`${prefix}--accordion__content`}>{children}</div>
       </li>
     );
   }

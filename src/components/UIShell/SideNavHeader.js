@@ -1,10 +1,13 @@
+import { settings } from 'carbon-components';
 import cx from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 import SideNavIcon from './SideNavIcon';
 
+const { prefix } = settings;
+
 const SideNavHeader = ({ className: customClassName, children, icon }) => {
-  const className = cx('bx--side-nav__header', customClassName);
+  const className = cx(`${prefix}--side-nav__header`, customClassName);
   return (
     <header className={className}>
       <SideNavIcon>{icon}</SideNavIcon>

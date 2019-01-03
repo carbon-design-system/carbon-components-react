@@ -4,6 +4,7 @@ import debounce from 'lodash.debounce';
 import Icon from '../Icon';
 import classNames from 'classnames';
 import { iconInfoGlyph } from 'carbon-icons';
+import { settings } from 'carbon-components';
 import FloatingMenu, {
   DIRECTION_LEFT,
   DIRECTION_TOP,
@@ -11,6 +12,8 @@ import FloatingMenu, {
   DIRECTION_BOTTOM,
 } from '../../internal/FloatingMenu';
 import ClickListener from '../../internal/ClickListener';
+
+const { prefix } = settings;
 
 const matchesFuncName =
   typeof Element !== 'undefined' &&
@@ -184,6 +187,11 @@ export default class Tooltip extends Component {
      * `true` if opening tooltip should be triggered by clicking the trigger button.
      */
     clickToOpen: PropTypes.bool,
+
+    /**
+     * Optional prop to specify the tabIndex of the Tooltip
+     */
+    tabIndex: PropTypes.number,
   };
 
   static defaultProps = {
@@ -343,18 +351,22 @@ export default class Tooltip extends Component {
       // Exclude `clickToOpen` from `other` to avoid passing it along to `<div>`
       // eslint-disable-next-line no-unused-vars
       clickToOpen,
+      tabIndex = 0,
       ...other
     } = this.props;
 
     const { open } = this.state;
 
     const tooltipClasses = classNames(
-      'bx--tooltip',
-      { 'bx--tooltip--shown': open },
+      `${prefix}--tooltip`,
+      { [`${prefix}--tooltip--shown`]: open },
       className
     );
 
-    const triggerClasses = classNames('bx--tooltip__trigger', triggerClassName);
+    const triggerClasses = classNames(
+      `${prefix}--tooltip__trigger`,
+      triggerClassName
+    );
     const ariaOwnsProps = !open
       ? {}
       : {
@@ -370,7 +382,7 @@ export default class Tooltip extends Component {
               <div
                 id={triggerId}
                 role="button"
-                tabIndex="0"
+                tabIndex={tabIndex}
                 onClick={evt => this.handleMouse(evt)}
                 onKeyDown={evt => this.handleKeyPress(evt)}
                 onMouseOver={evt => this.handleMouse(evt)}
@@ -393,8 +405,7 @@ export default class Tooltip extends Component {
             </div>
           ) : (
             <div
-              // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex
-              tabIndex="0"
+              tabIndex={tabIndex}
               id={triggerId}
               className={triggerClasses}
               ref={node => {
@@ -406,7 +417,8 @@ export default class Tooltip extends Component {
               onBlur={evt => this.handleMouse(evt)}
               aria-haspopup="true"
               aria-expanded={open}
-              {...ariaOwnsProps}>
+              {...ariaOwnsProps}
+              role="tooltip">
               {triggerText}
             </div>
           )}
@@ -431,7 +443,7 @@ export default class Tooltip extends Component {
               onFocus={evt => this.handleMouse(evt)}
               onBlur={evt => this.handleMouse(evt)}
               onContextMenu={evt => this.handleMouse(evt)}>
-              <span className="bx--tooltip__caret" />
+              <span className={`${prefix}--tooltip__caret`} />
               {children}
             </div>
           </FloatingMenu>
