@@ -41,7 +41,9 @@ describe('Selection', () => {
           <div>
             <button onClick={() => onItemChange(1)} />
             <ul>
-              {selectedItems.map((item, index) => <li key={index}>{item}</li>)}
+              {selectedItems.map((item, index) => (
+                <li key={index}>{item}</li>
+              ))}
             </ul>
           </div>
         )}
@@ -69,5 +71,20 @@ describe('Selection', () => {
     expect(wrapper.state('selectedItems')).toEqual([1]);
     wrapper.find('#clear-selection').simulate('click');
     expect(wrapper.state('selectedItems')).toEqual([]);
+  });
+
+  it('should disallow selection when disabled', () => {
+    const wrapper = mount(
+      <Selection
+        {...mockProps}
+        render={({ onItemChange }) => (
+          <button onClick={() => onItemChange(1)} />
+        )}
+        disabled
+      />
+    );
+    expect(wrapper.state('selectedItems').length).toBe(0);
+    wrapper.find('button').simulate('click');
+    expect(wrapper.state('selectedItems').length).toBe(0);
   });
 });

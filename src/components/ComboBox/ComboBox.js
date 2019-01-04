@@ -2,7 +2,10 @@ import cx from 'classnames';
 import Downshift from 'downshift';
 import PropTypes from 'prop-types';
 import React from 'react';
+import { settings } from 'carbon-components';
 import ListBox, { PropTypes as ListBoxPropTypes } from '../ListBox';
+
+const { prefix } = settings;
 
 const defaultItemToString = item => {
   if (typeof item === 'string') {
@@ -12,11 +15,7 @@ const defaultItemToString = item => {
   return item && item.label;
 };
 
-const defaultShouldFilterItem = ({ inputValue, item, itemToString }) =>
-  !inputValue ||
-  itemToString(item)
-    .toLowerCase()
-    .includes(inputValue.toLowerCase());
+const defaultShouldFilterItem = () => true;
 
 const getInputValue = (props, state) => {
   if (props.initialSelectedItem) {
@@ -24,6 +23,23 @@ const getInputValue = (props, state) => {
   }
 
   return state.inputValue || '';
+};
+
+const findHighlightedIndex = ({ items, itemToString }, inputValue) => {
+  if (!inputValue) {
+    return -1;
+  }
+
+  const searchValue = inputValue.toLowerCase();
+
+  for (let i = 0; i < items.length; i++) {
+    const item = itemToString(items[i]).toLowerCase();
+    if (item.indexOf(searchValue) !== -1) {
+      return i;
+    }
+  }
+
+  return -1;
 };
 
 export default class ComboBox extends React.Component {
@@ -130,6 +146,9 @@ export default class ComboBox extends React.Component {
 
   constructor(props) {
     super(props);
+
+    this.textInput = React.createRef();
+
     this.state = {
       inputValue: getInputValue(props, {}),
     };
@@ -160,8 +179,11 @@ export default class ComboBox extends React.Component {
     event.stopPropagation();
   };
 
-  handleOnInputValueChange = inputValue => {
+  handleOnInputValueChange = (inputValue, { setHighlightedIndex }) => {
     const { onInputChange } = this.props;
+
+    setHighlightedIndex(findHighlightedIndex(this.props, inputValue));
+
     this.setState(
       () => ({
         // Default to empty string if we have a false-y `inputValue`
@@ -173,6 +195,13 @@ export default class ComboBox extends React.Component {
         }
       }
     );
+  };
+
+  onToggleClick = isOpen => event => {
+    if (event.target === this.textInput.current && isOpen) {
+      event.preventDownshiftDefault = true;
+      event.persist();
+    }
   };
 
   render() {
@@ -195,7 +224,7 @@ export default class ComboBox extends React.Component {
       onInputChange, // eslint-disable-line no-unused-vars
       ...rest
     } = this.props;
-    const className = cx('bx--combo-box', containerClassName);
+    const className = cx(`${prefix}--combo-box`, containerClassName);
 
     return (
       <Downshift
@@ -222,10 +251,15 @@ export default class ComboBox extends React.Component {
             invalidText={invalidText}
             light={light}
             {...getRootProps({ refKey: 'innerRef' })}>
-            <ListBox.Field {...getButtonProps({ disabled })}>
+            <ListBox.Field
+              {...getButtonProps({
+                disabled,
+                onClick: this.onToggleClick(isOpen),
+              })}>
               <input
-                className="bx--text-input"
+                className={`${prefix}--text-input`}
                 aria-label={ariaLabel}
+                ref={this.textInput}
                 {...rest}
                 {...getInputProps({
                   disabled,
@@ -234,13 +268,12 @@ export default class ComboBox extends React.Component {
                   onKeyDown: this.handleOnInputKeyDown,
                 })}
               />
-              {inputValue &&
-                isOpen && (
-                  <ListBox.Selection
-                    clearSelection={clearSelection}
-                    translateWithId={translateWithId}
-                  />
-                )}
+              {inputValue && (
+                <ListBox.Selection
+                  clearSelection={clearSelection}
+                  translateWithId={translateWithId}
+                />
+              )}
               <ListBox.MenuIcon
                 isOpen={isOpen}
                 translateWithId={translateWithId}
@@ -253,7 +286,11 @@ export default class ComboBox extends React.Component {
                     <ListBox.MenuItem
                       key={itemToString(item)}
                       isActive={selectedItem === item}
-                      isHighlighted={highlightedIndex === index}
+                      isHighlighted={
+                        highlightedIndex === index ||
+                        (selectedItem && selectedItem.id === item.id) ||
+                        false
+                      }
                       {...getItemProps({ item, index })}>
                       {itemToString(item)}
                     </ListBox.MenuItem>

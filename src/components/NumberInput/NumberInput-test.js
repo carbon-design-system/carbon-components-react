@@ -42,7 +42,9 @@ describe('NumberInput', () => {
       });
 
       it('has the expected classes', () => {
-        expect(container.hasClass('bx--number')).toEqual(true);
+        expect(container.hasClass('bx--number bx--number--helpertext')).toEqual(
+          true
+        );
       });
 
       it('has renders with form-item wrapper', () => {
@@ -103,6 +105,9 @@ describe('NumberInput', () => {
         expect(wrapper.find('label').hasClass('bx--visually-hidden')).toEqual(
           true
         );
+        expect(
+          wrapper.find('.bx--number').hasClass('bx--number--nolabel')
+        ).toEqual(true);
       });
 
       describe('initial rendering', () => {

@@ -1,15 +1,14 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import classnames from 'classnames';
+import { settings } from 'carbon-components';
+
+const { prefix } = settings;
 
 const Accordion = ({ children, className, ...other }) => {
-  const classNames = classnames('bx--accordion', className);
+  const classNames = classnames(`${prefix}--accordion`, className);
   return (
-    <ul
-      className={classNames}
-      role="tablist"
-      aria-multiselectable="true"
-      {...other}>
+    <ul {...other} className={classNames}>
       {children}
     </ul>
   );

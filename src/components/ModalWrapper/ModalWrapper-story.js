@@ -1,14 +1,26 @@
 import React from 'react';
+import { iconAddSolid, iconSearch } from 'carbon-icons';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 
-import { withKnobs, boolean, text } from '@storybook/addon-knobs';
+import { withKnobs, boolean, text, select } from '@storybook/addon-knobs';
 import ModalWrapper from '../ModalWrapper';
 import TextInput from '../TextInput';
 import Select from '../Select';
 import SelectItem from '../SelectItem';
 import RadioButtonGroup from '../RadioButtonGroup';
 import RadioButton from '../RadioButton';
+
+const icons = {
+  None: 'None',
+  'Add with filled circle (iconAddSolid from `carbon-icons`)': 'iconAddSolid',
+  'Search (iconSearch from `carbon-icons`)': 'iconSearch',
+};
+
+const iconMap = {
+  iconAddSolid,
+  iconSearch,
+};
 
 const props = () => ({
   className: 'some-class',
@@ -18,8 +30,13 @@ const props = () => ({
     'The text in the trigger button (buttonTriggerText)',
     'Launch Modal'
   ),
+  triggerButtonIcon: iconMap[select('Icon (icon)', icons, 'none')],
   modalLabel: text('The modal label (optional) (modalLabel)', 'Label'),
   modalHeading: text('The modal heading (modalHeading)', 'Modal'),
+  selectorPrimaryFocus: text(
+    'Primary focus element selector (selectorPrimaryFocus)',
+    '[data-modal-primary-focus]'
+  ),
   primaryButtonText: text(
     'The text in the primary button (primaryButtonText)',
     'Save'
@@ -106,8 +123,7 @@ storiesOf('ModalWrapper', module)
         <TextInput
           id="test2"
           placeholder="Hint text here"
-          label="Text Input:"
-          data-modal-primary-focus
+          labelText="Text Input:"
         />
         <br />
         <Select id="select-1" labelText="Select">
