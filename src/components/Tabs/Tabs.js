@@ -186,12 +186,25 @@ export default class Tabs extends React.Component {
     } = this.props;
 
     const tabsWithProps = this.getTabs().map((tab, index) => {
+      /*
+       * The tab panel acts like a tab panel when the screen is wider, but acts
+       * like a select list when the screen is narrow.  In the wide case we want
+       * to allow the user to use the tab key to set the focus in the tab panel
+       * and then use the left and right arrow keys to navigate the tabs.  In the
+       * narrow case we want to use the tab key to select different options in
+       * the list.  
+       *
+       * We set the tab index based on the different states so the browser will treat
+       * the whole tab panel as a single focus component when it looks like a tab
+       * panel and separate components when it looks like a select list.
+       */
+      const tabIndex = !this.state.dropdownHidden ? 0 : index === this.state.selected ? 0 : -1
       const newTab = React.cloneElement(tab, {
         index,
         selected: index === this.state.selected,
         handleTabClick: this.handleTabClick(onSelectionChange),
         handleTabAnchorFocus: this.handleTabAnchorFocus(onSelectionChange),
-        tabIndex: index === this.state.selected ? 0 : -1,
+        tabIndex,
         ref: e => {
           this.setTabAt(index, e);
         },
