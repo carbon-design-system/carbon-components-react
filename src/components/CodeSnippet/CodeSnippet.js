@@ -145,7 +145,6 @@ export default class CodeSnippet extends Component {
         {componentsX ? (
           <ChevronDown16
             aria-hidden={true}
-            aria-label={expandCodeBtnText}
             alt={expandCodeBtnText}
             className={`${prefix}--icon-chevron--down ${prefix}--snippet__icon`}
             name="chevron--down"
