@@ -383,12 +383,12 @@ export default class Tooltip extends Component {
                 id={triggerId}
                 role="button"
                 tabIndex={tabIndex}
-                onClick={evt => this.handleMouse(evt)}
-                onKeyDown={evt => this.handleKeyPress(evt)}
-                onMouseOver={evt => this.handleMouse(evt)}
-                onMouseOut={evt => this.handleMouse(evt)}
-                onFocus={evt => this.handleMouse(evt)}
-                onBlur={evt => this.handleMouse(evt)}
+                onClick={this.handleMouse}
+                onKeyDown={this.handleKeyPress}
+                onMouseOver={this.handleMouse}
+                onMouseOut={this.handleMouse}
+                onFocus={this.handleMouse}
+                onBlur={this.handleMouse}
                 aria-haspopup="true"
                 aria-label={iconDescription}
                 aria-expanded={open}
@@ -412,10 +412,10 @@ export default class Tooltip extends Component {
               ref={node => {
                 this.triggerEl = node;
               }}
-              onMouseOver={evt => this.handleMouse(evt)}
-              onMouseOut={evt => this.handleMouse(evt)}
-              onFocus={evt => this.handleMouse(evt)}
-              onBlur={evt => this.handleMouse(evt)}
+              onMouseOver={this.handleMouse}
+              onMouseOut={this.handleMouse}
+              onFocus={this.handleMouse}
+              onBlur={this.handleMouse}
               aria-haspopup="true"
               aria-expanded={open}
               {...ariaOwnsProps}
@@ -439,11 +439,11 @@ export default class Tooltip extends Component {
               {...other}
               data-floating-menu-direction={direction}
               aria-labelledby={triggerId}
-              onMouseOver={evt => this.handleMouse(evt)}
-              onMouseOut={evt => this.handleMouse(evt)}
-              onFocus={evt => this.handleMouse(evt)}
-              onBlur={evt => this.handleMouse(evt)}
-              onContextMenu={evt => this.handleMouse(evt)}>
+              onMouseOver={this.handleMouse}
+              onMouseOut={this.handleMouse}
+              onFocus={this.handleMouse}
+              onBlur={this.handleMouse}
+              onContextMenu={this.handleMouse}>
               <span className={`${prefix}--tooltip__caret`} />
               {children}
             </div>
