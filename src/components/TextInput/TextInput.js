@@ -76,8 +76,8 @@ const TextInput = ({
   return (
     <>
       {label}
-      {input}
       {helper}
+      {input}
       {error}
     </>
   );
