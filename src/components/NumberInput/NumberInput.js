@@ -11,6 +11,7 @@ import { iconCaretUp, iconCaretDown } from 'carbon-icons';
 import Icon from '../Icon';
 import classNames from 'classnames';
 import { settings } from 'carbon-components';
+import { componentsX } from '../../internal/FeatureFlags';
 
 const { prefix } = settings;
 
@@ -117,7 +118,7 @@ export default class NumberInput extends Component {
     disabled: false,
     hideLabel: false,
     iconDescription: 'choose a number',
-    label: '',
+    label: componentsX ? '' : ' ',
     onChange: () => {},
     onClick: () => {},
     step: 1,
