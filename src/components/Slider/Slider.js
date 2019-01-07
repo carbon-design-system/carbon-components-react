@@ -470,7 +470,7 @@ export default class Slider extends PureComponent {
           {!hideTextInput && (
             <TextInput
               type={inputType}
-              id={`input-for-slider${id}`}
+              id="input-for-slider"
               className={inputClasses}
               value={value}
               onChange={this.handleChange}
