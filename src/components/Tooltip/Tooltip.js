@@ -401,7 +401,7 @@ export default class Tooltip extends Component {
                 {componentsX ? (
                   <Information
                     name={iconName}
-                    alt={iconDescription}
+                    aria-labelledby={triggerId}
                     aria-label={iconDescription}
                     ref={node => {
                       this.triggerEl = node;
