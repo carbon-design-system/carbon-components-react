@@ -10,6 +10,7 @@ import React, { Component } from 'react';
 import classNames from 'classnames';
 import { settings } from 'carbon-components';
 import Icon from '../Icon';
+import { componentsX } from '../../internal/FeatureFlags';
 
 const { prefix } = settings;
 
@@ -76,16 +77,14 @@ export default class DatePickerInput extends Component {
     });
 
     const datePickerIcon =
-      datePickerType === 'single' ? (
+      !componentsX && datePickerType === 'single' ? (
         <Icon
           name="calendar"
           className={`${prefix}--date-picker__icon`}
           description={iconDescription}
           onClick={openCalendar}
         />
-      ) : (
-        ''
-      );
+      ) : null;
 
     const label = labelText ? (
       <label htmlFor={id} className={labelClasses}>
