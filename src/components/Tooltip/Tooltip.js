@@ -4,6 +4,8 @@ import debounce from 'lodash.debounce';
 import Icon from '../Icon';
 import classNames from 'classnames';
 import { iconInfoGlyph } from 'carbon-icons';
+// TODO: import { Information } from '@carbon/icons-react';
+import Information from '@carbon/icons-react/lib/information/16';
 import { settings } from 'carbon-components';
 import FloatingMenu, {
   DIRECTION_LEFT,
@@ -12,6 +14,7 @@ import FloatingMenu, {
   DIRECTION_BOTTOM,
 } from '../../internal/FloatingMenu';
 import ClickListener from '../../internal/ClickListener';
+import { componentsX } from '../../internal/FeatureFlags';
 
 const { prefix } = settings;
 
@@ -364,7 +367,8 @@ export default class Tooltip extends Component {
     );
 
     const triggerClasses = classNames(
-      `${prefix}--tooltip__trigger`,
+      { [`${prefix}--tooltip__trigger`]: !componentsX },
+      { [`${prefix}--tooltip__label`]: componentsX },
       triggerClassName
     );
     const ariaOwnsProps = !open
@@ -381,6 +385,7 @@ export default class Tooltip extends Component {
               {triggerText}
               <div
                 id={triggerId}
+                className={componentsX ? `${prefix}--tooltip__trigger` : null}
                 role="button"
                 tabIndex={tabIndex}
                 onClick={this.handleMouse}
@@ -393,15 +398,26 @@ export default class Tooltip extends Component {
                 aria-label={iconDescription}
                 aria-expanded={open}
                 {...ariaOwnsProps}>
-                <Icon
-                  icon={!icon && !iconName ? iconInfoGlyph : icon}
-                  name={iconName}
-                  description={iconDescription}
-                  iconTitle={iconTitle}
-                  iconRef={node => {
-                    this.triggerEl = node;
-                  }}
-                />
+                {componentsX ? (
+                  <Information
+                    name={iconName}
+                    alt={iconDescription}
+                    aria-label={iconDescription}
+                    ref={node => {
+                      this.triggerEl = node;
+                    }}
+                  />
+                ) : (
+                  <Icon
+                    icon={!icon && !iconName ? iconInfoGlyph : icon}
+                    name={iconName}
+                    description={iconDescription}
+                    iconTitle={iconTitle}
+                    iconRef={node => {
+                      this.triggerEl = node;
+                    }}
+                  />
+                )}
               </div>
             </div>
           ) : (
