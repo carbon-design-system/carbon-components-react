@@ -8,7 +8,7 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
-import { withKnobs, select, text } from '@storybook/addon-knobs';
+import { withKnobs, select, text, boolean } from '@storybook/addon-knobs';
 import { iconAddSolid, iconSearch } from 'carbon-icons';
 import { AddFilled16, Search16 } from '@carbon/icons-react';
 import Icon from '../Icon';
@@ -53,6 +53,7 @@ const props = {
     kind: select('Button kind (kind in <Switch>)', kinds, 'anchor'),
     href: text('The link href (href in <Switch>)', ''),
     icon: iconMap[select('Icon (icon in <Switch>)', icons, 'none')],
+    disabled: boolean('Disabled (disabled)', false),
   }),
 };
 
