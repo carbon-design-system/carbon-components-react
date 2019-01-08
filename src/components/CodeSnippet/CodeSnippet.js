@@ -144,10 +144,10 @@ export default class CodeSnippet extends Component {
         </span>
         {componentsX ? (
           <ChevronDown16
-            aria-hidden={true}
-            alt={expandCodeBtnText}
+            aria-label={expandCodeBtnText}
             className={`${prefix}--icon-chevron--down ${prefix}--snippet__icon`}
             name="chevron--down"
+            role="img"
           />
         ) : (
           <Icon
