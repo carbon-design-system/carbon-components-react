@@ -40,7 +40,11 @@ const ListBoxMenuIcon = ({ isOpen, translateWithId: t }) => {
   return (
     <div className={className}>
       {componentsX ? (
-        <ChevronDown16 alt={description} name="chevron--down" aria-hidden />
+        <ChevronDown16
+          aria-label={description}
+          name="chevron--down"
+          aria-hidden
+        />
       ) : (
         <Icon
           icon={iconCaretDown}
