@@ -451,6 +451,7 @@ export default class Slider extends PureComponent {
               style={filledTrackStyle}
             />
             <input
+              className={`${prefix}--slider__input`}
               type="hidden"
               name={name}
               value={value}
