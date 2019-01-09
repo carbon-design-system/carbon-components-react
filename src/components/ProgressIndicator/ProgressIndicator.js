@@ -9,6 +9,7 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import classnames from 'classnames';
 import { settings } from 'carbon-components';
+import Tooltip from '../Tooltip';
 // TODO: import { CheckmarkOutline16 } from '@carbon/icons-react';
 import CheckmarkOutline16 from '@carbon/icons-react/lib/checkmark--outline/16';
 // TODO: import { Warning16 } from '@carbon/icons-react';
@@ -26,6 +27,8 @@ export const ProgressStep = ({ ...props }) => {
     complete,
     invalid,
     secondaryLabel,
+    overflowTooltipProps,
+    overflowTooltipChildren,
     disabled,
   } = props;
 
@@ -90,11 +93,25 @@ export const ProgressStep = ({ ...props }) => {
   return (
     <li className={classes}>
       {currentSvg || completeSvg || incompleteSvg}
-      <p
-        className={`${prefix}--progress-label`}
-        aria-describedby={componentsX ? 'label-tooltip' : null}>
-        {label}
-      </p>
+      {componentsX &&
+      overflowTooltipChildren !== undefined &&
+      overflowTooltipChildren !== null ? (
+        <Tooltip
+          direction="bottom"
+          showIcon={false}
+          triggerClassName={`${prefix}--progress-label`}
+          triggerText={label}
+          {...overflowTooltipProps}
+          style={{ display: 'block' }}>
+          {overflowTooltipChildren}
+        </Tooltip>
+      ) : (
+        <p
+          className={`${prefix}--progress-label`}
+          aria-describedby={componentsX ? 'label-tooltip' : null}>
+          {label}
+        </p>
+      )}
       {componentsX &&
       secondaryLabel !== null &&
       secondaryLabel !== undefined ? (
@@ -140,6 +157,16 @@ ProgressStep.propTypes = {
    * Provide an optional secondary label
    */
   secondaryLabel: PropTypes.string,
+
+  /**
+   * Provide the content of a progress step tooltip
+   */
+  overflowTooltipChildren: PropTypes.node,
+
+  /**
+   * Provide the props that describe a progress step tooltip
+   */
+  overflowTooltipProps: PropTypes.object,
 
   /**
    * Specify whether the step is disabled

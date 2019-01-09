@@ -18,26 +18,39 @@ storiesOf('Progress Indicator', module)
     'Default',
     () => (
       <ProgressIndicator
-        currentIndex={number('Current progress (currentIndex)', 3)}>
+        currentIndex={number('Current progress (currentIndex)', 1)}>
         <ProgressStep
           label="First step"
-          description="Step 1: Getting Started with Node.js"
+          description="Step 1: Getting started with Carbon Design System"
+          secondaryLabel="Optional label"
         />
         <ProgressStep
-          label="Second step"
-          description="Step 2: Getting Started with Node.js"
+          label="Second step with tooltip"
+          description="Step 2: Getting started with Carbon Design System"
+          overflowTooltipChildren={<p>Overflow tooltip content.</p>}
         />
         <ProgressStep
-          label="Third step"
-          description="Step 3: Getting Started with Node.js"
+          label="Third step with tooltip"
+          description="Step 3: Getting started with Carbon Design System"
+          overflowTooltipChildren={
+            <p>
+              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Animi
+              consequuntur hic ratione aliquid cupiditate, nesciunt saepe iste
+              blanditiis cumque maxime tenetur veniam est illo deserunt sint
+              quae pariatur. Laboriosam, consequatur.
+            </p>
+          }
         />
         <ProgressStep
           label="Fourth step"
-          description="Step 4: Getting Started with Node.js"
+          description="Step 4: Getting started with Carbon Design System"
+          invalid
+          secondaryLabel="Example invalid step"
         />
         <ProgressStep
           label="Fifth step"
-          description="Step 5: Getting Started with Node.js"
+          description="Step 5: Getting started with Carbon Design System"
+          disabled
         />
       </ProgressIndicator>
     ),
