@@ -75,6 +75,7 @@ exports[`MultiSelect.Filterable should render 1`] = `
         className="bx--multi-select bx--combo-box"
         disabled={false}
         innerRef={[Function]}
+        tabIndex="-1"
         type="default"
       >
         <div
@@ -83,7 +84,7 @@ exports[`MultiSelect.Filterable should render 1`] = `
           onClick={[Function]}
           onKeyDown={[Function]}
           role="listbox"
-          tabIndex="0"
+          tabIndex="-1"
         >
           <ListBoxField
             aria-expanded={false}
