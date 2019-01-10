@@ -230,7 +230,7 @@ export default class FilterableMultiSelect extends React.Component {
                 disabled={disabled}
                 invalid={invalid}
                 invalidText={invalidText}
-                tabIndex='-1'
+                tabIndex="-1"
                 {...getRootProps({ refKey: 'innerRef' })}>
                 <ListBox.Field {...getButtonProps({ disabled })}>
                   {selectedItem.length > 0 && (
