@@ -11,7 +11,6 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { settings } from 'carbon-components';
 import ListBox, { PropTypes as ListBoxPropTypes } from '../ListBox';
-import FormItem from '../FormItem';
 
 const { prefix } = settings;
 
@@ -203,11 +202,11 @@ export default class DropdownV2 extends React.Component {
       </Downshift>
     );
     return title || helper ? (
-      <FormItem>
+      <>
         {title}
         {helper}
         {Dropdown}
-      </FormItem>
+      </>
     ) : (
       Dropdown
     );
