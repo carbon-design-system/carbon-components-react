@@ -443,7 +443,7 @@ export class ExpandableTile extends Component {
 
     const tileStyle = {
       maxHeight: this.state.expanded
-        ? `none`
+        ? null
         : this.state.tileMaxHeight + this.state.tilePadding,
     };
     const content = this.getChildren().map((child, index) => {
