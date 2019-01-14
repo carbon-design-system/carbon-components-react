@@ -101,8 +101,7 @@ export const ProgressStep = ({ ...props }) => {
           showIcon={false}
           triggerClassName={`${prefix}--progress-label`}
           triggerText={label}
-          {...overflowTooltipProps}
-          style={{ display: 'block' }}>
+          {...overflowTooltipProps}>
           {overflowTooltipChildren}
         </Tooltip>
       ) : (
