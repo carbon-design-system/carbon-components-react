@@ -57,7 +57,7 @@ const ListBoxSelection = ({
       title={description}>
       {selectionCount}
       {componentsX ? (
-        <Close16 aria-label={description} role="img" />
+        <Close16 role="img" />
       ) : (
         <Icon icon={iconClose} description={description} focusable="false" />
       )}
