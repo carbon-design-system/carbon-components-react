@@ -25,6 +25,7 @@ const props = () => ({
     1500
   ),
   onSuccess: action('onSuccess'),
+  alignTextLeft: boolean('Align text to the left of the spinner', false),
 });
 
 storiesOf('InlineLoading', module)
@@ -105,7 +106,7 @@ storiesOf('InlineLoading', module)
       info: {
         text: `
             This is a full example of how to levarage the <InlineLoading /> component to create a nice user experience when submitting a form.
-    
+
             For the full source code of this example, check out the 'story' panel below.
           `,
       },

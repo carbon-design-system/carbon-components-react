@@ -57,6 +57,10 @@ describe('Loading', () => {
         'Loading Things...'
       );
     });
+
+    it('should render the loading spinner first by default', () => {
+      expect(wrapper.find('.bx--inline-loading').childAt(0).hasClass('bx--inline-loading__animation')).toEqual(true)
+    });
   });
 
   describe('Success state should render properly', () => {
@@ -87,4 +91,12 @@ describe('Loading', () => {
       );
     });
   });
+
+  describe('alignTextLeft prop should render properly', () => {
+    const wrapper = mount(<InlineLoading description="Loading Things..." alignTextLeft />);
+    
+    it('should render the text first', () => {
+      expect(wrapper.find('.bx--inline-loading').childAt(0).hasClass('bx--inline-loading__text')).toEqual(true)
+    });
+  })
 });

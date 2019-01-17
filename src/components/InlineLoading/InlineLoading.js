@@ -40,6 +40,11 @@ export default class InlineLoading extends React.Component {
      * Provide a delay for the `setTimeout` for success
      */
     successDelay: PropTypes.number,
+
+    /**
+     * Align text to the left of the loading spinner
+     */
+     alignTextLeft: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -54,6 +59,7 @@ export default class InlineLoading extends React.Component {
       description,
       onSuccess,
       successDelay,
+      alignTextLeft,
       ...other
     } = this.props;
 
@@ -87,6 +93,19 @@ export default class InlineLoading extends React.Component {
       <p className={`${prefix}--inline-loading__text`}>{description}</p>
     );
 
+    // Return text first
+    if (alignTextLeft) {
+      return (
+        <div className={loadingClasses} {...other}>
+          {description && loadingText}
+          <div className={`${prefix}--inline-loading__animation`}>
+            {getLoading()}
+          </div>
+        </div>
+      );
+    }
+
+    // Default text to the right
     return (
       <div className={loadingClasses} {...other}>
         <div className={`${prefix}--inline-loading__animation`}>
