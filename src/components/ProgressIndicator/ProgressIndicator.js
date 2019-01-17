@@ -30,6 +30,7 @@ export const ProgressStep = ({ ...props }) => {
     overflowTooltipProps,
     overflowTooltipChildren,
     disabled,
+    tooltipId,
   } = props;
 
   const classes = classnames({
@@ -101,13 +102,14 @@ export const ProgressStep = ({ ...props }) => {
           showIcon={false}
           triggerClassName={`${prefix}--progress-label`}
           triggerText={label}
+          tooltipId={tooltipId}
           {...overflowTooltipProps}>
           {overflowTooltipChildren}
         </Tooltip>
       ) : (
         <p
           className={`${prefix}--progress-label`}
-          aria-describedby={componentsX ? 'label-tooltip' : null}>
+          aria-describedby={componentsX ? tooltipId : null}>
           {label}
         </p>
       )}
@@ -171,6 +173,11 @@ ProgressStep.propTypes = {
    * Specify whether the step is disabled
    */
   disabled: PropTypes.bool,
+
+  /**
+   * The ID of the tooltip content.
+   */
+  tooltipId: PropTypes.string,
 };
 
 export class ProgressIndicator extends Component {
