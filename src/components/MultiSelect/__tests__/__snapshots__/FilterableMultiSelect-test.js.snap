@@ -75,7 +75,7 @@ exports[`MultiSelect.Filterable should render 1`] = `
         className="bx--multi-select bx--combo-box"
         disabled={false}
         innerRef={[Function]}
-        tabIndex="-1"
+        innerTabIndex="-1"
         type="default"
       >
         <div
