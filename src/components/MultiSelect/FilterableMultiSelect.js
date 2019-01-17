@@ -122,8 +122,7 @@ export default class FilterableMultiSelect extends React.Component {
         this.setState({ highlightedIndex: changes.highlightedIndex });
         break;
       case Downshift.stateChangeTypes.keyDownArrowDown:
-        this.setState({ highlightedIndex: changes.highlightedIndex });
-        this.setState({ isOpen: true });
+        this.setState({ highlightedIndex: changes.highlightedIndex, isOpen: true });
         break;
       case Downshift.stateChangeTypes.keyDownEscape:
       case Downshift.stateChangeTypes.mouseUp:
@@ -230,7 +229,7 @@ export default class FilterableMultiSelect extends React.Component {
                 disabled={disabled}
                 invalid={invalid}
                 invalidText={invalidText}
-                tabIndex="-1"
+                innerTabIndex="-1"
                 {...getRootProps({ refKey: 'innerRef' })}>
                 <ListBox.Field {...getButtonProps({ disabled })}>
                   {selectedItem.length > 0 && (

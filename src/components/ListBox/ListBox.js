@@ -34,7 +34,7 @@ const ListBox = ({
   invalid,
   invalidText,
   light,
-  tabIndex,
+  innerTabIndex,
   ...rest
 }) => {
   const className = cx({
@@ -50,7 +50,7 @@ const ListBox = ({
         {...rest}
         role="listbox"
         aria-label={ariaLabel}
-        tabIndex={tabIndex || '0'}
+        tabIndex={innerTabIndex || '0'}
         className={className}
         ref={innerRef}
         onKeyDown={handleOnKeyDown}
