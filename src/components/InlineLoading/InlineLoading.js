@@ -44,7 +44,7 @@ export default class InlineLoading extends React.Component {
     /**
      * Align text to the left of the loading spinner
      */
-     alignTextLeft: PropTypes.bool,
+    alignTextLeft: PropTypes.bool,
   };
 
   static defaultProps = {

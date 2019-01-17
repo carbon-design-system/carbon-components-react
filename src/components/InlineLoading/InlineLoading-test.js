@@ -59,7 +59,12 @@ describe('Loading', () => {
     });
 
     it('should render the loading spinner first by default', () => {
-      expect(wrapper.find('.bx--inline-loading').childAt(0).hasClass('bx--inline-loading__animation')).toEqual(true)
+      expect(
+        wrapper
+          .find('.bx--inline-loading')
+          .childAt(0)
+          .hasClass('bx--inline-loading__animation')
+      ).toEqual(true);
     });
   });
 
@@ -93,10 +98,17 @@ describe('Loading', () => {
   });
 
   describe('alignTextLeft prop should render properly', () => {
-    const wrapper = mount(<InlineLoading description="Loading Things..." alignTextLeft />);
-    
+    const wrapper = mount(
+      <InlineLoading description="Loading Things..." alignTextLeft />
+    );
+
     it('should render the text first', () => {
-      expect(wrapper.find('.bx--inline-loading').childAt(0).hasClass('bx--inline-loading__text')).toEqual(true)
+      expect(
+        wrapper
+          .find('.bx--inline-loading')
+          .childAt(0)
+          .hasClass('bx--inline-loading__text')
+      ).toEqual(true);
     });
-  })
+  });
 });
