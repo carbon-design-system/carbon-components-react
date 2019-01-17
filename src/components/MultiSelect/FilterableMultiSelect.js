@@ -122,7 +122,10 @@ export default class FilterableMultiSelect extends React.Component {
         this.setState({ highlightedIndex: changes.highlightedIndex });
         break;
       case Downshift.stateChangeTypes.keyDownArrowDown:
-        this.setState({ highlightedIndex: changes.highlightedIndex, isOpen: true });
+        this.setState({
+          highlightedIndex: changes.highlightedIndex,
+          isOpen: true,
+        });
         break;
       case Downshift.stateChangeTypes.keyDownEscape:
       case Downshift.stateChangeTypes.mouseUp:
