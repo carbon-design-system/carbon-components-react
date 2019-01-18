@@ -192,7 +192,7 @@ class FloatingMenu extends React.Component {
   };
 
   /**
-   * The cached refernce to the menu container.
+   * The cached reference to the menu container.
    * Only used if React portal API is not available.
    * @type {Element}
    * @private
