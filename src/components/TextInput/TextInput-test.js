@@ -27,7 +27,7 @@ describe('TextInput', () => {
       it('renders as expected', () => {
         expect(textInput().length).toBe(1);
       });
-      
+
       it('should accept refs', () => {
         class MyComponent extends React.Component {
           constructor(props) {
