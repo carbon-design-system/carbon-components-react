@@ -12,6 +12,7 @@ import isEqual from 'lodash.isequal';
 import { settings } from 'carbon-components';
 import TextInput from '../TextInput';
 import { sliderValuePropSync } from '../../internal/FeatureFlags';
+import { componentsX } from '../../internal/FeatureFlags';
 
 const { prefix } = settings;
 
@@ -417,6 +418,11 @@ export default class Slider extends PureComponent {
           {labelText}
         </label>
         <div className={`${prefix}--slider-container`}>
+          {componentsX && (
+            <span className={`${prefix}--slider__range-label`}>
+              {formatLabel(min, minLabel)}
+            </span>
+          )}
           <div
             className={sliderClasses}
             ref={node => {
@@ -462,9 +468,11 @@ export default class Slider extends PureComponent {
               onChange={this.handleChange}
             />
           </div>
-          <span className={`${prefix}--slider__range-label`}>
-            {formatLabel(min, minLabel)}
-          </span>
+          {!componentsX && (
+            <span className={`${prefix}--slider__range-label`}>
+              {formatLabel(min, minLabel)}
+            </span>
+          )}
           <span className={`${prefix}--slider__range-label`}>
             {formatLabel(max, maxLabel)}
           </span>
