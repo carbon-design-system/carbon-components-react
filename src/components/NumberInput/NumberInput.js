@@ -12,6 +12,10 @@ import classNames from 'classnames';
 import { settings } from 'carbon-components';
 // TODO: import { WarningFilled16 } from '@carbon/icons-react';
 import WarningFilled16 from '@carbon/icons-react/lib/warning--filled/16';
+// TODO: import { CaretDownGlyph } from '@carbon/icons-react';
+import CaretDownGlyph from '@carbon/icons-react/lib/caret--down/index';
+// TODO: import { CaretUpGlyph } from '@carbon/icons-react';
+import CaretUpGlyph from '@carbon/icons-react/lib/caret--up/index';
 import Icon from '../Icon';
 import { componentsX } from '../../internal/FeatureFlags';
 
@@ -268,45 +272,64 @@ export default class NumberInput extends Component {
       <div className={`${prefix}--form-item`}>
         <div className={numberInputClasses} {...inputWrapperProps}>
           {componentsX && labelText}
+          {componentsX && helper}
           {componentsX && (
-            <input
-              type="number"
-              pattern="[0-9]*"
-              {...other}
-              {...props}
-              ref={this._handleInputRef}
-            />
+            <div className={`${prefix}--number__input-wrapper`}>
+              <input
+                type="number"
+                pattern="[0-9]*"
+                {...other}
+                {...props}
+                ref={this._handleInputRef}
+              />
+              {invalid && (
+                <WarningFilled16
+                  className={`${prefix}--number__invalid`}
+                  role="img"
+                />
+              )}
+              <div className={`${prefix}--number__controls`}>
+                <button
+                  className={`${prefix}--number__control-btn up-icon`}
+                  {...buttonProps}
+                  onClick={evt => this.handleArrowClick(evt, 'up')}>
+                  <CaretUpGlyph className="up-icon" />
+                </button>
+                <button
+                  className={`${prefix}--number__control-btn down-icon`}
+                  {...buttonProps}
+                  onClick={evt => this.handleArrowClick(evt, 'down')}>
+                  <CaretDownGlyph className="down-icon" />
+                </button>
+              </div>
+            </div>
           )}
-          {componentsX && invalid ? (
-            <WarningFilled16
-              className={`${prefix}--number__invalid`}
-              role="img"
-            />
-          ) : null}
-          <div className={`${prefix}--number__controls`}>
-            <button
-              className={`${prefix}--number__control-btn up-icon`}
-              {...buttonProps}
-              onClick={evt => this.handleArrowClick(evt, 'up')}>
-              <Icon
-                className="up-icon"
-                icon={iconCaretUp}
-                description={this.props.iconDescription}
-                viewBox="0 0 10 5"
-              />
-            </button>
-            <button
-              className={`${prefix}--number__control-btn down-icon`}
-              {...buttonProps}
-              onClick={evt => this.handleArrowClick(evt, 'down')}>
-              <Icon
-                className="down-icon"
-                icon={iconCaretDown}
-                viewBox="0 0 10 5"
-                description={this.props.iconDescription}
-              />
-            </button>
-          </div>
+          {!componentsX && (
+            <div className={`${prefix}--number__controls`}>
+              <button
+                className={`${prefix}--number__control-btn up-icon`}
+                {...buttonProps}
+                onClick={evt => this.handleArrowClick(evt, 'up')}>
+                <Icon
+                  className="up-icon"
+                  icon={iconCaretUp}
+                  description={this.props.iconDescription}
+                  viewBox="0 0 10 5"
+                />
+              </button>
+              <button
+                className={`${prefix}--number__control-btn down-icon`}
+                {...buttonProps}
+                onClick={evt => this.handleArrowClick(evt, 'down')}>
+                <Icon
+                  className="down-icon"
+                  icon={iconCaretDown}
+                  viewBox="0 0 10 5"
+                  description={this.props.iconDescription}
+                />
+              </button>
+            </div>
+          )}
           {!componentsX && labelText}
           {!componentsX && (
             <input
@@ -318,7 +341,7 @@ export default class NumberInput extends Component {
             />
           )}
           {error}
-          {helper}
+          {!componentsX && helper}
         </div>
       </div>
     );
