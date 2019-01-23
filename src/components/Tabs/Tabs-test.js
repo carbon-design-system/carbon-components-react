@@ -104,22 +104,22 @@ describe('Tabs', () => {
     );
 
     it('renders expected className', () => {
-      const tabContentClass = 'tab-content';
+      const tabContentClass = 'bx--tab-content';
       expect(
         wrapper
-          .find('.tab-content')
+          .find('.bx--tab-content')
           .first()
           .hasClass(tabContentClass)
       ).toBe(true);
     });
 
     it('renders content children as expected', () => {
-      expect(wrapper.find('.tab-content').length).toEqual(2);
+      expect(wrapper.find('.bx--tab-content').length).toEqual(2);
     });
 
     it('renders hidden props with boolean value', () => {
       const hiddenProp = wrapper
-        .find('.tab-content')
+        .find('.bx--tab-content')
         .first()
         .props().hidden;
       expect(typeof hiddenProp).toBe('boolean');
@@ -127,7 +127,7 @@ describe('Tabs', () => {
 
     it('renders selected props with boolean value', () => {
       const selectedProp = wrapper
-        .find('.tab-content')
+        .find('.bx--tab-content')
         .first()
         .props().hidden;
       expect(typeof selectedProp).toBe('boolean');
