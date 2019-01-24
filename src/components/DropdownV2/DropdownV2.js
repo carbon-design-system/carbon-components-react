@@ -42,6 +42,11 @@ export default class DropdownV2 extends React.Component {
     itemToString: PropTypes.func,
 
     /**
+     * Optional function to render items as custom components instead of strings.
+     */
+    itemToElement: PropTypes.func,
+
+    /**
      * `onChange` is a utility for this controlled component to communicate to a
      * consuming component what kind of internal state changes are occuring.
      */
@@ -65,6 +70,7 @@ export default class DropdownV2 extends React.Component {
     disabled: false,
     type: 'default',
     itemToString: defaultItemToString,
+    itemToElement: null,
   };
 
   handleOnChange = selectedItem => {
@@ -80,11 +86,14 @@ export default class DropdownV2 extends React.Component {
       items,
       label,
       itemToString,
+      itemToElement,
       type,
       initialSelectedItem,
       selectedItem,
     } = this.props;
     const className = cx('bx--dropdown-v2', containerClassName);
+    // needs to be Capitalized for react to render it correctly
+    const ItemToElement = itemToElement;
     return (
       <Downshift
         onChange={this.handleOnChange}
@@ -120,7 +129,11 @@ export default class DropdownV2 extends React.Component {
                     isActive={selectedItem === item}
                     isHighlighted={highlightedIndex === index}
                     {...getItemProps({ item, index })}>
-                    {itemToString(item)}
+                    {itemToElement ? (
+                      <ItemToElement key={itemToString(item)} {...item} />
+                    ) : (
+                      itemToString(item)
+                    )}
                   </ListBox.MenuItem>
                 ))}
               </ListBox.Menu>
