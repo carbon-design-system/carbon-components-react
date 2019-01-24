@@ -1,6 +1,16 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import PropTypes from 'prop-types';
 import React from 'react';
 import classNames from 'classnames';
+import { settings } from 'carbon-components';
+
+const { prefix } = settings;
 
 const Checkbox = ({
   className,
@@ -11,16 +21,17 @@ const Checkbox = ({
   hideLabel,
   wrapperClassName,
   title = '',
+  forwardRef: ref,
   ...other
 }) => {
   let input;
-  const labelClasses = classNames('bx--checkbox-label', className);
+  const labelClasses = classNames(`${prefix}--checkbox-label`, className);
   const innerLabelClasses = classNames({
-    'bx--visually-hidden': hideLabel,
+    [`${prefix}--visually-hidden`]: hideLabel,
   });
   const wrapperClasses = classNames(
-    'bx--form-item',
-    'bx--checkbox-wrapper',
+    `${prefix}--form-item`,
+    `${prefix}--checkbox-wrapper`,
     wrapperClassName
   );
 
@@ -30,16 +41,19 @@ const Checkbox = ({
         {...other}
         type="checkbox"
         onChange={evt => {
-          onChange(input.checked, id, evt);
+          onChange(evt.target.checked, id, evt);
         }}
-        className="bx--checkbox"
+        className={`${prefix}--checkbox`}
         id={id}
-        ref={el => {
-          input = el;
-          if (input) {
-            input.indeterminate = indeterminate;
-          }
-        }}
+        ref={
+          ref ||
+          (el => {
+            input = el;
+            if (input) {
+              input.indeterminate = indeterminate;
+            }
+          })
+        }
       />
       <label htmlFor={id} className={labelClasses} title={title || null}>
         <span className={innerLabelClasses}>{labelText}</span>
@@ -112,4 +126,6 @@ Checkbox.defaultProps = {
   indeterminate: false,
 };
 
-export default Checkbox;
+export default React.forwardRef((props, ref) => (
+  <Checkbox {...props} forwardRef={ref} />
+));

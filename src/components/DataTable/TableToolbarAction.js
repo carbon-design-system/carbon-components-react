@@ -1,8 +1,18 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import cx from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
+import { settings } from 'carbon-components';
 import Icon from '../Icon';
 import isRequiredOneOf from '../../prop-types/isRequiredOneOf';
+
+const { prefix } = settings;
 
 const TableToolbarAction = ({
   className,
@@ -11,11 +21,11 @@ const TableToolbarAction = ({
   iconDescription,
   ...rest
 }) => {
-  const toolbarActionClasses = cx(className, 'bx--toolbar-action');
+  const toolbarActionClasses = cx(className, `${prefix}--toolbar-action`);
   return (
     <button className={toolbarActionClasses} {...rest}>
       <Icon
-        className="bx--toolbar-action__icon"
+        className={`${prefix}--toolbar-action__icon`}
         icon={icon}
         name={iconName}
         description={iconDescription}

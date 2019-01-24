@@ -1,6 +1,16 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import PropTypes from 'prop-types';
 import React from 'react';
 import classNames from 'classnames';
+import { settings } from 'carbon-components';
+
+const { prefix } = settings;
 
 const Toggle = ({
   className,
@@ -9,13 +19,14 @@ const Toggle = ({
   onChange,
   onToggle,
   id,
+  labelText,
   labelA,
   labelB,
   ...other
 }) => {
   let input;
   const wrapperClasses = classNames({
-    'bx--form-item': true,
+    [`${prefix}--form-item`]: true,
     [className]: className,
   });
 
@@ -27,14 +38,14 @@ const Toggle = ({
     checkedProps.defaultChecked = defaultToggled;
   }
 
-  return (
+  const ToggleBody = () => (
     <div className={wrapperClasses}>
       <input
         {...other}
         {...checkedProps}
         type="checkbox"
         id={id}
-        className="bx--toggle"
+        className={`${prefix}--toggle`}
         onChange={evt => {
           onChange && onChange(evt);
           onToggle(input.checked, id, evt);
@@ -44,12 +55,21 @@ const Toggle = ({
         }}
       />
 
-      <label className="bx--toggle__label" htmlFor={id}>
-        <span className="bx--toggle__text--left">{labelA}</span>
-        <span className="bx--toggle__appearance" />
-        <span className="bx--toggle__text--right">{labelB}</span>
+      <label className={`${prefix}--toggle__label`} htmlFor={id}>
+        <span className={`${prefix}--toggle__text--left`}>{labelA}</span>
+        <span className={`${prefix}--toggle__appearance`} />
+        <span className={`${prefix}--toggle__text--right`}>{labelB}</span>
       </label>
     </div>
+  );
+
+  return labelText ? (
+    <fieldset className={`${prefix}--fieldset`}>
+      <legend className={`${prefix}--label`}>{labelText}</legend>
+      <ToggleBody />
+    </fieldset>
+  ) : (
+    <ToggleBody />
   );
 };
 
@@ -92,6 +112,7 @@ Toggle.propTypes = {
 
 Toggle.defaultProps = {
   defaultToggled: false,
+  label: '',
   labelA: 'Off',
   labelB: 'On',
   onToggle: () => {},

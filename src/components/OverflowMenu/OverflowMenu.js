@@ -1,9 +1,17 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import invariant from 'invariant';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import classNames from 'classnames';
 import warning from 'warning';
 import { iconOverflowMenu } from 'carbon-icons';
+import { settings } from 'carbon-components';
 import ClickListener from '../../internal/ClickListener';
 import FloatingMenu, {
   DIRECTION_TOP,
@@ -11,6 +19,8 @@ import FloatingMenu, {
 } from '../../internal/FloatingMenu';
 import OptimizedResize from '../../internal/OptimizedResize';
 import Icon from '../Icon';
+
+const { prefix } = settings;
 
 const matchesFuncName =
   typeof Element !== 'undefined' &&
@@ -344,12 +354,19 @@ export default class OverflowMenu extends Component {
 
   handleKeyPress = evt => {
     // only respond to key events when the menu is closed, so that menu items still respond to key events
+    const key = evt.key || evt.which;
     if (!this.state.open) {
-      const key = evt.key || evt.which;
-
       if (key === 'Enter' || key === 13 || key === ' ' || key === 32) {
         this.setState({ open: true });
       }
+    }
+
+    // Close the overflow menu on escape
+    if (key === 'Escape' || key === 'Esc' || key === 27) {
+      this.closeMenu();
+      // Stop the esc keypress from bubbling out and closing something it shouldn't
+      evt.stopPropagation();
+      evt.preventDefault();
     }
   };
 
@@ -414,7 +431,10 @@ export default class OverflowMenu extends Component {
           if (
             !menuBody.contains(target) &&
             this.menuEl &&
-            !matches(target, '.bx--overflow-menu,.bx--overflow-menu-options')
+            !matches(
+              target,
+              `.${prefix}--overflow-menu,.${prefix}--overflow-menu-options`
+            )
           ) {
             this.closeMenu();
           }
@@ -465,19 +485,22 @@ export default class OverflowMenu extends Component {
 
     const overflowMenuClasses = classNames(
       this.props.className,
-      'bx--overflow-menu',
+      `${prefix}--overflow-menu`,
       {
-        'bx--overflow-menu--open': open,
+        [`${prefix}--overflow-menu--open`]: open,
       }
     );
 
-    const overflowMenuOptionsClasses = classNames('bx--overflow-menu-options', {
-      'bx--overflow-menu--flip': this.props.flipped,
-      'bx--overflow-menu-options--open': open,
-    });
+    const overflowMenuOptionsClasses = classNames(
+      `${prefix}--overflow-menu-options`,
+      {
+        [`${prefix}--overflow-menu--flip`]: this.props.flipped,
+        [`${prefix}--overflow-menu-options--open`]: open,
+      }
+    );
 
     const overflowMenuIconClasses = classNames(
-      'bx--overflow-menu__icon',
+      `${prefix}--overflow-menu__icon`,
       iconClass
     );
 
@@ -528,7 +551,7 @@ export default class OverflowMenu extends Component {
       <ClickListener onClickOutside={this.handleClickOutside}>
         <div
           {...other}
-          role="button"
+          role="menu"
           aria-haspopup
           aria-expanded={this.state.open}
           className={overflowMenuClasses}

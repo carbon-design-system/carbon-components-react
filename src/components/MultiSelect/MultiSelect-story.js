@@ -1,7 +1,14 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
-import { withInfo } from '@storybook/addon-info';
+
 import { withKnobs, boolean, select, text } from '@storybook/addon-knobs';
 import MultiSelect from '../MultiSelect';
 
@@ -20,8 +27,8 @@ const defaultLabel = 'MultiSelect Label';
 const defaultPlaceholder = 'Filter';
 
 const types = {
-  default: 'Default (default)',
-  inline: 'Inline (inline)',
+  'Default (default)': 'default',
+  'Inline (inline)': 'inline',
 };
 
 const props = () => ({
@@ -46,11 +53,7 @@ storiesOf('MultiSelect', module)
   .addDecorator(withKnobs)
   .add(
     'default',
-    withInfo({
-      text: `
-        MultiSelect
-      `,
-    })(() => {
+    () => {
       const { filterable, ...multiSelectProps } = props();
       const ComponentToUse = !filterable ? MultiSelect : MultiSelect.Filterable;
       const placeholder = !filterable ? undefined : defaultPlaceholder;
@@ -65,15 +68,18 @@ storiesOf('MultiSelect', module)
           />
         </div>
       );
-    })
+    },
+    {
+      info: {
+        text: `
+            MultiSelect
+          `,
+      },
+    }
   )
   .add(
     'with initial selected items',
-    withInfo({
-      text: `
-        Provide a set of items to initially select in the control
-      `,
-    })(() => {
+    () => {
       const { filterable, ...multiSelectProps } = props();
       const ComponentToUse = !filterable ? MultiSelect : MultiSelect.Filterable;
       const placeholder = !filterable ? undefined : defaultPlaceholder;
@@ -88,5 +94,12 @@ storiesOf('MultiSelect', module)
           />
         </div>
       );
-    })
+    },
+    {
+      info: {
+        text: `
+            Provide a set of items to initially select in the control
+          `,
+      },
+    }
   );

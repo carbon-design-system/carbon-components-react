@@ -1,3 +1,10 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import React from 'react';
 import OverflowMenuItem from '../OverflowMenuItem';
 import { shallow } from 'enzyme';
@@ -37,6 +44,15 @@ describe('OverflowMenuItem', () => {
       });
 
       expect(wrapper.hasClass('bx--overflow-menu--divider')).toEqual(true);
+    });
+
+    it('renders an anchor when passed href', () => {
+      const wrapper = shallowRender({
+        itemText: 'testing',
+        href: 'testing',
+      });
+
+      expect(wrapper.find('a').length).toBe(1);
     });
   });
 });

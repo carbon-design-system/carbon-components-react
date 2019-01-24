@@ -1,8 +1,19 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import classnames from 'classnames';
 import { iconChevronRight } from 'carbon-icons';
+import { settings } from 'carbon-components';
 import Icon from '../Icon';
+import { match, keys } from '../../tools/key';
+
+const { prefix } = settings;
 
 const defaultRenderExpando = props => <button {...props} />;
 
@@ -81,11 +92,12 @@ export default class AccordionItem extends Component {
     this.props.onHeadingClick({ isOpen: open, event: evt });
   };
 
-  handleKeyPress = evt => {
-    const isKeyPressTarget = evt.target === evt.currentTarget;
-    const isValidKeyPress = [13, 32].indexOf(evt.which) !== -1;
-
-    if (isKeyPressTarget && isValidKeyPress) {
+  handleKeyDown = evt => {
+    if (
+      match(evt.which, keys.ESC) &&
+      this.state.open &&
+      evt.target.classList.contains(`${prefix}--accordion__heading`)
+    ) {
       this.handleHeadingClick(evt);
     }
   };
@@ -104,31 +116,32 @@ export default class AccordionItem extends Component {
 
     const classNames = classnames(
       {
-        'bx--accordion__item--active': this.state.open,
+        [`${prefix}--accordion__item--active`]: this.state.open,
       },
-      'bx--accordion__item',
+      `${prefix}--accordion__item`,
       className
     );
     return (
       <li
         className={classNames}
         onClick={this.handleClick}
-        onKeyPress={this.handleKeyPress}
+        onKeyDown={this.handleKeyDown}
         role="presentation"
         {...other}>
         <Expando
           type="button"
-          className="bx--accordion__heading"
-          role="tab"
+          aria-expanded={this.state.open}
+          className={`${prefix}--accordion__heading`}
           onClick={this.handleHeadingClick}>
           <Icon
-            className="bx--accordion__arrow"
+            className={`${prefix}--accordion__arrow`}
             icon={iconChevronRight}
             description={iconDescription}
+            role={null} // eslint-disable-line jsx-a11y/aria-role
           />
-          <div className="bx--accordion__title">{title}</div>
+          <div className={`${prefix}--accordion__title`}>{title}</div>
         </Expando>
-        <div className="bx--accordion__content">{children}</div>
+        <div className={`${prefix}--accordion__content`}>{children}</div>
       </li>
     );
   }

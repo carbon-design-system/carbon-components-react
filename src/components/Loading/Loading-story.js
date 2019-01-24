@@ -1,6 +1,13 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import { withInfo } from '@storybook/addon-info';
+
 import { withKnobs, boolean } from '@storybook/addon-knobs';
 import Loading from '../Loading';
 
@@ -14,13 +21,16 @@ storiesOf('Loading', module)
   .addDecorator(withKnobs)
   .add(
     'Default',
-    withInfo({
-      text: `
-        Loading spinners are used when retrieving data or performing slow computations,
-        and help to notify users that loading is underway. The 'active' property is true by default;
-        set to false to end the animation.
-      `,
-    })(() => {
+    () => {
       return <Loading {...props()} className={'some-class'} />;
-    })
+    },
+    {
+      info: {
+        text: `
+            Loading spinners are used when retrieving data or performing slow computations,
+            and help to notify users that loading is underway. The 'active' property is true by default;
+            set to false to end the animation.
+          `,
+      },
+    }
   );

@@ -1,23 +1,39 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+import { settings } from 'carbon-components';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { navigation, truncate } from './classNames';
+import Link, { LinkPropTypes } from './Link';
+
+const { prefix } = settings;
 
 const HeaderMenuItem = props => {
   const { className, children, role, innerRef, ...rest } = props;
   return (
     <li className={className} role={role}>
-      <a
+      <Link
         {...rest}
-        className={navigation.menuitem}
+        className={`${prefix}--header__menu-item`}
         ref={innerRef}
         role="menuitem">
-        <span className={truncate.end}>{children}</span>
-      </a>
+        <span className={`${prefix}--text-truncate--end`}>{children}</span>
+      </Link>
     </li>
   );
 };
 
 HeaderMenuItem.propTypes = {
+  /**
+   * Pass in a valid `element` to replace the underlying `<a>` tag with a
+   * custom `Link` element
+   */
+  ...LinkPropTypes,
+
   /**
    * Optionally provide a custom class to apply to the underlying <li> node
    */

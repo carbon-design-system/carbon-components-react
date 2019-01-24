@@ -1,3 +1,10 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import React from 'react';
 import { mount, shallow } from 'enzyme';
 import { iconCaretUp, iconCaretDown } from 'carbon-icons';
@@ -42,7 +49,9 @@ describe('NumberInput', () => {
       });
 
       it('has the expected classes', () => {
-        expect(container.hasClass('bx--number')).toEqual(true);
+        expect(container.hasClass('bx--number bx--number--helpertext')).toEqual(
+          true
+        );
       });
 
       it('has renders with form-item wrapper', () => {
@@ -95,6 +104,17 @@ describe('NumberInput', () => {
         expect(wrapper.props().light).toEqual(false);
         wrapper.setProps({ light: true });
         expect(wrapper.props().light).toEqual(true);
+      });
+
+      it('should hide label as expected', () => {
+        expect(numberInput.prop('min')).toEqual(0);
+        wrapper.setProps({ hideLabel: true });
+        expect(wrapper.find('label').hasClass('bx--visually-hidden')).toEqual(
+          true
+        );
+        expect(
+          wrapper.find('.bx--number').hasClass('bx--number--nolabel')
+        ).toEqual(true);
       });
 
       describe('initial rendering', () => {

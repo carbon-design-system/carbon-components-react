@@ -1,3 +1,10 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import React from 'react';
 import { shallow, mount } from 'enzyme';
 import ComposedModal, {
@@ -118,11 +125,37 @@ describe('<ModalFooter />', () => {
       expect(buttonComponent.props().kind).toBe('secondary');
     });
   });
+
+  describe('Should render the appropriate buttons when `danger` prop is true', () => {
+    const primaryWrapper = shallow(
+      <ModalFooter primaryButtonText="test" danger />
+    );
+    const secondaryWrapper = shallow(
+      <ModalFooter secondaryButtonText="test" danger />
+    );
+
+    it('renders danger--primary button if primary text && danger', () => {
+      const buttonComponent = primaryWrapper.find('Button');
+      expect(buttonComponent.exists()).toBe(true);
+      expect(buttonComponent.props().kind).toBe('danger--primary');
+    });
+
+    it('renders tertiary button if secondary text && danger', () => {
+      const buttonComponent = secondaryWrapper.find('Button');
+      expect(buttonComponent.exists()).toBe(true);
+      expect(buttonComponent.props().kind).toBe('tertiary');
+    });
+  });
 });
 
 describe('<ComposedModal />', () => {
+  it('renders', () => {
+    const wrapper = mount(<ComposedModal open />);
+    expect(wrapper).toMatchSnapshot();
+  });
+
   it('changes the open state upon change in props', () => {
-    const wrapper = shallow(<ComposedModal open />);
+    const wrapper = mount(<ComposedModal open />);
     expect(wrapper.state().open).toEqual(true);
     wrapper.setProps({ open: false });
     expect(wrapper.state().open).toEqual(false);
@@ -159,5 +192,28 @@ describe('<ComposedModal />', () => {
     const button = wrapper.find('.bx--modal-close').first();
     button.simulate('click');
     expect(wrapper.state().open).toEqual(true);
+  });
+
+  it('should focus on the primary actionable button in ModalFooter by default', () => {
+    mount(
+      <ComposedModal open>
+        <ModalFooter primaryButtonText="Save" />
+      </ComposedModal>
+    );
+    expect(
+      document.activeElement.classList.contains('bx--btn--primary')
+    ).toEqual(true);
+  });
+
+  it('should focus on the element that matches selectorPrimaryFocus', () => {
+    mount(
+      <ComposedModal open selectorPrimaryFocus=".bx--modal-close">
+        <ModalHeader label="Optional Label" title="Example" />
+        <ModalFooter primaryButtonText="Save" />
+      </ComposedModal>
+    );
+    expect(
+      document.activeElement.classList.contains('bx--modal-close')
+    ).toEqual(true);
   });
 });

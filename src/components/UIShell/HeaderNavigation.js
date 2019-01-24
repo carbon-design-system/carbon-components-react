@@ -1,19 +1,25 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+import { settings } from 'carbon-components';
 import cx from 'classnames';
 import React from 'react';
 import PropTypes from 'prop-types';
-import isRequiredOneOf from '../../prop-types/isRequiredOneOf';
+import { AriaLabelPropType } from '../../prop-types/AriaPropTypes';
 import { keys, match, matches, getCharacterFor } from '../../tools/key';
-import { navigation } from './classNames';
+
+const { prefix } = settings;
 
 export default class HeaderNavigation extends React.Component {
   static propTypes = {
     /**
      * Required props for accessibility label on the underlying menu
      */
-    ...isRequiredOneOf({
-      'aria-label': PropTypes.string,
-      'aria-labelledby': PropTypes.string,
-    }),
+    ...AriaLabelPropType,
 
     /**
      * Optionally provide a custom class to apply to the underlying <nav> node
@@ -112,7 +118,7 @@ export default class HeaderNavigation extends React.Component {
       className: customClassName,
       ...rest
     } = this.props;
-    const className = cx(navigation.navigation, customClassName);
+    const className = cx(`${prefix}--header__nav`, customClassName);
     // Assign both label strategies in this option, only one should be defined
     // so when we spread that should be the one that is applied to the node
     const accessibilityLabel = {
@@ -128,7 +134,7 @@ export default class HeaderNavigation extends React.Component {
       <nav {...rest} {...accessibilityLabel} className={className}>
         <ul
           {...accessibilityLabel}
-          className={navigation.menubar}
+          className={`${prefix}--header__menu-bar`}
           role="menubar"
           onKeyDown={this.handleOnKeyDown}>
           {React.Children.map(children, this._renderNavItem)}

@@ -1,12 +1,19 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import { withInfo } from '@storybook/addon-info';
+
 import { withKnobs, select, text } from '@storybook/addon-knobs';
 import TooltipDefinition from '../TooltipDefinition';
 
 const directions = {
-  bottom: 'Bottom (bottom)',
-  top: 'Top (top)',
+  'Bottom (bottom)': 'bottom',
+  'Top (top)': 'top',
 };
 
 const props = () => ({
@@ -21,13 +28,16 @@ storiesOf('TooltipDefinition', module)
   .addDecorator(withKnobs)
   .add(
     'default',
-    withInfo({
-      text: `
-        Definition Tooltip
-      `,
-    })(() => (
+    () => (
       <div style={{ marginTop: '2rem' }}>
         <TooltipDefinition {...props()}>Definition Tooltip</TooltipDefinition>
       </div>
-    ))
+    ),
+    {
+      info: {
+        text: `
+            Definition Tooltip
+          `,
+      },
+    }
   );

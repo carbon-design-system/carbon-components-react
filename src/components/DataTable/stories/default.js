@@ -1,3 +1,10 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import React from 'react';
 import { action } from '@storybook/addon-actions';
 import { iconDownload, iconEdit, iconSettings } from 'carbon-icons';
@@ -21,11 +28,12 @@ import DataTable, {
 } from '../../DataTable';
 import { batchActionClick, initialRows, headers } from './shared';
 
-export default ({ short }) => (
+export default ({ short, shouldShowBorder }) => (
   <DataTable
     rows={initialRows}
     headers={headers}
     short={short}
+    shouldShowBorder={shouldShowBorder}
     render={({
       rows,
       headers,

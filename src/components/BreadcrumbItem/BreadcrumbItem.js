@@ -1,23 +1,33 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import PropTypes from 'prop-types';
 import React from 'react';
 import classnames from 'classnames';
+import { settings } from 'carbon-components';
 import Link from '../Link';
 
-const newChild = (children, href) => {
+const { prefix } = settings;
+
+const newChild = (children, href, prefix) => {
   if (typeof children === 'string' && !(href === undefined)) {
     return <Link href={href}>{children}</Link>;
   } else {
     return React.cloneElement(React.Children.only(children), {
-      className: 'bx--link',
+      className: `${prefix}--link`,
     });
   }
 };
 
 const BreadcrumbItem = ({ children, className, href, ...other }) => {
-  const classNames = classnames('bx--breadcrumb-item', className);
+  const classNames = classnames(`${prefix}--breadcrumb-item`, className);
   return (
     <div className={classNames} {...other}>
-      {newChild(children, href)}
+      {newChild(children, href, prefix)}
     </div>
   );
 };

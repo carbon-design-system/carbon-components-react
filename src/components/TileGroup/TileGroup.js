@@ -1,7 +1,17 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import PropTypes from 'prop-types';
 import React from 'react';
 import RadioTile from '../RadioTile';
 import warning from 'warning';
+import { settings } from 'carbon-components';
+
+const { prefix } = settings;
 
 export default class TileGroup extends React.Component {
   state = {
@@ -10,18 +20,45 @@ export default class TileGroup extends React.Component {
   };
 
   static propTypes = {
+    /**
+     * Provide a collection of <RadioTile> components to render in the group
+     */
     children: PropTypes.node,
+
+    /**
+     * Provide an optional className to be applied to the container node
+     */
     className: PropTypes.string,
+
+    /**
+     * Specify the the value of <RadioTile> to be selected by default
+     */
     defaultSelected: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+
+    /**
+     * Specify the name of the underlying <input> nodes
+     */
     name: PropTypes.string.isRequired,
+
+    /**
+     * Specify whether the group is disabled
+     */
     disabled: PropTypes.bool,
+
+    /**
+     * Provide an optional `onChange` hook that is called whenever the value of
+     * the group changes
+     */
     onChange: PropTypes.func,
+
+    /**
+     * Specify the value that is currently selected in the group
+     */
     valueSelected: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   };
 
   static defaultProps = {
     onChange: /* istanbul ignore next */ () => {},
-    className: 'bx--tile-group',
   };
 
   static getDerivedStateFromProps({ valueSelected, defaultSelected }, state) {
@@ -70,7 +107,7 @@ export default class TileGroup extends React.Component {
   };
 
   render() {
-    const { disabled, className } = this.props;
+    const { disabled, className = `${prefix}--tile-group` } = this.props;
 
     return (
       <div className={className} disabled={disabled}>

@@ -1,3 +1,10 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import React from 'react';
 import { iconChevronRight } from 'carbon-icons';
 import AccordionItem from '../AccordionItem';
@@ -77,8 +84,7 @@ describe('AccordionItem', () => {
   describe('Renders a node title as expected', () => {
     const titleNode = shallow(
       <h2 className="TitleClass">
-        <img src="some_image.png" alt="Something" />
-        A heading
+        <img src="some_image.png" alt="Something" />A heading
       </h2>
     );
     const wrapper = shallow(
@@ -137,6 +143,7 @@ describe('AccordionItem', () => {
 
   describe('Check that the keyboard toggles its open state', () => {
     let toggler;
+    let heading;
 
     beforeEach(() => {
       toggler = mount(
@@ -145,25 +152,24 @@ describe('AccordionItem', () => {
           <input className="testInput" />
         </AccordionItem>
       );
+      heading = toggler.find('button.bx--accordion__heading');
     });
 
-    it('should toggle state when using enter or space', () => {
-      expect(toggler.state().open).toEqual(false);
-      toggler.simulate('keypress', { which: 32 });
-      expect(toggler.state().open).toEqual(true);
-      toggler.simulate('keypress', { which: 13 });
-      expect(toggler.state().open).toEqual(false);
-      toggler.simulate('keypress', { which: 97 });
+    it('should close open AccordionItem when using Esc', () => {
+      toggler.setState({ open: true });
+      heading.simulate('keydown', { which: 27 });
       expect(toggler.state().open).toEqual(false);
     });
 
-    it('should not toggle if a keypress is made in a child element', () => {
+    it('should not close if Esc keypress is made in a child element', () => {
+      toggler.setState({ open: true });
       const input = toggler.find('.testInput');
-      expect(toggler.state().open).toEqual(false);
-      toggler.simulate('keypress', { which: 32 });
+      input.simulate('keydown', { which: 27 });
       expect(toggler.state().open).toEqual(true);
-      input.simulate('keypress', { which: 32 });
-      expect(toggler.state().open).toEqual(true);
+    });
+
+    afterEach(() => {
+      toggler.setState({ open: false });
     });
   });
 });

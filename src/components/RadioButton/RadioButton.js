@@ -1,7 +1,17 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import PropTypes from 'prop-types';
 import React from 'react';
 import classNames from 'classnames';
+import { settings } from 'carbon-components';
 import uid from '../../tools/uniqueId';
+
+const { prefix } = settings;
 
 export default class RadioButton extends React.Component {
   static propTypes = {
@@ -78,12 +88,12 @@ export default class RadioButton extends React.Component {
         <input
           {...other}
           type="radio"
-          className="bx--radio-button"
+          className={`${prefix}--radio-button`}
           onChange={this.handleChange}
           id={this.uid}
         />
-        <label htmlFor={this.uid} className="bx--radio-button__label">
-          <span className="bx--radio-button__appearance" />
+        <label htmlFor={this.uid} className={`${prefix}--radio-button__label`}>
+          <span className={`${prefix}--radio-button__appearance`} />
           {labelText}
         </label>
       </div>

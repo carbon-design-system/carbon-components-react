@@ -1,15 +1,25 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import classnames from 'classnames';
+import { settings } from 'carbon-components';
+
+const { prefix } = settings;
 
 export const ProgressStep = ({ ...props }) => {
   const { label, description, className, current, complete } = props;
 
   const classes = classnames({
-    'bx--progress-step': true,
-    'bx--progress-step--current': current,
-    'bx--progress-step--complete': complete,
-    'bx--progress-step--incomplete': !complete && !current,
+    [`${prefix}--progress-step`]: true,
+    [`${prefix}--progress-step--current`]: current,
+    [`${prefix}--progress-step--complete`]: complete,
+    [`${prefix}--progress-step--incomplete`]: !complete && !current,
     [className]: className,
   });
 
@@ -41,8 +51,8 @@ export const ProgressStep = ({ ...props }) => {
   return (
     <li className={classes}>
       {currentSvg || completeSvg || incompleteSvg}
-      <p className="bx--progress-label">{label}</p>
-      <span className="bx--progress-line" />
+      <p className={`${prefix}--progress-label`}>{label}</p>
+      <span className={`${prefix}--progress-line`} />
     </li>
   );
 };
@@ -130,7 +140,7 @@ export class ProgressIndicator extends Component {
   render() {
     const { className, currentIndex, ...other } = this.props; // eslint-disable-line no-unused-vars
     const classes = classnames({
-      'bx--progress': true,
+      [`${prefix}--progress`]: true,
       [className]: className,
     });
     return (

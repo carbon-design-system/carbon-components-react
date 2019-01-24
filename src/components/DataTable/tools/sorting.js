@@ -1,3 +1,10 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import { getCellId } from './cells';
 import { sortStates } from '../state/sorting';
 
@@ -81,8 +88,8 @@ export const defaultSortRow = (
   { sortDirection, sortStates, locale }
 ) => {
   if (sortDirection === sortStates.ASC) {
-    return compare(cellB, cellA, locale);
+    return compare(cellA, cellB, locale);
   }
 
-  return compare(cellA, cellB, locale);
+  return compare(cellB, cellA, locale);
 };

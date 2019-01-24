@@ -43,6 +43,7 @@ exports[`MultiSelect should render 1`] = `
   type="default"
 >
   <Selection
+    disabled={false}
     initialSelectedItems={Array []}
     onChange={[Function]}
     render={[Function]}
@@ -126,6 +127,7 @@ exports[`MultiSelect should render 1`] = `
                     alt="Open menu"
                     description="Open menu"
                     fillRule="evenodd"
+                    focusable="false"
                     icon={
                       Object {
                         "height": "5",
@@ -155,6 +157,7 @@ exports[`MultiSelect should render 1`] = `
                       alt="Open menu"
                       aria-label="Open menu"
                       fillRule="evenodd"
+                      focusable="false"
                       height="5"
                       role="img"
                       viewBox="0 0 10 5"

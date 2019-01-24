@@ -1,6 +1,16 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import PropTypes from 'prop-types';
 import React from 'react';
 import classNames from 'classnames';
+import { settings } from 'carbon-components';
+
+const { prefix } = settings;
 
 const DataTableSkeleton = ({
   rowCount,
@@ -10,23 +20,33 @@ const DataTableSkeleton = ({
   ...other
 }) => {
   const dataTableSkeletonClasses = classNames({
-    'bx--skeleton': true,
-    'bx--data-table-v2': true,
-    'bx--data-table-v2--zebra': zebra,
-    'bx--data-table-v2--compact': compact,
+    [`${prefix}--skeleton`]: true,
+    [`${prefix}--data-table-v2`]: true,
+    [`${prefix}--data-table-v2--zebra`]: zebra,
+    [`${prefix}--data-table-v2--compact`]: compact,
   });
 
-  const rows = [];
   const rowRepeat = rowCount - 1;
-  const columnsArray = Array.from(Array(columnCount).keys()); // [0,1,2...columnCount-1]
-  for (var i = 0; i < rowRepeat; i++) {
-    rows.push(<tr key={i}>{columnsArray.map(j => <td key={j} />)}</tr>);
+  const rows = Array(rowRepeat);
+  const columnsArray = Array.from({ length: columnCount }, (_, index) => index);
+  for (let i = 0; i < rowRepeat; i++) {
+    rows[i] = (
+      <tr key={i}>
+        {columnsArray.map(j => (
+          <td key={j} />
+        ))}
+      </tr>
+    );
   }
 
   return (
     <table className={dataTableSkeletonClasses} {...other}>
       <thead>
-        <tr>{columnsArray.map(i => <th key={i} />)}</tr>
+        <tr>
+          {columnsArray.map(i => (
+            <th key={i} />
+          ))}
+        </tr>
       </thead>
       <tbody>
         <tr>

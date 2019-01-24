@@ -1,3 +1,10 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import classNames from 'classnames';
@@ -8,29 +15,65 @@ import {
   iconInfoSolid,
   iconWarningSolid,
 } from 'carbon-icons';
+import { settings } from 'carbon-components';
 import Icon from '../Icon';
+// temporary workaround for a11y warning icon. TODO: for @carbon/icons-react
+import a11yIconWarningSolid from './a11yIconWarningSolid';
+
+const { prefix } = settings;
 
 export class NotificationButton extends Component {
   static propTypes = {
+    /**
+     * Specify an optional className to be applied to the notification button
+     */
     className: PropTypes.string,
+
+    /**
+     * Specify a label to be read by screen readers on the notification button
+     */
     ariaLabel: PropTypes.string,
+
+    /**
+     * Optional prop to specify the type of the Button
+     */
     type: PropTypes.string,
+
+    /**
+     * Provide a description for "close" icon that can be read by screen readers
+     */
     iconDescription: PropTypes.string,
+
+    /**
+     * Specify an optional icon for the Button through an object representing the SVG data of the icon,
+     * if something but regular "close" icon is desirable
+     */
     icon: PropTypes.shape({
       width: PropTypes.string,
       height: PropTypes.string,
       viewBox: PropTypes.string.isRequired,
       svgData: PropTypes.object.isRequired,
     }),
+
+    /**
+     * Specify an optional icon for the Button through a string,
+     * if something but regular "close" icon is desirable
+     */
     name: PropTypes.string,
+
+    /**
+     * Specify the notification type
+     */
     notificationType: PropTypes.oneOf(['toast', 'inline']),
   };
+
   static defaultProps = {
     ariaLabel: 'close notificaion',
     notificationType: 'toast',
     type: 'button',
     iconDescription: 'close icon',
   };
+
   render() {
     const {
       ariaLabel,
@@ -45,15 +88,19 @@ export class NotificationButton extends Component {
 
     const buttonClasses = classNames(
       {
-        'bx--toast-notification__close-button': notificationType === 'toast',
-        'bx--inline-notification__close-button': notificationType === 'inline',
+        [`${prefix}--toast-notification__close-button`]:
+          notificationType === 'toast',
+        [`${prefix}--inline-notification__close-button`]:
+          notificationType === 'inline',
       },
       className
     );
 
     const iconClasses = classNames({
-      'bx--toast-notification__icon': notificationType === 'toast',
-      'bx--inline-notification__close-icon': notificationType === 'inline',
+      [`${prefix}--toast-notification__close-icon`]:
+        notificationType === 'toast',
+      [`${prefix}--inline-notification__close-icon`]:
+        notificationType === 'inline',
     });
 
     return (
@@ -72,9 +119,24 @@ export class NotificationButton extends Component {
 
 export class NotificationTextDetails extends Component {
   static propTypes = {
+    /**
+     * Specify the title
+     */
     title: PropTypes.string,
+
+    /**
+     * Specify the sub-title
+     */
     subtitle: PropTypes.node,
+
+    /**
+     * Specify the caption
+     */
     caption: PropTypes.node,
+
+    /**
+     * Specify the notification type
+     */
     notificationType: PropTypes.oneOf(['toast', 'inline']),
   };
 
@@ -87,22 +149,29 @@ export class NotificationTextDetails extends Component {
 
   render() {
     const { title, subtitle, caption, notificationType, ...other } = this.props;
-
     if (notificationType === 'toast') {
       return (
-        <div {...other} className="bx--toast-notification__details">
-          <h3 className="bx--toast-notification__title">{title}</h3>
-          <div className="bx--toast-notification__subtitle">{subtitle}</div>
-          <div className="bx--toast-notification__caption">{caption}</div>
+        <div {...other} className={`${prefix}--toast-notification__details`}>
+          <h3 className={`${prefix}--toast-notification__title`}>{title}</h3>
+          <div className={`${prefix}--toast-notification__subtitle`}>
+            {subtitle}
+          </div>
+          <div className={`${prefix}--toast-notification__caption`}>
+            {caption}
+          </div>
         </div>
       );
     }
 
     if (notificationType === 'inline') {
       return (
-        <div {...other} className="bx--inline-notification__text-wrapper">
-          <p className="bx--inline-notification__title">{title}</p>
-          <div className="bx--inline-notification__subtitle">{subtitle}</div>
+        <div
+          {...other}
+          className={`${prefix}--inline-notification__text-wrapper`}>
+          <p className={`${prefix}--inline-notification__title`}>{title}</p>
+          <div className={`${prefix}--inline-notification__subtitle`}>
+            {subtitle}
+          </div>
         </div>
       );
     }
@@ -112,16 +181,62 @@ export class NotificationTextDetails extends Component {
 export class ToastNotification extends Component {
   static propTypes = {
     children: PropTypes.node,
+
+    /**
+     * Specify an optional className to be applied to the notification box
+     */
     className: PropTypes.string,
+
+    /**
+     * Specify what state the notification represents
+     */
     kind: PropTypes.oneOf(['error', 'info', 'success', 'warning']).isRequired,
+
+    /**
+     * Specify the title
+     */
     title: PropTypes.string.isRequired,
+
+    /**
+     * Specify the sub-title
+     */
     subtitle: PropTypes.node.isRequired,
+
+    /**
+     * By default, this value is "alert". You can also provide an alternate
+     * role if it makes sense from the accessibility-side
+     */
     role: PropTypes.string.isRequired,
+
+    /**
+     * Specify the caption
+     */
     caption: PropTypes.node,
+
+    /**
+     * Provide a function that is called when menu is closed
+     */
     onCloseButtonClick: PropTypes.func,
+
+    /**
+     * Provide a description for "close" icon that can be read by screen readers
+     */
     iconDescription: PropTypes.string.isRequired,
+
+    /**
+     * By default, this value is "toast". You can also provide an alternate type
+     * if it makes sense for the underlying `<NotificationTextDetails>` and `<NotificationButton>`
+     */
     notificationType: PropTypes.string,
+
+    /**
+     * Specify the close button should be disabled, or not
+     */
     hideCloseButton: PropTypes.bool,
+
+    /**
+     * Specify an optional duration the notification should be closed in
+     */
     timeout: PropTypes.number,
   };
 
@@ -158,9 +273,9 @@ export class ToastNotification extends Component {
   useIcon = kindProp =>
     ({
       error: iconErrorSolid,
-      info: iconInfoSolid,
       success: iconCheckmarkSolid,
       warning: iconWarningSolid,
+      info: iconInfoSolid,
     }[kindProp]);
 
   render() {
@@ -183,8 +298,10 @@ export class ToastNotification extends Component {
     } = this.props;
 
     const classes = classNames(
-      'bx--toast-notification',
-      { [`bx--toast-notification--${this.props.kind}`]: this.props.kind },
+      `${prefix}--toast-notification`,
+      {
+        [`${prefix}--toast-notification--${this.props.kind}`]: this.props.kind,
+      },
       className
     );
 
@@ -211,14 +328,52 @@ export class ToastNotification extends Component {
 export class InlineNotification extends Component {
   static propTypes = {
     children: PropTypes.node,
+
+    /**
+     * Specify an optional className to be applied to the notification box
+     */
     className: PropTypes.string,
+
+    /**
+     * Specify what state the notification represents
+     */
     kind: PropTypes.oneOf(['error', 'info', 'success', 'warning']).isRequired,
+
+    /**
+     * Specify the title
+     */
     title: PropTypes.string.isRequired,
+
+    /**
+     * Specify the sub-title
+     */
     subtitle: PropTypes.node.isRequired,
+
+    /**
+     * By default, this value is "alert". You can also provide an alternate
+     * role if it makes sense from the accessibility-side
+     */
     role: PropTypes.string.isRequired,
+
+    /**
+     * Provide a function that is called when menu is closed
+     */
     onCloseButtonClick: PropTypes.func,
+
+    /**
+     * Provide a description for "close" icon that can be read by screen readers
+     */
     iconDescription: PropTypes.string.isRequired,
+
+    /**
+     * By default, this value is "inline". You can also provide an alternate type
+     * if it makes sense for the underlying `<NotificationTextDetails>` and `<NotificationButton>`
+     */
     notificationType: PropTypes.string,
+
+    /**
+     * Specify the close button should be disabled, or not
+     */
     hideCloseButton: PropTypes.bool,
   };
 
@@ -242,9 +397,9 @@ export class InlineNotification extends Component {
   useIcon = kindProp =>
     ({
       error: iconErrorSolid,
-      info: iconInfoSolid,
       success: iconCheckmarkSolid,
       warning: iconWarningSolid,
+      info: iconInfoSolid,
     }[kindProp]);
 
   render() {
@@ -266,20 +421,33 @@ export class InlineNotification extends Component {
     } = this.props;
 
     const classes = classNames(
-      'bx--inline-notification',
-      { [`bx--inline-notification--${this.props.kind}`]: this.props.kind },
+      `${prefix}--inline-notification`,
+      {
+        [`${prefix}--inline-notification--${this.props.kind}`]: this.props.kind,
+      },
       className
     );
 
+    const NotificationIcon = kind => {
+      switch (kind) {
+        case 'warning':
+          return a11yIconWarningSolid(prefix, notificationType);
+        default:
+          return (
+            <Icon
+              description={this.props.iconDescription}
+              className={`${prefix}--inline-notification__icon`}
+              aria-label="close"
+              icon={this.useIcon(kind)}
+            />
+          );
+      }
+    };
+
     return (
       <div {...other} role={role} kind={kind} className={classes}>
-        <div className="bx--inline-notification__details">
-          <Icon
-            description={this.props.iconDescription}
-            className="bx--inline-notification__icon"
-            aria-label="close"
-            icon={this.useIcon(kind)}
-          />
+        <div className={`${prefix}--inline-notification__details`}>
+          {NotificationIcon(kind)}
           <NotificationTextDetails
             title={title}
             subtitle={subtitle}
@@ -288,6 +456,7 @@ export class InlineNotification extends Component {
         </div>
         {!hideCloseButton && (
           <NotificationButton
+            iconDescription={iconDescription}
             notificationType={notificationType}
             onClick={this.handleCloseButtonClick}
           />
@@ -302,13 +471,45 @@ export class InlineNotification extends Component {
 export default class Notification extends Component {
   static propTypes = {
     children: PropTypes.node,
+
+    /**
+     * Specify an optional className to be applied to the notification box
+     */
     className: PropTypes.string,
+
+    /**
+     * Specify what state the notification represents
+     */
     kind: PropTypes.oneOf(['error', 'info', 'success', 'warning']).isRequired,
+
+    /**
+     * Specify the title
+     */
     title: PropTypes.string.isRequired,
+
+    /**
+     * Specify the sub-title
+     */
     subtitle: PropTypes.string.isRequired,
+
+    /**
+     * Specify the caption
+     */
     caption: PropTypes.string,
+
+    /**
+     * Provide a function that is called when menu is closed
+     */
     onCloseButtonClick: PropTypes.func,
+
+    /**
+     * Provide a description for "close" icon that can be read by screen readers
+     */
     iconDescription: PropTypes.string.isRequired,
+
+    /**
+     * Specify the close button should be disabled, or not
+     */
     hideCloseButton: PropTypes.bool,
   };
 
@@ -356,13 +557,19 @@ export default class Notification extends Component {
 
     const notificationClasses = {
       toast: classNames(
-        'bx--toast-notification',
-        { [`bx--toast-notification--${this.props.kind}`]: this.props.kind },
+        `${prefix}--toast-notification`,
+        {
+          [`${prefix}--toast-notification--${this.props.kind}`]: this.props
+            .kind,
+        },
         className
       ),
       inline: classNames(
-        'bx--inline-notification',
-        { [`bx--inline-notification--${this.props.kind}`]: this.props.kind },
+        `${prefix}--inline-notification`,
+        {
+          [`${prefix}--inline-notification--${this.props.kind}`]: this.props
+            .kind,
+        },
         className
       ),
     };
@@ -394,10 +601,10 @@ export default class Notification extends Component {
         role="alert"
         kind={kind}
         className={notificationClasses.inline}>
-        <div className="bx--inline-notification__details">
+        <div className={`${prefix}--inline-notification__details`}>
           <Icon
             description={this.props.iconDescription}
-            className="bx--inline-notification__icon"
+            className={`${prefix}--inline-notification__icon`}
             aria-label="close"
             icon={this.useIcon(kind)}
           />

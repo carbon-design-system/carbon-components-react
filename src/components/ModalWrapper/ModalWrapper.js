@@ -1,3 +1,10 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import PropTypes from 'prop-types';
 import React from 'react';
 import Modal from '../Modal';
@@ -22,6 +29,8 @@ export default class ModalWrapper extends React.Component {
     secondaryButtonText: PropTypes.string,
     handleSubmit: PropTypes.func,
     disabled: PropTypes.bool,
+    triggerButtonIcon: PropTypes.string,
+    triggerButtonIconDescription: PropTypes.string,
     triggerButtonKind: ButtonTypes.buttonKind,
     shouldCloseAfterSubmit: PropTypes.bool,
   };
@@ -29,8 +38,10 @@ export default class ModalWrapper extends React.Component {
   static defaultProps = {
     primaryButtonText: 'Save',
     secondaryButtonText: 'Cancel',
+    triggerButtonIconDescription: 'Provide icon description if icon is used',
     triggerButtonKind: 'primary',
     disabled: false,
+    selectorPrimaryFocus: '[data-modal-primary-focus]',
     onKeyDown: () => {},
   };
 
@@ -65,15 +76,19 @@ export default class ModalWrapper extends React.Component {
       onKeyDown,
       buttonTriggerText,
       buttonTriggerClassName,
+      triggerButtonIcon,
+      triggerButtonIconDescription,
       triggerButtonKind,
       disabled,
       handleSubmit, // eslint-disable-line no-unused-vars
       shouldCloseAfterSubmit, // eslint-disable-line no-unused-vars
+      selectorPrimaryFocus,
       ...other
     } = this.props;
 
     const props = {
       ...other,
+      selectorPrimaryFocus,
       open: this.state.isOpen,
       onRequestClose: this.handleClose,
       onRequestSubmit: this.handleOnRequestSubmit,
@@ -92,6 +107,8 @@ export default class ModalWrapper extends React.Component {
           className={buttonTriggerClassName}
           disabled={disabled}
           kind={triggerButtonKind}
+          icon={triggerButtonIcon}
+          iconDescription={triggerButtonIconDescription}
           onClick={this.handleOpen}
           inputref={this.triggerButton}>
           {buttonTriggerText}

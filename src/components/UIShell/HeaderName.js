@@ -1,7 +1,17 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+import { settings } from 'carbon-components';
 import cx from 'classnames';
 import React from 'react';
 import PropTypes from 'prop-types';
-import { name } from './classNames';
+import Link, { LinkPropTypes } from './Link';
+
+const { prefix: selectorPrefix } = settings;
 
 const HeaderName = ({
   children,
@@ -10,16 +20,29 @@ const HeaderName = ({
   href,
   ...rest
 }) => {
-  const className = cx(name.name, customClassName);
+  const className = cx(`${selectorPrefix}--header__name`, customClassName);
   return (
-    <a {...rest} className={className} href={href}>
-      {prefix && <>{prefix}&nbsp;</>}
-      <span className={name.platform}>{children}</span>
-    </a>
+    <Link {...rest} className={className} href={href}>
+      {prefix && (
+        <>
+          <span className={`${selectorPrefix}--header__name--prefix`}>
+            {prefix}
+          </span>
+          &nbsp;
+        </>
+      )}
+      {children}
+    </Link>
   );
 };
 
 HeaderName.propTypes = {
+  /**
+   * Pass in a valid `element` to replace the underlying `<a>` tag with a
+   * custom `Link` element
+   */
+  ...LinkPropTypes,
+
   /**
    * Pass in children that are either a string or can be read as a string by
    * screen readers
@@ -40,7 +63,7 @@ HeaderName.propTypes = {
   /**
    * Provide an href for the name to link to
    */
-  href: PropTypes.string.isRequired,
+  href: PropTypes.string,
 };
 
 HeaderName.defaultProps = {

@@ -1,8 +1,17 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+import { settings } from 'carbon-components';
 import cx from 'classnames';
 import React from 'react';
 import PropTypes from 'prop-types';
-import { action } from './classNames';
-import isRequiredOneOf from '../../prop-types/isRequiredOneOf';
+import { AriaLabelPropType } from '../../prop-types/AriaPropTypes';
+
+const { prefix } = settings;
 
 /**
  * HeaderGlobalAction is used as a part of the `HeaderGlobalBar`. It is
@@ -21,8 +30,10 @@ const HeaderGlobalAction = ({
   isActive,
   ...rest
 }) => {
-  const className = cx(action.action, customClassName, {
-    [action.state.active]: isActive,
+  const className = cx({
+    [customClassName]: !!customClassName,
+    [`${prefix}--header__action`]: true,
+    [`${prefix}--header__action--active`]: isActive,
   });
   const accessibilityLabel = {
     'aria-label': ariaLabel,
@@ -44,10 +55,7 @@ HeaderGlobalAction.propTypes = {
   /**
    * Required props for the accessibility label of the button
    */
-  ...isRequiredOneOf({
-    'aria-label': PropTypes.string,
-    'aria-labelledby': PropTypes.string,
-  }),
+  ...AriaLabelPropType,
 
   /**
    * Provide a custom icon for this global action

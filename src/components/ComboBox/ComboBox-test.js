@@ -1,3 +1,10 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import React from 'react';
 import { mount } from 'enzyme';
 import {
@@ -11,7 +18,11 @@ import {
 import ComboBox from '../ComboBox';
 
 const findInputNode = wrapper => wrapper.find('.bx--text-input');
-const clearInput = wrapper => wrapper.instance().handleOnInputValueChange('');
+const downshiftActions = {
+  setHighlightedIndex: jest.fn(),
+};
+const clearInput = wrapper =>
+  wrapper.instance().handleOnInputValueChange('', downshiftActions);
 
 describe('ComboBox', () => {
   let mockProps;
@@ -132,10 +143,10 @@ describe('ComboBox', () => {
     it('should set `inputValue` to an empty string if a falsey-y value is given', () => {
       const wrapper = mount(<ComboBox {...mockProps} />);
 
-      wrapper.instance().handleOnInputValueChange('foo');
+      wrapper.instance().handleOnInputValueChange('foo', downshiftActions);
       expect(wrapper.state('inputValue')).toBe('foo');
 
-      wrapper.instance().handleOnInputValueChange(null);
+      wrapper.instance().handleOnInputValueChange(null, downshiftActions);
       expect(wrapper.state('inputValue')).toBe('');
     });
   });

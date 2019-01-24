@@ -1,7 +1,13 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
-import { withInfo } from '@storybook/addon-info';
 import { withKnobs, boolean, text } from '@storybook/addon-knobs';
 import CodeSnippet from '../CodeSnippet';
 import CodeSnippetSkeleton from './CodeSnippet.Skeleton';
@@ -40,45 +46,45 @@ storiesOf('CodeSnippet', module)
   .addDecorator(withKnobs)
   .add(
     'inline',
-    withInfo({
-      text: `
-      Code snippets are small blocks of reusable code that can be inserted in a code file.
-
-      The Inline style is for code used within a block of text.
-    `,
-    })(() => (
+    () => (
       <div>
         <CodeSnippet type="inline" {...props.inline()}>
           {'node -v'}
         </CodeSnippet>
       </div>
-    ))
+    ),
+    {
+      info: {
+        text: `
+        Code snippets are small blocks of reusable code that can be inserted in a code file.
+  
+        The Inline style is for code used within a block of text.
+      `,
+      },
+    }
   )
   .add(
     'single line',
-    withInfo({
-      text: `
-        Code snippets are small blocks of reusable code that can be inserted in a code file.
-
-        The Code style is for larger, multi-line code snippets.
-      `,
-    })(() => (
+    () => (
       <CodeSnippet type="single" {...props.single()}>
         {
           'node -v Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis, veritatis voluptate id incidunt molestiae officia possimus, quasi itaque alias, architecto hic, dicta fugit? Debitis delectus quidem explicabo vitae fuga laboriosam!'
         }
       </CodeSnippet>
-    ))
+    ),
+    {
+      info: {
+        text: `
+          Code snippets are small blocks of reusable code that can be inserted in a code file.
+  
+          The Code style is for larger, multi-line code snippets.
+        `,
+      },
+    }
   )
   .add(
     'multi line',
-    withInfo({
-      text: `
-        Code snippets are small blocks of reusable code that can be inserted in a code file.
-
-        The Terminal style is for single-line .
-      `,
-    })(() => {
+    () => {
       const multilineProps = props.multiline();
       return (
         <div style={{ width: '800px' }}>
@@ -119,18 +125,30 @@ $z-indexes: (
           </CodeSnippet>
         </div>
       );
-    })
+    },
+    {
+      info: {
+        text: `
+          Code snippets are small blocks of reusable code that can be inserted in a code file.
+  
+          The Terminal style is for single-line .
+        `,
+      },
+    }
   )
   .add(
     'skeleton',
-    withInfo({
-      text: `
-        Placeholder skeleton state to use when content is loading.
-        `,
-    })(() => (
+    () => (
       <div style={{ width: '800px' }}>
         <CodeSnippetSkeleton type="single" />
         <CodeSnippetSkeleton type="multi" />
       </div>
-    ))
+    ),
+    {
+      info: {
+        text: `
+          Placeholder skeleton state to
+        `,
+      },
+    }
   );
