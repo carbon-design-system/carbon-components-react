@@ -69,14 +69,21 @@ export default class MultiSelect extends React.Component {
      * `true` to use the light version.
      */
     light: PropTypes.bool,
+
     /**
      * Is the current selection invalid?
      */
     invalid: PropTypes.bool,
+
     /**
      * If invalid, what is the error?
      */
     invalidText: PropTypes.string,
+
+    /**
+     * Initialize the component with an open(`true`)/closed(`false`) menu.
+     */
+    isOpen: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -89,13 +96,14 @@ export default class MultiSelect extends React.Component {
     type: 'default',
     light: false,
     title: false,
+    isOpen: false,
   };
 
   constructor(props) {
     super(props);
     this.state = {
       highlightedIndex: null,
-      isOpen: false,
+      isOpen: props.isOpen,
     };
   }
 

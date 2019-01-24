@@ -61,6 +61,11 @@ export default class FilterableMultiSelect extends React.Component {
      * `true` to use the light version.
      */
     light: PropTypes.bool,
+
+    /**
+     * Initialize the component with an open(`true`)/closed(`false`) menu.
+     */
+    isOpen: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -72,13 +77,14 @@ export default class FilterableMultiSelect extends React.Component {
     locale: 'en',
     sortItems: defaultSortItems,
     light: false,
+    isOpen: false,
   };
 
   constructor(props) {
     super(props);
     this.state = {
       highlightedIndex: null,
-      isOpen: false,
+      isOpen: props.isOpen,
       inputValue: '',
     };
   }
