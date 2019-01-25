@@ -19,6 +19,8 @@ import FloatingMenu, {
 } from '../../internal/FloatingMenu';
 import OptimizedResize from '../../internal/OptimizedResize';
 import Icon from '../Icon';
+// TODO: import { OverflowMenuVertical16 } from '@carbon/icons-react';
+import OverflowMenuVertical16 from '@carbon/icons-react/lib/overflow-menu--vertical/16';
 import { componentsX } from '../../internal/FeatureFlags';
 
 const { prefix } = settings;
@@ -574,6 +576,22 @@ export default class OverflowMenu extends Component {
       focusable: 'false', // Prevent `<svg>` in trigger icon from getting focus for IE11
     };
 
+    const overflowMenuIcon = (() => {
+      if (renderIcon) {
+        return renderIcon(iconProps);
+      }
+      if (!componentsX) {
+        return (
+          <Icon
+            {...iconProps}
+            icon={!icon && !iconName ? iconOverflowMenu : icon}
+            name={iconName}
+          />
+        );
+      }
+      return <OverflowMenuVertical16 />;
+    })();
+
     return (
       <ClickListener onClickOutside={this.handleClickOutside}>
         <div
@@ -583,19 +601,12 @@ export default class OverflowMenu extends Component {
           aria-expanded={this.state.open}
           className={overflowMenuClasses}
           onKeyDown={this.handleKeyPress}
+          onClick={this.handleClick}
           aria-label={ariaLabel}
           id={id}
           tabIndex={tabIndex}
           ref={this.bindMenuEl}>
-          {renderIcon ? (
-            renderIcon(iconProps)
-          ) : (
-            <Icon
-              {...iconProps}
-              icon={!icon && !iconName ? iconOverflowMenu : icon}
-              name={iconName}
-            />
-          )}
+          {overflowMenuIcon}
           {open && wrappedMenuBody}
         </div>
       </ClickListener>
