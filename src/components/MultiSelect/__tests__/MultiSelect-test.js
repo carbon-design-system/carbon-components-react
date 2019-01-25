@@ -46,9 +46,9 @@ describe('MultiSelect', () => {
   it('should initialize with the menu open', () => {
     const items = generateItems(5, generateGenericItem);
     const wrapper = mount(
-      <MultiSelect label="Field" items={items} isOpen={true} />
+      <MultiSelect label="Field" items={items} open/>
     );
-    expect(wrapper.prop('isOpen')).toBe(true);
+    expect(wrapper.state('isOpen')).toEqual(true);
   });
 
   describe('#handleOnToggleMenu', () => {

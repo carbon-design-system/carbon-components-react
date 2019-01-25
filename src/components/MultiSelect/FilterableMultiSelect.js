@@ -84,8 +84,21 @@ export default class FilterableMultiSelect extends React.Component {
     /**
      * Initialize the component with an open(`true`)/closed(`false`) menu.
      */
-    isOpen: PropTypes.bool,
+    open: PropTypes.bool,
   };
+
+  static getDerivedStateFromProps({ open }, state) {
+    /**
+     * programmatically control this `open` prop
+     */
+    const { prevOpen } = state;
+    return prevOpen === open
+      ? null
+      : {
+          isOpen: open,
+          prevOpen: open,
+        };
+  }
 
   static defaultProps = {
     compareItems: defaultCompareItems,
@@ -96,14 +109,14 @@ export default class FilterableMultiSelect extends React.Component {
     locale: 'en',
     sortItems: defaultSortItems,
     light: false,
-    isOpen: false,
+    open: false,
   };
 
   constructor(props) {
     super(props);
     this.state = {
       highlightedIndex: null,
-      isOpen: props.isOpen,
+      isOpen: props.open,
       inputValue: '',
     };
   }

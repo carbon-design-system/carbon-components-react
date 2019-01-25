@@ -64,7 +64,6 @@ storiesOf('MultiSelect', module)
             items={items}
             itemToString={item => (item ? item.text : '')}
             placeholder={placeholder}
-            isOpen={true}
           />
         </div>
       );
