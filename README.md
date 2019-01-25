@@ -52,12 +52,6 @@ We recommend the use of [React Storybook](https://github.com/storybooks/react-st
 
 1. (Optional) Set environment variables:
 
-   - `true` to `CARBON_USE_EXPERIMENTAL_FEATURES` environment variable to test some of the experimental features:
-
-     ```
-     $ export CARBON_USE_EXPERIMENTAL_FEATURES=true
-     ```
-
    - `true` to `CARBON_USE_BREAKING_CHANGES` environment variable to test some of the breaking changes for the next release:
 
      ```
