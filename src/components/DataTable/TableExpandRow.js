@@ -83,13 +83,13 @@ TableExpandRow.propTypes = {
   expandIconDescription: PropTypes.string,
 
   /**
-  * The id of the matching th node in the table head. Solves a11y DAP violation to match these appropriately.
-  */
+   * The id of the matching th node in the table head. Solves a11y DAP violation to match these appropriately.
+   */
   expandHeader: PropTypes.string,
 };
 
 TableExpandRow.defaultProps = {
-  expandHeader: "expand",
-}
+  expandHeader: 'expand',
+};
 
 export default TableExpandRow;
