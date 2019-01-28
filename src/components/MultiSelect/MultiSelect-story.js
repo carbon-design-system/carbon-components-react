@@ -9,7 +9,13 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 
-import { withKnobs, boolean, select, text } from '@storybook/addon-knobs';
+import {
+  withKnobs,
+  boolean,
+  select,
+  text,
+  object,
+} from '@storybook/addon-knobs';
 import MultiSelect from '../MultiSelect';
 
 const items = [
@@ -47,6 +53,10 @@ const props = () => ({
     'Invalid Selection'
   ),
   onChange: action('onChange'),
+  listBoxMenuIconTranslationIds: object(
+    'Listbox menu icon translation IDs (listBoxMenuIconTranslationIds)',
+    { 'close.menu': 'Close menu', 'open.menu': 'Open menu' }
+  ),
 });
 
 storiesOf('MultiSelect', module)

@@ -91,6 +91,13 @@ export default class MultiSelect extends React.Component {
      * If invalid, what is the error?
      */
     invalidText: PropTypes.string,
+
+    /**
+     * Object containing localized alt text for the listbox menu icon
+     * listBoxMenuIconTranslationIds[close.menu] - alt text for closing listbox
+     * listBoxMenuIconTranslationIds[open.menu] - alt text for opening listbox
+     */
+    listBoxMenuIconTranslationIds: PropTypes.object,
   };
 
   static defaultProps = {
@@ -103,6 +110,10 @@ export default class MultiSelect extends React.Component {
     type: 'default',
     light: false,
     title: false,
+    listBoxMenuIconTranslationIds: {
+      'close.menu': 'Close menu',
+      'open.menu': 'Open menu',
+    },
   };
 
   constructor(props) {
@@ -175,6 +186,7 @@ export default class MultiSelect extends React.Component {
       invalid,
       invalidText,
       useTitleInItem,
+      listBoxMenuIconTranslationIds,
     } = this.props;
     const className = cx(`${prefix}--multi-select`, containerClassName, {
       [`${prefix}--list-box--light`]: light,
@@ -217,7 +229,10 @@ export default class MultiSelect extends React.Component {
                     />
                   )}
                   <span className={`${prefix}--list-box__label`}>{label}</span>
-                  <ListBox.MenuIcon isOpen={isOpen} />
+                  <ListBox.MenuIcon
+                    isOpen={isOpen}
+                    translateWithId={id => listBoxMenuIconTranslationIds[id]}
+                  />
                 </ListBox.Field>
                 {isOpen && (
                   <ListBox.Menu>
