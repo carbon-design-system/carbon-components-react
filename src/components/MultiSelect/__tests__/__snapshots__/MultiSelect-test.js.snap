@@ -37,6 +37,12 @@ exports[`MultiSelect should render 1`] = `
   }
   label="Field"
   light={false}
+  listBoxMenuIconTranslationIds={
+    Object {
+      "close.menu": "Close menu",
+      "open.menu": "Open menu",
+    }
+  }
   locale="en"
   sortItems={[Function]}
   title={false}
