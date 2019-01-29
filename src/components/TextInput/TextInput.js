@@ -12,7 +12,7 @@ import { settings } from 'carbon-components';
 
 const { prefix } = settings;
 
-const TextInputImpl = ({
+const TextInput = ({
   labelText,
   className = `${prefix}--text__input`,
   id,
@@ -91,10 +91,6 @@ const TextInputImpl = ({
     </div>
   );
 };
-
-const TextInput = React.forwardRef((props, ref) => (
-  <TextInputImpl {...props} forwardRef={ref} />
-));
 
 TextInput.propTypes = {
   /**
@@ -187,6 +183,8 @@ TextInput.defaultProps = {
   light: false,
 };
 
-TextInput.displayName = 'TextInput';
-
-export default TextInput;
+export default React.forwardRef(
+  Object.assign((props, ref) => <TextInput {...props} forwardRef={ref} />, {
+    displayName: 'TextInput',
+  })
+);

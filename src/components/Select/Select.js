@@ -17,7 +17,7 @@ import ChevronDownGlyph from '@carbon/icons-react/lib/chevron--down/index';
 
 const { prefix } = settings;
 
-const SelectImpl = ({
+const Select = ({
   className,
   id,
   inline,
@@ -95,10 +95,6 @@ const SelectImpl = ({
     </div>
   );
 };
-
-const Select = React.forwardRef((props, ref) => (
-  <SelectImpl {...props} forwardRef={ref} />
-));
 
 Select.propTypes = {
   /**
@@ -185,6 +181,8 @@ Select.defaultProps = {
   light: false,
 };
 
-Select.displayName = 'Select';
-
-export default Select;
+export default React.forwardRef(
+  Object.assign((props, ref) => <Select {...props} forwardRef={ref} />, {
+    displayName: 'Select',
+  })
+);

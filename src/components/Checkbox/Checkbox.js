@@ -12,7 +12,7 @@ import { settings } from 'carbon-components';
 
 const { prefix } = settings;
 
-const CheckboxImpl = ({
+const Checkbox = ({
   className,
   id,
   labelText,
@@ -61,10 +61,6 @@ const CheckboxImpl = ({
     </div>
   );
 };
-
-const Checkbox = React.forwardRef((props, ref) => (
-  <CheckboxImpl {...props} forwardRef={ref} />
-));
 
 Checkbox.propTypes = {
   /**
@@ -130,6 +126,8 @@ Checkbox.defaultProps = {
   indeterminate: false,
 };
 
-Checkbox.displayName = 'Checkbox';
-
-export default Checkbox;
+export default React.forwardRef(
+  Object.assign((props, ref) => <Checkbox {...props} forwardRef={ref} />, {
+    displayName: 'Checkbox',
+  })
+);
