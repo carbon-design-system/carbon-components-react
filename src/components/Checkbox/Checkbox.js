@@ -1,3 +1,10 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import PropTypes from 'prop-types';
 import React from 'react';
 import classNames from 'classnames';
@@ -14,6 +21,7 @@ const Checkbox = ({
   hideLabel,
   wrapperClassName,
   title = '',
+  forwardRef: ref,
   ...other
 }) => {
   let input;
@@ -33,16 +41,19 @@ const Checkbox = ({
         {...other}
         type="checkbox"
         onChange={evt => {
-          onChange(input.checked, id, evt);
+          onChange(evt.target.checked, id, evt);
         }}
         className={`${prefix}--checkbox`}
         id={id}
-        ref={el => {
-          input = el;
-          if (input) {
-            input.indeterminate = indeterminate;
-          }
-        }}
+        ref={
+          ref ||
+          (el => {
+            input = el;
+            if (input) {
+              input.indeterminate = indeterminate;
+            }
+          })
+        }
       />
       <label htmlFor={id} className={labelClasses} title={title || null}>
         <span className={innerLabelClasses}>{labelText}</span>
@@ -115,4 +126,6 @@ Checkbox.defaultProps = {
   indeterminate: false,
 };
 
-export default Checkbox;
+export default React.forwardRef((props, ref) => (
+  <Checkbox {...props} forwardRef={ref} />
+));

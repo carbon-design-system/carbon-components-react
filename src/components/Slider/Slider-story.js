@@ -1,3 +1,10 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
@@ -9,7 +16,7 @@ import { sliderValuePropSync } from '../../internal/FeatureFlags';
 
 const props = () => ({
   name: text('Form item name (name)', ''),
-  inputType: text('The form element type (inputType)', ''),
+  inputType: text('The form element type (inputType)', 'number'),
   ariaLabelInput: text('The ARIA label for the <input> (ariaLabelInput)', ''),
   disabled: boolean('Disabled (disabled)', false),
   light: boolean('Light variant (light)', false),

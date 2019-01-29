@@ -1,3 +1,10 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import PropTypes from 'prop-types';
 import React from 'react';
 import classNames from 'classnames';
@@ -23,6 +30,7 @@ const Select = ({
   invalidText,
   helperText,
   light,
+  forwardRef: ref,
   ...other
 }) => {
   const selectClasses = classNames({
@@ -61,7 +69,8 @@ const Select = ({
           className={`${prefix}--select-input`}
           disabled={disabled || undefined}
           data-invalid={invalid || undefined}
-          aria-invalid={invalid || undefined}>
+          aria-invalid={invalid || undefined}
+          ref={ref}>
           {children}
         </select>
         {componentsX ? (
@@ -172,4 +181,6 @@ Select.defaultProps = {
   light: false,
 };
 
-export default Select;
+export default React.forwardRef((props, ref) => (
+  <Select {...props} forwardRef={ref} />
+));

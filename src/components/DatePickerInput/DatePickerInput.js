@@ -1,8 +1,18 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import classNames from 'classnames';
 import { settings } from 'carbon-components';
+// TODO: import { Calendar16 } from '@carbon/icons-react/';
+import Calendar16 from '@carbon/icons-react/lib/calendar/16';
 import Icon from '../Icon';
+import { componentsX } from '../../internal/FeatureFlags';
 
 const { prefix } = settings;
 
@@ -68,17 +78,30 @@ export default class DatePickerInput extends Component {
       [`${prefix}--visually-hidden`]: hideLabel,
     });
 
-    const datePickerIcon =
-      datePickerType === 'single' ? (
+    const datePickerIcon = (() => {
+      if (datePickerType !== 'single') {
+        return;
+      }
+      if (componentsX) {
+        return (
+          <Calendar16
+            className={`${prefix}--date-picker__icon`}
+            aria-label={iconDescription}
+            onClick={openCalendar}
+            role="img"
+          />
+        );
+      }
+      return (
         <Icon
           name="calendar"
           className={`${prefix}--date-picker__icon`}
           description={iconDescription}
           onClick={openCalendar}
+          focusable="false"
         />
-      ) : (
-        ''
       );
+    })();
 
     const label = labelText ? (
       <label htmlFor={id} className={labelClasses}>

@@ -1,3 +1,10 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import cx from 'classnames';
 import Downshift from 'downshift';
 import PropTypes from 'prop-types';
@@ -224,7 +231,11 @@ export default class ComboBox extends React.Component {
       onInputChange, // eslint-disable-line no-unused-vars
       ...rest
     } = this.props;
-    const className = cx(`${prefix}--combo-box`, containerClassName);
+    const className = cx(
+      `${prefix}--form-item`,
+      `${prefix}--combo-box`,
+      containerClassName
+    );
 
     return (
       <Downshift
