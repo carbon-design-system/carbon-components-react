@@ -50,7 +50,7 @@ const ListBox = ({
         {...rest}
         role="listbox"
         aria-label={ariaLabel}
-        tabIndex={innerTabIndex || '0'}
+        tabIndex={innerTabIndex || 0}
         className={className}
         ref={innerRef}
         onKeyDown={handleOnKeyDown}
