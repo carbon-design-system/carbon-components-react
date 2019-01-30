@@ -9,7 +9,6 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import classnames from 'classnames';
 import { settings } from 'carbon-components';
-import Tooltip from '../Tooltip';
 // TODO: import { CheckmarkOutline16 } from '@carbon/icons-react';
 import CheckmarkOutline16 from '@carbon/icons-react/lib/checkmark--outline/16';
 // TODO: import { Warning16 } from '@carbon/icons-react';
@@ -27,10 +26,8 @@ export const ProgressStep = ({ ...props }) => {
     complete,
     invalid,
     secondaryLabel,
-    overflowTooltipProps,
-    overflowTooltipChildren,
     disabled,
-    tooltipId,
+    renderTooltip,
   } = props;
 
   const classes = classnames({
@@ -94,24 +91,10 @@ export const ProgressStep = ({ ...props }) => {
   return (
     <li className={classes}>
       {currentSvg || completeSvg || incompleteSvg}
-      {componentsX &&
-      overflowTooltipChildren !== undefined &&
-      overflowTooltipChildren !== null ? (
-        <Tooltip
-          direction="bottom"
-          showIcon={false}
-          triggerClassName={`${prefix}--progress-label`}
-          triggerText={label}
-          tooltipId={tooltipId}
-          {...overflowTooltipProps}>
-          {overflowTooltipChildren}
-        </Tooltip>
+      {componentsX && renderTooltip ? (
+        renderTooltip()
       ) : (
-        <p
-          className={`${prefix}--progress-label`}
-          aria-describedby={componentsX ? tooltipId : null}>
-          {label}
-        </p>
+        <p className={`${prefix}--progress-label`}>{label}</p>
       )}
       {componentsX &&
       secondaryLabel !== null &&
@@ -159,10 +142,11 @@ ProgressStep.propTypes = {
    */
   secondaryLabel: PropTypes.string,
 
-  /**
-   * Provide the content of a progress step tooltip
+  /*
+   * An optional parameter to allow for overflow content to be rendered in a
+   * tooltip.
    */
-  overflowTooltipChildren: PropTypes.node,
+  renderTooltip: PropTypes.function,
 
   /**
    * Provide the props that describe a progress step tooltip

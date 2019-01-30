@@ -7,10 +7,11 @@
 
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-
 import { withKnobs, number } from '@storybook/addon-knobs';
 import { ProgressIndicator, ProgressStep } from '../ProgressIndicator';
 import ProgressIndicatorSkeleton from '../ProgressIndicator/ProgressIndicator.Skeleton';
+import Tooltip from '../Tooltip';
+import { componentsX } from '../../internal/FeatureFlags';
 
 storiesOf('Progress Indicator', module)
   .addDecorator(withKnobs)
@@ -25,21 +26,37 @@ storiesOf('Progress Indicator', module)
           secondaryLabel="Optional label"
         />
         <ProgressStep
-          label="Second step with tooltip"
+          label={componentsX ? null : 'Second step with tooltip'}
           description="Step 2: Getting started with Carbon Design System"
-          overflowTooltipChildren={<p>Overflow tooltip content.</p>}
+          renderTooltip={() => (
+            <Tooltip
+              direction="bottom"
+              showIcon={false}
+              triggerClassName="bx--progress-label"
+              triggerText={'Second step with tooltip'}
+              tooltipId="tooltipId-0">
+              <p>Overflow tooltip content.</p>
+            </Tooltip>
+          )}
         />
         <ProgressStep
-          label="Third step with tooltip"
+          label={componentsX ? null : 'Third step with tooltip'}
           description="Step 3: Getting started with Carbon Design System"
-          overflowTooltipChildren={
-            <p>
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Animi
-              consequuntur hic ratione aliquid cupiditate, nesciunt saepe iste
-              blanditiis cumque maxime tenetur veniam est illo deserunt sint
-              quae pariatur. Laboriosam, consequatur.
-            </p>
-          }
+          renderTooltip={() => (
+            <Tooltip
+              direction="bottom"
+              showIcon={false}
+              triggerClassName="bx--progress-label"
+              triggerText={'Third step with tooltip'}
+              tooltipId="tooltipId-1">
+              <p>
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Animi
+                consequuntur hic ratione aliquid cupiditate, nesciunt saepe iste
+                blanditiis cumque maxime tenetur veniam est illo deserunt sint
+                quae pariatur. Laboriosam, consequatur.
+              </p>
+            </Tooltip>
+          )}
         />
         <ProgressStep
           label="Fourth step"
