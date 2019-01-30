@@ -22,6 +22,7 @@ import Icon from '../Icon';
 // TODO: import { OverflowMenuVertical16 } from '@carbon/icons-react';
 import OverflowMenuVertical16 from '@carbon/icons-react/lib/overflow-menu--vertical/16';
 import { componentsX } from '../../internal/FeatureFlags';
+import { keys, matches as keyCodeMatches } from '../../tools/key';
 
 const { prefix } = settings;
 
@@ -373,7 +374,7 @@ export default class OverflowMenu extends Component {
   };
 
   handleKeyDown = evt => {
-    if (evt.which === 40) {
+    if (keyCodeMatches(evt, [keys.DOWN])) {
       this.setState({ open: !this.state.open });
       this.props.onClick(evt);
     }
@@ -381,15 +382,14 @@ export default class OverflowMenu extends Component {
 
   handleKeyPress = evt => {
     // only respond to key events when the menu is closed, so that menu items still respond to key events
-    const key = evt.key || evt.which;
     if (!this.state.open) {
-      if (key === 'Enter' || key === 13 || key === ' ' || key === 32) {
+      if (keyCodeMatches(evt, [keys.ENTER, keys.SPACE])) {
         this.setState({ open: true });
       }
     }
 
     // Close the overflow menu on escape
-    if (key === 'Escape' || key === 'Esc' || key === 27) {
+    if (keyCodeMatches(evt, [keys.ESC])) {
       this.closeMenu();
       // Stop the esc keypress from bubbling out and closing something it shouldn't
       evt.stopPropagation();
