@@ -42,7 +42,7 @@ export default class InnerClickListener extends React.Component {
     // 'body' necessary for IE
     if (
       this.element &&
-      (this.element.ownerDocument.body === event.target ||
+      (this.element.ownerDocument === event.target ||
         this.element.ownerDocument.body.contains(event.target))
     ) {
       if (this.element.contains && !this.element.contains(event.target)) {
