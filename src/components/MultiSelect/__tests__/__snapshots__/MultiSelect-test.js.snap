@@ -37,15 +37,10 @@ exports[`MultiSelect should render 1`] = `
   }
   label="Field"
   light={false}
-  listBoxMenuIconTranslationIds={
-    Object {
-      "close.menu": "Close menu",
-      "open.menu": "Open menu",
-    }
-  }
   locale="en"
   sortItems={[Function]}
   title={false}
+  translateWithId={[Function]}
   type="default"
 >
   <Selection
@@ -130,8 +125,7 @@ exports[`MultiSelect should render 1`] = `
                   className="bx--list-box__menu-icon"
                 >
                   <Icon
-                    alt="Open menu"
-                    description="Open menu"
+                    description="Provide a description that will be used as the title"
                     fillRule="evenodd"
                     focusable="false"
                     icon={
@@ -160,8 +154,8 @@ exports[`MultiSelect should render 1`] = `
                     role="img"
                   >
                     <svg
-                      alt="Open menu"
-                      aria-label="Open menu"
+                      alt="Provide a description that will be used as the title"
+                      aria-label="Provide a description that will be used as the title"
                       fillRule="evenodd"
                       focusable="false"
                       height="5"
@@ -170,7 +164,7 @@ exports[`MultiSelect should render 1`] = `
                       width="10"
                     >
                       <title>
-                        Open menu
+                        Provide a description that will be used as the title
                       </title>
                       <path
                         d="M0 0l5 4.998L10 0z"
