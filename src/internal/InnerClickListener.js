@@ -41,8 +41,8 @@ export default class InnerClickListener extends React.Component {
     // Ensure that the target exists in the DOM before checking the element
     // documentElement necessary for IE
     if (
-      this.element.ownerDocument.documentElement.contains(event.target) &&
-      this.element
+      this.element &&
+      this.element.ownerDocument.documentElement.contains(event.target)
     ) {
       if (this.element.contains && !this.element.contains(event.target)) {
         this.props.onClickOutside(event);
