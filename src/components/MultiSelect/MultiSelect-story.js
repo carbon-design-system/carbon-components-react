@@ -54,8 +54,11 @@ const props = () => ({
   ),
   onChange: action('onChange'),
   listBoxMenuIconTranslationIds: object(
-    'Listbox menu icon translation IDs (listBoxMenuIconTranslationIds)',
-    { 'close.menu': 'Close menu', 'open.menu': 'Open menu' }
+    'Listbox menu icon translation IDs (for translateWithId callback)',
+    {
+      'close.menu': 'Close menu',
+      'open.menu': 'Open menu',
+    }
   ),
 });
 
@@ -64,7 +67,11 @@ storiesOf('MultiSelect', module)
   .add(
     'default',
     () => {
-      const { filterable, ...multiSelectProps } = props();
+      const {
+        filterable,
+        listBoxMenuIconTranslationIds,
+        ...multiSelectProps
+      } = props();
       const ComponentToUse = !filterable ? MultiSelect : MultiSelect.Filterable;
       const placeholder = !filterable ? undefined : defaultPlaceholder;
       return (
@@ -74,6 +81,7 @@ storiesOf('MultiSelect', module)
             items={items}
             itemToString={item => (item ? item.text : '')}
             placeholder={placeholder}
+            translateWithId={id => listBoxMenuIconTranslationIds[id]}
           />
         </div>
       );
@@ -89,7 +97,11 @@ storiesOf('MultiSelect', module)
   .add(
     'with initial selected items',
     () => {
-      const { filterable, ...multiSelectProps } = props();
+      const {
+        filterable,
+        listBoxMenuIconTranslationIds,
+        ...multiSelectProps
+      } = props();
       const ComponentToUse = !filterable ? MultiSelect : MultiSelect.Filterable;
       const placeholder = !filterable ? undefined : defaultPlaceholder;
       return (
@@ -100,6 +112,7 @@ storiesOf('MultiSelect', module)
             itemToString={item => (item ? item.text : '')}
             initialSelectedItems={[items[0], items[1]]}
             placeholder={placeholder}
+            translateWithId={id => listBoxMenuIconTranslationIds[id]}
           />
         </div>
       );
