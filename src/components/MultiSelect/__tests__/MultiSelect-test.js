@@ -45,9 +45,7 @@ describe('MultiSelect', () => {
 
   it('should initialize with the menu open', () => {
     const items = generateItems(5, generateGenericItem);
-    const wrapper = mount(
-      <MultiSelect label="Field" items={items} open/>
-    );
+    const wrapper = mount(<MultiSelect label="Field" items={items} open />);
     expect(wrapper.state('isOpen')).toEqual(true);
   });
 
@@ -234,17 +232,17 @@ describe('MultiSelect', () => {
       const getHighlightedId = () =>
         wrapper.find('.bx--list-box__menu-item--highlighted').prop('id');
       simulateArrowDown();
-      expect(getHighlightedId()).toBe('downshift-12-item-0');
+      expect(getHighlightedId()).toBe('downshift-13-item-0');
       simulateArrowDown();
-      expect(getHighlightedId()).toBe('downshift-12-item-1');
+      expect(getHighlightedId()).toBe('downshift-13-item-1');
       // Simulate "wrap" behavior
       simulateArrowDown();
       simulateArrowDown();
       simulateArrowDown();
       simulateArrowDown();
-      expect(getHighlightedId()).toBe('downshift-12-item-0');
+      expect(getHighlightedId()).toBe('downshift-13-item-0');
       simulateArrowUp();
-      expect(getHighlightedId()).toBe('downshift-12-item-4');
+      expect(getHighlightedId()).toBe('downshift-13-item-4');
     });
 
     it('should close the menu when a user clicks outside of the control', () => {
