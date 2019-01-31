@@ -23,7 +23,7 @@ We're actively looking to improve our Component documentation through generating
 add documentation around installing and using our components, in addition to
 covering common use-cases for each component with code examples.
 
-If you would like to help out, there are several steps of contributing
+If you would like to help out, there are several options to contribute
 component-specific documentation to `carbon-components-react`:
 
 1. Create a `README.md` file using [this file structure](#file-structure), and add it to the component's story using [these steps](#storybook-readme)
