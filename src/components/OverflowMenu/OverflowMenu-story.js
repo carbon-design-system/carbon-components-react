@@ -1,3 +1,10 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
@@ -23,6 +30,7 @@ const props = {
     ),
     ariaLabel: text('ARIA label (ariaLabel)', ''),
     iconDescription: text('Icon description (iconDescription)', ''),
+    flipped: boolean('Flipped (flipped)', false),
     onClick: action('onClick'),
     onFocus: action('onFocus'),
     onKeyDown: action('onKeyDown'),

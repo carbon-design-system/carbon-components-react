@@ -1,3 +1,10 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import classNames from 'classnames';
@@ -7,6 +14,7 @@ import rangePlugin from 'flatpickr/dist/plugins/rangePlugin';
 import { settings } from 'carbon-components';
 import DatePickerInput from '../DatePickerInput';
 import Icon from '../Icon';
+import { componentsX } from '../../internal/FeatureFlags';
 
 const { prefix } = settings;
 
@@ -436,16 +444,15 @@ export default class DatePicker extends Component {
     });
 
     const datePickerIcon =
-      datePickerType === 'range' ? (
+      !componentsX && datePickerType === 'range' ? (
         <Icon
           name="calendar"
           className={`${prefix}--date-picker__icon`}
           description={iconDescription}
           onClick={this.openCalendar}
+          focusable="false"
         />
-      ) : (
-        ''
-      );
+      ) : null;
 
     const childArray = React.Children.toArray(children);
     const childrenWithProps = childArray.map((child, index) => {

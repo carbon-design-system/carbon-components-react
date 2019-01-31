@@ -1,3 +1,10 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
@@ -5,6 +12,7 @@ import isEqual from 'lodash.isequal';
 import { settings } from 'carbon-components';
 import TextInput from '../TextInput';
 import { sliderValuePropSync } from '../../internal/FeatureFlags';
+import { componentsX } from '../../internal/FeatureFlags';
 
 const { prefix } = settings;
 
@@ -98,7 +106,7 @@ export default class Slider extends PureComponent {
     /**
      * The `name` attribute of the `<input>`.
      */
-    name: PropTypes.bool,
+    name: PropTypes.string,
 
     /**
      * The `type` attribute of the `<input>`.
@@ -393,7 +401,7 @@ export default class Slider extends PureComponent {
       className
     );
 
-    const inputClasses = classNames(`${prefix}-slider-text-input`, {
+    const inputClasses = classNames(`${prefix}--slider-text-input`, {
       [`${prefix}--text-input--light`]: light,
     });
 
@@ -410,9 +418,11 @@ export default class Slider extends PureComponent {
           {labelText}
         </label>
         <div className={`${prefix}--slider-container`}>
-          <span className={`${prefix}--slider__range-label`}>
-            {formatLabel(min, minLabel)}
-          </span>
+          {componentsX && (
+            <span className={`${prefix}--slider__range-label`}>
+              {formatLabel(min, minLabel)}
+            </span>
+          )}
           <div
             className={sliderClasses}
             ref={node => {
@@ -423,16 +433,6 @@ export default class Slider extends PureComponent {
             role="presentation"
             tabIndex={-1}
             {...other}>
-            <div
-              className={`${prefix}--slider__track`}
-              ref={node => {
-                this.track = node;
-              }}
-            />
-            <div
-              className={`${prefix}--slider__filled-track`}
-              style={filledTrackStyle}
-            />
             <div
               className={`${prefix}--slider__thumb`}
               role="slider"
@@ -446,7 +446,18 @@ export default class Slider extends PureComponent {
               onTouchStart={this.handleTouchStart}
               onKeyDown={this.updatePosition}
             />
+            <div
+              className={`${prefix}--slider__track`}
+              ref={node => {
+                this.track = node;
+              }}
+            />
+            <div
+              className={`${prefix}--slider__filled-track`}
+              style={filledTrackStyle}
+            />
             <input
+              className={`${prefix}--slider__input`}
               type="hidden"
               name={name}
               value={value}
@@ -457,13 +468,18 @@ export default class Slider extends PureComponent {
               onChange={this.handleChange}
             />
           </div>
+          {!componentsX && (
+            <span className={`${prefix}--slider__range-label`}>
+              {formatLabel(min, minLabel)}
+            </span>
+          )}
           <span className={`${prefix}--slider__range-label`}>
             {formatLabel(max, maxLabel)}
           </span>
           {!hideTextInput && (
             <TextInput
               type={inputType}
-              id="input-for-slider"
+              id={`${id}-input-for-slider`}
               className={inputClasses}
               value={value}
               onChange={this.handleChange}
