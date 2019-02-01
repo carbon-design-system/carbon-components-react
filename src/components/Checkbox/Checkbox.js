@@ -126,8 +126,8 @@ Checkbox.defaultProps = {
   indeterminate: false,
 };
 
-export default React.forwardRef(
-  Object.assign((props, ref) => <Checkbox {...props} forwardRef={ref} />, {
-    displayName: 'Checkbox',
-  })
-);
+const forwardRef = (props, ref) => <Checkbox {...props} forwardRef={ref} />;
+
+forwardRef.displayName = 'Checkbox';
+
+export default forwardRef;

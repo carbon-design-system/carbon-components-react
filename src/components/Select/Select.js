@@ -181,8 +181,8 @@ Select.defaultProps = {
   light: false,
 };
 
-export default React.forwardRef(
-  Object.assign((props, ref) => <Select {...props} forwardRef={ref} />, {
-    displayName: 'Select',
-  })
-);
+const forwardRef = (props, ref) => <Select {...props} forwardRef={ref} />;
+
+forwardRef.displayName = 'Select';
+
+export default forwardRef;
