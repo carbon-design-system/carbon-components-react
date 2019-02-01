@@ -10,7 +10,7 @@ import { settings } from 'carbon-components';
 import cx from 'classnames';
 import React from 'react';
 import PropTypes from 'prop-types';
-import { keys, match, matches } from '../../tools/key';
+import { keys, matches } from '../../tools/key';
 import { AriaLabelPropType } from '../../prop-types/AriaPropTypes';
 
 const { prefix } = settings;
@@ -54,7 +54,7 @@ class HeaderMenu extends React.Component {
   /**
    * Toggle the expanded state of the menu on click.
    */
-  handleOnClick = (prevState) => {
+  handleOnClick = () => {
     this.setState(prevState => ({
       expanded: !prevState.expanded,
     }))
@@ -81,7 +81,7 @@ class HeaderMenu extends React.Component {
       event.stopPropagation();
       event.preventDefault();
 
-      this.setState(prevState => ({
+      this.setState(() => ({
         expanded: false, selectedIndex: null,
       }))
 
