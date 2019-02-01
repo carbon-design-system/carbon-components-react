@@ -5,51 +5,58 @@ import { Switch, Route, Link, Redirect, withRouter } from 'react-router-dom';
 import 'carbon-components/scss/globals/scss/styles.scss';
 import './App.scss';
 
-const LandingPage = ({ children }) => 
+const LandingPage = ({ children }) => (
   <div>
     <h1>React Router & Carbon React Components</h1>
     <section>
       <h2>With breadcrumb</h2>
       <ul>
-        <li><Link to="/page-one">Navigate to page 1</Link></li>
-        <li><Link to="/page-two">Navigate to page 2</Link></li>
+        <li>
+          <Link to="/page-one">Navigate to page 1</Link>
+        </li>
+        <li>
+          <Link to="/page-two">Navigate to page 2</Link>
+        </li>
       </ul>
     </section>
     <section>
-    <h2>With tabs</h2>
-    {children}
+      <h2>With tabs</h2>
+      {children}
     </section>
   </div>
+);
 
-const TabOne = withRouter(({ history }) => 
+const TabOne = withRouter(({ history }) => (
   <Tabs selected={0}>
-  <Tab onClick={() => history.push('/')} label="Tab 1">
-    <div>Tab 1 content.</div>
-  </Tab>
-  <Tab onClick={() => history.push('/tab-two')} label="Tab 2" />
+    <Tab onClick={() => history.push('/')} label="Tab 1">
+      <div>Tab 1 content.</div>
+    </Tab>
+    <Tab onClick={() => history.push('/tab-two')} label="Tab 2" />
   </Tabs>
-)
+));
 
-const TabTwo = withRouter(({ history }) => 
+const TabTwo = withRouter(({ history }) => (
   <Tabs selected={1}>
     <Tab onClick={() => history.push('/')} label="Tab 1" />
     <Tab onClick={() => history.push('/tab-two')} label="Tab 2">
       <div>Tab 2 content.</div>
     </Tab>
   </Tabs>
-)
+));
 
-const TabOneContent = () =>
+const TabOneContent = () => (
   <LandingPage>
     <TabOne />
   </LandingPage>
+);
 
-const TabTwoContent = () =>
+const TabTwoContent = () => (
   <LandingPage>
     <TabTwo />
   </LandingPage>
+);
 
-const PageOne = () =>
+const PageOne = () => (
   <div>
     <h1>React Router & Carbon React Components</h1>
     <Breadcrumb>
@@ -61,8 +68,9 @@ const PageOne = () =>
       </BreadcrumbItem>
     </Breadcrumb>
   </div>
+);
 
-const PageTwo = () =>
+const PageTwo = () => (
   <div>
     <h1>React Router & Carbon React Components</h1>
     <Breadcrumb>
@@ -74,6 +82,7 @@ const PageTwo = () =>
       </BreadcrumbItem>
     </Breadcrumb>
   </div>
+);
 
 class App extends Component {
   render() {
