@@ -185,4 +185,4 @@ const forwardRef = (props, ref) => <Select {...props} forwardRef={ref} />;
 
 forwardRef.displayName = 'Select';
 
-export default forwardRef;
+export default React.forwardRef(forwardRef);
