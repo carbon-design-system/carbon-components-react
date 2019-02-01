@@ -164,6 +164,12 @@ export default class Tooltip extends Component {
     triggerText: PropTypes.node,
 
     /**
+     * The callback function to optionally render the icon element.
+     * Can be a React component class.
+     */
+    renderIcon: PropTypes.func,
+
+    /**
      * `true` to show the default tooltip icon.
      */
     showIcon: PropTypes.bool,
@@ -360,6 +366,7 @@ export default class Tooltip extends Component {
       iconName,
       iconTitle,
       iconDescription,
+      renderIcon: IconCustomElement,
       menuOffset,
       // Exclude `clickToOpen` from `other` to avoid passing it along to `<div>`
       // eslint-disable-next-line no-unused-vars
@@ -387,9 +394,7 @@ export default class Tooltip extends Component {
           'aria-owns': tooltipId,
         };
 
-    const isCustomIcon = React.isValidElement(icon);
-
-    const finalIcon = isCustomIcon ? (
+    const finalIcon = IconCustomElement ? (
       <div
         className={`${prefix}--tooltip__custom-icon`}
         aria-labelledby={triggerId}
@@ -397,7 +402,7 @@ export default class Tooltip extends Component {
         ref={node => {
           this.triggerEl = node;
         }}>
-        {icon}
+        <IconCustomElement />
       </div>
     ) : componentsX ? (
       <Information

@@ -45,7 +45,7 @@ const props = {
     direction: select('Tooltip direction (direction)', directions, 'bottom'),
     triggerText: text('Trigger text (triggerText)', 'Tooltip label'),
     tabIndex: number('Tab index (tabIndex in <Tooltip>)', 0),
-    icon: (
+    renderIcon: props => (
       <div
         style={{
           width: '10px',
@@ -53,6 +53,7 @@ const props = {
           borderRadius: '5px',
           background: 'red',
         }}
+        {...props}
       />
     ),
   }),
@@ -62,7 +63,7 @@ const props = {
     direction: select('Tooltip direction (direction)', directions, 'bottom'),
     triggerText: null,
     tabIndex: number('Tab index (tabIndex in <Tooltip>)', 0),
-    icon: (
+    renderIcon: props => (
       <div
         style={{
           width: '10px',
@@ -70,6 +71,7 @@ const props = {
           borderRadius: '5px',
           background: 'red',
         }}
+        {...props}
       />
     ),
   }),

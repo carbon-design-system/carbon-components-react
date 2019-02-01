@@ -100,7 +100,9 @@ describe('Tooltip', () => {
   });
 
   describe('Renders as expected when an Icon component is provided, considered also as a custom icon component', () => {
-    const wrapper = mount(<Tooltip icon={<Icon name="icon--add" />} />);
+    const wrapper = mount(
+      <Tooltip renderIcon={props => <Icon name="icon--add" {...props} />} />
+    );
 
     it('does render Icon', () => {
       const icon = wrapper.find(Icon);
@@ -114,7 +116,9 @@ describe('Tooltip', () => {
   });
 
   describe('Renders as expected when custom icon component is provided', () => {
-    const wrapper = mount(<Tooltip icon={<CustomIcon />} />);
+    const wrapper = mount(
+      <Tooltip renderIcon={props => <CustomIcon {...props} />} />
+    );
 
     it('does not render Icon', () => {
       const icon = wrapper.find(Icon);
@@ -170,7 +174,12 @@ describe('Tooltip', () => {
     });
 
     it('hover changes state with custom icon', () => {
-      const wrapper = mount(<Tooltip icon={<div />} triggerText="Tooltip" />);
+      const wrapper = mount(
+        <Tooltip
+          renderIcon={props => <div {...props} />}
+          triggerText="Tooltip"
+        />
+      );
       const icon = wrapper.find('.bx--tooltip__custom-icon');
       icon.simulate('mouseover');
       expect(wrapper.state().open).toEqual(true);
@@ -189,7 +198,11 @@ describe('Tooltip', () => {
 
     it('click changes state when clickToOpen and custom icon are set', () => {
       const wrapper = mount(
-        <Tooltip icon={<div />} clickToOpen triggerText="Tooltip" />
+        <Tooltip
+          renderIcon={props => <div {...props} />}
+          clickToOpen
+          triggerText="Tooltip"
+        />
       );
       const icon = wrapper.find('.bx--tooltip__custom-icon');
       icon.simulate('click');
@@ -209,7 +222,11 @@ describe('Tooltip', () => {
 
     it('hover does not change state when clickToOpen and custom icon are set', () => {
       const wrapper = mount(
-        <Tooltip icon={<div />} clickToOpen triggerText="Tooltip" />
+        <Tooltip
+          renderIcon={props => <div {...props} />}
+          clickToOpen
+          triggerText="Tooltip"
+        />
       );
       const icon = wrapper.find('.bx--tooltip__custom-icon');
       icon.simulate('mouseover');
@@ -229,7 +246,11 @@ describe('Tooltip', () => {
 
     it('Enter key press changes state when clickToOpen and custom icon are set', () => {
       const wrapper = mount(
-        <Tooltip icon={<div />} clickToOpen triggerText="Tooltip" />
+        <Tooltip
+          renderIcon={props => <div {...props} />}
+          clickToOpen
+          triggerText="Tooltip"
+        />
       );
       const icon = wrapper.find('.bx--tooltip__custom-icon');
       icon.simulate('keyDown', { which: 'Enter' });
@@ -249,7 +270,11 @@ describe('Tooltip', () => {
 
     it('Space key press changes state when clickToOpen and custom icon are set', () => {
       const wrapper = mount(
-        <Tooltip icon={<div />} clickToOpen triggerText="Tooltip" />
+        <Tooltip
+          renderIcon={props => <div {...props} />}
+          clickToOpen
+          triggerText="Tooltip"
+        />
       );
       const icon = wrapper.find('.bx--tooltip__custom-icon');
       icon.simulate('keyDown', { which: ' ' });
@@ -267,7 +292,11 @@ describe('Tooltip', () => {
 
     it('A different key press does not change state when custom icon is set', () => {
       const wrapper = mount(
-        <Tooltip icon={<div />} clickToOpen triggerText="Tooltip" />
+        <Tooltip
+          renderIcon={props => <div {...props} />}
+          clickToOpen
+          triggerText="Tooltip"
+        />
       );
       const icon = wrapper.find('.bx--tooltip__custom-icon');
       icon.simulate('keyDown', { which: 'x' });
