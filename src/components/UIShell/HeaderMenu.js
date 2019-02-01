@@ -57,8 +57,8 @@ class HeaderMenu extends React.Component {
   handleOnClick = () => {
     this.setState(prevState => ({
       expanded: !prevState.expanded,
-    }))
-  }
+    }));
+  };
 
   /**
    * Keyboard event handler for the entire menu.
@@ -71,7 +71,7 @@ class HeaderMenu extends React.Component {
 
       this.setState(prevState => ({
         expanded: !prevState.expanded,
-      }))
+      }));
 
       return;
     }
@@ -82,11 +82,12 @@ class HeaderMenu extends React.Component {
       event.preventDefault();
 
       this.setState(() => ({
-        expanded: false, selectedIndex: null,
-      }))
+        expanded: false,
+        selectedIndex: null,
+      }));
 
       // Return focus to menu button when the user hits ESC.
-      this.menuButtonRef.focus()
+      this.menuButtonRef.focus();
       return;
     }
   };

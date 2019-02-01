@@ -69,8 +69,7 @@ export default class HeaderNavigation extends React.Component {
         <ul
           {...accessibilityLabel}
           className={`${prefix}--header__menu-bar`}
-          role="menubar"
-        >
+          role="menubar">
           {React.Children.map(children, this._renderNavItem)}
         </ul>
       </nav>
@@ -79,7 +78,7 @@ export default class HeaderNavigation extends React.Component {
 
   /**
    * Render an individual menuitem, adding a `ref` for each child inside of
-   * `this.items` to properly manage focus. 
+   * `this.items` to properly manage focus.
    */
   _renderNavItem = (child, index) => {
     return React.cloneElement(child, {
