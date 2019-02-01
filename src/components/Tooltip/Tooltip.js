@@ -171,12 +171,15 @@ export default class Tooltip extends Component {
     /**
      * The the default tooltip icon.
      */
-    icon: PropTypes.shape({
-      width: PropTypes.string,
-      height: PropTypes.string,
-      viewBox: PropTypes.string.isRequired,
-      svgData: PropTypes.object.isRequired,
-    }),
+    icon: PropTypes.oneOfType([
+      PropTypes.node,
+      PropTypes.shape({
+        width: PropTypes.string,
+        height: PropTypes.string,
+        viewBox: PropTypes.string.isRequired,
+        svgData: PropTypes.object.isRequired,
+      }),
+    ]),
 
     /**
      * The name of the default tooltip icon.
@@ -384,6 +387,38 @@ export default class Tooltip extends Component {
           'aria-owns': tooltipId,
         };
 
+    const isCustomIcon = React.isValidElement(icon) === true;
+    const finalIcon = isCustomIcon ? (
+      <div
+        className={`${prefix}--tooltip__custom-icon`}
+        aria-labelledby={triggerId}
+        aria-label={iconDescription}
+        ref={node => {
+          this.triggerEl = node;
+        }}>
+        {icon}
+      </div>
+    ) : componentsX ? (
+      <Information
+        name={iconName}
+        aria-labelledby={triggerId}
+        aria-label={iconDescription}
+        ref={node => {
+          this.triggerEl = node;
+        }}
+      />
+    ) : (
+      <Icon
+        icon={!icon && !iconName ? iconInfoGlyph : icon}
+        name={iconName}
+        description={iconDescription}
+        iconTitle={iconTitle}
+        iconRef={node => {
+          this.triggerEl = node;
+        }}
+      />
+    );
+
     return (
       <>
         <ClickListener onClickOutside={this.handleClickOutside}>
@@ -405,26 +440,7 @@ export default class Tooltip extends Component {
                 aria-label={iconDescription}
                 aria-expanded={open}
                 {...ariaOwnsProps}>
-                {componentsX ? (
-                  <Information
-                    name={iconName}
-                    aria-labelledby={triggerId}
-                    aria-label={iconDescription}
-                    ref={node => {
-                      this.triggerEl = node;
-                    }}
-                  />
-                ) : (
-                  <Icon
-                    icon={!icon && !iconName ? iconInfoGlyph : icon}
-                    name={iconName}
-                    description={iconDescription}
-                    iconTitle={iconTitle}
-                    iconRef={node => {
-                      this.triggerEl = node;
-                    }}
-                  />
-                )}
+                {finalIcon}
               </div>
             </div>
           ) : (

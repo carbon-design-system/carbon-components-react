@@ -125,9 +125,29 @@ describe('Tooltip', () => {
       expect(wrapper.state().open).toEqual(false);
     });
 
+    it('hover changes state with custom icon', () => {
+      const wrapper = mount(<Tooltip icon={<div />} triggerText="Tooltip" />);
+      const icon = wrapper.find('.bx--tooltip__custom-icon');
+      icon.simulate('mouseover');
+      expect(wrapper.state().open).toEqual(true);
+      icon.simulate('mouseout');
+      expect(wrapper.state().open).toEqual(false);
+    });
+
     it('click changes state when clickToOpen is set', () => {
       const wrapper = mount(<Tooltip clickToOpen triggerText="Tooltip" />);
       const icon = wrapper.find(Icon);
+      icon.simulate('click');
+      expect(wrapper.state().open).toEqual(true);
+      icon.simulate('click');
+      expect(wrapper.state().open).toEqual(false);
+    });
+
+    it('click changes state when clickToOpen and custom icon are set', () => {
+      const wrapper = mount(
+        <Tooltip icon={<div />} clickToOpen triggerText="Tooltip" />
+      );
+      const icon = wrapper.find('.bx--tooltip__custom-icon');
       icon.simulate('click');
       expect(wrapper.state().open).toEqual(true);
       icon.simulate('click');
@@ -143,9 +163,31 @@ describe('Tooltip', () => {
       expect(wrapper.state().open).toEqual(false);
     });
 
+    it('hover does not change state when clickToOpen and custom icon are set', () => {
+      const wrapper = mount(
+        <Tooltip icon={<div />} clickToOpen triggerText="Tooltip" />
+      );
+      const icon = wrapper.find('.bx--tooltip__custom-icon');
+      icon.simulate('mouseover');
+      expect(wrapper.state().open).toEqual(false);
+      icon.simulate('mouseout');
+      expect(wrapper.state().open).toEqual(false);
+    });
+
     it('Enter key press changes state when clickToOpen is set', () => {
       const wrapper = mount(<Tooltip clickToOpen triggerText="Tooltip" />);
       const icon = wrapper.find(Icon);
+      icon.simulate('keyDown', { which: 'Enter' });
+      expect(wrapper.state().open).toEqual(true);
+      icon.simulate('keyDown', { key: 13 });
+      expect(wrapper.state().open).toEqual(false);
+    });
+
+    it('Enter key press changes state when clickToOpen and custom icon are set', () => {
+      const wrapper = mount(
+        <Tooltip icon={<div />} clickToOpen triggerText="Tooltip" />
+      );
+      const icon = wrapper.find('.bx--tooltip__custom-icon');
       icon.simulate('keyDown', { which: 'Enter' });
       expect(wrapper.state().open).toEqual(true);
       icon.simulate('keyDown', { key: 13 });
@@ -161,9 +203,29 @@ describe('Tooltip', () => {
       expect(wrapper.state().open).toEqual(false);
     });
 
+    it('Space key press changes state when clickToOpen and custom icon are set', () => {
+      const wrapper = mount(
+        <Tooltip icon={<div />} clickToOpen triggerText="Tooltip" />
+      );
+      const icon = wrapper.find('.bx--tooltip__custom-icon');
+      icon.simulate('keyDown', { which: ' ' });
+      expect(wrapper.state().open).toEqual(true);
+      icon.simulate('keyDown', { key: 32 });
+      expect(wrapper.state().open).toEqual(false);
+    });
+
     it('A different key press does not change state', () => {
       const wrapper = mount(<Tooltip clickToOpen triggerText="Tooltip" />);
       const icon = wrapper.find(Icon);
+      icon.simulate('keyDown', { which: 'x' });
+      expect(wrapper.state().open).toEqual(false);
+    });
+
+    it('A different key press does not change state when custom icon is set', () => {
+      const wrapper = mount(
+        <Tooltip icon={<div />} clickToOpen triggerText="Tooltip" />
+      );
+      const icon = wrapper.find('.bx--tooltip__custom-icon');
       icon.simulate('keyDown', { which: 'x' });
       expect(wrapper.state().open).toEqual(false);
     });
