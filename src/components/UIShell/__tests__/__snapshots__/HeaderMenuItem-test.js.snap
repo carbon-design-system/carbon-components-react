@@ -17,13 +17,11 @@ exports[`HeaderMenuItem should render 1`] = `
       <Link
         className="bx--header__menu-item"
         element="a"
-        onKeyDown={[Function]}
         role="menuitem"
         tabIndex={0}
       >
         <a
           className="bx--header__menu-item"
-          onKeyDown={[Function]}
           role="menuitem"
           tabIndex={0}
         >
