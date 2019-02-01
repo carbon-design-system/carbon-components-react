@@ -276,6 +276,18 @@ export default class PaginationV2 extends Component {
       }
     );
     const selectItems = this.renderSelectItems(totalPages);
+    const pageRange = (() => {
+      if (pageInputDisabled) {
+        return null;
+      }
+      return (
+        <span className={`${prefix}--pagination__text`}>
+          {pagesUnknown
+            ? pageText(statePage)
+            : pageRangeText(statePage, totalPages)}
+        </span>
+      );
+    })();
     return componentsX ? (
       <div className={classNames} {...other}>
         <div className={`${prefix}--pagination__left`}>
@@ -321,11 +333,7 @@ export default class PaginationV2 extends Component {
               {selectItems}
             </Select>
           )}
-          <span className={`${prefix}--pagination__text`}>
-            {pagesUnknown
-              ? pageText(statePage)
-              : pageRangeText(statePage, totalPages)}
-          </span>
+          {pageRange}
           <button
             className={backButtonClasses}
             onClick={this.decrementPage}
@@ -392,11 +400,7 @@ export default class PaginationV2 extends Component {
         </div>
         <div
           className={`${prefix}--pagination__right ${prefix}--pagination--inline`}>
-          <span className={`${prefix}--pagination__text`}>
-            {pagesUnknown
-              ? pageText(statePage)
-              : pageRangeText(statePage, totalPages)}
-          </span>
+          {pageRange}
           <button
             className={backButtonClasses}
             onClick={this.decrementPage}
