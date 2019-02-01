@@ -130,4 +130,4 @@ const forwardRef = (props, ref) => <Checkbox {...props} forwardRef={ref} />;
 
 forwardRef.displayName = 'Checkbox';
 
-export default forwardRef;
+export default React.forwardRef(forwardRef);
