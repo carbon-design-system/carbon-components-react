@@ -5,7 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import React from 'react';
+import React, { Component } from 'react';
 import debounce from 'lodash.debounce';
 import { iconInfoGlyph } from 'carbon-icons';
 import Icon from '../Icon';
@@ -18,6 +18,13 @@ jest.mock('lodash.debounce');
 debounce.mockImplementation(fn => fn);
 
 describe('Tooltip', () => {
+  // An icon component class
+  class CustomIcon extends Component {
+    render() {
+      return <div />;
+    }
+  }
+
   describe('Renders as expected with defaults', () => {
     const wrapper = mount(
       <Tooltip triggerText="Tooltip">
@@ -85,6 +92,43 @@ describe('Tooltip', () => {
           'bx--tooltip__trigger tooltip--trigger-class'
         );
       });
+      it('does not render the custom icon wrapper', () => {
+        const customIconWrapper = wrapper.find('.bx--tooltip__custom-icon');
+        expect(customIconWrapper.exists()).toBe(false);
+      });
+    });
+  });
+
+  describe('Renders as expected when an Icon component is provided, considered also as a custom icon component', () => {
+    const wrapper = mount(<Tooltip icon={<Icon name="icon--add" />} />);
+
+    it('does render Icon', () => {
+      const icon = wrapper.find(Icon);
+      expect(icon.exists()).toBe(true);
+    });
+
+    it('does render the custom icon wrapper', () => {
+      const customIconWrapper = wrapper.find('.bx--tooltip__custom-icon');
+      expect(customIconWrapper.exists()).toBe(true);
+    });
+  });
+
+  describe('Renders as expected when custom icon component is provided', () => {
+    const wrapper = mount(<Tooltip icon={<CustomIcon />} />);
+
+    it('does not render Icon', () => {
+      const icon = wrapper.find(Icon);
+      expect(icon.exists()).toBe(false);
+    });
+
+    it('does render provided custom icon component instance', () => {
+      const icon = wrapper.find(CustomIcon);
+      expect(icon.exists()).toBe(true);
+    });
+
+    it('does render the custom icon wrapper', () => {
+      const customIconWrapper = wrapper.find('.bx--tooltip__custom-icon');
+      expect(customIconWrapper.exists()).toBe(true);
     });
   });
 

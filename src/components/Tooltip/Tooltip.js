@@ -169,10 +169,10 @@ export default class Tooltip extends Component {
     showIcon: PropTypes.bool,
 
     /**
-     * The the default tooltip icon.
+     * The tooltip icon element or `<Icon>` metadata.
      */
     icon: PropTypes.oneOfType([
-      PropTypes.node,
+      PropTypes.element,
       PropTypes.shape({
         width: PropTypes.string,
         height: PropTypes.string,
@@ -387,7 +387,8 @@ export default class Tooltip extends Component {
           'aria-owns': tooltipId,
         };
 
-    const isCustomIcon = React.isValidElement(icon) === true;
+    const isCustomIcon = React.isValidElement(icon);
+
     const finalIcon = isCustomIcon ? (
       <div
         className={`${prefix}--tooltip__custom-icon`}
