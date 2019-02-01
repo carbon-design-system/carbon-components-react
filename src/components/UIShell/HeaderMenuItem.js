@@ -9,21 +9,11 @@ import { settings } from 'carbon-components';
 import PropTypes from 'prop-types';
 import React from 'react';
 import Link, { LinkPropTypes } from './Link';
-import { keys, matches } from '../../tools/key';
 
 const { prefix } = settings;
 
 const HeaderMenuItem = props => {
   const { className, children, role, innerRef, ...rest } = props;
-
-  const handleOnKeyDown = event => {
-    // Handle enter or space key for toggling the expanded state of the menu.
-    if (matches(event, [keys.ENTER, keys.SPACE])) {
-      event.stopPropagation();
-
-      return;
-    }
-  };
 
   return (
     <li className={className} role={role}>
@@ -32,7 +22,6 @@ const HeaderMenuItem = props => {
         className={`${prefix}--header__menu-item`}
         ref={innerRef}
         role="menuitem"
-        onKeyDown={handleOnKeyDown}
         tabIndex={0}>
         <span className={`${prefix}--text-truncate--end`}>{children}</span>
       </Link>
