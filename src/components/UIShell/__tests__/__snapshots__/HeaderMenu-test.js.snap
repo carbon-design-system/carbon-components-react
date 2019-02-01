@@ -78,12 +78,14 @@ exports[`HeaderMenu should render 1`] = `
                 className="bx--header__menu-item"
                 element="a"
                 href="/a"
+                onKeyDown={[Function]}
                 role="menuitem"
                 tabIndex={0}
               >
                 <a
                   className="bx--header__menu-item"
                   href="/a"
+                  onKeyDown={[Function]}
                   role="menuitem"
                   tabIndex={0}
                 >
@@ -114,12 +116,14 @@ exports[`HeaderMenu should render 1`] = `
                 className="bx--header__menu-item"
                 element="a"
                 href="/b"
+                onKeyDown={[Function]}
                 role="menuitem"
                 tabIndex={0}
               >
                 <a
                   className="bx--header__menu-item"
                   href="/b"
+                  onKeyDown={[Function]}
                   role="menuitem"
                   tabIndex={0}
                 >
@@ -150,12 +154,14 @@ exports[`HeaderMenu should render 1`] = `
                 className="bx--header__menu-item"
                 element="a"
                 href="/c"
+                onKeyDown={[Function]}
                 role="menuitem"
                 tabIndex={0}
               >
                 <a
                   className="bx--header__menu-item"
                   href="/c"
+                  onKeyDown={[Function]}
                   role="menuitem"
                   tabIndex={0}
                 >
