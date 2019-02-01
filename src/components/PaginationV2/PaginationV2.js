@@ -127,6 +127,7 @@ export default class PaginationV2 extends Component {
      */
     pagesUnknown: PropTypes.bool,
 
+    // TODO: remove when v9 is deprecated
     /**
      * `true` if the current page should be the last page.
      */
@@ -253,8 +254,7 @@ export default class PaginationV2 extends Component {
 
     const classNames = classnames(`${prefix}--pagination`, className);
     const inputId = id || this.uniqueId;
-    const statePage = this.state.page;
-    const statePageSize = this.state.pageSize;
+    const { page: statePage, pageSize: statePageSize } = this.state;
     const totalPages = Math.max(Math.ceil(totalItems / statePageSize), 1);
     const backButtonDisabled = this.props.disabled || statePage === 1;
     const backButtonClasses = classnames(
@@ -266,7 +266,7 @@ export default class PaginationV2 extends Component {
       }
     );
     const forwardButtonDisabled =
-      this.props.disabled || statePage === totalPages || isLastPage;
+      this.props.disabled || statePage === totalPages;
     const forwardButtonClasses = classnames(
       `${prefix}--pagination__button`,
       `${prefix}--pagination__button--forward`,
