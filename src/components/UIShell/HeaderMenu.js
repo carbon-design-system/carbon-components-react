@@ -85,7 +85,8 @@ class HeaderMenu extends React.Component {
         expanded: false, selectedIndex: null,
       }))
 
-      // return focus to the outer Manage menu
+      // Return focus to menu button when the user hits ESC.
+      this.menuButtonRef.focus()
       return;
     }
   };
