@@ -96,7 +96,7 @@ describe('Tooltip', () => {
     });
   });
 
-  describe('Renders as expected when an Icon component wrapper with forwardRef is provided', () => {
+  describe('Renders as expected when an Icon component wrapped with forwardRef is provided', () => {
     const wrapper = mount(
       <Tooltip
         renderIcon={React.forwardRef(() => (
