@@ -165,9 +165,16 @@ export default class Tooltip extends Component {
 
     /**
      * The callback function to optionally render the icon element.
-     * Can be a React component class.
+     * It should be a component with React.forwardRef().
      */
-    renderIcon: PropTypes.func,
+    renderIcon: function(props, propName, componentName) {
+      if (props[propName] == undefined) return;
+
+      if (props[propName].$$typeof !== Symbol.for('react.forward_ref'))
+        return new Error(`Invalid value of prop '${propName}' supplied to '${componentName}',
+                          it should be created/wrapped with React.forwardRef() to have a ref and access the proper
+                          DOM node of the element to calculate its position in the viewport .`);
+    },
 
     /**
      * `true` to show the default tooltip icon.
@@ -177,15 +184,12 @@ export default class Tooltip extends Component {
     /**
      * The tooltip icon element or `<Icon>` metadata.
      */
-    icon: PropTypes.oneOfType([
-      PropTypes.element,
-      PropTypes.shape({
-        width: PropTypes.string,
-        height: PropTypes.string,
-        viewBox: PropTypes.string.isRequired,
-        svgData: PropTypes.object.isRequired,
-      }),
-    ]),
+    icon: PropTypes.shape({
+      width: PropTypes.string,
+      height: PropTypes.string,
+      viewBox: PropTypes.string.isRequired,
+      svgData: PropTypes.object.isRequired,
+    }),
 
     /**
      * The name of the default tooltip icon.
@@ -395,15 +399,15 @@ export default class Tooltip extends Component {
         };
 
     const finalIcon = IconCustomElement ? (
-      <div
+      <IconCustomElement
+        name={iconName}
         className={`${prefix}--tooltip__custom-icon`}
         aria-labelledby={triggerId}
         aria-label={iconDescription}
         ref={node => {
           this.triggerEl = node;
-        }}>
-        <IconCustomElement />
-      </div>
+        }}
+      />
     ) : componentsX ? (
       <Information
         name={iconName}

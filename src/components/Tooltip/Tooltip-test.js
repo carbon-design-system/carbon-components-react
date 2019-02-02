@@ -101,7 +101,11 @@ describe('Tooltip', () => {
 
   describe('Renders as expected when an Icon component is provided, considered also as a custom icon component', () => {
     const wrapper = mount(
-      <Tooltip renderIcon={props => <Icon name="icon--add" {...props} />} />
+      <Tooltip
+        renderIcon={React.forwardRef(() => (
+          <Icon name="icon--add" />
+        ))}
+      />
     );
 
     it('does render Icon', () => {
@@ -117,7 +121,11 @@ describe('Tooltip', () => {
 
   describe('Renders as expected when custom icon component is provided', () => {
     const wrapper = mount(
-      <Tooltip renderIcon={props => <CustomIcon {...props} />} />
+      <Tooltip
+        renderIcon={React.forwardRef(() => (
+          <CustomIcon />
+        ))}
+      />
     );
 
     it('does not render Icon', () => {
@@ -176,7 +184,9 @@ describe('Tooltip', () => {
     it('hover changes state with custom icon', () => {
       const wrapper = mount(
         <Tooltip
-          renderIcon={props => <div {...props} />}
+          renderIcon={React.forwardRef((props, ref) => (
+            <div ref={ref} />
+          ))}
           triggerText="Tooltip"
         />
       );
@@ -199,7 +209,9 @@ describe('Tooltip', () => {
     it('click changes state when clickToOpen and custom icon are set', () => {
       const wrapper = mount(
         <Tooltip
-          renderIcon={props => <div {...props} />}
+          renderIcon={React.forwardRef((props, ref) => (
+            <div ref={ref} />
+          ))}
           clickToOpen
           triggerText="Tooltip"
         />
@@ -223,7 +235,9 @@ describe('Tooltip', () => {
     it('hover does not change state when clickToOpen and custom icon are set', () => {
       const wrapper = mount(
         <Tooltip
-          renderIcon={props => <div {...props} />}
+          renderIcon={React.forwardRef((props, ref) => (
+            <div ref={ref} />
+          ))}
           clickToOpen
           triggerText="Tooltip"
         />
@@ -247,7 +261,9 @@ describe('Tooltip', () => {
     it('Enter key press changes state when clickToOpen and custom icon are set', () => {
       const wrapper = mount(
         <Tooltip
-          renderIcon={props => <div {...props} />}
+          renderIcon={React.forwardRef((props, ref) => (
+            <div ref={ref} />
+          ))}
           clickToOpen
           triggerText="Tooltip"
         />
@@ -271,7 +287,9 @@ describe('Tooltip', () => {
     it('Space key press changes state when clickToOpen and custom icon are set', () => {
       const wrapper = mount(
         <Tooltip
-          renderIcon={props => <div {...props} />}
+          renderIcon={React.forwardRef((props, ref) => (
+            <div ref={ref} />
+          ))}
           clickToOpen
           triggerText="Tooltip"
         />
@@ -293,7 +311,9 @@ describe('Tooltip', () => {
     it('A different key press does not change state when custom icon is set', () => {
       const wrapper = mount(
         <Tooltip
-          renderIcon={props => <div {...props} />}
+          renderIcon={React.forwardRef((props, ref) => (
+            <div ref={ref} />
+          ))}
           clickToOpen
           triggerText="Tooltip"
         />
