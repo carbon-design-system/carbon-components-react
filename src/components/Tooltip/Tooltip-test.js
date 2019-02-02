@@ -12,6 +12,7 @@ import Icon from '../Icon';
 import FloatingMenu from '../../internal/FloatingMenu';
 import Tooltip from '../Tooltip';
 import { shallow, mount } from 'enzyme';
+import OverflowMenuVertical16 from '@carbon/icons-react/lib/overflow-menu--vertical/16';
 
 jest.mock('lodash.debounce');
 
@@ -92,14 +93,10 @@ describe('Tooltip', () => {
           'bx--tooltip__trigger tooltip--trigger-class'
         );
       });
-      it('does not render the custom icon wrapper', () => {
-        const customIconWrapper = wrapper.find('.bx--tooltip__custom-icon');
-        expect(customIconWrapper.exists()).toBe(false);
-      });
     });
   });
 
-  describe('Renders as expected when an Icon component is provided, considered also as a custom icon component', () => {
+  describe('Renders as expected when an Icon component wrapper with forwardRef is provided', () => {
     const wrapper = mount(
       <Tooltip
         renderIcon={React.forwardRef(() => (
@@ -112,14 +109,9 @@ describe('Tooltip', () => {
       const icon = wrapper.find(Icon);
       expect(icon.exists()).toBe(true);
     });
-
-    it('does render the custom icon wrapper', () => {
-      const customIconWrapper = wrapper.find('.bx--tooltip__custom-icon');
-      expect(customIconWrapper.exists()).toBe(true);
-    });
   });
 
-  describe('Renders as expected when custom icon component is provided', () => {
+  describe('Renders as expected when custom icon component with forwardRef is provided', () => {
     const wrapper = mount(
       <Tooltip
         renderIcon={React.forwardRef(() => (
@@ -137,10 +129,19 @@ describe('Tooltip', () => {
       const icon = wrapper.find(CustomIcon);
       expect(icon.exists()).toBe(true);
     });
+  });
 
-    it('does render the custom icon wrapper', () => {
-      const customIconWrapper = wrapper.find('.bx--tooltip__custom-icon');
-      expect(customIconWrapper.exists()).toBe(true);
+  describe('Renders as expected when custom icon component with inner forwardRef is provided', () => {
+    const wrapper = mount(<Tooltip renderIcon={OverflowMenuVertical16} />);
+
+    it('does not render Icon', () => {
+      const icon = wrapper.find(Icon);
+      expect(icon.exists()).toBe(false);
+    });
+
+    it('does render provided custom icon component instance', () => {
+      const icon = wrapper.find(OverflowMenuVertical16);
+      expect(icon.exists()).toBe(true);
     });
   });
 
@@ -185,12 +186,12 @@ describe('Tooltip', () => {
       const wrapper = mount(
         <Tooltip
           renderIcon={React.forwardRef((props, ref) => (
-            <div ref={ref} />
+            <div className="custom-icon" ref={ref} />
           ))}
           triggerText="Tooltip"
         />
       );
-      const icon = wrapper.find('.bx--tooltip__custom-icon');
+      const icon = wrapper.find('.custom-icon');
       icon.simulate('mouseover');
       expect(wrapper.state().open).toEqual(true);
       icon.simulate('mouseout');
@@ -210,13 +211,13 @@ describe('Tooltip', () => {
       const wrapper = mount(
         <Tooltip
           renderIcon={React.forwardRef((props, ref) => (
-            <div ref={ref} />
+            <div className="custom-icon" ref={ref} />
           ))}
           clickToOpen
           triggerText="Tooltip"
         />
       );
-      const icon = wrapper.find('.bx--tooltip__custom-icon');
+      const icon = wrapper.find('.custom-icon');
       icon.simulate('click');
       expect(wrapper.state().open).toEqual(true);
       icon.simulate('click');
@@ -236,13 +237,13 @@ describe('Tooltip', () => {
       const wrapper = mount(
         <Tooltip
           renderIcon={React.forwardRef((props, ref) => (
-            <div ref={ref} />
+            <div className="custom-icon" ref={ref} />
           ))}
           clickToOpen
           triggerText="Tooltip"
         />
       );
-      const icon = wrapper.find('.bx--tooltip__custom-icon');
+      const icon = wrapper.find('.custom-icon');
       icon.simulate('mouseover');
       expect(wrapper.state().open).toEqual(false);
       icon.simulate('mouseout');
@@ -262,13 +263,13 @@ describe('Tooltip', () => {
       const wrapper = mount(
         <Tooltip
           renderIcon={React.forwardRef((props, ref) => (
-            <div ref={ref} />
+            <div className="custom-icon" ref={ref} />
           ))}
           clickToOpen
           triggerText="Tooltip"
         />
       );
-      const icon = wrapper.find('.bx--tooltip__custom-icon');
+      const icon = wrapper.find('.custom-icon');
       icon.simulate('keyDown', { which: 'Enter' });
       expect(wrapper.state().open).toEqual(true);
       icon.simulate('keyDown', { key: 13 });
@@ -288,13 +289,13 @@ describe('Tooltip', () => {
       const wrapper = mount(
         <Tooltip
           renderIcon={React.forwardRef((props, ref) => (
-            <div ref={ref} />
+            <div className="custom-icon" ref={ref} />
           ))}
           clickToOpen
           triggerText="Tooltip"
         />
       );
-      const icon = wrapper.find('.bx--tooltip__custom-icon');
+      const icon = wrapper.find('.custom-icon');
       icon.simulate('keyDown', { which: ' ' });
       expect(wrapper.state().open).toEqual(true);
       icon.simulate('keyDown', { key: 32 });
@@ -312,13 +313,13 @@ describe('Tooltip', () => {
       const wrapper = mount(
         <Tooltip
           renderIcon={React.forwardRef((props, ref) => (
-            <div ref={ref} />
+            <div className="custom-icon" ref={ref} />
           ))}
           clickToOpen
           triggerText="Tooltip"
         />
       );
-      const icon = wrapper.find('.bx--tooltip__custom-icon');
+      const icon = wrapper.find('.custom-icon');
       icon.simulate('keyDown', { which: 'x' });
       expect(wrapper.state().open).toEqual(false);
     });

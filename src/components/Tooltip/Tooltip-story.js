@@ -18,6 +18,8 @@ import {
 } from '@storybook/addon-knobs';
 import Tooltip from '../Tooltip';
 
+import OverflowMenuVertical16 from '@carbon/icons-react/lib/overflow-menu--vertical/16';
+
 const { prefix } = settings;
 const directions = {
   'Bottom (bottom)': 'bottom',
@@ -57,23 +59,13 @@ const props = {
       />
     )),
   }),
-  onlyIcon: () => ({
+  customIconOnly: () => ({
     showIcon: true,
     clickToOpen: boolean('Click to open (clickToOpen)', false),
     direction: select('Tooltip direction (direction)', directions, 'bottom'),
     triggerText: null,
     tabIndex: number('Tab index (tabIndex in <Tooltip>)', 0),
-    renderIcon: React.forwardRef((props, ref) => (
-      <div
-        style={{
-          width: '10px',
-          height: '10px',
-          borderRadius: '5px',
-          background: 'red',
-        }}
-        ref={ref}
-      />
-    )),
+    renderIcon: OverflowMenuVertical16,
   }),
 };
 
@@ -176,10 +168,10 @@ storiesOf('Tooltip', module)
     }
   )
   .add(
-    'only icon',
+    'only custom icon',
     () => (
       <div style={{ marginTop: '2rem' }}>
-        <Tooltip {...props.onlyIcon()}>
+        <Tooltip {...props.customIconOnly()}>
           <p>
             This is some tooltip text. This box shows the maximum amount of text
             that should appear inside. If more room is needed please use a modal

@@ -370,7 +370,7 @@ export default class Tooltip extends Component {
       iconName,
       iconTitle,
       iconDescription,
-      renderIcon: IconCustomElement,
+      renderIcon,
       menuOffset,
       // Exclude `clickToOpen` from `other` to avoid passing it along to `<div>`
       // eslint-disable-next-line no-unused-vars
@@ -398,18 +398,10 @@ export default class Tooltip extends Component {
           'aria-owns': tooltipId,
         };
 
+    const IconCustomElement = renderIcon || (componentsX && Information);
+
     const finalIcon = IconCustomElement ? (
       <IconCustomElement
-        name={iconName}
-        className={`${prefix}--tooltip__custom-icon`}
-        aria-labelledby={triggerId}
-        aria-label={iconDescription}
-        ref={node => {
-          this.triggerEl = node;
-        }}
-      />
-    ) : componentsX ? (
-      <Information
         name={iconName}
         aria-labelledby={triggerId}
         aria-label={iconDescription}
