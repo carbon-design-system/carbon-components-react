@@ -64,7 +64,9 @@ export default class RadioButton extends React.Component {
   };
 
   static defaultProps = {
+    labelText: '',
     onChange: () => {},
+    value: '',
   };
 
   uid = this.props.id || uid();
@@ -88,7 +90,10 @@ export default class RadioButton extends React.Component {
           onChange={this.handleChange}
           id={this.uid}
         />
-        <label htmlFor={this.uid} className={`${prefix}--radio-button__label`}>
+        <label
+          htmlFor={this.uid}
+          className={`${prefix}--radio-button__label`}
+          aria-label={labelText}>
           <span className={`${prefix}--radio-button__appearance`} />
           {labelText}
         </label>
