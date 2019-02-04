@@ -59,7 +59,7 @@ storiesOf('OverflowMenu', module)
           <OverflowMenuItem
             {...overflowMenuItemProps}
             itemText="Option 1"
-            primaryFocus={true}
+            primaryFocus
           />
           <OverflowMenuItem
             {...overflowMenuItemProps}
@@ -110,7 +110,7 @@ storiesOf('OverflowMenu', module)
           <OverflowMenuItem
             {...overflowMenuItemProps}
             itemText="Option 1"
-            primaryFocus={true}
+            primaryFocus
           />
           <OverflowMenuItem
             {...overflowMenuItemProps}
