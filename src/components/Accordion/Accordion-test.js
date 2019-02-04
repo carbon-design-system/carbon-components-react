@@ -8,6 +8,7 @@
 import React from 'react';
 import Accordion from '../Accordion';
 import AccordionSkeleton from '../Accordion/Accordion.Skeleton';
+import SkeletonText from '../SkeletonText';
 import { shallow } from 'enzyme';
 
 describe('Accordion', () => {
@@ -35,6 +36,17 @@ describe('Accordion', () => {
 describe('AccordionSkeleton', () => {
   describe('Renders as expected', () => {
     const wrapper = shallow(<AccordionSkeleton />);
+
+    it('Renders first item as expected', () => {
+      expect(wrapper.contains(<SkeletonText width="90%" />)).toEqual(true);
+    });
+
+    it('Renders without opened item', () => {
+      const noOpenedItem = shallow(<AccordionSkeleton open={false} />);
+      expect(noOpenedItem.contains(<SkeletonText width="90%" />)).toEqual(
+        false
+      );
+    });
 
     it('Has the expected classes', () => {
       expect(wrapper.hasClass('bx--skeleton')).toEqual(true);

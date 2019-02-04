@@ -91,7 +91,9 @@ storiesOf('Accordion', module)
     'skeleton',
     () => (
       <div style={{ width: '500px' }}>
-        <AccordionSkeleton />
+        <AccordionSkeleton
+          open={boolean('Show first item opened (open)', true)}
+        />
       </div>
     ),
     {
