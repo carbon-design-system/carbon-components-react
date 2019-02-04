@@ -108,7 +108,6 @@ export default class MultiSelect extends React.Component {
     type: 'default',
     light: false,
     title: false,
-    translateWithId: () => {},
   };
 
   constructor(props) {
