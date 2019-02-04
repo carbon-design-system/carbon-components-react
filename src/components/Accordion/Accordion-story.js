@@ -10,7 +10,7 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
-import { withKnobs, boolean, text } from '@storybook/addon-knobs';
+import { withKnobs, boolean, number, text } from '@storybook/addon-knobs';
 import Accordion from '../Accordion';
 import AccordionItem from '../AccordionItem';
 import Select from '../Select';
@@ -93,6 +93,7 @@ storiesOf('Accordion', module)
       <div style={{ width: '500px' }}>
         <AccordionSkeleton
           open={boolean('Show first item opened (open)', true)}
+          count={number('Set number of items (count)', 4)}
         />
       </div>
     ),

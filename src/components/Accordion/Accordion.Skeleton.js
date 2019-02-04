@@ -15,7 +15,7 @@ import { settings } from 'carbon-components';
 const { prefix } = settings;
 
 export default function AccordionSkeleton(props) {
-  const item = (
+  const Item = () => (
     <li className={`${prefix}--accordion__item`}>
       <button type="button" className={`${prefix}--accordion__heading`}>
         <Icon
@@ -45,11 +45,15 @@ export default function AccordionSkeleton(props) {
           </div>
         </li>
       ) : (
-        item
+        <Item />
       )}
-      {item}
-      {item}
-      {item}
+      {Array.from({
+        length: props.count
+          ? props.count - 1
+          : AccordionSkeleton.defaultProps.count,
+      }).map((v, i) => (
+        <Item key={`skeleton-accordion-item-${props.uid}-${i}`} />
+      ))}
     </ul>
   );
 }
@@ -59,8 +63,20 @@ AccordionSkeleton.propTypes = {
    * `false` to not display the first item opened
    */
   open: PropTypes.bool,
+
+  /**
+   * Set number of items to render
+   */
+  count: PropTypes.number,
+
+  /**
+   * Set unique identifier to generate unique item keys
+   */
+  uid: PropTypes.any,
 };
 
 AccordionSkeleton.defaultProps = {
   open: true,
+  count: 4,
+  uid: '',
 };
