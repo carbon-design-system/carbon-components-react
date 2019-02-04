@@ -14,13 +14,15 @@ const { prefix } = settings;
 
 const HeaderMenuItem = props => {
   const { className, children, role, innerRef, ...rest } = props;
+
   return (
     <li className={className} role={role}>
       <Link
         {...rest}
         className={`${prefix}--header__menu-item`}
         ref={innerRef}
-        role="menuitem">
+        role="menuitem"
+        tabIndex={0}>
         <span className={`${prefix}--text-truncate--end`}>{children}</span>
       </Link>
     </li>
