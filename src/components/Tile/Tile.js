@@ -274,7 +274,7 @@ export class SelectableTile extends Component {
       className
     );
 
-    return (
+    return componentsX ? (
       <>
         <input
           ref={input => {
@@ -297,19 +297,41 @@ export class SelectableTile extends Component {
           onClick={this.handleClick}
           onKeyDown={this.handleKeyDown}>
           <div className={`${prefix}--tile__checkmark`}>
-            {componentsX ? (
-              <CheckmarkFilled
-                aria-label={iconDescription}
-                alt={iconDescription}
-                description={iconDescription}
-              />
-            ) : (
-              <Icon icon={iconCheckmarkSolid} description={iconDescription} />
-            )}
+            <CheckmarkFilled
+              aria-label={iconDescription}
+              alt={iconDescription}
+              description={iconDescription}
+            />
           </div>
           <div className={`${prefix}--tile-content`}>{children}</div>
         </label>
       </>
+    ) : (
+      <label
+        htmlFor={id}
+        className={classes}
+        tabIndex={tabIndex}
+        {...other}
+        onClick={this.handleClick}
+        onKeyDown={this.handleKeyDown}>
+        <input
+          ref={input => {
+            this.input = input;
+          }}
+          tabIndex={-1}
+          id={id}
+          className={`${prefix}--tile-input`}
+          value={value}
+          type="checkbox"
+          name={name}
+          title={title}
+          checked={this.state.selected}
+        />
+        <div className={`${prefix}--tile__checkmark`}>
+          <Icon icon={iconCheckmarkSolid} description={iconDescription} />
+        </div>
+        <div className={`${prefix}--tile-content`}>{children}</div>
+      </label>
     );
   }
 }

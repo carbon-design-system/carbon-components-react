@@ -97,7 +97,7 @@ export default class RadioTile extends React.Component {
       }
     );
 
-    return (
+    return componentsX ? (
       <>
         <input
           {...other}
@@ -112,19 +112,33 @@ export default class RadioTile extends React.Component {
           tabIndex={this.props.tabIndex}
           onKeyDown={this.handleKeyDown}>
           <div className={`${prefix}--tile__checkmark`}>
-            {componentsX ? (
-              <CheckmarkFilled
-                aria-label={iconDescription}
-                alt={iconDescription}
-                description={iconDescription}
-              />
-            ) : (
-              <Icon icon={iconCheckmarkSolid} description={iconDescription} />
-            )}
+            <CheckmarkFilled
+              aria-label={iconDescription}
+              alt={iconDescription}
+              description={iconDescription}
+            />
           </div>
           <div className={`${prefix}--tile-content`}>{children}</div>
         </label>
       </>
+    ) : (
+      <label
+        htmlFor={this.uid}
+        className={classes}
+        tabIndex={this.props.tabIndex}
+        onKeyDown={this.handleKeyDown}>
+        <input
+          {...other}
+          type="radio"
+          className={`${prefix}--tile-input`}
+          onChange={this.handleChange}
+          id={this.uid}
+        />
+        <div className={`${prefix}--tile__checkmark`}>
+          <Icon icon={iconCheckmarkSolid} description={iconDescription} />
+        </div>
+        <div className={`${prefix}--tile-content`}>{children}</div>
+      </label>
     );
   }
 }
