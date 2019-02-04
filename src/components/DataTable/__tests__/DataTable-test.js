@@ -288,14 +288,20 @@ describe('DataTable', () => {
     it('should select a specific row when a user interacts with select row', () => {
       const wrapper = mount(<DataTable {...mockProps} />);
       expect(getSelectAll(wrapper).prop('checked')).toBe(false);
+      expect(
+        getInputAtIndex({ wrapper, index: 0, inputType: 'checkbox' }).prop(
+          'checked'
+        )
+      ).toBe(false);
 
-      const beforeInput = getRowAt(wrapper, 0).find('input[type="checkbox"]');
-      expect(beforeInput.prop('checked')).toBe(false);
-
-      beforeInput.simulate('click');
-
-      const afterInput = getRowAt(wrapper, 0).find('input[type="checkbox"]');
-      expect(afterInput.prop('checked')).toBe(true);
+      getInputAtIndex({ wrapper, index: 0, inputType: 'checkbox' }).simulate(
+        'click'
+      );
+      expect(
+        getInputAtIndex({ wrapper, index: 0, inputType: 'checkbox' }).prop(
+          'checked'
+        )
+      ).toBe(true);
 
       const { selectedRows } = getLastCallFor(mockProps.render)[0];
       expect(selectedRows.length).toBe(1);
