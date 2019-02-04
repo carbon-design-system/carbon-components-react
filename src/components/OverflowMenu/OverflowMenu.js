@@ -331,15 +331,35 @@ export default class OverflowMenu extends Component {
     });
   }
 
+  getPrimaryFocusableElement = () => {
+    if (this.menuEl) {
+      const primaryFocusPropEl = this.menuEl.querySelector(
+        '[data-floating-menu-primary-focus]'
+      );
+      if (primaryFocusPropEl) {
+        return primaryFocusPropEl;
+      }
+    }
+    const firstItem = this.overflowMenuItem0;
+    if (
+      firstItem &&
+      firstItem.overflowMenuItem &&
+      firstItem.overflowMenuItem.current
+    ) {
+      return firstItem.overflowMenuItem.current;
+    }
+  };
+
   componentDidUpdate() {
     const { onClose, onOpen, floatingMenu } = this.props;
 
     if (this.state.open) {
       if (!floatingMenu) {
-        (
-          this.menuEl.querySelector('[data-overflow-menu-primary-focus]') ||
-          this.menuEl
-        ).focus();
+        const primaryFocusableElement = this.getPrimaryFocusableElement();
+        if (primaryFocusableElement) {
+          primaryFocusableElement.focus();
+        }
+
         onOpen();
       }
     } else {
