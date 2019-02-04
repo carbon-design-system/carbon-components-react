@@ -117,8 +117,9 @@ export default class OverflowMenuItem extends React.Component {
       hasDivider,
       isDelete,
       disabled,
-      closeMenu, // eslint-disable-line no-unused-vars
-      onClick, // eslint-disable-line no-unused-vars
+      closeMenu, // eslint-disable-line
+      onClick, // eslint-disable-line
+      handleOverflowMenuItemFocus, // eslint-disable-line
       onKeyDown,
       primaryFocus,
       floatingMenu,
