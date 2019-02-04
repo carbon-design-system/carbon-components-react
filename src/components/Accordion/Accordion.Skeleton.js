@@ -28,7 +28,7 @@ export default function AccordionSkeleton(props) {
   );
   return (
     <ul className={`${prefix}--accordion ${prefix}--skeleton`}>
-      {props.open && (
+      {props.open ? (
         <li
           className={`${prefix}--accordion__item ${prefix}--accordion__item--active`}>
           <button type="button" className={`${prefix}--accordion__heading`}>
@@ -44,6 +44,8 @@ export default function AccordionSkeleton(props) {
             <SkeletonText width="95%" />
           </div>
         </li>
+      ) : (
+        item
       )}
       {item}
       {item}
