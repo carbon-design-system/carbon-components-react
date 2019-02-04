@@ -83,7 +83,7 @@ TableExpandRow.propTypes = {
   expandIconDescription: PropTypes.string,
 
   /**
-   * The id of the matching th node in the table head. Solves a11y DAP violation to match these appropriately.
+   * The id of the matching th node in the table head. Addresses a11y concerns outlined here: https://www.ibm.com/able/guidelines/ci162/info_and_relationships.html and https://www.w3.org/TR/WCAG20-TECHS/H43
    */
   expandHeader: PropTypes.string,
 };
