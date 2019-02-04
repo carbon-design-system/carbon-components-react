@@ -40,7 +40,6 @@ exports[`MultiSelect should render 1`] = `
   locale="en"
   sortItems={[Function]}
   title={false}
-  translateWithId={[Function]}
   type="default"
 >
   <Selection
@@ -125,7 +124,8 @@ exports[`MultiSelect should render 1`] = `
                   className="bx--list-box__menu-icon"
                 >
                   <Icon
-                    description="Provide a description that will be used as the title"
+                    alt="Open menu"
+                    description="Open menu"
                     fillRule="evenodd"
                     focusable="false"
                     icon={
@@ -154,8 +154,8 @@ exports[`MultiSelect should render 1`] = `
                     role="img"
                   >
                     <svg
-                      alt="Provide a description that will be used as the title"
-                      aria-label="Provide a description that will be used as the title"
+                      alt="Open menu"
+                      aria-label="Open menu"
                       fillRule="evenodd"
                       focusable="false"
                       height="5"
@@ -164,7 +164,7 @@ exports[`MultiSelect should render 1`] = `
                       width="10"
                     >
                       <title>
-                        Provide a description that will be used as the title
+                        Open menu
                       </title>
                       <path
                         d="M0 0l5 4.998L10 0z"
