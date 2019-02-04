@@ -67,9 +67,7 @@ export default class RadioButton extends React.Component {
     onChange: () => {},
   };
 
-  UNSAFE_componentWillMount() {
-    this.uid = this.props.id || uid();
-  }
+  uid = this.props.id || uid();
 
   handleChange = evt => {
     this.props.onChange(this.props.value, this.props.name, evt);
@@ -80,9 +78,7 @@ export default class RadioButton extends React.Component {
       'radioButtonWrapper',
       this.props.className
     );
-
     const { labelText, ...other } = this.props;
-
     return (
       <div className={wrapperClasses}>
         <input
