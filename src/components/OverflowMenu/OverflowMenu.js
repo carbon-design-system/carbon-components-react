@@ -423,6 +423,25 @@ export default class OverflowMenu extends Component {
     }
   };
 
+  handleOverflowMenuItemFocus = index => {
+    const i = (() => {
+      switch (index) {
+        case -1:
+          return React.Children.count(this.props.children) - 1;
+        case React.Children.count(this.props.children):
+          return 0;
+        default:
+          return index;
+      }
+    })();
+    const { overflowMenuItem } =
+      this[`overflowMenuItem${i}`] ||
+      React.Children.toArray(this.props.children)[i];
+    if (overflowMenuItem && overflowMenuItem.current) {
+      overflowMenuItem.current.focus();
+    }
+  };
+
   /**
    * Handles the floating menu being unmounted.
    * @param {Element} menuBody The DOM element of the menu body.
@@ -531,11 +550,17 @@ export default class OverflowMenu extends Component {
       iconClass
     );
 
-    const childrenWithProps = React.Children.toArray(children).map(child =>
-      React.cloneElement(child, {
-        closeMenu: this.closeMenu,
-        floatingMenu: floatingMenu || undefined,
-      })
+    const childrenWithProps = React.Children.toArray(children).map(
+      (child, index) =>
+        React.cloneElement(child, {
+          closeMenu: this.closeMenu,
+          floatingMenu: floatingMenu || undefined,
+          handleOverflowMenuItemFocus: this.handleOverflowMenuItemFocus,
+          ref: e => {
+            this[`overflowMenuItem${index}`] = e;
+          },
+          index,
+        })
     );
 
     const menuBody = (
