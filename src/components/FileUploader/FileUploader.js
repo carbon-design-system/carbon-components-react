@@ -1,25 +1,103 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 /* eslint react/no-multi-comp: "off" */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { settings } from 'carbon-components';
 import Icon from '../Icon';
 import uid from '../../tools/uniqueId';
+import { ButtonTypes } from '../../prop-types/types';
+import { iconCloseSolid, iconCheckmarkSolid } from 'carbon-icons';
+import { componentsX } from '../../internal/FeatureFlags';
+
+const { prefix } = settings;
 
 export class FileUploaderButton extends Component {
+  state = {};
+
   static propTypes = {
+    /**
+     * Provide a custom className to be applied to the container node
+     */
     className: PropTypes.string,
+
+    /**
+     * Specify whether you want to disable any updates to the FileUploaderButton
+     * label
+     */
     disableLabelChanges: PropTypes.bool,
+
+    /**
+     * Provide a unique id for the underlying <input> node
+     */
     id: PropTypes.string,
+
+    /**
+     * Provide the label text to be read by screen readers when interacting with
+     * this control
+     */
     labelText: PropTypes.string,
+
+    /**
+     * Specify whether you want the component to list the files that have been
+     * submitted to be uploaded
+     */
     listFiles: PropTypes.bool,
+
+    /**
+     * Specify if the component should accept multiple files to upload
+     */
     multiple: PropTypes.bool,
+
+    /**
+     * Provide a name for the underlying <input> node
+     */
+    name: PropTypes.string,
+
+    /**
+     * Provide an optional `onChange` hook that is called each time the <input>
+     * value changes
+     */
     onChange: PropTypes.func,
+
+    /**
+     * Provide an optional `onClick` hook that is called each time the button is
+     * clicked
+     */
     onClick: PropTypes.func,
+
+    /**
+     * Provide an accessibility role for the <FileUploaderButton>
+     */
     role: PropTypes.string,
+
+    /**
+     * Provide a custom tabIndex value for the <FileUploaderButton>
+     */
     tabIndex: PropTypes.number,
-    buttonKind: PropTypes.oneOf(['primary', 'secondary']),
+
+    /**
+     * Specify the type of underlying button
+     */
+    buttonKind: ButtonTypes.buttonKind,
+
+    /**
+     * Specify the types of files that this input should be able to receive
+     */
     accept: PropTypes.arrayOf(PropTypes.string),
+
+    /**
+     * Specify whether file input is disabled
+     */
+    disabled: PropTypes.bool,
   };
+
   static defaultProps = {
     tabIndex: 0,
     disableLabelChanges: false,
@@ -29,17 +107,17 @@ export class FileUploaderButton extends Component {
     onChange: () => {},
     onClick: () => {},
     accept: [],
+    disabled: false,
   };
-  state = {
-    labelText: this.props.labelText,
-  };
-  UNSAFE_componentWillMount() {
-    this.uid = this.props.id || uid();
-  }
-  UNSAFE_componentWillReceiveProps(nextProps) {
-    if (nextProps.labelText !== this.props.labelText) {
-      this.setState({ labelText: nextProps.labelText });
-    }
+
+  static getDerivedStateFromProps({ labelText }, state) {
+    const { prevLabelText } = state;
+    return prevLabelText === labelText
+      ? null
+      : {
+          labelText,
+          prevLabelText: labelText,
+        };
   }
 
   handleChange = evt => {
@@ -65,53 +143,72 @@ export class FileUploaderButton extends Component {
       tabIndex,
       buttonKind,
       accept,
+      name,
+      disabled,
       ...other
     } = this.props;
     const classes = classNames({
-      'bx--file': true,
+      [`${prefix}--btn`]: true,
+      [`${prefix}--btn--${buttonKind}`]: true,
+      [`${prefix}--btn--sm`]: componentsX,
       [className]: className,
     });
 
+    this.uid = this.props.id || uid();
+
     return (
-      <div
-        role="button"
-        className={classes}
-        onKeyDown={evt => {
-          if (evt.which === 13 || evt.which === 32) {
-            this.input.click();
-          }
-        }}>
+      <>
         <label
-          className={`bx--btn bx--btn--${buttonKind}`}
-          tabIndex={tabIndex}
+          role="button"
+          tabIndex={tabIndex || 0}
+          className={classes}
+          onKeyDown={evt => {
+            if (evt.which === 13 || evt.which === 32) {
+              this.input.click();
+            }
+          }}
           htmlFor={this.uid}
           role={role}
           {...other}>
           {this.state.labelText}
         </label>
         <input
-          className="bx--visually-hidden"
+          className={`${prefix}--visually-hidden`}
           ref={input => (this.input = input)}
           id={this.uid}
+          disabled={disabled}
           type="file"
+          tabIndex="-1"
           multiple={multiple}
           accept={accept}
+          name={name}
           onChange={this.handleChange}
           onClick={evt => {
             evt.target.value = null;
           }}
         />
-      </div>
+      </>
     );
   }
 }
 
 export class Filename extends Component {
   static propTypes = {
+    /**
+     * Specify an optional object of styles to be applied inline to the root
+     * node
+     */
     style: PropTypes.object,
+
+    /**
+     * Specify the status of the File Upload
+     */
     status: PropTypes.oneOf(['edit', 'complete', 'uploading']),
-    tabIndex: PropTypes.number,
-    onKeyDown: PropTypes.func,
+
+    /**
+     * Provide a description for the complete/close icon that can be read by screen readers
+     */
+    iconDescription: PropTypes.string,
   };
 
   static defaultProps = {
@@ -127,10 +224,10 @@ export class Filename extends Component {
     if (status === 'uploading') {
       return (
         <div
-          className="bx--loading"
+          className={`${prefix}--loading`}
           style={{ ...style, width: '1rem', height: '1rem' }}
           {...other}>
-          <svg className="bx--loading__svg" viewBox="-42 -42 84 84">
+          <svg className={`${prefix}--loading__svg`} viewBox="-42 -42 84 84">
             <circle cx="0" cy="0" r="37.5" />
           </svg>
         </div>
@@ -139,8 +236,8 @@ export class Filename extends Component {
       return (
         <Icon
           description={iconDescription}
-          className="bx--file-close"
-          name="close--solid"
+          className={`${prefix}--file-close`}
+          icon={iconCloseSolid}
           style={style}
           {...other}
         />
@@ -149,8 +246,8 @@ export class Filename extends Component {
       return (
         <Icon
           description={iconDescription}
-          className="bx--file-complete"
-          name="checkmark--solid"
+          className={`${prefix}--file-complete`}
+          icon={iconCheckmarkSolid}
           style={style}
           {...other}
         />
@@ -163,17 +260,62 @@ export class Filename extends Component {
 
 export default class FileUploader extends Component {
   static propTypes = {
+    /**
+     * Provide a description for the complete/close icon that can be read by screen readers
+     */
     iconDescription: PropTypes.string,
+
+    /**
+     * Provide the label text to be read by screen readers when interacting with
+     * the <FileUploaderButton>
+     */
     buttonLabel: PropTypes.string,
-    buttonKind: PropTypes.oneOf(['primary', 'secondary']),
+
+    /**
+     * Specify the type of the <FileUploaderButton>
+     */
+    buttonKind: ButtonTypes.buttonKind,
+
+    /**
+     * Specify the status of the File Upload
+     */
     filenameStatus: PropTypes.oneOf(['edit', 'complete', 'uploading'])
       .isRequired,
+
+    /**
+     * Specify the description text of this <FileUploader>
+     */
     labelDescription: PropTypes.string,
+
+    /**
+     * Specify the title text of this <FileUploader>
+     */
     labelTitle: PropTypes.string,
+
+    /**
+     * Specify if the component should accept multiple files to upload
+     */
     multiple: PropTypes.bool,
-    onChange: PropTypes.func,
+
+    /**
+     * Provide a name for the underlying <input> node
+     */
+    name: PropTypes.string,
+
+    /**
+     * Provide an optional `onClick` hook that is called each time the button is
+     * clicked
+     */
     onClick: PropTypes.func,
+
+    /**
+     * Provide a custom className to be applied to the container node
+     */
     className: PropTypes.string,
+
+    /**
+     * Specify the types of files that this input should be able to receive
+     */
     accept: PropTypes.arrayOf(PropTypes.string),
   };
 
@@ -183,25 +325,33 @@ export default class FileUploader extends Component {
     buttonLabel: '',
     buttonKind: 'primary',
     multiple: false,
-    onChange: () => {},
     onClick: () => {},
     accept: [],
   };
 
   state = {
     filenames: [],
-    filenameStatus: '',
   };
 
   nodes = [];
 
-  UNSAFE_componentWillReceiveProps(nextProps) {
-    if (nextProps.filenameStatus !== this.props.filenameStatus) {
-      this.setState({ filenameStatus: nextProps.filenameStatus });
-    }
+  static getDerivedStateFromProps({ filenameStatus }, state) {
+    const { prevFilenameStatus } = state;
+    return prevFilenameStatus === filenameStatus
+      ? null
+      : {
+          filenameStatus,
+          prevFilenameStatus: filenameStatus,
+        };
   }
+
   handleChange = evt => {
-    this.setState({ filenames: [...evt.target.files].map(file => file.name) });
+    evt.stopPropagation();
+    this.setState({
+      filenames: this.state.filenames.concat(
+        Array.prototype.map.call(evt.target.files, file => file.name)
+      ),
+    });
     this.props.onChange(evt);
   };
 
@@ -229,18 +379,24 @@ export default class FileUploader extends Component {
       className,
       multiple,
       accept,
+      name,
       ...other
     } = this.props;
 
     const classes = classNames({
-      'bx--form-item': true,
+      [`${prefix}--form-item`]: true,
       [className]: className,
     });
 
     return (
       <div className={classes} {...other}>
-        <strong className="bx--label">{labelTitle}</strong>
-        <p className="bx--label-description">{labelDescription}</p>
+        <strong
+          className={
+            componentsX ? `${prefix}--file--label` : `${prefix}--label`
+          }>
+          {labelTitle}
+        </strong>
+        <p className={`${prefix}--label-description`}>{labelDescription}</p>
         <FileUploaderButton
           labelText={buttonLabel}
           multiple={multiple}
@@ -248,27 +404,22 @@ export default class FileUploader extends Component {
           onChange={this.handleChange}
           disableLabelChanges
           accept={accept}
+          name={name}
         />
-        <div className="bx--file-container">
+        <div className={`${prefix}--file-container`}>
           {this.state.filenames.length === 0
             ? null
             : this.state.filenames.map((name, index) => (
                 <span
                   key={index}
-                  className="bx--file__selected-file"
+                  className={`${prefix}--file__selected-file`}
                   ref={node => (this.nodes[index] = node)} // eslint-disable-line
                   {...other}>
-                  <p className="bx--file-filename">{name}</p>
-                  <span className="bx--file__state-container">
+                  <p className={`${prefix}--file-filename`}>{name}</p>
+                  <span className={`${prefix}--file__state-container`}>
                     <Filename
                       iconDescription={iconDescription}
                       status={filenameStatus}
-                      onClick={evt => {
-                        if (filenameStatus === 'edit') {
-                          this.handleClick(evt, index);
-                        }
-                      }}
-                      iconDescription={iconDescription}
                       onKeyDown={evt => {
                         if (evt.which === 13 || evt.which === 32) {
                           this.handleClick(evt, index);

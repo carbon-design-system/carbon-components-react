@@ -1,4 +1,12 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import React from 'react';
+import { iconDownload, iconEdit, iconSettings } from 'carbon-icons';
 import Button from '../../Button';
 import DataTable, {
   Table,
@@ -72,17 +80,17 @@ describe('DataTable', () => {
             <TableToolbarSearch onChange={onInputChange} id="custom-id" />
             <TableToolbarContent>
               <TableToolbarAction
-                iconName="download"
+                icon={iconDownload}
                 iconDescription="Download"
                 onClick={jest.fn()}
               />
               <TableToolbarAction
-                iconName="edit"
+                icon={iconEdit}
                 iconDescription="Edit"
                 onClick={jest.fn()}
               />
               <TableToolbarAction
-                iconName="settings"
+                icon={iconSettings}
                 iconDescription="Settings"
                 onClick={jest.fn()}
               />
@@ -147,7 +155,7 @@ describe('DataTable', () => {
       expect(wrapper.state('rowIds')).toEqual(['a', 'b', 'c']);
     });
 
-    it('should reset to DESC ordering when another header is clicked', () => {
+    it('should reset to ASC ordering when another header is clicked', () => {
       const wrapper = mount(<DataTable {...mockProps} />);
       const firstHeader = getHeaderAt(wrapper, 0);
       const secondHeader = getHeaderAt(wrapper, 1);
@@ -157,10 +165,10 @@ describe('DataTable', () => {
 
       firstHeader.simulate('click');
       expect(wrapper.state('rowIds')).toEqual(['c', 'b', 'a']);
-      expect(wrapper.state('sortDirection')).toBe(sortStates.ASC);
+      expect(wrapper.state('sortDirection')).toBe(sortStates.DESC);
 
       secondHeader.simulate('click');
-      expect(wrapper.state('sortDirection')).toBe(sortStates.DESC);
+      expect(wrapper.state('sortDirection')).toBe(sortStates.ASC);
     });
   });
 

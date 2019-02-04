@@ -1,3 +1,10 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import warning from 'warning';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -32,8 +39,6 @@ export const DIRECTION_TOP = 'top';
 export const DIRECTION_RIGHT = 'right';
 export const DIRECTION_BOTTOM = 'bottom';
 
-const hasCreatePortal = typeof ReactDOM.createPortal === 'function';
-
 /**
  * @param {FloatingMenu~offset} [oldMenuOffset={}] The old value.
  * @param {FloatingMenu~offset} [menuOffset={}] The new value.
@@ -61,6 +66,7 @@ const hasChangeInOffset = (oldMenuOffset = {}, menuOffset = {}) => {
  * @param {FloatingMenu~position} params.refPosition The position of the triggering element.
  * @param {FloatingMenu~offset} [params.offset={ left: 0, top: 0 }] The position offset of the menu.
  * @param {string} [params.direction=bottom] The menu direction.
+ * @param {number} [params.scrollX=0] The scroll position of the viewport.
  * @param {number} [params.scrollY=0] The scroll position of the viewport.
  * @returns {FloatingMenu~offset} The position of the menu, relative to the top-left corner of the viewport.
  * @private
@@ -70,6 +76,7 @@ const getFloatingPosition = ({
   refPosition,
   offset = {},
   direction = DIRECTION_BOTTOM,
+  scrollX = 0,
   scrollY = 0,
 }) => {
   const {
@@ -86,19 +93,19 @@ const getFloatingPosition = ({
 
   return {
     [DIRECTION_LEFT]: () => ({
-      left: refLeft - width - left,
+      left: refLeft - width + scrollX - left,
       top: refCenterVertical - height / 2 + scrollY + top,
     }),
     [DIRECTION_TOP]: () => ({
-      left: refCenterHorizontal - width / 2 + left,
+      left: refCenterHorizontal - width / 2 + scrollX + left,
       top: refTop - height + scrollY - top,
     }),
     [DIRECTION_RIGHT]: () => ({
-      left: refRight + left,
+      left: refRight + scrollX + left,
       top: refCenterVertical - height / 2 + scrollY + top,
     }),
     [DIRECTION_BOTTOM]: () => ({
-      left: refCenterHorizontal - width / 2 + left,
+      left: refCenterHorizontal - width / 2 + scrollX + left,
       top: refBottom + scrollY + top,
     }),
   }[direction]();
@@ -114,6 +121,11 @@ class FloatingMenu extends React.Component {
      * Contents to put into the floating menu.
      */
     children: PropTypes.object,
+
+    /**
+     * The query selector indicating where the floating menu body should be placed.
+     */
+    target: PropTypes.func,
 
     /**
      * The position in the viewport of the trigger button.
@@ -180,7 +192,7 @@ class FloatingMenu extends React.Component {
   };
 
   /**
-   * The cached refernce to the menu container.
+   * The cached reference to the menu container.
    * Only used if React portal API is not available.
    * @type {Element}
    * @private
@@ -188,18 +200,14 @@ class FloatingMenu extends React.Component {
   _menuContainer = null;
 
   /**
-   * The cached refernce to the menu body.
+   * The cached reference to the menu body.
+   * The reference is set via callback ref instead of object ref,
+   * in order to hook the event when the element ref gets available,
+   * which can be at a different timing from `cDM()`, presumably with SSR scenario.
    * @type {Element}
    * @private
    */
   _menuBody = null;
-
-  constructor(props) {
-    super(props);
-    if (typeof document !== 'undefined' && hasCreatePortal) {
-      this.el = document.createElement('div');
-    }
-  }
 
   /**
    * Calculates the position in the viewport of floating menu,
@@ -241,10 +249,11 @@ class FloatingMenu extends React.Component {
       oldMenuDirection !== menuDirection
     ) {
       const menuSize = menuBody.getBoundingClientRect();
+      const { menuEl, flipped } = this.props;
       const offset =
         typeof menuOffset !== 'function'
           ? menuOffset
-          : menuOffset(menuBody, menuDirection);
+          : menuOffset(menuBody, menuDirection, menuEl, flipped);
       // Skips if either in the following condition:
       // a) Menu body has `display:none`
       // b) `menuOffset` as a callback returns `undefined` (The callback saw that it couldn't calculate the value)
@@ -255,7 +264,8 @@ class FloatingMenu extends React.Component {
             refPosition,
             direction: menuDirection,
             offset,
-            scrollY: window.scrollY,
+            scrollX: window.pageXOffset,
+            scrollY: window.pageYOffset,
           }),
         });
       }
@@ -263,11 +273,7 @@ class FloatingMenu extends React.Component {
   };
 
   componentDidUpdate(prevProps) {
-    if (!hasCreatePortal) {
-      ReactDOM.render(this._getChildrenWithProps(), this._menuContainer);
-    } else {
-      this._updateMenuSize(prevProps);
-    }
+    this._updateMenuSize(prevProps);
     const { onPlace } = this.props;
     if (
       this._placeInProgress &&
@@ -279,57 +285,18 @@ class FloatingMenu extends React.Component {
     }
   }
 
-  componentDidMount() {
+  /**
+   * A callback for called when menu body is mounted or unmounted.
+   * @param {Element} menuBody The menu body being mounted. `null` if the menu body is being unmounted.
+   */
+  _menuRef = menuBody => {
     const { menuRef } = this.props;
-    if (!hasCreatePortal) {
-      this._menuContainer = document.createElement('div');
-      document.body.appendChild(this._menuContainer);
-      const style = {
-        display: 'block',
-        opacity: 0,
-      };
-      const childrenWithProps = React.cloneElement(this.props.children, {
-        style,
-      });
-      ReactDOM.render(childrenWithProps, this._menuContainer, () => {
-        this._menuBody = this._menuContainer.firstChild;
-        this._updateMenuSize();
-        ReactDOM.render(
-          this._getChildrenWithProps(),
-          this._menuContainer,
-          () => {
-            this._placeInProgress = true;
-            menuRef && menuRef(this._menuBody);
-          }
-        );
-      });
-    } else {
-      if (this.el && this.el.firstChild) {
-        this._menuBody = this.el.firstChild;
-        document.body.appendChild(this._menuBody);
-        this._placeInProgress = true;
-        menuRef && menuRef(this._menuBody);
-      }
+    this._placeInProgress = !!menuBody;
+    menuRef && menuRef((this._menuBody = menuBody));
+    if (menuBody) {
       this._updateMenuSize();
     }
-  }
-
-  componentWillUnmount() {
-    const { menuRef } = this.props;
-    menuRef && menuRef(null);
-    this._placeInProgress = false;
-    if (!hasCreatePortal) {
-      const menuContainer = this._menuContainer;
-      ReactDOM.unmountComponentAtNode(menuContainer);
-      if (menuContainer && menuContainer.parentNode) {
-        menuContainer.parentNode.removeChild(menuContainer);
-      }
-      this._menuContainer = null;
-    } else if (this._menuBody) {
-      // Moves the menu body back to the portal container so that React unmount code does not crash
-      this.el.appendChild(this._menuBody);
-    }
-  }
+  };
 
   /**
    * @returns The child nodes, with styles containing the floating menu position.
@@ -351,6 +318,7 @@ class FloatingMenu extends React.Component {
           top: '0px',
         };
     return React.cloneElement(children, {
+      ref: this._menuRef,
       style: {
         ...styles,
         ...positioningStyle,
@@ -362,8 +330,12 @@ class FloatingMenu extends React.Component {
   };
 
   render() {
-    if (typeof document !== 'undefined' && hasCreatePortal) {
-      return ReactDOM.createPortal(this._getChildrenWithProps(), this.el);
+    if (typeof document !== 'undefined') {
+      const { target } = this.props;
+      return ReactDOM.createPortal(
+        this._getChildrenWithProps(),
+        !target ? document.body : target()
+      );
     }
     return null;
   }

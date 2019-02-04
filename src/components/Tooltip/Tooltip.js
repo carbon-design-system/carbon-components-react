@@ -1,8 +1,19 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import debounce from 'lodash.debounce';
 import Icon from '../Icon';
 import classNames from 'classnames';
+import { iconInfoGlyph } from 'carbon-icons';
+// TODO: import { Information } from '@carbon/icons-react';
+import Information from '@carbon/icons-react/lib/information/16';
+import { settings } from 'carbon-components';
 import FloatingMenu, {
   DIRECTION_LEFT,
   DIRECTION_TOP,
@@ -10,6 +21,45 @@ import FloatingMenu, {
   DIRECTION_BOTTOM,
 } from '../../internal/FloatingMenu';
 import ClickListener from '../../internal/ClickListener';
+import { componentsX } from '../../internal/FeatureFlags';
+
+const { prefix } = settings;
+
+const matchesFuncName =
+  typeof Element !== 'undefined' &&
+  ['matches', 'webkitMatchesSelector', 'msMatchesSelector'].filter(
+    name => typeof Element.prototype[name] === 'function'
+  )[0];
+
+/**
+ * @param {Node} elem A DOM node.
+ * @param {string} selector A CSS selector
+ * @returns {boolean} `true` if the given DOM element is a element node and matches the given selector.
+ * @private
+ */
+const matches = (elem, selector) =>
+  typeof elem[matchesFuncName] === 'function' &&
+  elem[matchesFuncName](selector);
+
+/**
+ * @param {Element} elem An element.
+ * @param {string} selector An query selector.
+ * @returns {Element} The ancestor of the given element matching the given selector.
+ * @private
+ */
+const closest = (elem, selector) => {
+  const doc = elem.ownerDocument;
+  for (
+    let traverse = elem;
+    traverse && traverse !== doc;
+    traverse = traverse.parentNode
+  ) {
+    if (matches(traverse, selector)) {
+      return traverse;
+    }
+  }
+  return null;
+};
 
 /**
  * @param {Element} menuBody The menu body with the menu arrow.
@@ -59,6 +109,8 @@ const getMenuOffset = (menuBody, menuDirection) => {
 };
 
 export default class Tooltip extends Component {
+  state = {};
+
   static propTypes = {
     /**
      * The ID of the trigger button.
@@ -117,27 +169,47 @@ export default class Tooltip extends Component {
     showIcon: PropTypes.bool,
 
     /**
+     * The the default tooltip icon.
+     */
+    icon: PropTypes.shape({
+      width: PropTypes.string,
+      height: PropTypes.string,
+      viewBox: PropTypes.string.isRequired,
+      svgData: PropTypes.object.isRequired,
+    }),
+
+    /**
      * The name of the default tooltip icon.
      */
     iconName: PropTypes.string,
 
     /**
-     * The description of the default tooltip icon, to be put in its SVG `<title>` element.
+     * The description of the default tooltip icon, to be put in its SVG 'aria-label' and 'alt' .
      */
     iconDescription: PropTypes.string,
+
+    /**
+     * The title of the default tooltip icon, to be put in its SVG `<title>` element.
+     */
+    iconTitle: PropTypes.string,
 
     /**
      * `true` if opening tooltip should be triggered by clicking the trigger button.
      */
     clickToOpen: PropTypes.bool,
+
+    /**
+     * Optional prop to specify the tabIndex of the Tooltip
+     */
+    tabIndex: PropTypes.number,
   };
 
   static defaultProps = {
     open: false,
     direction: DIRECTION_BOTTOM,
     showIcon: true,
-    iconName: 'info--glyph',
     iconDescription: 'tooltip',
+    iconTitle: '',
     triggerText: 'Provide triggerText',
     menuOffset: getMenuOffset,
   };
@@ -155,26 +227,23 @@ export default class Tooltip extends Component {
    */
   _tooltipEl = null;
 
-  state = {
-    open: this.props.open,
-  };
-
   componentDidMount() {
     requestAnimationFrame(() => {
       this.getTriggerPosition();
     });
   }
 
-  UNSAFE_componentWillReceiveProps({ open }) {
+  static getDerivedStateFromProps({ open }, state) {
     /**
      * so that tooltip can be controlled programmatically through this `open` prop
      */
-    const { open: origOpen } = this.props;
-    if (origOpen !== open) {
-      this.setState({
-        open,
-      });
-    }
+    const { prevOpen } = state;
+    return prevOpen === open
+      ? null
+      : {
+          open,
+          prevOpen: open,
+        };
   }
 
   getTriggerPosition = () => {
@@ -214,18 +283,32 @@ export default class Tooltip extends Component {
    */
   _debouncedHandleHover = debounce(this._handleHover, 200);
 
+  /**
+   * @returns {Element} The DOM element where the floating menu is placed in.
+   */
+  _getTarget = () =>
+    (this.triggerEl &&
+      closest(this.triggerEl, '[data-floating-menu-container]')) ||
+    document.body;
+
   handleMouse = evt => {
-    const state =
-      typeof evt === 'string'
-        ? evt
-        : { mouseover: 'over', mouseout: 'out', focus: 'over', blur: 'out' }[
-            evt.type
-          ];
+    const state = {
+      mouseover: 'over',
+      mouseout: 'out',
+      focus: 'over',
+      blur: 'out',
+      click: 'click',
+    }[evt.type];
     const hadContextMenu = this._hasContextMenu;
     this._hasContextMenu = evt.type === 'contextmenu';
     if (this.props.clickToOpen) {
       if (state === 'click') {
-        this.setState({ open: !this.state.open });
+        evt.stopPropagation();
+        const shouldOpen = !this.state.open;
+        if (shouldOpen) {
+          this.getTriggerPosition();
+        }
+        this.setState({ open: shouldOpen });
       }
     } else if (state && (state !== 'out' || !hadContextMenu)) {
       this._debouncedHandleHover(state, evt.relatedTarget);
@@ -247,6 +330,7 @@ export default class Tooltip extends Component {
     const key = evt.key || evt.which;
 
     if (key === 'Enter' || key === 13 || key === ' ' || key === 32) {
+      evt.stopPropagation();
       this.setState({ open: !this.state.open });
     }
   };
@@ -269,24 +353,31 @@ export default class Tooltip extends Component {
       direction,
       triggerText,
       showIcon,
+      icon,
       iconName,
+      iconTitle,
       iconDescription,
       menuOffset,
       // Exclude `clickToOpen` from `other` to avoid passing it along to `<div>`
       // eslint-disable-next-line no-unused-vars
       clickToOpen,
+      tabIndex = 0,
       ...other
     } = this.props;
 
     const { open } = this.state;
 
     const tooltipClasses = classNames(
-      'bx--tooltip',
-      { 'bx--tooltip--shown': open },
+      `${prefix}--tooltip`,
+      { [`${prefix}--tooltip--shown`]: open },
       className
     );
 
-    const triggerClasses = classNames('bx--tooltip__trigger', triggerClassName);
+    const triggerClasses = classNames(
+      { [`${prefix}--tooltip__trigger`]: !componentsX },
+      { [`${prefix}--tooltip__label`]: componentsX },
+      triggerClassName
+    );
     const ariaOwnsProps = !open
       ? {}
       : {
@@ -294,76 +385,94 @@ export default class Tooltip extends Component {
         };
 
     return (
-      <div>
+      <>
         <ClickListener onClickOutside={this.handleClickOutside}>
           {showIcon ? (
             <div className={triggerClasses}>
               {triggerText}
               <div
                 id={triggerId}
+                className={componentsX ? `${prefix}--tooltip__trigger` : null}
                 role="button"
-                tabIndex="0"
-                onMouseOver={evt => this.handleMouse(evt)}
-                onMouseOut={evt => this.handleMouse(evt)}
-                onFocus={evt => this.handleMouse(evt)}
-                onBlur={evt => this.handleMouse(evt)}
+                tabIndex={tabIndex}
+                onClick={this.handleMouse}
+                onKeyDown={this.handleKeyPress}
+                onMouseOver={this.handleMouse}
+                onMouseOut={this.handleMouse}
+                onFocus={this.handleMouse}
+                onBlur={this.handleMouse}
                 aria-haspopup="true"
+                aria-label={iconDescription}
                 aria-expanded={open}
                 {...ariaOwnsProps}>
-                <Icon
-                  onKeyDown={this.handleKeyPress}
-                  onClick={() => this.handleMouse('click')}
-                  name={iconName}
-                  description={iconDescription}
-                  iconRef={node => {
-                    this.triggerEl = node;
-                  }}
-                />
+                {componentsX ? (
+                  <Information
+                    name={iconName}
+                    aria-labelledby={triggerId}
+                    aria-label={iconDescription}
+                    ref={node => {
+                      this.triggerEl = node;
+                    }}
+                  />
+                ) : (
+                  <Icon
+                    icon={!icon && !iconName ? iconInfoGlyph : icon}
+                    name={iconName}
+                    description={iconDescription}
+                    iconTitle={iconTitle}
+                    iconRef={node => {
+                      this.triggerEl = node;
+                    }}
+                  />
+                )}
               </div>
             </div>
           ) : (
             <div
+              tabIndex={tabIndex}
               id={triggerId}
               className={triggerClasses}
               ref={node => {
                 this.triggerEl = node;
               }}
-              onMouseOver={evt => this.handleMouse(evt)}
-              onMouseOut={evt => this.handleMouse(evt)}
-              onFocus={evt => this.handleMouse(evt)}
-              onBlur={evt => this.handleMouse(evt)}
+              onMouseOver={this.handleMouse}
+              onMouseOut={this.handleMouse}
+              onFocus={this.handleMouse}
+              onBlur={this.handleMouse}
               aria-haspopup="true"
               aria-expanded={open}
-              {...ariaOwnsProps}>
+              {...ariaOwnsProps}
+              role="tooltip">
               {triggerText}
             </div>
           )}
         </ClickListener>
         {open && (
           <FloatingMenu
+            target={this._getTarget}
             menuPosition={this.state.triggerPosition}
             menuDirection={direction}
-            menuOffset={menuOffset}>
+            menuOffset={menuOffset}
+            menuRef={node => {
+              this._tooltipEl = node;
+            }}>
             <div
               id={tooltipId}
               className={tooltipClasses}
               {...other}
               data-floating-menu-direction={direction}
               aria-labelledby={triggerId}
-              onMouseOver={evt => this.handleMouse(evt)}
-              onMouseOut={evt => this.handleMouse(evt)}
-              onFocus={evt => this.handleMouse(evt)}
-              onBlur={evt => this.handleMouse(evt)}
-              onContextMenu={evt => this.handleMouse(evt)}
-              ref={node => {
-                this._tooltipEl = node;
-              }}>
-              <span className="bx--tooltip__caret" />
+              onMouseOver={this.handleMouse}
+              onMouseOut={this.handleMouse}
+              onFocus={this.handleMouse}
+              onBlur={this.handleMouse}
+              onContextMenu={this.handleMouse}>
+              <span className={`${prefix}--tooltip__caret`} />
               {children}
             </div>
           </FloatingMenu>
         )}
-      </div>
+      </>
     );
   }
 }

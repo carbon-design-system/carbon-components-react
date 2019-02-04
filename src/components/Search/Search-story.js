@@ -1,145 +1,79 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 /* eslint-disable no-console */
 
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
+
+import { withKnobs, boolean, text } from '@storybook/addon-knobs';
 import Search from '../Search';
 import SearchSkeleton from '../Search/Search.Skeleton';
 import SearchFilterButton from '../SearchFilterButton';
 import SearchLayoutButton from '../SearchLayoutButton';
 
-const searchProps = {
+const props = () => ({
   className: 'some-class',
-};
+  small: boolean('Small UI (small)', false),
+  light: boolean('Light variant (light)', false),
+  name: text('Form item name (name)', ''),
+  value: text('Value (value)', 'Default value knob'),
+  labelText: text('Label text (labelText)', 'Search'),
+  closeButtonLabelText: text(
+    'The label text for the close button (closeButtonLabelText)',
+    ''
+  ),
+  placeHolderText: text('Placeholder text (placeHolderText)', 'Search'),
+  onChange: action('onChange'),
+});
 
 storiesOf('Search', module)
-  .addWithInfo(
-    'normal',
-    `
-      Search enables users to specify a word or a phrase to find particular relevant pieces of content
-      without the use of navigation. Search can be used as the primary means of discovering content,
-      or as a filter to aid the user in finding content.
-    `,
-    () => (
-      <Search
-        {...searchProps}
-        className="some-class"
-        id="search-1"
-        labelText="Search"
-        placeHolderText="Search"
-        onChange={action('onChange')}
-      />
-    )
-  )
-  .addWithInfo(
-    'small',
-    `
-      Search enables users to specify a word or a phrase to find particular relevant pieces of content
-      without the use of navigation. Search can be used as the primary means of discovering content,
-      or as a filter to aid the user in finding content. With the small property, the search field will be
-      more compact.
-    `,
-    () => (
-      <Search
-        {...searchProps}
-        className="some-class"
-        small
-        id="search-2"
-        labelText="Search"
-        placeHolderText="Search"
-        onChange={action('onChange')}
-      />
-    )
-  )
-  .addWithInfo(
-    'Controlled',
-    `
-      You can control the Search input like you would with a normal input as well. See the Storybook source to see the source code behind this at https://github.com/carbon-design-system/carbon-components-react/blob/master/.storybook/components/SearchStory.js
-    `,
-    () => {
-      class ControlledSearch extends React.Component {
-        state = {
-          searchValue: '',
-        };
-
-        handleChange = evt => {
-          console.log('handleChange');
-          this.setState({ searchValue: evt.target.value });
-        };
-
-        render() {
-          return (
-            <Search
-              {...searchProps}
-              className="some-class"
-              id="search-1"
-              labelText="Search"
-              value={this.state.searchValue}
-              onChange={this.handleChange}
-              placeHolderText="Search"
-            />
-          );
-        }
-      }
-
-      return <ControlledSearch />;
-    }
-  )
-  .addWithInfo(
-    'light',
-    `
-      Search enables users to specify a word or a phrase to find particular relevant pieces of content
-      without the use of navigation. Search can be used as the primary means of discovering content,
-      or as a filter to aid the user in finding content.
-    `,
-    () => (
-      <Search
-        {...searchProps}
-        light
-        className="some-class"
-        id="search-1"
-        labelText="Search"
-        placeHolderText="Search"
-        onChange={() => {
-          console.log('onChange');
-          action('onChange');
-        }}
-      />
-    )
-  )
-  .addWithInfo(
+  .addDecorator(withKnobs)
+  .add('Default', () => <Search {...props()} id="search-1" />, {
+    info: {
+      text: `
+            Search enables users to specify a word or a phrase to find particular relevant pieces of content
+            without the use of navigation. Search can be used as the primary means of discovering content,
+            or as a filter to aid the user in finding content.
+          `,
+    },
+  })
+  .add(
     'custom buttons',
-    `
-      You can control what set of buttons you want.
-    `,
     () => (
       <div style={{ display: 'flex' }}>
-        <Search
-          {...searchProps}
-          light
-          className="some-class"
-          id="search-1"
-          labelText="Search"
-          placeHolderText="Search"
-          onChange={() => {
-            console.log('onChange');
-            action('onChange');
-          }}
-        />
+        <Search {...props()} id="search-1" />
         <SearchFilterButton onClick={action('onClick')} />
         <SearchLayoutButton onClick={action('onClick')} />
       </div>
-    )
+    ),
+    {
+      info: {
+        text: `
+            You can control what set of buttons you want.
+          `,
+      },
+    }
   )
-  .addWithInfo(
+  .add(
     'skeleton',
-    `
-      Placeholder skeleton state to use when content is loading.
-    `,
     () => (
       <div style={{ width: '200px' }}>
-        <SearchSkeleton />&nbsp;
+        <SearchSkeleton />
+        &nbsp;
         <SearchSkeleton small />
       </div>
-    )
+    ),
+    {
+      info: {
+        text: `
+            Placeholder skeleton state to use when content is loading.
+          `,
+      },
+    }
   );

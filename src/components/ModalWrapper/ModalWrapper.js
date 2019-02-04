@@ -1,7 +1,15 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import PropTypes from 'prop-types';
 import React from 'react';
 import Modal from '../Modal';
 import Button from '../Button';
+import { ButtonTypes } from '../../prop-types/types';
 
 export default class ModalWrapper extends React.Component {
   static propTypes = {
@@ -21,22 +29,23 @@ export default class ModalWrapper extends React.Component {
     secondaryButtonText: PropTypes.string,
     handleSubmit: PropTypes.func,
     disabled: PropTypes.bool,
-    triggerButtonKind: PropTypes.oneOf([
-      'primary',
-      'secondary',
-      'danger',
-      'ghost',
-    ]),
+    triggerButtonIcon: PropTypes.string,
+    triggerButtonIconDescription: PropTypes.string,
+    triggerButtonKind: ButtonTypes.buttonKind,
     shouldCloseAfterSubmit: PropTypes.bool,
   };
 
   static defaultProps = {
     primaryButtonText: 'Save',
     secondaryButtonText: 'Cancel',
+    triggerButtonIconDescription: 'Provide icon description if icon is used',
     triggerButtonKind: 'primary',
     disabled: false,
+    selectorPrimaryFocus: '[data-modal-primary-focus]',
+    onKeyDown: () => {},
   };
 
+  triggerButton = React.createRef();
   state = {
     isOpen: false,
   };
@@ -48,9 +57,7 @@ export default class ModalWrapper extends React.Component {
   };
 
   handleClose = () => {
-    this.setState({
-      isOpen: false,
-    });
+    this.setState({ isOpen: false }, () => this.triggerButton.current.focus());
   };
 
   handleOnRequestSubmit = () => {
@@ -65,25 +72,23 @@ export default class ModalWrapper extends React.Component {
 
   render() {
     const {
-      id,
+      children,
+      onKeyDown,
       buttonTriggerText,
       buttonTriggerClassName,
+      triggerButtonIcon,
+      triggerButtonIconDescription,
       triggerButtonKind,
-      modalLabel,
-      modalHeading,
-      passiveModal,
-      primaryButtonText,
-      secondaryButtonText,
       disabled,
+      handleSubmit, // eslint-disable-line no-unused-vars
+      shouldCloseAfterSubmit, // eslint-disable-line no-unused-vars
+      selectorPrimaryFocus,
+      ...other
     } = this.props;
 
     const props = {
-      id,
-      modalLabel,
-      modalHeading,
-      passiveModal,
-      primaryButtonText,
-      secondaryButtonText,
+      ...other,
+      selectorPrimaryFocus,
       open: this.state.isOpen,
       onRequestClose: this.handleClose,
       onRequestSubmit: this.handleOnRequestSubmit,
@@ -95,17 +100,20 @@ export default class ModalWrapper extends React.Component {
         onKeyDown={evt => {
           if (evt.which === 27) {
             this.handleClose();
-            this.props.onKeyDown(evt);
+            onKeyDown(evt);
           }
         }}>
         <Button
           className={buttonTriggerClassName}
           disabled={disabled}
           kind={triggerButtonKind}
-          onClick={this.handleOpen}>
+          icon={triggerButtonIcon}
+          iconDescription={triggerButtonIconDescription}
+          onClick={this.handleOpen}
+          inputref={this.triggerButton}>
           {buttonTriggerText}
         </Button>
-        <Modal {...props}>{this.props.children}</Modal>
+        <Modal {...props}>{children}</Modal>
       </div>
     );
   }

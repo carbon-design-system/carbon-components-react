@@ -1,3 +1,10 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import React from 'react';
 import TimePicker from '../TimePicker';
 import { mount, shallow } from 'enzyme';
@@ -152,6 +159,24 @@ describe('TimePicker', () => {
         input.simulate('change', eventObject);
         expect(onChange).toBeCalledWith(eventObject);
       });
+    });
+  });
+
+  describe('Getting derived state from props', () => {
+    const wrapper = shallow(<TimePicker />);
+
+    it('should change the value upon change in props', () => {
+      wrapper.setProps({ value: 'foo' });
+      wrapper.setState({ value: 'foo' });
+      wrapper.setProps({ value: 'bar' });
+      expect(wrapper.state().value).toEqual('bar');
+    });
+
+    it('should avoid change the value upon setting props, unless there the value actually changes', () => {
+      wrapper.setProps({ value: 'foo' });
+      wrapper.setState({ value: 'bar' });
+      wrapper.setProps({ value: 'foo' });
+      expect(wrapper.state().value).toEqual('bar');
     });
   });
 });

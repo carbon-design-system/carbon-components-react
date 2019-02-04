@@ -9,14 +9,17 @@
   "scripts": {
     "build": "node scripts/build.js",
     "build-storybook": "build-storybook",
+    "build-storybook:preview": "yarn build-storybook:preview:stable && yarn build-storybook:preview:experimental",
+    "build-storybook:preview:stable": "cross-env CARBON_USE_EXPERIMENTAL_FEATURES=false build-storybook -o storybook-static-preview/stable",
+    "build-storybook:preview:experimental": "cross-env CARBON_USE_EXPERIMENTAL_FEATURES=true build-storybook -o storybook-static-preview/experimental",
     "ci-check": "yarn prettier:diff && yarn lint && yarn test --runInBand && yarn test-ssr",
-    "commitmsg": "validate-commit-msg",
     "contributors:add": "all-contributors add",
     "contributors:generate": "all-contributors generate",
     "lint": "eslint src",
-    "precommit": "lint-staged",
+    "lint:staged": "eslint",
     "prepublish": "yarn build",
     "prettier": "prettier --write \"**/*.{scss,css,js,md}\"",
+    "prettier:staged": "prettier --write",
     "prettier:diff": "prettier --list-different \"**/*.{scss,css,js,md}\"",
     "semantic-release": "semantic-release",
     "start": "yarn storybook",
@@ -118,15 +121,16 @@
     }
   },
   "peerDependencies": {
-    "carbon-components": "^9.0.0",
+    "carbon-components": "^9.48.2",
     "carbon-icons": "^7.0.5",
     "react": "^16.4.0",
     "react-dom": "^16.4.0"
   },
   "dependencies": {
-    "classnames": "2.2.5",
+    "@carbon/icons-react": "^0.0.1-alpha.26",
+    "classnames": "2.2.6",
     "downshift": "^1.31.14",
-    "flatpickr": "4.5.0",
+    "flatpickr": "4.5.2",
     "invariant": "^2.2.3",
     "lodash.debounce": "^4.0.8",
     "lodash.isequal": "^4.5.0",
@@ -135,45 +139,69 @@
     "window-or-global": "^1.0.1"
   },
   "devDependencies": {
-    "@babel/cli": "^7.0.0-beta.38",
-    "@babel/core": "^7.0.0-beta.38",
-    "@babel/plugin-external-helpers": "^7.0.0-beta.38",
-    "@babel/plugin-proposal-class-properties": "^7.0.0-beta.38",
-    "@babel/preset-env": "^7.0.0-beta.38",
-    "@babel/preset-react": "^7.0.0-beta.38",
-    "@babel/preset-stage-1": "^7.0.0-beta.38",
-    "@storybook/addon-actions": "^3.2.15",
-    "@storybook/addon-info": "^3.2.13",
-    "@storybook/react": "^3.2.13",
-    "all-contributors-cli": "^4.10.1",
-    "babel-core": "^7.0.0-0",
-    "babel-eslint": "^8.0.2",
-    "babel-jest": "^22.1.0",
+    "@babel/cli": "^7.1.2",
+    "@babel/core": "^7.1.2",
+    "@babel/plugin-external-helpers": "^7.0.0",
+    "@babel/plugin-proposal-class-properties": "^7.1.0",
+    "@babel/plugin-proposal-decorators": "^7.1.2",
+    "@babel/plugin-proposal-do-expressions": "^7.0.0",
+    "@babel/plugin-proposal-export-default-from": "^7.0.0",
+    "@babel/plugin-proposal-export-namespace-from": "^7.0.0",
+    "@babel/plugin-proposal-function-sent": "^7.1.0",
+    "@babel/plugin-proposal-json-strings": "^7.0.0",
+    "@babel/plugin-proposal-logical-assignment-operators": "^7.0.0",
+    "@babel/plugin-proposal-nullish-coalescing-operator": "^7.0.0",
+    "@babel/plugin-proposal-numeric-separator": "^7.0.0",
+    "@babel/plugin-proposal-optional-chaining": "^7.0.0",
+    "@babel/plugin-proposal-pipeline-operator": "^7.0.0",
+    "@babel/plugin-proposal-throw-expressions": "^7.0.0",
+    "@babel/plugin-syntax-dynamic-import": "^7.0.0",
+    "@babel/plugin-syntax-import-meta": "^7.0.0",
+    "@babel/plugin-transform-object-assign": "^7.0.0",
+    "@babel/preset-env": "^7.1.0",
+    "@babel/preset-react": "^7.0.0",
+    "@storybook/addon-a11y": "~4.0.12",
+    "@storybook/addon-actions": "~4.0.12",
+    "@storybook/addon-info": "~4.0.12",
+    "@storybook/addon-knobs": "~4.0.12",
+    "@storybook/addon-links": "~4.0.12",
+    "@storybook/addon-options": "~4.0.12",
+    "@storybook/addon-storysource": "~4.0.12",
+    "@storybook/addons": "~4.0.12",
+    "@storybook/react": "~4.0.12",
+    "all-contributors-cli": "^5.2.1",
+    "babel-core": "^7.0.0-bridge.0",
+    "babel-eslint": "^10.0.1",
+    "babel-jest": "^23.6.0",
+    "babel-loader": "^8.0.4",
     "babel-plugin-dev-expression": "^0.2.1",
-    "babel-plugin-transform-object-assign": "^6.22.0",
+    "babel-plugin-react-docgen": "^2.0.0",
     "bowser": "^1.6.1",
-    "carbon-components": "^9.0.0",
+    "carbon-components": "^9.68.5",
     "carbon-icons": "^7.0.5",
     "chalk": "^2.3.0",
     "cli-table": "^0.3.0",
     "commitizen": "^2.9.5",
-    "css-loader": "^0.28.4",
+    "cross-env": "^5.2.0",
+    "css-loader": "^1.0.1",
     "cz-conventional-changelog-components": "^1.0.0",
-    "enzyme": "^3.1.0",
-    "enzyme-adapter-react-16": "^1.1.0",
-    "enzyme-to-json": "^3.1.2",
-    "eslint": "^4.11.0",
-    "eslint-plugin-jsdoc": "^3.3.0",
-    "eslint-plugin-jsx-a11y": "^6.0.2",
-    "eslint-plugin-react": "^7.4.0",
-    "gzip-size": "^4.1.0",
-    "husky": "^0.14.3",
-    "jest": "^22.1.0",
+    "enzyme": "^3.7.0",
+    "enzyme-adapter-react-16": "^1.6.0",
+    "enzyme-to-json": "^3.3.4",
+    "eslint": "^5.8.0",
+    "eslint-plugin-jsdoc": "^3.9.1",
+    "eslint-plugin-jsx-a11y": "^6.1.2",
+    "eslint-plugin-react": "^7.11.1",
+    "gzip-size": "^5.0.0",
+    "husky": "^1.1.2",
+    "jest": "^23.6.0",
+    "jest-circus": "^23.6.0",
     "lcov2badge": "^0.1.0",
-    "lint-staged": "^7.0.0",
-    "node-sass": "4.8.3",
+    "lint-staged": "^7.3.0",
+    "mini-css-extract-plugin": "^0.4.4",
+    "node-sass": "4.10.0",
     "object-assign": "^4.1.1",
-    "postcss-loader": "^2.0.5",
+    "postcss-loader": "^3.0.0",
     "prettier": "^1.10.0",
     "promise": "^8.0.1",
     "prop-types": "^15.5.8",
@@ -183,17 +211,23 @@
     "requestanimationframe": "^0.0.23",
     "rimraf": "^2.6.1",
     "rollup": "^0.57.0",
-    "rollup-plugin-babel": "^4.0.0-beta.1",
+    "rollup-plugin-babel": "^4.0.1",
     "rollup-plugin-commonjs": "^9.0.0",
     "rollup-plugin-node-resolve": "^3.0.0",
     "rollup-plugin-replace": "^2.0.0",
     "rollup-plugin-sizes": "^0.4.0",
     "rollup-plugin-uglify": "^3.0.0",
-    "sass-loader": "^6.0.5",
+    "sass-loader": "^7.1.0",
     "semantic-release": "^15.0.0",
-    "storybook-addon-a11y": "^3.0.0",
+    "storybook-readme": "^4.0.2",
+    "string-replace-loader": "^2.1.0",
+    "terser-webpack-plugin": "^1.1.0",
     "validate-commit-msg": "^2.10.1",
+    "webpack": "^4.25.1",
     "whatwg-fetch": "^2.0.3"
+  },
+  "resolutions": {
+    "enzyme-adapter-react-16/react-test-renderer": "^16.4.0"
   },
   "release": {
     "branch": "master"
@@ -201,17 +235,42 @@
   "babel": {
     "presets": [
       "./scripts/env",
-      "@babel/preset-react",
-      [
-        "@babel/preset-stage-1",
-        {
-          "decoratorsLegacy": true
-        }
-      ]
+      "@babel/preset-react"
     ],
     "plugins": [
-      "dev-expression"
+      "dev-expression",
+      "@babel/plugin-syntax-dynamic-import",
+      "@babel/plugin-syntax-import-meta",
+      "@babel/plugin-proposal-class-properties",
+      "@babel/plugin-proposal-json-strings",
+      [
+        "@babel/plugin-proposal-decorators",
+        {
+          "legacy": true
+        }
+      ],
+      "@babel/plugin-proposal-function-sent",
+      "@babel/plugin-proposal-export-namespace-from",
+      "@babel/plugin-proposal-numeric-separator",
+      "@babel/plugin-proposal-throw-expressions",
+      "@babel/plugin-proposal-export-default-from",
+      "@babel/plugin-proposal-logical-assignment-operators",
+      "@babel/plugin-proposal-optional-chaining",
+      [
+        "@babel/plugin-proposal-pipeline-operator",
+        {
+          "proposal": "minimal"
+        }
+      ],
+      "@babel/plugin-proposal-nullish-coalescing-operator",
+      "@babel/plugin-proposal-do-expressions"
     ]
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "validate-commit-msg",
+      "pre-commit": "lint-staged"
+    }
   },
   "prettier": {
     "jsxBracketSameLine": true,
@@ -221,12 +280,12 @@
   },
   "lint-staged": {
     "*.js": [
-      "yarn prettier",
-      "yarn lint",
+      "yarn prettier:staged",
+      "yarn lint:staged",
       "git add"
     ],
     "*.{css,md,scss}": [
-      "yarn prettier",
+      "yarn prettier:staged",
       "git add"
     ]
   },
@@ -254,7 +313,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/carbon-design-system/carbon-components-react.git"
+    "url": "https://github.com/IBM/carbon-components-react.git"
   },
   "jest": {
     "collectCoverageFrom": [
@@ -273,6 +332,7 @@
       "<rootDir>/**/__tests__/**/*.js?(x)",
       "<rootDir>/**/?(*-)(spec|test).js?(x)"
     ],
+    "testRunner": "jest-circus/runner",
     "testURL": "http://localhost",
     "transform": {
       "^.+\\.(js|jsx)$": "<rootDir>/config/jest/jsTransform.js",
@@ -288,7 +348,7 @@
       "/cjs/"
     ],
     "transformIgnorePatterns": [
-      "[/\\\\]node_modules[/\\\\].+\\.(js|jsx)$"
+      "[/\\\\]node_modules[/\\\\](?!(carbon-icons)).+\\.(js|jsx)$"
     ],
     "moduleFileExtensions": [
       "js",
@@ -298,5 +358,5 @@
       "enzyme-to-json/serializer"
     ]
   },
-  "bundleSizeThreshold": 80000
+  "bundleSizeThreshold": 100000
 }

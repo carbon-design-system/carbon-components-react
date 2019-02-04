@@ -1,9 +1,17 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import React from 'react';
 import debounce from 'lodash.debounce';
+import { iconInfoGlyph } from 'carbon-icons';
 import Icon from '../Icon';
 import FloatingMenu from '../../internal/FloatingMenu';
 import Tooltip from '../Tooltip';
-import { mount } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 
 jest.mock('lodash.debounce');
 
@@ -28,7 +36,8 @@ describe('Tooltip', () => {
       it('renders the info icon', () => {
         const icon = trigger.find(Icon);
         expect(icon.length).toBe(1);
-        expect(icon.props().name).toBe('info--glyph');
+        expect(icon.props().icon).toBe(iconInfoGlyph);
+        expect(icon.props().iconTitle).toBe('');
       });
     });
   });
@@ -175,6 +184,14 @@ describe('Tooltip', () => {
         triggerText: 'Tooltip',
       });
       expect(rootWrapper.state().open).toEqual(true);
+    });
+
+    it('should avoid change the open state upon setting props, unless there the value actually changes', () => {
+      const rootWrapper = shallow(<Tooltip />);
+      rootWrapper.setProps({ open: true });
+      rootWrapper.setState({ open: false });
+      rootWrapper.setProps({ open: true });
+      expect(rootWrapper.state().open).toEqual(false);
     });
   });
 

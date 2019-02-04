@@ -1,6 +1,16 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import PropTypes from 'prop-types';
 import React from 'react';
 import classNames from 'classnames';
+import { settings } from 'carbon-components';
+
+const { prefix } = settings;
 
 const Checkbox = ({
   className,
@@ -10,16 +20,18 @@ const Checkbox = ({
   indeterminate,
   hideLabel,
   wrapperClassName,
+  title = '',
+  forwardRef: ref,
   ...other
 }) => {
   let input;
-  const labelClasses = classNames('bx--checkbox-label', className);
+  const labelClasses = classNames(`${prefix}--checkbox-label`, className);
   const innerLabelClasses = classNames({
-    'bx--visually-hidden': hideLabel,
+    [`${prefix}--visually-hidden`]: hideLabel,
   });
   const wrapperClasses = classNames(
-    'bx--form-item',
-    'bx--checkbox-wrapper',
+    `${prefix}--form-item`,
+    `${prefix}--checkbox-wrapper`,
     wrapperClassName
   );
 
@@ -29,18 +41,21 @@ const Checkbox = ({
         {...other}
         type="checkbox"
         onChange={evt => {
-          onChange(input.checked, id, evt);
+          onChange(evt.target.checked, id, evt);
         }}
-        className="bx--checkbox"
+        className={`${prefix}--checkbox`}
         id={id}
-        ref={el => {
-          input = el;
-          if (input) {
-            input.indeterminate = indeterminate;
-          }
-        }}
+        ref={
+          ref ||
+          (el => {
+            input = el;
+            if (input) {
+              input.indeterminate = indeterminate;
+            }
+          })
+        }
       />
-      <label htmlFor={id} className={labelClasses}>
+      <label htmlFor={id} className={labelClasses} title={title || null}>
         <span className={innerLabelClasses}>{labelText}</span>
       </label>
     </div>
@@ -48,18 +63,58 @@ const Checkbox = ({
 };
 
 Checkbox.propTypes = {
-  checked: PropTypes.bool,
-  defaultChecked: PropTypes.bool,
-  indeterminate: PropTypes.bool,
   /**
-   * The CSS class name to be placed on inner label element.
+   * Specify whether the underlying input should be checked
+   */
+  checked: PropTypes.bool,
+
+  /**
+   * Specify whether the underlying input should be checked by default
+   */
+  defaultChecked: PropTypes.bool,
+
+  /**
+   * Specify whether the Checkbox is in an indeterminate state
+   */
+  indeterminate: PropTypes.bool,
+
+  /**
+   * Specify an optional className to be applied to the <label> node
    */
   className: PropTypes.string,
+
+  /**
+   * Specify whether the Checkbox should be disabled
+   */
   disabled: PropTypes.bool,
+
+  /**
+   * Provide an `id` to uniquely identify the Checkbox input
+   */
   id: PropTypes.string.isRequired,
+
+  /**
+   * Provide a label to provide a description of the Checkbox input that you are
+   * exposing to the user
+   */
   labelText: PropTypes.node.isRequired,
+
+  /**
+   * Specify whether the label should be hidden, or not
+   */
   hideLabel: PropTypes.bool,
+
+  /**
+   * Receives three arguments: true/false, the checkbox's id, and the dom event.
+   * `(value, id, event) => console.log({value, id, event})`
+   */
   onChange: PropTypes.func,
+
+  /**
+   * Specify a title for the <label> node for the Checkbox
+   */
+  title: PropTypes.string,
+
   /**
    * The CSS class name to be placed on the wrapping element
    */
@@ -71,4 +126,6 @@ Checkbox.defaultProps = {
   indeterminate: false,
 };
 
-export default Checkbox;
+export default React.forwardRef((props, ref) => (
+  <Checkbox {...props} forwardRef={ref} />
+));

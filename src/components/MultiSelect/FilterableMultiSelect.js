@@ -1,7 +1,16 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import cx from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 import Downshift from 'downshift';
+import isEqual from 'lodash.isequal';
+import { settings } from 'carbon-components';
 import ListBox from '../ListBox';
 import Checkbox from '../Checkbox';
 import Selection from '../../internal/Selection';
@@ -10,10 +19,11 @@ import { defaultItemToString } from './tools/itemToString';
 import { defaultSortItems, defaultCompareItems } from './tools/sorting';
 import { defaultFilterItems } from '../ComboBox/tools/filter';
 
+const { prefix } = settings;
+
 export default class FilterableMultiSelect extends React.Component {
   static propTypes = {
     ...sortingPropTypes,
-
     /**
      * Disable the control
      */
@@ -60,6 +70,16 @@ export default class FilterableMultiSelect extends React.Component {
      * `true` to use the light version.
      */
     light: PropTypes.bool,
+
+    /**
+     * Is the current selection invalid?
+     */
+    invalid: PropTypes.bool,
+
+    /**
+     * If invalid, what is the error?
+     */
+    invalidText: PropTypes.string,
   };
 
   static defaultProps = {
@@ -97,15 +117,13 @@ export default class FilterableMultiSelect extends React.Component {
   handleOnOuterClick = () => {
     this.setState({
       isOpen: false,
+      inputValue: '',
     });
   };
 
   handleOnStateChange = changes => {
     const { type } = changes;
     switch (type) {
-      case Downshift.stateChangeTypes.changeInput:
-        this.setState({ inputValue: changes.inputValue });
-        break;
       case Downshift.stateChangeTypes.keyDownArrowDown:
       case Downshift.stateChangeTypes.keyDownArrowUp:
       case Downshift.stateChangeTypes.itemMouseEnter:
@@ -121,7 +139,7 @@ export default class FilterableMultiSelect extends React.Component {
       case Downshift.stateChangeTypes.clickButton:
       case Downshift.stateChangeTypes.keyDownSpaceButton:
         this.setState(() => {
-          let nextIsOpen = changes.isOpen;
+          let nextIsOpen = changes.isOpen || false;
           if (changes.isOpen === false) {
             // If Downshift is trying to close the menu, but we know the input
             // is the active element in thedocument, then keep the menu open
@@ -141,17 +159,18 @@ export default class FilterableMultiSelect extends React.Component {
     event.stopPropagation();
   };
 
-  handleOnInputValueChange = inputValue => {
-    this.setState(() => {
-      if (Array.isArray(inputValue)) {
+  handleOnInputValueChange = (inputValue, { type }) => {
+    if (type === Downshift.stateChangeTypes.changeInput)
+      this.setState(() => {
+        if (Array.isArray(inputValue)) {
+          return {
+            inputValue: '',
+          };
+        }
         return {
-          inputValue: '',
+          inputValue: inputValue || '',
         };
-      }
-      return {
-        inputValue: inputValue || '',
-      };
-    });
+      });
   };
 
   clearInputValue = event => {
@@ -175,13 +194,15 @@ export default class FilterableMultiSelect extends React.Component {
       sortItems,
       compareItems,
       light,
+      invalid,
+      invalidText,
     } = this.props;
     const className = cx(
-      'bx--multi-select',
-      'bx--combo-box',
+      `${prefix}--multi-select`,
+      `${prefix}--combo-box`,
       containerClassName,
       {
-        'bx--list-box--light': light,
+        [`${prefix}--list-box--light`]: light,
       }
     );
     return (
@@ -211,6 +232,8 @@ export default class FilterableMultiSelect extends React.Component {
               <ListBox
                 className={className}
                 disabled={disabled}
+                invalid={invalid}
+                invalidText={invalidText}
                 {...getRootProps({ refKey: 'innerRef' })}>
                 <ListBox.Field {...getButtonProps({ disabled })}>
                   {selectedItem.length > 0 && (
@@ -220,7 +243,7 @@ export default class FilterableMultiSelect extends React.Component {
                     />
                   )}
                   <input
-                    className="bx--text-input"
+                    className={`${prefix}--text-input`}
                     ref={el => (this.inputNode = el)}
                     {...getInputProps({
                       disabled,
@@ -229,12 +252,9 @@ export default class FilterableMultiSelect extends React.Component {
                       onKeyDown: this.handleOnInputKeyDown,
                     })}
                   />
-                  {inputValue &&
-                    isOpen && (
-                      <ListBox.Selection
-                        clearSelection={this.clearInputValue}
-                      />
-                    )}
+                  {inputValue && isOpen && (
+                    <ListBox.Selection clearSelection={this.clearInputValue} />
+                  )}
                   <ListBox.MenuIcon isOpen={isOpen} />
                 </ListBox.Field>
                 {isOpen && (
@@ -250,11 +270,13 @@ export default class FilterableMultiSelect extends React.Component {
                     ).map((item, index) => {
                       const itemProps = getItemProps({ item });
                       const itemText = itemToString(item);
-                      const isChecked = selectedItem.indexOf(item) !== -1;
+                      const isChecked =
+                        selectedItem.filter(selected => isEqual(selected, item))
+                          .length > 0;
                       return (
                         <ListBox.MenuItem
                           key={itemProps.id}
-                          isActive={selectedItem.indexOf(item) !== -1}
+                          isActive={isChecked}
                           isHighlighted={highlightedIndex === index}
                           {...itemProps}>
                           <Checkbox

@@ -1,10 +1,17 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import PropTypes from 'prop-types';
 import React from 'react';
 import isEqual from 'lodash.isequal';
 import getDerivedStateFromProps from './state/getDerivedStateFromProps';
 import { getNextSortState } from './state/sorting';
 import denormalize from './tools/denormalize';
-import { composeEventHandlers } from './tools/events';
+import { composeEventHandlers } from '../../tools/events';
 import { defaultFilterRows } from './tools/filter';
 import { defaultSortRow } from './tools/sorting';
 import setupGetInstanceId from './tools/instanceId';
@@ -64,7 +71,7 @@ export default class DataTable extends React.Component {
     headers: PropTypes.arrayOf(
       PropTypes.shape({
         key: PropTypes.string.isRequired,
-        header: PropTypes.string.isRequired,
+        header: PropTypes.node.isRequired,
       })
     ).isRequired,
 
@@ -90,6 +97,16 @@ export default class DataTable extends React.Component {
      * available message ids.
      */
     translateWithId: PropTypes.func,
+
+    /**
+     * Optional boolean to create a short data table.
+     */
+    short: PropTypes.bool,
+
+    /**
+     * Optional boolean to remove borders from data table.
+     */
+    shouldShowBorder: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -97,6 +114,8 @@ export default class DataTable extends React.Component {
     filterRows: defaultFilterRows,
     locale: 'en',
     translateWithId,
+    short: false,
+    shouldShowBorder: true,
   };
 
   static translationKeys = Object.values(translationKeys);
@@ -139,13 +158,13 @@ export default class DataTable extends React.Component {
    * @param {Function} config.onClick a custom click handler for the header
    * @returns {Object}
    */
-  getHeaderProps = ({ header, onClick, ...rest }) => {
+  getHeaderProps = ({ header, onClick, isSortable = true, ...rest }) => {
     const { sortDirection, sortHeaderKey } = this.state;
     return {
       ...rest,
       key: header.key,
       sortDirection,
-      isSortable: true,
+      isSortable,
       isSortHeader: sortHeaderKey === header.key,
       // Compose the event handlers so we don't overwrite a consumer's `onClick`
       // handler
@@ -174,6 +193,7 @@ export default class DataTable extends React.Component {
       onExpand: composeEventHandlers([this.handleOnExpandRow(row.id), onClick]),
       isExpanded: row.isExpanded,
       ariaLabel: t(translationKey),
+      isSelected: row.isSelected,
     };
   };
 
@@ -236,6 +256,16 @@ export default class DataTable extends React.Component {
       shouldShowBatchActions,
       totalSelected,
       onCancel: this.handleOnCancel,
+    };
+  };
+  /**
+   * Helper utility to get the Table Props.
+   */
+  getTableProps = () => {
+    const { short, shouldShowBorder } = this.props;
+    return {
+      short,
+      shouldShowBorder,
     };
   };
 
@@ -405,6 +435,7 @@ export default class DataTable extends React.Component {
       getRowProps: this.getRowProps,
       getSelectionProps: this.getSelectionProps,
       getBatchActionProps: this.getBatchActionProps,
+      getTableProps: this.getTableProps,
 
       // Custom event handlers
       onInputChange: this.handleOnInputValueChange,

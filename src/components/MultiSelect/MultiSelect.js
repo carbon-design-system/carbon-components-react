@@ -1,13 +1,25 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import cx from 'classnames';
 import React from 'react';
 import PropTypes from 'prop-types';
 import Downshift from 'downshift';
+import isEqual from 'lodash.isequal';
+import { settings } from 'carbon-components';
 import ListBox from '../ListBox';
 import Checkbox from '../Checkbox';
 import Selection from '../../internal/Selection';
 import { sortingPropTypes } from './MultiSelectPropTypes';
 import { defaultItemToString } from './tools/itemToString';
 import { defaultSortItems, defaultCompareItems } from './tools/sorting';
+
+const { prefix } = settings;
+const noop = () => undefined;
 
 export default class MultiSelect extends React.Component {
   static propTypes = {
@@ -54,15 +66,31 @@ export default class MultiSelect extends React.Component {
      * consuming component what kind of internal state changes are occuring.
      */
     onChange: PropTypes.func,
+
     /**
      * Specify 'inline' to create an inline multi-select.
      */
     type: PropTypes.oneOf(['default', 'inline']),
 
     /**
+     *  Specify title to show title on hover
+     */
+    useTitleInItem: PropTypes.bool,
+
+    /**
      * `true` to use the light version.
      */
     light: PropTypes.bool,
+
+    /**
+     * Is the current selection invalid?
+     */
+    invalid: PropTypes.bool,
+
+    /**
+     * If invalid, what is the error?
+     */
+    invalidText: PropTypes.string,
   };
 
   static defaultProps = {
@@ -74,6 +102,7 @@ export default class MultiSelect extends React.Component {
     sortItems: defaultSortItems,
     type: 'default',
     light: false,
+    title: false,
   };
 
   constructor(props) {
@@ -88,12 +117,6 @@ export default class MultiSelect extends React.Component {
     if (this.props.onChange) {
       this.props.onChange(changes);
     }
-  };
-
-  handleOnToggleMenu = () => {
-    this.setState(state => ({
-      isOpen: !state.isOpen,
-    }));
   };
 
   handleOnOuterClick = () => {
@@ -119,7 +142,19 @@ export default class MultiSelect extends React.Component {
       // Reference: https://github.com/paypal/downshift/issues/206
       case Downshift.stateChangeTypes.clickButton:
       case Downshift.stateChangeTypes.keyDownSpaceButton:
-        this.handleOnToggleMenu();
+        this.setState(() => {
+          let nextIsOpen = changes.isOpen || false;
+          if (changes.isOpen === false) {
+            // If Downshift is trying to close the menu, but we know the input
+            // is the active element in the document, then keep the menu open
+            if (this.inputNode === document.activeElement) {
+              nextIsOpen = true;
+            }
+          }
+          return {
+            isOpen: nextIsOpen,
+          };
+        });
         break;
     }
   };
@@ -137,12 +172,16 @@ export default class MultiSelect extends React.Component {
       sortItems,
       compareItems,
       light,
+      invalid,
+      invalidText,
+      useTitleInItem,
     } = this.props;
-    const className = cx('bx--multi-select', containerClassName, {
-      'bx--list-box--light': light,
+    const className = cx(`${prefix}--multi-select`, containerClassName, {
+      [`${prefix}--list-box--light`]: light,
     });
     return (
       <Selection
+        disabled={disabled}
         onChange={this.handleOnChange}
         initialSelectedItems={initialSelectedItems}
         render={({ selectedItems, onItemChange, clearSelection }) => (
@@ -167,15 +206,17 @@ export default class MultiSelect extends React.Component {
                 type={type}
                 className={className}
                 disabled={disabled}
+                invalid={invalid}
+                invalidText={invalidText}
                 {...getRootProps({ refKey: 'innerRef' })}>
                 <ListBox.Field {...getButtonProps({ disabled })}>
                   {selectedItem.length > 0 && (
                     <ListBox.Selection
-                      clearSelection={clearSelection}
+                      clearSelection={!disabled ? clearSelection : noop}
                       selectionCount={selectedItem.length}
                     />
                   )}
-                  <span className="bx--list-box__label">{label}</span>
+                  <span className={`${prefix}--list-box__label`}>{label}</span>
                   <ListBox.MenuIcon isOpen={isOpen} />
                 </ListBox.Field>
                 {isOpen && (
@@ -188,17 +229,21 @@ export default class MultiSelect extends React.Component {
                     }).map((item, index) => {
                       const itemProps = getItemProps({ item });
                       const itemText = itemToString(item);
-                      const isChecked = selectedItem.indexOf(item) !== -1;
+                      const isChecked =
+                        selectedItem.filter(selected => isEqual(selected, item))
+                          .length > 0;
                       return (
                         <ListBox.MenuItem
                           key={itemProps.id}
-                          isActive={selectedItem.indexOf(item) !== -1}
+                          isActive={isChecked}
                           isHighlighted={highlightedIndex === index}
                           {...itemProps}>
                           <Checkbox
-                            id={itemProps.id}
+                            id={`${itemProps.id}__checkbox`}
+                            title={useTitleInItem ? itemText : null}
                             name={itemText}
                             checked={isChecked}
+                            disabled={disabled}
                             readOnly={true}
                             tabIndex="-1"
                             labelText={itemText}

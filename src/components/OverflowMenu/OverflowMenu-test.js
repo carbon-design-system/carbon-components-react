@@ -1,4 +1,12 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import React from 'react';
+import { iconOverflowMenu } from 'carbon-icons';
 import OverflowMenu from '../OverflowMenu';
 import Icon from '../Icon';
 import { shallow, mount } from 'enzyme';
@@ -20,7 +28,7 @@ describe('OverflowMenu', () => {
     });
 
     it('should use correct overflow-menu icon', () => {
-      expect(icon.props().name).toEqual('overflow-menu');
+      expect(icon.props().icon).toEqual(iconOverflowMenu);
     });
 
     it('has the expected classes', () => {
@@ -168,13 +176,13 @@ describe('OverflowMenu', () => {
     it('should be in a closed state after handleOutsideClick() is invoked', () => {
       const rootWrapper = shallow(<OverflowMenu />);
 
-      expect(rootWrapper.state().open).toEqual(false);
+      expect(rootWrapper.state().open).not.toEqual(true);
 
       rootWrapper.setState({ open: true });
 
       rootWrapper.props().onClickOutside();
 
-      expect(rootWrapper.state().open).toEqual(false);
+      expect(rootWrapper.state().open).not.toEqual(true);
     });
 
     it('open state should be controlled by open props', () => {
@@ -198,6 +206,23 @@ describe('OverflowMenu', () => {
       );
       expect(rootWrapper.find('.bx--overflow-menu__icon')).toHaveLength(0);
       expect(rootWrapper.find('.other')).toHaveLength(1);
+    });
+  });
+
+  describe('Getting derived state from props', () => {
+    it('should change the open state upon change in props', () => {
+      const wrapper = shallow(<OverflowMenu open />);
+      expect(wrapper.state().open).toEqual(true);
+      wrapper.setProps({ open: false });
+      expect(wrapper.state().open).toEqual(false);
+    });
+
+    it('should avoid change the open state upon setting props, unless there the value actually changes', () => {
+      const wrapper = mount(<OverflowMenu />);
+      wrapper.setProps({ open: true });
+      wrapper.setState({ open: false });
+      wrapper.setProps({ open: true });
+      expect(wrapper.state().open).toEqual(false);
     });
   });
 });

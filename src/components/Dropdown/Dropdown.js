@@ -1,34 +1,105 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import PropTypes from 'prop-types';
 import React, { PureComponent } from 'react';
 import classNames from 'classnames';
 import warning from 'warning';
+import { iconCaretDown } from 'carbon-icons';
+import { settings } from 'carbon-components';
 import ClickListener from '../../internal/ClickListener';
 import Icon from '../Icon';
+
+const { prefix } = settings;
 
 let didWarnAboutDeprecation = false;
 
 export default class Dropdown extends PureComponent {
   static propTypes = {
+    /**
+     * Specify a label to be read by screen readers on the container node
+     */
     ariaLabel: PropTypes.string.isRequired,
+
+    /**
+     * Specify the drop down items
+     */
     children: PropTypes.node,
+
+    /**
+     * Specify an optional className to be applied to the container node
+     */
     className: PropTypes.string,
+
+    /**
+     * Specify the text for the trigger button until a selection is made
+     */
     defaultText: PropTypes.string,
+
+    /**
+     * Specify the value of the selected dropdown item
+     */
     value: PropTypes.string,
+
+    /**
+     * Specify the tab index of the container node
+     */
     tabIndex: PropTypes.number,
+
     onClick: PropTypes.func,
+
+    /**
+     * Specify an `onChange` handler that is called whenever the Dropdown
+     * changes which item is selected
+     */
     onChange: PropTypes.func.isRequired,
+
+    /**
+     * Function called when menu is open
+     */
     onOpen: PropTypes.func,
+
+    /**
+     * Function called when menu is closed
+     */
     onClose: PropTypes.func,
+
+    /**
+     * Specify the text content of the selected dropdown item
+     */
     selectedText: PropTypes.string,
+
+    /**
+     * `true` if the menu should be open.
+     */
     open: PropTypes.bool,
+
+    /**
+     * Specify a description for the twistie icon that can be read by screen
+     * readers
+     */
     iconDescription: PropTypes.string,
+
+    /**
+     * Specify if the control should be disabled, or not
+     */
     disabled: PropTypes.bool,
+
+    /**
+     * Specify whether you want the light version of this control
+     */
+    light: PropTypes.bool,
   };
 
   static defaultProps = {
     tabIndex: 0,
     open: false,
     disabled: false,
+    light: false,
     iconDescription: 'open list of options',
     onChange: () => {},
     onOpen: () => {},
@@ -133,6 +204,7 @@ export default class Dropdown extends PureComponent {
       defaultText, // eslint-disable-line no-unused-vars
       iconDescription,
       disabled,
+      light,
       selectedText, // eslint-disable-line no-unused-vars
       onOpen, // eslint-disable-line no-unused-vars
       onClose, // eslint-disable-line no-unused-vars
@@ -152,9 +224,10 @@ export default class Dropdown extends PureComponent {
       );
 
     const dropdownClasses = classNames({
-      'bx--dropdown': true,
-      'bx--dropdown--open': this.state.open,
-      'bx--dropdown--disabled': disabled,
+      [`${prefix}--dropdown`]: true,
+      [`${prefix}--dropdown--open`]: this.state.open,
+      [`${prefix}--dropdown--disabled`]: disabled,
+      [`${prefix}--dropdown--light`]: light,
       [this.props.className]: this.props.className,
     });
 
@@ -169,18 +242,20 @@ export default class Dropdown extends PureComponent {
           tabIndex={tabIndex}
           aria-label={ariaLabel}
           role="listbox">
-          <li className="bx--dropdown-text">{this.state.selectedText}</li>
+          <li className={`${prefix}--dropdown-text`}>
+            {this.state.selectedText}
+          </li>
           <li>
             <Icon
-              name="caret--down"
-              className="bx--dropdown__arrow"
+              icon={iconCaretDown}
+              className={`${prefix}--dropdown__arrow`}
               description={iconDescription}
             />
           </li>
           <li>
             <ul
               role="menu"
-              className="bx--dropdown-list"
+              className={`${prefix}--dropdown-list`}
               aria-label="inner dropdown menu">
               {children}
             </ul>

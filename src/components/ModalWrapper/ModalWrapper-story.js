@@ -1,6 +1,16 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import React from 'react';
+import { iconAddSolid, iconSearch } from 'carbon-icons';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
+
+import { withKnobs, boolean, text, select } from '@storybook/addon-knobs';
 import ModalWrapper from '../ModalWrapper';
 import TextInput from '../TextInput';
 import Select from '../Select';
@@ -8,7 +18,44 @@ import SelectItem from '../SelectItem';
 import RadioButtonGroup from '../RadioButtonGroup';
 import RadioButton from '../RadioButton';
 
-const modalProps = {
+const icons = {
+  None: 'None',
+  'Add with filled circle (iconAddSolid from `carbon-icons`)': 'iconAddSolid',
+  'Search (iconSearch from `carbon-icons`)': 'iconSearch',
+};
+
+const iconMap = {
+  iconAddSolid,
+  iconSearch,
+};
+
+const props = () => ({
+  className: 'some-class',
+  disabled: boolean('Disable the launcher button (disabled)', false),
+  passiveModal: boolean('Without footer (passiveModal)', false),
+  buttonTriggerText: text(
+    'The text in the trigger button (buttonTriggerText)',
+    'Launch Modal'
+  ),
+  triggerButtonIcon: iconMap[select('Icon (icon)', icons, 'none')],
+  modalLabel: text('The modal label (optional) (modalLabel)', 'Label'),
+  modalHeading: text('The modal heading (modalHeading)', 'Modal'),
+  selectorPrimaryFocus: text(
+    'Primary focus element selector (selectorPrimaryFocus)',
+    '[data-modal-primary-focus]'
+  ),
+  primaryButtonText: text(
+    'The text in the primary button (primaryButtonText)',
+    'Save'
+  ),
+  secondaryButtonText: text(
+    'The text in the secondary button (secondaryButtonText)',
+    'Cancel'
+  ),
+  shouldCloseAfterSubmit: boolean(
+    'Close after submit (shouldCloseAfterSubmit)',
+    true
+  ),
   onBlur: action('onBlur'),
   onClick: action('onClick'),
   onFocus: action('onFocus'),
@@ -16,34 +63,20 @@ const modalProps = {
   onMouseEnter: action('onMouseEnter'),
   onMouseLeave: action('onMouseLeave'),
   onMouseUp: action('onMouseUp'),
-  className: 'some-class',
-};
+});
 
 storiesOf('ModalWrapper', module)
-  .addWithInfo(
-    'transactional modal',
-    `
-      Transactional modals are used to validate user decisions or to gain secondary confirmation from the user.
-    `,
+  .addDecorator(withKnobs)
+  .add(
+    'transactional/passive modal',
     () => (
       <ModalWrapper
-        modalProps={modalProps}
-        id="transactional-modal"
-        buttonTriggerText="Transactional Modal"
-        modalLabel="Label (optional)"
-        modalHeading="Transactional Modal"
-        primaryButtonText="Save"
-        secondaryButtonText="Cancel"
+        id="transactional-passive-modal"
         handleSubmit={() => {
           action('onSubmit')();
           return true;
         }}
-        shouldCloseAfterSubmit={true}>
-        <p className="bx--modal-content__text">
-          Transactional modals are used to validate user decisions os to gain
-          secondary confirmation from the user. Typically, the modal requests
-          either a 'yes' or 'no' response.
-        </p>
+        {...props()}>
         <p className="bx--modal-content__text">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
           cursus fermentum risus, sit amet fringilla nunc pellentesque quis.
@@ -73,46 +106,31 @@ storiesOf('ModalWrapper', module)
           tincidunt sodales.
         </p>
       </ModalWrapper>
-    )
+    ),
+    {
+      info: {
+        text: `
+            Transactional modals are used to validate user decisions or to gain secondary confirmation from the user.
+            Passive modal notifications should only appear if there is an action the user needs to address immediately.
+            Passive modal notifications are persistent on screen.
+          `,
+      },
+    }
   )
-  .addWithInfo(
-    'passive modal',
-    `
-      Passive modal notifications should only appear if there is an action the user needs to address immediately.
-      Passive modal notifications are persistent on screen.
-    `,
-    () => (
-      <ModalWrapper
-        id="passive modal"
-        buttonTriggerText="Passive Modal"
-        modalLabel="Label (optional)"
-        modalHeading="Passive Modal"
-        passiveModal>
-        <p className="bx--modal-content__text">
-          Passive modal notifications should only appear if there is an action
-          the user needs to address immediately. Passive modal notifications are
-          persistent on screen.
-        </p>
-      </ModalWrapper>
-    )
-  )
-  .addWithInfo(
+  .add(
     'input modal',
-    `
-      Input modals are used to follow up with previous user input. These modals should include areas
-      for input that the user can interact with, such as forms, dropdowns, selectors, and links. The example
-      below shows a Modal Wrapper component with various input components.
-    `,
     () => (
       <ModalWrapper
         id="input-modal"
-        buttonTriggerText="Input Modal"
-        modalHeading="Modal with Inputs"
-        handleSubmit={action('onSubmit')}>
+        handleSubmit={() => {
+          action('onSubmit')();
+          return true;
+        }}
+        {...props()}>
         <TextInput
           id="test2"
           placeholder="Hint text here"
-          label="Text Input:"
+          labelText="Text Input:"
         />
         <br />
         <Select id="select-1" labelText="Select">
@@ -151,5 +169,14 @@ storiesOf('ModalWrapper', module)
           />
         </RadioButtonGroup>
       </ModalWrapper>
-    )
+    ),
+    {
+      info: {
+        text: `
+            Input modals are used to follow up with previous user input. These modals should include areas
+            for input that the user can interact with, such as forms, dropdowns, selectors, and links. The example
+            below shows a Modal Wrapper component with various input components.
+          `,
+      },
+    }
   );

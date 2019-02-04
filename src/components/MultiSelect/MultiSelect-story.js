@@ -1,5 +1,15 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import React from 'react';
-import { storiesOf, action } from '@storybook/react';
+import { storiesOf } from '@storybook/react';
+import { action } from '@storybook/addon-actions';
+
+import { withKnobs, boolean, select, text } from '@storybook/addon-knobs';
 import MultiSelect from '../MultiSelect';
 
 const items = [
@@ -11,165 +21,84 @@ const items = [
     id: 'item-2',
     text: 'Item 2',
   },
-  {
-    id: 'item-3',
-    text: 'Item 3',
-  },
-  {
-    id: 'item-4',
-    text: 'Item 4',
-  },
 ];
 
 const defaultLabel = 'MultiSelect Label';
 const defaultPlaceholder = 'Filter';
 
+const types = {
+  'Default (default)': 'default',
+  'Inline (inline)': 'inline',
+};
+
+const props = () => ({
+  filterable: boolean(
+    'Filterable (`<MultiSelect.Filterable>` instead of `<MultiSelect>`)',
+    false
+  ),
+  disabled: boolean('Disabled (disabled)', false),
+  light: boolean('Light variant (light)', false),
+  useTitleInItem: boolean('Show tooltip on hover', false),
+  type: select('UI type (Only for `<MultiSelect>`) (type)', types, 'default'),
+  label: text('Label (label)', defaultLabel),
+  invalid: boolean('Show form validation UI (invalid)', false),
+  invalidText: text(
+    'Form validation UI content (invalidText)',
+    'Invalid Selection'
+  ),
+  onChange: action('onChange'),
+});
+
 storiesOf('MultiSelect', module)
-  .addWithInfo(
+  .addDecorator(withKnobs)
+  .add(
     'default',
-    `
-    MultiSelect
-  `,
-    () => (
-      <div style={{ width: 300 }}>
-        <MultiSelect
-          label={defaultLabel}
-          items={items}
-          itemToString={item => (item ? item.text : '')}
-          onChange={action('onChange')}
-        />
-      </div>
-    )
+    () => {
+      const { filterable, ...multiSelectProps } = props();
+      const ComponentToUse = !filterable ? MultiSelect : MultiSelect.Filterable;
+      const placeholder = !filterable ? undefined : defaultPlaceholder;
+      return (
+        <div style={{ width: 300 }}>
+          <ComponentToUse
+            {...multiSelectProps}
+            items={items}
+            itemToString={item => (item ? item.text : '')}
+            placeholder={placeholder}
+          />
+        </div>
+      );
+    },
+    {
+      info: {
+        text: `
+            MultiSelect
+          `,
+      },
+    }
   )
-  .addWithInfo(
-    'light',
-    `
-    MultiSelect
-  `,
-    () => (
-      <div style={{ width: 300 }}>
-        <MultiSelect
-          light
-          label={defaultLabel}
-          items={items}
-          itemToString={item => (item ? item.text : '')}
-          onChange={action('onChange')}
-        />
-      </div>
-    )
-  )
-  .addWithInfo(
-    'inline',
-    `
-      Inline variant of a MultiSelect
-    `,
-    () => (
-      <MultiSelect
-        type="inline"
-        label={defaultLabel}
-        items={items}
-        itemToString={item => (item ? item.text : '')}
-        onChange={action('onChange')}
-      />
-    )
-  )
-  .addWithInfo(
-    'disabled',
-    `
-      Disabled variant of a MultiSelect
-    `,
-    () => (
-      <div style={{ width: 300 }}>
-        <MultiSelect
-          label={defaultLabel}
-          items={items}
-          itemToString={item => (item ? item.text : '')}
-          onChange={action('onChange')}
-          disabled
-        />
-      </div>
-    )
-  )
-  .addWithInfo(
-    'disabled - inline',
-    `
-      Disabled, inline variant of a MultiSelect
-    `,
-    () => (
-      <MultiSelect
-        type="inline"
-        label={defaultLabel}
-        items={items}
-        itemToString={item => (item ? item.text : '')}
-        onChange={action('onChange')}
-        disabled
-      />
-    )
-  )
-  .addWithInfo(
+  .add(
     'with initial selected items',
-    `
-      Provide a set of items to initially select in the control
-    `,
-    () => (
-      <div style={{ width: 300 }}>
-        <MultiSelect
-          label={defaultLabel}
-          items={items}
-          itemToString={item => (item ? item.text : '')}
-          initialSelectedItems={[items[0], items[1]]}
-          onChange={action('onChange - Inline MultiSelect')}
-        />
-      </div>
-    )
-  )
-  .addWithInfo(
-    'filterable',
-    `
-      Filterable version of our MultiSelect component
-    `,
-    () => (
-      <div style={{ width: 300 }}>
-        <MultiSelect.Filterable
-          items={items}
-          itemToString={item => (item ? item.text : '')}
-          onChange={action('onChange')}
-          placeholder={defaultPlaceholder}
-        />
-      </div>
-    )
-  )
-  .addWithInfo(
-    'filterable light',
-    `
-      Filterable version of our MultiSelect component
-    `,
-    () => (
-      <div style={{ width: 300 }}>
-        <MultiSelect.Filterable
-          light
-          items={items}
-          itemToString={item => (item ? item.text : '')}
-          onChange={action('onChange')}
-          placeholder={defaultPlaceholder}
-        />
-      </div>
-    )
-  )
-  .addWithInfo(
-    'filterable - disabled',
-    `
-      Dislabed filterable version of our MultiSelect component
-    `,
-    () => (
-      <div style={{ width: 300 }}>
-        <MultiSelect.Filterable
-          items={items}
-          itemToString={item => (item ? item.text : '')}
-          onChange={action('onChange')}
-          placeholder={defaultPlaceholder}
-          disabled
-        />
-      </div>
-    )
+    () => {
+      const { filterable, ...multiSelectProps } = props();
+      const ComponentToUse = !filterable ? MultiSelect : MultiSelect.Filterable;
+      const placeholder = !filterable ? undefined : defaultPlaceholder;
+      return (
+        <div style={{ width: 300 }}>
+          <ComponentToUse
+            {...multiSelectProps}
+            items={items}
+            itemToString={item => (item ? item.text : '')}
+            initialSelectedItems={[items[0], items[1]]}
+            placeholder={placeholder}
+          />
+        </div>
+      );
+    },
+    {
+      info: {
+        text: `
+            Provide a set of items to initially select in the control
+          `,
+      },
+    }
   );

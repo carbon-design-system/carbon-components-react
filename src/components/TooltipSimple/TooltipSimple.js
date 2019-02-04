@@ -1,8 +1,19 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import React from 'react';
 import PropTypes from 'prop-types';
+import { iconInfoGlyph } from 'carbon-icons';
 import classNames from 'classnames';
 import warning from 'warning';
+import { settings } from 'carbon-components';
 import Icon from '../Icon';
+
+const { prefix } = settings;
 
 let didWarnAboutDeprecation = false;
 
@@ -12,6 +23,7 @@ const TooltipSimple = ({
   position,
   text,
   showIcon,
+  icon,
   iconName,
   iconDescription,
   ...other
@@ -25,13 +37,16 @@ const TooltipSimple = ({
     );
     didWarnAboutDeprecation = true;
   }
-  const tooltipClasses = classNames(`bx--tooltip--simple__${position}`);
+  const tooltipClasses = classNames(`${prefix}--tooltip--simple__${position}`);
 
-  const tooltipWrapperClasses = classNames(`bx--tooltip--simple`, className);
+  const tooltipWrapperClasses = classNames(
+    `${prefix}--tooltip--simple`,
+    className
+  );
   return (
-    <div>
+    <div className={tooltipWrapperClasses}>
       {showIcon ? (
-        <div className={tooltipWrapperClasses}>
+        <>
           {children}
           <div
             className={tooltipClasses}
@@ -39,19 +54,22 @@ const TooltipSimple = ({
             tabIndex="0"
             role="button"
             {...other}>
-            <Icon role="img" name={iconName} description={iconDescription} />
+            <Icon
+              role="img"
+              icon={!icon && !iconName ? iconInfoGlyph : icon}
+              name={iconName}
+              description={iconDescription}
+            />
           </div>
-        </div>
+        </>
       ) : (
-        <div className={tooltipWrapperClasses}>
-          <div
-            className={tooltipClasses}
-            data-tooltip-text={text}
-            tabIndex="0"
-            role="button"
-            {...other}>
-            {children}
-          </div>
+        <div
+          className={tooltipClasses}
+          data-tooltip-text={text}
+          tabIndex="0"
+          role="button"
+          {...other}>
+          {children}
         </div>
       )}
     </div>
@@ -59,19 +77,55 @@ const TooltipSimple = ({
 };
 
 TooltipSimple.propTypes = {
+  /**
+   * The content to put into the trigger UI, except the (default) tooltip icon.
+   */
   children: PropTypes.node,
+
+  /**
+   * The CSS class names of the tooltip.
+   */
   className: PropTypes.string,
+
+  /**
+   * Where to put the tooltip, relative to the trigger UI.
+   */
   position: PropTypes.oneOf(['bottom', 'top']),
+
+  /**
+   * Contents to put into the tooltip.
+   */
   text: PropTypes.string.isRequired,
+
+  /**
+   * `true` to show the default tooltip icon.
+   */
   showIcon: PropTypes.bool,
+
+  /**
+   * The the default tooltip icon.
+   */
+  icon: PropTypes.shape({
+    width: PropTypes.string,
+    height: PropTypes.string,
+    viewBox: PropTypes.string.isRequired,
+    svgData: PropTypes.object.isRequired,
+  }),
+
+  /**
+   * The name of the default tooltip icon.
+   */
   iconName: PropTypes.string,
+
+  /**
+   * The description of the default tooltip icon, to be put in its SVG `<title>` element.
+   */
   iconDescription: PropTypes.string,
 };
 
 TooltipSimple.defaultProps = {
   position: 'top',
   showIcon: true,
-  iconName: 'info--glyph',
   iconDescription: 'tooltip',
   text: 'Provide text',
 };

@@ -1,4 +1,12 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import React from 'react';
+import { iconSearch } from 'carbon-icons';
 import Icon from '../Icon';
 import Search from '../Search';
 import SearchSkeleton from '../Search/Search.Skeleton';
@@ -104,7 +112,7 @@ describe('Search', () => {
       describe('icons', () => {
         it('renders "search" icon', () => {
           const icons = wrapper.find(Icon);
-          expect(icons.at(0).props().name).toEqual('search');
+          expect(icons.at(0).props().icon).toEqual(iconSearch);
         });
 
         it('renders two Icons', () => {
@@ -130,7 +138,7 @@ describe('Search', () => {
 
       it('renders correct search icon', () => {
         const icons = small.find(Icon);
-        expect(icons.at(0).props().name).toEqual('search');
+        expect(icons.at(0).props().icon).toEqual(iconSearch);
       });
 
       it('should have the expected small class', () => {
@@ -202,5 +210,38 @@ describe('SearchSkeleton Small', () => {
       expect(wrapper.hasClass('bx--skeleton')).toEqual(true);
       expect(wrapper.hasClass('bx--search--sm')).toEqual(true);
     });
+  });
+});
+
+describe('Detecting change in value from props', () => {
+  it('changes the hasContent state upon change in props', () => {
+    const wrapper = shallow(
+      <Search
+        id="test"
+        className="extra-class"
+        label="Search Field"
+        labelText="testlabel"
+        value="foo"
+      />
+    );
+    expect(wrapper.state().hasContent).toBeTruthy();
+    wrapper.setProps({ value: '' });
+    expect(wrapper.state().hasContent).toBeFalsy();
+  });
+
+  it('avoids change the hasContent state upon setting props, unless the value actually changes', () => {
+    const wrapper = shallow(
+      <Search
+        id="test"
+        className="extra-class"
+        label="Search Field"
+        labelText="testlabel"
+        value="foo"
+      />
+    );
+    expect(wrapper.state().hasContent).toBeTruthy();
+    wrapper.setState({ hasContent: false });
+    wrapper.setProps({ value: 'foo' });
+    expect(wrapper.state().hasContent).toBeFalsy();
   });
 });

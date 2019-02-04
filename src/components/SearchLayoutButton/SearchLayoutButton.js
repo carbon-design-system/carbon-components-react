@@ -1,11 +1,24 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { iconList, iconGrid } from 'carbon-icons';
+import { settings } from 'carbon-components';
 import Icon from '../Icon';
+
+const { prefix } = settings;
 
 /**
  * The layout button for `<Search>`.
  */
 class SearchLayoutButton extends Component {
+  state = { format: 'list' };
+
   static propTypes = {
     /**
      * The layout.
@@ -18,6 +31,16 @@ class SearchLayoutButton extends Component {
     labelText: PropTypes.string,
 
     /**
+     * The description for the "list" icon.
+     */
+    iconDescriptionList: PropTypes.string,
+
+    /**
+     * The description for the "grid" icon.
+     */
+    iconDescriptionGrid: PropTypes.string,
+
+    /**
      * The callback called when layout switches.
      */
     onChangeFormat: PropTypes.func,
@@ -25,21 +48,19 @@ class SearchLayoutButton extends Component {
 
   static defaultProps = {
     labelText: 'Filter',
+    iconDescriptionList: 'list',
+    iconDescriptionGrid: 'grid',
   };
 
-  state = {
-    /**
-     * The current layout.
-     * @type {string}
-     */
-    format: this.props.format || 'list',
-  };
+  static getDerivedStateFromProps({ format }, state) {
+    const { prevFormat } = state;
 
-  UNSAFE_componentWillReceiveProps({ format }) {
-    const { format: prevFormat } = this.props;
-    if (prevFormat !== format) {
-      this.setState({ format: format || 'list' });
-    }
+    return prevFormat === format
+      ? null
+      : {
+          format: format || 'list',
+          prevFormat: format,
+        };
   }
 
   /**
@@ -56,23 +77,27 @@ class SearchLayoutButton extends Component {
   };
 
   render() {
-    const { labelText } = this.props;
+    const { labelText, iconDescriptionList, iconDescriptionGrid } = this.props;
     return (
       <button
-        className="bx--search-button"
+        className={`${prefix}--search-button`}
         type="button"
         onClick={this.toggleLayout}
         aria-label={labelText}>
         {this.state.format === 'list' ? (
-          <div className="bx--search__toggle-layout__container">
-            <Icon name="list" description="list" className="bx--search-view" />
+          <div className={`${prefix}--search__toggle-layout__container`}>
+            <Icon
+              icon={iconList}
+              description={iconDescriptionList}
+              className={`${prefix}--search-view`}
+            />
           </div>
         ) : (
-          <div className="bx--search__toggle-layout__container">
+          <div className={`${prefix}--search__toggle-layout__container`}>
             <Icon
-              name="grid"
-              description="toggle-layout"
-              className="bx--search-view"
+              icon={iconGrid}
+              description={iconDescriptionGrid}
+              className={`${prefix}--search-view`}
             />
           </div>
         )}

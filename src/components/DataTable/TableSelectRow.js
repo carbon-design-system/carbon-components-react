@@ -1,8 +1,22 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import PropTypes from 'prop-types';
 import React from 'react';
 import InlineCheckbox from '../InlineCheckbox';
 
-const TableSelectRow = ({ ariaLabel, checked, id, name, onSelect }) => (
+const TableSelectRow = ({
+  ariaLabel,
+  checked,
+  id,
+  name,
+  onSelect,
+  disabled,
+}) => (
   <td>
     <InlineCheckbox
       id={id}
@@ -10,6 +24,7 @@ const TableSelectRow = ({ ariaLabel, checked, id, name, onSelect }) => (
       onClick={onSelect}
       checked={checked}
       ariaLabel={ariaLabel}
+      disabled={disabled}
     />
   </td>
 );

@@ -1,3 +1,10 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import React from 'react';
 import TextInput from '../TextInput';
 import { mount, shallow } from 'enzyme';
@@ -9,6 +16,7 @@ describe('TextInput', () => {
         id="test"
         className="extra-class"
         labelText="testlabel"
+        helperText="testHelper"
         light
       />
     );
@@ -18,6 +26,28 @@ describe('TextInput', () => {
     describe('input', () => {
       it('renders as expected', () => {
         expect(textInput().length).toBe(1);
+      });
+
+      it('should accept refs', () => {
+        class MyComponent extends React.Component {
+          constructor(props) {
+            super(props);
+            this.textInput = React.createRef();
+            this.focus = this.focus.bind(this);
+          }
+          focus() {
+            this.textInput.current.focus();
+          }
+          render() {
+            return (
+              <TextInput id="test" labelText="testlabel" ref={this.textInput} />
+            );
+          }
+        }
+        const wrapper = mount(<MyComponent />);
+        expect(document.activeElement.type).toBeUndefined();
+        wrapper.instance().focus();
+        expect(document.activeElement.type).toEqual('text');
       });
 
       it('has the expected classes', () => {
@@ -74,6 +104,35 @@ describe('TextInput', () => {
         expect(renderedLabel.text()).toEqual('Email Input');
       });
     });
+
+    describe('helper', () => {
+      it('renders a helper', () => {
+        const renderedHelper = wrapper.find('.bx--form__helper-text');
+        expect(renderedHelper.length).toEqual(1);
+      });
+
+      it('renders children as expected', () => {
+        wrapper.setProps({
+          helperText: (
+            <span>
+              This helper text has <a href="#">a link</a>.
+            </span>
+          ),
+        });
+        const renderedHelper = wrapper.find('.bx--form__helper-text');
+        expect(renderedHelper.props().children).toEqual(
+          <span>
+            This helper text has <a href="#">a link</a>.
+          </span>
+        );
+      });
+
+      it('should set helper text as expected', () => {
+        wrapper.setProps({ helperText: 'Helper text' });
+        const renderedHelper = wrapper.find('.bx--form__helper-text');
+        expect(renderedHelper.text()).toEqual('Helper text');
+      });
+    });
   });
 
   describe('events', () => {
@@ -91,7 +150,7 @@ describe('TextInput', () => {
         />
       );
 
-      const input = wrapper.find('input');
+      const input = wrapper.dive().find('input');
 
       it('should not invoke onClick', () => {
         input.simulate('click');
@@ -117,7 +176,7 @@ describe('TextInput', () => {
         />
       );
 
-      const input = wrapper.find('input');
+      const input = wrapper.dive().find('input');
       const eventObject = {
         target: {
           defaultValue: 'test',

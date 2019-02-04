@@ -1,6 +1,6 @@
 {
   "projectName": "carbon-components-react",
-  "projectOwner": "carbon-design-system",
+  "projectOwner": "IBM",
   "files": [
     "README.md"
   ],
@@ -561,6 +561,38 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "zgrossbart",
+      "name": "Zack Grossbart",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/664044?v=4",
+      "profile": "http://www.zackgrossbart.com/",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "Yohanna",
+      "name": "Yohanna Gadelrab",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/6926228?v=4",
+      "profile": "https://github.com/Yohanna",
+      "contributions": [
+        "code",
+        "bug",
+        "test",
+        "doc"
+      ]
+    },
+    {
+      "login": "slaytanic",
+      "name": "Carlos Eduardo Monti",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/890?v=4",
+      "profile": "http://www.gfxnstuff.com.ar",
+      "contributions": [
+        "code",
+        "doc"
+      ]
     }
-  ]
+  ],
+  "repoType": "github"
 }

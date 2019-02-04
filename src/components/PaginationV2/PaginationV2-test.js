@@ -1,4 +1,12 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import React from 'react';
+import { iconChevronLeft, iconChevronRight } from 'carbon-icons';
 import Icon from '../Icon';
 import PaginationV2 from '../PaginationV2';
 import Select from '../Select';
@@ -18,7 +26,7 @@ describe('Pagination', () => {
     );
 
     beforeEach(() => {
-      paginationV2.setProps('itemsPerPageFollowsText', undefined);
+      paginationV2.setProps({ itemsPerPageFollowsText: undefined });
     });
 
     describe('icons', () => {
@@ -29,11 +37,11 @@ describe('Pagination', () => {
       });
 
       it('should use correct "backward" icon', () => {
-        expect(icons.first().props().name).toEqual('chevron--left');
+        expect(icons.first().props().icon).toEqual(iconChevronLeft);
       });
 
       it('should use correct "forward" icon', () => {
-        expect(icons.last().props().name).toEqual('chevron--right');
+        expect(icons.last().props().icon).toEqual(iconChevronRight);
       });
     });
 
@@ -178,6 +186,15 @@ describe('Pagination', () => {
           expect(pager.state().page).toEqual(1);
         });
 
+        it('should avoid returning to first page unless actual change in pageSizes is detected', () => {
+          const pager = mount(
+            <PaginationV2 pageSizes={[5, 10]} totalItems={50} />
+          );
+          pager.setState({ page: 2 });
+          pager.setProps({ pageSizes: [5, 10] });
+          expect(pager.state().page).toEqual(2);
+        });
+
         it('should default to pageSize if pageSize is provided', () => {
           const pager = mount(
             <PaginationV2 pageSizes={[5, 10]} pageSize={10} totalItems={50} />
@@ -191,6 +208,15 @@ describe('Pagination', () => {
           );
           pager.setProps({ pageSize: 10 });
           expect(pager.state().pageSize).toEqual(10);
+        });
+
+        it('should avoid defaulting to pageSize unless actual change in pageSize is detected', () => {
+          const pager = mount(
+            <PaginationV2 pageSizes={[5, 10]} pageSize={10} totalItems={50} />
+          );
+          pager.setState({ pageSize: 20 });
+          pager.setProps({ pageSize: 10 });
+          expect(pager.state().pageSize).toEqual(20);
         });
       });
     });
@@ -375,6 +401,17 @@ describe('Pagination', () => {
           pager.setProps({ page: 2 });
           expect(pager.state().page).toBe(2);
         });
+
+        it('should avoid jumping to page number unless actual change in prop page is detected', () => {
+          const pager = mount(
+            <PaginationV2 pageSizes={[5, 10]} totalItems={50} page={3} />
+          );
+          expect(pager.state().page).toBe(3);
+          pager.setState({ page: 2 });
+          pager.setProps({ page: 3 });
+          expect(pager.state().page).toBe(2);
+        });
+
         it('should not increment page if there is only 1 page', () => {
           const pager = mount(<PaginationV2 pageSizes={[10]} totalItems={5} />);
           const buttons = pager.find('.bx--pagination__button');

@@ -1,7 +1,15 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import React from 'react';
 import DatePicker from '../DatePicker';
 import DatePickerSkeleton from '../DatePicker/DatePicker.Skeleton';
 import { mount, shallow } from 'enzyme';
+import DatePickerInput from '../DatePickerInput/DatePickerInput';
 
 describe('DatePicker', () => {
   describe('Renders as expected', () => {
@@ -125,6 +133,31 @@ describe('DatePicker', () => {
     });
   });
 
+  describe('Single date picker with initial value', () => {
+    const wrapper = mount(
+      <DatePicker
+        datePickerType="single"
+        dateFormat="m/d/Y"
+        value={'02/26/2017'}
+        onChange={() => {}}>
+        <DatePickerInput
+          key="label"
+          labelText="Controlled Date"
+          id="date-picker-input-id"
+        />
+      </DatePicker>
+    );
+
+    it('has the value as expected', () => {
+      // MOUNT
+      expect(wrapper.props().value).toEqual('02/26/2017');
+
+      // UPDATE
+      wrapper.setProps({ value: '02/17/2017' });
+      expect(wrapper.props().value).toEqual('02/17/2017');
+    });
+  });
+
   describe('Range date picker', () => {
     const wrapper = mount(
       <DatePicker
@@ -224,8 +257,45 @@ describe('DatePicker', () => {
     });
   });
 
+  describe('Date picker can be used with enzyme shallow', () => {
+    beforeEach(done => {
+      const spy = {};
+      spy.console = jest.spyOn(console, 'error').mockImplementation(e => {
+        done.fail(e);
+      });
+      done();
+    });
+
+    it('date picker should not throw exception when mounted or unmounted', () => {
+      const wrapper = shallow(
+        <DatePicker
+          onChange={() => {}}
+          datePickerType="range"
+          className="extra-class"
+          locale="es">
+          <div className="test-child">
+            <input
+              type="text"
+              className="bx--date-picker__input"
+              id="input-from"
+            />
+          </div>
+          <div className="test-child">
+            <input
+              type="text"
+              className="bx--date-picker__input"
+              id="input-to"
+            />
+          </div>
+        </DatePicker>
+      );
+      expect(wrapper.find('DatePicker')).toBeDefined();
+      wrapper.unmount();
+    });
+  });
+
   describe('Date picker with minDate and maxDate', () => {
-    console.error = jest.genMockFn(); // eslint-disable-line no-console
+    console.error = jest.fn(); // eslint-disable-line no-console
 
     const wrapper = mount(
       <DatePicker

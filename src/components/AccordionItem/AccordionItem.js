@@ -1,33 +1,85 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import classnames from 'classnames';
+import { iconChevronRight } from 'carbon-icons';
+import { settings } from 'carbon-components';
 import Icon from '../Icon';
+import { match, keys } from '../../tools/key';
+
+const { prefix } = settings;
+
+const defaultRenderExpando = props => <button {...props} />;
 
 export default class AccordionItem extends Component {
+  state = {};
+
   static propTypes = {
+    /**
+     * Provide the contents of your AccordionItem
+     */
     children: PropTypes.node,
+
+    /**
+     * Specify an optional className to be applied to the container node
+     */
     className: PropTypes.string,
+
+    /**
+     * The accordion title.
+     */
     title: PropTypes.node,
+
+    /**
+     * The callback function to render the expando button.
+     * Can be a React component class.
+     */
+    renderExpando: PropTypes.func,
+
+    /**
+     * The description of the expando icon.
+     */
+    iconDescription: PropTypes.string,
+
+    /**
+     * `true` to open the expando.
+     */
     open: PropTypes.bool,
+
+    /**
+     * The handler of the massaged `click` event.
+     */
     onClick: PropTypes.func,
+
+    /**
+     * The handler of the massaged `click` event on the heading.
+     */
     onHeadingClick: PropTypes.func,
   };
 
   static defaultProps = {
     title: 'title',
+    renderExpando: defaultRenderExpando,
+    iconDescription: 'Expand/Collapse',
     open: false,
     onClick: () => {},
     onHeadingClick: () => {},
   };
 
-  state = {
-    open: this.props.open,
-  };
-
-  UNSAFE_componentWillReceiveProps({ open }) {
-    if (open !== this.props.open) {
-      this.setState({ open });
-    }
+  static getDerivedStateFromProps({ open }, state) {
+    const { prevOpen } = state;
+    return prevOpen === open
+      ? null
+      : {
+          open,
+          prevOpen: open,
+        };
   }
 
   handleClick = evt => {
@@ -40,11 +92,12 @@ export default class AccordionItem extends Component {
     this.props.onHeadingClick({ isOpen: open, event: evt });
   };
 
-  handleKeyPress = evt => {
-    const isKeyPressTarget = evt.target === evt.currentTarget;
-    const isValidKeyPress = [13, 32].indexOf(evt.which) !== -1;
-
-    if (isKeyPressTarget && isValidKeyPress) {
+  handleKeyDown = evt => {
+    if (
+      match(evt.which, keys.ESC) &&
+      this.state.open &&
+      evt.target.classList.contains(`${prefix}--accordion__heading`)
+    ) {
       this.handleHeadingClick(evt);
     }
   };
@@ -53,6 +106,8 @@ export default class AccordionItem extends Component {
     const {
       className,
       title,
+      renderExpando: Expando,
+      iconDescription,
       children,
       onClick, // eslint-disable-line no-unused-vars
       onHeadingClick, // eslint-disable-line no-unused-vars
@@ -61,31 +116,32 @@ export default class AccordionItem extends Component {
 
     const classNames = classnames(
       {
-        'bx--accordion__item--active': this.state.open,
+        [`${prefix}--accordion__item--active`]: this.state.open,
       },
-      'bx--accordion__item',
+      `${prefix}--accordion__item`,
       className
     );
     return (
       <li
         className={classNames}
         onClick={this.handleClick}
-        onKeyPress={this.handleKeyPress}
+        onKeyDown={this.handleKeyDown}
         role="presentation"
         {...other}>
-        <button
+        <Expando
           type="button"
-          className="bx--accordion__heading"
-          role="tab"
+          aria-expanded={this.state.open}
+          className={`${prefix}--accordion__heading`}
           onClick={this.handleHeadingClick}>
           <Icon
-            className="bx--accordion__arrow"
-            name="chevron--right"
-            description="Expand/Collapse"
+            className={`${prefix}--accordion__arrow`}
+            icon={iconChevronRight}
+            description={iconDescription}
+            role={null} // eslint-disable-line jsx-a11y/aria-role
           />
-          <p className="bx--accordion__title">{title}</p>
-        </button>
-        <div className="bx--accordion__content">{children}</div>
+          <div className={`${prefix}--accordion__title`}>{title}</div>
+        </Expando>
+        <div className={`${prefix}--accordion__content`}>{children}</div>
       </li>
     );
   }

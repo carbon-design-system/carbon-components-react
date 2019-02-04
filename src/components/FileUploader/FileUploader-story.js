@@ -1,62 +1,135 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 /* eslint-disable no-console */
 
 import React from 'react';
 import { storiesOf } from '@storybook/react';
+import { action } from '@storybook/addon-actions';
+
+import {
+  withKnobs,
+  array,
+  boolean,
+  number,
+  select,
+  text,
+} from '@storybook/addon-knobs';
 import FileUploader, { FileUploaderButton } from '../FileUploader';
 import FileUploaderSkeleton from '../FileUploader/FileUploader.Skeleton';
 import Button from '../Button';
 
+const buttonKinds = {
+  'Primary (primary)': 'primary',
+  'Secondary (secondary)': 'secondary',
+  'Danger (danger)': 'danger',
+  'Ghost (ghost)': 'ghost',
+  'Danger Primary (danger--primary)': 'danger--primary',
+  'Tertiary (tertiary)': 'tertiary',
+};
+
+const filenameStatuses = {
+  'Edit (edit)': 'edit',
+  'Complete (complete)': 'complete',
+  'Uploading (uploading)': 'uploading',
+};
+
+const props = {
+  fileUploaderButton: () => {
+    const buttonKind = select('Button kind (buttonKind)', buttonKinds, '');
+    return {
+      className: 'bob',
+      labelText: text('Label text (labelText)', 'Add files'),
+      name: text('Form item name: (name)', ''),
+      multiple: boolean('Supports multiple files (multiple)', true),
+      disabled: boolean('Disabled (disabled)', false),
+      buttonKind: buttonKind || 'primary',
+      disableLabelChanges: boolean(
+        'Prevent the label from being replaced with file selected file (disableLabelChanges)',
+        false
+      ),
+      role: text('ARIA role of the button (role)', ''),
+      tabIndex: number('Tab index (tabIndex)', 0),
+      onChange: action('onChange'),
+    };
+  },
+  fileUploader: () => ({
+    labelTitle: text('The label title (labelTitle)', 'Upload'),
+    labelDescription: text(
+      'The label description (labelDescription)',
+      'only .jpg files at 500mb or less'
+    ),
+    buttonLabel: text('The button label (buttonLabel)', 'Add files'),
+    filenameStatus: select(
+      'Status for file name (filenameStatus)',
+      filenameStatuses,
+      'edit'
+    ),
+    accept: array('Accepted file extensions (accept)', ['.jpg', '.png'], ','),
+    name: text('Form item name: (name)', ''),
+    multiple: boolean('Supports multiple files (multiple)', true),
+  }),
+};
+
 storiesOf('FileUploader', module)
-  .addWithInfo(
+  .addDecorator(withKnobs)
+  .add(
     'FileUploaderButton',
-    `
-      The FileUploaderButton can be used as a standalone component if you do not need the extra UI that comes with FileUploader. The FileUploaderButton is used in FileUploader.
-    `,
-    () => (
-      <FileUploaderButton
-        labelText="Add files"
-        className="bob"
-        onChange={() => console.log('hi')}
-        multiple
-      />
-    )
+    () => <FileUploaderButton {...props.fileUploaderButton()} />,
+    {
+      info: {
+        text: `
+            The FileUploaderButton can be used as a standalone component if you do not need the extra UI that comes with FileUploader. The FileUploaderButton is used in FileUploader.
+          `,
+      },
+    }
   )
-  .addWithInfo(
+  .add(
     'FileUploader',
-    `
-      The FileUploader components allow the user to upload any necessary files. This uses the FileUploaderButton and Filename components. Filename components will appear below the FileUploaderButton when files are added. Use the filenameStatus prop to control what icon appears in Filename ('edit', 'complete', or 'uploading'). The FileUploader component contains a method to clear all files uploaded, clearFiles. This can be used with a ref in the parent component. The clear file button in this example is an example of how to use the clearFiles method.
-    `,
-    () => (
-      <div className="bx--file__container">
-        <FileUploader
-          labelTitle="Upload"
-          labelDescription="only .jpg and .png files at 500mb or less"
-          buttonLabel="Add files"
-          filenameStatus="edit"
-          accept={['.jpg', '.png']}
-          multiple
-          ref={fileUploader => (this.fileUploader = fileUploader)}
-        />
-        <Button
-          kind="secondary"
-          small
-          style={{ marginTop: '1rem' }}
-          onClick={() => {
-            this.fileUploader.clearFiles();
-          }}>
-          Clear File
-        </Button>
-      </div>
-    )
+    () => {
+      let fileUploader;
+      return (
+        <div className="bx--file__container">
+          <FileUploader
+            {...props.fileUploader()}
+            ref={node => (fileUploader = node)}
+          />
+          <Button
+            kind="secondary"
+            small
+            style={{ marginTop: '1rem' }}
+            onClick={() => {
+              fileUploader.clearFiles();
+            }}>
+            Clear File
+          </Button>
+        </div>
+      );
+    },
+    {
+      info: {
+        text: `
+            The FileUploader components allow the user to upload any necessary files. This uses the FileUploaderButton and Filename components. Filename components will appear below the FileUploaderButton when files are added. Use the filenameStatus prop to control what icon appears in Filename ('edit', 'complete', or 'uploading').
+          `,
+      },
+    }
   )
-  .addWithInfo(
+  .add(
     'skeleton',
-    `
-      Placeholder skeleton state to use when content is loading.
-    `,
     () => (
       <div style={{ width: '500px' }}>
         <FileUploaderSkeleton />
       </div>
-    )
+    ),
+    {
+      info: {
+        text: `
+    Placeholder skeleton state to use when content is loading.
+    `,
+      },
+    }
   );

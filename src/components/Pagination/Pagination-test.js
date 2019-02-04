@@ -1,4 +1,12 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import React from 'react';
+import { iconChevronLeft, iconChevronRight } from 'carbon-icons';
 import Icon from '../Icon';
 import Pagination from '../Pagination';
 import Select from '../Select';
@@ -21,11 +29,11 @@ describe('Pagination', () => {
       });
 
       it('should use correct "backward" icon', () => {
-        expect(icons.first().props().name).toEqual('chevron--left');
+        expect(icons.first().props().icon).toEqual(iconChevronLeft);
       });
 
       it('should use correct "forward" icon', () => {
-        expect(icons.last().props().name).toEqual('chevron--right');
+        expect(icons.last().props().icon).toEqual(iconChevronRight);
       });
     });
 
@@ -54,7 +62,7 @@ describe('Pagination', () => {
 
       it('should label the dropdown', () => {
         const label = left.find('.bx--pagination__text').first();
-        expect(label.text()).toBe('items per page\u00a0\u00a0|\u00a0\u00a0');
+        expect(label.text()).toBe('items per page | ');
       });
 
       it('should show the item range out of the total', () => {
@@ -83,7 +91,7 @@ describe('Pagination', () => {
 
         it('should label the dropdown', () => {
           const label = left.find('.bx--pagination__text').first();
-          expect(label.text()).toBe('items per page\u00a0\u00a0|\u00a0\u00a0');
+          expect(label.text()).toBe('items per page | ');
         });
 
         it('should show the item range without the total', () => {

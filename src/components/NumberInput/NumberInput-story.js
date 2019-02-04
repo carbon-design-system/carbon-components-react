@@ -1,63 +1,54 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
+
+import { withKnobs, boolean, number, text } from '@storybook/addon-knobs';
 import NumberInput from '../NumberInput';
 import NumberInputSkeleton from '../NumberInput/NumberInput.Skeleton';
 
-const numberInputProps = {
+const props = () => ({
   className: 'some-class',
   id: 'tj-input',
-  label: 'Number Input label',
+  label: text('Label (label)', 'Number Input label'),
+  hideLabel: boolean('No label (hideLabel)', false),
+  min: number('Minimum value (min)', 0),
+  max: number('Maximum value (max)', 100),
+  value: number('Value (value)', 50),
+  step: number('Step of up/down arrow (step)', 10),
+  disabled: boolean('Disabled (disabled)', false),
+  invalid: boolean('Show form validation UI (invalid)', false),
+  invalidText: text(
+    'Form validation UI content (invalidText)',
+    'Number is not valid'
+  ),
+  helperText: text('Helper text (helperText)', 'Optional helper text.'),
+  light: boolean('Light variant (light)', false),
   onChange: action('onChange'),
   onClick: action('onClick'),
-  min: 0,
-  max: 100,
-  value: 50,
-  step: 10,
-  invalidText: 'Number is not valid',
-};
-
-const introText = `
-  Number inputs are similar to text fields, but contain controls used to increase or decrease an incremental value. The Number Input component can be passed a starting value, a min, a max, and the step.
-`;
+  allowEmpty: boolean('Allow empty value (allowEmpty)', false),
+});
 
 storiesOf('NumberInput', module)
-  .addWithInfo(
-    'enabled',
-    `
-      ${introText}
-      The example below shows an enabled Number Input component.
-    `,
-    () => <NumberInput {...numberInputProps} />
-  )
-  .addWithInfo(
-    'disabled',
-    `
-      ${introText}
-      The example below shows an disabled Number Input component.
-    `,
-    () => <NumberInput disabled {...numberInputProps} />
-  )
-  .addWithInfo(
-    'invalid',
-    `
-      ${introText}
-      The example below shows an disabled Number Input component.
-    `,
-    () => <NumberInput {...numberInputProps} invalid />
-  )
-  .addWithInfo(
-    'light',
-    `
-      ${introText}
-      The example below shows an enabled Number Input component.
-    `,
-    () => <NumberInput light {...numberInputProps} />
-  )
-  .addWithInfo(
-    'skeleton',
-    `
-      Placeholder skeleton state to use when content is loading.
-    `,
-    () => <NumberInputSkeleton />
-  );
+  .addDecorator(withKnobs)
+  .add('Default', () => <NumberInput {...props()} />, {
+    info: {
+      text: `
+            Number inputs are similar to text fields, but contain controls used to increase or decrease an incremental value.
+            The Number Input component can be passed a starting value, a min, a max, and the step.
+          `,
+    },
+  })
+  .add('skeleton', () => <NumberInputSkeleton />, {
+    info: {
+      text: `
+            Placeholder skeleton state to use when content is loading.
+          `,
+    },
+  });

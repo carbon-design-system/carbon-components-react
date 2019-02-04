@@ -1,3 +1,10 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import React from 'react';
 import { mount } from 'enzyme';
 import ModalWrapper from '../ModalWrapper';
@@ -39,6 +46,19 @@ describe('ModalWrapper', () => {
 
     wrapper.find({ children: mockProps.primaryButtonText }).simulate('click');
     expect(wrapper.state('isOpen')).toBe(false);
+  });
+
+  it('should return focus to the trigger button after closing', () => {
+    const wrapper = mount(
+      <ModalWrapper {...mockProps}>
+        <p className="bx--modal-content__text">Text</p>
+      </ModalWrapper>
+    );
+    const { triggerButton } = wrapper.instance();
+    jest.spyOn(triggerButton.current, 'focus');
+    wrapper.find({ children: mockProps.buttonTriggerText }).simulate('click');
+    wrapper.find({ children: mockProps.primaryButtonText }).simulate('click');
+    expect(triggerButton.current.focus).toHaveBeenCalledTimes(1);
   });
 
   it('should not close after an unsuccessful submit action', () => {

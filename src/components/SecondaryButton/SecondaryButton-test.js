@@ -1,4 +1,12 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import React from 'react';
+import { iconSearch } from 'carbon-icons';
 import SecondaryButton from '../SecondaryButton';
 import { shallow, mount } from 'enzyme';
 
@@ -30,7 +38,7 @@ describe('SecondaryButton', () => {
 
     describe('Renders icon buttons', () => {
       const iconButton = mount(
-        <SecondaryButton icon="search" iconDescription="Search">
+        <SecondaryButton icon={iconSearch} iconDescription="Search">
           Search
         </SecondaryButton>
       );

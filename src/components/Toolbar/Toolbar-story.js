@@ -1,6 +1,15 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
+
+import { iconFilter } from 'carbon-icons';
 import Toolbar, {
   ToolbarItem,
   ToolbarTitle,
@@ -21,16 +30,13 @@ const checkboxEvents = {
   onChange: action('onChange'),
 };
 
-storiesOf('Toolbar', module).addWithInfo(
+storiesOf('Toolbar', module).add(
   'Default',
-  `
-    Toolbar stuff
-  `,
   () => (
     <Toolbar {...toolbarProps} className="some-class">
       <ToolbarItem type="search" placeHolderText="Search" />
       <ToolbarItem>
-        <OverflowMenu iconName="filter" floatingMenu>
+        <OverflowMenu icon={iconFilter} floatingMenu>
           <ToolbarTitle title="FILTER BY" />
           <ToolbarOption>
             <Checkbox
@@ -79,5 +85,12 @@ storiesOf('Toolbar', module).addWithInfo(
         </OverflowMenu>
       </ToolbarItem>
     </Toolbar>
-  )
+  ),
+  {
+    info: {
+      text: `
+          Toolbar stuff
+        `,
+    },
+  }
 );

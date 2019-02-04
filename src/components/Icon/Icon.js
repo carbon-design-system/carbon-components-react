@@ -1,6 +1,21 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+import invariant from 'invariant';
 import PropTypes from 'prop-types';
 import React from 'react';
 import icons from 'carbon-icons';
+import isRequiredOneOf from '../../prop-types/isRequiredOneOf';
+
+/**
+ * The icons list object from `carbon-icons`.
+ * @type {Object}
+ */
+let iconsList = icons;
 
 /**
  * Returns a single icon Object
@@ -10,7 +25,7 @@ import icons from 'carbon-icons';
  * // Returns a single icon Object
  * this.findIcon('copy-code', icons.json);
  */
-export function findIcon(name, iconsObj = icons) {
+export function findIcon(name, iconsObj = iconsList) {
   const icon = iconsObj.filter(obj => obj.name === name);
 
   if (icon.length === 0) {
@@ -20,6 +35,16 @@ export function findIcon(name, iconsObj = icons) {
   } else {
     return icon[0];
   }
+}
+
+/**
+ * Sets the icons list object from `carbon-icons`.
+ * Doing so instead of having this module directly import `carbon-icons`
+ * avoids the icons list being included in applications' bundles if only limited set of icons is in use.
+ * @param {Object} list The icons list from `carbon-icons`.
+ */
+export function setIconsList(list) {
+  iconsList = list;
 }
 
 /**
@@ -35,8 +60,8 @@ export function getSvgData(iconName) {
 }
 
 /**
- * Returns Elements/Nodes for SVG
  * @param {Object} svgData - JSON Object for an SVG icon
+ * @returns {ReactElement} Elements/Nodes for SVG
  * @example
  * // Returns SVG elements
  * const svgData = getSvgData('copy-code');
@@ -63,6 +88,10 @@ export function svgShapes(svgData) {
         return data.map((path, index) => (
           <path d={path.d} key={`key${index}`} />
         ));
+      } else if (svgProp === 'polygons') {
+        return data.map((polygon, index) => (
+          <polygon points={polygon.points} key={`key${index}`} />
+        ));
       }
 
       return '';
@@ -72,24 +101,32 @@ export function svgShapes(svgData) {
 }
 
 export function isPrefixed(name) {
-  return name.split('--')[0] === 'icon';
+  if (__DEV__) {
+    invariant(
+      typeof name === 'string',
+      '[Icon] icon name is missing. You likely forgot to specify the icon, ' +
+        'or are using older (pre-`7.x`) version of `carbon-icons` library. ' +
+        'To specify the icon, use either `icon` (data) or `name` (icon name) properties.'
+    );
+  }
+  return name && name.split('--')[0] === 'icon';
 }
 
 const Icon = ({
   className,
+  iconTitle,
   description,
   fill,
   fillRule,
   height,
   name,
+  icon = isPrefixed(name) ? findIcon(name) : findIcon(`icon--${name}`),
   role,
   style,
   width,
   iconRef,
   ...other
 }) => {
-  const icon = isPrefixed(name) ? findIcon(name) : findIcon(`icon--${name}`);
-
   const props = {
     className,
     fill,
@@ -108,7 +145,9 @@ const Icon = ({
 
   return (
     <svg {...props} aria-label={description} alt={description}>
-      <title>{description}</title>
+      <title>
+        {typeof iconTitle === 'undefined' ? description : iconTitle}
+      </title>
       {svgContent}
     </svg>
   );
@@ -119,6 +158,11 @@ Icon.propTypes = {
    * The CSS class name.
    */
   className: PropTypes.string,
+
+  /**
+   * The icon title.
+   */
+  iconTitle: PropTypes.string,
 
   /**
    * The icon description.
@@ -140,10 +184,22 @@ Icon.propTypes = {
    */
   height: PropTypes.string,
 
-  /**
-   * The name in the sprite.
-   */
-  name: PropTypes.string.isRequired,
+  ...isRequiredOneOf({
+    /**
+     * The icon data.
+     */
+    icon: PropTypes.shape({
+      width: PropTypes.string,
+      height: PropTypes.string,
+      viewBox: PropTypes.string.isRequired,
+      svgData: PropTypes.object.isRequired,
+    }),
+
+    /**
+     * The name in the sprite.
+     */
+    name: PropTypes.string,
+  }),
 
   /**
    * The `role` attribute.

@@ -2,13 +2,13 @@
 
 Want to contribute to this repository? Please read below first:
 
-* [Issues and Bugs](#issues-and-bugs)
-* [Feature Requests](#feature-requests)
-* [Doc Fixes](#doc-fixes)
-* [Submission Guidelines](#submission-guidelines)
-* [Coding Standards](#coding-standards)
-* [Commit Message Guidelines](#commit-message-guidlines)
-* [Testing](#testing)
+- [Issues and Bugs](#issues-and-bugs)
+- [Feature Requests](#feature-requests)
+- [Doc Fixes](#doc-fixes)
+- [Submission Guidelines](#submission-guidelines)
+- [Coding Standards](#coding-standards)
+- [Commit Message Guidelines](#commit-message-guidelines)
+- [Testing](#testing)
 
 ## Issues and Bugs
 
@@ -33,7 +33,7 @@ If you want to help improve the docs, it's a good idea to let others know what y
 
 ### Setup
 
-1. Fork the project by navigating to the main [repository](https://github.com/carbon-design-system/carbon-components-react) and clicking the **Fork** button on the top-right corner.
+1. Fork the project by navigating to the main [repository](https://github.com/IBM/carbon-components-react) and clicking the **Fork** button on the top-right corner.
 
 2. Navigate to your forked repository and copy the **SSH url**. Clone your fork by running the following in your terminal:
 
@@ -47,7 +47,7 @@ If you want to help improve the docs, it's a good idea to let others know what y
 3. Once cloned, you will see `origin` as your default remote, pointing to your personal forked repository. Add a remote named `upstream` pointing to the main `carbon-components-react`:
 
    ```
-   $ git remote add upstream git@github.com:carbon-design-system/carbon-components-react.git
+   $ git remote add upstream git@github.com:IBM/carbon-components-react.git
    $ git remote -v
    ```
 
@@ -91,7 +91,7 @@ If your issue appears to be a bug, and hasn't been reported, open a new issue. H
    $ git push origin { YOUR_BRANCH_NAME }
    ```
 
-8. In Github, navigate to [carbon-design-system/carbon-components-react](https://github.com/carbon-design-system/carbon-components-react) and click the button that reads "Compare & pull request".
+8. In Github, navigate to [IBM/carbon-components-react](https://github.com/IBM/carbon-components-react) and click the button that reads "Compare & pull request".
 
 9. Write a title and description, the click "Create pull request".
 
@@ -121,7 +121,12 @@ If you decide to not install a linter addon, or cannot, you can run `yarn lint` 
 
 ## Commit Message Guidelines
 
-We use commit message guidelines based on the [Angular Commit Conventions](https://github.com/angular/angular.js/blob/master/CONTRIBUTING.md#commit).
+We use commit message guidelines based on the [Angular Commit Conventions](https://github.com/angular/angular.js/blob/master/DEVELOPERS.md#commits).
+
+Please stick to the following format: `git commit -m "<type>(<scope>): <message>"`
+
+- Replace `<type>` with one of following: feat, fix, docs, style, refactor, perf, test, chore, revert.
+- The `(<scope>)` is optional and could be anything specifying the place of the commit change.
 
 After the commit message has been submitted, it is checked by [`husky`](https://www.npmjs.com/package/husky) and [`validate-commit-msg`](https://www.npmjs.com/package/validate-commit-msg) to ensure it is syntactically correct.
 
@@ -131,31 +136,31 @@ If you add any features to our code, make sure to add tests so that your changes
 
 Test your changes by running our test commands:
 
-* Run linting:
+- Run linting:
 
   ```
   yarn lint
   ```
 
-* Run unit tests:
+- Run unit tests:
 
   ```
   yarn test
   ```
 
-* Run both linting and unit tests:
+- Run both linting and unit tests:
 
   ```
   yarn ci-check
   ```
 
-* Watching unit tests:
+- Watching unit tests:
 
   ```
   yarn test --watch
   ```
 
-* Generate code coverage report (stored in `.gh-pages/coverage` folder):
+- Generate code coverage report (stored in `.gh-pages/coverage` folder):
 
   ```
   yarn test --coverage

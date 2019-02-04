@@ -1,33 +1,43 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import React from 'react';
 import { storiesOf } from '@storybook/react';
+
+import { withKnobs, select, text } from '@storybook/addon-knobs';
 import TooltipDefinition from '../TooltipDefinition';
 
+const directions = {
+  'Bottom (bottom)': 'bottom',
+  'Top (top)': 'top',
+};
+
+const props = () => ({
+  direction: select('Tooltip direction (direction)', directions, 'bottom'),
+  tooltipText: text(
+    'Tooltip content (tooltipText)',
+    'Brief description of the dotted, underlined word above.'
+  ),
+});
+
 storiesOf('TooltipDefinition', module)
-  .addWithInfo(
+  .addDecorator(withKnobs)
+  .add(
     'default',
-    `
-    Definition Tooltip
-    `,
     () => (
       <div style={{ marginTop: '2rem' }}>
-        <TooltipDefinition tooltipText="Brief description of the dotted, underlined word above.">
-          Definition Tooltip
-        </TooltipDefinition>
+        <TooltipDefinition {...props()}>Definition Tooltip</TooltipDefinition>
       </div>
-    )
-  )
-  .addWithInfo(
-    'with custom direction',
-    `
-    Definition Tooltip with custom direction
-    `,
-    () => (
-      <div style={{ marginTop: '2rem' }}>
-        <TooltipDefinition
-          direction="top"
-          tooltipText="Brief description of the dotted, underlined word above.">
-          Definition Tooltip
-        </TooltipDefinition>
-      </div>
-    )
+    ),
+    {
+      info: {
+        text: `
+            Definition Tooltip
+          `,
+      },
+    }
   );

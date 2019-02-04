@@ -1,3 +1,10 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import getDerivedStateFromProps from '../getDerivedStateFromProps';
 import { defaultSortRow } from '../../tools/sorting';
 
@@ -61,7 +68,7 @@ describe('getDerivedStateFromProps', () => {
       expect(initialState.rowIds).toEqual(['1', '2', '0']);
       const prevState = {
         sortHeaderKey: 'sortField',
-        sortDirection: 'DESC',
+        sortDirection: 'ASC',
       };
       const nextState = getDerivedStateFromProps(mockProps, prevState);
       expect(nextState.rowIds).toEqual(['0', '1', '2']);

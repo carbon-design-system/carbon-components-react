@@ -1,4 +1,18 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import React from 'react';
+import {
+  iconCheckmarkSolid,
+  iconInfoSolid,
+  iconErrorSolid,
+  iconWarningSolid,
+  iconClose,
+} from 'carbon-icons';
 import Icon from '../Icon';
 import Notification, {
   NotificationButton,
@@ -23,7 +37,7 @@ describe('NotificationButton', () => {
 
     it('renders correct Icon', () => {
       const icon = wrapper.find('Icon');
-      expect(icon.props().name).toEqual('close');
+      expect(icon.props().icon).toEqual(iconClose);
     });
 
     describe('When notificationType equals "toast"', () => {
@@ -35,7 +49,7 @@ describe('NotificationButton', () => {
 
       it('icon should have correct className by default', () => {
         const icon = wrapper.find('Icon');
-        expect(icon.hasClass('bx--toast-notification__icon')).toBe(true);
+        expect(icon.hasClass('bx--toast-notification__close-icon')).toBe(true);
       });
     });
 
@@ -183,22 +197,30 @@ describe('InlineNotification', () => {
 
     it('renders success notification with matching kind and <icon name=""> values', () => {
       inline.setProps({ kind: 'success' });
-      expect(inline.find(Icon).some('[name="checkmark--solid"]')).toBe(true);
+      expect(inline.find(Icon).some({ icon: iconCheckmarkSolid })).toBe(true);
     });
 
     it('renders error notification with matching kind and <icon name=""> values', () => {
       inline.setProps({ kind: 'error' });
-      expect(inline.find(Icon).some('[name="error--solid"]')).toBe(true);
+      expect(inline.find(Icon).some({ icon: iconErrorSolid })).toBe(true);
     });
+
+    // removed because of a11y warning icon workaround, depending on TODO: for @carbon/icons-react
+    // it('renders warning notification with matching kind and <icon name=""> values', () => {
+    //   inline.setProps({ kind: 'warning' });
+    //   expect(inline.find(Icon).some({ icon: iconWarningSolid })).toBe(true);
+    // });
 
     it('renders warning notification with matching kind and <icon name=""> values', () => {
       inline.setProps({ kind: 'warning' });
-      expect(inline.find(Icon).some('[name="warning--solid"]')).toBe(true);
+      expect(
+        inline.children('.bx--inline-notification__details').exists()
+      ).toBe(true);
     });
 
-    it('renders info notification with matching kind and <icon name=""> values', () => {
+    it('renders info notification with matching kind value but without <icon name="">', () => {
       inline.setProps({ kind: 'info' });
-      expect(inline.find(Icon).some('[name="info--solid"]')).toBe(true);
+      expect(inline.find(Icon).some({ icon: iconInfoSolid })).toBe(true);
     });
 
     it('renders HTML for inline notifications when caption does not exist', () => {
@@ -294,23 +316,23 @@ describe('[Deprecated]: Notification', () => {
       });
 
       it('renders checkmark--solid icon for success inline notification', () => {
-        const icon = inline.find('[name="checkmark--solid"]');
-        expect(icon.props().name).toEqual('checkmark--solid');
+        const icon = inline.find({ icon: iconCheckmarkSolid });
+        expect(icon.props().icon).toEqual(iconCheckmarkSolid);
       });
 
       it('renders error notification with matching kind and <icon name=""> values', () => {
         inline.setProps({ kind: 'error' });
-        expect(inline.find(Icon).some('[name="error--solid"]')).toBe(true);
+        expect(inline.find(Icon).some({ icon: iconErrorSolid })).toBe(true);
       });
 
       it('renders warning notification with matching kind and <icon name=""> values', () => {
         inline.setProps({ kind: 'warning' });
-        expect(inline.find(Icon).some('[name="warning--solid"]')).toBe(true);
+        expect(inline.find(Icon).some({ icon: iconWarningSolid })).toBe(true);
       });
 
       it('renders info notification with matching kind and <icon name=""> values', () => {
         inline.setProps({ kind: 'info' });
-        expect(inline.find(Icon).some('[name="info--solid"]')).toBe(true);
+        expect(inline.find(Icon).some({ icon: iconInfoSolid })).toBe(true);
       });
 
       it('renders HTML for toast notifications when caption exists', () => {

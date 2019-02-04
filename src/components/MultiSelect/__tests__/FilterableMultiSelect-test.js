@@ -1,3 +1,10 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import React from 'react';
 import { mount } from 'enzyme';
 import MultiSelect from '../../MultiSelect';
@@ -105,5 +112,18 @@ describe('MultiSelect.Filterable', () => {
     expect(mockProps.onChange).toHaveBeenCalledWith({
       selectedItems: [],
     });
+  });
+
+  it('should not clear input value after a user makes a selection', () => {
+    const wrapper = mount(<MultiSelect.Filterable {...mockProps} />);
+    const inputValue = 'Item';
+    openMenu(wrapper);
+    wrapper.setState({ inputValue });
+    wrapper
+      .find(listItemName)
+      .at(0)
+      .simulate('click');
+
+    expect(wrapper.state('inputValue')).toEqual(inputValue);
   });
 });

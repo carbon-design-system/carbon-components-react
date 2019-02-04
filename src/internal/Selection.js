@@ -1,5 +1,13 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import React from 'react';
 import PropTypes from 'prop-types';
+import isEqual from 'lodash.isequal';
 
 export default class Selection extends React.Component {
   static propTypes = {
@@ -28,6 +36,9 @@ export default class Selection extends React.Component {
     });
 
   handleClearSelection = () => {
+    if (this.props.disabled) {
+      return;
+    }
     this.internalSetState({
       selectedItems: [],
     });
@@ -44,12 +55,20 @@ export default class Selection extends React.Component {
       selectedItems: removeAtIndex(state.selectedItems, index),
     }));
   };
-
   handleOnItemChange = item => {
+    if (this.props.disabled) {
+      return;
+    }
     const { selectedItems } = this.state;
-    const selectedIndex = selectedItems.indexOf(item);
 
-    if (selectedIndex === -1) {
+    let selectedIndex;
+    selectedItems.forEach((selectedItem, index) => {
+      if (isEqual(selectedItem, item)) {
+        selectedIndex = index;
+      }
+    });
+
+    if (selectedIndex === undefined) {
       this.handleSelectItem(item);
       return;
     }

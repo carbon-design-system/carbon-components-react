@@ -1,13 +1,32 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import classNames from 'classnames';
+import { settings } from 'carbon-components';
+// TODO: import { Calendar16 } from '@carbon/icons-react/';
+import Calendar16 from '@carbon/icons-react/lib/calendar/16';
 import Icon from '../Icon';
+import { componentsX } from '../../internal/FeatureFlags';
+
+const { prefix } = settings;
 
 export default class DatePickerInput extends Component {
   static propTypes = {
+    /**
+     * Specify an id that unique identifies the <input>
+     */
     id: PropTypes.string.isRequired,
-    children: PropTypes.node,
-    value: PropTypes.string,
+
+    /**
+     * The description of the calendar icon.
+     */
+    iconDescription: PropTypes.string,
   };
 
   static defaultProps = {
@@ -33,6 +52,8 @@ export default class DatePickerInput extends Component {
       type,
       datePickerType,
       pattern,
+      iconDescription,
+      openCalendar,
       ...other
     } = this.props;
 
@@ -53,16 +74,34 @@ export default class DatePickerInput extends Component {
       pattern,
     };
 
-    const labelClasses = classNames('bx--label', {
-      'bx--visually-hidden': hideLabel,
+    const labelClasses = classNames(`${prefix}--label`, {
+      [`${prefix}--visually-hidden`]: hideLabel,
     });
 
-    const datePickerIcon =
-      datePickerType === 'single' ? (
-        <Icon name="calendar" className="bx--date-picker__icon" />
-      ) : (
-        ''
+    const datePickerIcon = (() => {
+      if (datePickerType !== 'single') {
+        return;
+      }
+      if (componentsX) {
+        return (
+          <Calendar16
+            className={`${prefix}--date-picker__icon`}
+            aria-label={iconDescription}
+            onClick={openCalendar}
+            role="img"
+          />
+        );
+      }
+      return (
+        <Icon
+          name="calendar"
+          className={`${prefix}--date-picker__icon`}
+          description={iconDescription}
+          onClick={openCalendar}
+          focusable="false"
+        />
       );
+    })();
 
     const label = labelText ? (
       <label htmlFor={id} className={labelClasses}>
@@ -71,8 +110,12 @@ export default class DatePickerInput extends Component {
     ) : null;
 
     const error = invalid ? (
-      <div className="bx--form-requirement">{invalidText}</div>
+      <div className={`${prefix}--form-requirement`}>{invalidText}</div>
     ) : null;
+
+    const containerClasses = classNames(`${prefix}--date-picker-container`, {
+      [`${prefix}--date-picker--nolabel`]: !label,
+    });
 
     const input = invalid ? (
       <input
@@ -82,7 +125,7 @@ export default class DatePickerInput extends Component {
           this.input = input;
         }}
         data-invalid
-        className="bx--date-picker__input"
+        className={`${prefix}--date-picker__input`}
       />
     ) : (
       <input
@@ -91,15 +134,15 @@ export default class DatePickerInput extends Component {
         }}
         {...other}
         {...datePickerInputProps}
-        className="bx--date-picker__input"
+        className={`${prefix}--date-picker__input`}
       />
     );
 
     return (
-      <div className="bx--date-picker-container">
+      <div className={containerClasses}>
         {datePickerIcon}
-        {input}
         {label}
+        {input}
         {error}
       </div>
     );

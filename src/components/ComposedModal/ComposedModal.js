@@ -1,25 +1,115 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { iconClose } from 'carbon-icons';
 import Button from '../Button';
 import Icon from '../Icon';
 import classNames from 'classnames';
+import { settings } from 'carbon-components';
+// TODO: import { Close20 } from '@carbon/icons-react';
+import Close20 from '@carbon/icons-react/lib/close/20';
+import { componentsX } from '../../internal/FeatureFlags';
+
+const { prefix } = settings;
+const matchesFuncName =
+  typeof Element !== 'undefined' &&
+  ['matches', 'webkitMatchesSelector', 'msMatchesSelector'].filter(
+    name => typeof Element.prototype[name] === 'function'
+  )[0];
 
 export default class ComposedModal extends Component {
+  state = {};
+
   static defaultProps = {
     onKeyDown: () => {},
+    selectorPrimaryFocus: '[data-modal-primary-focus]',
   };
+
+  outerModal = React.createRef();
+  innerModal = React.createRef();
+  button = React.createRef();
 
   static propTypes = {
+    /**
+     * Specify an optional className to be applied to the modal root node
+     */
     className: PropTypes.string,
+
+    /**
+     * Specify an optional className to be applied to the modal node
+     */
     containerClassName: PropTypes.string,
+
+    /**
+     * Specify an optional handler for closing modal.
+     * Returning `false` here prevents closing modal.
+     */
+    onClose: PropTypes.func,
+
+    /**
+     * Specify an optional handler for the `onKeyDown` event. Called for all
+     * `onKeyDown` events that do not close the modal
+     */
     onKeyDown: PropTypes.func,
+
+    /**
+     * Specify whether the Modal is currently open
+     */
+    open: PropTypes.bool,
+
+    /**
+     * Specify a CSS selector that matches the DOM element that should be
+     * focused when the Modal opens
+     */
+    selectorPrimaryFocus: PropTypes.string,
   };
 
-  state = {
-    open: this.props.open,
+  static getDerivedStateFromProps({ open }, state) {
+    const { prevOpen } = state;
+    return prevOpen === open
+      ? null
+      : {
+          open,
+          prevOpen: open,
+        };
+  }
+
+  elementOrParentIsFloatingMenu = target => {
+    const {
+      selectorsFloatingMenus = [
+        `.${prefix}--overflow-menu-options`,
+        `.${prefix}--tooltip`,
+        '.flatpickr-calendar',
+      ],
+    } = this.props;
+    if (target && typeof target.closest === 'function') {
+      return selectorsFloatingMenus.some(selector => target.closest(selector));
+    }
+
+    // Alternative if closest does not exist.
+    while (target) {
+      if (typeof target[matchesFuncName] === 'function') {
+        if (
+          selectorsFloatingMenus.some(selector =>
+            target[matchesFuncName](selector)
+          )
+        ) {
+          return true;
+        }
+      }
+      target = target.parentNode;
+    }
+    return false;
   };
 
   handleKeyDown = evt => {
+    // Esc key
     if (evt.which === 27) {
       this.closeModal();
     }
@@ -27,83 +117,203 @@ export default class ComposedModal extends Component {
     this.props.onKeyDown(evt);
   };
 
-  componentDidMount() {
-    if (this.modal) {
-      this.modal.focus();
+  handleClick = evt => {
+    if (
+      this.innerModal.current &&
+      !this.innerModal.current.contains(evt.target)
+    ) {
+      this.closeModal();
+    }
+  };
+
+  focusModal = () => {
+    if (this.outerModal.current) {
+      this.outerModal.current.focus();
+    }
+  };
+
+  handleBlur = evt => {
+    // Keyboard trap
+    if (
+      this.innerModal.current &&
+      this.props.open &&
+      evt.relatedTarget &&
+      !this.innerModal.current.contains(evt.relatedTarget) &&
+      !this.elementOrParentIsFloatingMenu(evt.relatedTarget)
+    ) {
+      this.focusModal();
+    }
+  };
+
+  componentDidUpdate(prevProps) {
+    if (!prevProps.open && this.props.open) {
+      this.beingOpen = true;
+    } else if (prevProps.open && !this.props.open) {
+      this.beingOpen = false;
     }
   }
 
-  UNSAFE_componentWillReceiveProps(nextProps) {
-    if (nextProps.open !== this.state.open) {
-      this.setState({
-        open: nextProps.open,
-      });
+  focusButton = focusContainerElement => {
+    const primaryFocusElement = focusContainerElement.querySelector(
+      this.props.selectorPrimaryFocus
+    );
+    if (primaryFocusElement) {
+      primaryFocusElement.focus();
+      return;
     }
+    if (this.button.current) {
+      this.button.current.focus();
+    }
+  };
+
+  componentDidMount() {
+    if (!this.props.open) {
+      return;
+    }
+    this.focusButton(this.innerModal.current);
   }
+
+  handleTransitionEnd = evt => {
+    if (
+      this.outerModal.current.offsetWidth &&
+      this.outerModal.current.offsetHeight &&
+      this.beingOpen
+    ) {
+      this.focusButton(evt.currentTarget);
+      this.beingOpen = false;
+    }
+  };
 
   closeModal = () => {
-    this.setState({
-      open: false,
-    });
+    const { onClose } = this.props;
+    if (!onClose || onClose() !== false) {
+      this.setState({
+        open: false,
+      });
+    }
   };
 
   render() {
     const { open } = this.state;
-    const { className, containerClassName, children, ...other } = this.props;
+    const {
+      className,
+      containerClassName,
+      children,
+      danger,
+      selectorPrimaryFocus, // eslint-disable-line
+      ...other
+    } = this.props;
 
     const modalClass = classNames({
-      'bx--modal': true,
+      [`${prefix}--modal`]: true,
       'is-visible': open,
       [className]: className,
+      [`${prefix}--modal--danger`]: danger,
     });
 
     const containerClass = classNames({
-      'bx--modal-container': true,
+      [`${prefix}--modal-container`]: true,
       [containerClassName]: containerClassName,
     });
 
     const childrenWithProps = React.Children.toArray(children).map(child => {
-      if (child.type === ModalHeader || child.type === ModalFooter) {
-        return React.cloneElement(child, {
-          closeModal: this.closeModal,
-        });
+      switch (child.type) {
+        case ModalHeader:
+          return React.cloneElement(child, {
+            closeModal: this.closeModal,
+          });
+        case ModalFooter:
+          return React.cloneElement(child, {
+            closeModal: this.closeModal,
+            inputref: this.button,
+          });
+        default:
+          return child;
       }
-
-      return child;
     });
 
     return (
       <div
         {...other}
         role="presentation"
-        ref={modal => (this.modal = modal)}
+        ref={this.outerModal}
+        onBlur={this.handleBlur}
+        onClick={this.handleClick}
         onKeyDown={this.handleKeyDown}
+        onTransitionEnd={open ? this.handleTransitionEnd : undefined}
         className={modalClass}
         tabIndex={-1}>
-        <div className={containerClass}>{childrenWithProps}</div>
+        <div ref={this.innerModal} className={containerClass}>
+          {childrenWithProps}
+        </div>
       </div>
     );
   }
 }
 
 export class ModalHeader extends Component {
+  static propTypes = {
+    /**
+     * Specify an optional className to be applied to the modal header
+     */
+    className: PropTypes.string,
+
+    /**
+     * Specify an optional className to be applied to the modal header label
+     */
+    labelClassName: PropTypes.string,
+
+    /**
+     * Specify an optional className to be applied to the modal heading
+     */
+    titleClassName: PropTypes.string,
+
+    /**
+     * Specify an optional className to be applied to the modal close node
+     */
+    closeClassName: PropTypes.string,
+
+    /**
+     * Specify an optional className to be applied to the modal close icon node
+     */
+    closeIconClassName: PropTypes.string,
+
+    /**
+     * Specify an optional label to be displayed
+     */
+    label: PropTypes.string,
+
+    /**
+     * Specify an optional title to be displayed
+     */
+    title: PropTypes.string,
+
+    /**
+     * Specify the content to be placed in the ModalHeader
+     */
+    children: PropTypes.node,
+
+    /**
+     * Specify a description for the close icon that can be read by screen
+     * readers
+     */
+    iconDescription: PropTypes.string,
+
+    /**
+     * Provide an optional function to be called when the modal is closed
+     */
+    closeModal: PropTypes.func,
+
+    /**
+     * Provide an optional function to be called when the close button is
+     * clicked
+     */
+    buttonOnClick: PropTypes.func,
+  };
+
   static defaultProps = {
     iconDescription: 'Close the modal',
     buttonOnClick: () => {},
-  };
-
-  static propTypes = {
-    className: PropTypes.string,
-    labelClassName: PropTypes.string,
-    titleClassName: PropTypes.string,
-    closeClassName: PropTypes.string,
-    closeIconClassName: PropTypes.string,
-    label: PropTypes.string,
-    title: PropTypes.string,
-    children: PropTypes.node,
-    iconDescription: PropTypes.string,
-    closeModal: PropTypes.func,
-    buttonOnClick: PropTypes.func,
   };
 
   handleCloseButtonClick = () => {
@@ -128,27 +338,27 @@ export class ModalHeader extends Component {
     } = this.props;
 
     const headerClass = classNames({
-      'bx--modal-header': true,
+      [`${prefix}--modal-header`]: true,
       [className]: className,
     });
 
     const labelClass = classNames({
-      'bx--modal-header__label bx--type-delta': true,
+      [`${prefix}--modal-header__label ${prefix}--type-delta`]: true,
       [labelClassName]: labelClassName,
     });
 
     const titleClass = classNames({
-      'bx--modal-header__heading bx--type-beta': true,
+      [`${prefix}--modal-header__heading ${prefix}--type-beta`]: true,
       [titleClassName]: titleClassName,
     });
 
     const closeClass = classNames({
-      'bx--modal-close': true,
+      [`${prefix}--modal-close`]: true,
       [closeClassName]: closeClassName,
     });
 
     const closeIconClass = classNames({
-      'bx--modal-close__icon': true,
+      [`${prefix}--modal-close__icon`]: true,
       [closeIconClassName]: closeIconClassName,
     });
 
@@ -164,11 +374,19 @@ export class ModalHeader extends Component {
           onClick={this.handleCloseButtonClick}
           className={closeClass}
           type="button">
-          <Icon
-            name="close"
-            className={closeIconClass}
-            description={iconDescription}
-          />
+          {componentsX ? (
+            <Close20
+              alt={iconDescription}
+              aria-label={iconDescription}
+              className={closeIconClass}
+            />
+          ) : (
+            <Icon
+              icon={iconClose}
+              className={closeIconClass}
+              description={iconDescription}
+            />
+          )}
         </button>
       </div>
     );
@@ -177,6 +395,9 @@ export class ModalHeader extends Component {
 
 export class ModalBody extends Component {
   static propTypes = {
+    /**
+     * Specify an optional className to be added to the Modal Body node
+     */
     className: PropTypes.string,
   };
 
@@ -184,7 +405,7 @@ export class ModalBody extends Component {
     const { className, children, ...other } = this.props;
 
     const contentClass = classNames({
-      'bx--modal-content': true,
+      [`${prefix}--modal-content`]: true,
       [className]: className,
     });
 
@@ -198,15 +419,56 @@ export class ModalBody extends Component {
 
 export class ModalFooter extends Component {
   static propTypes = {
+    /**
+     * Specify a custom className to be applied to the Modal Footer container
+     */
     className: PropTypes.string,
+
+    /**
+     * Specify a custom className to be applied to the primary button
+     */
     primaryClassName: PropTypes.string,
-    secondaryClassName: PropTypes.string,
-    secondaryButtonText: PropTypes.string,
+
+    /**
+     * Specify the text for the primary button
+     */
     primaryButtonText: PropTypes.string,
+
+    /**
+     * Specify whether the primary button should be disabled
+     */
     primaryButtonDisabled: PropTypes.bool,
+
+    /**
+     * Specify a custom className to be applied to the secondary button
+     */
+    secondaryClassName: PropTypes.string,
+
+    /**
+     * Specify the text for the secondary button
+     */
+    secondaryButtonText: PropTypes.string,
+
+    /**
+     * Specify an optional function for when the modal is requesting to be
+     * closed
+     */
     onRequestClose: PropTypes.func,
+
+    /**
+     * Specify an optional function for when the modal is requesting to be
+     * submitted
+     */
     onRequestSubmit: PropTypes.func,
+
+    /**
+     * Specify an optional function that is called whenever the modal is closed
+     */
     closeModal: PropTypes.func,
+
+    /**
+     * Pass in content that will be rendered in the Modal Footer
+     */
     children: PropTypes.node,
   };
 
@@ -232,11 +494,12 @@ export class ModalFooter extends Component {
       onRequestClose, // eslint-disable-line
       onRequestSubmit, // eslint-disable-line
       children,
+      danger,
       ...other
     } = this.props;
 
     const footerClass = classNames({
-      'bx--modal-footer': true,
+      [`${prefix}--modal-footer`]: true,
       [className]: className,
     });
 
@@ -254,7 +517,7 @@ export class ModalFooter extends Component {
           <Button
             className={secondaryClass}
             onClick={this.handleRequestClose}
-            kind="secondary">
+            kind={danger ? 'tertiary' : 'secondary'}>
             {secondaryButtonText}
           </Button>
         )}
@@ -264,7 +527,8 @@ export class ModalFooter extends Component {
             onClick={onRequestSubmit}
             className={primaryClass}
             disabled={primaryButtonDisabled}
-            kind="primary">
+            kind={danger ? 'danger--primary' : 'primary'}
+            inputref={this.props.inputref}>
             {primaryButtonText}
           </Button>
         )}

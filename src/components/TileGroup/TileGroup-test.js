@@ -1,5 +1,12 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import React from 'react';
-import { mount } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import TileGroup from '../TileGroup';
 import RadioTile from '../RadioTile';
 
@@ -103,6 +110,33 @@ describe('TileGroup', () => {
       onChange.mockClear();
       firstRadio.props().onChange(...args);
       expect(onChange).not.toHaveBeenCalled();
+    });
+  });
+
+  describe('Getting derived state from props', () => {
+    it('should change the selected item upon change in props', () => {
+      const wrapper = shallow(
+        <TileGroup name="gender" valueSelected="male">
+          <RadioTile labelText="Male" value="male" />
+          <RadioTile labelText="Female" value="female" />
+        </TileGroup>
+      );
+      expect(wrapper.state().selected).toEqual('male');
+      wrapper.setProps({ valueSelected: 'female' });
+      expect(wrapper.state().selected).toEqual('female');
+    });
+
+    it('should avoid change the selected item upon setting props, unless there the value actually changes', () => {
+      const wrapper = shallow(
+        <TileGroup name="gender">
+          <RadioTile labelText="Male" value="male" />
+          <RadioTile labelText="Female" value="female" />
+        </TileGroup>
+      );
+      wrapper.setProps({ valueSelected: 'male' });
+      wrapper.setState({ selected: 'female' });
+      wrapper.setProps({ valueSelected: 'male' });
+      expect(wrapper.state().selected).toEqual('female');
     });
   });
 });

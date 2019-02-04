@@ -1,5 +1,13 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import React from 'react';
 import { storiesOf } from '@storybook/react';
+import { iconCheckmarkSolid } from 'carbon-icons';
 import Icon from '../Icon';
 import {
   StructuredListWrapper,
@@ -10,13 +18,11 @@ import {
   StructuredListCell,
 } from '../StructuredList';
 import StructuredListSkeleton from '../StructuredList/StructuredList.Skeleton';
+import { componentsX } from '../../internal/FeatureFlags';
 
 storiesOf('StructuredList', module)
-  .addWithInfo(
+  .add(
     'Simple',
-    `
-      description here
-    `,
     () => (
       <StructuredListWrapper>
         <StructuredListHead>
@@ -49,84 +55,99 @@ storiesOf('StructuredList', module)
           </StructuredListRow>
         </StructuredListBody>
       </StructuredListWrapper>
-    )
+    ),
+    {
+      info: {
+        text: `
+            Structured Lists group content that is similar or related, such as terms or definitions.
+          `,
+      },
+    }
   )
-  .addWithInfo(
+  .add(
     'Selection',
-    `
-      description here
-    `,
-    () => (
-      <StructuredListWrapper selection border>
-        <StructuredListHead>
-          <StructuredListRow head>
-            <StructuredListCell head>{''}</StructuredListCell>
-            <StructuredListCell head>ColumnA</StructuredListCell>
-            <StructuredListCell head>ColumnB</StructuredListCell>
-            <StructuredListCell head>ColumnC</StructuredListCell>
-          </StructuredListRow>
-        </StructuredListHead>
-        <StructuredListBody>
-          <StructuredListRow label htmlFor="row-1">
+    () => {
+      const emptyStructuredListHeadCell = (
+        <StructuredListCell head>{''}</StructuredListCell>
+      );
+      const structuredListHeadColumns = [
+        <StructuredListCell head>ColumnA</StructuredListCell>,
+        <StructuredListCell head>ColumnB</StructuredListCell>,
+        <StructuredListCell head>ColumnC</StructuredListCell>,
+      ];
+      const structuredListBodyRowGenerator = numRows => {
+        const checkbox = i => (
+          <>
             <StructuredListInput
-              id="row-1"
-              value="row-1"
-              title="row-1"
-              name="row-1"
-              defaultChecked
+              id={`row-${i}`}
+              value={`row-${i}`}
+              title={`row-${i}`}
+              name="row-0"
+              defaultChecked={!i || null}
             />
             <StructuredListCell>
               <Icon
                 className="bx--structured-list-svg"
-                name="checkmark--solid"
+                icon={iconCheckmarkSolid}
                 description="select an option"
               />
             </StructuredListCell>
-            <StructuredListCell>Row 1</StructuredListCell>
-            <StructuredListCell>Row 1</StructuredListCell>
-            <StructuredListCell>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc dui
-              magna, finibus id tortor sed, aliquet bibendum augue. Aenean
-              posuere sem vel euismod dignissim. Nulla ut cursus dolor.
-              Pellentesque vulputate nisl a porttitor interdum.
-            </StructuredListCell>
+          </>
+        );
+        const structuredListBodyColumns = i => [
+          <StructuredListCell>Row {i}</StructuredListCell>,
+          <StructuredListCell>Row {i}</StructuredListCell>,
+          <StructuredListCell>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc dui
+            magna, finibus id tortor sed, aliquet bibendum augue. Aenean posuere
+            sem vel euismod dignissim. Nulla ut cursus dolor. Pellentesque
+            vulputate nisl a porttitor interdum.
+          </StructuredListCell>,
+        ];
+        return Array.apply(null, Array(numRows)).map((n, i) => (
+          <StructuredListRow label htmlFor={`row-${i}`}>
+            {componentsX
+              ? [...structuredListBodyColumns(i), checkbox(i)]
+              : [checkbox(i), ...structuredListBodyColumns(i)]}
           </StructuredListRow>
-          <StructuredListRow label htmlFor="row-2">
-            <StructuredListInput
-              id="row-2"
-              value="row-2"
-              title="row-2"
-              name="row-1"
-            />
-            <StructuredListCell>
-              <Icon
-                className="bx--structured-list-svg"
-                name="checkmark--solid"
-                description="select an option"
-              />
-            </StructuredListCell>
-            <StructuredListCell>Row 2</StructuredListCell>
-            <StructuredListCell>Row 2</StructuredListCell>
-            <StructuredListCell>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc dui
-              magna, finibus id tortor sed, aliquet bibendum augue. Aenean
-              posuere sem vel euismod dignissim. Nulla ut cursus dolor.
-              Pellentesque vulputate nisl a porttitor interdum.
-            </StructuredListCell>
-          </StructuredListRow>
-        </StructuredListBody>
-      </StructuredListWrapper>
-    )
+        ));
+      };
+      return (
+        <StructuredListWrapper selection border>
+          <StructuredListHead>
+            <StructuredListRow head>
+              {componentsX
+                ? [...structuredListHeadColumns, emptyStructuredListHeadCell]
+                : [emptyStructuredListHeadCell, ...structuredListHeadColumns]}
+            </StructuredListRow>
+          </StructuredListHead>
+          <StructuredListBody>
+            {structuredListBodyRowGenerator(4)}
+          </StructuredListBody>
+        </StructuredListWrapper>
+      );
+    },
+    {
+      info: {
+        text: `
+        Structured Lists with selection allow a row of list content to be selected.
+      `,
+      },
+    }
   )
-  .addWithInfo(
+  .add(
     'skeleton',
-    `
-      description here
-    `,
     () => (
       <div style={{ width: '800px' }}>
         <StructuredListSkeleton />
         <StructuredListSkeleton border />
       </div>
-    )
+    ),
+    {
+      info: {
+        text: `
+            Placeholder skeleton state to use when content is loading.
+          `,
+      },
+    }
   );

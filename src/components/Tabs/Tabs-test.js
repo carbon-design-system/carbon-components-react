@@ -1,4 +1,12 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import React from 'react';
+import { iconCaretDown } from 'carbon-icons';
 import Icon from '../Icon';
 import Tabs from '../Tabs';
 import Tab from '../Tab';
@@ -56,7 +64,7 @@ describe('Tabs', () => {
       });
 
       it('renders <Icon>', () => {
-        expect(trigger.find(Icon).props().name).toEqual('caret--down');
+        expect(trigger.find(Icon).props().icon).toEqual(iconCaretDown);
       });
     });
 
@@ -95,23 +103,13 @@ describe('Tabs', () => {
       </Tabs>
     );
 
-    it('renders expected className', () => {
-      const tabContentClass = 'tab-content';
-      expect(
-        wrapper
-          .find('.tab-content')
-          .first()
-          .hasClass(tabContentClass)
-      ).toBe(true);
-    });
-
     it('renders content children as expected', () => {
-      expect(wrapper.find('.tab-content').length).toEqual(2);
+      expect(wrapper.find('TabContent').length).toEqual(2);
     });
 
     it('renders hidden props with boolean value', () => {
       const hiddenProp = wrapper
-        .find('.tab-content')
+        .find('TabContent')
         .first()
         .props().hidden;
       expect(typeof hiddenProp).toBe('boolean');
@@ -119,7 +117,7 @@ describe('Tabs', () => {
 
     it('renders selected props with boolean value', () => {
       const selectedProp = wrapper
-        .find('.tab-content')
+        .find('TabContent')
         .first()
         .props().hidden;
       expect(typeof selectedProp).toBe('boolean');
@@ -270,6 +268,13 @@ describe('props update', () => {
     expect(wrapper.state().selected).toEqual(1);
     wrapper.setProps({ selected: 0 });
     expect(wrapper.state().selected).toEqual(0);
+  });
+
+  it('avoids updating state upon setting props, unless there the value actually changes', () => {
+    wrapper.setProps({ selected: 1 });
+    wrapper.setState({ selected: 2 });
+    wrapper.setProps({ selected: 1 });
+    expect(wrapper.state().selected).toEqual(2);
   });
 });
 
