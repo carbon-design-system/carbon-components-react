@@ -423,6 +423,24 @@ export default class OverflowMenu extends Component {
     }
   };
 
+  /**
+   * collapse menu when focus is lost
+   * Due to Storybook hijacking focus, we must wrap our `activeElement` check
+   * in a closure. As a result of this hack, we must also call `event.persist()`
+   * to ensure that we can access the event properties asynchronously
+   *
+   * https://reactjs.org/docs/events.html#event-pooling
+   */
+  handleBlur = evt => {
+    evt.persist();
+    // event loop hack
+    setTimeout(() => {
+      if (!this.menuEl.contains(evt.target.ownerDocument.activeElement)) {
+        this.setState({ open: false });
+      }
+    }, 0);
+  };
+
   closeMenu = () => {
     let wasOpen = this.state.open;
     this.setState({ open: false }, () => {
@@ -646,6 +664,7 @@ export default class OverflowMenu extends Component {
           aria-expanded={this.state.open}
           className={overflowMenuClasses}
           onKeyDown={this.handleKeyPress}
+          onBlur={this.handleBlur}
           onClick={this.handleClick}
           aria-label={ariaLabel}
           id={id}
