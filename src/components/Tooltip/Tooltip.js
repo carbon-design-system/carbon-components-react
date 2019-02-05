@@ -390,9 +390,10 @@ export default class Tooltip extends Component {
           {showIcon ? (
             <div className={triggerClasses}>
               {triggerText}
-              <button
+              <div
+                role="button"
                 id={triggerId}
-                className={prefix + '--tooltip__trigger'}
+                className={componentsX ? `${prefix}--tooltip__trigger` : null}
                 tabIndex={tabIndex}
                 onClick={this.handleMouse}
                 onKeyDown={this.handleKeyPress}
@@ -424,10 +425,11 @@ export default class Tooltip extends Component {
                     }}
                   />
                 )}
-              </button>
+              </div>
             </div>
           ) : (
-            <button
+            <div
+              role="button"
               tabIndex={tabIndex}
               id={triggerId}
               className={triggerClasses}
@@ -442,7 +444,7 @@ export default class Tooltip extends Component {
               aria-expanded={open}
               {...ariaOwnsProps}>
               {triggerText}
-            </button>
+            </div>
           )}
         </ClickListener>
         {open && (

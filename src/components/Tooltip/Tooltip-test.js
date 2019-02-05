@@ -29,6 +29,10 @@ describe('Tooltip', () => {
     const trigger = wrapper.find('.bx--tooltip__trigger');
 
     describe('tooltip trigger', () => {
+      it('renders a tooltip container', () => {
+        expect(trigger.length).toEqual(1);
+      });
+
       it('renders the info icon', () => {
         const icon = trigger.find(Icon);
         expect(icon.length).toBe(1);
