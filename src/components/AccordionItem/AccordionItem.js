@@ -138,7 +138,6 @@ export default class AccordionItem extends Component {
           {componentsX ? (
             <ChevronRight16
               className={`${prefix}--accordion__arrow`}
-              icon={iconChevronRight}
               aria-label={iconDescription}
             />
           ) : (
