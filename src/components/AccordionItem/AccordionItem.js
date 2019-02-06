@@ -9,9 +9,11 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import classnames from 'classnames';
 import { iconChevronRight } from 'carbon-icons';
+import ChevronRight16 from '@carbon/icons-react/lib/chevron--right/16';
 import { settings } from 'carbon-components';
 import Icon from '../Icon';
 import { match, keys } from '../../tools/key';
+import { componentsX } from '../../internal/FeatureFlags';
 
 const { prefix } = settings;
 
@@ -133,12 +135,22 @@ export default class AccordionItem extends Component {
           aria-expanded={this.state.open}
           className={`${prefix}--accordion__heading`}
           onClick={this.handleHeadingClick}>
-          <Icon
-            className={`${prefix}--accordion__arrow`}
-            icon={iconChevronRight}
-            description={iconDescription}
-            role={null} // eslint-disable-line jsx-a11y/aria-role
-          />
+          {componentsX ? (
+            <ChevronRight16
+              className={`${prefix}--accordion__arrow`}
+              icon={iconChevronRight}
+              description={iconDescription}
+              role={null} // eslint-disable-line jsx-a11y/aria-role
+            />
+          ) : (
+            <Icon
+              className={`${prefix}--accordion__arrow`}
+              icon={iconChevronRight}
+              description={iconDescription}
+              role={null} // eslint-disable-line jsx-a11y/aria-role
+            />
+          )}
+
           <div className={`${prefix}--accordion__title`}>{title}</div>
         </Expando>
         <div className={`${prefix}--accordion__content`}>{children}</div>
