@@ -28,7 +28,7 @@ storiesOf('Progress Indicator', module)
         <ProgressStep
           label={componentsX ? null : 'Second step with tooltip'}
           description="Step 2: Getting started with Carbon Design System"
-          renderTooltip={() => (
+          renderLabel={() => (
             <Tooltip
               direction="bottom"
               showIcon={false}
@@ -42,7 +42,7 @@ storiesOf('Progress Indicator', module)
         <ProgressStep
           label={componentsX ? null : 'Third step with tooltip'}
           description="Step 3: Getting started with Carbon Design System"
-          renderTooltip={() => (
+          renderLabel={() => (
             <Tooltip
               direction="bottom"
               showIcon={false}

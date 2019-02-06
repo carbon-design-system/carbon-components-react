@@ -16,7 +16,7 @@ import Warning16 from '@carbon/icons-react/lib/warning/16';
 import { componentsX } from '../../internal/FeatureFlags';
 
 const { prefix } = settings;
-
+const defaultRenderLabel = props => <p {...props} />;
 export const ProgressStep = ({ ...props }) => {
   const {
     label,
@@ -27,7 +27,7 @@ export const ProgressStep = ({ ...props }) => {
     invalid,
     secondaryLabel,
     disabled,
-    renderTooltip,
+    renderLabel: ProgressStepLabel,
   } = props;
 
   const classes = classnames({
@@ -91,11 +91,9 @@ export const ProgressStep = ({ ...props }) => {
   return (
     <li className={classes}>
       {currentSvg || completeSvg || incompleteSvg}
-      {componentsX && renderTooltip ? (
-        renderTooltip()
-      ) : (
-        <p className={`${prefix}--progress-label`}>{label}</p>
-      )}
+      <ProgressStepLabel className={`${prefix}--progress-label`}>
+        {label}
+      </ProgressStepLabel>
       {componentsX &&
       secondaryLabel !== null &&
       secondaryLabel !== undefined ? (
@@ -146,7 +144,7 @@ ProgressStep.propTypes = {
    * An optional parameter to allow for overflow content to be rendered in a
    * tooltip.
    */
-  renderTooltip: PropTypes.function,
+  renderLabel: PropTypes.function,
 
   /**
    * Provide the props that describe a progress step tooltip
@@ -162,6 +160,10 @@ ProgressStep.propTypes = {
    * The ID of the tooltip content.
    */
   tooltipId: PropTypes.string,
+};
+
+ProgressStep.defaultProps = {
+  renderLabel: defaultRenderLabel,
 };
 
 export class ProgressIndicator extends Component {
