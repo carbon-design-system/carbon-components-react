@@ -140,14 +140,12 @@ export default class AccordionItem extends Component {
               className={`${prefix}--accordion__arrow`}
               icon={iconChevronRight}
               aria-label={iconDescription}
-              role={null} // eslint-disable-line jsx-a11y/aria-role
             />
           ) : (
             <Icon
               className={`${prefix}--accordion__arrow`}
               icon={iconChevronRight}
               description={iconDescription}
-              role={null} // eslint-disable-line jsx-a11y/aria-role
             />
           )}
 
