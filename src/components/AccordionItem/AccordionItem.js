@@ -9,9 +9,9 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import classnames from 'classnames';
 import { iconChevronRight } from 'carbon-icons';
-import ChevronRight16 from '@carbon/icons-react/lib/chevron--right/16';
 import { settings } from 'carbon-components';
 import Icon from '../Icon';
+import ChevronRight16 from '@carbon/icons-react/lib/chevron--right/16';
 import { match, keys } from '../../tools/key';
 import { componentsX } from '../../internal/FeatureFlags';
 
