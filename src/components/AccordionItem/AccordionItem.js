@@ -139,7 +139,7 @@ export default class AccordionItem extends Component {
             <ChevronRight16
               className={`${prefix}--accordion__arrow`}
               icon={iconChevronRight}
-              description={iconDescription}
+              aria-label={iconDescription}
               role={null} // eslint-disable-line jsx-a11y/aria-role
             />
           ) : (
