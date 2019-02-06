@@ -432,6 +432,9 @@ export default class OverflowMenu extends Component {
    * https://reactjs.org/docs/events.html#event-pooling
    */
   handleBlur = evt => {
+    if (this.props.floatingMenu) {
+      return;
+    }
     evt.persist();
     // event loop hack
     setTimeout(() => {
