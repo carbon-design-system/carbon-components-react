@@ -107,6 +107,11 @@ export default class DataTable extends React.Component {
      * Optional boolean to remove borders from data table.
      */
     shouldShowBorder: PropTypes.bool,
+
+    /**
+     * Specify whether the control should be a radio button or inline checkbox
+     */
+    radio: PropTypes.bool,
   };
 
   static defaultProps = {

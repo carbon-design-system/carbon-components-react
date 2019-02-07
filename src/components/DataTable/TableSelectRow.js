@@ -46,6 +46,11 @@ TableSelectRow.propTypes = {
   checked: PropTypes.bool.isRequired,
 
   /**
+   * Specify whether the control is disabled
+   */
+  disabled: PropTypes.bool,
+
+  /**
    * Provide an `id` for the underlying input control
    */
   id: PropTypes.string.isRequired,
@@ -59,6 +64,11 @@ TableSelectRow.propTypes = {
    * Provide a handler to listen to when a user initiates a selection request
    */
   onSelect: PropTypes.func.isRequired,
+
+  /**
+   * Specify whether the control should be a radio button or inline checkbox
+   */
+  radio: PropTypes.bool,
 };
 
 export default TableSelectRow;

@@ -52,6 +52,11 @@ export default class RadioButton extends React.Component {
     name: PropTypes.string,
 
     /**
+     * Provide a handler that is invoked when a user clicks on the control
+     */
+    onClick: PropTypes.func,
+
+    /**
      * Provide an optional `onChange` hook that is called each time the value of
      * the underlying <input> changes
      */
