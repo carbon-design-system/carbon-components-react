@@ -293,13 +293,19 @@ export default class NumberInput extends Component {
                   <button
                     className={`${prefix}--number__control-btn up-icon`}
                     {...buttonProps}
-                    onClick={evt => this.handleArrowClick(evt, 'up')}>
+                    onClick={evt => this.handleArrowClick(evt, 'up')}
+                    aria-label="increment number"
+                    aria-live="polite"
+                    aria-atomic="true">
                     <CaretUpGlyph className="up-icon" />
                   </button>
                   <button
                     className={`${prefix}--number__control-btn down-icon`}
                     {...buttonProps}
-                    onClick={evt => this.handleArrowClick(evt, 'down')}>
+                    onClick={evt => this.handleArrowClick(evt, 'down')}
+                    aria-label="decrement number"
+                    aria-live="polite"
+                    aria-atomic="true">
                     <CaretDownGlyph className="down-icon" />
                   </button>
                 </div>
@@ -311,7 +317,10 @@ export default class NumberInput extends Component {
                 <button
                   className={`${prefix}--number__control-btn up-icon`}
                   {...buttonProps}
-                  onClick={evt => this.handleArrowClick(evt, 'up')}>
+                  onClick={evt => this.handleArrowClick(evt, 'up')}
+                  aria-label="increment number"
+                  aria-live="polite"
+                  aria-atomic="true">
                   <Icon
                     className="up-icon"
                     icon={iconCaretUp}
@@ -322,7 +331,10 @@ export default class NumberInput extends Component {
                 <button
                   className={`${prefix}--number__control-btn down-icon`}
                   {...buttonProps}
-                  onClick={evt => this.handleArrowClick(evt, 'down')}>
+                  onClick={evt => this.handleArrowClick(evt, 'down')}
+                  aria-label="decrement number"
+                  aria-live="polite"
+                  aria-atomic="true">
                   <Icon
                     className="down-icon"
                     icon={iconCaretDown}
