@@ -22,7 +22,14 @@ import DataTable, {
   TableToolbarContent,
   TableToolbarSearch,
 } from '../../DataTable';
+// TODO: import { Download } from '@carbon/icons-react';
+import Download16 from '@carbon/icons-react/lib/download/16';
+// TODO: import { Edit } from '@carbon/icons-react';
+import Edit16 from '@carbon/icons-react/lib/edit/16';
+// TODO: import { Settings } from '@carbon/icons-react';
+import Settings16 from '@carbon/icons-react/lib/settings/16';
 import { initialRows, headers } from './shared';
+import { componentsX } from '../../../internal/FeatureFlags';
 
 export default () => (
   <DataTable
@@ -34,17 +41,17 @@ export default () => (
           <TableToolbarSearch onChange={onInputChange} />
           <TableToolbarContent>
             <TableToolbarAction
-              icon={iconDownload}
+              icon={componentsX ? Download16 : iconDownload}
               iconDescription="Download"
               onClick={action('TableToolbarAction - Download')}
             />
             <TableToolbarAction
-              icon={iconEdit}
+              icon={componentsX ? Edit16 : iconEdit}
               iconDescription="Edit"
               onClick={action('TableToolbarAction - Edit')}
             />
             <TableToolbarAction
-              icon={iconSettings}
+              icon={componentsX ? Settings16 : iconSettings}
               iconDescription="Settings"
               onClick={action('TableToolbarAction - Settings')}
             />

@@ -11,6 +11,7 @@ import classnames from 'classnames';
 import { iconChevronRight } from 'carbon-icons';
 import { settings } from 'carbon-components';
 import Icon from '../Icon';
+// TODO: import { ChevronRight } from '@carbon/icons-react';
 import ChevronRight16 from '@carbon/icons-react/lib/chevron--right/16';
 import { match, keys } from '../../tools/key';
 import { componentsX } from '../../internal/FeatureFlags';
@@ -148,7 +149,6 @@ export default class AccordionItem extends Component {
               role={null} // eslint-disable-line jsx-a11y/aria-role
             />
           )}
-
           <div className={`${prefix}--accordion__title`}>{title}</div>
         </Expando>
         <div className={`${prefix}--accordion__content`}>{children}</div>
