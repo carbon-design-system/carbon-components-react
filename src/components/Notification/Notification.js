@@ -121,7 +121,7 @@ export class NotificationButton extends Component {
           />
         );
       }
-      if (!componentsX && icon) {
+      if (!componentsX) {
         return (
           <Icon
             description={iconDescription}
