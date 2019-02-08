@@ -79,7 +79,7 @@ export default class SideNav extends React.Component {
     });
 
     return (
-      <aside className={className}>
+      <aside aria-label="side navigation" className={className}>
         <nav
           className={`${prefix}--side-nav__navigation`}
           role="navigation"
