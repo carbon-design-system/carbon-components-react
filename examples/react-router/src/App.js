@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { Breadcrumb, BreadcrumbItem, Tabs, Tab } from 'carbon-components-react';
 import { Switch, Route, Link, Redirect, withRouter } from 'react-router-dom';
-
-import 'carbon-components/scss/globals/scss/styles.scss';
 import './App.scss';
 
 const LandingPage = ({ children }) => (
