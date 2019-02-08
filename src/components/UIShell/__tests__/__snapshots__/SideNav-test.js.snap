@@ -6,6 +6,7 @@ exports[`SideNav should render 1`] = `
   translateById={[Function]}
 >
   <aside
+    aria-label="side navigation"
     className="bx--side-nav bx--side-nav--expanded"
   >
     <nav
@@ -79,6 +80,7 @@ exports[`SideNav should toggle the menu expansion state when clicking on the foo
   translateById={[Function]}
 >
   <aside
+    aria-label="side navigation"
     className="bx--side-nav"
   >
     <nav
