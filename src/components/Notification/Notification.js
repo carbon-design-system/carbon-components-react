@@ -19,6 +19,8 @@ import { settings } from 'carbon-components';
 import Icon from '../Icon';
 // temporary workaround for a11y warning icon. TODO: for @carbon/icons-react
 import a11yIconWarningSolid from './a11yIconWarningSolid';
+import Close16 from '@carbon/icons-react/lib/close/16';
+import { componentsX } from '../../internal/FeatureFlags';
 
 const { prefix } = settings;
 
@@ -105,13 +107,17 @@ export class NotificationButton extends Component {
 
     return (
       <button {...other} type={type} className={buttonClasses}>
-        <Icon
-          description={iconDescription}
-          className={iconClasses}
-          aria-label={ariaLabel}
-          icon={!icon && !name ? iconClose : icon}
-          name={name}
-        />
+        {componentsX ? (
+          <Close16 className={iconClasses} aria-label={ariaLabel} />
+        ) : (
+          <Icon
+            description={iconDescription}
+            className={iconClasses}
+            aria-label={ariaLabel}
+            icon={!icon && !name ? iconClose : icon}
+            name={name}
+          />
+        )}
       </button>
     );
   }
