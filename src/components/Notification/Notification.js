@@ -186,6 +186,9 @@ export class NotificationTextDetails extends Component {
 
 export class ToastNotification extends Component {
   static propTypes = {
+    /**
+     * Pass in the children that will be rendered within the ToastNotification
+     */
     children: PropTypes.node,
 
     /**
@@ -333,6 +336,9 @@ export class ToastNotification extends Component {
 
 export class InlineNotification extends Component {
   static propTypes = {
+    /**
+     * Pass in the children that will be rendered within the InlineNotification
+     */
     children: PropTypes.node,
 
     /**
