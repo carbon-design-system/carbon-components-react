@@ -126,20 +126,21 @@ export class NotificationButton extends Component {
 export class NotificationTextDetails extends Component {
   static propTypes = {
     /**
+     * Pass in the children that will be rendered in NotificationTextDetails
+     */
+    children: PropTypes.node,
+    /**
      * Specify the title
      */
     title: PropTypes.string,
-
     /**
      * Specify the sub-title
      */
     subtitle: PropTypes.node,
-
     /**
      * Specify the caption
      */
     caption: PropTypes.node,
-
     /**
      * Specify the notification type
      */
@@ -165,6 +166,7 @@ export class NotificationTextDetails extends Component {
           <div className={`${prefix}--toast-notification__caption`}>
             {caption}
           </div>
+          {this.props.children}
         </div>
       );
     }
@@ -178,6 +180,7 @@ export class NotificationTextDetails extends Component {
           <div className={`${prefix}--inline-notification__subtitle`}>
             {subtitle}
           </div>
+          {this.props.children}
         </div>
       );
     }
@@ -320,8 +323,9 @@ export class ToastNotification extends Component {
           title={title}
           subtitle={subtitle}
           caption={caption}
-          notificationType={notificationType}
-        />
+          notificationType={notificationType}>
+          {this.props.children}
+        </NotificationTextDetails>
         {!hideCloseButton && (
           <NotificationButton
             iconDescription={iconDescription}
@@ -463,8 +467,9 @@ export class InlineNotification extends Component {
           <NotificationTextDetails
             title={title}
             subtitle={subtitle}
-            notificationType={notificationType}
-          />
+            notificationType={notificationType}>
+            {this.props.children}
+          </NotificationTextDetails>
         </div>
         {!hideCloseButton && (
           <NotificationButton
