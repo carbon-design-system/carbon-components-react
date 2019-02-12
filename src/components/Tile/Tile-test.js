@@ -1,3 +1,10 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import React from 'react';
 import { iconChevronDown } from 'carbon-icons';
 import {
@@ -99,9 +106,11 @@ describe('Tile', () => {
         <div className="child">Test</div>
       </SelectableTile>
     );
+    let label;
 
     beforeEach(() => {
       wrapper.state().selected = false;
+      label = wrapper.find('label');
     });
 
     it('renders children as expected', () => {
@@ -109,7 +118,7 @@ describe('Tile', () => {
     });
 
     it('has the expected classes', () => {
-      expect(wrapper.children().hasClass('bx--tile--selectable')).toEqual(true);
+      expect(label.hasClass('bx--tile--selectable')).toEqual(true);
     });
 
     it('renders extra classes passed in via className', () => {
@@ -118,15 +127,15 @@ describe('Tile', () => {
 
     it('toggles the selectable state on click', () => {
       expect(wrapper.state().selected).toEqual(false);
-      wrapper.simulate('click');
+      label.simulate('click');
       expect(wrapper.state().selected).toEqual(true);
     });
 
     it('toggles the selectable state when using enter or space', () => {
       expect(wrapper.state().selected).toEqual(false);
-      wrapper.simulate('keydown', { which: 32 });
+      label.simulate('keydown', { which: 32 });
       expect(wrapper.state().selected).toEqual(true);
-      wrapper.simulate('keydown', { which: 13 });
+      label.simulate('keydown', { which: 13 });
       expect(wrapper.state().selected).toEqual(false);
     });
 

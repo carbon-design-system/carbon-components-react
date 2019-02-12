@@ -1,9 +1,18 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import debounce from 'lodash.debounce';
 import Icon from '../Icon';
 import classNames from 'classnames';
 import { iconInfoGlyph } from 'carbon-icons';
+// TODO: import { Information } from '@carbon/icons-react';
+import Information from '@carbon/icons-react/lib/information/16';
 import { settings } from 'carbon-components';
 import FloatingMenu, {
   DIRECTION_LEFT,
@@ -12,6 +21,7 @@ import FloatingMenu, {
   DIRECTION_BOTTOM,
 } from '../../internal/FloatingMenu';
 import ClickListener from '../../internal/ClickListener';
+import { componentsX } from '../../internal/FeatureFlags';
 
 const { prefix } = settings;
 
@@ -364,7 +374,8 @@ export default class Tooltip extends Component {
     );
 
     const triggerClasses = classNames(
-      `${prefix}--tooltip__trigger`,
+      { [`${prefix}--tooltip__trigger`]: !componentsX },
+      { [`${prefix}--tooltip__label`]: componentsX },
       triggerClassName
     );
     const ariaOwnsProps = !open
@@ -380,46 +391,58 @@ export default class Tooltip extends Component {
             <div className={triggerClasses}>
               {triggerText}
               <div
-                id={triggerId}
                 role="button"
+                id={triggerId}
+                className={componentsX ? `${prefix}--tooltip__trigger` : null}
                 tabIndex={tabIndex}
-                onClick={evt => this.handleMouse(evt)}
-                onKeyDown={evt => this.handleKeyPress(evt)}
-                onMouseOver={evt => this.handleMouse(evt)}
-                onMouseOut={evt => this.handleMouse(evt)}
-                onFocus={evt => this.handleMouse(evt)}
-                onBlur={evt => this.handleMouse(evt)}
+                onClick={this.handleMouse}
+                onKeyDown={this.handleKeyPress}
+                onMouseOver={this.handleMouse}
+                onMouseOut={this.handleMouse}
+                onFocus={this.handleMouse}
+                onBlur={this.handleMouse}
                 aria-haspopup="true"
                 aria-label={iconDescription}
                 aria-expanded={open}
                 {...ariaOwnsProps}>
-                <Icon
-                  icon={!icon && !iconName ? iconInfoGlyph : icon}
-                  name={iconName}
-                  description={iconDescription}
-                  iconTitle={iconTitle}
-                  iconRef={node => {
-                    this.triggerEl = node;
-                  }}
-                />
+                {componentsX ? (
+                  <Information
+                    name={iconName}
+                    aria-labelledby={triggerId}
+                    aria-label={iconDescription}
+                    ref={node => {
+                      this.triggerEl = node;
+                    }}
+                  />
+                ) : (
+                  <Icon
+                    icon={!icon && !iconName ? iconInfoGlyph : icon}
+                    name={iconName}
+                    description={iconDescription}
+                    iconTitle={iconTitle}
+                    iconRef={node => {
+                      this.triggerEl = node;
+                    }}
+                  />
+                )}
               </div>
             </div>
           ) : (
             <div
+              role="button"
               tabIndex={tabIndex}
               id={triggerId}
               className={triggerClasses}
               ref={node => {
                 this.triggerEl = node;
               }}
-              onMouseOver={evt => this.handleMouse(evt)}
-              onMouseOut={evt => this.handleMouse(evt)}
-              onFocus={evt => this.handleMouse(evt)}
-              onBlur={evt => this.handleMouse(evt)}
+              onMouseOver={this.handleMouse}
+              onMouseOut={this.handleMouse}
+              onFocus={this.handleMouse}
+              onBlur={this.handleMouse}
               aria-haspopup="true"
               aria-expanded={open}
-              {...ariaOwnsProps}
-              role="tooltip">
+              {...ariaOwnsProps}>
               {triggerText}
             </div>
           )}
@@ -439,11 +462,12 @@ export default class Tooltip extends Component {
               {...other}
               data-floating-menu-direction={direction}
               aria-labelledby={triggerId}
-              onMouseOver={evt => this.handleMouse(evt)}
-              onMouseOut={evt => this.handleMouse(evt)}
-              onFocus={evt => this.handleMouse(evt)}
-              onBlur={evt => this.handleMouse(evt)}
-              onContextMenu={evt => this.handleMouse(evt)}>
+              onMouseOver={this.handleMouse}
+              onMouseOut={this.handleMouse}
+              onFocus={this.handleMouse}
+              onBlur={this.handleMouse}
+              onContextMenu={this.handleMouse}
+              role="tooltip">
               <span className={`${prefix}--tooltip__caret`} />
               {children}
             </div>

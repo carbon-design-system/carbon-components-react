@@ -1,10 +1,20 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import classNames from 'classnames';
+// TODO: import { ChevronDown16 } from '@carbon/icons-react';
+import ChevronDown16 from '@carbon/icons-react/lib/chevron--down/16';
 import { settings } from 'carbon-components';
 import Copy from '../Copy';
 import CopyButton from '../CopyButton';
 import Icon from '../Icon';
+import { componentsX } from '../../internal/FeatureFlags';
 
 const { prefix } = settings;
 
@@ -139,13 +149,22 @@ export default class CodeSnippet extends Component {
         <span className={`${prefix}--snippet-btn--text`}>
           {expandCodeBtnText}
         </span>
-        <Icon
-          aria-hidden="true"
-          alt={expandCodeBtnText}
-          name="chevron--down"
-          description={expandCodeBtnText}
-          className={`${prefix}--icon-chevron--down`}
-        />
+        {componentsX ? (
+          <ChevronDown16
+            aria-label={expandCodeBtnText}
+            className={`${prefix}--icon-chevron--down ${prefix}--snippet__icon`}
+            name="chevron--down"
+            role="img"
+          />
+        ) : (
+          <Icon
+            aria-hidden="true"
+            alt={expandCodeBtnText}
+            name="chevron--down"
+            description={expandCodeBtnText}
+            className={`${prefix}--icon-chevron--down`}
+          />
+        )}
       </button>
     );
 

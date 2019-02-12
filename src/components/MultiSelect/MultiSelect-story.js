@@ -1,8 +1,21 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 
-import { withKnobs, boolean, select, text } from '@storybook/addon-knobs';
+import {
+  withKnobs,
+  boolean,
+  select,
+  text,
+  object,
+} from '@storybook/addon-knobs';
 import MultiSelect from '../MultiSelect';
 
 const items = [
@@ -40,6 +53,13 @@ const props = () => ({
     'Invalid Selection'
   ),
   onChange: action('onChange'),
+  listBoxMenuIconTranslationIds: object(
+    'Listbox menu icon translation IDs (for translateWithId callback)',
+    {
+      'close.menu': 'Close menu',
+      'open.menu': 'Open menu',
+    }
+  ),
 });
 
 storiesOf('MultiSelect', module)
@@ -47,7 +67,11 @@ storiesOf('MultiSelect', module)
   .add(
     'default',
     () => {
-      const { filterable, ...multiSelectProps } = props();
+      const {
+        filterable,
+        listBoxMenuIconTranslationIds,
+        ...multiSelectProps
+      } = props();
       const ComponentToUse = !filterable ? MultiSelect : MultiSelect.Filterable;
       const placeholder = !filterable ? undefined : defaultPlaceholder;
       return (
@@ -57,6 +81,7 @@ storiesOf('MultiSelect', module)
             items={items}
             itemToString={item => (item ? item.text : '')}
             placeholder={placeholder}
+            translateWithId={id => listBoxMenuIconTranslationIds[id]}
           />
         </div>
       );
@@ -72,7 +97,11 @@ storiesOf('MultiSelect', module)
   .add(
     'with initial selected items',
     () => {
-      const { filterable, ...multiSelectProps } = props();
+      const {
+        filterable,
+        listBoxMenuIconTranslationIds,
+        ...multiSelectProps
+      } = props();
       const ComponentToUse = !filterable ? MultiSelect : MultiSelect.Filterable;
       const placeholder = !filterable ? undefined : defaultPlaceholder;
       return (
@@ -83,6 +112,7 @@ storiesOf('MultiSelect', module)
             itemToString={item => (item ? item.text : '')}
             initialSelectedItems={[items[0], items[1]]}
             placeholder={placeholder}
+            translateWithId={id => listBoxMenuIconTranslationIds[id]}
           />
         </div>
       );

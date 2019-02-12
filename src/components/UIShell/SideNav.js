@@ -1,3 +1,10 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import { settings } from 'carbon-components';
 import cx from 'classnames';
 import React from 'react';
@@ -72,19 +79,16 @@ export default class SideNav extends React.Component {
     });
 
     return (
-      <aside className={className}>
-        <nav
-          className={`${prefix}--side-nav__navigation`}
-          role="navigation"
-          {...accessibilityLabel}>
-          {children}
-          <SideNavFooter
-            assistiveText={assistiveText}
-            isExpanded={isExpanded}
-            onToggle={this.handleExpand}
-          />
-        </nav>
-      </aside>
+      <nav
+        className={`${prefix}--side-nav__navigation ${className}`}
+        {...accessibilityLabel}>
+        {children}
+        <SideNavFooter
+          assistiveText={assistiveText}
+          isExpanded={isExpanded}
+          onToggle={this.handleExpand}
+        />
+      </nav>
     );
   }
 }

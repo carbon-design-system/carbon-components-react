@@ -1,3 +1,10 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
@@ -268,14 +275,7 @@ export class SelectableTile extends Component {
     );
 
     return (
-      // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
-      <label
-        htmlFor={id}
-        className={classes}
-        tabIndex={tabIndex}
-        {...other}
-        onClick={this.handleClick}
-        onKeyDown={this.handleKeyDown}>
+      <>
         <input
           ref={input => {
             this.input = input;
@@ -289,19 +289,27 @@ export class SelectableTile extends Component {
           title={title}
           checked={this.state.selected}
         />
-        <div className={`${prefix}--tile__checkmark`}>
-          {componentsX ? (
-            <CheckmarkFilled
-              aria-label={iconDescription}
-              alt={iconDescription}
-              description={iconDescription}
-            />
-          ) : (
-            <Icon icon={iconCheckmarkSolid} description={iconDescription} />
-          )}
-        </div>
-        <div className={`${prefix}--tile-content`}>{children}</div>
-      </label>
+        <label
+          htmlFor={id}
+          className={classes}
+          tabIndex={tabIndex}
+          {...other}
+          onClick={this.handleClick}
+          onKeyDown={this.handleKeyDown}>
+          <div className={`${prefix}--tile__checkmark`}>
+            {componentsX ? (
+              <CheckmarkFilled
+                aria-label={iconDescription}
+                alt={iconDescription}
+                description={iconDescription}
+              />
+            ) : (
+              <Icon icon={iconCheckmarkSolid} description={iconDescription} />
+            )}
+          </div>
+          <div className={`${prefix}--tile-content`}>{children}</div>
+        </label>
+      </>
     );
   }
 }
@@ -442,7 +450,9 @@ export class ExpandableTile extends Component {
     );
 
     const tileStyle = {
-      maxHeight: this.state.tileMaxHeight + this.state.tilePadding,
+      maxHeight: this.state.expanded
+        ? null
+        : this.state.tileMaxHeight + this.state.tilePadding,
     };
     const content = this.getChildren().map((child, index) => {
       return React.cloneElement(child, { ref: index });

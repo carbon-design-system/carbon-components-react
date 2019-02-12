@@ -1,3 +1,10 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import React from 'react';
 import { shallow, mount } from 'enzyme';
 import RadioButtonGroup from '../RadioButtonGroup';
@@ -133,6 +140,26 @@ describe('RadioButtonGroup', () => {
       wrapper.setState({ selected: 'male' });
       wrapper.setProps({ valueSelected: 'female' });
       expect(wrapper.state().selected).toEqual('male');
+    });
+  });
+
+  describe('Custom class name should stay with original class name', () => {
+    const wrapper = shallow(
+      <RadioButtonGroup
+        className="my-radio-group"
+        valueSelected="male"
+        defaultSelected="female"
+        name="gender">
+        <RadioButton labelText="Male" value="male" />
+        <RadioButton labelText="Female" value="female" />
+      </RadioButtonGroup>
+    );
+
+    it('should found the provided class along with the base class', () => {
+      expect(wrapper.exists('.my-radio-group')).toBe(true);
+      expect(wrapper.exists('.bx--radio-button-group.my-radio-group')).toBe(
+        true
+      );
     });
   });
 });

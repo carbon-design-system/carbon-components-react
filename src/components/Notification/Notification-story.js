@@ -1,3 +1,10 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
@@ -31,12 +38,10 @@ storiesOf('Notifications', module)
   .add(
     'Deprecated: <Notfication />',
     () => (
-      <div>
-        <Notification
-          {...notificationProps()}
-          caption={text('Caption (caption)', 'Time stamp [00:00:00]')}
-        />
-      </div>
+      <Notification
+        {...notificationProps()}
+        caption={text('Caption (caption)', 'Time stamp [00:00:00]')}
+      />
     ),
     {
       info: {
@@ -48,16 +53,10 @@ storiesOf('Notifications', module)
     }
   )
   .add('Toast', () => (
-    <div>
-      <ToastNotification
-        {...notificationProps()}
-        caption={text('Caption (caption)', 'Time stamp [00:00:00]')}
-        style={{ minWidth: '30rem', marginBottom: '.5rem' }}
-      />
-    </div>
+    <ToastNotification
+      {...notificationProps()}
+      caption={text('Caption (caption)', 'Time stamp [00:00:00]')}
+      style={{ minWidth: '30rem', marginBottom: '.5rem' }}
+    />
   ))
-  .add('inline', () => (
-    <div>
-      <InlineNotification {...notificationProps()} />
-    </div>
-  ));
+  .add('inline', () => <InlineNotification {...notificationProps()} />);

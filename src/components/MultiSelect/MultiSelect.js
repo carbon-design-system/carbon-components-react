@@ -1,3 +1,10 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import cx from 'classnames';
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -84,6 +91,11 @@ export default class MultiSelect extends React.Component {
      * If invalid, what is the error?
      */
     invalidText: PropTypes.string,
+
+    /**
+     * Callback function for translating ListBoxMenuIcon SVG title
+     */
+    translateWithId: PropTypes.func,
   };
 
   static defaultProps = {
@@ -168,6 +180,7 @@ export default class MultiSelect extends React.Component {
       invalid,
       invalidText,
       useTitleInItem,
+      translateWithId,
     } = this.props;
     const className = cx(`${prefix}--multi-select`, containerClassName, {
       [`${prefix}--list-box--light`]: light,
@@ -210,7 +223,10 @@ export default class MultiSelect extends React.Component {
                     />
                   )}
                   <span className={`${prefix}--list-box__label`}>{label}</span>
-                  <ListBox.MenuIcon isOpen={isOpen} />
+                  <ListBox.MenuIcon
+                    isOpen={isOpen}
+                    translateWithId={translateWithId}
+                  />
                 </ListBox.Field>
                 {isOpen && (
                   <ListBox.Menu>
@@ -232,7 +248,7 @@ export default class MultiSelect extends React.Component {
                           isHighlighted={highlightedIndex === index}
                           {...itemProps}>
                           <Checkbox
-                            id={itemProps.id}
+                            id={`${itemProps.id}__checkbox`}
                             title={useTitleInItem ? itemText : null}
                             name={itemText}
                             checked={isChecked}

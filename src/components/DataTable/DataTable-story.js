@@ -1,3 +1,10 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import { storiesOf } from '@storybook/react';
 import { withKnobs, boolean } from '@storybook/addon-knobs';
 import { withReadme } from 'storybook-readme';
@@ -65,6 +72,20 @@ storiesOf('DataTable', module)
       info: {
         text: `
           DataTable with selection
+
+          You can find more detailed information surrounding usage of this component
+          at the following url: ${readmeURL}
+        `,
+      },
+    }
+  )
+  .add(
+    'with radio button selection',
+    withReadme(readme, require('./stories/with-selection--radio').default),
+    {
+      info: {
+        text: `
+          DataTable with radio button selection
 
           You can find more detailed information surrounding usage of this component
           at the following url: ${readmeURL}

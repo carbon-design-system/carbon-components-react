@@ -1,3 +1,10 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import classNames from 'classnames';
@@ -12,6 +19,8 @@ import { settings } from 'carbon-components';
 import Icon from '../Icon';
 // temporary workaround for a11y warning icon. TODO: for @carbon/icons-react
 import a11yIconWarningSolid from './a11yIconWarningSolid';
+import Close16 from '@carbon/icons-react/lib/close/16';
+import { componentsX } from '../../internal/FeatureFlags';
 
 const { prefix } = settings;
 
@@ -98,13 +107,17 @@ export class NotificationButton extends Component {
 
     return (
       <button {...other} type={type} className={buttonClasses}>
-        <Icon
-          description={iconDescription}
-          className={iconClasses}
-          aria-label={ariaLabel}
-          icon={!icon && !name ? iconClose : icon}
-          name={name}
-        />
+        {componentsX ? (
+          <Close16 className={iconClasses} aria-label={ariaLabel} />
+        ) : (
+          <Icon
+            description={iconDescription}
+            className={iconClasses}
+            aria-label={ariaLabel}
+            icon={!icon && !name ? iconClose : icon}
+            name={name}
+          />
+        )}
       </button>
     );
   }
@@ -113,20 +126,21 @@ export class NotificationButton extends Component {
 export class NotificationTextDetails extends Component {
   static propTypes = {
     /**
+     * Pass in the children that will be rendered in NotificationTextDetails
+     */
+    children: PropTypes.node,
+    /**
      * Specify the title
      */
     title: PropTypes.string,
-
     /**
      * Specify the sub-title
      */
     subtitle: PropTypes.node,
-
     /**
      * Specify the caption
      */
     caption: PropTypes.node,
-
     /**
      * Specify the notification type
      */
@@ -152,6 +166,7 @@ export class NotificationTextDetails extends Component {
           <div className={`${prefix}--toast-notification__caption`}>
             {caption}
           </div>
+          {this.props.children}
         </div>
       );
     }
@@ -165,6 +180,7 @@ export class NotificationTextDetails extends Component {
           <div className={`${prefix}--inline-notification__subtitle`}>
             {subtitle}
           </div>
+          {this.props.children}
         </div>
       );
     }
@@ -173,6 +189,9 @@ export class NotificationTextDetails extends Component {
 
 export class ToastNotification extends Component {
   static propTypes = {
+    /**
+     * Pass in the children that will be rendered within the ToastNotification
+     */
     children: PropTypes.node,
 
     /**
@@ -304,8 +323,9 @@ export class ToastNotification extends Component {
           title={title}
           subtitle={subtitle}
           caption={caption}
-          notificationType={notificationType}
-        />
+          notificationType={notificationType}>
+          {this.props.children}
+        </NotificationTextDetails>
         {!hideCloseButton && (
           <NotificationButton
             iconDescription={iconDescription}
@@ -320,6 +340,9 @@ export class ToastNotification extends Component {
 
 export class InlineNotification extends Component {
   static propTypes = {
+    /**
+     * Pass in the children that will be rendered within the InlineNotification
+     */
     children: PropTypes.node,
 
     /**
@@ -444,8 +467,9 @@ export class InlineNotification extends Component {
           <NotificationTextDetails
             title={title}
             subtitle={subtitle}
-            notificationType={notificationType}
-          />
+            notificationType={notificationType}>
+            {this.props.children}
+          </NotificationTextDetails>
         </div>
         {!hideCloseButton && (
           <NotificationButton

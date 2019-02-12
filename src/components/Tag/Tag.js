@@ -1,3 +1,10 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import PropTypes from 'prop-types';
 import React from 'react';
 import classNames from 'classnames';
@@ -36,7 +43,7 @@ const Tag = ({ children, className, type, ...other }) => {
   const tagClasses = classNames(`${prefix}--tag`, tagClass, className);
   return (
     <span className={tagClasses} {...other}>
-      {children || TYPES[type]}
+      {children !== null && children !== undefined ? children : TYPES[type]}
     </span>
   );
 };

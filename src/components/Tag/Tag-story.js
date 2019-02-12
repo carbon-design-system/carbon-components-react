@@ -1,3 +1,10 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { withKnobs, select, text, boolean } from '@storybook/addon-knobs';
@@ -18,18 +25,16 @@ storiesOf('Tag', module)
   .add(
     'Default',
     () => (
-      <div>
-        <Tag
-          className="some-class"
-          type={select(
-            'Tag type (type)',
-            types,
-            componentsX ? 'basic' : 'experimental'
-          )}
-          disabled={boolean('Disabled (disabled)', false)}>
-          {text('Content (children)', 'This is not a tag')}
-        </Tag>
-      </div>
+      <Tag
+        className="some-class"
+        type={select(
+          'Tag type (type)',
+          types,
+          componentsX ? 'basic' : 'experimental'
+        )}
+        disabled={boolean('Disabled (disabled)', false)}>
+        {text('Content (children)', 'This is not a tag')}
+      </Tag>
     ),
     {
       info: {

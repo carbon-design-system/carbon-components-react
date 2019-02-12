@@ -1,3 +1,10 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import { settings } from 'carbon-components';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -7,13 +14,15 @@ const { prefix } = settings;
 
 const HeaderMenuItem = props => {
   const { className, children, role, innerRef, ...rest } = props;
+
   return (
     <li className={className} role={role}>
       <Link
         {...rest}
         className={`${prefix}--header__menu-item`}
         ref={innerRef}
-        role="menuitem">
+        role="menuitem"
+        tabIndex={0}>
         <span className={`${prefix}--text-truncate--end`}>{children}</span>
       </Link>
     </li>

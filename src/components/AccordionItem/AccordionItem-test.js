@@ -1,7 +1,16 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import React from 'react';
 import { iconChevronRight } from 'carbon-icons';
 import AccordionItem from '../AccordionItem';
 import Icon from '../Icon';
+import ChevronRight16 from '@carbon/icons-react/lib/chevron--right/16';
+import { componentsX } from '../../internal/FeatureFlags';
 import { shallow, mount } from 'enzyme';
 
 describe('AccordionItem', () => {
@@ -20,14 +29,21 @@ describe('AccordionItem', () => {
 
     it('renders heading as expected', () => {
       const heading = wrapper.find('.bx--accordion__heading');
+      const icon = componentsX ? ChevronRight16 : Icon;
       expect(heading.length).toBe(1);
-      expect(heading.find(Icon).length).toBe(1);
+      expect(heading.find(icon).length).toBe(1);
       expect(heading.find('.bx--accordion__title').text()).toBe('A heading');
     });
 
     it('should use correct icon', () => {
       const heading = wrapper.find('.bx--accordion__heading');
-      expect(heading.find(Icon).props().icon).toEqual(iconChevronRight);
+      if (componentsX) {
+        expect(heading.find(ChevronRight16).props().icon.id).toEqual(
+          'icon--chevron--right'
+        );
+      } else {
+        expect(heading.find(Icon).props().icon).toEqual(iconChevronRight);
+      }
     });
 
     it('has the expected classes', () => {

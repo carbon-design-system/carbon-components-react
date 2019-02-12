@@ -1,3 +1,10 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import PropTypes from 'prop-types';
 import React from 'react';
 import classNames from 'classnames';
@@ -18,6 +25,7 @@ const TextInput = ({
   invalidText,
   helperText,
   light,
+  forwardRef: ref,
   ...other
 }) => {
   const textInputProps = {
@@ -34,6 +42,7 @@ const TextInput = ({
     },
     placeholder,
     type,
+    ref,
   };
 
   const errorId = id + '-error-msg';
@@ -174,4 +183,8 @@ TextInput.defaultProps = {
   light: false,
 };
 
-export default TextInput;
+const forwardRef = (props, ref) => <TextInput {...props} forwardRef={ref} />;
+
+forwardRef.displayName = 'TextInput';
+
+export default React.forwardRef(forwardRef);

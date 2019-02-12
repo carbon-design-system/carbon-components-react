@@ -1,3 +1,10 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
@@ -15,6 +22,10 @@ const types = {
 const TextInputProps = () => ({
   className: 'some-class',
   id: 'test2',
+  defaultValue: text(
+    'Default value (defaultValue)',
+    'This is not a default value'
+  ),
   labelText: text('Label text (labelText)', 'Text Input label'),
   type: select('Form control type (type)', types, ''),
   placeholder: text('Placeholder text (placeholder)', 'Placeholder text'),
