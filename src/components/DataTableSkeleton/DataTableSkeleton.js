@@ -17,6 +17,7 @@ const DataTableSkeleton = ({
   columnCount,
   zebra,
   compact,
+  headers,
   ...other
 }) => {
   const dataTableSkeletonClasses = classNames({
@@ -44,7 +45,7 @@ const DataTableSkeleton = ({
       <thead>
         <tr>
           {columnsArray.map(i => (
-            <th key={i} />
+            <th key={i}>{headers[i]}</th>
           ))}
         </tr>
       </thead>
@@ -90,6 +91,7 @@ DataTableSkeleton.defaultProps = {
   columnCount: 5,
   zebra: false,
   compact: false,
+  headers: [],
 };
 
 export default DataTableSkeleton;
