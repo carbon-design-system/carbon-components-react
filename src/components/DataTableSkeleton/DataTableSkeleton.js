@@ -84,6 +84,11 @@ DataTableSkeleton.propTypes = {
    * compact DataTable
    */
   compact: PropTypes.bool,
+
+  /**
+   * Optionally specify the displayed headers
+   */
+  headers: PropTypes.array,
 };
 
 DataTableSkeleton.defaultProps = {
