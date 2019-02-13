@@ -22,7 +22,7 @@ addDecorator(story => <Container story={story} />);
 // addDecorator(checkA11y);
 
 function loadStories() {
-  const req = require.context('../src/components', true, /\-story\.js$/);
+  const req = require.context('../src/components', true, /\.story\.js$/);
   req.keys().forEach(filename => req(filename));
 }
 

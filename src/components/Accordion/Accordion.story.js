@@ -11,11 +11,11 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import { withKnobs, boolean, number, text } from '@storybook/addon-knobs';
-import Accordion from '../Accordion';
+import Accordion from '.';
 import AccordionItem from '../AccordionItem';
 import Select from '../Select';
 import SelectItem from '../SelectItem';
-import AccordionSkeleton from '../Accordion/Accordion.Skeleton';
+import AccordionSkeleton from './Accordion.Skeleton';
 
 const props = {
   onClick: action('onClick'),

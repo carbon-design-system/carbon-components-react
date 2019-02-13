@@ -318,7 +318,7 @@
   "jest": {
     "collectCoverageFrom": [
       "src/components/**/*.js",
-      "!src/components/**/*-story.js"
+      "!src/components/**/*.story.js"
     ],
     "coverageDirectory": "coverage",
     "coverageReporters": [
@@ -330,7 +330,7 @@
     ],
     "testMatch": [
       "<rootDir>/**/__tests__/**/*.js?(x)",
-      "<rootDir>/**/?(*-)(spec|test).js?(x)"
+      "<rootDir>/**/?(*.)(spec|test).js?(x)"
     ],
     "testRunner": "jest-circus/runner",
     "testURL": "http://localhost",
