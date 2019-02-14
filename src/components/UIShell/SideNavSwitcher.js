@@ -5,7 +5,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { ChevronDown20 } from '@carbon/icons-react';
+// TODO: import { ChevronDown20 } from '@carbon/icons-react';
+import ChevronDown20 from '@carbon/icons-react/lib/chevron--down/20';
 import { settings } from 'carbon-components';
 import cx from 'classnames';
 import PropTypes from 'prop-types';
