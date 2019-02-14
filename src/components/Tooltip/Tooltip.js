@@ -215,7 +215,7 @@ export default class Tooltip extends Component {
     iconTitle: '',
     triggerText: 'Provide triggerText',
     menuOffset: getMenuOffset,
-    clickToOpen: breakingChangesX ? true : false,
+    clickToOpen: breakingChangesX,
   };
 
   /**
