@@ -5,9 +5,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-// TODO: import { Close20, ChevronRight20 } from '@carbon/icons-react';
-import Close20 from '@carbon/icons-react/lib/close/20';
-import ChevronRight20 from '@carbon/icons-react/lib/chevron--right/20';
+import Close20 from '@carbon/icons-react/es/close/20';
+import ChevronRight20 from '@carbon/icons-react/es/chevron--right/20';
 import { settings } from 'carbon-components';
 import cx from 'classnames';
 import React from 'react';

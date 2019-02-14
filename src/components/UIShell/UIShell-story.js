@@ -5,9 +5,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-// TODO: import { Notification16, User16 } from '@carbon/icons-react';
-import Notification16 from '@carbon/icons-react/lib/notification/16';
-import User16 from '@carbon/icons-react/lib/user/16';
+import Notification16 from '@carbon/icons-react/es/notification/16';
+import User16 from '@carbon/icons-react/es/user/16';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 

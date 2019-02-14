@@ -5,8 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-// TODO: import { ChevronDownGlyph } from '@carbon/icons-react';
-import ChevronDownGlyph from '@carbon/icons-react/lib/chevron--down/index';
+import ChevronDownGlyph from '@carbon/icons-react/es/chevron--down';
 import { settings } from 'carbon-components';
 import cx from 'classnames';
 import React from 'react';
