@@ -232,9 +232,19 @@ export default class Tooltip extends Component {
   _tooltipEl = null;
 
   componentDidMount() {
+    if (!this._debouncedHandleHover) {
+      this._debouncedHandleHover = debounce(this._handleHover, 200);
+    }
     requestAnimationFrame(() => {
       this.getTriggerPosition();
     });
+  }
+
+  componentWillUnmount() {
+    if (this._debouncedHandleHover) {
+      this._debouncedHandleHover.cancel();
+      this._debouncedHandleHover = null;
+    }
   }
 
   static getDerivedStateFromProps({ open }, state) {
@@ -285,7 +295,7 @@ export default class Tooltip extends Component {
    * @type {Function}
    * @private
    */
-  _debouncedHandleHover = debounce(this._handleHover, 200);
+  _debouncedHandleHover = null;
 
   /**
    * @returns {Element} The DOM element where the floating menu is placed in.
@@ -314,7 +324,11 @@ export default class Tooltip extends Component {
         }
         this.setState({ open: shouldOpen });
       }
-    } else if (state && (state !== 'out' || !hadContextMenu)) {
+    } else if (
+      state &&
+      (state !== 'out' || !hadContextMenu) &&
+      this._debouncedHandleHover
+    ) {
       this._debouncedHandleHover(state, evt.relatedTarget);
     }
   };
