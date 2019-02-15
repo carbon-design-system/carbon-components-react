@@ -9,7 +9,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { iconSearch } from 'carbon-icons';
-// TODO: import Search16 from '@carbon/icons-react';
 import Search16 from '@carbon/icons-react/lib/search/16';
 import { settings } from 'carbon-components';
 import Icon from '../Icon';

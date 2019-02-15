@@ -11,7 +11,6 @@ import React from 'react';
 import { iconCaretUp } from 'carbon-icons';
 import { settings } from 'carbon-components';
 import Icon from '../Icon';
-// TODO: import { CaretUpGlyph } from '@carbon/icons-react/lib/caret--up/16';
 import CaretUpGlyph from '@carbon/icons-react/lib/caret--up';
 import { sortStates } from './state/sorting';
 import { componentsX } from '../../internal/FeatureFlags';

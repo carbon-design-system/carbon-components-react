@@ -10,9 +10,7 @@ import PropTypes from 'prop-types';
 import { iconList, iconGrid } from 'carbon-icons';
 import { settings } from 'carbon-components';
 import Icon from '../Icon';
-// TODO: import { ListBulleted } from '@carbon/icons-react';
 import ListBulleted16 from '@carbon/icons-react/lib/list--bulleted/16';
-// TODO: import { Grid } from '@carbon/icons-react';
 import Grid16 from '@carbon/icons-react/lib/grid/16';
 import { componentsX } from '../../internal/FeatureFlags';
 

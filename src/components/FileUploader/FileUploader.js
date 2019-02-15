@@ -14,9 +14,7 @@ import Icon from '../Icon';
 import uid from '../../tools/uniqueId';
 import { ButtonTypes } from '../../prop-types/types';
 import { iconCloseSolid, iconCheckmarkSolid } from 'carbon-icons';
-// TODO: import { CloseFilled } from '@carbon/icons-react';
 import CloseFilled16 from '@carbon/icons-react/lib/close--filled/16';
-// TODO: import { CheckmarkFilled } from '@carbon/icons-react';
 import CheckmarkFilled16 from '@carbon/icons-react/lib/checkmark--filled/16';
 import { componentsX } from '../../internal/FeatureFlags';
 

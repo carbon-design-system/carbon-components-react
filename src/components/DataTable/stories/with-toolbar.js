@@ -22,11 +22,8 @@ import DataTable, {
   TableToolbarContent,
   TableToolbarSearch,
 } from '../../DataTable';
-// TODO: import { Download } from '@carbon/icons-react';
 import Download16 from '@carbon/icons-react/lib/download/16';
-// TODO: import { Edit } from '@carbon/icons-react';
 import Edit16 from '@carbon/icons-react/lib/edit/16';
-// TODO: import { Settings } from '@carbon/icons-react';
 import Settings16 from '@carbon/icons-react/lib/settings/16';
 import { initialRows, headers } from './shared';
 import { componentsX } from '../../../internal/FeatureFlags';

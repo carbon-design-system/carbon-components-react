@@ -9,7 +9,6 @@ import cx from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { iconChevronRight } from 'carbon-icons';
-// TODO: import { ChevronRight } from '@carbon/icons-react';
 import ChevronRight16 from '@carbon/icons-react/lib/chevron--right/16';
 import { settings } from 'carbon-components';
 import Icon from '../Icon';
