@@ -9,6 +9,7 @@ import React from 'react';
 import { action } from '@storybook/addon-actions';
 import { iconDownload, iconEdit, iconSettings } from 'carbon-icons';
 import Button from '../../Button';
+import Checkbox from '../../Checkbox';
 import DataTable, {
   Table,
   TableBody,
@@ -22,11 +23,71 @@ import DataTable, {
   TableToolbarContent,
   TableToolbarSearch,
 } from '../../DataTable';
-import Download16 from '@carbon/icons-react/lib/download/16';
-import Edit16 from '@carbon/icons-react/lib/edit/16';
-import Settings16 from '@carbon/icons-react/lib/settings/16';
-import { initialRows, headers } from './shared';
-import { componentsX } from '../../../internal/FeatureFlags';
+// import { initialRows, headers } from './shared';
+
+const initialRows = [
+  {
+    id: 'a',
+    name: 'Load Balancer 3',
+    protocol: 'HTTP',
+    port: 3000,
+    rule: 'Round robin',
+    attached_groups: 'Kevins VM Groups',
+    status: 'Disabled',
+    enabled: true,
+  },
+  {
+    id: 'b',
+    name: 'Load Balancer 1',
+    protocol: 'HTTP',
+    port: 443,
+    rule: 'Round robin',
+    attached_groups: 'Maureens VM Groups',
+    status: 'Starting',
+    enabled: true,
+  },
+  {
+    id: 'c',
+    name: 'Load Balancer 2',
+    protocol: 'HTTP',
+    port: 80,
+    rule: 'DNS delegation',
+    attached_groups: 'Andrews VM Groups',
+    status: 'Active',
+    enabled: false,
+  },
+];
+
+export const headers = [
+  {
+    key: 'name',
+    header: 'Name',
+  },
+  {
+    key: 'protocol',
+    header: 'Protocol',
+  },
+  {
+    key: 'port',
+    header: 'Port',
+  },
+  {
+    key: 'rule',
+    header: 'Rule',
+  },
+  {
+    key: 'attached_groups',
+    header: 'Attached Groups',
+  },
+  {
+    key: 'status',
+    header: 'Status',
+  },
+  {
+    key: 'enabled',
+    header: 'Enabled',
+  },
+];
 
 export default () => (
   <DataTable
@@ -38,17 +99,17 @@ export default () => (
           <TableToolbarSearch onChange={onInputChange} />
           <TableToolbarContent>
             <TableToolbarAction
-              icon={componentsX ? Download16 : iconDownload}
+              icon={iconDownload}
               iconDescription="Download"
               onClick={action('TableToolbarAction - Download')}
             />
             <TableToolbarAction
-              icon={componentsX ? Edit16 : iconEdit}
+              icon={iconEdit}
               iconDescription="Edit"
               onClick={action('TableToolbarAction - Edit')}
             />
             <TableToolbarAction
-              icon={componentsX ? Settings16 : iconSettings}
+              icon={iconSettings}
               iconDescription="Settings"
               onClick={action('TableToolbarAction - Settings')}
             />
@@ -70,9 +131,24 @@ export default () => (
           <TableBody>
             {rows.map(row => (
               <TableRow {...getRowProps({ row })}>
-                {row.cells.map(cell => (
-                  <TableCell key={cell.id}>{cell.value}</TableCell>
-                ))}
+                {row.cells.map(cell => {
+                  if (cell.info.header === 'enabled') {
+                    return (
+                      <TableCell
+                        key={cell.id}
+                        id={cell.id}
+                        className={`la-${cell.info.header}`}>
+                        <Checkbox
+                          id={'check-' + cell.id}
+                          checked={cell.value}
+                          labelText=""
+                        />
+                      </TableCell>
+                    );
+                  } else {
+                    return <TableCell key={cell.id}>{cell.value}</TableCell>;
+                  }
+                })}
               </TableRow>
             ))}
           </TableBody>
