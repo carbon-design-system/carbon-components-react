@@ -1887,7 +1887,7 @@ exports[`DataTable should render 1`] = `
       },
       Object {
         "header": "Field B",
-        "key": "fieldB",
+        "key": "fieldB.value",
       },
     ]
   }
@@ -1910,7 +1910,7 @@ exports[`DataTable should render 1`] = `
               },
               Object {
                 "header": "Field B",
-                "key": "fieldB",
+                "key": "fieldB.value",
               },
             ],
             "onInputChange": [Function],
@@ -1931,9 +1931,9 @@ exports[`DataTable should render 1`] = `
                   },
                   Object {
                     "errors": null,
-                    "id": "b:fieldB",
+                    "id": "b:fieldB.value",
                     "info": Object {
-                      "header": "fieldB",
+                      "header": "fieldB.value",
                     },
                     "isEditable": false,
                     "isEditing": false,
@@ -1960,9 +1960,9 @@ exports[`DataTable should render 1`] = `
                   },
                   Object {
                     "errors": null,
-                    "id": "a:fieldB",
+                    "id": "a:fieldB.value",
                     "info": Object {
-                      "header": "fieldB",
+                      "header": "fieldB.value",
                     },
                     "isEditable": false,
                     "isEditing": false,
@@ -1989,9 +1989,9 @@ exports[`DataTable should render 1`] = `
                   },
                   Object {
                     "errors": null,
-                    "id": "c:fieldB",
+                    "id": "c:fieldB.value",
                     "info": Object {
-                      "header": "fieldB",
+                      "header": "fieldB.value",
                     },
                     "isEditable": false,
                     "isEditing": false,
@@ -2187,17 +2187,23 @@ exports[`DataTable should render 1`] = `
     Array [
       Object {
         "fieldA": "Field 2:A",
-        "fieldB": "Field 2:B",
+        "fieldB": Object {
+          "value": "Field 2:B",
+        },
         "id": "b",
       },
       Object {
         "fieldA": "Field 1:A",
-        "fieldB": "Field 1:B",
+        "fieldB": Object {
+          "value": "Field 1:B",
+        },
         "id": "a",
       },
       Object {
         "fieldA": "Field 3:A",
-        "fieldB": "Field 3:B",
+        "fieldB": Object {
+          "value": "Field 3:B",
+        },
         "id": "c",
       },
     ]
@@ -2733,7 +2739,7 @@ exports[`DataTable should render 1`] = `
                   <TableHeader
                     isSortHeader={false}
                     isSortable={true}
-                    key="fieldB"
+                    key="fieldB.value"
                     onClick={[Function]}
                     scope="col"
                     sortDirection="NONE"
@@ -2821,7 +2827,7 @@ exports[`DataTable should render 1`] = `
                     </td>
                   </TableCell>
                   <TableCell
-                    key="b:fieldB"
+                    key="b:fieldB.value"
                   >
                     <td>
                       Field 2:B
@@ -2841,7 +2847,7 @@ exports[`DataTable should render 1`] = `
                     </td>
                   </TableCell>
                   <TableCell
-                    key="a:fieldB"
+                    key="a:fieldB.value"
                   >
                     <td>
                       Field 1:B
@@ -2861,7 +2867,7 @@ exports[`DataTable should render 1`] = `
                     </td>
                   </TableCell>
                   <TableCell
-                    key="c:fieldB"
+                    key="c:fieldB.value"
                   >
                     <td>
                       Field 3:B

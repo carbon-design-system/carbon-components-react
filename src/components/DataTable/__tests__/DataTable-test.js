@@ -52,17 +52,23 @@ describe('DataTable', () => {
         {
           id: 'b',
           fieldA: 'Field 2:A',
-          fieldB: 'Field 2:B',
+          fieldB: {
+            value: 'Field 2:B',
+          },
         },
         {
           id: 'a',
           fieldA: 'Field 1:A',
-          fieldB: 'Field 1:B',
+          fieldB: {
+            value: 'Field 1:B',
+          },
         },
         {
           id: 'c',
           fieldA: 'Field 3:A',
-          fieldB: 'Field 3:B',
+          fieldB: {
+            value: 'Field 3:B',
+          },
         },
       ],
       headers: [
@@ -71,7 +77,7 @@ describe('DataTable', () => {
           header: 'Field A',
         },
         {
-          key: 'fieldB',
+          key: 'fieldB.value',
           header: 'Field B',
         },
       ],

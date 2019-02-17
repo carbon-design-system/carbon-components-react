@@ -6,6 +6,7 @@
  */
 
 import { getCellId } from './cells';
+import objectPath from 'object-path';
 
 /**
  * Normalize a collection of rows with the given headers.
@@ -43,7 +44,7 @@ const normalize = (rows, headers, prevState = {}) => {
       // Initialize the cell info and state values, namely for editing
       cellsById[id] = {
         id,
-        value: row[key],
+        value: objectPath.get(row, key),
         isEditable: false,
         isEditing: false,
         isValid: true,
