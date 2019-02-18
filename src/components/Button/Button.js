@@ -17,6 +17,7 @@ const { prefix } = settings;
 
 const Button = ({
   children,
+  render,
   className,
   disabled,
   small,
@@ -61,6 +62,23 @@ const Button = ({
     return null;
   })();
 
+  if (render) {
+    const Component = render;
+    return (
+      <Component
+        {...other}
+        {...commonProps}
+        disabled={disabled}
+        type={type}
+        href={href}
+        role="button"
+        ref={other.inputref}>
+        {children}
+        {buttonImage}
+      </Component>
+    );
+  }
+
   const button = (
     <button
       {...other}
@@ -93,6 +111,12 @@ Button.propTypes = {
    * Specify the content of your Button
    */
   children: PropTypes.node,
+
+  /**
+   * Specify how the button itself should be rendered.
+   * Make sure to apply all props to the root node and render children appropriately
+   */
+  render: PropTypes.func,
 
   /**
    * Specify an optional className to be added to your Button
@@ -164,6 +188,7 @@ Button.propTypes = {
 };
 
 Button.defaultProps = {
+  render: null,
   iconDescription: 'Provide icon description if icon is used',
   tabIndex: 0,
   type: 'button',

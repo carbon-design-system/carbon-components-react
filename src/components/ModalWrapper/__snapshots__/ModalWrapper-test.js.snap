@@ -39,6 +39,7 @@ exports[`ModalWrapper should render 1`] = `
       }
       kind="primary"
       onClick={[Function]}
+      render={null}
       small={false}
       tabIndex={0}
       type="button"
@@ -180,6 +181,7 @@ exports[`ModalWrapper should render 1`] = `
               iconDescription="Provide icon description if icon is used"
               kind="secondary"
               onClick={[Function]}
+              render={null}
               small={false}
               tabIndex={0}
               type="button"
@@ -211,6 +213,7 @@ exports[`ModalWrapper should render 1`] = `
               }
               kind="primary"
               onClick={[Function]}
+              render={null}
               small={false}
               tabIndex={0}
               type="button"
