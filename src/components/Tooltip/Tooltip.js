@@ -7,6 +7,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import * as ReactIs from 'react-is';
 import debounce from 'lodash.debounce';
 import Icon from '../Icon';
 import classNames from 'classnames';
@@ -173,11 +174,11 @@ export default class Tooltip extends Component {
       if (props[propName] == undefined) {
         return;
       }
-
-      if (props[propName].$$typeof !== Symbol.for('react.forward_ref'))
+      const RefForwardingComponent = props[propName];
+      if (!ReactIs.isForwardRef(<RefForwardingComponent />))
         return new Error(`Invalid value of prop '${propName}' supplied to '${componentName}',
                           it should be created/wrapped with React.forwardRef() to have a ref and access the proper
-                          DOM node of the element to calculate its position in the viewport .`);
+                          DOM node of the element to calculate its position in the viewport.`);
     },
 
     /**
