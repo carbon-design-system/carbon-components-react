@@ -170,7 +170,9 @@ export default class Tooltip extends Component {
      * It should be a component with React.forwardRef().
      */
     renderIcon: function(props, propName, componentName) {
-      if (props[propName] == undefined) return;
+      if (props[propName] == undefined) {
+        return;
+      }
 
       if (props[propName].$$typeof !== Symbol.for('react.forward_ref'))
         return new Error(`Invalid value of prop '${propName}' supplied to '${componentName}',
