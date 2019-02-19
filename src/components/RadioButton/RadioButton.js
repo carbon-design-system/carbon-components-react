@@ -86,7 +86,7 @@ class RadioButton extends React.Component {
       'radioButtonWrapper',
       this.props.className
     );
-    const { labelText, forwardRef: ref, ...other } = this.props;
+    const { labelText, innerRef: ref, ...other } = this.props;
     return (
       <div className={wrapperClasses}>
         <input
@@ -113,7 +113,7 @@ export default (!breakingChangesX
   ? RadioButton
   : (() => {
       const forwardRef = (props, ref) => (
-        <RadioButton {...props} forwardRef={ref} />
+        <RadioButton {...props} innerRef={ref} />
       );
       forwardRef.displayName = 'RadioButton';
       return React.forwardRef(forwardRef);

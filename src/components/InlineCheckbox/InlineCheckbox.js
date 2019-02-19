@@ -99,7 +99,7 @@ class InlineCheckbox extends React.Component {
       onClick,
       onKeyDown,
       title = undefined,
-      forwardRef: ref,
+      innerRef: ref,
     } = this.props;
     const inputProps = {
       id,
@@ -146,7 +146,7 @@ export default (!breakingChangesX
   ? InlineCheckbox
   : (() => {
       const forwardRef = (props, ref) => (
-        <InlineCheckbox {...props} forwardRef={ref} />
+        <InlineCheckbox {...props} innerRef={ref} />
       );
       forwardRef.displayName = 'InlineCheckbox';
       return React.forwardRef(forwardRef);

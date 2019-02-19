@@ -215,8 +215,8 @@ class NumberInput extends Component {
       helperText,
       light,
       allowEmpty,
+      innerRef: ref,
       translateWithId: t,
-      forwardRef: ref,
       ...other
     } = this.props;
 
@@ -377,7 +377,7 @@ export default (!breakingChangesX
   ? NumberInput
   : (() => {
       const forwardRef = (props, ref) => (
-        <NumberInput {...props} forwardRef={ref} />
+        <NumberInput {...props} innerRef={ref} />
       );
       forwardRef.displayName = 'NumberInput';
       return React.forwardRef(forwardRef);
