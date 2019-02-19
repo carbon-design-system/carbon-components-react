@@ -19,10 +19,13 @@ const Button = ({
   children,
   render,
   className,
+  disabled,
   small,
   kind,
   href,
   tabIndex,
+  type,
+  inputref,
   icon,
   iconDescription,
   ...other
@@ -41,6 +44,7 @@ const Button = ({
   const commonProps = {
     tabIndex,
     className: buttonClasses,
+    ref: inputref,
   };
   const buttonImage = (() => {
     if (componentsX && icon && React.isValidElement(icon)) {
@@ -61,18 +65,26 @@ const Button = ({
   })();
 
   let Component = 'button';
+  let otherProps = {
+    disabled,
+    type,
+  };
+  const anchorProps = {
+    role: 'button',
+    href,
+  };
   if (render) {
     Component = render;
+    otherProps = {
+      ...otherProps,
+      ...anchorProps,
+    };
   } else if (href) {
     Component = 'a';
+    otherProps = anchorProps;
   }
   return (
-    <Component
-      {...other}
-      {...commonProps}
-      href={href}
-      role="button"
-      ref={other.inputref}>
+    <Component {...other} {...commonProps} {...otherProps}>
       {children}
       {buttonImage}
     </Component>
@@ -89,7 +101,7 @@ Button.propTypes = {
    * Specify how the button itself should be rendered.
    * Make sure to apply all props to the root node and render children appropriately
    */
-  render: PropTypes.oneOfType(PropTypes.func, PropTypes.string),
+  render: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
 
   /**
    * Specify an optional className to be added to your Button
