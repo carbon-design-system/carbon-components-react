@@ -83,7 +83,7 @@ storiesOf('Buttons', module)
           &nbsp;
           <Button
             {...regularProps}
-            render={Link}
+            as={Link}
             kind="secondary"
             href="#"
             className="some-class">

@@ -102,7 +102,7 @@ describe('Button', () => {
     let wrapper;
     beforeEach(() => {
       wrapper = shallow(
-        <Button render={Link} data-foo="foo">
+        <Button as={Link} data-foo="foo">
           <div className="child">child</div>
           <div className="child">child</div>
         </Button>

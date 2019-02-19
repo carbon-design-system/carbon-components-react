@@ -33,7 +33,6 @@ exports[`DataTable.TableBatchAction should render 1`] = `
     }
     iconDescription="Add"
     kind="ghost"
-    render={null}
     small={true}
     tabIndex={0}
     type="button"
