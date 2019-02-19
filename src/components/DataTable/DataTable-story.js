@@ -80,6 +80,20 @@ storiesOf('DataTable', module)
     }
   )
   .add(
+    'with radio button selection',
+    withReadme(readme, require('./stories/with-selection--radio').default),
+    {
+      info: {
+        text: `
+          DataTable with radio button selection
+
+          You can find more detailed information surrounding usage of this component
+          at the following url: ${readmeURL}
+        `,
+      },
+    }
+  )
+  .add(
     'with expansion',
     withReadme(readme, require('./stories/with-expansion').default),
     {
@@ -125,6 +139,17 @@ storiesOf('DataTable', module)
         text: `
           Showcases DataTable behavior when rows are added to the component,
           and when cell data changes dynamically.
+        `,
+      },
+    }
+  )
+  .add(
+    'with boolean column',
+    withReadme(readme, require('./stories/with-boolean-column').default),
+    {
+      info: {
+        text: `
+          DataTable with toolbar and filtering with column has boolean value.
         `,
       },
     }

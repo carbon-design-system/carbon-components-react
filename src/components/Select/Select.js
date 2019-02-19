@@ -12,7 +12,6 @@ import { iconCaretDown } from 'carbon-icons';
 import { settings } from 'carbon-components';
 import Icon from '../Icon';
 import { componentsX } from '../../internal/FeatureFlags';
-// TODO: import { ChevronDownGlyph } from '@carbon/icons-react';
 import ChevronDownGlyph from '@carbon/icons-react/lib/chevron--down/index';
 
 const { prefix } = settings;
@@ -181,6 +180,8 @@ Select.defaultProps = {
   light: false,
 };
 
-export default React.forwardRef((props, ref) => (
-  <Select {...props} forwardRef={ref} />
-));
+const forwardRef = (props, ref) => <Select {...props} forwardRef={ref} />;
+
+forwardRef.displayName = 'Select';
+
+export default React.forwardRef(forwardRef);
