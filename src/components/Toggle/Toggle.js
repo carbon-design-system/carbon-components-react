@@ -18,7 +18,11 @@ const Toggle = ({
   toggled,
   onChange,
   onToggle,
-  id,
+  id = (this.inputId =
+    this.inputId ||
+    `__carbon-toggle_${Math.random()
+      .toString(36)
+      .substr(2)}`),
   labelText,
   labelA,
   labelB,
@@ -38,42 +42,43 @@ const Toggle = ({
     checkedProps.defaultChecked = defaultToggled;
   }
 
-  const ToggleBody = () => (
-    <div className={wrapperClasses}>
-      <input
-        {...other}
-        {...checkedProps}
-        type="checkbox"
-        id={id}
-        className={`${prefix}--toggle`}
-        onChange={evt => {
-          onChange && onChange(evt);
-          onToggle(input.checked, id, evt);
-        }}
-        ref={el => {
-          input = el;
-        }}
-      />
+  const labelTextId = !labelText ? undefined : `${id}-label`;
 
-      <label className={`${prefix}--toggle__label`} htmlFor={id}>
-        <span className={`${prefix}--toggle__text--left`} aria-hidden="true">
-          {labelA}
-        </span>
-        <span className={`${prefix}--toggle__appearance`} />
-        <span className={`${prefix}--toggle__text--right`} aria-hidden="true">
-          {labelB}
-        </span>
-      </label>
-    </div>
-  );
+  return (
+    <>
+      {labelText && (
+        <div id={labelTextId} className={`${prefix}--label`}>
+          {labelText}
+        </div>
+      )}
+      <div className={wrapperClasses}>
+        <input
+          {...other}
+          {...checkedProps}
+          type="checkbox"
+          id={id}
+          className={`${prefix}--toggle`}
+          aria-labelledby={labelTextId}
+          onChange={evt => {
+            onChange && onChange(evt);
+            onToggle(input.checked, id, evt);
+          }}
+          ref={el => {
+            input = el;
+          }}
+        />
 
-  return labelText ? (
-    <fieldset className={`${prefix}--fieldset`}>
-      <legend className={`${prefix}--label`}>{labelText}</legend>
-      <ToggleBody />
-    </fieldset>
-  ) : (
-    <ToggleBody />
+        <label className={`${prefix}--toggle__label`} htmlFor={id}>
+          <span className={`${prefix}--toggle__text--left`} aria-hidden="true">
+            {labelA}
+          </span>
+          <span className={`${prefix}--toggle__appearance`} />
+          <span className={`${prefix}--toggle__text--right`} aria-hidden="true">
+            {labelB}
+          </span>
+        </label>
+      </div>
+    </>
   );
 };
 
