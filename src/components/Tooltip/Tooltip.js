@@ -7,11 +7,12 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { isForwardRef } from 'react-is';
 import debounce from 'lodash.debounce';
 import Icon from '../Icon';
 import classNames from 'classnames';
+import warning from 'warning';
 import { iconInfoGlyph } from 'carbon-icons';
-// TODO: import { Information } from '@carbon/icons-react';
 import Information from '@carbon/icons-react/lib/information/16';
 import { settings } from 'carbon-components';
 import FloatingMenu, {
@@ -21,7 +22,7 @@ import FloatingMenu, {
   DIRECTION_BOTTOM,
 } from '../../internal/FloatingMenu';
 import ClickListener from '../../internal/ClickListener';
-import { componentsX } from '../../internal/FeatureFlags';
+import { breakingChangesX, componentsX } from '../../internal/FeatureFlags';
 
 const { prefix } = settings;
 
@@ -108,6 +109,8 @@ const getMenuOffset = (menuBody, menuDirection) => {
   }
 };
 
+let didWarnAboutDeprecation = false;
+
 export default class Tooltip extends Component {
   state = {};
 
@@ -164,12 +167,27 @@ export default class Tooltip extends Component {
     triggerText: PropTypes.node,
 
     /**
+     * The callback function to optionally render the icon element.
+     * It should be a component with React.forwardRef().
+     */
+    renderIcon: function(props, propName, componentName) {
+      if (props[propName] == undefined) {
+        return;
+      }
+      const RefForwardingComponent = props[propName];
+      if (!isForwardRef(<RefForwardingComponent />))
+        return new Error(`Invalid value of prop '${propName}' supplied to '${componentName}',
+                          it should be created/wrapped with React.forwardRef() to have a ref and access the proper
+                          DOM node of the element to calculate its position in the viewport.`);
+    },
+
+    /**
      * `true` to show the default tooltip icon.
      */
     showIcon: PropTypes.bool,
 
     /**
-     * The the default tooltip icon.
+     * The tooltip icon element or `<Icon>` metadata.
      */
     icon: PropTypes.shape({
       width: PropTypes.string,
@@ -212,6 +230,7 @@ export default class Tooltip extends Component {
     iconTitle: '',
     triggerText: 'Provide triggerText',
     menuOffset: getMenuOffset,
+    clickToOpen: breakingChangesX,
   };
 
   /**
@@ -228,9 +247,19 @@ export default class Tooltip extends Component {
   _tooltipEl = null;
 
   componentDidMount() {
+    if (!this._debouncedHandleHover) {
+      this._debouncedHandleHover = debounce(this._handleHover, 200);
+    }
     requestAnimationFrame(() => {
       this.getTriggerPosition();
     });
+  }
+
+  componentWillUnmount() {
+    if (this._debouncedHandleHover) {
+      this._debouncedHandleHover.cancel();
+      this._debouncedHandleHover = null;
+    }
   }
 
   static getDerivedStateFromProps({ open }, state) {
@@ -281,7 +310,7 @@ export default class Tooltip extends Component {
    * @type {Function}
    * @private
    */
-  _debouncedHandleHover = debounce(this._handleHover, 200);
+  _debouncedHandleHover = null;
 
   /**
    * @returns {Element} The DOM element where the floating menu is placed in.
@@ -310,7 +339,11 @@ export default class Tooltip extends Component {
         }
         this.setState({ open: shouldOpen });
       }
-    } else if (state && (state !== 'out' || !hadContextMenu)) {
+    } else if (
+      state &&
+      (state !== 'out' || !hadContextMenu) &&
+      this._debouncedHandleHover
+    ) {
       this._debouncedHandleHover(state, evt.relatedTarget);
     }
   };
@@ -357,13 +390,22 @@ export default class Tooltip extends Component {
       iconName,
       iconTitle,
       iconDescription,
+      renderIcon,
       menuOffset,
       // Exclude `clickToOpen` from `other` to avoid passing it along to `<div>`
-      // eslint-disable-next-line no-unused-vars
       clickToOpen,
       tabIndex = 0,
       ...other
     } = this.props;
+
+    if (!clickToOpen && __DEV__) {
+      warning(
+        didWarnAboutDeprecation,
+        'The `clickToOpen=false` option in `Tooltip` component is being updated in the next release of ' +
+          '`carbon-components-react`. Please use `TooltipIcon` or `TooltipDefinition` instead.'
+      );
+      didWarnAboutDeprecation = true;
+    }
 
     const { open } = this.state;
 
@@ -383,6 +425,29 @@ export default class Tooltip extends Component {
       : {
           'aria-owns': tooltipId,
         };
+
+    const IconCustomElement = renderIcon || (componentsX && Information);
+
+    const finalIcon = IconCustomElement ? (
+      <IconCustomElement
+        name={iconName}
+        aria-labelledby={triggerId}
+        aria-label={iconDescription}
+        ref={node => {
+          this.triggerEl = node;
+        }}
+      />
+    ) : (
+      <Icon
+        icon={!icon && !iconName ? iconInfoGlyph : icon}
+        name={iconName}
+        description={iconDescription}
+        iconTitle={iconTitle}
+        iconRef={node => {
+          this.triggerEl = node;
+        }}
+      />
+    );
 
     return (
       <>
@@ -405,26 +470,7 @@ export default class Tooltip extends Component {
                 aria-label={iconDescription}
                 aria-expanded={open}
                 {...ariaOwnsProps}>
-                {componentsX ? (
-                  <Information
-                    name={iconName}
-                    aria-labelledby={triggerId}
-                    aria-label={iconDescription}
-                    ref={node => {
-                      this.triggerEl = node;
-                    }}
-                  />
-                ) : (
-                  <Icon
-                    icon={!icon && !iconName ? iconInfoGlyph : icon}
-                    name={iconName}
-                    description={iconDescription}
-                    iconTitle={iconTitle}
-                    iconRef={node => {
-                      this.triggerEl = node;
-                    }}
-                  />
-                )}
+                {finalIcon}
               </div>
             </div>
           ) : (
