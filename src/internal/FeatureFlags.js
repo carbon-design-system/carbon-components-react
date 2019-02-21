@@ -28,11 +28,6 @@ export const breakingChangesX = false;
 export const componentsX = false;
 
 /**
- * Breaking changes for next release.
- */
-export const breakingChangesX = false;
-
-/**
  * Support for prop -> state sync of `<Slider>` value.
  */
 export const sliderValuePropSync = breakingChangesX;
