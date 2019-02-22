@@ -30,9 +30,12 @@ const props = {
     onClick: action('onClick'),
     onKeyDown: action('onKeyDown'),
     onSelectionChange: action('onSelectionChange'),
+    tabContentClassName: text(
+      'The className for the child `<TabContent>` components',
+      'tab-content'
+    ),
   }),
   tab: () => ({
-    className: 'another-class',
     href: text('The href for tab (href in <Tab>)', '#'),
     role: text('ARIA role (role in <Tab>)', 'presentation'),
     tabIndex: number('Tab index (tabIndex in <Tab>)', 0),
@@ -40,6 +43,8 @@ const props = {
     onKeyDown: action('onKeyDown'),
   }),
 };
+
+const CustomLabel = ({ text }) => <span>{text}</span>;
 
 storiesOf('Tabs', module)
   .addDecorator(withKnobs)
@@ -50,14 +55,14 @@ storiesOf('Tabs', module)
         <Tab {...props.tab()} label="Tab label 1">
           <div className="some-content">Content for first tab goes here.</div>
         </Tab>
-        <Tab {...props.tab()} label="Tab label 2">
-          <div className="some-content">Content for second tab goes here.</div>
-        </Tab>
         <Tab {...props.tab()} label="Tab label 3">
           <div className="some-content">Content for third tab goes here.</div>
         </Tab>
         <Tab {...props.tab()} label="Tab label 4">
           <div className="some-content">Content for fourth tab goes here.</div>
+        </Tab>
+        <Tab {...props.tab()} label={<CustomLabel text="Custom Label" />}>
+          <div className="some-content">Content for second tab goes here.</div>
         </Tab>
       </Tabs>
     ),

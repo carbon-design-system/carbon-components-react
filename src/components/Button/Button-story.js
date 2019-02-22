@@ -10,9 +10,11 @@ import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import { withKnobs, boolean, select } from '@storybook/addon-knobs';
 import { iconAddSolid, iconSearch } from 'carbon-icons';
-import { AddFilled16, Search16 } from '@carbon/icons-react';
+import AddFilled16 from '@carbon/icons-react/lib/add--filled/16';
+import Search16 from '@carbon/icons-react/lib/search/16';
 import { settings } from 'carbon-components';
 import Button from '../Button';
+import Link from '../Link';
 import ButtonSkeleton from '../Button/Button.Skeleton';
 import { componentsX } from '../../internal/FeatureFlags';
 
@@ -76,6 +78,15 @@ storiesOf('Buttons', module)
           </Button>
           &nbsp;
           <Button {...regularProps} href="#" className="some-class">
+            Link
+          </Button>
+          &nbsp;
+          <Button
+            {...regularProps}
+            as={Link}
+            kind="secondary"
+            href="#"
+            className="some-class">
             Link
           </Button>
           &nbsp;

@@ -9,7 +9,6 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import classNames from 'classnames';
 import { iconCaretDown } from 'carbon-icons';
-// TODO: import { ChevronDownGlyph } from '@carbon/icons-react';
 import ChevronDownGlyph from '@carbon/icons-react/lib/chevron--down/index';
 import { settings } from 'carbon-components';
 import Icon from '../Icon';
@@ -83,6 +82,11 @@ export default class Tabs extends React.Component {
      * for the dropdown menu of items
      */
     iconDescription: PropTypes.string.isRequired,
+
+    /**
+     * Provide a className that is applied to the <TabContent> components
+     */
+    tabContentClassName: PropTypes.string,
   };
 
   static defaultProps = {
@@ -192,6 +196,7 @@ export default class Tabs extends React.Component {
       triggerHref,
       role,
       onSelectionChange,
+      tabContentClassName,
       ...other
     } = this.props;
 
@@ -230,7 +235,7 @@ export default class Tabs extends React.Component {
 
       return (
         <TabContent
-          className="tab-content"
+          className={tabContentClassName}
           aria-hidden={!selected}
           hidden={!selected}
           selected={selected}>

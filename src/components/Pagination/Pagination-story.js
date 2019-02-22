@@ -8,6 +8,7 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
+import { breakingChangesX } from '../../internal/FeatureFlags';
 
 import {
   withKnobs,
@@ -18,6 +19,7 @@ import {
 } from '@storybook/addon-knobs';
 import Pagination from '../Pagination';
 import PaginationV2 from '../PaginationV2';
+import { componentsX } from '../../internal/FeatureFlags';
 
 const props = () => ({
   disabled: boolean('Disable backward/forward buttons (disabled)', false),
@@ -25,7 +27,9 @@ const props = () => ({
   totalItems: number('Total number of items (totalItems)', 103),
   pagesUnknown: boolean('Total number of items unknown (pagesUnknown)', false),
   pageInputDisabled: boolean('Disable page input (pageInputDisabled)', false),
-  isLastPage: boolean('At the last page (isLastPage)', false),
+  isLastPage: componentsX
+    ? null
+    : boolean('At the last page (isLastPage)', false),
   backwardText: text(
     'The description for the backward icon (backwardText)',
     'Backward'
@@ -43,7 +47,7 @@ const props = () => ({
   onChange: action('onChange'),
 });
 
-storiesOf('Pagination', module)
+const story = storiesOf('Pagination', module)
   .addDecorator(withKnobs)
   .addDecorator(story => <div style={{ width: '800px' }}>{story()}</div>)
   .add('v2', () => <PaginationV2 {...props()} />, {
@@ -52,27 +56,31 @@ storiesOf('Pagination', module)
             V2 version of the Pagination
           `,
     },
-  })
-  .add('v1', () => <Pagination {...props()} />, {
-    info: {
-      text: `
+  });
+
+if (!breakingChangesX) {
+  story
+    .add('v1', () => <Pagination {...props()} />, {
+      info: {
+        text: `
             The pagination component is used to paginate through items.
           `,
-    },
-  })
-  .add(
-    'multipe pagination components',
-    () => {
-      return (
-        <div>
-          <Pagination {...props()} />
-          <Pagination {...props()} />
-        </div>
-      );
-    },
-    {
-      info: {
-        text: `Showcasing unique ids for each pagination component`,
       },
-    }
-  );
+    })
+    .add(
+      'multipe pagination components',
+      () => {
+        return (
+          <div>
+            <Pagination {...props()} />
+            <Pagination {...props()} />
+          </div>
+        );
+      },
+      {
+        info: {
+          text: `Showcasing unique ids for each pagination component`,
+        },
+      }
+    );
+}

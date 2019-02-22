@@ -110,7 +110,8 @@
       "jasmine": true
     },
     "globals": {
-      "__DEV__": true
+      "__DEV__": true,
+      "describeBreakingChangesXFeatures": true
     },
     "settings": {
       "jsdoc": {
@@ -127,7 +128,7 @@
     "react-dom": "^16.4.0"
   },
   "dependencies": {
-    "@carbon/icons-react": "^0.0.1-alpha.26",
+    "@carbon/icons-react": "^0.0.1-alpha.32",
     "classnames": "2.2.6",
     "downshift": "^1.31.14",
     "flatpickr": "4.5.2",
@@ -135,6 +136,7 @@
     "lodash.debounce": "^4.0.8",
     "lodash.isequal": "^4.5.0",
     "lodash.omit": "^4.5.0",
+    "react-is": "^16.8.2",
     "warning": "^3.0.0",
     "window-or-global": "^1.0.1"
   },
@@ -177,7 +179,7 @@
     "babel-plugin-dev-expression": "^0.2.1",
     "babel-plugin-react-docgen": "^2.0.0",
     "bowser": "^1.6.1",
-    "carbon-components": "^9.68.5",
+    "carbon-components": "^9.69.0",
     "carbon-icons": "^7.0.5",
     "chalk": "^2.3.0",
     "cli-table": "^0.3.0",
