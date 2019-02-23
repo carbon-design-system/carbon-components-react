@@ -25,6 +25,14 @@ export default class Selection extends React.Component {
     };
   }
 
+  componentDidUpdate() {
+    if (this.props.initialSelectedItems.length !== this.state.selectedItems.length) {
+      this.setState({
+        selectedItems: this.props.initialSelectedItems
+      });
+    }
+  }
+
   internalSetState = (stateToSet, callback) =>
     this.setState(stateToSet, () => {
       if (callback) {
