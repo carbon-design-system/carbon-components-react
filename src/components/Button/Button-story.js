@@ -18,16 +18,17 @@ import { breakingChangesX } from '../../internal/FeatureFlags';
 
 const icons = {
   None: 'None',
-  ...(breakingChangesX
-    ? {}
-    : {
-        'Add with filled circle (iconAddSolid from `carbon-icons`)':
-          'iconAddSolid',
-        'Search (iconSearch from `carbon-icons`)': 'iconSearch',
-      }),
-  'Add with filled circle (AddFilled16 from `@carbon/icons`)': 'AddFilled16',
-  'Search (Search16 from `@carbon/icons`)': 'Search16',
 };
+
+if (breakingChangesX) {
+  icons['Add with filled circle (iconAddSolid from `carbon-icons`)'] =
+    'iconAddSolid';
+  icons['Search (iconSearch from `carbon-icons`)'] = 'iconSearch';
+}
+
+icons['Add with filled circle (AddFilled16 from `@carbon/icons`)'] =
+  'AddFilled16';
+icons['Search (Search16 from `@carbon/icons`)'] = 'Search16';
 
 const iconMap = {
   iconAddSolid,
