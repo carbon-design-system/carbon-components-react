@@ -11,6 +11,7 @@ import React from 'react';
 import { settings } from 'carbon-components';
 import Icon from '../Icon';
 import isRequiredOneOf from '../../prop-types/isRequiredOneOf';
+import '../../tools/checkReactVersion';
 import { componentsX } from '../../internal/FeatureFlags';
 
 const { prefix } = settings;

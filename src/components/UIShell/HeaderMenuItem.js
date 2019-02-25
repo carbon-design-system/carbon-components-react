@@ -9,6 +9,7 @@ import { settings } from 'carbon-components';
 import PropTypes from 'prop-types';
 import React from 'react';
 import Link, { LinkPropTypes } from './Link';
+import '../../tools/checkReactVersion';
 
 const { prefix } = settings;
 

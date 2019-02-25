@@ -10,6 +10,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import icons from 'carbon-icons';
 import isRequiredOneOf from '../../prop-types/isRequiredOneOf';
+import '../../tools/checkReactVersion';
 
 /**
  * The icons list object from `carbon-icons`.

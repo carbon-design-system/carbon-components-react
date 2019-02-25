@@ -11,6 +11,7 @@ import classNames from 'classnames';
 import warning from 'warning';
 import { iconCaretDown } from 'carbon-icons';
 import { settings } from 'carbon-components';
+import '../../tools/checkReactVersion';
 import { breakingChangesX } from '../../internal/FeatureFlags';
 import ClickListener from '../../internal/ClickListener';
 import Icon from '../Icon';

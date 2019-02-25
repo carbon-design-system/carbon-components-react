@@ -11,6 +11,7 @@ import classnames from 'classnames';
 import { settings } from 'carbon-components';
 import CheckmarkOutline16 from '@carbon/icons-react/lib/checkmark--outline/16';
 import Warning16 from '@carbon/icons-react/lib/warning/16';
+import '../../tools/checkReactVersion';
 import { componentsX } from '../../internal/FeatureFlags';
 
 const { prefix } = settings;

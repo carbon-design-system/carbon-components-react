@@ -11,6 +11,7 @@ import classnames from 'classnames';
 import { settings } from 'carbon-components';
 import Link from '../Link';
 import Button from '../Button';
+import '../../tools/checkReactVersion';
 
 const { prefix } = settings;
 

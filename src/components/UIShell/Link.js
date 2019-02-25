@@ -7,6 +7,7 @@
 
 import PropTypes from 'prop-types';
 import React from 'react';
+import '../../tools/checkReactVersion';
 
 /**
  * Link is a custom component that allows us to supporting rendering elements

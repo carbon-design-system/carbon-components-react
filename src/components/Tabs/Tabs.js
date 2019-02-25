@@ -13,6 +13,7 @@ import ChevronDownGlyph from '@carbon/icons-react/lib/chevron--down/index';
 import { settings } from 'carbon-components';
 import Icon from '../Icon';
 import TabContent from '../TabContent';
+import '../../tools/checkReactVersion';
 import { componentsX } from '../../internal/FeatureFlags';
 
 const { prefix } = settings;

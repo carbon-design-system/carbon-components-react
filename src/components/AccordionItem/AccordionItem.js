@@ -13,6 +13,7 @@ import { settings } from 'carbon-components';
 import Icon from '../Icon';
 import ChevronRight16 from '@carbon/icons-react/lib/chevron--right/16';
 import { match, keys } from '../../tools/key';
+import '../../tools/checkReactVersion';
 import { componentsX } from '../../internal/FeatureFlags';
 
 const { prefix } = settings;

@@ -9,6 +9,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { iconAddSolid } from 'carbon-icons';
 import Button from '../Button';
+import '../../tools/checkReactVersion';
 
 const TableBatchAction = props => (
   <Button small kind="ghost" icon={iconAddSolid} {...props} />

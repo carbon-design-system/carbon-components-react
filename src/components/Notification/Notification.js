@@ -24,6 +24,7 @@ import ErrorFilled16 from '@carbon/icons-react/lib/error--filled/16';
 import CheckmarkFilled16 from '@carbon/icons-react/lib/checkmark--filled/16';
 import InformationFilled16 from '@carbon/icons-react/lib/information--filled/16';
 import WarningAltFilled16 from '@carbon/icons-react/lib/warning--alt--filled/16';
+import '../../tools/checkReactVersion';
 import { componentsX } from '../../internal/FeatureFlags';
 
 const { prefix } = settings;

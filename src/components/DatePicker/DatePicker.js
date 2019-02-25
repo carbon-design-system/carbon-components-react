@@ -14,6 +14,7 @@ import rangePlugin from 'flatpickr/dist/plugins/rangePlugin';
 import { settings } from 'carbon-components';
 import DatePickerInput from '../DatePickerInput';
 import Icon from '../Icon';
+import '../../tools/checkReactVersion';
 import { componentsX } from '../../internal/FeatureFlags';
 
 const { prefix } = settings;

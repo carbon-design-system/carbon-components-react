@@ -13,6 +13,7 @@ import Icon from '../Icon';
 import Button from '../Button';
 import { settings } from 'carbon-components';
 import Close20 from '@carbon/icons-react/lib/close/20';
+import '../../tools/checkReactVersion';
 import { componentsX } from '../../internal/FeatureFlags';
 
 const { prefix } = settings;

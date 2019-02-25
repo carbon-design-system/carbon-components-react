@@ -12,6 +12,7 @@ import { settings } from 'carbon-components';
 import { iconCopy } from 'carbon-icons';
 import Copy16 from '@carbon/icons-react/lib/copy/16';
 import Icon from '../Icon';
+import '../../tools/checkReactVersion';
 import { componentsX } from '../../internal/FeatureFlags';
 
 const { prefix } = settings;

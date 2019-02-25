@@ -12,6 +12,7 @@ import { iconClose } from 'carbon-icons';
 import Close16 from '@carbon/icons-react/lib/close/16';
 import { settings } from 'carbon-components';
 import Icon from '../Icon';
+import '../../tools/checkReactVersion';
 import { componentsX } from '../../internal/FeatureFlags';
 
 const { prefix } = settings;

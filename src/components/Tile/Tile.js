@@ -15,6 +15,7 @@ import CheckmarkFilled from '@carbon/icons-react/lib/checkmark--filled/16';
 import ChevronDown16 from '@carbon/icons-react/lib/chevron--down/16';
 import { componentsX } from '../../internal/FeatureFlags';
 import Icon from '../Icon';
+import '../../tools/checkReactVersion';
 import { keys, matches } from '../../tools/key';
 
 const { prefix } = settings;

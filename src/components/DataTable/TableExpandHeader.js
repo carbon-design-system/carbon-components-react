@@ -6,6 +6,7 @@
  */
 
 import React from 'react';
+import '../../tools/checkReactVersion';
 
 const TableExpandHeader = props => <th scope="col" {...props} />;
 

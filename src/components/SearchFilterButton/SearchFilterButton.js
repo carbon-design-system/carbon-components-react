@@ -11,6 +11,7 @@ import { iconFilter } from 'carbon-icons';
 import { settings } from 'carbon-components';
 import Icon from '../Icon';
 import Filter16 from '@carbon/icons-react/lib/filter/16';
+import '../../tools/checkReactVersion';
 import { componentsX } from '../../internal/FeatureFlags';
 
 const { prefix } = settings;

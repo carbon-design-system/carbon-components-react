@@ -11,6 +11,7 @@ import Icon from '../Icon';
 import classNames from 'classnames';
 import { settings } from 'carbon-components';
 import { ButtonTypes } from '../../prop-types/types';
+import '../../tools/checkReactVersion';
 import { componentsX } from '../../internal/FeatureFlags';
 
 const { prefix } = settings;

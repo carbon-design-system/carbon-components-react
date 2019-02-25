@@ -11,6 +11,7 @@ import classNames from 'classnames';
 import isEqual from 'lodash.isequal';
 import { settings } from 'carbon-components';
 import TextInput from '../TextInput';
+import '../../tools/checkReactVersion';
 import { sliderValuePropSync } from '../../internal/FeatureFlags';
 import { componentsX } from '../../internal/FeatureFlags';
 

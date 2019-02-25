@@ -15,6 +15,7 @@ import warning from 'warning';
 import { iconInfoGlyph } from 'carbon-icons';
 import Information from '@carbon/icons-react/lib/information/16';
 import { settings } from 'carbon-components';
+import '../../tools/checkReactVersion';
 import FloatingMenu, {
   DIRECTION_LEFT,
   DIRECTION_TOP,

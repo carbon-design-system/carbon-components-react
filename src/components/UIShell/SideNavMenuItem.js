@@ -11,6 +11,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import SideNavLinkText from './SideNavLinkText';
 import Link from './Link';
+import '../../tools/checkReactVersion';
 
 const { prefix } = settings;
 

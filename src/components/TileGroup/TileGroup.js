@@ -10,6 +10,7 @@ import React from 'react';
 import RadioTile from '../RadioTile';
 import warning from 'warning';
 import { settings } from 'carbon-components';
+import '../../tools/checkReactVersion';
 
 const { prefix } = settings;
 

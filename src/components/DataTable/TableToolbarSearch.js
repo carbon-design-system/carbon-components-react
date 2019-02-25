@@ -10,6 +10,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { settings } from 'carbon-components';
 import Search from '../Search';
+import '../../tools/checkReactVersion';
 import setupGetInstanceId from './tools/instanceId';
 
 const { prefix } = settings;

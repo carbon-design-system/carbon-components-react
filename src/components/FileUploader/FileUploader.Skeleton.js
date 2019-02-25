@@ -9,6 +9,7 @@ import React from 'react';
 import { settings } from 'carbon-components';
 import SkeletonText from '../SkeletonText';
 import ButtonSkeleton from '../Button/Button.Skeleton';
+import '../../tools/checkReactVersion';
 
 const { prefix } = settings;
 

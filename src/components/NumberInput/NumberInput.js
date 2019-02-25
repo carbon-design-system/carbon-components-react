@@ -14,6 +14,7 @@ import WarningFilled16 from '@carbon/icons-react/lib/warning--filled/16';
 import CaretDownGlyph from '@carbon/icons-react/lib/caret--down/index';
 import CaretUpGlyph from '@carbon/icons-react/lib/caret--up/index';
 import Icon from '../Icon';
+import '../../tools/checkReactVersion';
 import { componentsX } from '../../internal/FeatureFlags';
 
 const { prefix } = settings;

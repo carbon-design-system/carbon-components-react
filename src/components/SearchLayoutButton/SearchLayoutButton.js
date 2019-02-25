@@ -12,6 +12,7 @@ import { settings } from 'carbon-components';
 import Icon from '../Icon';
 import ListBulleted16 from '@carbon/icons-react/lib/list--bulleted/16';
 import Grid16 from '@carbon/icons-react/lib/grid/16';
+import '../../tools/checkReactVersion';
 import { componentsX } from '../../internal/FeatureFlags';
 
 const { prefix } = settings;

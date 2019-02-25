@@ -9,6 +9,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import classNames from 'classnames';
 import { settings } from 'carbon-components';
+import '../../tools/checkReactVersion';
 import uid from '../../tools/uniqueId';
 
 const { prefix } = settings;

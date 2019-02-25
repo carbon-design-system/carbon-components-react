@@ -13,6 +13,7 @@ import ListBoxField from './ListBoxField';
 import ListBoxMenu from './ListBoxMenu';
 import { ListBoxType } from './ListBoxPropTypes';
 import childrenOf from '../../prop-types/childrenOf';
+import '../../tools/checkReactVersion';
 
 const { prefix } = settings;
 

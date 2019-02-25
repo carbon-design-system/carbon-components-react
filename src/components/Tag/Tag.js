@@ -10,6 +10,7 @@ import React from 'react';
 import classNames from 'classnames';
 import { settings } from 'carbon-components';
 import { componentsX } from '../../internal/FeatureFlags';
+import '../../tools/checkReactVersion';
 
 const { prefix } = settings;
 

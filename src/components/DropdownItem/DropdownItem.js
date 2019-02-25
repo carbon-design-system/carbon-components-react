@@ -10,6 +10,7 @@ import React from 'react';
 import classNames from 'classnames';
 import warning from 'warning';
 import { settings } from 'carbon-components';
+import '../../tools/checkReactVersion';
 import { breakingChangesX } from '../../internal/FeatureFlags';
 
 const { prefix } = settings;

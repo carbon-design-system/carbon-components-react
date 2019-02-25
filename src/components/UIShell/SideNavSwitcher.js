@@ -10,6 +10,7 @@ import { settings } from 'carbon-components';
 import cx from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
+import '../../tools/checkReactVersion';
 
 const { prefix } = settings;
 

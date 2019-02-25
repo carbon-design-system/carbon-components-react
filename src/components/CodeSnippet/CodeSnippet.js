@@ -13,6 +13,7 @@ import { settings } from 'carbon-components';
 import Copy from '../Copy';
 import CopyButton from '../CopyButton';
 import Icon from '../Icon';
+import '../../tools/checkReactVersion';
 import { componentsX } from '../../internal/FeatureFlags';
 
 const { prefix } = settings;

@@ -7,6 +7,7 @@
 
 import { settings } from 'carbon-components';
 import wrapComponent from '../../tools/wrapComponent';
+import '../../tools/checkReactVersion';
 
 const { prefix } = settings;
 

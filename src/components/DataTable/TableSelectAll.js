@@ -8,6 +8,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import InlineCheckbox from '../InlineCheckbox';
+import '../../tools/checkReactVersion';
 
 const TableSelectAll = ({
   ariaLabel,

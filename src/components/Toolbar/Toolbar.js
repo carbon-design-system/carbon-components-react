@@ -10,6 +10,7 @@ import PropTypes from 'prop-types';
 import ToolbarSearch from '../ToolbarSearch';
 import classNames from 'classnames';
 import { settings } from 'carbon-components';
+import '../../tools/checkReactVersion';
 
 const { prefix } = settings;
 

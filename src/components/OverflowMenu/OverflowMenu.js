@@ -12,6 +12,7 @@ import classNames from 'classnames';
 import warning from 'warning';
 import { iconOverflowMenu } from 'carbon-icons';
 import { settings } from 'carbon-components';
+import '../../tools/checkReactVersion';
 import ClickListener from '../../internal/ClickListener';
 import FloatingMenu, {
   DIRECTION_TOP,

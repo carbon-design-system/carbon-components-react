@@ -12,6 +12,7 @@ import SkeletonText from '../SkeletonText';
 import { iconChevronRight } from 'carbon-icons';
 import ChevronRight16 from '@carbon/icons-react/lib/chevron--right/16';
 import { settings } from 'carbon-components';
+import '../../tools/checkReactVersion';
 import { componentsX } from '../../internal/FeatureFlags';
 
 const { prefix } = settings;

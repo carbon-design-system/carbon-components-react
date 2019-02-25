@@ -10,6 +10,7 @@ import PropTypes from 'prop-types';
 import omit from 'lodash.omit';
 import cx from 'classnames';
 import { settings } from 'carbon-components';
+import '../../tools/checkReactVersion';
 
 const { prefix } = settings;
 

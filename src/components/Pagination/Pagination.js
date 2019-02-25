@@ -12,6 +12,7 @@ import debounce from 'lodash.debounce';
 import warning from 'warning';
 import { iconChevronLeft, iconChevronRight } from 'carbon-icons';
 import { settings } from 'carbon-components';
+import '../../tools/checkReactVersion';
 import { breakingChangesX } from '../../internal/FeatureFlags';
 import Icon from '../Icon';
 import Select from '../Select';

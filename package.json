@@ -137,6 +137,7 @@
     "lodash.isequal": "^4.5.0",
     "lodash.omit": "^4.5.0",
     "react-is": "^16.8.2",
+    "semver": "^5.6.0",
     "warning": "^3.0.0",
     "window-or-global": "^1.0.1"
   },
@@ -207,9 +208,9 @@
     "prettier": "^1.10.0",
     "promise": "^8.0.1",
     "prop-types": "^15.5.8",
-    "react": "^16.4.0",
-    "react-dom": "^16.4.0",
-    "react-test-renderer": "^16.4.0",
+    "react": "^16.8.2",
+    "react-dom": "^16.8.2",
+    "react-test-renderer": "^16.8.2",
     "requestanimationframe": "^0.0.23",
     "rimraf": "^2.6.1",
     "rollup": "^0.57.0",
@@ -229,7 +230,7 @@
     "whatwg-fetch": "^2.0.3"
   },
   "resolutions": {
-    "enzyme-adapter-react-16/react-test-renderer": "^16.4.0"
+    "enzyme-adapter-react-16/react-test-renderer": "^16.8.2"
   },
   "release": {
     "branch": "master"

@@ -9,6 +9,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import InlineCheckbox from '../InlineCheckbox';
 import RadioButton from '../RadioButton';
+import '../../tools/checkReactVersion';
 
 const TableSelectRow = ({
   ariaLabel,

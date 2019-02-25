@@ -10,6 +10,7 @@ import React from 'react';
 import Modal from '../Modal';
 import Button from '../Button';
 import { ButtonTypes } from '../../prop-types/types';
+import '../../tools/checkReactVersion';
 
 export default class ModalWrapper extends React.Component {
   static propTypes = {

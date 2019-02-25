@@ -11,6 +11,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { settings } from 'carbon-components';
 import Icon from '../Icon';
+import '../../tools/checkReactVersion';
 import uid from '../../tools/uniqueId';
 import { ButtonTypes } from '../../prop-types/types';
 import { iconCloseSolid, iconCheckmarkSolid } from 'carbon-icons';

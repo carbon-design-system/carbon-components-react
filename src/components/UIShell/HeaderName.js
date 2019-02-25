@@ -10,6 +10,7 @@ import cx from 'classnames';
 import React from 'react';
 import PropTypes from 'prop-types';
 import Link, { LinkPropTypes } from './Link';
+import '../../tools/checkReactVersion';
 
 const { prefix: selectorPrefix } = settings;
 

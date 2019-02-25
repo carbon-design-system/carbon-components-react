@@ -11,6 +11,7 @@ import classNames from 'classnames';
 import RadioButton from '../RadioButton';
 import warning from 'warning';
 import { settings } from 'carbon-components';
+import '../../tools/checkReactVersion';
 
 const { prefix } = settings;
 

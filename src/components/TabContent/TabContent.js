@@ -7,6 +7,7 @@
 
 import PropTypes from 'prop-types';
 import React from 'react';
+import '../../tools/checkReactVersion';
 
 const TabContent = props => {
   const { selected, children, ...other } = props;

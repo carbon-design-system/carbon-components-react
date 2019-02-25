@@ -10,6 +10,7 @@ import { settings } from 'carbon-components';
 import ListBoxMenuIcon from './ListBoxMenuIcon';
 import ListBoxSelection from './ListBoxSelection';
 import childrenOf from '../../prop-types/childrenOf';
+import '../../tools/checkReactVersion';
 
 const { prefix } = settings;
 

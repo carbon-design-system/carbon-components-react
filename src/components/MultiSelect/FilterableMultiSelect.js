@@ -13,6 +13,7 @@ import isEqual from 'lodash.isequal';
 import { settings } from 'carbon-components';
 import ListBox from '../ListBox';
 import Checkbox from '../Checkbox';
+import '../../tools/checkReactVersion';
 import Selection from '../../internal/Selection';
 import { sortingPropTypes } from './MultiSelectPropTypes';
 import { defaultItemToString } from './tools/itemToString';

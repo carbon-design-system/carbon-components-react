@@ -11,6 +11,7 @@ import classNames from 'classnames';
 import { settings } from 'carbon-components';
 import Calendar16 from '@carbon/icons-react/lib/calendar/16';
 import Icon from '../Icon';
+import '../../tools/checkReactVersion';
 import { componentsX } from '../../internal/FeatureFlags';
 
 const { prefix } = settings;

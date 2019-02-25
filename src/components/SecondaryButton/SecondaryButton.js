@@ -7,6 +7,7 @@
 
 import React from 'react';
 import Button from '../Button';
+import '../../tools/checkReactVersion';
 
 const SecondaryButton = props => <Button kind="secondary" {...props} />;
 

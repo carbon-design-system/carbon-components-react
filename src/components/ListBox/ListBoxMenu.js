@@ -9,6 +9,7 @@ import React from 'react';
 import { settings } from 'carbon-components';
 import ListBoxMenuItem from './ListBoxMenuItem';
 import childrenOfType from '../../prop-types/childrenOfType';
+import '../../tools/checkReactVersion';
 
 const { prefix } = settings;
 

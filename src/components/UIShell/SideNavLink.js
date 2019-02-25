@@ -13,6 +13,7 @@ import Link, { LinkPropTypes } from './Link';
 import SideNavIcon from './SideNavIcon';
 import SideNavItem from './SideNavItem';
 import SideNavLinkText from './SideNavLinkText';
+import '../../tools/checkReactVersion';
 
 const { prefix } = settings;
 

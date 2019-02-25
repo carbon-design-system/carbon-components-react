@@ -10,6 +10,7 @@ import { settings } from 'carbon-components';
 import cx from 'classnames';
 import React from 'react';
 import PropTypes from 'prop-types';
+import '../../tools/checkReactVersion';
 import { keys, matches } from '../../tools/key';
 import { AriaLabelPropType } from '../../prop-types/AriaPropTypes';
 

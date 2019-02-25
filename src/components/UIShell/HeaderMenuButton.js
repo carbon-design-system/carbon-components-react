@@ -12,6 +12,7 @@ import cx from 'classnames';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { AriaLabelPropType } from '../../prop-types/AriaPropTypes';
+import '../../tools/checkReactVersion';
 
 const { prefix } = settings;
 

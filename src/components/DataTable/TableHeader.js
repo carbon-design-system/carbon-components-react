@@ -13,6 +13,7 @@ import { settings } from 'carbon-components';
 import Icon from '../Icon';
 import CaretUpGlyph from '@carbon/icons-react/lib/caret--up';
 import { sortStates } from './state/sorting';
+import '../../tools/checkReactVersion';
 import { componentsX } from '../../internal/FeatureFlags';
 
 const { prefix } = settings;
