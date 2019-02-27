@@ -64,6 +64,12 @@ const props = {
   }),
 };
 
+const CustomLink = ({ children, href, ...other }) => (
+  <a href={href} {...other}>
+    {children}
+  </a>
+);
+
 storiesOf('Buttons', module)
   .addDecorator(withKnobs)
   .add(
@@ -71,7 +77,12 @@ storiesOf('Buttons', module)
     () => {
       const regularProps = props.regular();
       return (
-        <div style={{ display: 'flex', alignItems: 'center' }}>
+        <div
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            flexWrap: 'wrap',
+          }}>
           <Button {...regularProps} className="some-class">
             Button
           </Button>
@@ -80,6 +91,17 @@ storiesOf('Buttons', module)
             Link
           </Button>
           &nbsp;
+          <Button {...regularProps} as="p" href="#" className="some-class">
+            Element
+          </Button>
+          &nbsp;
+          <Button
+            {...regularProps}
+            as={CustomLink}
+            href="#"
+            className="some-class">
+            Custom component
+          </Button>
         </div>
       );
     },
