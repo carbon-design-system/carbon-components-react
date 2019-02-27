@@ -1,9 +1,21 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import PropTypes from 'prop-types';
 import React from 'react';
 import classNames from 'classnames';
 import { iconCaretDown } from 'carbon-icons';
+import ChevronDownGlyph from '@carbon/icons-react/lib/chevron--down/index';
+import { settings } from 'carbon-components';
 import Icon from '../Icon';
 import TabContent from '../TabContent';
+import { componentsX } from '../../internal/FeatureFlags';
+
+const { prefix } = settings;
 
 export default class Tabs extends React.Component {
   static propTypes = {
@@ -70,6 +82,11 @@ export default class Tabs extends React.Component {
      * for the dropdown menu of items
      */
     iconDescription: PropTypes.string.isRequired,
+
+    /**
+     * Provide a className that is applied to the <TabContent> components
+     */
+    tabContentClassName: PropTypes.string,
   };
 
   static defaultProps = {
@@ -179,15 +196,31 @@ export default class Tabs extends React.Component {
       triggerHref,
       role,
       onSelectionChange,
+      tabContentClassName,
       ...other
     } = this.props;
 
+    /**
+     * The tab panel acts like a tab panel when the screen is wider, but acts
+     * like a select list when the screen is narrow.  In the wide case we want
+     * to allow the user to use the tab key to set the focus in the tab panel
+     * and then use the left and right arrow keys to navigate the tabs.  In the
+     * narrow case we want to use the tab key to select different options in
+     * the list.
+     *
+     * We set the tab index based on the different states so the browser will treat
+     * the whole tab panel as a single focus component when it looks like a tab
+     * panel and separate components when it looks like a select list.
+     */
     const tabsWithProps = this.getTabs().map((tab, index) => {
+      const tabPanelIndex = index === this.state.selected ? 0 : -1;
+      const tabIndex = !this.state.dropdownHidden ? 0 : tabPanelIndex;
       const newTab = React.cloneElement(tab, {
         index,
         selected: index === this.state.selected,
         handleTabClick: this.handleTabClick(onSelectionChange),
         handleTabAnchorFocus: this.handleTabAnchorFocus(onSelectionChange),
+        tabIndex,
         ref: e => {
           this.setTabAt(index, e);
         },
@@ -202,7 +235,7 @@ export default class Tabs extends React.Component {
 
       return (
         <TabContent
-          className="tab-content"
+          className={tabContentClassName}
           aria-hidden={!selected}
           hidden={!selected}
           selected={selected}>
@@ -212,9 +245,9 @@ export default class Tabs extends React.Component {
     });
 
     const classes = {
-      tabs: classNames('bx--tabs', className),
-      tablist: classNames('bx--tabs__nav', {
-        'bx--tabs__nav--hidden': this.state.dropdownHidden,
+      tabs: classNames(`${prefix}--tabs`, className),
+      tablist: classNames(`${prefix}--tabs__nav`, {
+        [`${prefix}--tabs__nav--hidden`]: this.state.dropdownHidden,
       }),
     };
 
@@ -228,17 +261,21 @@ export default class Tabs extends React.Component {
             role="listbox"
             aria-label={ariaLabel}
             tabIndex={0}
-            className="bx--tabs-trigger"
+            className={`${prefix}--tabs-trigger`}
             onClick={this.handleDropdownClick}
             onKeyPress={this.handleDropdownClick}>
             <a
               tabIndex={-1}
-              className="bx--tabs-trigger-text"
+              className={`${prefix}--tabs-trigger-text`}
               href={triggerHref}
               onClick={this.handleDropdownClick}>
               {selectedLabel}
             </a>
-            <Icon description={iconDescription} icon={iconCaretDown} />
+            {componentsX ? (
+              <ChevronDownGlyph aria-hidden />
+            ) : (
+              <Icon description={iconDescription} icon={iconCaretDown} />
+            )}
           </div>
           <ul role="tablist" className={classes.tablist}>
             {tabsWithProps}

@@ -1,7 +1,14 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
-import { withInfo } from '@storybook/addon-info';
+
 import { withKnobs, boolean, number, text } from '@storybook/addon-knobs';
 import TimePicker from '../TimePicker';
 import TimePickerSelect from '../TimePickerSelect';
@@ -13,7 +20,10 @@ const props = {
       'Regular expression for the value (pattern in <TimePicker>)',
       '(1[012]|[1-9]):[0-5][0-9](\\s)?(?i)'
     ),
-    placeholder: text('Plceholder text (placeholder in <TimePicker>)', 'hh:mm'),
+    placeholder: text(
+      'Placeholder text (placeholder in <TimePicker>)',
+      'hh:mm'
+    ),
     disabled: boolean('Disabled (disabled in <TimePicker>)', false),
     light: boolean('Light variant (light in <TimePicker>)', false),
     hideLabel: boolean('No label (hideLabel in <TimePicker>)', false),
@@ -49,11 +59,7 @@ storiesOf('TimePicker', module)
   .addDecorator(withKnobs)
   .add(
     'Default',
-    withInfo({
-      text: `
-        The time picker allow users to select a time.
-      `,
-    })(() => {
+    () => {
       const selectProps = props.select();
       return (
         <TimePicker id="time-picker" {...props.timepicker()}>
@@ -67,5 +73,12 @@ storiesOf('TimePicker', module)
           </TimePickerSelect>
         </TimePicker>
       );
-    })
+    },
+    {
+      info: {
+        text: `
+            The time picker allow users to select a time.
+          `,
+      },
+    }
   );

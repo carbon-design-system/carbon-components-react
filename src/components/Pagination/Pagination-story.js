@@ -1,7 +1,15 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
-import { withInfo } from '@storybook/addon-info';
+import { breakingChangesX } from '../../internal/FeatureFlags';
+
 import {
   withKnobs,
   array,
@@ -11,6 +19,7 @@ import {
 } from '@storybook/addon-knobs';
 import Pagination from '../Pagination';
 import PaginationV2 from '../PaginationV2';
+import { componentsX } from '../../internal/FeatureFlags';
 
 const props = () => ({
   disabled: boolean('Disable backward/forward buttons (disabled)', false),
@@ -18,7 +27,9 @@ const props = () => ({
   totalItems: number('Total number of items (totalItems)', 103),
   pagesUnknown: boolean('Total number of items unknown (pagesUnknown)', false),
   pageInputDisabled: boolean('Disable page input (pageInputDisabled)', false),
-  isLastPage: boolean('At the last page (isLastPage)', false),
+  isLastPage: componentsX
+    ? null
+    : boolean('At the last page (isLastPage)', false),
   backwardText: text(
     'The description for the backward icon (backwardText)',
     'Backward'
@@ -36,35 +47,40 @@ const props = () => ({
   onChange: action('onChange'),
 });
 
-storiesOf('Pagination', module)
+const story = storiesOf('Pagination', module)
   .addDecorator(withKnobs)
   .addDecorator(story => <div style={{ width: '800px' }}>{story()}</div>)
-  .add(
-    'v2',
-    withInfo({
+  .add('v2', () => <PaginationV2 {...props()} />, {
+    info: {
       text: `
-        V2 version of the Pagination
-      `,
-    })(() => <PaginationV2 {...props()} />)
-  )
-  .add(
-    'v1',
-    withInfo({
-      text: `
-        The pagination component is used to paginate through items.
-      `,
-    })(() => <Pagination {...props()} />)
-  )
-  .add(
-    'multipe pagination components',
-    withInfo({
-      text: `Showcasing unique ids for each pagination component`,
-    })(() => {
-      return (
-        <div>
-          <Pagination {...props()} />
-          <Pagination {...props()} />
-        </div>
-      );
+            V2 version of the Pagination
+          `,
+    },
+  });
+
+if (!breakingChangesX) {
+  story
+    .add('v1', () => <Pagination {...props()} />, {
+      info: {
+        text: `
+            The pagination component is used to paginate through items.
+          `,
+      },
     })
-  );
+    .add(
+      'multipe pagination components',
+      () => {
+        return (
+          <div>
+            <Pagination {...props()} />
+            <Pagination {...props()} />
+          </div>
+        );
+      },
+      {
+        info: {
+          text: `Showcasing unique ids for each pagination component`,
+        },
+      }
+    );
+}

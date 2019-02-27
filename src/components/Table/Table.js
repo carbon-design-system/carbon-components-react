@@ -1,7 +1,18 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import PropTypes from 'prop-types';
 import React from 'react';
 import classNames from 'classnames';
 import warning from 'warning';
+import { settings } from 'carbon-components';
+import { breakingChangesX } from '../../internal/FeatureFlags';
+
+const { prefix } = settings;
 
 let didWarnAboutDeprecation = false;
 
@@ -16,11 +27,11 @@ const Table = props => {
   }
   const { children, className, containerClassName, ...other } = props;
 
-  const tableClasses = classNames(className, 'bx--responsive-table');
+  const tableClasses = classNames(className, `${prefix}--responsive-table`);
 
   const tableContainerClasses = classNames(
     containerClassName,
-    'bx--responsive-table-container'
+    `${prefix}--responsive-table-container`
   );
 
   return (
@@ -39,9 +50,20 @@ const Table = props => {
 };
 
 Table.propTypes = {
+  /**
+   * Provide the contents of your Table
+   */
   children: PropTypes.node,
+
+  /**
+   * Specify an optional className to be applied to the <table> node
+   */
   className: PropTypes.string,
+
+  /**
+   * Specify an optional className to be applied to the container node
+   */
   containerClassName: PropTypes.string,
 };
 
-export default Table;
+export default (!breakingChangesX ? Table : null);

@@ -1,3 +1,10 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 export Accordion from './components/Accordion';
 export AccordionItem from './components/AccordionItem';
 export Breadcrumb from './components/Breadcrumb';
@@ -114,6 +121,7 @@ export TooltipIcon from './components/TooltipIcon';
 export TooltipSimple from './components/TooltipSimple';
 export UnorderedList from './components/UnorderedList';
 export SkeletonText from './components/SkeletonText';
+export SkeletonPlaceholder from './components/SkeletonPlaceholder';
 export DataTableSkeleton from './components/DataTableSkeleton';
 export AccordionSkeleton from './components/Accordion/Accordion.Skeleton';
 export BreadcrumbSkeleton from './components/Breadcrumb/Breadcrumb.Skeleton';
@@ -136,3 +144,4 @@ export TextInputSkeleton from './components/TextInput/TextInput.Skeleton';
 export ToggleSkeleton from './components/Toggle/Toggle.Skeleton';
 export ToggleSmallSkeleton from './components/ToggleSmall/ToggleSmall.Skeleton';
 export IconSkeleton from './components/Icon/Icon.Skeleton';
+export DatePickerSkeleton from './components/DatePicker/DatePicker.Skeleton';

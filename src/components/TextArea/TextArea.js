@@ -1,6 +1,16 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import PropTypes from 'prop-types';
 import React from 'react';
 import classNames from 'classnames';
+import { settings } from 'carbon-components';
+
+const { prefix } = settings;
 
 const TextArea = ({
   className,
@@ -29,11 +39,12 @@ const TextArea = ({
     },
   };
 
-  const textareaClasses = classNames('bx--text-area', className, {
-    'bx--text-area--light': light,
+  const errorId = id + '-error-msg';
+  const textareaClasses = classNames(`${prefix}--text-area`, className, {
+    [`${prefix}--text-area--light`]: light,
   });
-  const labelClasses = classNames('bx--label', {
-    'bx--visually-hidden': hideLabel,
+  const labelClasses = classNames(`${prefix}--label`, {
+    [`${prefix}--visually-hidden`]: hideLabel,
   });
 
   const label = labelText ? (
@@ -43,13 +54,17 @@ const TextArea = ({
   ) : null;
 
   const error = invalid ? (
-    <div className="bx--form-requirement">{invalidText}</div>
+    <div className={`${prefix}--form-requirement`} id={errorId}>
+      {invalidText}
+    </div>
   ) : null;
 
   const input = invalid ? (
     <textarea
       {...other}
       {...textareaProps}
+      aria-invalid
+      aria-describedby={errorId}
       className={textareaClasses}
       data-invalid
     />
@@ -58,11 +73,11 @@ const TextArea = ({
   );
 
   const helper = helperText ? (
-    <div className="bx--form__helper-text">{helperText}</div>
+    <div className={`${prefix}--form__helper-text`}>{helperText}</div>
   ) : null;
 
   return (
-    <div className="bx--form-item">
+    <div className={`${prefix}--form-item`}>
       {label}
       {input}
       {helper}

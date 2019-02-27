@@ -1,13 +1,21 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import { withInfo } from '@storybook/addon-info';
+
 import { withKnobs, boolean, select, text } from '@storybook/addon-knobs';
 import { iconInfoGlyph, iconAdd } from 'carbon-icons';
+import { breakingChangesX } from '../../internal/FeatureFlags';
 import TooltipSimple from '../TooltipSimple';
 
 const icons = {
-  iconInfoGlyph: 'Info (iconInfo from `carbon-icons`)',
-  iconAdd: 'Add (iconAdd from `carbon-icons`)',
+  'Info (iconInfo from `carbon-icons`)': 'iconInfoGlyph',
+  'Add (iconAdd from `carbon-icons`)': 'iconAdd',
 };
 
 const iconMap = {
@@ -16,8 +24,8 @@ const iconMap = {
 };
 
 const directions = {
-  bottom: 'Bottom (bottom)',
-  top: 'Top (top)',
+  'Bottom (bottom)': 'bottom',
+  'Top (top)': 'top',
 };
 
 const props = {
@@ -37,35 +45,43 @@ const props = {
   }),
 };
 
-storiesOf('TooltipSimple', module)
-  .addDecorator(withKnobs)
-  .add(
-    'default',
-    withInfo({
-      text: `
-        Tooltips are used to supply additional information to an element when hovering over it. By default,
-        the tooltip will render above the element. The example below shows the default scenario.
-      `,
-    })(() => (
-      <div style={{ marginTop: '2rem' }}>
-        <TooltipSimple {...props.withIcon()}>
-          <p className="bx--tooltip__trigger">Tooltip - hover</p>
-        </TooltipSimple>
-      </div>
-    ))
-  )
-  .add(
-    'no icon',
-    withInfo({
-      text: `
-        Tooltips are used to supply additional information to an element when hovering over it. By default,
-        the tooltip will render with an information Icon. The example below shows the option to exclude the Icon.
-      `,
-    })(() => (
-      <div style={{ marginTop: '2rem' }}>
-        <TooltipSimple {...props.withoutIcon()}>
-          <p className="bx--tooltip__trigger">Tooltip - hover</p>
-        </TooltipSimple>
-      </div>
-    ))
-  );
+if (!breakingChangesX) {
+  storiesOf('TooltipSimple', module)
+    .addDecorator(withKnobs)
+    .add(
+      'default',
+      () => (
+        <div style={{ marginTop: '2rem' }}>
+          <TooltipSimple {...props.withIcon()}>
+            <p className="bx--tooltip__trigger">Tooltip - hover</p>
+          </TooltipSimple>
+        </div>
+      ),
+      {
+        info: {
+          text: `
+              Tooltips are used to supply additional information to an element when hovering over it. By default,
+              the tooltip will render above the element. The example below shows the default scenario.
+            `,
+        },
+      }
+    )
+    .add(
+      'no icon',
+      () => (
+        <div style={{ marginTop: '2rem' }}>
+          <TooltipSimple {...props.withoutIcon()}>
+            <p className="bx--tooltip__trigger">Tooltip - hover</p>
+          </TooltipSimple>
+        </div>
+      ),
+      {
+        info: {
+          text: `
+              Tooltips are used to supply additional information to an element when hovering over it. By default,
+              the tooltip will render with an information Icon. The example below shows the option to exclude the Icon.
+            `,
+        },
+      }
+    );
+}

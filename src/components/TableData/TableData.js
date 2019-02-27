@@ -1,8 +1,19 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import PropTypes from 'prop-types';
 import React from 'react';
 import classNames from 'classnames';
 import { iconChevronRight } from 'carbon-icons';
+import { settings } from 'carbon-components';
+import { breakingChangesX } from '../../internal/FeatureFlags';
 import Icon from '../Icon';
+
+const { prefix } = settings;
 
 const TableData = props => {
   const {
@@ -16,7 +27,7 @@ const TableData = props => {
 
   const tableDataClasses = classNames(className);
 
-  const iconClasses = classNames(iconClassName, 'bx--table-expand__svg');
+  const iconClasses = classNames(iconClassName, `${prefix}--table-expand__svg`);
 
   const style = expanded
     ? {
@@ -47,7 +58,14 @@ const TableData = props => {
 };
 
 TableData.propTypes = {
+  /**
+   * Provide the contents of your TableData.
+   */
   children: PropTypes.node,
+
+  /**
+   * Specify an optional className to be applied to your TableData.
+   */
   className: PropTypes.string,
 
   /**
@@ -70,4 +88,4 @@ TableData.defaultProps = {
   iconDescription: 'expand row',
 };
 
-export default TableData;
+export default (!breakingChangesX ? TableData : null);

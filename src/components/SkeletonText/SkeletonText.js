@@ -1,6 +1,16 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import PropTypes from 'prop-types';
 import React from 'react';
 import classNames from 'classnames';
+import { settings } from 'carbon-components';
+
+const { prefix } = settings;
 
 const SkeletonText = ({
   paragraph,
@@ -11,8 +21,8 @@ const SkeletonText = ({
   ...other
 }) => {
   const skeletonTextClasses = classNames({
-    'bx--skeleton__text': true,
-    'bx--skeleton__heading': heading,
+    [`${prefix}--skeleton__text`]: true,
+    [`${prefix}--skeleton__heading`]: heading,
     [className]: className,
   });
 
@@ -26,7 +36,7 @@ const SkeletonText = ({
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }
 
-  if (widthPercent & paragraph) {
+  if (widthPercent && paragraph) {
     const lines = [];
     for (var i = 0; i < lineCount; i++) {
       const randomWidth = getRandomInt(0, 75) + 'px';
@@ -42,7 +52,7 @@ const SkeletonText = ({
     return <div>{lines}</div>;
   }
 
-  if (widthPx & paragraph) {
+  if (widthPx && paragraph) {
     const lines = [];
     for (var j = 0; j < lineCount; j++) {
       const randomWidth = getRandomInt(widthNum - 75, widthNum) + 'px';
@@ -79,6 +89,9 @@ SkeletonText.propTypes = {
    * generates skeleton text at a larger size
    */
   heading: PropTypes.bool,
+  /**
+   * Specify an optional className to be applied to the container node
+   */
   className: PropTypes.string,
 };
 

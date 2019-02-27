@@ -23,11 +23,12 @@ We're actively looking to improve our Component documentation through generating
 add documentation around installing and using our components, in addition to
 covering common use-cases for each component with code examples.
 
-If you would like to help out, there are two components of contributing
+If you would like to help out, there are several options to contribute
 component-specific documentation to `carbon-components-react`:
 
-1. Create a `README.md` file using [this file structure](#file-structure)
-2. Add the `README.md` file to the component's story using [these steps](#storybook-readme)
+1. Create a `README.md` file using [this file structure](#file-structure), and add it to the component's story using [these steps](#storybook-readme)
+2. Ensure props of components are covered by [Storybook knobs](https://github.com/storybooks/storybook/tree/master/addons/knobs)
+3. Ensure event handlers of components are covered by [Storybook action logger](https://github.com/storybooks/storybook/tree/master/addons/actions)
 
 Once those steps are complete, you should be able to follow our [contribution guidelines](/.github/CONTRIBUTING.md) to finish making a Pull Request for your work!
 
@@ -35,12 +36,12 @@ Once those steps are complete, you should be able to follow our [contribution gu
 
 Each markdown file will tend to take on the following initial structure:
 
-* Component name heading
-* Brief description of the component
-* A table of contents block
-* Steps around installing and using the component
-* Details around any special cases with component prop types
-* Details around common use-cases for the components, either with embedded code
+- Component name heading
+- Brief description of the component
+- A table of contents block
+- Steps around installing and using the component
+- Details around any special cases with component prop types
+- Details around common use-cases for the components, either with embedded code
   or links to [codesandbox.io](http://codesandbox.io) playgrounds
 
 You can use the template available [here](/docs/component-template.md) to help
@@ -68,11 +69,10 @@ import readme from './README.md';
 
 storiesOf('ComponentName', module).add(
   'story-title',
-  withReadme(
-    readme,
-    withInfo({
+  withReadme(readme, () => <ComponentExample />, {
+    info: {
       text: 'Information for the given story',
-    })(() => <ComponentExample />)
-  )
+    },
+  })
 );
 ```

@@ -1,3 +1,10 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import React from 'react';
 import Tag from '../Tag';
 import TagSkeleton from '../Tag/Tag.Skeleton';
@@ -9,13 +16,6 @@ describe('Tag', () => {
       const tag = shallow(<Tag type="beta" />);
       expect(tag.hasClass('bx--tag')).toEqual(true);
       expect(tag.hasClass('bx--tag--beta')).toEqual(true);
-    });
-
-    it('should provide a default label based on the type', () => {
-      const tag = shallow(<Tag type="beta" />);
-      expect(tag.text()).toEqual('Beta');
-      tag.setProps({ type: 'ibm' });
-      expect(tag.text()).toEqual('IBM');
     });
   });
 

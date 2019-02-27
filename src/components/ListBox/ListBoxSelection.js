@@ -1,8 +1,20 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import cx from 'classnames';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { iconClose } from 'carbon-icons';
+import Close16 from '@carbon/icons-react/lib/close/16';
+import { settings } from 'carbon-components';
 import Icon from '../Icon';
+import { componentsX } from '../../internal/FeatureFlags';
+
+const { prefix } = settings;
 
 /**
  * `ListBoxSelection` is used to provide controls for clearing a selection, in
@@ -15,8 +27,8 @@ const ListBoxSelection = ({
   translateWithId: t,
 }) => {
   const className = cx({
-    'bx--list-box__selection': true,
-    'bx--list-box__selection--multi': selectionCount,
+    [`${prefix}--list-box__selection`]: true,
+    [`${prefix}--list-box__selection--multi`]: selectionCount,
   });
   const handleOnClick = event => {
     // If we have a mult-select badge, clicking it shouldn't open the menu back
@@ -43,7 +55,11 @@ const ListBoxSelection = ({
       onKeyDown={handleOnKeyDown}
       title={description}>
       {selectionCount}
-      <Icon icon={iconClose} description={description} focusable="false" />
+      {componentsX ? (
+        <Close16 role="img" />
+      ) : (
+        <Icon icon={iconClose} description={description} focusable="false" />
+      )}
     </div>
   );
 };

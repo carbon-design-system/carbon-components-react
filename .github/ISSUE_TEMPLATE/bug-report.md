@@ -1,6 +1,9 @@
 ---
 name: "Bug Report \U0001F41B"
 about: Create a report to help us improve
+title: ''
+labels: ''
+assignees: ''
 ---
 
 <!-- Feel free to remove sections that aren't relevant.
@@ -30,10 +33,10 @@ about: Create a report to help us improve
 3. Step three
 4. etc.
 
-> Please create a reduced test case in code sandbox
-> https://codesandbox.io/s/r4zxq9pvq
+> Please create a reduced test case in CodeSandbox
+> https://codesandbox.io/s/github/IBM/carbon-components-react/tree/master/examples/codesandbox
 
 ## Additional information
 
-* Screenshots or code
-* Notes
+- Screenshots or code
+- Notes

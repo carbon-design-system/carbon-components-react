@@ -1,9 +1,21 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import classNames from 'classnames';
+import ChevronDown16 from '@carbon/icons-react/lib/chevron--down/16';
+import { settings } from 'carbon-components';
 import Copy from '../Copy';
 import CopyButton from '../CopyButton';
 import Icon from '../Icon';
+import { componentsX } from '../../internal/FeatureFlags';
+
+const { prefix } = settings;
 
 export default class CodeSnippet extends Component {
   static propTypes = {
@@ -116,12 +128,12 @@ export default class CodeSnippet extends Component {
     } = this.props;
 
     const codeSnippetClasses = classNames(className, {
-      'bx--snippet': true,
-      'bx--snippet--single': type === 'single',
-      'bx--snippet--multi': type === 'multi',
-      'bx--snippet--inline': type === 'inline',
-      'bx--snippet--expand': this.state.expandedCode,
-      'bx--snippet--light': light,
+      [`${prefix}--snippet`]: true,
+      [`${prefix}--snippet--single`]: type === 'single',
+      [`${prefix}--snippet--multi`]: type === 'multi',
+      [`${prefix}--snippet--inline`]: type === 'inline',
+      [`${prefix}--snippet--expand`]: this.state.expandedCode,
+      [`${prefix}--snippet--light`]: light,
     });
 
     const expandCodeBtnText = this.state.expandedCode
@@ -130,17 +142,28 @@ export default class CodeSnippet extends Component {
 
     const moreLessBtn = (
       <button
-        className="bx--btn bx--btn--ghost bx--btn--sm bx--snippet-btn--expand"
+        className={`${prefix}--btn ${prefix}--btn--ghost ${prefix}--btn--sm ${prefix}--snippet-btn--expand`}
         type="button"
         onClick={this.expandCode}>
-        <span className="bx--snippet-btn--text">{expandCodeBtnText}</span>
-        <Icon
-          aria-hidden="true"
-          alt={expandCodeBtnText}
-          name="chevron--down"
-          description={expandCodeBtnText}
-          className="bx--icon-chevron--down"
-        />
+        <span className={`${prefix}--snippet-btn--text`}>
+          {expandCodeBtnText}
+        </span>
+        {componentsX ? (
+          <ChevronDown16
+            aria-label={expandCodeBtnText}
+            className={`${prefix}--icon-chevron--down ${prefix}--snippet__icon`}
+            name="chevron--down"
+            role="img"
+          />
+        ) : (
+          <Icon
+            aria-hidden="true"
+            alt={expandCodeBtnText}
+            name="chevron--down"
+            description={expandCodeBtnText}
+            className={`${prefix}--icon-chevron--down`}
+          />
+        )}
       </button>
     );
 
@@ -148,7 +171,7 @@ export default class CodeSnippet extends Component {
       <div
         role="textbox"
         tabIndex={0}
-        className="bx--snippet-container"
+        className={`${prefix}--snippet-container`}
         aria-label={ariaLabel ? ariaLabel : 'code-snippet'}>
         <code>
           <pre
@@ -172,6 +195,8 @@ export default class CodeSnippet extends Component {
     if (type === 'inline') {
       return (
         <Copy
+          {...other}
+          onClick={onClick}
           className={codeSnippetClasses}
           aria-label={copyLabel}
           feedback={feedback}>

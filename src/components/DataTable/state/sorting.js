@@ -1,3 +1,10 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import { sortRows } from '../tools/sorting';
 
 /**
@@ -29,18 +36,18 @@ export const getNextSortDirection = (prevHeader, header, prevState) => {
   // have to derive the next sort state from the previous sort state
   if (prevHeader === header) {
     // When transitioning, we know that the sequence of states is as follows:
-    // NONE -> DESC -> ASC -> NONE
+    // NONE -> ASC -> DESC -> NONE
     if (prevState === 'NONE') {
-      return sortStates.DESC;
-    }
-    if (prevState === 'DESC') {
       return sortStates.ASC;
+    }
+    if (prevState === 'ASC') {
+      return sortStates.DESC;
     }
     return sortStates.NONE;
   }
   // Otherwise, we have selected a new header and need to start off by sorting
   // in descending order by default
-  return sortStates.DESC;
+  return sortStates.ASC;
 };
 
 export const getNextSortState = (props, state, { key }) => {

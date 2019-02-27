@@ -1,6 +1,16 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import cx from 'classnames';
 import React from 'react';
 import PropTypes from 'prop-types';
+import { settings } from 'carbon-components';
+
+const { prefix } = settings;
 
 const TooltipIcon = ({
   className,
@@ -11,12 +21,12 @@ const TooltipIcon = ({
 }) => {
   const tooltipClassName = cx({
     [className]: !!className,
-    'bx--tooltip-icon': true,
+    [`${prefix}--tooltip-icon`]: true,
   });
   const triggerClassName = cx({
-    'bx--tooltip__trigger': true,
-    'bx--tooltip--icon__bottom': direction === 'bottom',
-    'bx--tooltip--icon__top': direction === 'top',
+    [`${prefix}--tooltip__trigger`]: true,
+    [`${prefix}--tooltip--icon__bottom`]: direction === 'bottom',
+    [`${prefix}--tooltip--icon__top`]: direction === 'top',
   });
   return (
     <div {...rest} className={tooltipClassName}>

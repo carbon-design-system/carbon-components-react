@@ -1,9 +1,21 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import cx from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { iconCaretUp } from 'carbon-icons';
+import { settings } from 'carbon-components';
 import Icon from '../Icon';
+import CaretUpGlyph from '@carbon/icons-react/lib/caret--up';
 import { sortStates } from './state/sorting';
+import { componentsX } from '../../internal/FeatureFlags';
+
+const { prefix } = settings;
 
 const translationKeys = {
   iconDescription: 'carbon.table.header.icon.description',
@@ -12,14 +24,27 @@ const translationKeys = {
 const translateWithId = (key, { sortDirection, isSortHeader, sortStates }) => {
   if (key === translationKeys.iconDescription) {
     if (isSortHeader) {
-      const order =
-        sortDirection === sortStates.DESC ? 'descending' : 'ascending';
-      return `Sort rows by this header in ${order} order`;
+      // When transitioning, we know that the sequence of states is as follows:
+      // NONE -> ASC -> DESC -> NONE
+      if (sortDirection === sortStates.NONE) {
+        return 'Sort rows by this header in ascending order';
+      }
+      if (sortDirection === sortStates.ASC) {
+        return 'Sort rows by this header in descending order';
+      }
+
+      return 'Unsort rows by this header';
     }
-    return `Sort rows by this header in descending order`;
+    return 'Sort rows by this header in ascending order';
   }
 
   return '';
+};
+
+const sortDirections = {
+  [sortStates.NONE]: 'none',
+  [sortStates.ASC]: 'ascending',
+  [sortStates.DESC]: 'descending',
 };
 
 const TableHeader = ({
@@ -42,27 +67,40 @@ const TableHeader = ({
   }
 
   const className = cx(headerClassName, {
-    'bx--table-sort-v2': true,
-    'bx--table-sort-v2--active':
+    [`${prefix}--table-sort-v2`]: true,
+    [`${prefix}--table-sort-v2--active`]:
       isSortHeader && sortDirection !== sortStates.NONE,
-    'bx--table-sort-v2--ascending':
-      isSortHeader && sortDirection === sortStates.ASC,
+    [`${prefix}--table-sort-v2--ascending`]:
+      isSortHeader && sortDirection === sortStates.DESC,
   });
+  const ariaSort = !isSortHeader ? 'none' : sortDirections[sortDirection];
 
   return (
-    <th scope={scope} className={headerClassName}>
+    <th scope={scope} className={headerClassName} aria-sort={ariaSort}>
       <button className={className} onClick={onClick} {...rest}>
-        <span className="bx--table-header-label">{children}</span>
-        <Icon
-          className="bx--table-sort-v2__icon"
-          icon={iconCaretUp}
-          description={t('carbon.table.header.icon.description', {
-            header: children,
-            sortDirection,
-            isSortHeader,
-            sortStates,
-          })}
-        />
+        <span className={`${prefix}--table-header-label`}>{children}</span>
+        {componentsX ? (
+          <CaretUpGlyph
+            className={`${prefix}--table-sort-v2__icon`}
+            aria-label={t('carbon.table.header.icon.description', {
+              header: children,
+              sortDirection,
+              isSortHeader,
+              sortStates,
+            })}
+          />
+        ) : (
+          <Icon
+            className={`${prefix}--table-sort-v2__icon`}
+            icon={iconCaretUp}
+            description={t('carbon.table.header.icon.description', {
+              header: children,
+              sortDirection,
+              isSortHeader,
+              sortStates,
+            })}
+          />
+        )}
       </button>
     </th>
   );

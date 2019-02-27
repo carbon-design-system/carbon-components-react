@@ -1,11 +1,24 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import classnames from 'classnames';
 import { iconChevronLeft, iconChevronRight } from 'carbon-icons';
+import CaretRight24 from '@carbon/icons-react/lib/caret--right/24';
+import CaretLeft24 from '@carbon/icons-react/lib/caret--left/24';
+import { settings } from 'carbon-components';
 import Icon from '../Icon';
 import Select from '../Select';
 import SelectItem from '../SelectItem';
 import { equals } from '../../tools/array';
+import { componentsX } from '../../internal/FeatureFlags';
+
+const { prefix } = settings;
 
 let instanceId = 0;
 
@@ -113,6 +126,7 @@ export default class PaginationV2 extends Component {
      */
     pagesUnknown: PropTypes.bool,
 
+    // TODO: remove when v9 is deprecated
     /**
      * `true` if the current page should be the last page.
      */
@@ -130,7 +144,8 @@ export default class PaginationV2 extends Component {
     forwardText: 'Forward',
     itemsPerPageText: 'Items per page:',
     pageNumberText: 'Page Number',
-    pageRangeText: (current, total) => `${current} of ${total} pages`,
+    pageRangeText: (current, total) =>
+      componentsX ? `of ${total} pages` : `${current} of ${total} pages`,
     disabled: false,
     page: 1,
     pagesUnknown: false,
@@ -157,7 +172,9 @@ export default class PaginationV2 extends Component {
           page: pageSizesChanged ? 1 : pageChanged ? page : currentPage,
           pageSize: pageSizesChanged
             ? pageSizes[0]
-            : pageSizeChanged ? pageSize : currentPageSize,
+            : pageSizeChanged
+            ? pageSize
+            : currentPageSize,
           prevPageSizes: pageSizes,
           prevPage: page,
           prevPageSize: pageSize,
@@ -234,29 +251,129 @@ export default class PaginationV2 extends Component {
       ...other
     } = this.props;
 
-    const statePage = this.state.page;
-    const statePageSize = this.state.pageSize;
-    const classNames = classnames('bx--pagination', className);
+    const classNames = classnames(`${prefix}--pagination`, className);
+    const inputId = id || this.uniqueId;
+    const { page: statePage, pageSize: statePageSize } = this.state;
+    const totalPages = Math.max(Math.ceil(totalItems / statePageSize), 1);
+    const backButtonDisabled = this.props.disabled || statePage === 1;
     const backButtonClasses = classnames(
-      'bx--pagination__button',
-      'bx--pagination__button--backward',
+      `${prefix}--pagination__button`,
+      `${prefix}--pagination__button--backward`,
       {
-        'bx--pagination__button--no-index': pageInputDisabled,
+        [`${prefix}--pagination__button--no-index`]:
+          pageInputDisabled || backButtonDisabled,
       }
     );
-    const inputId = id || this.uniqueId;
-    const totalPages = Math.max(Math.ceil(totalItems / statePageSize), 1);
+    const forwardButtonDisabled =
+      this.props.disabled || statePage === totalPages;
+    const forwardButtonClasses = classnames(
+      `${prefix}--pagination__button`,
+      `${prefix}--pagination__button--forward`,
+      {
+        [`${prefix}--pagination__button--no-index`]:
+          pageInputDisabled || forwardButtonDisabled,
+      }
+    );
     const selectItems = this.renderSelectItems(totalPages);
-
-    return (
+    const pageRange = (() => {
+      if (pageInputDisabled) {
+        return null;
+      }
+      return (
+        <span className={`${prefix}--pagination__text`}>
+          {pagesUnknown
+            ? pageText(statePage)
+            : pageRangeText(statePage, totalPages)}
+        </span>
+      );
+    })();
+    return componentsX ? (
       <div className={classNames} {...other}>
-        <div className="bx--pagination__left">
-          <span className="bx--pagination__text">
+        <div className={`${prefix}--pagination__left`}>
+          <label
+            id={`${prefix}-pagination-select-${inputId}-count-label`}
+            className={`${prefix}--pagination__text`}
+            htmlFor={`${prefix}-pagination-select-${inputId}`}>
+            {itemsPerPageText}
+          </label>
+          <Select
+            id={`${prefix}-pagination-select-${inputId}`}
+            className={`${prefix}--select__item-count`}
+            hideLabel
+            inline
+            onChange={this.handleSizeChange}
+            value={statePageSize}>
+            {pageSizes.map(size => (
+              <SelectItem key={size} value={size} text={String(size)} />
+            ))}
+          </Select>
+          <span className={`${prefix}--pagination__text`}>
+            {pagesUnknown
+              ? itemText(
+                  statePageSize * (statePage - 1) + 1,
+                  statePage * statePageSize
+                )
+              : itemRangeText(
+                  Math.min(statePageSize * (statePage - 1) + 1, totalItems),
+                  Math.min(statePage * statePageSize, totalItems),
+                  totalItems
+                )}
+          </span>
+        </div>
+        <div className={`${prefix}--pagination__right`}>
+          {pageInputDisabled ? null : (
+            <Select
+              id={`${prefix}-pagination-select-${inputId + 2}`}
+              className={`${prefix}--select__page-number`}
+              hideLabel
+              inline
+              onChange={this.handlePageInputChange}
+              value={statePage}>
+              {selectItems}
+            </Select>
+          )}
+          {pageRange}
+          <button
+            className={backButtonClasses}
+            onClick={this.decrementPage}
+            aria-label={backwardText}
+            disabled={backButtonDisabled}>
+            {componentsX ? (
+              <CaretLeft24 />
+            ) : (
+              <Icon
+                className={`${prefix}--pagination__button-icon`}
+                icon={iconChevronLeft}
+                description={backwardText}
+              />
+            )}
+          </button>
+          <button
+            className={forwardButtonClasses}
+            aria-label={forwardText}
+            onClick={this.incrementPage}
+            disabled={forwardButtonDisabled}>
+            {componentsX ? (
+              <CaretRight24 />
+            ) : (
+              <Icon
+                className={`${prefix}--pagination__button-icon`}
+                icon={iconChevronRight}
+                description={forwardText}
+              />
+            )}
+          </button>
+        </div>
+      </div>
+    ) : (
+      <div className={classNames} {...other}>
+        <div className={`${prefix}--pagination__left`}>
+          <span className={`${prefix}--pagination__text`}>
             {itemsPerPageFollowsText || itemsPerPageText}
           </span>
 
           <Select
-            id={`bx-pagination-select-${inputId}`}
+            id={`${prefix}-pagination-select-${inputId}`}
             labelText={itemsPerPageText}
             hideLabel
             inline
@@ -266,7 +383,7 @@ export default class PaginationV2 extends Component {
               <SelectItem key={size} value={size} text={String(size)} />
             ))}
           </Select>
-          <span className="bx--pagination__text">
+          <span className={`${prefix}--pagination__text`}>
             &nbsp;|&nbsp;&nbsp;
             {pagesUnknown
               ? itemText(
@@ -280,25 +397,23 @@ export default class PaginationV2 extends Component {
                 )}
           </span>
         </div>
-        <div className="bx--pagination__right bx--pagination--inline">
-          <span className="bx--pagination__text">
-            {pagesUnknown
-              ? pageText(statePage)
-              : pageRangeText(statePage, totalPages)}
-          </span>
+        <div
+          className={`${prefix}--pagination__right ${prefix}--pagination--inline`}>
+          {pageRange}
           <button
             className={backButtonClasses}
             onClick={this.decrementPage}
+            aria-label={backwardText}
             disabled={this.props.disabled || statePage === 1}>
             <Icon
-              className="bx--pagination__button-icon"
+              className={`${prefix}--pagination__button-icon`}
               icon={iconChevronLeft}
               description={backwardText}
             />
           </button>
           {pageInputDisabled ? null : (
             <Select
-              id={`bx-pagination-select-${inputId + 2}`}
+              id={`${prefix}-pagination-select-${inputId + 2}`}
               labelText={itemsPerPageText}
               hideLabel
               inline
@@ -308,13 +423,14 @@ export default class PaginationV2 extends Component {
             </Select>
           )}
           <button
-            className="bx--pagination__button bx--pagination__button--forward"
+            className={`${prefix}--pagination__button ${prefix}--pagination__button--forward`}
+            aria-label={forwardText}
             onClick={this.incrementPage}
             disabled={
               this.props.disabled || statePage === totalPages || isLastPage
             }>
             <Icon
-              className="bx--pagination__button-icon"
+              className={`${prefix}--pagination__button-icon`}
               icon={iconChevronRight}
               description={forwardText}
             />

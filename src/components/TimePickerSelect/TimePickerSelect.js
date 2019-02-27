@@ -1,19 +1,67 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import classNames from 'classnames';
 import Icon from '../Icon';
 import { iconCaretDown } from 'carbon-icons';
+import ChevronDownGlyph from '@carbon/icons-react/lib/chevron--down/index';
+import { settings } from 'carbon-components';
+import { componentsX } from '../../internal/FeatureFlags';
+
+const { prefix } = settings;
 
 export default class TimePickerSelect extends Component {
   static propTypes = {
+    /**
+     * Provide the contents of your TimePickerSelect
+     */
     children: PropTypes.node,
+
+    /**
+     * Specify an optional className to be applied to the node containing the label and the select box
+     */
     className: PropTypes.string,
+
+    /**
+     * Specify a custom `id` for the `<select>`
+     */
     id: PropTypes.string.isRequired,
+
+    /**
+     * Specify whether you want the inline version of this control
+     */
     inline: PropTypes.bool,
+
+    /**
+     * Specify whether the control is disabled
+     */
     disabled: PropTypes.bool,
+
+    /**
+     * Optionally provide the default value of the `<select>`
+     */
     defaultValue: PropTypes.any,
+
+    /**
+     * Provide a description for the twistie icon that can be read by screen readers
+     */
     iconDescription: PropTypes.string.isRequired,
+
+    /**
+     * Specify whether the label should be hidden, or not
+     */
     hideLabel: PropTypes.bool,
+
+    /**
+     * Provide label text to be read by screen readers when interacting with the
+     * control
+     */
     labelText: PropTypes.node.isRequired,
   };
 
@@ -38,14 +86,14 @@ export default class TimePickerSelect extends Component {
     } = this.props;
 
     const selectClasses = classNames({
-      'bx--select': true,
-      'bx--time-picker__select': true,
-      'bx--select--inline': true,
+      [`${prefix}--select`]: true,
+      [`${prefix}--time-picker__select`]: true,
+      [`${prefix}--select--inline`]: !componentsX,
       [className]: className,
     });
 
-    const labelClasses = classNames('bx--label', {
-      'bx--visually-hidden': hideLabel,
+    const labelClasses = classNames(`${prefix}--label`, {
+      [`${prefix}--visually-hidden`]: hideLabel,
     });
 
     const label = labelText ? (
@@ -60,15 +108,19 @@ export default class TimePickerSelect extends Component {
         <select
           {...other}
           id={id}
-          className="bx--select-input"
+          className={`${prefix}--select-input`}
           disabled={disabled}>
           {children}
         </select>
-        <Icon
-          icon={iconCaretDown}
-          className="bx--select__arrow"
-          description={iconDescription}
-        />
+        {componentsX ? (
+          <ChevronDownGlyph className={`${prefix}--select__arrow`} />
+        ) : (
+          <Icon
+            icon={iconCaretDown}
+            className={`${prefix}--select__arrow`}
+            description={iconDescription}
+          />
+        )}
       </div>
     );
   }

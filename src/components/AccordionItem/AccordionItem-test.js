@@ -1,7 +1,16 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import React from 'react';
 import { iconChevronRight } from 'carbon-icons';
 import AccordionItem from '../AccordionItem';
 import Icon from '../Icon';
+import ChevronRight16 from '@carbon/icons-react/lib/chevron--right/16';
+import { componentsX } from '../../internal/FeatureFlags';
 import { shallow, mount } from 'enzyme';
 
 describe('AccordionItem', () => {
@@ -20,14 +29,21 @@ describe('AccordionItem', () => {
 
     it('renders heading as expected', () => {
       const heading = wrapper.find('.bx--accordion__heading');
+      const icon = componentsX ? ChevronRight16 : Icon;
       expect(heading.length).toBe(1);
-      expect(heading.find(Icon).length).toBe(1);
+      expect(heading.find(icon).length).toBe(1);
       expect(heading.find('.bx--accordion__title').text()).toBe('A heading');
     });
 
     it('should use correct icon', () => {
       const heading = wrapper.find('.bx--accordion__heading');
-      expect(heading.find(Icon).props().icon).toEqual(iconChevronRight);
+      if (componentsX) {
+        expect(heading.find(ChevronRight16).props().icon.id).toEqual(
+          'icon--chevron--right'
+        );
+      } else {
+        expect(heading.find(Icon).props().icon).toEqual(iconChevronRight);
+      }
     });
 
     it('has the expected classes', () => {
@@ -77,8 +93,7 @@ describe('AccordionItem', () => {
   describe('Renders a node title as expected', () => {
     const titleNode = shallow(
       <h2 className="TitleClass">
-        <img src="some_image.png" alt="Something" />
-        A heading
+        <img src="some_image.png" alt="Something" />A heading
       </h2>
     );
     const wrapper = shallow(
@@ -137,6 +152,7 @@ describe('AccordionItem', () => {
 
   describe('Check that the keyboard toggles its open state', () => {
     let toggler;
+    let heading;
 
     beforeEach(() => {
       toggler = mount(
@@ -145,25 +161,24 @@ describe('AccordionItem', () => {
           <input className="testInput" />
         </AccordionItem>
       );
+      heading = toggler.find('button.bx--accordion__heading');
     });
 
-    it('should toggle state when using enter or space', () => {
-      expect(toggler.state().open).toEqual(false);
-      toggler.simulate('keypress', { which: 32 });
-      expect(toggler.state().open).toEqual(true);
-      toggler.simulate('keypress', { which: 13 });
-      expect(toggler.state().open).toEqual(false);
-      toggler.simulate('keypress', { which: 97 });
+    it('should close open AccordionItem when using Esc', () => {
+      toggler.setState({ open: true });
+      heading.simulate('keydown', { which: 27 });
       expect(toggler.state().open).toEqual(false);
     });
 
-    it('should not toggle if a keypress is made in a child element', () => {
+    it('should not close if Esc keypress is made in a child element', () => {
+      toggler.setState({ open: true });
       const input = toggler.find('.testInput');
-      expect(toggler.state().open).toEqual(false);
-      toggler.simulate('keypress', { which: 32 });
+      input.simulate('keydown', { which: 27 });
       expect(toggler.state().open).toEqual(true);
-      input.simulate('keypress', { which: 32 });
-      expect(toggler.state().open).toEqual(true);
+    });
+
+    afterEach(() => {
+      toggler.setState({ open: false });
     });
   });
 });

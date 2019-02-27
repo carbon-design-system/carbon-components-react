@@ -1,10 +1,16 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 /* eslint-disable no-console */
 
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
-import { withInfo } from '@storybook/addon-info';
-import { withKnobs, boolean, text } from '@storybook/addon-knobs';
+import { withKnobs, boolean, number, text } from '@storybook/addon-knobs';
 import Accordion from '../Accordion';
 import AccordionItem from '../AccordionItem';
 import Select from '../Select';
@@ -20,11 +26,7 @@ storiesOf('Accordion', module)
   .addDecorator(withKnobs)
   .add(
     'Default',
-    withInfo({
-      text: `
-        Accordions allow users to expand and collapse sections of content.
-      `,
-    })(() => (
+    () => (
       <Accordion>
         <AccordionItem
           title={text('The title (title)', 'Section 1 title')}
@@ -76,17 +78,30 @@ storiesOf('Accordion', module)
           </p>
         </AccordionItem>
       </Accordion>
-    ))
+    ),
+    {
+      info: {
+        text: `
+          Accordions allow users to expand and collapse sections of content.
+        `,
+      },
+    }
   )
   .add(
     'skeleton',
-    withInfo({
-      text: `
-        Placeholder skeleton state to use when content is loading.
-      `,
-    })(() => (
+    () => (
       <div style={{ width: '500px' }}>
-        <AccordionSkeleton />
+        <AccordionSkeleton
+          open={boolean('Show first item opened (open)', true)}
+          count={number('Set number of items (count)', 4)}
+        />
       </div>
-    ))
+    ),
+    {
+      info: {
+        text: `
+          Accordions allow users to expand and collapse sections of content.
+        `,
+      },
+    }
   );

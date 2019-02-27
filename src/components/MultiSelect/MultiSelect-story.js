@@ -1,8 +1,21 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
-import { withInfo } from '@storybook/addon-info';
-import { withKnobs, boolean, select, text } from '@storybook/addon-knobs';
+
+import {
+  withKnobs,
+  boolean,
+  select,
+  text,
+  object,
+} from '@storybook/addon-knobs';
 import MultiSelect from '../MultiSelect';
 
 const items = [
@@ -20,8 +33,8 @@ const defaultLabel = 'MultiSelect Label';
 const defaultPlaceholder = 'Filter';
 
 const types = {
-  default: 'Default (default)',
-  inline: 'Inline (inline)',
+  'Default (default)': 'default',
+  'Inline (inline)': 'inline',
 };
 
 const props = () => ({
@@ -40,18 +53,25 @@ const props = () => ({
     'Invalid Selection'
   ),
   onChange: action('onChange'),
+  listBoxMenuIconTranslationIds: object(
+    'Listbox menu icon translation IDs (for translateWithId callback)',
+    {
+      'close.menu': 'Close menu',
+      'open.menu': 'Open menu',
+    }
+  ),
 });
 
 storiesOf('MultiSelect', module)
   .addDecorator(withKnobs)
   .add(
     'default',
-    withInfo({
-      text: `
-        MultiSelect
-      `,
-    })(() => {
-      const { filterable, ...multiSelectProps } = props();
+    () => {
+      const {
+        filterable,
+        listBoxMenuIconTranslationIds,
+        ...multiSelectProps
+      } = props();
       const ComponentToUse = !filterable ? MultiSelect : MultiSelect.Filterable;
       const placeholder = !filterable ? undefined : defaultPlaceholder;
       return (
@@ -61,19 +81,27 @@ storiesOf('MultiSelect', module)
             items={items}
             itemToString={item => (item ? item.text : '')}
             placeholder={placeholder}
+            translateWithId={id => listBoxMenuIconTranslationIds[id]}
           />
         </div>
       );
-    })
+    },
+    {
+      info: {
+        text: `
+            MultiSelect
+          `,
+      },
+    }
   )
   .add(
     'with initial selected items',
-    withInfo({
-      text: `
-        Provide a set of items to initially select in the control
-      `,
-    })(() => {
-      const { filterable, ...multiSelectProps } = props();
+    () => {
+      const {
+        filterable,
+        listBoxMenuIconTranslationIds,
+        ...multiSelectProps
+      } = props();
       const ComponentToUse = !filterable ? MultiSelect : MultiSelect.Filterable;
       const placeholder = !filterable ? undefined : defaultPlaceholder;
       return (
@@ -84,8 +112,16 @@ storiesOf('MultiSelect', module)
             itemToString={item => (item ? item.text : '')}
             initialSelectedItems={[items[0], items[1]]}
             placeholder={placeholder}
+            translateWithId={id => listBoxMenuIconTranslationIds[id]}
           />
         </div>
       );
-    })
+    },
+    {
+      info: {
+        text: `
+            Provide a set of items to initially select in the control
+          `,
+      },
+    }
   );

@@ -1,6 +1,16 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import PropTypes from 'prop-types';
 import React from 'react';
 import classnames from 'classnames';
+import { settings } from 'carbon-components';
+
+const { prefix } = settings;
 
 const FormGroup = ({
   legendText,
@@ -11,8 +21,8 @@ const FormGroup = ({
   messageText,
   ...other
 }) => {
-  const classNamesLegend = classnames('bx--label', className);
-  const classNamesFieldset = classnames('bx--fieldset', className);
+  const classNamesLegend = classnames(`${prefix}--label`, className);
+  const classNamesFieldset = classnames(`${prefix}--fieldset`, className);
 
   return (
     <fieldset
@@ -22,7 +32,7 @@ const FormGroup = ({
       <legend className={classNamesLegend}>{legendText}</legend>
       {children}
       {message ? (
-        <div className="bx--form__requirements">{messageText}</div>
+        <div className={`${prefix}--form__requirements`}>{messageText}</div>
       ) : null}
     </fieldset>
   );

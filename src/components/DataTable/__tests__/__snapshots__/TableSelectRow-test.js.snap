@@ -3,6 +3,7 @@
 exports[`DataTable.TableSelectRow should render 1`] = `
 <Table
   short={false}
+  shouldShowBorder={true}
   zebra={true}
 >
   <table
@@ -20,12 +21,15 @@ exports[`DataTable.TableSelectRow should render 1`] = `
               name="select-all"
               onSelect={[MockFunction]}
             >
-              <td>
+              <td
+                className="custom-class-name"
+              >
                 <InlineCheckbox
                   ariaLabel="Aria label"
                   checked={false}
                   id="id"
                   name="select-all"
+                  onChange={[Function]}
                   onClick={[MockFunction]}
                 >
                   <input
@@ -33,6 +37,7 @@ exports[`DataTable.TableSelectRow should render 1`] = `
                     className="bx--checkbox"
                     id="id"
                     name="select-all"
+                    onChange={[Function]}
                     onClick={[MockFunction]}
                     type="checkbox"
                   />

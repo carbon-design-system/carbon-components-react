@@ -1,7 +1,14 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
-import { withInfo } from '@storybook/addon-info';
+
 import { withKnobs, boolean, text } from '@storybook/addon-knobs';
 import Modal from '../Modal';
 
@@ -25,6 +32,10 @@ const props = () => ({
     'Secondary button text (secondaryButtonText)',
     'Secondary Button'
   ),
+  selectorPrimaryFocus: text(
+    'Primary focus element selector (selectorPrimaryFocus)',
+    '[data-modal-primary-focus]'
+  ),
   iconDescription: text(
     'Close icon description (iconDescription)',
     'Close the modal'
@@ -41,17 +52,20 @@ storiesOf('Modal', module)
   .addDecorator(withKnobs)
   .add(
     'Default',
-    withInfo({
-      text: `
-        Modals communicate information via a secondary window and allow the user to maintain the context of a particular task.
-        Use the Modal Wrapper component to encapsulate your Modal within a button.
-      `,
-    })(() => (
+    () => (
       <Modal {...props()}>
         <p className="bx--modal-content__text">
           Please see ModalWrapper for more examples and demo of the
           functionality.
         </p>
       </Modal>
-    ))
+    ),
+    {
+      info: {
+        text: `
+            Modals communicate information via a secondary window and allow the user to maintain the context of a particular task.
+            Use the Modal Wrapper component to encapsulate your Modal within a button.
+          `,
+      },
+    }
   );

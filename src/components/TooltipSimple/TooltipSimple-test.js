@@ -1,9 +1,16 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import React from 'react';
 import Icon from '../Icon';
 import TooltipSimple from '../TooltipSimple';
 import { mount } from 'enzyme';
 
-describe('TooltipSimple', () => {
+describeBreakingChangesXFeatures('TooltipSimple', () => {
   describe('Renders as expected with defaults', () => {
     const wrapper = mount(
       <TooltipSimple text="Basic TooltipSimple Text" className="extra-class">

@@ -1,9 +1,15 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 /* eslint-disable no-console */
 
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
-import { withInfo } from '@storybook/addon-info';
 import { withKnobs, boolean } from '@storybook/addon-knobs';
 import Breadcrumb from '../Breadcrumb';
 import BreadcrumbItem from '../BreadcrumbItem';
@@ -19,11 +25,7 @@ storiesOf('Breadcrumb', module)
   .addDecorator(withKnobs)
   .add(
     'Default',
-    withInfo({
-      text: `
-        Breadcrumb enables users to quickly see their location within a path of navigation and move up to a parent level if desired.
-      `,
-    })(() => (
+    () => (
       <Breadcrumb {...props()}>
         <BreadcrumbItem>
           <a href="/#">Breadcrumb 1</a>
@@ -31,13 +33,19 @@ storiesOf('Breadcrumb', module)
         <BreadcrumbItem href="#">Breadcrumb 2</BreadcrumbItem>
         <BreadcrumbItem href="#">Breadcrumb 3</BreadcrumbItem>
       </Breadcrumb>
-    ))
-  )
-  .add(
-    'skeleton',
-    withInfo({
-      text: `
-        Placeholder skeleton state to use when content is loading.
+    ),
+    {
+      info: {
+        text: `
+          Breadcrumb enables users to quickly see their location within a path of navigation and move up to a parent level if desired.
         `,
-    })(() => <BreadcrumbSkeleton />)
-  );
+      },
+    }
+  )
+  .add('skeleton', () => <BreadcrumbSkeleton />, {
+    info: {
+      text: `
+          Placeholder skeleton state to use when content is loading.
+          `,
+    },
+  });

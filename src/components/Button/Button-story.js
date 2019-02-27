@@ -1,29 +1,47 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
-import { withInfo } from '@storybook/addon-info';
 import { withKnobs, boolean, select } from '@storybook/addon-knobs';
 import { iconAddSolid, iconSearch } from 'carbon-icons';
+import AddFilled16 from '@carbon/icons-react/lib/add--filled/16';
+import Search16 from '@carbon/icons-react/lib/search/16';
+import { settings } from 'carbon-components';
 import Button from '../Button';
 import ButtonSkeleton from '../Button/Button.Skeleton';
+import { componentsX } from '../../internal/FeatureFlags';
+
+const { prefix } = settings;
 
 const icons = {
-  none: 'None',
-  iconAddSolid: 'Add with filled circle (iconAddSolid from `carbon-icons`)',
-  iconSearch: 'Search (iconSearch from `carbon-icons`)',
+  None: 'None',
+  'Add with filled circle (iconAddSolid from `carbon-icons`)': componentsX
+    ? 'AddFilled16'
+    : 'iconAddSolid',
+  'Search (iconSearch from `carbon-icons`)': componentsX
+    ? 'Search16'
+    : 'iconSearch',
 };
 
 const iconMap = {
   iconAddSolid,
   iconSearch,
+  AddFilled16: <AddFilled16 className={`${prefix}--btn__icon`} />,
+  Search16: <Search16 className={`${prefix}--btn__icon`} />,
 };
 
 const kinds = {
-  primary: 'Primary button (primary)',
-  secondary: 'Secondary button (secondary)',
-  danger: 'Danger button (danger)',
-  'danger--primary': 'Danger primary button (danger--primary)',
-  ghost: 'Ghost button (ghost)',
+  'Primary button (primary)': 'primary',
+  'Secondary button (secondary)': 'secondary',
+  'Danger button (danger)': 'danger',
+  'Danger primary button (danger--primary)': 'danger--primary',
+  'Ghost button (ghost)': 'ghost',
 };
 
 const props = {
@@ -46,37 +64,25 @@ const props = {
   }),
 };
 
+const CustomLink = ({ children, href, ...other }) => (
+  <a href={href} {...other}>
+    {children}
+  </a>
+);
+
 storiesOf('Buttons', module)
   .addDecorator(withKnobs)
   .add(
     'Default',
-    withInfo({
-      text: `
-        Buttons are used to initialize an action, either in the background or
-        foreground of an experience.
-
-        There are several kinds of buttons.
-
-        Primary buttons should be used for the principle call to action
-        on the page.
-
-        Secondary buttons should be used for secondary actions on each page.
-
-        Danger buttons should be used for a negative action (such as Delete) on the page.
-
-        Modify the behavior of the button by changing its event properties.
-
-        Small buttons may be used when there is not enough space for a
-        regular sized button. This issue is most found in tables. Small button should have three words
-        or less.
-
-        When words are not enough, icons can be used in buttons to better communicate what the button does. Icons are
-        always paired with text.
-      `,
-    })(() => {
+    () => {
       const regularProps = props.regular();
       return (
-        <div style={{ display: 'flex', alignItems: 'center' }}>
+        <div
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            flexWrap: 'wrap',
+          }}>
           <Button {...regularProps} className="some-class">
             Button
           </Button>
@@ -85,17 +91,50 @@ storiesOf('Buttons', module)
             Link
           </Button>
           &nbsp;
+          <Button {...regularProps} as="p" href="#" className="some-class">
+            Element
+          </Button>
+          &nbsp;
+          <Button
+            {...regularProps}
+            as={CustomLink}
+            href="#"
+            className="some-class">
+            Custom component
+          </Button>
         </div>
       );
-    })
+    },
+    {
+      info: {
+        text: `
+          Buttons are used to initialize an action, either in the background or
+          foreground of an experience.
+
+          There are several kinds of buttons.
+
+          Primary buttons should be used for the principle call to action
+          on the page.
+
+          Secondary buttons should be used for secondary actions on each page.
+
+          Danger buttons should be used for a negative action (such as Delete) on the page.
+
+          Modify the behavior of the button by changing its event properties.
+
+          Small buttons may be used when there is not enough space for a
+          regular sized button. This issue is most found in tables. Small button should have three words
+          or less.
+
+          When words are not enough, icons can be used in buttons to better communicate what the button does. Icons are
+          always paired with text.
+        `,
+      },
+    }
   )
   .add(
     'Sets of Buttons',
-    withInfo({
-      text: `
-        When an action required by the user has more than one option, always use a a negative action button (secondary) paired with a positive action button (primary) in that order. Negative action buttons will be on the left. Positive action buttons should be on the right. When these two types buttons are paired in the correct order, they will automatically space themselves apart.
-      `,
-    })(() => {
+    () => {
       const setProps = props.set();
       return (
         <div>
@@ -107,15 +146,18 @@ storiesOf('Buttons', module)
           </Button>
         </div>
       );
-    })
+    },
+    {
+      info: {
+        text: `
+          When an action required by the user has more than one option, always use a a negative action button (secondary) paired with a positive action button (primary) in that order. Negative action buttons will be on the left. Positive action buttons should be on the right. When these two types buttons are paired in the correct order, they will automatically space themselves apart.
+        `,
+      },
+    }
   )
   .add(
     'skeleton',
-    withInfo({
-      text: `
-        Placeholder skeleton state to use when content is loading.
-      `,
-    })(() => (
+    () => (
       <div>
         <ButtonSkeleton />
         &nbsp;
@@ -123,5 +165,12 @@ storiesOf('Buttons', module)
         &nbsp;
         <ButtonSkeleton small />
       </div>
-    ))
+    ),
+    {
+      info: {
+        text: `
+          Placeholder skeleton state to use when content is loading.
+        `,
+      },
+    }
   );

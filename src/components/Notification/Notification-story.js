@@ -1,7 +1,13 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
-import { withInfo } from '@storybook/addon-info';
 import { withKnobs, boolean, select, text } from '@storybook/addon-knobs';
 import Notification, {
   ToastNotification,
@@ -9,14 +15,13 @@ import Notification, {
 } from '../Notification';
 
 const kinds = {
-  error: 'Error (error)',
-  info: 'Info (info)',
-  success: 'Success (success)',
-  warning: 'Warning (warning)',
+  'Error (error)': 'error',
+  'Info (info)': 'info',
+  'Success (success)': 'success',
+  'Warning (warning)': 'warning',
 };
-
 const notificationProps = () => ({
-  kind: select('The notification kind (kind)', kinds, 'error'),
+  kind: select('The notification kind (kind)', kinds, 'info'),
   role: text('ARIA role (role)', 'alert'),
   title: text('Title (title)', 'Notification title'),
   subtitle: text('Subtitle (subtitle)', 'Subtitle text goes here.'),
@@ -32,37 +37,26 @@ storiesOf('Notifications', module)
   .addDecorator(withKnobs)
   .add(
     'Deprecated: <Notfication />',
-    withInfo({
-      text: `
-        Toast notifications are typically passive, meaning they won't affect the user's workflow if not addressed.
-        Toast Notifications use 'kind' props to specify the kind of notification that should render (error, info, success, warning).
-      `,
-    })(() => (
-      <div>
-        <Notification
-          {...notificationProps()}
-          caption={text('Caption (caption)', 'Time stamp [00:00:00]')}
-        />
-      </div>
-    ))
+    () => (
+      <Notification
+        {...notificationProps()}
+        caption={text('Caption (caption)', 'Time stamp [00:00:00]')}
+      />
+    ),
+    {
+      info: {
+        text: `
+            Toast notifications are typically passive, meaning they won't affect the user's workflow if not addressed.
+            Toast Notifications use 'kind' props to specify the kind of notification that should render (error, info, success, warning).
+          `,
+      },
+    }
   )
-  .add(
-    'Toast',
-    withInfo()(() => (
-      <div>
-        <ToastNotification
-          {...notificationProps()}
-          caption={text('Caption (caption)', 'Time stamp [00:00:00]')}
-          style={{ minWidth: '30rem', marginBottom: '.5rem' }}
-        />
-      </div>
-    ))
-  )
-  .add(
-    'inline',
-    withInfo()(() => (
-      <div>
-        <InlineNotification {...notificationProps()} />
-      </div>
-    ))
-  );
+  .add('Toast', () => (
+    <ToastNotification
+      {...notificationProps()}
+      caption={text('Caption (caption)', 'Time stamp [00:00:00]')}
+      style={{ minWidth: '30rem', marginBottom: '.5rem' }}
+    />
+  ))
+  .add('inline', () => <InlineNotification {...notificationProps()} />);

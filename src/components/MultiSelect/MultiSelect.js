@@ -1,14 +1,25 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import cx from 'classnames';
 import React from 'react';
 import PropTypes from 'prop-types';
 import Downshift from 'downshift';
 import isEqual from 'lodash.isequal';
+import { settings } from 'carbon-components';
 import ListBox from '../ListBox';
 import Checkbox from '../Checkbox';
 import Selection from '../../internal/Selection';
 import { sortingPropTypes } from './MultiSelectPropTypes';
 import { defaultItemToString } from './tools/itemToString';
 import { defaultSortItems, defaultCompareItems } from './tools/sorting';
+
+const { prefix } = settings;
+const noop = () => undefined;
 
 export default class MultiSelect extends React.Component {
   static propTypes = {
@@ -55,6 +66,7 @@ export default class MultiSelect extends React.Component {
      * consuming component what kind of internal state changes are occuring.
      */
     onChange: PropTypes.func,
+
     /**
      * Specify 'inline' to create an inline multi-select.
      */
@@ -69,15 +81,40 @@ export default class MultiSelect extends React.Component {
      * `true` to use the light version.
      */
     light: PropTypes.bool,
+
     /**
      * Is the current selection invalid?
      */
     invalid: PropTypes.bool,
+
     /**
      * If invalid, what is the error?
      */
     invalidText: PropTypes.string,
+
+    /**
+     * Initialize the component with an open(`true`)/closed(`false`) menu.
+     */
+    open: PropTypes.bool,
+
+    /**
+     * Callback function for translating ListBoxMenuIcon SVG title
+     */
+    translateWithId: PropTypes.func,
   };
+
+  static getDerivedStateFromProps({ open }, state) {
+    /**
+     * programmatically control this `open` prop
+     */
+    const { prevOpen } = state;
+    return prevOpen === open
+      ? null
+      : {
+          isOpen: open,
+          prevOpen: open,
+        };
+  }
 
   static defaultProps = {
     compareItems: defaultCompareItems,
@@ -89,13 +126,14 @@ export default class MultiSelect extends React.Component {
     type: 'default',
     light: false,
     title: false,
+    open: false,
   };
 
   constructor(props) {
     super(props);
     this.state = {
       highlightedIndex: null,
-      isOpen: false,
+      isOpen: props.open,
     };
   }
 
@@ -161,12 +199,14 @@ export default class MultiSelect extends React.Component {
       invalid,
       invalidText,
       useTitleInItem,
+      translateWithId,
     } = this.props;
-    const className = cx('bx--multi-select', containerClassName, {
-      'bx--list-box--light': light,
+    const className = cx(`${prefix}--multi-select`, containerClassName, {
+      [`${prefix}--list-box--light`]: light,
     });
     return (
       <Selection
+        disabled={disabled}
         onChange={this.handleOnChange}
         initialSelectedItems={initialSelectedItems}
         render={({ selectedItems, onItemChange, clearSelection }) => (
@@ -197,12 +237,15 @@ export default class MultiSelect extends React.Component {
                 <ListBox.Field {...getButtonProps({ disabled })}>
                   {selectedItem.length > 0 && (
                     <ListBox.Selection
-                      clearSelection={clearSelection}
+                      clearSelection={!disabled ? clearSelection : noop}
                       selectionCount={selectedItem.length}
                     />
                   )}
-                  <span className="bx--list-box__label">{label}</span>
-                  <ListBox.MenuIcon isOpen={isOpen} />
+                  <span className={`${prefix}--list-box__label`}>{label}</span>
+                  <ListBox.MenuIcon
+                    isOpen={isOpen}
+                    translateWithId={translateWithId}
+                  />
                 </ListBox.Field>
                 {isOpen && (
                   <ListBox.Menu>
@@ -224,10 +267,11 @@ export default class MultiSelect extends React.Component {
                           isHighlighted={highlightedIndex === index}
                           {...itemProps}>
                           <Checkbox
-                            id={itemProps.id}
+                            id={`${itemProps.id}__checkbox`}
                             title={useTitleInItem ? itemText : null}
                             name={itemText}
                             checked={isChecked}
+                            disabled={disabled}
                             readOnly={true}
                             tabIndex="-1"
                             labelText={itemText}

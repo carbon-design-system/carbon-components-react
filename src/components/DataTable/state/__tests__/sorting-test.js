@@ -1,3 +1,10 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 describe('sorting state', () => {
   let sorting;
   let sortStates;
@@ -40,13 +47,13 @@ describe('sorting state', () => {
       mockPrevState = sortStates.NONE;
     });
 
-    it('should default to DESC', () => {
+    it('should default to ASC', () => {
       expect(
         getNextSortDirection(mockHeaderA, mockHeaderA, mockPrevState)
-      ).toBe(sortStates.DESC);
+      ).toBe(sortStates.ASC);
     });
 
-    it('should transition from DESC -> ASC -> NONE', () => {
+    it('should transition from ASC -> DESC -> NONE', () => {
       const nextState1 = getNextSortDirection(
         mockHeaderA,
         mockHeaderA,
@@ -67,13 +74,13 @@ describe('sorting state', () => {
         mockHeaderA,
         nextState3
       );
-      expect(nextState1).toBe(sortStates.DESC);
-      expect(nextState2).toBe(sortStates.ASC);
+      expect(nextState1).toBe(sortStates.ASC);
+      expect(nextState2).toBe(sortStates.DESC);
       expect(nextState3).toBe(sortStates.NONE);
-      expect(nextState4).toBe(sortStates.DESC);
+      expect(nextState4).toBe(sortStates.ASC);
     });
 
-    it('should reset to DESC if the header changes', () => {
+    it('should reset to ASC if the header changes', () => {
       const nextState1 = getNextSortDirection(
         mockHeaderA,
         mockHeaderA,
@@ -89,9 +96,9 @@ describe('sorting state', () => {
         mockHeaderB,
         nextState2
       );
-      expect(nextState1).toBe(sortStates.DESC);
-      expect(nextState2).toBe(sortStates.ASC);
-      expect(nextState3).toBe(sortStates.DESC);
+      expect(nextState1).toBe(sortStates.ASC);
+      expect(nextState2).toBe(sortStates.DESC);
+      expect(nextState3).toBe(sortStates.ASC);
     });
   });
 
@@ -130,13 +137,13 @@ describe('sorting state', () => {
       };
     });
 
-    it('should initialize in DESC order for the first header called', () => {
+    it('should initialize in ASC order for the first header called', () => {
       const sortHeaderKey = 'a';
       expect(
         getNextSortState(mockProps, mockState, { key: sortHeaderKey })
       ).toEqual({
         sortHeaderKey,
-        sortDirection: sortStates.DESC,
+        sortDirection: sortStates.ASC,
         rowIds: ['b', 'a', 'c'],
       });
     });
@@ -168,12 +175,12 @@ describe('sorting state', () => {
       );
       expect(nextState1).toEqual({
         sortHeaderKey,
-        sortDirection: sortStates.DESC,
+        sortDirection: sortStates.ASC,
         rowIds: ['b', 'a', 'c'],
       });
       expect(nextState2).toEqual({
         sortHeaderKey,
-        sortDirection: sortStates.ASC,
+        sortDirection: sortStates.DESC,
         rowIds: ['b', 'a', 'c'],
       });
       expect(nextState3).toEqual({
