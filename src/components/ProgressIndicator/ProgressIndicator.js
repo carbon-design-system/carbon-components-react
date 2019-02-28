@@ -98,6 +98,11 @@ export const ProgressStep = ({ ...props }) => {
   return (
     <li className={classes}>
       <div
+        style={{
+          display: 'inline-flex',
+          flexFlow: 'column nowrap',
+          ...(!onClick ? { outline: 'none' } : {}), // No outline if onClick isn't set
+        }}
         role="button"
         tabIndex={onClick ? 0 : -1}
         onClick={onClick}
