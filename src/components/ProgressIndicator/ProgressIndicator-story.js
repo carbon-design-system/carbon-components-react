@@ -8,6 +8,7 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { withKnobs, number } from '@storybook/addon-knobs';
+import { action } from '@storybook/addon-actions';
 import { ProgressIndicator, ProgressStep } from '../ProgressIndicator';
 import ProgressIndicatorSkeleton from '../ProgressIndicator/ProgressIndicator.Skeleton';
 import Tooltip from '../Tooltip';
@@ -74,9 +75,33 @@ storiesOf('Progress Indicator', module)
     {
       info: {
         text: `
-            For React usage, ProgressIndicator holds the currentIndex state to indicate which ProgerssStep is the current step. The ProgressIndicator component should always be used with ProgressStep components as its children. Changing currentIndex prop will automatically set the ProgressStep components props (complete, incomplete, current).
+            For React usage, ProgressIndicator holds the currentIndex state to indicate which ProgressStep is the current step. The ProgressIndicator component should always be used with ProgressStep components as its children. Changing currentIndex prop will automatically set the ProgressStep components props (complete, incomplete, current).
             For general usage, Progress Indicators display steps in a process. It should indicate when steps have been complete, the active step,
             and the steps to come.
+          `,
+      },
+    }
+  )
+  .add(
+    'interactive',
+    () => (
+      <ProgressIndicator
+        currentIndex={number('Current progress (currentIndex)', 1)}
+        onChange={action('onChange')}>
+        <ProgressStep
+          label="Click me"
+          description="Step 1: Register a onChange event"
+        />
+        <ProgressStep
+          label="Click me too"
+          description="The progress indicator will listen for clicks on the steps"
+        />
+      </ProgressIndicator>
+    ),
+    {
+      info: {
+        text: `
+           If you register an onChange handler, the Progress Indicator will become interactive.  Your parent component should update the currentIndex prop within the onChange handler.
           `,
       },
     }

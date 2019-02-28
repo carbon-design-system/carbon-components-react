@@ -25,6 +25,7 @@ export const ProgressStep = ({ ...props }) => {
     invalid,
     secondaryLabel,
     disabled,
+    onClick,
     renderLabel: ProgressStepLabel,
   } = props;
 
@@ -36,6 +37,14 @@ export const ProgressStep = ({ ...props }) => {
     [`${prefix}--progress-step--disabled`]: disabled,
     [className]: className,
   });
+
+  const handleKeyDown = e => {
+    const key = e.key || e.which;
+
+    if (key === 'Enter' || key === 13 || key === ' ' || key === 32) {
+      onClick();
+    }
+  };
 
   const currentSvg =
     current &&
@@ -88,21 +97,32 @@ export const ProgressStep = ({ ...props }) => {
 
   return (
     <li className={classes}>
-      {currentSvg || completeSvg || incompleteSvg}
-      <ProgressStepLabel className={`${prefix}--progress-label`}>
-        {label}
-      </ProgressStepLabel>
-      {componentsX &&
-      secondaryLabel !== null &&
-      secondaryLabel !== undefined ? (
-        <p className={`${prefix}--progress-optional`}>{secondaryLabel}</p>
-      ) : null}
-      <span className={`${prefix}--progress-line`} />
+      <div
+        role="button"
+        tabIndex={onClick ? 0 : -1}
+        onClick={onClick}
+        onKeyDown={handleKeyDown}>
+        {currentSvg || completeSvg || incompleteSvg}
+        <ProgressStepLabel className={`${prefix}--progress-label`}>
+          {label}
+        </ProgressStepLabel>
+        {componentsX &&
+        secondaryLabel !== null &&
+        secondaryLabel !== undefined ? (
+          <p className={`${prefix}--progress-optional`}>{secondaryLabel}</p>
+        ) : null}
+        <span className={`${prefix}--progress-line`} />
+      </div>
     </li>
   );
 };
 
 ProgressStep.propTypes = {
+  /**
+   * Index of the current step within the ProgressIndicator
+   */
+  index: PropTypes.number.isRequired,
+
   /**
    * Provide the label for the <ProgressStep>
    */
@@ -158,6 +178,11 @@ ProgressStep.propTypes = {
    * The ID of the tooltip content.
    */
   tooltipId: PropTypes.string,
+
+  /**
+   * A callback called if the step is clicked or the enter key is pressed
+   */
+  onClick: PropTypes.func,
 };
 
 ProgressStep.defaultProps = {
@@ -183,6 +208,11 @@ export class ProgressIndicator extends Component {
      * Optionally specify the current step array index
      */
     currentIndex: PropTypes.number,
+
+    /**
+     * Optional callback called if a ProgressStep is clicked on.  Returns the index of the step.
+     */
+    onChange: PropTypes.func,
   };
 
   static defaultProps = {
@@ -199,25 +229,36 @@ export class ProgressIndicator extends Component {
         };
   }
 
-  renderSteps = () =>
-    React.Children.map(this.props.children, (child, index) => {
+  renderSteps = () => {
+    const { onChange } = this.props;
+
+    return React.Children.map(this.props.children, (child, index) => {
+      // only setup click handlers if onChange event is passed
+      const onClick = onChange ? () => onChange(index) : undefined;
       if (index === this.state.currentIndex) {
         return React.cloneElement(child, {
           current: true,
+          index,
+          onClick,
         });
       }
       if (index < this.state.currentIndex) {
         return React.cloneElement(child, {
           complete: true,
+          index,
+          onClick,
         });
       }
       if (index > this.state.currentIndex) {
         return React.cloneElement(child, {
           complete: false,
+          index,
+          onClick,
         });
       }
       return null;
     });
+  };
 
   render() {
     const { className, currentIndex, ...other } = this.props; // eslint-disable-line no-unused-vars

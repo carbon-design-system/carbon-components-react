@@ -78,6 +78,18 @@ describe('ProgressIndicator', () => {
       expect(list.state().currentIndex).toEqual(2);
     });
 
+    it('should trigger onChange if clicked', () => {
+      const mockOnChange = jest.fn();
+
+      mountedList.setProps({ onChange: mockOnChange });
+      mountedList
+        .find(ProgressStep)
+        .at(0)
+        .find('[role="button"]')
+        .simulate('click');
+      expect(mockOnChange).toHaveBeenCalledWith(0);
+    });
+
     describe('ProgressStep', () => {
       it('should render with correct base className', () => {
         expect(
