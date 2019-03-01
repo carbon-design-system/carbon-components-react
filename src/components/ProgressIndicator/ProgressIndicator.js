@@ -100,11 +100,11 @@ export const ProgressStep = ({ ...props }) => {
         style={{
           display: 'inline-flex',
           flexFlow: !componentsX ? 'column nowrap' : undefined,
-          ...(!onClick ? { outline: 'none' } : {}), // No outline if onClick isn't set
+          ...(!onClick || current ? { outline: 'none' } : {}), // No outline if onClick isn't set
         }}
         role="button"
-        tabIndex={onClick ? 0 : -1}
-        onClick={onClick}
+        tabIndex={!current && onClick ? 0 : -1}
+        onClick={!current ? onClick : undefined}
         onKeyDown={handleKeyDown}>
         {currentSvg || completeSvg || incompleteSvg}
         <ProgressStepLabel className={`${prefix}--progress-label`}>
