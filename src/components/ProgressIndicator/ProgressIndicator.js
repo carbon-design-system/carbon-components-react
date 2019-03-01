@@ -12,6 +12,7 @@ import { settings } from 'carbon-components';
 import CheckmarkOutline16 from '@carbon/icons-react/lib/checkmark--outline/16';
 import Warning16 from '@carbon/icons-react/lib/warning/16';
 import { componentsX } from '../../internal/FeatureFlags';
+import { keys, matches } from '../../tools/key';
 
 const { prefix } = settings;
 const defaultRenderLabel = props => <p {...props} />;
@@ -39,9 +40,7 @@ export const ProgressStep = ({ ...props }) => {
   });
 
   const handleKeyDown = e => {
-    const key = e.key || e.which;
-
-    if (key === 'Enter' || key === 13 || key === ' ' || key === 32) {
+    if (matches(e, [keys.END, keys.SPACE])) {
       onClick();
     }
   };
@@ -100,7 +99,7 @@ export const ProgressStep = ({ ...props }) => {
       <div
         style={{
           display: 'inline-flex',
-          flexFlow: 'column nowrap',
+          flexFlow: !componentsX ? 'column nowrap' : undefined,
           ...(!onClick ? { outline: 'none' } : {}), // No outline if onClick isn't set
         }}
         role="button"
