@@ -40,7 +40,7 @@ export const ProgressStep = ({ ...props }) => {
   });
 
   const handleKeyDown = e => {
-    if (matches(e, [keys.END, keys.SPACE])) {
+    if (matches(e, [keys.ENTER, keys.SPACE])) {
       onClick();
     }
   };
@@ -125,7 +125,7 @@ ProgressStep.propTypes = {
   /**
    * Index of the current step within the ProgressIndicator
    */
-  index: PropTypes.number.isRequired,
+  index: PropTypes.number,
 
   /**
    * Provide the label for the <ProgressStep>
@@ -166,7 +166,7 @@ ProgressStep.propTypes = {
    * An optional parameter to allow for overflow content to be rendered in a
    * tooltip.
    */
-  renderLabel: PropTypes.function,
+  renderLabel: PropTypes.func,
 
   /**
    * Provide the props that describe a progress step tooltip
@@ -238,7 +238,8 @@ export class ProgressIndicator extends Component {
 
     return React.Children.map(this.props.children, (child, index) => {
       // only setup click handlers if onChange event is passed
-      const onClick = onChange ? () => onChange(index) : undefined;
+      const onClick =
+        onChange && index > -1 ? () => onChange(index) : undefined;
       if (index === this.state.currentIndex) {
         return React.cloneElement(child, {
           current: true,
