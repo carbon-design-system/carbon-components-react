@@ -11,6 +11,8 @@ import { action } from '@storybook/addon-actions';
 
 import { withKnobs, text } from '@storybook/addon-knobs';
 import Footer from '../Footer';
+import FooterItem from '../FooterItem';
+import Link from '../Link';
 
 const props = () => ({
   className: text('CSS class name (className)', 'some-class'),
@@ -41,6 +43,27 @@ storiesOf('Footer', module)
     {
       info: {
         text: 'Footer is used on configuration screens.',
+      },
+    }
+  )
+  .add(
+    'with footer items',
+    () => (
+      <Footer {...props()}>
+        <FooterItem
+          link={<Link href="#">First Link</Link>}
+          label="First Label"
+        />
+        <FooterItem
+          link={<Link href="#">Second Link</Link>}
+          label="Second Label"
+        />
+      </Footer>
+    ),
+    {
+      info: {
+        text:
+          'Children will be rendered instead of the default footer information. The `FooterItem` component is provided to ',
       },
     }
   );
