@@ -272,7 +272,7 @@ export default class DatePicker extends Component {
               : '',
           clickOpens: true,
           nextArrow: this.rightArrowHTML(),
-          leftArrow: this.leftArrowHTML(),
+          prevArrow: this.leftArrowHTML(),
           onChange: (...args) => {
             if (onChange) {
               onChange(...args);
