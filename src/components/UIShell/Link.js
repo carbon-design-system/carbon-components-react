@@ -31,8 +31,8 @@ const LinkPropTypes = {
   ]),
 };
 
+Link.displayName = 'Link';
 Link.propTypes = LinkPropTypes;
-
 Link.defaultProps = {
   element: 'a',
 };
