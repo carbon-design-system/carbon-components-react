@@ -54,10 +54,10 @@ const styleLoaders = [
   },
 ];
 
-module.exports = (baseConfig, env, defaultConfig) => {
-  defaultConfig.devtool = useStyleSourceMap ? 'source-map' : '';
-  defaultConfig.optimization = {
-    ...defaultConfig.optimization,
+module.exports = ({ config, mode }) => {
+  config.devtool = useStyleSourceMap ? 'source-map' : '';
+  config.optimization = {
+    ...config.optimization,
     minimizer: [
       new TerserPlugin({
         sourceMap: true,
@@ -68,7 +68,7 @@ module.exports = (baseConfig, env, defaultConfig) => {
     ],
   };
 
-  defaultConfig.module.rules.push({
+  config.module.rules.push({
     test: /(\/|\\)FeatureFlags\.js$/,
     loader: 'string-replace-loader',
     options: {
@@ -80,7 +80,7 @@ module.exports = (baseConfig, env, defaultConfig) => {
     },
   });
 
-  defaultConfig.module.rules.push({
+  config.module.rules.push({
     test: /-story\.jsx?$/,
     loaders: [
       {
@@ -100,7 +100,7 @@ module.exports = (baseConfig, env, defaultConfig) => {
     enforce: 'pre',
   });
 
-  defaultConfig.module.rules.push({
+  config.module.rules.push({
     test: /\.scss$/,
     sideEffects: true,
     use: [
@@ -110,12 +110,12 @@ module.exports = (baseConfig, env, defaultConfig) => {
   });
 
   if (useExternalCss) {
-    defaultConfig.plugins.push(
+    config.plugins.push(
       new MiniCssExtractPlugin({
         filename: '[name].[contenthash].css',
       })
     );
   }
 
-  return defaultConfig;
+  return config;
 };

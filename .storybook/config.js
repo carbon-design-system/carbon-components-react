@@ -1,9 +1,17 @@
 import React from 'react';
-import { configure, addDecorator } from '@storybook/react';
+import { configure, addDecorator, addParameters } from '@storybook/react';
 import { withInfo } from '@storybook/addon-info';
-import { withOptions } from '@storybook/addon-options';
-// import { checkA11y } from 'storybook-addon-a11y';
+// import { withA11y } from '@storybook/addon-a11y';
 import Container from './Container';
+
+addParameters({
+  options: {
+    theme: {
+      brandTitle: 'carbon components react',
+      brandUrl: 'https://github.com/IBM/carbon-components-react',
+    },
+  },
+});
 
 addDecorator(
   withInfo({
@@ -11,15 +19,9 @@ addDecorator(
   })
 );
 
-addDecorator(
-  withOptions({
-    name: `carbon components react`,
-    url: 'https://github.com/IBM/carbon-components-react',
-  })
-);
-
 addDecorator(story => <Container story={story} />);
-// addDecorator(checkA11y);
+
+// addDecorator(withA11y);
 
 function loadStories() {
   const req = require.context('../src/components', true, /\-story\.js$/);
