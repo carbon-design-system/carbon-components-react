@@ -300,7 +300,7 @@ export default class NumberInput extends Component {
                     aria-live="polite"
                     aria-atomic="true">
                     <CaretUpGlyph className="up-icon">
-                      <title>{incrementNumLabel}</title>
+                      <title>{iconDescription || incrementNumLabel}</title>
                     </CaretUpGlyph>
                   </button>
                   <button
@@ -311,7 +311,7 @@ export default class NumberInput extends Component {
                     aria-live="polite"
                     aria-atomic="true">
                     <CaretDownGlyph className="down-icon">
-                      <title>{decrementNumLabel}</title>
+                      <title>{iconDescription || decrementNumLabel}</title>
                     </CaretDownGlyph>
                   </button>
                 </div>
