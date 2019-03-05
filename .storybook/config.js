@@ -3,13 +3,11 @@ import { configure, addDecorator, addParameters } from '@storybook/react';
 import { withInfo } from '@storybook/addon-info';
 // import { withA11y } from '@storybook/addon-a11y';
 import Container from './Container';
+import theme from './theme';
 
 addParameters({
   options: {
-    theme: {
-      brandTitle: 'carbon components react',
-      brandUrl: 'https://github.com/IBM/carbon-components-react',
-    },
+    theme,
   },
 });
 
