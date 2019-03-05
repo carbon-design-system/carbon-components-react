@@ -16,7 +16,7 @@ export default create({
 
   // Fonts
   fontBase: "'IBM Plex Sans', Arial, sans-serif",
-  fontCode: 'Monaco, monospace',
+  fontCode: "'IBM Plex Mono', monospace",
 
   // Text colors
   textColor: '#f3f3f3',
