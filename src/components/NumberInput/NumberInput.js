@@ -330,9 +330,7 @@ export default class NumberInput extends Component {
                   <Icon
                     className="up-icon"
                     icon={iconCaretUp}
-                    description={
-                      this.props.iconDescription || incrementNumLabel
-                    }
+                    description={iconDescription || incrementNumLabel}
                     viewBox="0 0 10 5"
                   />
                 </button>
@@ -347,9 +345,7 @@ export default class NumberInput extends Component {
                     className="down-icon"
                     icon={iconCaretDown}
                     viewBox="0 0 10 5"
-                    description={
-                      this.props.iconDescription || decrementNumLabel
-                    }
+                    description={iconDescription || decrementNumLabel}
                   />
                 </button>
               </div>
