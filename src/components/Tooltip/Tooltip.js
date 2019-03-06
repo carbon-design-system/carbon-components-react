@@ -454,8 +454,9 @@ class Tooltip extends Component {
         aria-label={iconDescription}
         ref={mergeRefs(ref, node => {
           this.triggerEl = node;
-        })}
-      />
+        })}>
+        {iconDescription && <title>{iconDescription}</title>}
+      </IconCustomElement>
     ) : (
       <Icon
         icon={!icon && !iconName ? iconInfoGlyph : icon}

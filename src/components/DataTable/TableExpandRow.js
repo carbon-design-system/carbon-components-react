@@ -52,8 +52,9 @@ const TableExpandRow = ({
           {componentsX ? (
             <ChevronRight16
               className={`${prefix}--table-expand-v2__svg`}
-              aria-label={expandIconDescription}
-            />
+              aria-label={expandIconDescription}>
+              {expandIconDescription && <title>{expandIconDescription}</title>}
+            </ChevronRight16>
           ) : (
             <Icon
               className={`${prefix}--table-expand-v2__svg`}

@@ -28,8 +28,9 @@ const SearchFilterButton = ({ labelText, iconDescription, ...other }) => (
     {componentsX ? (
       <Filter16
         className={`${prefix}--search-filter`}
-        aria-label={iconDescription}
-      />
+        aria-label={iconDescription}>
+        {iconDescription && <title>{iconDescription}</title>}
+      </Filter16>
     ) : (
       <Icon
         icon={iconFilter}

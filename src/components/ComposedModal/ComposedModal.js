@@ -377,8 +377,9 @@ export class ModalHeader extends Component {
             <Close20
               alt={iconDescription}
               aria-label={iconDescription}
-              className={closeIconClass}
-            />
+              className={closeIconClass}>
+              {iconDescription && <title>{iconDescription}</title>}
+            </Close20>
           ) : (
             <Icon
               icon={iconClose}

@@ -136,8 +136,9 @@ export class NotificationButton extends Component {
             aria-label={iconDescription}
             className={iconClasses}
             icon={!icon && !name ? iconClose : icon}
-            name={name}
-          />
+            name={name}>
+            {iconDescription && <title>{iconDescription}</title>}
+          </IconTag>
         );
       } else if (!breakingChangesX) {
         return (
@@ -492,7 +493,9 @@ export class InlineNotification extends Component {
         return (
           <NotificationIconX
             className={`${prefix}--inline-notification__icon`}
-          />
+            aria-label={iconDescription}>
+            {iconDescription && <title>{iconDescription}</title>}
+          </NotificationIconX>
         );
       }
       switch (kind) {

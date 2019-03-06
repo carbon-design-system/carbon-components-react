@@ -42,8 +42,9 @@ const TableToolbarAction = ({
       return (
         <IconTag
           className={`${prefix}--toolbar-action__icon`}
-          aria-label={iconDescription}
-        />
+          aria-label={iconDescription}>
+          {iconDescription && <title>{iconDescription}</title>}
+        </IconTag>
       );
     } else if (!breakingChangesX && (icon || iconName)) {
       return (
