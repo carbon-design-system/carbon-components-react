@@ -175,7 +175,9 @@ class HeaderMenu extends React.Component {
           role="menuitem"
           tabIndex={0}>
           {content || ariaLabel}
-          <ChevronDownGlyph className={`${prefix}--header__menu-arrow`} />
+          {content ? null : (
+            <ChevronDownGlyph className={`${prefix}--header__menu-arrow`} />
+          )}
         </a>
         <ul
           {...accessibilityLabel}
