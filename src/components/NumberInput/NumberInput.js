@@ -299,7 +299,7 @@ export default class NumberInput extends Component {
                     aria-label={incrementNumLabel}
                     aria-live="polite"
                     aria-atomic="true">
-                    <CaretUpGlyph className="up-icon">
+                     <CaretUpGlyph className="up-icon" aria-label={iconDescription || incrementNumLabel}>
                       <title>{iconDescription || incrementNumLabel}</title>
                     </CaretUpGlyph>
                   </button>
