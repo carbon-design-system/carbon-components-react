@@ -7,8 +7,7 @@
 
 import { storiesOf } from '@storybook/react';
 import { withKnobs, boolean } from '@storybook/addon-knobs';
-import { withReadme } from 'storybook-readme';
-import readme from './README.md';
+import notes from './README.md';
 
 const readmeURL = 'https://goo.gl/dq6CEK';
 
@@ -19,13 +18,11 @@ const props = () => ({
 
 storiesOf('DataTable', module)
   .addDecorator(withKnobs)
-  .add(
-    'default',
-    withReadme(readme, () => require('./stories/default').default(props())),
-    {
-      info: {
-        /* eslint-disable no-useless-escape */
-        text: `
+  .addParameters({ notes })
+  .add('default', () => require('./stories/default').default(props()), {
+    info: {
+      /* eslint-disable no-useless-escape */
+      text: `
           Data Tables are used to represent a collection of resources, displaying a
           subset of their fields in columns, or headers. The \`DataTable\` component
           that we export from Carbon requires two props to be passed in: \`rows\`
@@ -33,55 +30,42 @@ storiesOf('DataTable', module)
           You can find more detailed information surrounding usage of this component
           at the following url: ${readmeURL}
         `,
-        /* eslint-enable no-useless-escape */
-      },
-    }
-  )
-  .add(
-    'with toolbar',
-    withReadme(readme, require('./stories/with-toolbar').default),
-    {
-      info: {
-        text: `
+      /* eslint-enable no-useless-escape */
+    },
+  })
+  .add('with toolbar', require('./stories/with-toolbar').default, {
+    info: {
+      text: `
           DataTable with toolbar and filtering.
 
           You can find more detailed information surrounding usage of this component
           at the following url: ${readmeURL}
         `,
-      },
-    }
-  )
-  .add(
-    'with sorting',
-    withReadme(readme, require('./stories/with-sorting').default),
-    {
-      info: {
-        text: `
+    },
+  })
+  .add('with sorting', require('./stories/with-sorting').default, {
+    info: {
+      text: `
           DataTable with sorting
 
           You can find more detailed information surrounding usage of this component
           at the following url: ${readmeURL}
         `,
-      },
-    }
-  )
-  .add(
-    'with selection',
-    withReadme(readme, require('./stories/with-selection').default),
-    {
-      info: {
-        text: `
+    },
+  })
+  .add('with selection', require('./stories/with-selection').default, {
+    info: {
+      text: `
           DataTable with selection
 
           You can find more detailed information surrounding usage of this component
           at the following url: ${readmeURL}
         `,
-      },
-    }
-  )
+    },
+  })
   .add(
     'with radio button selection',
-    withReadme(readme, require('./stories/with-selection--radio').default),
+    require('./stories/with-selection--radio').default,
     {
       info: {
         text: `
@@ -93,26 +77,19 @@ storiesOf('DataTable', module)
       },
     }
   )
-  .add(
-    'with expansion',
-    withReadme(readme, require('./stories/with-expansion').default),
-    {
-      info: {
-        text: `
+  .add('with expansion', require('./stories/with-expansion').default, {
+    info: {
+      text: `
             DataTable with expansion
 
             You can find more detailed information surrounding usage of this component
             at the following url: ${readmeURL}
           `,
-      },
-    }
-  )
-  .add(
-    'with batch actions',
-    withReadme(readme, require('./stories/with-batch-actions').default),
-    {
-      info: {
-        text: `
+    },
+  })
+  .add('with batch actions', require('./stories/with-batch-actions').default, {
+    info: {
+      text: `
             Uses <TableToolbar> alongside <TableBatchActions> and <TableBatchAction>
             to create the toolbar and placeholder for where the batch action menu will
             be displayed.
@@ -128,12 +105,11 @@ storiesOf('DataTable', module)
             You can find more detailed information surrounding usage of this component
             at the following url: ${readmeURL}
           `,
-      },
-    }
-  )
+    },
+  })
   .add(
     'with dynamic content',
-    withReadme(readme, require('./stories/with-dynamic-content').default),
+    require('./stories/with-dynamic-content').default,
     {
       info: {
         text: `
@@ -145,7 +121,7 @@ storiesOf('DataTable', module)
   )
   .add(
     'with boolean column',
-    withReadme(readme, require('./stories/with-boolean-column').default),
+    require('./stories/with-boolean-column').default,
     {
       info: {
         text: `

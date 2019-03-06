@@ -11,8 +11,7 @@ import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 
 import React from 'react';
-import { withReadme } from 'storybook-readme';
-import readme from './README.md';
+import notes from './README.md';
 
 import {
   Content,
@@ -66,10 +65,42 @@ const StoryContent = () => {
 // components and try and piece them together to figure out what are standard
 // usage patterns for each to see what kind of component API we should expose
 storiesOf('[Experimental] UI Shell', module)
-  .add(
-    'Header',
-    withReadme(readme, () => (
-      <Header>
+  .addParameters({ notes, info: '[Experimental] UI Shell' })
+  .add('Header', () => (
+    <Header>
+      <HeaderMenuButton
+        aria-label="Open menu"
+        onClick={action('Menu clicked')}
+      />
+      <HeaderName href="#" prefix="IBM">
+        [Platform]
+      </HeaderName>
+      <HeaderNavigation aria-label="IBM [Platform]">
+        <HeaderMenuItem href="#">Catalog</HeaderMenuItem>
+        <HeaderMenuItem href="#">Docs</HeaderMenuItem>
+        <HeaderMenuItem href="#">Support</HeaderMenuItem>
+        <HeaderMenu aria-label="Manage">
+          <HeaderMenuItem href="#">Link 1</HeaderMenuItem>
+          <HeaderMenuItem href="#">Link 2</HeaderMenuItem>
+          <HeaderMenuItem href="#">Link 3</HeaderMenuItem>
+        </HeaderMenu>
+      </HeaderNavigation>
+      <HeaderGlobalBar>
+        <HeaderGlobalAction
+          aria-label="Notifications"
+          onClick={action('notification click')}>
+          <Notification16 />
+        </HeaderGlobalAction>
+        <HeaderGlobalAction aria-label="Profile" onClick={action('user click')}>
+          <User16 />
+        </HeaderGlobalAction>
+      </HeaderGlobalBar>
+    </Header>
+  ))
+  .add('SideNav', () => (
+    <>
+      <Header aria-label="IBM Platform Name">
+        <SkipToContent />
         <HeaderMenuButton
           aria-label="Open menu"
           onClick={action('Menu clicked')}
@@ -100,77 +131,33 @@ storiesOf('[Experimental] UI Shell', module)
           </HeaderGlobalAction>
         </HeaderGlobalBar>
       </Header>
-    )),
-    {
-      info: {
-        text: '[Experimental] UI Shell',
-      },
-    }
-  )
-  .add(
-    'SideNav',
-    withReadme(readme, () => (
-      <>
-        <Header aria-label="IBM Platform Name">
-          <SkipToContent />
-          <HeaderMenuButton
-            aria-label="Open menu"
-            onClick={action('Menu clicked')}
-          />
-          <HeaderName href="#" prefix="IBM">
-            [Platform]
-          </HeaderName>
-          <HeaderNavigation aria-label="IBM [Platform]">
-            <HeaderMenuItem href="#">Catalog</HeaderMenuItem>
-            <HeaderMenuItem href="#">Docs</HeaderMenuItem>
-            <HeaderMenuItem href="#">Support</HeaderMenuItem>
-            <HeaderMenu aria-label="Manage">
-              <HeaderMenuItem href="#">Link 1</HeaderMenuItem>
-              <HeaderMenuItem href="#">Link 2</HeaderMenuItem>
-              <HeaderMenuItem href="#">Link 3</HeaderMenuItem>
-            </HeaderMenu>
-          </HeaderNavigation>
-          <HeaderGlobalBar>
-            <HeaderGlobalAction
-              aria-label="Notifications"
-              onClick={action('notification click')}>
-              <Notification16 />
-            </HeaderGlobalAction>
-            <HeaderGlobalAction
-              aria-label="Profile"
-              onClick={action('user click')}>
-              <User16 />
-            </HeaderGlobalAction>
-          </HeaderGlobalBar>
-        </Header>
-        <SideNav aria-label="Side navigation">
-          <SideNavHeader icon={<Fade16 />}>
-            <SideNavDetails title="Side navigation title">
-              <SideNavSwitcher
-                labelText="Switcher"
-                onChange={action('switcher changed')}
-                options={['Option 1', 'Option 2', 'Option 3']}
-              />
-            </SideNavDetails>
-          </SideNavHeader>
-          <SideNavItems>
-            <SideNavLink icon={<Fade16 />} href="javascript:void(0)">
+      <SideNav aria-label="Side navigation">
+        <SideNavHeader icon={<Fade16 />}>
+          <SideNavDetails title="Side navigation title">
+            <SideNavSwitcher
+              labelText="Switcher"
+              onChange={action('switcher changed')}
+              options={['Option 1', 'Option 2', 'Option 3']}
+            />
+          </SideNavDetails>
+        </SideNavHeader>
+        <SideNavItems>
+          <SideNavLink icon={<Fade16 />} href="javascript:void(0)">
+            Link
+          </SideNavLink>
+          <SideNavMenu
+            defaultExpanded
+            icon={<Fade16 />}
+            isActive
+            title="Category title">
+            <SideNavMenuItem href="javascript:void(0)">Link</SideNavMenuItem>
+            <SideNavMenuItem aria-current="page" href="javascript:void(0)">
               Link
-            </SideNavLink>
-            <SideNavMenu
-              defaultExpanded
-              icon={<Fade16 />}
-              isActive
-              title="Category title">
-              <SideNavMenuItem href="javascript:void(0)">Link</SideNavMenuItem>
-              <SideNavMenuItem aria-current="page" href="javascript:void(0)">
-                Link
-              </SideNavMenuItem>
-              <SideNavMenuItem href="javascript:void(0)">Link</SideNavMenuItem>
-            </SideNavMenu>
-          </SideNavItems>
-        </SideNav>
-        <StoryContent />
-      </>
-    ))
-  );
+            </SideNavMenuItem>
+            <SideNavMenuItem href="javascript:void(0)">Link</SideNavMenuItem>
+          </SideNavMenu>
+        </SideNavItems>
+      </SideNav>
+      <StoryContent />
+    </>
+  ));
