@@ -37,6 +37,11 @@ class HeaderMenu extends React.Component {
      * Optionally provide a tabIndex for the underlying menu button
      */
     tabIndex: PropTypes.number,
+
+    /**
+     * Optional component to render instead of string
+     */
+    content: PropTypes.any,
   };
 
   constructor(props) {
@@ -137,6 +142,7 @@ class HeaderMenu extends React.Component {
       'aria-labelledby': ariaLabelledBy,
       className: customClassName,
       children,
+      content,
     } = this.props;
     const accessibilityLabel = {
       'aria-label': ariaLabel,
@@ -168,7 +174,7 @@ class HeaderMenu extends React.Component {
           ref={this.handleMenuButtonRef}
           role="menuitem"
           tabIndex={0}>
-          {ariaLabel}
+          {content || ariaLabel}
           <ChevronDownGlyph className={`${prefix}--header__menu-arrow`} />
         </a>
         <ul
