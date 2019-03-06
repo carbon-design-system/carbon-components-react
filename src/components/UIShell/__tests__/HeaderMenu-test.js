@@ -45,6 +45,46 @@ describe('HeaderMenu', () => {
     expect(wrapper).toMatchSnapshot();
   });
 
+  it('should render aria-label', () => {
+    const wrapper = mount(
+      <HeaderMenu {...mockProps}>
+        <HeaderMenuItem href="/a">A</HeaderMenuItem>
+        <HeaderMenuItem href="/b">B</HeaderMenuItem>
+        <HeaderMenuItem href="/c">C</HeaderMenuItem>
+      </HeaderMenu>,
+      {
+        attachTo: mountNode,
+      }
+    );
+    const headerMenu = wrapper.childAt(0);
+    const headerMenuText = headerMenu.find('.bx--header__menu-title').text();
+
+    expect(headerMenuText).toMatch('Accessibility label');
+  });
+
+  it('should render content prop', () => {
+    const wrapper = mount(
+      <HeaderMenu content={<p>Some other text</p>} {...mockProps}>
+        <HeaderMenuItem href="/a">A</HeaderMenuItem>
+        <HeaderMenuItem href="/b">B</HeaderMenuItem>
+        <HeaderMenuItem href="/c">C</HeaderMenuItem>
+      </HeaderMenu>,
+      {
+        attachTo: mountNode,
+      }
+    );
+
+    const headerMenu = wrapper.childAt(0);
+    const headerMenuAnchorChildText = headerMenu
+      .find('.bx--header__menu-title')
+      .childAt(0)
+      .text();
+    const headerMenuText = headerMenu.find('.bx--header__menu-title').text();
+
+    expect(headerMenuText).not.toMatch('Accessibility label');
+    expect(headerMenuAnchorChildText).toMatch('Some other text');
+  });
+
   describe('menu button interactions', () => {
     it('should should open and close', () => {
       const headerMenu = wrapper.childAt(0);
