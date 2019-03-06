@@ -31,18 +31,52 @@ describe('HeaderMenu', () => {
     mountNode.parentNode.removeChild(mountNode);
   });
 
+  const wrapper = mount(
+    <HeaderMenu {...mockProps}>
+      <HeaderMenuItem href="/a">A</HeaderMenuItem>
+      <HeaderMenuItem href="/b">B</HeaderMenuItem>
+      <HeaderMenuItem href="/c">C</HeaderMenuItem>
+    </HeaderMenu>,
+    {
+      attachTo: mountNode,
+    }
+  );
   it('should render', () => {
-    const wrapper = mount(
-      <HeaderMenu {...mockProps}>
-        <HeaderMenuItem href="/a">A</HeaderMenuItem>
-        <HeaderMenuItem href="/b">B</HeaderMenuItem>
-        <HeaderMenuItem href="/c">C</HeaderMenuItem>
-      </HeaderMenu>,
-      {
-        attachTo: mountNode,
-      }
-    );
     expect(wrapper).toMatchSnapshot();
+  });
+
+  describe('menu button interactions', () => {
+    it('should should open and close', () => {
+      const headerMenu = wrapper.childAt(0);
+      const headerInstance = headerMenu.instance();
+
+      // Should start closed
+      expect(headerInstance.state.expanded).toEqual(false);
+
+      // Click should open
+      headerMenu.simulate('click');
+      expect(headerInstance.state.expanded).toEqual(true);
+
+      // blur should close
+      headerMenu.simulate('blur');
+      expect(headerInstance.state.expanded).toEqual(false);
+
+      // Get first link in the menu
+      const menuLink = headerMenu.find('a').first();
+
+      // After enter should open
+      menuLink.simulate('keydown', { key: 'Enter', keyCode: 13, which: 13 });
+      expect(headerInstance.state.expanded).toEqual(true);
+
+      // After space should close
+      menuLink.simulate('keydown', { key: 'Space', keyCode: 32, which: 32 });
+      expect(headerInstance.state.expanded).toEqual(false);
+
+      // After esc should close
+      headerMenu.simulate('click');
+      menuLink.simulate('keydown', { key: 'Escape', keyCode: 27, which: 27 });
+      expect(headerInstance.state.expanded).toEqual(false);
+    });
   });
 
   describe('menu button', () => {
