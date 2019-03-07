@@ -3158,10 +3158,10 @@ capture-stack-trace@^1.0.0:
   resolved "https://registry.yarnpkg.com/capture-stack-trace/-/capture-stack-trace-1.0.1.tgz#a6c0bbe1f38f3aa0b92238ecb6ff42c344d4135d"
   integrity sha512-mYQLZnx5Qt1JgB1WEiMCf2647plpGeQ2NMR/5L0HNZzGQo4fuSPnK+wjfPnKZV0aiJDgzmWqqkV/g7JD+DW0qw==
 
-carbon-components@^9.82.8:
-  version "9.82.8"
-  resolved "https://registry.yarnpkg.com/carbon-components/-/carbon-components-9.82.8.tgz#87c31c6096329f8fd070625e0d3d2b709c0f3944"
-  integrity sha512-PcQN/IJc81vehaMHUx+xOcL9xsPtICFtI5MEL57JWgIT3HkYwCYMiLl9HRhVGRM6Cf5z3zaCgxI/GWGO7w3p9w==
+carbon-components@^9.82.10:
+  version "9.82.13"
+  resolved "https://registry.yarnpkg.com/carbon-components/-/carbon-components-9.82.13.tgz#14940eec26d33f8f49b416fa5b371c1471af190d"
+  integrity sha512-P9hqkhFp2eHFRUt0hz85zSUUNsdmP9edYHw3ewhdzszzXG6dvwcvg39qNabpQlrmhwfsNOJQBp5QibS7s9nM1g==
   dependencies:
     carbon-icons "^7.0.7"
     flatpickr "4.5.2"
@@ -5398,6 +5398,11 @@ flatpickr@4.5.2:
   version "4.5.2"
   resolved "https://registry.yarnpkg.com/flatpickr/-/flatpickr-4.5.2.tgz#47c8ad472a096e5fb7e74b809b0703535383f20d"
   integrity sha512-jDy4QYGpmiy7+Qk8QvKJ4spjDdxcx9cxMydmq1x427HkKWBw0qizLYeYM2F6tMcvvqGjU5VpJS55j4LnsaBblA==
+
+flatpickr@4.5.5:
+  version "4.5.5"
+  resolved "https://registry.yarnpkg.com/flatpickr/-/flatpickr-4.5.5.tgz#b138050654932f4cf667897d00b51bb930bf392e"
+  integrity sha512-KgAJxBN1BWiOAkwvFSM/nS9YFESOh1yI7uQEd/HQqcTGev84ADO2Mx8C3bUKgIULscb+LireiSDe5D9fh3PFtQ==
 
 flush-write-stream@^1.0.0:
   version "1.0.3"
