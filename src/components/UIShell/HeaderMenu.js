@@ -15,6 +15,13 @@ import { AriaLabelPropType } from '../../prop-types/AriaPropTypes';
 
 const { prefix } = settings;
 
+const defaultMenuContent = ({ ariaLabel }) => (
+  <>
+    {ariaLabel}
+    <ChevronDownGlyph className={`${prefix}--header__menu-arrow`} />
+  </>
+);
+
 /**
  * `HeaderMenu` is used to render submenu's in the `Header`. Most often children
  * will be a `HeaderMenuItem`. It handles certain keyboard events to help
@@ -41,7 +48,11 @@ class HeaderMenu extends React.Component {
     /**
      * Optional component to render instead of string
      */
-    content: PropTypes.any,
+    renderMenuContent: PropTypes.func,
+  };
+
+  static defaultProps = {
+    renderMenuContent: defaultMenuContent,
   };
 
   constructor(props) {
@@ -142,7 +153,7 @@ class HeaderMenu extends React.Component {
       'aria-labelledby': ariaLabelledBy,
       className: customClassName,
       children,
-      content,
+      renderMenuContent: MenuContent,
     } = this.props;
     const accessibilityLabel = {
       'aria-label': ariaLabel,
@@ -173,11 +184,9 @@ class HeaderMenu extends React.Component {
           onKeyDown={this.handleOnKeyDown}
           ref={this.handleMenuButtonRef}
           role="menuitem"
-          tabIndex={0}>
-          {content || ariaLabel}
-          {content ? null : (
-            <ChevronDownGlyph className={`${prefix}--header__menu-arrow`} />
-          )}
+          tabIndex={0}
+          ariaLabel={ariaLabel}>
+          <MenuContent ariaLabel={ariaLabel} />
         </a>
         <ul
           {...accessibilityLabel}

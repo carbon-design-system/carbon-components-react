@@ -63,8 +63,9 @@ describe('HeaderMenu', () => {
   });
 
   it('should render content prop', () => {
+    const menuContent = () => <p>Some other text</p>;
     const wrapper = mount(
-      <HeaderMenu content={<p>Some other text</p>} {...mockProps}>
+      <HeaderMenu renderMenuContent={menuContent} {...mockProps}>
         <HeaderMenuItem href="/a">A</HeaderMenuItem>
         <HeaderMenuItem href="/b">B</HeaderMenuItem>
         <HeaderMenuItem href="/c">C</HeaderMenuItem>
