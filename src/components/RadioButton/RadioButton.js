@@ -88,12 +88,22 @@ class RadioButton extends React.Component {
   };
 
   render() {
-    const { className, labelText, labelPosition, innerRef: ref, ...other } = this.props;
-    const wrapperClasses = classNames(className, `${prefix}--radio-button-wrapper`, {
-      [`${prefix}--radio-button-wrapper--label-${labelPosition}`]:
-        labelPosition !== 'right',
-      radioButtonWrapper: !breakingChangesX,
-    });
+    const {
+      className,
+      labelText,
+      labelPosition,
+      innerRef: ref,
+      ...other
+    } = this.props;
+    const wrapperClasses = classNames(
+      className,
+      `${prefix}--radio-button-wrapper`,
+      {
+        [`${prefix}--radio-button-wrapper--label-${labelPosition}`]:
+          labelPosition !== 'right',
+        radioButtonWrapper: !breakingChangesX,
+      }
+    );
     return (
       <div className={wrapperClasses}>
         <input
