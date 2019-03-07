@@ -25,6 +25,8 @@ import { keys, matches as keyCodeMatches } from '../../tools/key';
 
 const { prefix } = settings;
 
+let didWarnAboutDeprecation = false;
+
 const matchesFuncName =
   typeof Element !== 'undefined' &&
   ['matches', 'webkitMatchesSelector', 'msMatchesSelector'].filter(
@@ -275,7 +277,7 @@ export default class OverflowMenu extends Component {
     /**
      * Function called to override icon rendering.
      */
-    renderIcon: PropTypes.func,
+    renderIcon: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
 
     /**
      * Function called when menu is closed
@@ -295,6 +297,7 @@ export default class OverflowMenu extends Component {
     direction: DIRECTION_BOTTOM,
     flipped: false,
     floatingMenu: false,
+    renderIcon: !componentsX ? undefined : OverflowMenuVertical16,
     onClick: () => {},
     onKeyDown: () => {},
     onClose: () => {},
@@ -487,16 +490,17 @@ export default class OverflowMenu extends Component {
   };
 
   /**
-   * Handles the floating menu being unmounted.
+   * Handles the floating menu being unmounted or non-floating menu being
+   * mounted or unmounted.
    * @param {Element} menuBody The DOM element of the menu body.
    * @private
    */
   _bindMenuBody = menuBody => {
-    if (!menuBody) {
+    if (!this.props.floatingMenu || !menuBody) {
       this._menuBody = menuBody;
-      if (this._hFocusIn) {
-        this._hFocusIn = this._hFocusIn.release();
-      }
+    }
+    if (!menuBody && this._hFocusIn) {
+      this._hFocusIn = this._hFocusIn.release();
     }
   };
 
@@ -559,7 +563,7 @@ export default class OverflowMenu extends Component {
       iconClass,
       onClick, // eslint-disable-line
       onOpen, // eslint-disable-line
-      renderIcon,
+      renderIcon: IconElement,
       ...other
     } = this.props;
     const floatingMenu = !!breakingChangesX || origFloatingMenu;
@@ -574,6 +578,15 @@ export default class OverflowMenu extends Component {
         floatingMenu,
         '[OverflowMenu] non-floating option has been deprecated.'
       );
+    }
+
+    if (__DEV__ && breakingChangesX && (icon || iconName)) {
+      warning(
+        didWarnAboutDeprecation,
+        'The `icon`/`iconName` properties in the `OverflowMenu` component is being removed in the next release of ' +
+          '`carbon-components-react`. Please use `renderIcon` instead.'
+      );
+      didWarnAboutDeprecation = true;
     }
 
     const { open } = this.state;
@@ -651,19 +664,15 @@ export default class OverflowMenu extends Component {
     };
 
     const overflowMenuIcon = (() => {
-      if (renderIcon) {
-        return renderIcon(iconProps);
-      }
-      if (!componentsX) {
-        return (
-          <Icon
-            {...iconProps}
-            icon={!icon && !iconName ? iconOverflowMenu : icon}
-            name={iconName}
-          />
-        );
-      }
-      return <OverflowMenuVertical16 {...iconProps} />;
+      return IconElement ? (
+        <IconElement {...iconProps} />
+      ) : (
+        <Icon
+          {...iconProps}
+          icon={!icon && !iconName ? iconOverflowMenu : icon}
+          name={iconName}
+        />
+      );
     })();
 
     return (
