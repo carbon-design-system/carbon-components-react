@@ -21,7 +21,7 @@ exports[`HeaderMenu should render 1`] = `
         role="menuitem"
         tabIndex={0}
       >
-        <defaultMenuContent>
+        <defaultRenderMenuContent>
           <ChevronDownGlyph
             className="bx--header__menu-arrow"
             height={6}
@@ -50,7 +50,7 @@ exports[`HeaderMenu should render 1`] = `
               />
             </svg>
           </ChevronDownGlyph>
-        </defaultMenuContent>
+        </defaultRenderMenuContent>
       </a>
       <ul
         className="bx--header__menu"

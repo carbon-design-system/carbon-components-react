@@ -15,7 +15,7 @@ import { AriaLabelPropType } from '../../prop-types/AriaPropTypes';
 
 const { prefix } = settings;
 
-const defaultMenuContent = ({ ariaLabel }) => (
+const defaultRenderMenuContent = ({ ariaLabel }) => (
   <>
     {ariaLabel}
     <ChevronDownGlyph className={`${prefix}--header__menu-arrow`} />
@@ -52,7 +52,7 @@ class HeaderMenu extends React.Component {
   };
 
   static defaultProps = {
-    renderMenuContent: defaultMenuContent,
+    renderMenuContent: defaultRenderMenuContent,
   };
 
   constructor(props) {
