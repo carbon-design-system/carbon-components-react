@@ -22,6 +22,7 @@ import Icon from '../Icon';
 import OverflowMenuVertical16 from '@carbon/icons-react/lib/overflow-menu--vertical/16';
 import { breakingChangesX, componentsX } from '../../internal/FeatureFlags';
 import { keys, matches as keyCodeMatches } from '../../tools/key';
+import mergeRefs from '../../tools/mergeRefs';
 
 const { prefix } = settings;
 
@@ -162,7 +163,7 @@ export const getMenuOffset = (menuBody, direction, trigger, flip) => {
   }
 };
 
-export default class OverflowMenu extends Component {
+class OverflowMenu extends Component {
   state = {};
 
   static propTypes = {
@@ -353,7 +354,8 @@ export default class OverflowMenu extends Component {
   };
 
   componentDidUpdate() {
-    const { onClose, onOpen, floatingMenu } = this.props;
+    const { onClose, onOpen, floatingMenu: origFloatingMenu } = this.props;
+    const floatingMenu = !!breakingChangesX || origFloatingMenu;
 
     if (this.state.open) {
       if (!floatingMenu) {
@@ -436,7 +438,8 @@ export default class OverflowMenu extends Component {
    * https://reactjs.org/docs/events.html#event-pooling
    */
   handleBlur = evt => {
-    if (this.props.floatingMenu) {
+    const floatingMenu = !!breakingChangesX || this.props.floatingMenu;
+    if (floatingMenu) {
       return;
     }
     evt.persist();
@@ -488,16 +491,17 @@ export default class OverflowMenu extends Component {
   };
 
   /**
-   * Handles the floating menu being unmounted.
+   * Handles the floating menu being unmounted or non-floating menu being
+   * mounted or unmounted.
    * @param {Element} menuBody The DOM element of the menu body.
    * @private
    */
   _bindMenuBody = menuBody => {
-    if (!menuBody) {
+    if (!this.props.floatingMenu || !menuBody) {
       this._menuBody = menuBody;
-      if (this._hFocusIn) {
-        this._hFocusIn = this._hFocusIn.release();
-      }
+    }
+    if (!menuBody && this._hFocusIn) {
+      this._hFocusIn = this._hFocusIn.release();
     }
   };
 
@@ -554,21 +558,27 @@ export default class OverflowMenu extends Component {
       iconName,
       direction,
       flipped,
-      floatingMenu,
+      floatingMenu: origFloatingMenu,
       menuOffset,
       menuOffsetFlip,
       iconClass,
       onClick, // eslint-disable-line
       onOpen, // eslint-disable-line
       renderIcon: IconElement,
+      innerRef: ref,
       ...other
     } = this.props;
+    const floatingMenu = !!breakingChangesX || origFloatingMenu;
 
     if (__DEV__) {
       warning(
         floatingMenu || direction === DIRECTION_BOTTOM,
         '[OverflowMenu] menu direction other than `bottom` is only supporting with `floatingMenu` option. Received: `%s`',
         direction
+      );
+      warning(
+        floatingMenu,
+        '[OverflowMenu] non-floating option has been deprecated.'
       );
     }
 
@@ -681,7 +691,7 @@ export default class OverflowMenu extends Component {
           aria-label={ariaLabel}
           id={id}
           tabIndex={tabIndex}
-          ref={this.bindMenuEl}>
+          ref={mergeRefs(ref, this.bindMenuEl)}>
           {overflowMenuIcon}
           {open && wrappedMenuBody}
         </div>
@@ -689,3 +699,13 @@ export default class OverflowMenu extends Component {
     );
   }
 }
+
+export default (!breakingChangesX
+  ? OverflowMenu
+  : (() => {
+      const forwardRef = (props, ref) => (
+        <OverflowMenu {...props} innerRef={ref} />
+      );
+      forwardRef.displayName = 'OverflowMenu';
+      return React.forwardRef(forwardRef);
+    })());
