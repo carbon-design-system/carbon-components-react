@@ -8,6 +8,7 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import classNames from 'classnames';
+import warning from 'warning';
 import {
   iconClose,
   iconCheckmarkSolid,
@@ -17,12 +18,18 @@ import {
 } from 'carbon-icons';
 import { settings } from 'carbon-components';
 import Icon from '../Icon';
-// temporary workaround for a11y warning icon. TODO: for @carbon/icons-react
+// temporary workaround for a11y warning icon. TODO: for @carbon/icons-, https://github.com/carbon-design-system/carbon-website/issues/797
 import a11yIconWarningSolid from './a11yIconWarningSolid';
 import Close16 from '@carbon/icons-react/lib/close/16';
-import { componentsX } from '../../internal/FeatureFlags';
+import ErrorFilled16 from '@carbon/icons-react/lib/error--filled/16';
+import CheckmarkFilled16 from '@carbon/icons-react/lib/checkmark--filled/16';
+import InformationFilled16 from '@carbon/icons-react/lib/information--filled/16';
+import WarningAltFilled16 from '@carbon/icons-react/lib/warning--alt--filled/16';
+import { breakingChangesX, componentsX } from '../../internal/FeatureFlags';
 
 const { prefix } = settings;
+
+let didWarnAboutDeprecation = false;
 
 export class NotificationButton extends Component {
   static propTypes = {
@@ -58,6 +65,12 @@ export class NotificationButton extends Component {
     }),
 
     /**
+     * Optional prop to allow overriding the icon rendering.
+     * Can be a React component class
+     */
+    renderIcon: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+
+    /**
      * Specify an optional icon for the Button through a string,
      * if something but regular "close" icon is desirable
      */
@@ -70,10 +83,11 @@ export class NotificationButton extends Component {
   };
 
   static defaultProps = {
-    ariaLabel: 'close notificaion',
+    ariaLabel: 'close notification', // TODO: deprecate this prop
     notificationType: 'toast',
     type: 'button',
     iconDescription: 'close icon',
+    renderIcon: !componentsX ? undefined : Close16,
   };
 
   render() {
@@ -83,10 +97,20 @@ export class NotificationButton extends Component {
       iconDescription,
       type,
       icon,
+      renderIcon: IconTag,
       name,
       notificationType,
       ...other
     } = this.props;
+
+    if (__DEV__ && breakingChangesX && (icon || name)) {
+      warning(
+        didWarnAboutDeprecation,
+        'The `icon`/`name` properties in the `NotificationButton` component is being removed in the next release of ' +
+          '`carbon-components-react`. Please use `renderIcon` instead.'
+      );
+      didWarnAboutDeprecation = true;
+    }
 
     const buttonClasses = classNames(
       {
@@ -105,11 +129,18 @@ export class NotificationButton extends Component {
         notificationType === 'inline',
     });
 
-    return (
-      <button {...other} type={type} className={buttonClasses}>
-        {componentsX ? (
-          <Close16 className={iconClasses} aria-label={ariaLabel} />
-        ) : (
+    const NotificationButtonIcon = (() => {
+      if (Object(IconTag) === IconTag) {
+        return (
+          <IconTag
+            aria-label={iconDescription}
+            className={iconClasses}
+            icon={!icon && !name ? iconClose : icon}
+            name={name}
+          />
+        );
+      } else if (!breakingChangesX) {
+        return (
           <Icon
             description={iconDescription}
             className={iconClasses}
@@ -117,7 +148,14 @@ export class NotificationButton extends Component {
             icon={!icon && !name ? iconClose : icon}
             name={name}
           />
-        )}
+        );
+      }
+      return null;
+    })();
+
+    return (
+      <button {...other} type={type} className={buttonClasses}>
+        {NotificationButtonIcon}
       </button>
     );
   }
@@ -412,10 +450,10 @@ export class InlineNotification extends Component {
 
   useIcon = kindProp =>
     ({
-      error: iconErrorSolid,
-      success: iconCheckmarkSolid,
-      warning: iconWarningSolid,
-      info: iconInfoSolid,
+      error: componentsX ? ErrorFilled16 : iconErrorSolid,
+      success: componentsX ? CheckmarkFilled16 : iconCheckmarkSolid,
+      warning: componentsX ? WarningAltFilled16 : iconWarningSolid,
+      info: componentsX ? InformationFilled16 : iconInfoSolid,
     }[kindProp]);
 
   render() {
@@ -445,6 +483,14 @@ export class InlineNotification extends Component {
     );
 
     const NotificationIcon = kind => {
+      if (componentsX) {
+        const NotificationIconX = this.useIcon(kind);
+        return (
+          <NotificationIconX
+            className={`${prefix}--inline-notification__icon`}
+          />
+        );
+      }
       switch (kind) {
         case 'warning':
           return a11yIconWarningSolid(prefix, notificationType);

@@ -9,14 +9,18 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import Icon from '../Icon';
 import classNames from 'classnames';
+import warning from 'warning';
 import { settings } from 'carbon-components';
 import { ButtonTypes } from '../../prop-types/types';
-import { componentsX } from '../../internal/FeatureFlags';
+import { breakingChangesX } from '../../internal/FeatureFlags';
 
 const { prefix } = settings;
 
+let didWarnAboutDeprecation = false;
+
 const Button = ({
   children,
+  as,
   className,
   disabled,
   small,
@@ -24,6 +28,8 @@ const Button = ({
   href,
   tabIndex,
   type,
+  inputref,
+  renderIcon,
   icon,
   iconDescription,
   ...other
@@ -42,50 +48,62 @@ const Button = ({
   const commonProps = {
     tabIndex,
     className: buttonClasses,
+    ref: inputref,
   };
-  const buttonImage = (() => {
-    if (componentsX && icon && React.isValidElement(icon)) {
-      return icon;
-    }
-    if (!componentsX && icon) {
-      return (
-        <Icon
-          icon={Object(icon) === icon ? icon : undefined}
-          name={Object(icon) !== icon ? icon : undefined}
-          description={iconDescription}
-          className={`${prefix}--btn__icon`}
-          aria-hidden="true"
-        />
-      );
-    }
-    return null;
-  })();
 
-  const button = (
-    <button
-      {...other}
-      {...commonProps}
-      disabled={disabled}
-      type={type}
-      ref={other.inputref}>
-      {children}
-      {buttonImage}
-    </button>
+  if (__DEV__ && breakingChangesX && icon) {
+    warning(
+      didWarnAboutDeprecation,
+      'The `icon` property in the `Button` component is being removed in the next release of ' +
+        '`carbon-components-react`. Please use `renderIcon` instead.'
+    );
+    didWarnAboutDeprecation = true;
+  }
+
+  const hasRenderIcon = Object(renderIcon) === renderIcon;
+  const ButtonImageElement = hasRenderIcon
+    ? renderIcon
+    : !breakingChangesX && icon && Icon;
+  const buttonImage = !ButtonImageElement ? null : (
+    <ButtonImageElement
+      icon={!hasRenderIcon && Object(icon) === icon ? icon : undefined}
+      name={!hasRenderIcon && Object(icon) !== icon ? icon : undefined}
+      aria-label={!hasRenderIcon ? undefined : iconDescription}
+      description={hasRenderIcon ? undefined : iconDescription}
+      className={`${prefix}--btn__icon`}
+      aria-hidden={true}
+    />
   );
 
-  const anchor = (
-    <a
-      {...other}
-      {...commonProps}
-      href={href}
-      role="button"
-      ref={other.inputref}>
-      {children}
-      {buttonImage}
-    </a>
+  let component = 'button';
+  let otherProps = {
+    disabled,
+    type,
+  };
+  const anchorProps = {
+    role: 'button',
+    href,
+  };
+  if (as) {
+    component = as;
+    otherProps = {
+      ...otherProps,
+      ...anchorProps,
+    };
+  } else if (href) {
+    component = 'a';
+    otherProps = anchorProps;
+  }
+  return React.createElement(
+    component,
+    {
+      ...other,
+      ...commonProps,
+      ...otherProps,
+    },
+    children,
+    buttonImage
   );
-
-  return href ? anchor : button;
 };
 
 Button.propTypes = {
@@ -93,6 +111,12 @@ Button.propTypes = {
    * Specify the content of your Button
    */
   children: PropTypes.node,
+
+  /**
+   * Specify how the button itself should be rendered.
+   * Make sure to apply all props to the root node and render children appropriately
+   */
+  as: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
 
   /**
    * Specify an optional className to be added to your Button
@@ -135,6 +159,12 @@ Button.propTypes = {
   role: PropTypes.string,
 
   /**
+   * Optional prop to allow overriding the icon rendering.
+   * Can be a React component class
+   */
+  renderIcon: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+
+  /**
    * Specify an icon to include in the Button through a string or object
    * representing the SVG data of the icon
    */
@@ -154,9 +184,9 @@ Button.propTypes = {
    * be read by screen readers
    */
   iconDescription: props => {
-    if (props.icon && !props.iconDescription) {
+    if ((props.icon || props.renderIcon) && !props.iconDescription) {
       return new Error(
-        'icon property specified without also providing an iconDescription property.'
+        'icon/renderIcon property specified without also providing an iconDescription property.'
       );
     }
     return undefined;
@@ -172,4 +202,12 @@ Button.defaultProps = {
   kind: 'primary',
 };
 
-export default Button;
+export default (!breakingChangesX
+  ? Button
+  : (() => {
+      const forwardRef = (props, ref) => {
+        return <Button {...props} inputref={ref} />;
+      };
+      forwardRef.displayName = 'Button';
+      return React.forwardRef(forwardRef);
+    })());

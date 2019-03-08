@@ -18,6 +18,11 @@
  */
 
 /**
+ * Breaking changes for next release.
+ */
+export const breakingChangesX = false;
+
+/**
  * Next gen of Carbon component design.
  */
 export const componentsX = false;
@@ -25,4 +30,4 @@ export const componentsX = false;
 /**
  * Support for prop -> state sync of `<Slider>` value.
  */
-export const sliderValuePropSync = false;
+export const sliderValuePropSync = breakingChangesX;

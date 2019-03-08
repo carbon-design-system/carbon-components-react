@@ -8,6 +8,9 @@
 import React from 'react';
 import { action } from '@storybook/addon-actions';
 import { iconDownload, iconEdit, iconSettings } from 'carbon-icons';
+import Download16 from '@carbon/icons-react/lib/download/16';
+import Edit16 from '@carbon/icons-react/lib/edit/16';
+import Settings16 from '@carbon/icons-react/lib/settings/16';
 import Button from '../../Button';
 import DataTable, {
   Table,
@@ -27,6 +30,7 @@ import DataTable, {
   TableToolbarSearch,
 } from '../../DataTable';
 import { batchActionClick, initialRows, headers } from './shared';
+import { componentsX } from '../../../internal/FeatureFlags';
 
 export default ({ short, shouldShowBorder }) => (
   <DataTable
@@ -61,17 +65,20 @@ export default ({ short, shouldShowBorder }) => (
           <TableToolbarSearch onChange={onInputChange} />
           <TableToolbarContent>
             <TableToolbarAction
-              icon={iconDownload}
+              renderIcon={!componentsX ? undefined : Download16}
+              icon={componentsX ? undefined : iconDownload}
               iconDescription="Download"
               onClick={action('TableToolbarAction - Download')}
             />
             <TableToolbarAction
-              icon={iconEdit}
+              renderIcon={!componentsX ? undefined : Edit16}
+              icon={componentsX ? undefined : iconEdit}
               iconDescription="Edit"
               onClick={action('TableToolbarAction - Edit')}
             />
             <TableToolbarAction
-              icon={iconSettings}
+              renderIcon={!componentsX ? undefined : Settings16}
+              icon={componentsX ? undefined : iconSettings}
               iconDescription="Settings"
               onClick={action('TableToolbarAction - Settings')}
             />

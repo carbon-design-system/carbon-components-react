@@ -7,7 +7,9 @@
 
 import React from 'react';
 import { iconSearch } from 'carbon-icons';
+import Search16 from '@carbon/icons-react/lib/search/16';
 import Button from '../Button';
+import Link from '../Link';
 import ButtonSkeleton from '../Button/Button.Skeleton';
 import { shallow, mount } from 'enzyme';
 
@@ -97,6 +99,22 @@ describe('Button', () => {
     });
   });
 
+  describe('Renders arbitrary component with correct props', () => {
+    let wrapper;
+    beforeEach(() => {
+      wrapper = shallow(
+        <Button as={Link} data-foo="foo">
+          <div className="child">child</div>
+          <div className="child">child</div>
+        </Button>
+      );
+    });
+    it('renders as a Link with data attribute', () => {
+      expect(wrapper.is(Link)).toBe(true);
+      expect(wrapper.is('[data-foo="foo"]')).toBe(true);
+    });
+  });
+
   describe('Renders icon buttons', () => {
     const iconButton = mount(
       <Button icon={iconSearch} iconDescription="Search">
@@ -104,6 +122,7 @@ describe('Button', () => {
       </Button>
     );
     const icon = iconButton.find('svg');
+
     it('should have the appropriate icon', () => {
       expect(icon.hasClass('bx--btn__icon')).toBe(true);
     });
@@ -114,7 +133,33 @@ describe('Button', () => {
       };
       // eslint-disable-next-line quotes
       const error = new Error(
-        'icon property specified without also providing an iconDescription property.'
+        'icon/renderIcon property specified without also providing an iconDescription property.'
+      );
+      expect(Button.propTypes.iconDescription(props)).toEqual(error);
+    });
+  });
+
+  describe('Renders custom icon buttons', () => {
+    const iconButton = mount(
+      <Button renderIcon={Search16} iconDescription="Search">
+        Search
+      </Button>
+    );
+    const originalIcon = mount(<Search16 />).find('svg');
+    const icon = iconButton.find('svg');
+
+    it('should have the appropriate icon', () => {
+      expect(icon.hasClass('bx--btn__icon')).toBe(true);
+      expect(icon.children().html()).toBe(originalIcon.children().html());
+    });
+
+    it('should return error if icon given without description', () => {
+      const props = {
+        icon: 'search',
+      };
+      // eslint-disable-next-line quotes
+      const error = new Error(
+        'icon/renderIcon property specified without also providing an iconDescription property.'
       );
       expect(Button.propTypes.iconDescription(props)).toEqual(error);
     });

@@ -9,9 +9,7 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import classnames from 'classnames';
 import { settings } from 'carbon-components';
-// TODO: import { CheckmarkOutline16 } from '@carbon/icons-react';
 import CheckmarkOutline16 from '@carbon/icons-react/lib/checkmark--outline/16';
-// TODO: import { Warning16 } from '@carbon/icons-react';
 import Warning16 from '@carbon/icons-react/lib/warning/16';
 import { componentsX } from '../../internal/FeatureFlags';
 
@@ -144,7 +142,7 @@ ProgressStep.propTypes = {
    * An optional parameter to allow for overflow content to be rendered in a
    * tooltip.
    */
-  renderLabel: PropTypes.function,
+  renderLabel: PropTypes.func,
 
   /**
    * Provide the props that describe a progress step tooltip
