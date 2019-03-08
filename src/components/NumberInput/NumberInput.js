@@ -298,6 +298,7 @@ class NumberInput extends Component {
                     className={`${prefix}--number__control-btn up-icon`}
                     {...buttonProps}
                     onClick={evt => this.handleArrowClick(evt, 'up')}
+                    title={incrementNumLabel}
                     aria-label={incrementNumLabel}
                     aria-live="polite"
                     aria-atomic="true">
@@ -309,6 +310,7 @@ class NumberInput extends Component {
                     className={`${prefix}--number__control-btn down-icon`}
                     {...buttonProps}
                     onClick={evt => this.handleArrowClick(evt, 'down')}
+                    title={decrementNumLabel}
                     aria-label={decrementNumLabel}
                     aria-live="polite"
                     aria-atomic="true">
@@ -326,6 +328,7 @@ class NumberInput extends Component {
                   className={`${prefix}--number__control-btn up-icon`}
                   {...buttonProps}
                   onClick={evt => this.handleArrowClick(evt, 'up')}
+                  title={incrementNumLabel}
                   aria-label={incrementNumLabel}
                   aria-live="polite"
                   aria-atomic="true">
@@ -342,6 +345,7 @@ class NumberInput extends Component {
                   className={`${prefix}--number__control-btn down-icon`}
                   {...buttonProps}
                   onClick={evt => this.handleArrowClick(evt, 'down')}
+                  title={decrementNumLabel}
                   aria-label={decrementNumLabel}
                   aria-live="polite"
                   aria-atomic="true">
