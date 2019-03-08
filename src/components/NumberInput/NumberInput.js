@@ -297,7 +297,7 @@ class NumberInput extends Component {
                       <Icon
                         className="up-icon"
                         icon={iconCaretUp}
-                        description={incrementNumLabel || iconDescription}
+                        description={iconDescription || incrementNumLabel}
                         viewBox="0 0 10 5"
                       />
                     </button>
@@ -313,7 +313,7 @@ class NumberInput extends Component {
                         className="down-icon"
                         icon={iconCaretDown}
                         viewBox="0 0 10 5"
-                        description={decrementNumLabel || iconDescription}
+                        description={iconDescription || decrementNumLabel}
                       />
                     </button>
                   </div>
