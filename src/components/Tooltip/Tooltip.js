@@ -23,6 +23,7 @@ import FloatingMenu, {
 } from '../../internal/FloatingMenu';
 import ClickListener from '../../internal/ClickListener';
 import { breakingChangesX, componentsX } from '../../internal/FeatureFlags';
+import mergeRefs from '../../tools/mergeRefs';
 
 const { prefix } = settings;
 
@@ -109,9 +110,10 @@ const getMenuOffset = (menuBody, menuDirection) => {
   }
 };
 
-let didWarnAboutDeprecation = false;
+let didWarnAboutDeprecationClickToOpen = false;
+let didWarnAboutDeprecationIcon = false;
 
-export default class Tooltip extends Component {
+class Tooltip extends Component {
   state = {};
 
   static propTypes = {
@@ -225,6 +227,7 @@ export default class Tooltip extends Component {
   static defaultProps = {
     open: false,
     direction: DIRECTION_BOTTOM,
+    renderIcon: !componentsX ? undefined : Information,
     showIcon: true,
     iconDescription: 'tooltip',
     iconTitle: '',
@@ -390,21 +393,31 @@ export default class Tooltip extends Component {
       iconName,
       iconTitle,
       iconDescription,
-      renderIcon,
+      renderIcon: IconCustomElement,
       menuOffset,
       // Exclude `clickToOpen` from `other` to avoid passing it along to `<div>`
       clickToOpen,
       tabIndex = 0,
+      innerRef: ref,
       ...other
     } = this.props;
 
     if (!clickToOpen && __DEV__) {
       warning(
-        didWarnAboutDeprecation,
+        didWarnAboutDeprecationClickToOpen,
         'The `clickToOpen=false` option in `Tooltip` component is being updated in the next release of ' +
           '`carbon-components-react`. Please use `TooltipIcon` or `TooltipDefinition` instead.'
       );
-      didWarnAboutDeprecation = true;
+      didWarnAboutDeprecationClickToOpen = true;
+    }
+
+    if (__DEV__ && breakingChangesX && (icon || iconName)) {
+      warning(
+        didWarnAboutDeprecationIcon,
+        'The `icon`/`iconName` properties in the `Tooltip` component is being removed in the next release of ' +
+          '`carbon-components-react`. Please use `renderIcon` instead.'
+      );
+      didWarnAboutDeprecationIcon = true;
     }
 
     const { open } = this.state;
@@ -416,8 +429,7 @@ export default class Tooltip extends Component {
     );
 
     const triggerClasses = classNames(
-      { [`${prefix}--tooltip__trigger`]: !componentsX },
-      { [`${prefix}--tooltip__label`]: componentsX },
+      `${prefix}--tooltip__label`,
       triggerClassName
     );
     const ariaOwnsProps = !open
@@ -426,16 +438,14 @@ export default class Tooltip extends Component {
           'aria-owns': tooltipId,
         };
 
-    const IconCustomElement = renderIcon || (componentsX && Information);
-
     const finalIcon = IconCustomElement ? (
       <IconCustomElement
         name={iconName}
         aria-labelledby={triggerId}
         aria-label={iconDescription}
-        ref={node => {
+        ref={mergeRefs(ref, node => {
           this.triggerEl = node;
-        }}
+        })}
       />
     ) : (
       <Icon
@@ -443,9 +453,9 @@ export default class Tooltip extends Component {
         name={iconName}
         description={iconDescription}
         iconTitle={iconTitle}
-        iconRef={node => {
+        iconRef={mergeRefs(ref, node => {
           this.triggerEl = node;
-        }}
+        })}
       />
     );
 
@@ -458,7 +468,7 @@ export default class Tooltip extends Component {
               <div
                 role="button"
                 id={triggerId}
-                className={componentsX ? `${prefix}--tooltip__trigger` : null}
+                className={`${prefix}--tooltip__trigger`}
                 tabIndex={tabIndex}
                 onClick={this.handleMouse}
                 onKeyDown={this.handleKeyPress}
@@ -479,9 +489,9 @@ export default class Tooltip extends Component {
               tabIndex={tabIndex}
               id={triggerId}
               className={triggerClasses}
-              ref={node => {
+              ref={mergeRefs(ref, node => {
                 this.triggerEl = node;
-              }}
+              })}
               onMouseOver={this.handleMouse}
               onMouseOut={this.handleMouse}
               onFocus={this.handleMouse}
@@ -523,3 +533,11 @@ export default class Tooltip extends Component {
     );
   }
 }
+
+export default (!breakingChangesX
+  ? Tooltip
+  : (() => {
+      const forwardRef = (props, ref) => <Tooltip {...props} innerRef={ref} />;
+      forwardRef.displayName = 'Tooltip';
+      return React.forwardRef(forwardRef);
+    })());
