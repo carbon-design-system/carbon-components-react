@@ -93,8 +93,27 @@ storiesOf('Progress Indicator', module)
           description="Step 1: Register a onChange event"
         />
         <ProgressStep
-          label="Click me too"
+          label="Really long label"
           description="The progress indicator will listen for clicks on the steps"
+        />
+        <ProgressStep
+          label="Tooltip and really long label"
+          description="The progress indicator will listen for clicks on the steps"
+          renderLabel={() => (
+            <Tooltip
+              direction="bottom"
+              showIcon={false}
+              triggerClassName="bx--progress-label"
+              triggerText="Tooltip and really long label"
+              tooltipId="tooltipId-1">
+              <p>
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Animi
+                consequuntur hic ratione aliquid cupiditate, nesciunt saepe iste
+                blanditiis cumque maxime tenetur veniam est illo deserunt sint
+                quae pariatur. Laboriosam, consequatur.
+              </p>
+            </Tooltip>
+          )}
         />
       </ProgressIndicator>
     ),

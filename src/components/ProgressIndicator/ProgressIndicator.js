@@ -97,11 +97,9 @@ export const ProgressStep = ({ ...props }) => {
   return (
     <li className={classes}>
       <div
-        style={{
-          display: 'inline-flex',
-          flexFlow: !componentsX ? 'column nowrap' : undefined,
-          ...(!onClick || current ? { outline: 'none' } : {}), // No outline if onClick isn't set
-        }}
+        className={classnames(`${prefix}--progress-step-button`, {
+          [`${prefix}--progress-step-button--unclickable`]: !onClick || current,
+        })}
         role="button"
         tabIndex={!current && onClick ? 0 : -1}
         onClick={!current ? onClick : undefined}

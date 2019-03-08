@@ -187,6 +187,14 @@ describe('ProgressIndicator', () => {
               .prop('complete')
           ).toBe(false);
         });
+
+        it('should render any clickable ProgressSteps with correct classname', () => {
+          mountedList.setProps({ onChange: jest.fn() });
+          expect(mountedList.find('.bx--progress-step-button')).toHaveLength(6); // one button for each div
+          expect(
+            mountedList.find('.bx--progress-step-button--unclickable')
+          ).toHaveLength(1); // only the current step should be unclickable
+        });
       });
     });
   });
