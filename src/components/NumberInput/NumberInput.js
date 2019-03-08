@@ -221,7 +221,7 @@ class NumberInput extends Component {
       allowEmpty,
       innerRef: ref,
       translateWithId: t,
-      mobile,
+      isMobile,
       ...other
     } = this.props;
 
@@ -231,7 +231,7 @@ class NumberInput extends Component {
       {
         [`${prefix}--number--light`]: light,
         [`${prefix}--number--nolabel`]: hideLabel,
-        [`${prefix}--number--mobile`]: componentsX && mobile,
+        [`${prefix}--number--mobile`]: componentsX && isMobile,
       }
     );
 
@@ -328,7 +328,7 @@ class NumberInput extends Component {
                 </>
               );
             }
-            if (mobile) {
+            if (isMobile) {
               return (
                 <>
                   {labelText}
