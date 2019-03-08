@@ -12,13 +12,19 @@ import { action } from '@storybook/addon-actions';
 import { withKnobs, boolean, select, text } from '@storybook/addon-knobs';
 import RadioButton from '../RadioButton';
 import RadioButtonSkeleton from '../RadioButton/RadioButton.Skeleton';
+import { breakingChangesX } from '../../internal/FeatureFlags';
 
 const labelPositions = {
   'Left (left)': 'left',
-  'Top (top)': 'top',
   'Right (right)': 'right',
-  'Bottom (bottom)': 'bottom',
 };
+
+if (!breakingChangesX) {
+  Object.assign(labelPositions, {
+    'Top (top)': 'top',
+    'Bottom (bottom)': 'bottom',
+  });
+}
 
 const radioProps = () => ({
   className: 'some-class',

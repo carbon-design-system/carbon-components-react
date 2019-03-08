@@ -8,6 +8,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import classNames from 'classnames';
+import warning from 'warning';
 import { settings } from 'carbon-components';
 import { breakingChangesX } from '../../internal/FeatureFlags';
 import uid from '../../tools/uniqueId';
@@ -95,6 +96,13 @@ class RadioButton extends React.Component {
       innerRef: ref,
       ...other
     } = this.props;
+    if (__DEV__) {
+      warning(
+        labelPosition !== 'top' && labelPosition !== 'bottom',
+        '`top`/`bottom` values for `labelPosition` property in the `RadioButton` component is deprecated ' +
+          'and being removed in the next release of `carbon-components-react`.'
+      );
+    }
     const wrapperClasses = classNames(
       className,
       `${prefix}--radio-button-wrapper`,
