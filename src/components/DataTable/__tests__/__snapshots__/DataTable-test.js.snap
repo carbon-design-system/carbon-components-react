@@ -2397,6 +2397,7 @@ exports[`DataTable should render 1`] = `
                 <button
                   className="bx--toolbar-action"
                   onClick={[MockFunction]}
+                  title="Download"
                 >
                   <Icon
                     className="bx--toolbar-action__icon"
@@ -2479,6 +2480,7 @@ exports[`DataTable should render 1`] = `
                 <button
                   className="bx--toolbar-action"
                   onClick={[MockFunction]}
+                  title="Edit"
                 >
                   <Icon
                     className="bx--toolbar-action__icon"
@@ -2564,6 +2566,7 @@ exports[`DataTable should render 1`] = `
                 <button
                   className="bx--toolbar-action"
                   onClick={[MockFunction]}
+                  title="Settings"
                 >
                   <Icon
                     className="bx--toolbar-action__icon"
