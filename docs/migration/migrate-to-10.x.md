@@ -32,7 +32,7 @@ Anything in this document is subject to change up until v10 is released._
 | `Copy`                | No breaking changes                                                 |
 | `CopyButton`          | No breaking changes                                                 |
 | `DangerButton`        | No breaking changes                                                 |
-| `DataTable`           | No breaking changes                                                 |
+| `DataTable`           | [Migrate](../../src/components/DataTable/migrate-to-10.x.md)        |
 | `DatePicker`          | No breaking changes                                                 |
 | `DatePickerInput`     | No breaking changes                                                 |
 | `Dropdown`            | Existing import remapped to `DropdownV2`                            |
