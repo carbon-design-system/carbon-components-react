@@ -45,7 +45,7 @@ Anything in this document is subject to change up until v10 is released._
 | `FormItem`            | No breaking changes                                                 |
 | `FormLabel`           | No breaking changes                                                 |
 | `Icon`                | Deprecated, [Migrate](#icons)                                       |
-| `InlineCheckbox`      | No breaking changes                                                 |
+| `InlineCheckbox`      | [Migrate](../../src/components/InlineCheckbox/migrate-to-10.x.md)   |
 | `InlineLoading`       | No breaking changes                                                 |
 | `Link`                | No breaking changes                                                 |
 | `ListBox`             | No breaking changes                                                 |
