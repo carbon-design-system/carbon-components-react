@@ -98,7 +98,7 @@ Anything in this document is subject to change up until v10 is released._
 | `ToggleSmall`         | No breaking changes                                                 |
 | `Toolbar`             | No breaking changes                                                 |
 | `ToolbarSearch`       | No breaking changes                                                 |
-| `Tooltip`             | No breaking changes                                                 |
+| `Tooltip`             | [Migrate](../../src/components/Tooltip/migrate-to-10.x.md)          |
 | `TooltipDefinition`   | No breaking changes                                                 |
 | `TooltipIcon`         | No breaking changes                                                 |
 | `TooltipSimple`       | Removed, use `TooltipDefinition` or `TooltipIcon` instead           |
