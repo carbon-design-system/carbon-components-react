@@ -23,7 +23,7 @@ Anything in this document is subject to change up until v10 is released._
 | `AccordionItem`       | No breaking changes                                                 |
 | `Breadcrumb`          | No breaking changes                                                 |
 | `BreadcrumbItem`      | No breaking changes                                                 |
-| `Button`              | No breaking changes                                                 |
+| `Button`              | [Migrate](../../src/components/Button/migrate-to-10.x.md)           |
 | `Checkbox`            | No breaking changes                                                 |
 | `CodeSnippet`         | No breaking changes                                                 |
 | `ComboBox`            | No breaking changes                                                 |
