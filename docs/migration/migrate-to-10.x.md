@@ -56,7 +56,7 @@ Anything in this document is subject to change up until v10 is released._
 | `MultiSelect`         | No breaking changes                                                 |
 | `Notification`        | Deprecated, use `InlineNotification` or `ToastNotification` instead |
 | `NumberInput`         | [Migrate](../../src/components/NumberInput/migrate-to-10.x.md)      |
-| `OverflowMenu`        | No breaking changes                                                 |
+| `OverflowMenu`        | [Migrate](../../src/components/OverflowMenu/migrate-to-10.x.md)     |
 | `OverflowMenuItem`    | No breaking changes                                                 |
 | `Pagination`          | Export now points to `PaginationV2`                                 |
 | `PaginationV2`        | Renamed to `Pagination`                                             |
