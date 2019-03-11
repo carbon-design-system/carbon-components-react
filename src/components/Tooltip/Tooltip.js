@@ -455,7 +455,7 @@ class Tooltip extends Component {
         ref={mergeRefs(ref, node => {
           this.triggerEl = node;
         })}>
-        {iconDescription && <title>{iconDescription}</title>}
+        {iconTitle && <title>{iconTitle}</title>}
       </IconCustomElement>
     ) : (
       <Icon
