@@ -527,7 +527,7 @@ export class ModalFooter extends Component {
             className={primaryClass}
             disabled={primaryButtonDisabled}
             kind={danger ? 'danger--primary' : 'primary'}
-            inputref={this.props.inputref}>
+            ref={this.props.inputref}>
             {primaryButtonText}
           </Button>
         )}
