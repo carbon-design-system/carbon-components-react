@@ -117,7 +117,7 @@ class NumberInput extends Component {
     /**
      * `true` to use the mobile variant.
      */
-    mobile: PropTypes.bool,
+    isMobile: PropTypes.bool,
   };
 
   static defaultProps = {
