@@ -14,6 +14,9 @@ import {
   iconClose,
 } from 'carbon-icons';
 import Close16 from '@carbon/icons-react/lib/close/16';
+import ErrorFilled16 from '@carbon/icons-react/lib/error--filled/16';
+import CheckmarkFilled16 from '@carbon/icons-react/lib/checkmark--filled/16';
+import InformationFilled16 from '@carbon/icons-react/lib/information--filled/16';
 import Icon from '../Icon';
 import Notification, {
   NotificationButton,
@@ -22,6 +25,7 @@ import Notification, {
   InlineNotification,
 } from '../Notification';
 import { shallow, mount } from 'enzyme';
+import { componentsX } from '../../internal/FeatureFlags';
 
 describe('NotificationButton', () => {
   describe('Renders as expected', () => {
@@ -32,13 +36,15 @@ describe('NotificationButton', () => {
     });
 
     it('renders only one Icon', () => {
-      const icon = wrapper.find('Icon');
+      const icon = wrapper.find(!componentsX ? 'Icon' : Close16);
       expect(icon.length).toEqual(1);
     });
 
     it('renders correct Icon', () => {
-      const icon = wrapper.find('Icon');
-      expect(icon.props().icon).toEqual(iconClose);
+      if (!componentsX) {
+        const icon = wrapper.find('Icon');
+        expect(icon.props().icon).toEqual(iconClose);
+      }
     });
 
     it('supports custom icon', () => {
@@ -58,7 +64,7 @@ describe('NotificationButton', () => {
       });
 
       it('icon should have correct className by default', () => {
-        const icon = wrapper.find('Icon');
+        const icon = wrapper.find(!componentsX ? 'Icon' : Close16);
         expect(icon.hasClass('bx--toast-notification__close-icon')).toBe(true);
       });
     });
@@ -72,7 +78,7 @@ describe('NotificationButton', () => {
       });
 
       it('icon should have correct className', () => {
-        const icon = wrapper.find('Icon');
+        const icon = wrapper.find(!componentsX ? 'Icon' : Close16);
         expect(icon.hasClass('bx--inline-notification__close-icon')).toBe(true);
       });
     });
@@ -207,12 +213,20 @@ describe('InlineNotification', () => {
 
     it('renders success notification with matching kind and <icon name=""> values', () => {
       inline.setProps({ kind: 'success' });
-      expect(inline.find(Icon).some({ icon: iconCheckmarkSolid })).toBe(true);
+      if (!componentsX) {
+        expect(inline.find(Icon).some({ icon: iconCheckmarkSolid })).toBe(true);
+      } else {
+        expect(inline.find(CheckmarkFilled16).length).toBe(1);
+      }
     });
 
     it('renders error notification with matching kind and <icon name=""> values', () => {
       inline.setProps({ kind: 'error' });
-      expect(inline.find(Icon).some({ icon: iconErrorSolid })).toBe(true);
+      if (!componentsX) {
+        expect(inline.find(Icon).some({ icon: iconErrorSolid })).toBe(true);
+      } else {
+        expect(inline.find(ErrorFilled16).length).toBe(1);
+      }
     });
 
     // removed because of a11y warning icon workaround, depending on TODO: for @carbon/icons-react
@@ -230,7 +244,11 @@ describe('InlineNotification', () => {
 
     it('renders info notification with matching kind value but without <icon name="">', () => {
       inline.setProps({ kind: 'info' });
-      expect(inline.find(Icon).some({ icon: iconInfoSolid })).toBe(true);
+      if (!componentsX) {
+        expect(inline.find(Icon).some({ icon: iconInfoSolid })).toBe(true);
+      } else {
+        expect(inline.find(InformationFilled16).length).toBe(1);
+      }
     });
 
     it('renders HTML for inline notifications when caption does not exist', () => {
@@ -282,7 +300,7 @@ describe('InlineNotification', () => {
     });
 
     it('sets open state to false when close button is clicked', () => {
-      const mountedInline = mount(<Notification {...props} />);
+      const mountedInline = mount(<InlineNotification {...props} />);
 
       mountedInline.find('button').simulate('click');
       expect(mountedInline.state().open).toEqual(false);
@@ -312,7 +330,7 @@ const props = {
   iconDescription: 'description',
 };
 
-describe('[Deprecated]: Notification', () => {
+describeBreakingChangesXFeatures('[Deprecated]: Notification', () => {
   describe('Renders as expected', () => {
     const toast = shallow(<Notification {...props} caption="caption" />);
     const inline = shallow(<Notification {...props} />);
@@ -421,16 +439,20 @@ describe('[Deprecated]: Notification', () => {
 
 describe('events and state', () => {
   it('initial open state set to true', () => {
-    const mountedToast = mount(<Notification {...props} caption="caption" />);
-    const mountedInline = mount(<Notification {...props} />);
+    const mountedToast = mount(
+      <ToastNotification {...props} caption="caption" />
+    );
+    const mountedInline = mount(<InlineNotification {...props} />);
 
     expect(mountedToast.state().open).toBe(true);
     expect(mountedInline.state().open).toBe(true);
   });
 
   it('sets open state to false when close button is clicked', () => {
-    const mountedToast = mount(<Notification {...props} caption="caption" />);
-    const mountedInline = mount(<Notification {...props} />);
+    const mountedToast = mount(
+      <ToastNotification {...props} caption="caption" />
+    );
+    const mountedInline = mount(<InlineNotification {...props} />);
 
     mountedToast.find('button').simulate('click');
     mountedInline.find('button').simulate('click');
@@ -440,15 +462,17 @@ describe('events and state', () => {
 
   it('close button is not shown if hideCloseButton prop set', () => {
     const mountedToast = mount(
-      <Notification {...props} hideCloseButton={true} />
+      <ToastNotification {...props} hideCloseButton={true} />
     );
 
     expect(mountedToast.find('button')).toHaveLength(0);
   });
 
   it('renders null when open state is false', () => {
-    const mountedToast = mount(<Notification {...props} caption="caption" />);
-    const mountedInline = mount(<Notification {...props} />);
+    const mountedToast = mount(
+      <ToastNotification {...props} caption="caption" />
+    );
+    const mountedInline = mount(<InlineNotification {...props} />);
 
     mountedToast.setState({ open: false });
     mountedInline.setState({ open: false });

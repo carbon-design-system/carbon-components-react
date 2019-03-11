@@ -392,25 +392,21 @@ class NumberInput extends Component {
                       className={`${prefix}--number__control-btn up-icon`}
                       {...buttonProps}
                       onClick={evt => this.handleArrowClick(evt, 'up')}
-                      title={incrementNumLabel}
+                      title={incrementNumLabel || iconDescription}
                       aria-label={incrementNumLabel || iconDescription}
                       aria-live="polite"
                       aria-atomic="true">
-                      <CaretUpGlyph className="up-icon">
-                        <title>{incrementNumLabel || iconDescription}</title>
-                      </CaretUpGlyph>
+                      <CaretUpGlyph className="up-icon" />
                     </button>
                     <button
                       className={`${prefix}--number__control-btn down-icon`}
                       {...buttonProps}
                       onClick={evt => this.handleArrowClick(evt, 'down')}
-                      title={decrementNumLabel}
+                      title={decrementNumLabel || iconDescription}
                       aria-label={decrementNumLabel || iconDescription}
                       aria-live="polite"
                       aria-atomic="true">
-                      <CaretDownGlyph className="down-icon">
-                        <title>{decrementNumLabel || iconDescription}</title>
-                      </CaretDownGlyph>
+                      <CaretDownGlyph className="down-icon" />
                     </button>
                   </div>
                 </div>

@@ -12,7 +12,7 @@
     "build-storybook:preview": "yarn build-storybook:preview:stable && yarn build-storybook:preview:experimental",
     "build-storybook:preview:stable": "cross-env CARBON_USE_EXPERIMENTAL_FEATURES=false build-storybook -o storybook-static-preview/stable",
     "build-storybook:preview:experimental": "cross-env CARBON_USE_EXPERIMENTAL_FEATURES=true build-storybook -o storybook-static-preview/experimental",
-    "ci-check": "yarn prettier:diff && yarn lint && yarn test --runInBand && yarn test-ssr",
+    "ci-check": "sh ./scripts/ci-check.sh",
     "contributors:add": "all-contributors add",
     "contributors:generate": "all-contributors generate",
     "lint": "eslint src",
