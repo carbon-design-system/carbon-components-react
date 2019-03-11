@@ -62,7 +62,7 @@ Anything in this document is subject to change up until v10 is released._
 | `PaginationV2`        | Renamed to `Pagination`                                             |
 | `PrimaryButton`       | No breaking changes                                                 |
 | `ProgresIndicator`    | No breaking changes                                                 |
-| `RadioButton`         | No breaking changes                                                 |
+| `RadioButton`         | [Migrate](../../src/components/RadioButton/migrate-to-10.x.md)      |
 | `RadioButtonGroup`    | No breaking changes                                                 |
 | `RadioTile`           | No breaking changes                                                 |
 | `Search`              | No breaking changes                                                 |
