@@ -372,6 +372,7 @@ export class ModalHeader extends Component {
         <button
           onClick={this.handleCloseButtonClick}
           className={closeClass}
+          title={iconDescription}
           type="button">
           {componentsX ? (
             <Close20
@@ -527,7 +528,7 @@ export class ModalFooter extends Component {
             className={primaryClass}
             disabled={primaryButtonDisabled}
             kind={danger ? 'danger--primary' : 'primary'}
-            inputref={this.props.inputref}>
+            ref={this.props.inputref}>
             {primaryButtonText}
           </Button>
         )}
