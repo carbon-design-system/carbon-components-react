@@ -128,7 +128,7 @@ export default class Search extends Component {
 
     const searchClasses = classNames({
       [`${prefix}--search`]: true,
-      [`${prefix}--search--lg`]: !small,
+      [`${prefix}--search--xl`]: !small,
       [`${prefix}--search--sm`]: small,
       [`${prefix}--search--light`]: light,
       [className]: className,
