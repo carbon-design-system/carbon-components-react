@@ -123,8 +123,8 @@
     }
   },
   "peerDependencies": {
-    "carbon-components": "^9.81.5",
-    "carbon-icons": "^7.0.5",
+    "carbon-components": "^9.84.0",
+    "carbon-icons": "^7.0.7",
     "react": "^16.4.0",
     "react-dom": "^16.4.0"
   },
