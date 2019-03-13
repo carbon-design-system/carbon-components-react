@@ -53,6 +53,7 @@ const TextInput = React.forwardRef(
     const errorId = id + '-error-msg';
     const textInputClasses = classNames(`${prefix}--text-input`, className, {
       [`${prefix}--text-input--light`]: light,
+      [`${prefix}--text-input--invalid`]: invalid,
     });
     const labelClasses = classNames(`${prefix}--label`, {
       [`${prefix}--visually-hidden`]: hideLabel,
