@@ -8,7 +8,9 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import classNames from 'classnames';
+import warning from 'warning';
 import { settings } from 'carbon-components';
+import { breakingChangesX } from '../../internal/FeatureFlags';
 import { keys } from '../../tools/key';
 
 const { prefix } = settings;
@@ -105,8 +107,11 @@ export default class OverflowMenuItem extends React.Component {
   };
 
   handleClick = evt => {
-    this.props.onClick(evt);
-    this.props.closeMenu();
+    const { onClick, closeMenu } = this.props;
+    onClick(evt);
+    if (closeMenu) {
+      closeMenu();
+    }
   };
 
   render() {
@@ -117,17 +122,32 @@ export default class OverflowMenuItem extends React.Component {
       hasDivider,
       isDelete,
       disabled,
-      closeMenu, // eslint-disable-line
+      closeMenu,
       onClick, // eslint-disable-line
       handleOverflowMenuItemFocus, // eslint-disable-line
       onKeyDown,
       primaryFocus,
-      floatingMenu,
+      floatingMenu: origFloatingMenu,
       wrapperClassName,
       requireTitle,
       index,
       ...other
     } = this.props;
+
+    const floatingMenu = !!breakingChangesX || origFloatingMenu;
+    if (__DEV__) {
+      warning(
+        closeMenu,
+        '`<OverflowMenuItem>` detected missing `closeMenu` prop. ' +
+          '`closeMenu` is required to let `<OverflowMenu>` close the menu upon actions on `<OverflowMenuItem>`. ' +
+          'Please make sure `<OverflowMenuItem>` is a direct child of `<OverflowMenu>.'
+      );
+      warning(
+        floatingMenu,
+        '[OverflowMenuItem] non-floating option has been deprecated.'
+      );
+    }
+
     const overflowMenuBtnClasses = classNames(
       `${prefix}--overflow-menu-options__btn`,
       className

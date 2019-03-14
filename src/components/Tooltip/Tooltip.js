@@ -23,6 +23,7 @@ import FloatingMenu, {
 } from '../../internal/FloatingMenu';
 import ClickListener from '../../internal/ClickListener';
 import { breakingChangesX, componentsX } from '../../internal/FeatureFlags';
+import mergeRefs from '../../tools/mergeRefs';
 
 const { prefix } = settings;
 
@@ -38,9 +39,15 @@ const matchesFuncName =
  * @returns {boolean} `true` if the given DOM element is a element node and matches the given selector.
  * @private
  */
-const matches = (elem, selector) =>
-  typeof elem[matchesFuncName] === 'function' &&
-  elem[matchesFuncName](selector);
+const matches = (elem, selector) => {
+  if (breakingChangesX) {
+    return elem.matches(selector);
+  }
+  return (
+    typeof elem[matchesFuncName] === 'function' &&
+    elem[matchesFuncName](selector)
+  );
+};
 
 /**
  * @param {Element} elem An element.
@@ -49,6 +56,9 @@ const matches = (elem, selector) =>
  * @private
  */
 const closest = (elem, selector) => {
+  if (breakingChangesX) {
+    return elem.closest(selector);
+  }
   const doc = elem.ownerDocument;
   for (
     let traverse = elem;
@@ -112,7 +122,7 @@ const getMenuOffset = (menuBody, menuDirection) => {
 let didWarnAboutDeprecationClickToOpen = false;
 let didWarnAboutDeprecationIcon = false;
 
-export default class Tooltip extends Component {
+class Tooltip extends Component {
   state = {};
 
   static propTypes = {
@@ -397,6 +407,7 @@ export default class Tooltip extends Component {
       // Exclude `clickToOpen` from `other` to avoid passing it along to `<div>`
       clickToOpen,
       tabIndex = 0,
+      innerRef: ref,
       ...other
     } = this.props;
 
@@ -427,8 +438,7 @@ export default class Tooltip extends Component {
     );
 
     const triggerClasses = classNames(
-      { [`${prefix}--tooltip__trigger`]: !componentsX },
-      { [`${prefix}--tooltip__label`]: componentsX },
+      `${prefix}--tooltip__label`,
       triggerClassName
     );
     const ariaOwnsProps = !open
@@ -442,9 +452,9 @@ export default class Tooltip extends Component {
         name={iconName}
         aria-labelledby={triggerId}
         aria-label={iconDescription}
-        ref={node => {
+        ref={mergeRefs(ref, node => {
           this.triggerEl = node;
-        }}
+        })}
       />
     ) : (
       <Icon
@@ -452,9 +462,9 @@ export default class Tooltip extends Component {
         name={iconName}
         description={iconDescription}
         iconTitle={iconTitle}
-        iconRef={node => {
+        iconRef={mergeRefs(ref, node => {
           this.triggerEl = node;
-        }}
+        })}
       />
     );
 
@@ -467,7 +477,7 @@ export default class Tooltip extends Component {
               <div
                 role="button"
                 id={triggerId}
-                className={componentsX ? `${prefix}--tooltip__trigger` : null}
+                className={`${prefix}--tooltip__trigger`}
                 tabIndex={tabIndex}
                 onClick={this.handleMouse}
                 onKeyDown={this.handleKeyPress}
@@ -488,9 +498,9 @@ export default class Tooltip extends Component {
               tabIndex={tabIndex}
               id={triggerId}
               className={triggerClasses}
-              ref={node => {
+              ref={mergeRefs(ref, node => {
                 this.triggerEl = node;
-              }}
+              })}
               onMouseOver={this.handleMouse}
               onMouseOut={this.handleMouse}
               onFocus={this.handleMouse}
@@ -532,3 +542,11 @@ export default class Tooltip extends Component {
     );
   }
 }
+
+export default (!breakingChangesX
+  ? Tooltip
+  : (() => {
+      const forwardRef = (props, ref) => <Tooltip {...props} innerRef={ref} />;
+      forwardRef.displayName = 'Tooltip';
+      return React.forwardRef(forwardRef);
+    })());

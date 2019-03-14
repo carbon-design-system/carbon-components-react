@@ -1,19 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`HeaderMenu should render 1`] = `
-<ForwardRef
-  aria-label="Accessibility label"
-  className="custom-class"
-  tabIndex={-1}
->
+<ForwardRef>
   <HeaderMenu
-    aria-label="Accessibility label"
-    className="custom-class"
     focusRef={null}
-    tabIndex={-1}
+    renderMenuContent={[Function]}
   >
     <li
-      className="bx--header__submenu custom-class"
+      className="bx--header__submenu"
       onBlur={[Function]}
       onClick={[Function]}
       onKeyDown={[Function]}
@@ -27,38 +21,38 @@ exports[`HeaderMenu should render 1`] = `
         role="menuitem"
         tabIndex={0}
       >
-        Accessibility label
-        <ChevronDownGlyph
-          className="bx--header__menu-arrow"
-          height={6}
-          preserveAspectRatio="xMidYMid meet"
-          viewBox="0 0 10 6"
-          width={10}
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <svg
-            aria-hidden={true}
+        <defaultRenderMenuContent>
+          <ChevronDownGlyph
             className="bx--header__menu-arrow"
-            focusable="false"
             height={6}
             preserveAspectRatio="xMidYMid meet"
-            style={
-              Object {
-                "willChange": "transform",
-              }
-            }
             viewBox="0 0 10 6"
             width={10}
             xmlns="http://www.w3.org/2000/svg"
           >
-            <path
-              d="M5 6L0 1 .7.3 5 4.6 9.3.3l.7.7z"
-            />
-          </svg>
-        </ChevronDownGlyph>
+            <svg
+              aria-hidden={true}
+              className="bx--header__menu-arrow"
+              focusable="false"
+              height={6}
+              preserveAspectRatio="xMidYMid meet"
+              style={
+                Object {
+                  "willChange": "transform",
+                }
+              }
+              viewBox="0 0 10 6"
+              width={10}
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M5 6L0 1 .7.3 5 4.6 9.3.3l.7.7z"
+              />
+            </svg>
+          </ChevronDownGlyph>
+        </defaultRenderMenuContent>
       </a>
       <ul
-        aria-label="Accessibility label"
         className="bx--header__menu"
         role="menu"
       >
@@ -67,108 +61,90 @@ exports[`HeaderMenu should render 1`] = `
           key=".0"
           role="none"
         >
-          <HeaderMenuItem
-            href="/a"
-            innerRef={[Function]}
+          <li
             role="none"
           >
-            <li
-              role="none"
+            <Link
+              className="bx--header__menu-item"
+              element="a"
+              href="/a"
+              role="menuitem"
+              tabIndex={0}
             >
-              <Link
+              <a
                 className="bx--header__menu-item"
-                element="a"
                 href="/a"
                 role="menuitem"
                 tabIndex={0}
               >
-                <a
-                  className="bx--header__menu-item"
-                  href="/a"
-                  role="menuitem"
-                  tabIndex={0}
+                <span
+                  className="bx--text-truncate--end"
                 >
-                  <span
-                    className="bx--text-truncate--end"
-                  >
-                    A
-                  </span>
-                </a>
-              </Link>
-            </li>
-          </HeaderMenuItem>
+                  A
+                </span>
+              </a>
+            </Link>
+          </li>
         </ForwardRef>
         <ForwardRef
           href="/b"
           key=".1"
           role="none"
         >
-          <HeaderMenuItem
-            href="/b"
-            innerRef={[Function]}
+          <li
             role="none"
           >
-            <li
-              role="none"
+            <Link
+              className="bx--header__menu-item"
+              element="a"
+              href="/b"
+              role="menuitem"
+              tabIndex={0}
             >
-              <Link
+              <a
                 className="bx--header__menu-item"
-                element="a"
                 href="/b"
                 role="menuitem"
                 tabIndex={0}
               >
-                <a
-                  className="bx--header__menu-item"
-                  href="/b"
-                  role="menuitem"
-                  tabIndex={0}
+                <span
+                  className="bx--text-truncate--end"
                 >
-                  <span
-                    className="bx--text-truncate--end"
-                  >
-                    B
-                  </span>
-                </a>
-              </Link>
-            </li>
-          </HeaderMenuItem>
+                  B
+                </span>
+              </a>
+            </Link>
+          </li>
         </ForwardRef>
         <ForwardRef
           href="/c"
           key=".2"
           role="none"
         >
-          <HeaderMenuItem
-            href="/c"
-            innerRef={[Function]}
+          <li
             role="none"
           >
-            <li
-              role="none"
+            <Link
+              className="bx--header__menu-item"
+              element="a"
+              href="/c"
+              role="menuitem"
+              tabIndex={0}
             >
-              <Link
+              <a
                 className="bx--header__menu-item"
-                element="a"
                 href="/c"
                 role="menuitem"
                 tabIndex={0}
               >
-                <a
-                  className="bx--header__menu-item"
-                  href="/c"
-                  role="menuitem"
-                  tabIndex={0}
+                <span
+                  className="bx--text-truncate--end"
                 >
-                  <span
-                    className="bx--text-truncate--end"
-                  >
-                    C
-                  </span>
-                </a>
-              </Link>
-            </li>
-          </HeaderMenuItem>
+                  C
+                </span>
+              </a>
+            </Link>
+          </li>
         </ForwardRef>
       </ul>
     </li>
