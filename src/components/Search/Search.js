@@ -180,7 +180,7 @@ export default class Search extends Component {
           type="button"
           aria-label={closeButtonLabelText}>
           {componentsX ? (
-            <CloseIconX />
+            <CloseIconX aria-label={closeButtonLabelText} role="img" />
           ) : (
             <Icon icon={iconCloseSolid} description={closeButtonLabelText} />
           )}
