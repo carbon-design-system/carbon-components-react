@@ -8,6 +8,7 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import classNames from 'classnames';
+import warning from 'warning';
 import {
   iconClose,
   iconCheckmarkSolid,
@@ -24,9 +25,11 @@ import ErrorFilled16 from '@carbon/icons-react/lib/error--filled/16';
 import CheckmarkFilled16 from '@carbon/icons-react/lib/checkmark--filled/16';
 import InformationFilled16 from '@carbon/icons-react/lib/information--filled/16';
 import WarningAltFilled16 from '@carbon/icons-react/lib/warning--alt--filled/16';
-import { componentsX } from '../../internal/FeatureFlags';
+import { breakingChangesX, componentsX } from '../../internal/FeatureFlags';
 
 const { prefix } = settings;
+
+let didWarnAboutDeprecationButtonIcon = false;
 
 export class NotificationButton extends Component {
   static propTypes = {
@@ -62,6 +65,12 @@ export class NotificationButton extends Component {
     }),
 
     /**
+     * Optional prop to allow overriding the icon rendering.
+     * Can be a React component class
+     */
+    renderIcon: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+
+    /**
      * Specify an optional icon for the Button through a string,
      * if something but regular "close" icon is desirable
      */
@@ -78,6 +87,7 @@ export class NotificationButton extends Component {
     notificationType: 'toast',
     type: 'button',
     iconDescription: 'close icon',
+    renderIcon: !componentsX ? undefined : Close16,
   };
 
   render() {
@@ -87,10 +97,20 @@ export class NotificationButton extends Component {
       iconDescription,
       type,
       icon,
+      renderIcon: IconTag,
       name,
       notificationType,
       ...other
     } = this.props;
+
+    if (__DEV__ && breakingChangesX && (icon || name)) {
+      warning(
+        didWarnAboutDeprecationButtonIcon,
+        'The `icon`/`name` properties in the `NotificationButton` component is being removed in the next release of ' +
+          '`carbon-components-react`. Please use `renderIcon` instead.'
+      );
+      didWarnAboutDeprecationButtonIcon = true;
+    }
 
     const buttonClasses = classNames(
       {
@@ -110,8 +130,7 @@ export class NotificationButton extends Component {
     });
 
     const NotificationButtonIcon = (() => {
-      if (componentsX) {
-        const IconTag = icon || Close16;
+      if (Object(IconTag) === IconTag) {
         return (
           <IconTag
             aria-label={iconDescription}
@@ -120,8 +139,7 @@ export class NotificationButton extends Component {
             name={name}
           />
         );
-      }
-      if (!componentsX) {
+      } else if (!breakingChangesX) {
         return (
           <Icon
             description={iconDescription}
@@ -136,7 +154,11 @@ export class NotificationButton extends Component {
     })();
 
     return (
-      <button {...other} type={type} className={buttonClasses}>
+      <button
+        {...other}
+        type={type}
+        title={iconDescription}
+        className={buttonClasses}>
         {NotificationButtonIcon}
       </button>
     );
@@ -511,9 +533,10 @@ export class InlineNotification extends Component {
   }
 }
 
-// Deprecated
+let didWarnAboutDeprecationNotification = false;
 
-export default class Notification extends Component {
+// Deprecated
+class Notification extends Component {
   static propTypes = {
     children: PropTypes.node,
 
@@ -584,6 +607,15 @@ export default class Notification extends Component {
     }[kindProp]);
 
   render() {
+    if (__DEV__) {
+      warning(
+        didWarnAboutDeprecationNotification,
+        'The `Notification` component is being removed in the next release of ' +
+          '`carbon-components-react`. Please use `InlineNotification` or `ToastNotification` instead.'
+      );
+      didWarnAboutDeprecationNotification = true;
+    }
+
     if (!this.state.open) {
       return null;
     }
@@ -671,3 +703,5 @@ export default class Notification extends Component {
     return caption ? toastHTML : inlineHTML;
   }
 }
+
+export default (!breakingChangesX ? Notification : null);

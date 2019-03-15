@@ -722,6 +722,7 @@ exports[`DataTable selection -- radio buttons should render 1`] = `
                         ariaLabel="Select row"
                         checked={false}
                         id="data-table-11__select-row-b"
+                        labelPosition="right"
                         labelText=""
                         name="select-row-b"
                         onChange={[Function]}
@@ -729,7 +730,7 @@ exports[`DataTable selection -- radio buttons should render 1`] = `
                         value=""
                       >
                         <div
-                          className="radioButtonWrapper"
+                          className="bx--radio-button-wrapper radioButtonWrapper"
                         >
                           <input
                             ariaLabel="Select row"
@@ -788,6 +789,7 @@ exports[`DataTable selection -- radio buttons should render 1`] = `
                         ariaLabel="Select row"
                         checked={false}
                         id="data-table-11__select-row-a"
+                        labelPosition="right"
                         labelText=""
                         name="select-row-a"
                         onChange={[Function]}
@@ -795,7 +797,7 @@ exports[`DataTable selection -- radio buttons should render 1`] = `
                         value=""
                       >
                         <div
-                          className="radioButtonWrapper"
+                          className="bx--radio-button-wrapper radioButtonWrapper"
                         >
                           <input
                             ariaLabel="Select row"
@@ -854,6 +856,7 @@ exports[`DataTable selection -- radio buttons should render 1`] = `
                         ariaLabel="Select row"
                         checked={false}
                         id="data-table-11__select-row-c"
+                        labelPosition="right"
                         labelText=""
                         name="select-row-c"
                         onChange={[Function]}
@@ -861,7 +864,7 @@ exports[`DataTable selection -- radio buttons should render 1`] = `
                         value=""
                       >
                         <div
-                          className="radioButtonWrapper"
+                          className="bx--radio-button-wrapper radioButtonWrapper"
                         >
                           <input
                             ariaLabel="Select row"
@@ -2109,7 +2112,7 @@ exports[`DataTable should render 1`] = `
                   iconDescription="Settings"
                   onClick={[MockFunction]}
                 />
-                <Button
+                <ForwardRef
                   disabled={false}
                   iconDescription="Provide icon description if icon is used"
                   kind="primary"
@@ -2119,7 +2122,7 @@ exports[`DataTable should render 1`] = `
                   type="button"
                 >
                   Add new
-                </Button>
+                </ForwardRef>
               </TableToolbarContent>
             </TableToolbar>
             <Table
@@ -2397,6 +2400,7 @@ exports[`DataTable should render 1`] = `
                 <button
                   className="bx--toolbar-action"
                   onClick={[MockFunction]}
+                  title="Download"
                 >
                   <Icon
                     className="bx--toolbar-action__icon"
@@ -2479,6 +2483,7 @@ exports[`DataTable should render 1`] = `
                 <button
                   className="bx--toolbar-action"
                   onClick={[MockFunction]}
+                  title="Edit"
                 >
                   <Icon
                     className="bx--toolbar-action__icon"
@@ -2564,6 +2569,7 @@ exports[`DataTable should render 1`] = `
                 <button
                   className="bx--toolbar-action"
                   onClick={[MockFunction]}
+                  title="Settings"
                 >
                   <Icon
                     className="bx--toolbar-action__icon"
@@ -2622,7 +2628,7 @@ exports[`DataTable should render 1`] = `
                   </Icon>
                 </button>
               </TableToolbarAction>
-              <Button
+              <ForwardRef
                 disabled={false}
                 iconDescription="Provide icon description if icon is used"
                 kind="primary"
@@ -2640,7 +2646,7 @@ exports[`DataTable should render 1`] = `
                 >
                   Add new
                 </button>
-              </Button>
+              </ForwardRef>
             </div>
           </TableToolbarContent>
         </section>

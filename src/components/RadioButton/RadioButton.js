@@ -8,12 +8,14 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import classNames from 'classnames';
+import warning from 'warning';
 import { settings } from 'carbon-components';
+import { breakingChangesX } from '../../internal/FeatureFlags';
 import uid from '../../tools/uniqueId';
 
 const { prefix } = settings;
 
-export default class RadioButton extends React.Component {
+class RadioButton extends React.Component {
   static propTypes = {
     /**
      * Specify whether the <RadioButton> is currently checked
@@ -47,6 +49,11 @@ export default class RadioButton extends React.Component {
     labelText: PropTypes.node.isRequired,
 
     /**
+     * Provide where label text should be placed
+     */
+    labelPosition: PropTypes.string,
+
+    /**
      * Provide a name for the underlying <input> node
      */
     name: PropTypes.string,
@@ -70,6 +77,7 @@ export default class RadioButton extends React.Component {
 
   static defaultProps = {
     labelText: '',
+    labelPosition: 'right',
     onChange: () => {},
     value: '',
   };
@@ -81,11 +89,29 @@ export default class RadioButton extends React.Component {
   };
 
   render() {
+    const {
+      className,
+      labelText,
+      labelPosition,
+      innerRef: ref,
+      ...other
+    } = this.props;
+    if (__DEV__) {
+      warning(
+        labelPosition !== 'top' && labelPosition !== 'bottom',
+        '`top`/`bottom` values for `labelPosition` property in the `RadioButton` component is deprecated ' +
+          'and being removed in the next release of `carbon-components-react`.'
+      );
+    }
     const wrapperClasses = classNames(
-      'radioButtonWrapper',
-      this.props.className
+      className,
+      `${prefix}--radio-button-wrapper`,
+      {
+        [`${prefix}--radio-button-wrapper--label-${labelPosition}`]:
+          labelPosition !== 'right',
+        radioButtonWrapper: !breakingChangesX,
+      }
     );
-    const { labelText, ...other } = this.props;
     return (
       <div className={wrapperClasses}>
         <input
@@ -94,6 +120,7 @@ export default class RadioButton extends React.Component {
           className={`${prefix}--radio-button`}
           onChange={this.handleChange}
           id={this.uid}
+          ref={ref}
         />
         <label
           htmlFor={this.uid}
@@ -106,3 +133,13 @@ export default class RadioButton extends React.Component {
     );
   }
 }
+
+export default (!breakingChangesX
+  ? RadioButton
+  : (() => {
+      const forwardRef = (props, ref) => (
+        <RadioButton {...props} innerRef={ref} />
+      );
+      forwardRef.displayName = 'RadioButton';
+      return React.forwardRef(forwardRef);
+    })());

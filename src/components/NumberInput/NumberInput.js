@@ -14,7 +14,8 @@ import WarningFilled16 from '@carbon/icons-react/lib/warning--filled/16';
 import CaretDownGlyph from '@carbon/icons-react/lib/caret--down/index';
 import CaretUpGlyph from '@carbon/icons-react/lib/caret--up/index';
 import Icon from '../Icon';
-import { componentsX } from '../../internal/FeatureFlags';
+import { breakingChangesX, componentsX } from '../../internal/FeatureFlags';
+import mergeRefs from '../../tools/mergeRefs';
 
 const { prefix } = settings;
 
@@ -28,7 +29,7 @@ const defaultTranslations = {
   [translationIds['decrement.number']]: 'Decrement number',
 };
 
-export default class NumberInput extends Component {
+class NumberInput extends Component {
   constructor(props) {
     super(props);
     let value = props.value;
@@ -113,6 +114,10 @@ export default class NumberInput extends Component {
      * Provide custom text for the component for each translation id
      */
     translateWithId: PropTypes.func.isRequired,
+    /**
+     * `true` to use the mobile variant.
+     */
+    isMobile: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -214,7 +219,9 @@ export default class NumberInput extends Component {
       helperText,
       light,
       allowEmpty,
+      innerRef: ref,
       translateWithId: t,
+      isMobile,
       ...other
     } = this.props;
 
@@ -224,6 +231,7 @@ export default class NumberInput extends Component {
       {
         [`${prefix}--number--light`]: light,
         [`${prefix}--number--nolabel`]: hideLabel,
+        [`${prefix}--number--mobile`]: componentsX && isMobile,
       }
     );
 
@@ -273,96 +281,142 @@ export default class NumberInput extends Component {
     return (
       <div className={`${prefix}--form-item`}>
         <div className={numberInputClasses} {...inputWrapperProps}>
-          {componentsX ? (
-            <>
-              {labelText}
-              {helper}
-              <div className={`${prefix}--number__input-wrapper`}>
-                <input
-                  type="number"
-                  pattern="[0-9]*"
-                  {...other}
-                  {...props}
-                  ref={this._handleInputRef}
-                />
-                {invalid && (
-                  <WarningFilled16
-                    className={`${prefix}--number__invalid`}
-                    role="img"
+          {(() => {
+            if (!componentsX) {
+              return (
+                <>
+                  <div className={`${prefix}--number__controls`}>
+                    <button
+                      className={`${prefix}--number__control-btn up-icon`}
+                      {...buttonProps}
+                      onClick={evt => this.handleArrowClick(evt, 'up')}
+                      title={incrementNumLabel}
+                      aria-label={incrementNumLabel}
+                      aria-live="polite"
+                      aria-atomic="true">
+                      <Icon
+                        className="up-icon"
+                        icon={iconCaretUp}
+                        description={iconDescription || incrementNumLabel}
+                        viewBox="0 0 10 5"
+                      />
+                    </button>
+                    <button
+                      className={`${prefix}--number__control-btn down-icon`}
+                      {...buttonProps}
+                      onClick={evt => this.handleArrowClick(evt, 'down')}
+                      title={decrementNumLabel}
+                      aria-label={decrementNumLabel}
+                      aria-live="polite"
+                      aria-atomic="true">
+                      <Icon
+                        className="down-icon"
+                        icon={iconCaretDown}
+                        viewBox="0 0 10 5"
+                        description={iconDescription || decrementNumLabel}
+                      />
+                    </button>
+                  </div>
+                  {labelText}
+                  <input
+                    type="number"
+                    pattern="[0-9]*"
+                    {...other}
+                    {...props}
+                    ref={mergeRefs(ref, this._handleInputRef)}
                   />
-                )}
-                <div className={`${prefix}--number__controls`}>
-                  <button
-                    className={`${prefix}--number__control-btn up-icon`}
-                    {...buttonProps}
-                    onClick={evt => this.handleArrowClick(evt, 'up')}
-                    aria-label={incrementNumLabel}
-                    aria-live="polite"
-                    aria-atomic="true">
-                    <CaretUpGlyph className="up-icon">
-                      <title>{incrementNumLabel}</title>
-                    </CaretUpGlyph>
-                  </button>
-                  <button
-                    className={`${prefix}--number__control-btn down-icon`}
-                    {...buttonProps}
-                    onClick={evt => this.handleArrowClick(evt, 'down')}
-                    aria-label={decrementNumLabel}
-                    aria-live="polite"
-                    aria-atomic="true">
-                    <CaretDownGlyph className="down-icon">
-                      <title>{decrementNumLabel}</title>
-                    </CaretDownGlyph>
-                  </button>
+                </>
+              );
+            }
+            if (isMobile) {
+              return (
+                <>
+                  {labelText}
+                  {helper}
+                  <div className={`${prefix}--number__input-wrapper`}>
+                    <button
+                      className={`${prefix}--number__control-btn down-icon`}
+                      {...buttonProps}
+                      onClick={evt => this.handleArrowClick(evt, 'down')}
+                      title={decrementNumLabel}
+                      aria-label={decrementNumLabel || iconDescription}
+                      aria-live="polite"
+                      aria-atomic="true">
+                      <CaretDownGlyph className="down-icon">
+                        <title>{decrementNumLabel || iconDescription}</title>
+                      </CaretDownGlyph>
+                    </button>
+                    <input
+                      type="number"
+                      pattern="[0-9]*"
+                      {...other}
+                      {...props}
+                      ref={mergeRefs(ref, this._handleInputRef)}
+                    />
+                    <button
+                      className={`${prefix}--number__control-btn up-icon`}
+                      {...buttonProps}
+                      onClick={evt => this.handleArrowClick(evt, 'up')}
+                      title={incrementNumLabel}
+                      aria-label={incrementNumLabel || iconDescription}
+                      aria-live="polite"
+                      aria-atomic="true">
+                      <CaretUpGlyph className="up-icon">
+                        <title>{incrementNumLabel || iconDescription}</title>
+                      </CaretUpGlyph>
+                    </button>
+                  </div>
+                </>
+              );
+            }
+            return (
+              <>
+                {labelText}
+                {helper}
+                <div className={`${prefix}--number__input-wrapper`}>
+                  <input
+                    type="number"
+                    pattern="[0-9]*"
+                    {...other}
+                    {...props}
+                    ref={mergeRefs(ref, this._handleInputRef)}
+                  />
+                  {invalid && (
+                    <WarningFilled16
+                      className={`${prefix}--number__invalid`}
+                      role="img"
+                    />
+                  )}
+                  <div className={`${prefix}--number__controls`}>
+                    <button
+                      className={`${prefix}--number__control-btn up-icon`}
+                      {...buttonProps}
+                      onClick={evt => this.handleArrowClick(evt, 'up')}
+                      title={incrementNumLabel}
+                      aria-label={incrementNumLabel || iconDescription}
+                      aria-live="polite"
+                      aria-atomic="true">
+                      <CaretUpGlyph className="up-icon">
+                        <title>{incrementNumLabel || iconDescription}</title>
+                      </CaretUpGlyph>
+                    </button>
+                    <button
+                      className={`${prefix}--number__control-btn down-icon`}
+                      {...buttonProps}
+                      onClick={evt => this.handleArrowClick(evt, 'down')}
+                      title={decrementNumLabel}
+                      aria-label={decrementNumLabel || iconDescription}
+                      aria-live="polite"
+                      aria-atomic="true">
+                      <CaretDownGlyph className="down-icon">
+                        <title>{decrementNumLabel || iconDescription}</title>
+                      </CaretDownGlyph>
+                    </button>
+                  </div>
                 </div>
-              </div>
-            </>
-          ) : (
-            <>
-              <div className={`${prefix}--number__controls`}>
-                <button
-                  className={`${prefix}--number__control-btn up-icon`}
-                  {...buttonProps}
-                  onClick={evt => this.handleArrowClick(evt, 'up')}
-                  aria-label={incrementNumLabel}
-                  aria-live="polite"
-                  aria-atomic="true">
-                  <Icon
-                    className="up-icon"
-                    icon={iconCaretUp}
-                    description={
-                      this.props.iconDescription || incrementNumLabel
-                    }
-                    viewBox="0 0 10 5"
-                  />
-                </button>
-                <button
-                  className={`${prefix}--number__control-btn down-icon`}
-                  {...buttonProps}
-                  onClick={evt => this.handleArrowClick(evt, 'down')}
-                  aria-label={decrementNumLabel}
-                  aria-live="polite"
-                  aria-atomic="true">
-                  <Icon
-                    className="down-icon"
-                    icon={iconCaretDown}
-                    viewBox="0 0 10 5"
-                    description={
-                      this.props.iconDescription || decrementNumLabel
-                    }
-                  />
-                </button>
-              </div>
-              {labelText}
-              <input
-                type="number"
-                pattern="[0-9]*"
-                {...other}
-                {...props}
-                ref={this._handleInputRef}
-              />
-            </>
-          )}
+              </>
+            );
+          })()}
           {error}
           {!componentsX && helper}
         </div>
@@ -370,3 +424,13 @@ export default class NumberInput extends Component {
     );
   }
 }
+
+export default (!breakingChangesX
+  ? NumberInput
+  : (() => {
+      const forwardRef = (props, ref) => (
+        <NumberInput {...props} innerRef={ref} />
+      );
+      forwardRef.displayName = 'NumberInput';
+      return React.forwardRef(forwardRef);
+    })());
