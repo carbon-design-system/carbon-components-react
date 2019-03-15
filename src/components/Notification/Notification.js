@@ -236,7 +236,7 @@ const useIcon = kindProp =>
     info: componentsX ? null : iconInfoSolid,
   }[kindProp]);
 
-const NotificationIcon = ({ notificationType, kind }) => {
+const NotificationIcon = ({ notificationType, kind, iconDescription }) => {
   if (!componentsX) {
     if (notificationType === 'inline') {
       switch (kind) {
@@ -245,7 +245,7 @@ const NotificationIcon = ({ notificationType, kind }) => {
         default:
           return (
             <Icon
-              description={this.props.iconDescription}
+              description={iconDescription}
               className={`${prefix}--inline-notification__icon`}
               aria-label="close"
               icon={useIcon(kind)}
@@ -259,8 +259,9 @@ const NotificationIcon = ({ notificationType, kind }) => {
   return (
     NotificationIconX && (
       <NotificationIconX
-        className={`${prefix}--${notificationType}-notification__icon`}
-      />
+        className={`${prefix}--${notificationType}-notification__icon`}>
+        <title>{iconDescription}</title>
+      </NotificationIconX>
     )
   );
 };
@@ -389,7 +390,7 @@ export class ToastNotification extends Component {
 
     return (
       <div {...other} role={role} kind={kind} className={classes}>
-        {NotificationIcon({ notificationType, kind })}
+        {NotificationIcon({ notificationType, kind, iconDescription })}
         <NotificationTextDetails
           title={title}
           subtitle={subtitle}
@@ -510,7 +511,7 @@ export class InlineNotification extends Component {
     return (
       <div {...other} role={role} kind={kind} className={classes}>
         <div className={`${prefix}--inline-notification__details`}>
-          {NotificationIcon({ notificationType, kind })}
+          {NotificationIcon({ notificationType, kind, iconDescription })}
           <NotificationTextDetails
             title={title}
             subtitle={subtitle}
