@@ -197,6 +197,7 @@ export default class Tabs extends React.Component {
       role,
       onSelectionChange,
       tabContentClassName,
+      hidden,
       ...other
     } = this.props;
 
@@ -230,7 +231,11 @@ export default class Tabs extends React.Component {
       return newTab;
     });
 
-    const tabContentWithProps = React.Children.map(tabsWithProps, tab => {
+    // If hidden is passed, we should only render content for the selected tab
+    const filteredTabContent = hidden
+      ? tabsWithProps.filter(tab => tab.props.selected)
+      : tabsWithProps;
+    const tabContentWithProps = React.Children.map(filteredTabContent, tab => {
       const { children, selected } = tab.props;
 
       return (

@@ -119,6 +119,16 @@ describe('Tabs', () => {
       );
     });
 
+    it('if hidden passed, non selected <TabContent> should be hidden', () => {
+      const nonShowingTabsWrapper = shallow(
+        <Tabs hidden>
+          <Tab label="firstTab">content1</Tab>
+          <Tab label="lastTab">content2</Tab>
+        </Tabs>
+      );
+      expect(nonShowingTabsWrapper.find('TabContent').length).toEqual(1);
+    });
+
     it('renders hidden props with boolean value', () => {
       const hiddenProp = wrapper
         .find('TabContent')

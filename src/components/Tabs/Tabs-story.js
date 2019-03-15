@@ -9,7 +9,7 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 
-import { withKnobs, number, text } from '@storybook/addon-knobs';
+import { withKnobs, number, text, boolean } from '@storybook/addon-knobs';
 import Tabs from '../Tabs';
 import Tab from '../Tab';
 import TabsSkeleton from '../Tabs/Tabs.Skeleton';
@@ -34,6 +34,7 @@ const props = {
       'The className for the child `<TabContent>` components',
       'tab-content'
     ),
+    hidden: boolean('Should we hide non-selected tab content', false),
   }),
   tab: () => ({
     href: text('The href for tab (href in <Tab>)', '#'),
