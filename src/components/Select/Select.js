@@ -118,6 +118,7 @@ const Select = React.forwardRef(
             </div>
           )}
           {!componentsX && input}
+          {!componentsX && helper}
           {!inline && error}
         </div>
       </div>
