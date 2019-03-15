@@ -1,6 +1,7 @@
 # Change
 
-Flatpickr is pinned to version 4.3.0
+- Flatpickr is pinned to version 4.3.0
+- Adds keydown event listener for escape on calendar container. Returns focus to input.
 
 # Reasoning
 
