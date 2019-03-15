@@ -922,17 +922,17 @@
     lodash "^4.17.10"
     to-fast-properties "^2.0.0"
 
-"@carbon/icon-helpers@0.0.1-beta.1":
-  version "0.0.1-beta.1"
-  resolved "https://registry.yarnpkg.com/@carbon/icon-helpers/-/icon-helpers-0.0.1-beta.1.tgz#3a4dcc653c8ccc1a1173f50df96d1bd851f4c202"
-  integrity sha512-634xRn8MZFzrDeKYvZnw5lpDifqtmhO2/WitzBiBGxzETyjfBG9nwIIkwgJ6g1Ujpi0m0UhPN5NpL4rcIByw8Q==
+"@carbon/icon-helpers@0.0.1-alpha.32":
+  version "0.0.1-alpha.32"
+  resolved "https://registry.yarnpkg.com/@carbon/icon-helpers/-/icon-helpers-0.0.1-alpha.32.tgz#6bb291b574ebd49784fec4c8751245840aedb80c"
+  integrity sha512-Mx7Uttbv4MvG6V1mBayrM5qivqAamZZp+F3AQvSyngTFIDanCjBzaseqKWYBIT3zAbAQvzpjShDlo9xZgPQ9Xg==
 
-"@carbon/icons-react@0.0.1-beta.1":
-  version "0.0.1-beta.1"
-  resolved "https://registry.yarnpkg.com/@carbon/icons-react/-/icons-react-0.0.1-beta.1.tgz#8579a4a0c6ff2a591d5345774e2e5a6ded022cf0"
-  integrity sha512-bcOTibUMv2fMkU1CMbVchaM+7TcBsUnB3LkthTbXmWDfoo+dPqNZ1rc3sHrx6q//HUWPQFLSHzHI3KN1aM4aOQ==
+"@carbon/icons-react@^0.0.1-alpha.32":
+  version "0.0.1-alpha.32"
+  resolved "https://registry.yarnpkg.com/@carbon/icons-react/-/icons-react-0.0.1-alpha.32.tgz#8e507d231399e4197e2868c6c215e3bba74f226a"
+  integrity sha512-PO96imAfYa4O+ckMLu7VRK6SOZgkM0nwPbz0KAIXPWsDuAH+hP9OIUYHjRbzLXunzwHGGGygXNAxmMIFSLzUOg==
   dependencies:
-    "@carbon/icon-helpers" "0.0.1-beta.1"
+    "@carbon/icon-helpers" "0.0.1-alpha.32"
     prop-types "^15.6.2"
 
 "@emotion/cache@^0.8.8":
