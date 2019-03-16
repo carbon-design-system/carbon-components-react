@@ -390,7 +390,11 @@ export class ToastNotification extends Component {
 
     return (
       <div {...other} role={role} kind={kind} className={classes}>
-        {NotificationIcon({ notificationType, kind, iconDescription })}
+        <NotificationIcon
+          notificationType={notificationType}
+          kind={kind}
+          iconDescription={iconDescription}
+        />
         <NotificationTextDetails
           title={title}
           subtitle={subtitle}
@@ -511,7 +515,11 @@ export class InlineNotification extends Component {
     return (
       <div {...other} role={role} kind={kind} className={classes}>
         <div className={`${prefix}--inline-notification__details`}>
-          {NotificationIcon({ notificationType, kind, iconDescription })}
+          <NotificationIcon
+            notificationType={notificationType}
+            kind={kind}
+            iconDescription={iconDescription}
+          />
           <NotificationTextDetails
             title={title}
             subtitle={subtitle}
