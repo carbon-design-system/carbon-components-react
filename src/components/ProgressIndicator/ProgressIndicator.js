@@ -236,8 +236,7 @@ export class ProgressIndicator extends Component {
 
     return React.Children.map(this.props.children, (child, index) => {
       // only setup click handlers if onChange event is passed
-      const onClick =
-        onChange && index > -1 ? () => onChange(index) : undefined;
+      const onClick = onChange ? () => onChange(index) : undefined;
       if (index === this.state.currentIndex) {
         return React.cloneElement(child, {
           current: true,
