@@ -150,7 +150,7 @@ describe('Button', () => {
 
     it('should have the appropriate icon', () => {
       expect(icon.hasClass('bx--btn__icon')).toBe(true);
-      expect(icon.find(':not(title)').html()).toBe(
+      expect(icon.find(':not(svg):not(title)').html()).toBe(
         originalIcon.children().html()
       );
     });

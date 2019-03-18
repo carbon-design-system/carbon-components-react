@@ -31,7 +31,7 @@ describe('Custom icon in DataTable.TableToolbarAction', () => {
     );
     const originalIcon = mount(<Download16 />).find('svg');
     const icon = iconAction.find('svg');
-    expect(icon.find(':not(title)').html()).toBe(
+    expect(icon.find(':not(svg):not(title)').html()).toBe(
       originalIcon.children().html()
     );
   });

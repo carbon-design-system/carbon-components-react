@@ -47,7 +47,7 @@ describe('NotificationButton', () => {
       );
       const originalIcon = mount(<Close16 />).find('svg');
       const icon = iconButton.find('svg');
-      expect(icon.find(':not(title)').html()).toBe(
+      expect(icon.find(':not(svg):not(title)').html()).toBe(
         originalIcon.children().html()
       );
     });
