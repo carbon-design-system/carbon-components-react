@@ -99,9 +99,8 @@ export default class CopyButton extends Component {
         {componentsX ? (
           <Copy16
             className={`${prefix}--snippet__icon`}
-            aria-label={iconDescription}>
-            {iconDescription && <title>{iconDescription}</title>}
-          </Copy16>
+            aria-label={iconDescription}
+          />
         ) : (
           <Icon
             className={`${prefix}--snippet__icon`}

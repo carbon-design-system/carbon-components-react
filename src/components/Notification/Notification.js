@@ -136,9 +136,8 @@ export class NotificationButton extends Component {
             aria-label={iconDescription}
             className={iconClasses}
             icon={!icon && !name ? iconClose : icon}
-            name={name}>
-            {iconDescription && <title>{iconDescription}</title>}
-          </IconTag>
+            name={name}
+          />
         );
       } else if (!breakingChangesX) {
         return (

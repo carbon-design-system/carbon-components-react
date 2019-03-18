@@ -127,9 +127,8 @@ export default class ToolbarSearch extends Component {
             {componentsX ? (
               <Search16
                 className={`${prefix}--search-magnifier`}
-                aria-label={labelText}>
-                {iconDescription && <title>{iconDescription}</title>}
-              </Search16>
+                aria-label={labelText}
+              />
             ) : (
               <Icon
                 icon={iconSearch}

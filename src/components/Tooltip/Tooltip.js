@@ -454,9 +454,8 @@ class Tooltip extends Component {
         aria-label={iconDescription}
         ref={mergeRefs(ref, node => {
           this.triggerEl = node;
-        })}>
-        {iconTitle && <title>{iconTitle}</title>}
-      </IconCustomElement>
+        })}
+      />
     ) : (
       <Icon
         icon={!icon && !iconName ? iconInfoGlyph : icon}
@@ -480,6 +479,7 @@ class Tooltip extends Component {
                 id={triggerId}
                 className={`${prefix}--tooltip__trigger`}
                 tabIndex={tabIndex}
+                title={iconTitle}
                 onClick={this.handleMouse}
                 onKeyDown={this.handleKeyPress}
                 onMouseOver={this.handleMouse}

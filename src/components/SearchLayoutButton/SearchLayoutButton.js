@@ -87,17 +87,15 @@ class SearchLayoutButton extends Component {
           return (
             <ListBulleted16
               className={`${prefix}--search-view`}
-              aria-label={iconDescriptionList}>
-              {iconDescriptionList && <title>{iconDescriptionList}</title>}
-            </ListBulleted16>
+              aria-label={iconDescriptionList}
+            />
           );
         }
         return (
           <Grid16
             className={`${prefix}--search-view`}
-            aria-label={iconDescriptionGrid}>
-            {iconDescriptionGrid && <title>{iconDescriptionGrid}</title>}
-          </Grid16>
+            aria-label={iconDescriptionGrid}
+          />
         );
       }
       return (

@@ -291,9 +291,8 @@ export default class Modal extends Component {
         {componentsX ? (
           <Close20
             aria-label={iconDescription}
-            className={`${prefix}--modal-close__icon`}>
-            {iconDescription && <title>{iconDescription}</title>}
-          </Close20>
+            className={`${prefix}--modal-close__icon`}
+          />
         ) : (
           <Icon
             icon={iconClose}
