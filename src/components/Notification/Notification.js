@@ -20,9 +20,9 @@ import { settings } from 'carbon-components';
 import Icon from '../Icon';
 import a11yIconWarningSolid from './a11yIconWarningSolid';
 import Close16 from '@carbon/icons-react/lib/close/16';
-import ErrorFilled16 from '@carbon/icons-react/lib/error--filled/16';
-import CheckmarkFilled16 from '@carbon/icons-react/lib/checkmark--filled/16';
-import WarningFilled16 from '@carbon/icons-react/lib/warning--filled/16';
+import ErrorFilled20 from '@carbon/icons-react/lib/error--filled/20';
+import CheckmarkFilled20 from '@carbon/icons-react/lib/checkmark--filled/20';
+import WarningFilled20 from '@carbon/icons-react/lib/warning--filled/20';
 import { breakingChangesX, componentsX } from '../../internal/FeatureFlags';
 
 const { prefix } = settings;
@@ -230,9 +230,9 @@ export class NotificationTextDetails extends Component {
 
 const useIcon = kindProp =>
   ({
-    error: componentsX ? ErrorFilled16 : iconErrorSolid,
-    success: componentsX ? CheckmarkFilled16 : iconCheckmarkSolid,
-    warning: componentsX ? WarningFilled16 : iconWarningSolid,
+    error: componentsX ? ErrorFilled20 : iconErrorSolid,
+    success: componentsX ? CheckmarkFilled20 : iconCheckmarkSolid,
+    warning: componentsX ? WarningFilled20 : iconWarningSolid,
     info: componentsX ? null : iconInfoSolid,
   }[kindProp]);
 
