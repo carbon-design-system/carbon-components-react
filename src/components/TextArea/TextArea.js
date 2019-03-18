@@ -45,6 +45,7 @@ const TextArea = ({
   });
   const labelClasses = classNames(`${prefix}--label`, {
     [`${prefix}--visually-hidden`]: hideLabel,
+    [`${prefix}--label--disabled`]: other.disabled,
   });
 
   const label = labelText ? (
