@@ -22,7 +22,6 @@ const Switch = props => {
     onKeyDown,
     selected,
     text,
-    icon,
     href,
     ...other
   } = props;
@@ -50,19 +49,9 @@ const Switch = props => {
     className: classes,
   };
 
-  const btnIcon = icon
-    ? React.cloneElement(icon, {
-        className: classNames(
-          icon.props.className,
-          ` ${prefix}--content-switcher__icon`
-        ),
-      })
-    : null;
-
   if (kind === 'button') {
     return (
       <button {...other} {...commonProps}>
-        {btnIcon}
         <span>{text}</span>
       </button>
     );
@@ -70,7 +59,6 @@ const Switch = props => {
 
   return (
     <a href={href} {...other} {...commonProps}>
-      {btnIcon}
       <span>{text}</span>
     </a>
   );
@@ -119,11 +107,6 @@ Switch.propTypes = {
    * Provide the contents of your Switch
    */
   text: PropTypes.string.isRequired,
-
-  /**
-   * Specify an icon to include in your Switch
-   */
-  icon: PropTypes.element,
 
   /**
    * Optional string representing the link location for the Switch,
