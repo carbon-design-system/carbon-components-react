@@ -328,6 +328,7 @@ export default class PaginationV2 extends Component {
               className={`${prefix}--select__page-number`}
               labelText={`Page number, of ${totalPages} pages`}
               inline
+              hideLabel
               onChange={this.handlePageInputChange}
               value={statePage}>
               {selectItems}
