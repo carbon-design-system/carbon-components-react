@@ -342,9 +342,7 @@ class NumberInput extends Component {
                       aria-label={decrementNumLabel || iconDescription}
                       aria-live="polite"
                       aria-atomic="true">
-                      <CaretDownGlyph className="down-icon">
-                        <title>{decrementNumLabel || iconDescription}</title>
-                      </CaretDownGlyph>
+                      <CaretDownGlyph className="down-icon" />
                     </button>
                     <input
                       type="number"
@@ -361,9 +359,7 @@ class NumberInput extends Component {
                       aria-label={incrementNumLabel || iconDescription}
                       aria-live="polite"
                       aria-atomic="true">
-                      <CaretUpGlyph className="up-icon">
-                        <title>{incrementNumLabel || iconDescription}</title>
-                      </CaretUpGlyph>
+                      <CaretUpGlyph className="up-icon" />
                     </button>
                   </div>
                 </>

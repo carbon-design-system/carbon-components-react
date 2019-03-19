@@ -491,7 +491,9 @@ export class InlineNotification extends Component {
         return (
           <NotificationIconX
             className={`${prefix}--inline-notification__icon`}
-          />
+            aria-label={iconDescription}>
+            {iconDescription && <title>{iconDescription}</title>}
+          </NotificationIconX>
         );
       }
       switch (kind) {
