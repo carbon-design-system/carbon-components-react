@@ -45,6 +45,7 @@ const Select = React.forwardRef(
     });
     const labelClasses = classNames(`${prefix}--label`, {
       [`${prefix}--visually-hidden`]: hideLabel,
+      [`${prefix}--label--disabled`]: disabled,
     });
     const errorId = `${id}-error-msg`;
     const error = invalid ? (
@@ -52,8 +53,11 @@ const Select = React.forwardRef(
         {invalidText}
       </div>
     ) : null;
+    const helperTextClasses = classNames(`${prefix}--form__helper-text`, {
+      [`${prefix}--form__helper-text--disabled`]: disabled,
+    });
     const helper = helperText ? (
-      <div className={`${prefix}--form__helper-text`}>{helperText}</div>
+      <div className={helperTextClasses}>{helperText}</div>
     ) : null;
     const ariaProps = {};
     if (invalid) {
@@ -96,7 +100,7 @@ const Select = React.forwardRef(
           <label htmlFor={id} className={labelClasses}>
             {labelText}
           </label>
-          {componentsX && !inline && helper}
+          {!inline && helper}
           {componentsX && inline && (
             <>
               <div className={`${prefix}--select-input--inline__wrapper`}>
@@ -118,8 +122,8 @@ const Select = React.forwardRef(
             </div>
           )}
           {!componentsX && input}
-          {!componentsX && helper}
-          {!inline && error}
+          {!componentsX && inline && helper}
+          {(!componentsX || (componentsX && !inline)) && error}
         </div>
       </div>
     );
