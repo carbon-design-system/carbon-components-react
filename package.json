@@ -129,7 +129,7 @@
     "react-dom": "^16.4.0"
   },
   "dependencies": {
-    "@carbon/icons-react": "^0.0.1-beta.1",
+    "@carbon/icons-react": "^0.0.1-beta.2",
     "classnames": "2.2.6",
     "downshift": "^1.31.14",
     "flatpickr": "4.5.5",
