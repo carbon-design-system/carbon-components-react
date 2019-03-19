@@ -18,8 +18,8 @@ const BreadcrumbItem = ({
   'aria-current': ariaCurrent,
   children,
   className: customClassName,
-  isCurrentPage,
   href,
+  isCurrentPage,
   ...rest
 }) => {
   const className = cx({
@@ -55,9 +55,7 @@ BreadcrumbItem.propTypes = {
   /**
    * Pass in content that will be inside of the BreadcrumbItem
    */
-  children: PropTypes.oneOfType([PropTypes.element, PropTypes.string])
-    .isRequired,
-
+  children: PropTypes.node,
   /**
    * Specify an optional className to be applied to the container node
    */
@@ -68,5 +66,13 @@ BreadcrumbItem.propTypes = {
    */
   href: PropTypes.string,
 };
+
+if (componentsX) {
+  BreadcrumbItem.propTypes.children = PropTypes.oneOfType([
+    PropTypes.element,
+    PropTypes.string,
+  ]).isRequired;
+  BreadcrumbItem.propTypes.isCurrentPage = PropTypes.bool;
+}
 
 export default BreadcrumbItem;
