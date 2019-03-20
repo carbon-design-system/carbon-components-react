@@ -53,6 +53,11 @@ const props = () => ({
   light: boolean('Light variant (light)', false),
   titleText: text('Title (titleText)', 'This is not a dropdown title.'),
   helperText: text('Helper text (helperText)', 'This is not some helper text.'),
+  invalid: boolean('Show form validation UI (invalid)', false),
+  invalidText: text(
+    'Form validation UI content (invalidText)',
+    'A valid value is required'
+  ),
 });
 
 const itemToElement = item => {
