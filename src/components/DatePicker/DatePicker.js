@@ -12,6 +12,7 @@ import flatpickr from 'flatpickr';
 import l10n from 'flatpickr/dist/l10n/index';
 import rangePlugin from 'flatpickr/dist/plugins/rangePlugin';
 import { settings } from 'carbon-components';
+import warning from 'warning';
 import DatePickerInput from '../DatePickerInput';
 import Icon from '../Icon';
 import { componentsX, breakingChangesX } from '../../internal/FeatureFlags';
@@ -251,15 +252,23 @@ export default class DatePicker extends Component {
       const onHook = (electedDates, dateStr, instance) => {
         this.updateClassNames(instance);
       };
-      const appendToNode =
-        typeof appendTo === 'string'
-          ? document.querySelector(appendTo)
-          : appendTo;
+
+      let appendToNode;
+      if (typeof appendTo === 'string' && !breakingChangesX) {
+        warning(
+          false,
+          `The DatePicker appendTo prop will be deprecated in Carbon X. 
+          - If you were appendTo this for styling, consider using a className. 
+          - If you were appendTo this for attaching to a specific dom node, consider a React portal.`
+        );
+        appendToNode = document.querySelector(appendTo);
+      }
+
       // inputField ref might not be set in enzyme tests
       if (this.inputField) {
         this.cal = new flatpickr(this.inputField, {
           defaultDate: value,
-          appendTo: breakingChangesX ? undefined : appendToNode,
+          appendTo: appendToNode,
           mode: datePickerType,
           allowInput: true,
           dateFormat: dateFormat,
