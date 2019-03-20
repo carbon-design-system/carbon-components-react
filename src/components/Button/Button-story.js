@@ -8,13 +8,13 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
-import { withKnobs, boolean, select } from '@storybook/addon-knobs';
+import { withKnobs, boolean, select, text } from '@storybook/addon-knobs';
 import { iconAddSolid, iconSearch } from 'carbon-icons';
 import AddFilled16 from '@carbon/icons-react/lib/add--filled/16';
 import Search16 from '@carbon/icons-react/lib/search/16';
 import Button from '../Button';
 import ButtonSkeleton from '../Button/Button.Skeleton';
-import { breakingChangesX } from '../../internal/FeatureFlags';
+import { breakingChangesX, componentsX } from '../../internal/FeatureFlags';
 
 const icons = {
   None: 'None',
@@ -41,9 +41,12 @@ const kinds = {
   'Primary button (primary)': 'primary',
   'Secondary button (secondary)': 'secondary',
   'Danger button (danger)': 'danger',
-  'Danger primary button (danger--primary)': 'danger--primary',
   'Ghost button (ghost)': 'ghost',
 };
+
+if (!componentsX) {
+  kinds['Danger primary button (danger--primary)'] = 'danger--primary';
+}
 
 const props = {
   regular: () => {
@@ -55,6 +58,10 @@ const props = {
       small: boolean('Small (small)', false),
       renderIcon: !iconToUse || iconToUse.svgData ? undefined : iconToUse,
       icon: !iconToUse || !iconToUse.svgData ? undefined : iconToUse,
+      iconDescription: text(
+        'Icon description (iconDescription)',
+        'Button icon'
+      ),
       onClick: action('onClick'),
       onFocus: action('onFocus'),
     };
@@ -67,6 +74,10 @@ const props = {
       small: boolean('Small (small)', false),
       renderIcon: !iconToUse || iconToUse.svgData ? undefined : iconToUse,
       icon: !iconToUse || !iconToUse.svgData ? undefined : iconToUse,
+      iconDescription: text(
+        'Icon description (iconDescription)',
+        'Button icon'
+      ),
       onClick: action('onClick'),
       onFocus: action('onFocus'),
     };
