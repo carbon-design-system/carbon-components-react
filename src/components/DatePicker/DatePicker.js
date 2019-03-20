@@ -14,7 +14,7 @@ import rangePlugin from 'flatpickr/dist/plugins/rangePlugin';
 import { settings } from 'carbon-components';
 import DatePickerInput from '../DatePickerInput';
 import Icon from '../Icon';
-import { componentsX } from '../../internal/FeatureFlags';
+import { componentsX, breakingChangesX } from '../../internal/FeatureFlags';
 
 const { prefix } = settings;
 
@@ -259,7 +259,7 @@ export default class DatePicker extends Component {
       if (this.inputField) {
         this.cal = new flatpickr(this.inputField, {
           defaultDate: value,
-          appendTo: appendToNode,
+          appendTo: breakingChangesX ? undefined : appendToNode,
           mode: datePickerType,
           allowInput: true,
           dateFormat: dateFormat,
