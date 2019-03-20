@@ -8,13 +8,19 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import classNames from 'classnames';
-import flatpickr from 'flatpickr';
 import l10n from 'flatpickr/dist/l10n/index';
 import rangePlugin from 'flatpickr/dist/plugins/rangePlugin';
 import { settings } from 'carbon-components';
 import DatePickerInput from '../DatePickerInput';
 import Icon from '../Icon';
 import { componentsX } from '../../internal/FeatureFlags';
+
+let flatpickr;
+
+// Check on a window object for server side rendering
+if (typeof window !== 'undefined') {
+  flatpickr = require('flatpickr');
+}
 
 const { prefix } = settings;
 
@@ -256,35 +262,37 @@ export default class DatePicker extends Component {
           ? document.querySelector(appendTo)
           : appendTo;
       // inputField ref might not be set in enzyme tests
-      if (this.inputField) {
-        this.cal = new flatpickr(this.inputField, {
-          defaultDate: value,
-          appendTo: appendToNode,
-          mode: datePickerType,
-          allowInput: true,
-          dateFormat: dateFormat,
-          locale: l10n[locale],
-          minDate: minDate,
-          maxDate: maxDate,
-          plugins:
-            datePickerType === 'range'
-              ? [new rangePlugin({ input: this.toInputField })]
-              : '',
-          clickOpens: true,
-          nextArrow: this.rightArrowHTML(),
-          prevArrow: this.leftArrowHTML(),
-          onChange: (...args) => {
-            if (onChange) {
-              onChange(...args);
-            }
-          },
-          onReady: onHook,
-          onMonthChange: onHook,
-          onYearChange: onHook,
-          onOpen: onHook,
-          onValueUpdate: onHook,
-        });
-        this.addKeyboardEvents(this.cal);
+      if (flatpickr !== undefined) {
+        if (this.inputField) {
+          this.cal = new flatpickr(this.inputField, {
+            defaultDate: value,
+            appendTo: appendToNode,
+            mode: datePickerType,
+            allowInput: true,
+            dateFormat: dateFormat,
+            locale: l10n[locale],
+            minDate: minDate,
+            maxDate: maxDate,
+            plugins:
+              datePickerType === 'range'
+                ? [new rangePlugin({ input: this.toInputField })]
+                : '',
+            clickOpens: true,
+            nextArrow: this.rightArrowHTML(),
+            prevArrow: this.leftArrowHTML(),
+            onChange: (...args) => {
+              if (onChange) {
+                onChange(...args);
+              }
+            },
+            onReady: onHook,
+            onMonthChange: onHook,
+            onYearChange: onHook,
+            onOpen: onHook,
+            onValueUpdate: onHook,
+          });
+          this.addKeyboardEvents(this.cal);
+        }
       }
     }
   }
