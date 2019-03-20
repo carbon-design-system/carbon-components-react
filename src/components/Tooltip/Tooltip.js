@@ -479,6 +479,7 @@ class Tooltip extends Component {
                 id={triggerId}
                 className={`${prefix}--tooltip__trigger`}
                 tabIndex={tabIndex}
+                title={iconTitle}
                 onClick={this.handleMouse}
                 onKeyDown={this.handleKeyPress}
                 onMouseOver={this.handleMouse}
@@ -501,6 +502,8 @@ class Tooltip extends Component {
               ref={mergeRefs(ref, node => {
                 this.triggerEl = node;
               })}
+              onClick={this.handleMouse}
+              onKeyDown={this.handleKeyPress}
               onMouseOver={this.handleMouse}
               onMouseOut={this.handleMouse}
               onFocus={this.handleMouse}
