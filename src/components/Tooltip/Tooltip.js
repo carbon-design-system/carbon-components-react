@@ -353,6 +353,12 @@ export default class Tooltip extends Component {
       : {
           'aria-owns': tooltipId,
         };
+    
+    const ariaDescribedbyProps = !open
+      ? {}
+      : {
+          'aria-describedby': tooltipId,
+        };
 
     return (
       <>
@@ -372,7 +378,8 @@ export default class Tooltip extends Component {
                 onBlur={evt => this.handleMouse(evt)}
                 aria-haspopup="true"
                 aria-expanded={open}
-                {...ariaOwnsProps}>
+                {...ariaOwnsProps}
+                {...ariaDescribedbyProps}>
                 <Icon
                   icon={!icon && !iconName ? iconInfoGlyph : icon}
                   name={iconName}
@@ -398,7 +405,8 @@ export default class Tooltip extends Component {
               onBlur={evt => this.handleMouse(evt)}
               aria-haspopup="true"
               aria-expanded={open}
-              {...ariaOwnsProps}>
+              {...ariaOwnsProps}
+              {...ariaDescribedbyProps}>
               {triggerText}
             </div>
           )}
