@@ -320,6 +320,13 @@ export default class DatePicker extends Component {
   };
 
   addKeyboardEvents = cal => {
+    // Add a keydown event listener to the calendar container.
+    // Returns focus to input on keydown of escape.
+    cal.calendarContainer.addEventListener('keydown', e => {
+      if (e.which === 27) {
+        this.inputField.focus();
+      }
+    });
     if (this.inputField) {
       this.inputField.addEventListener('keydown', e => {
         if (e.which === 40) {
