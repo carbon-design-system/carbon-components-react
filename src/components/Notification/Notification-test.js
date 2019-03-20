@@ -14,9 +14,8 @@ import {
   iconClose,
 } from 'carbon-icons';
 import Close16 from '@carbon/icons-react/lib/close/16';
-import ErrorFilled16 from '@carbon/icons-react/lib/error--filled/16';
-import CheckmarkFilled16 from '@carbon/icons-react/lib/checkmark--filled/16';
-import InformationFilled16 from '@carbon/icons-react/lib/information--filled/16';
+import ErrorFilled20 from '@carbon/icons-react/lib/error--filled/20';
+import CheckmarkFilled20 from '@carbon/icons-react/lib/checkmark--filled/20';
 import Icon from '../Icon';
 import Notification, {
   NotificationButton,
@@ -218,7 +217,7 @@ describe('InlineNotification', () => {
       if (!componentsX) {
         expect(inline.find(Icon).some({ icon: iconCheckmarkSolid })).toBe(true);
       } else {
-        expect(inline.find(CheckmarkFilled16).length).toBe(1);
+        expect(inline.find(CheckmarkFilled20).length).toBe(1);
       }
     });
 
@@ -227,7 +226,7 @@ describe('InlineNotification', () => {
       if (!componentsX) {
         expect(inline.find(Icon).some({ icon: iconErrorSolid })).toBe(true);
       } else {
-        expect(inline.find(ErrorFilled16).length).toBe(1);
+        expect(inline.find(ErrorFilled20).length).toBe(1);
       }
     });
 
@@ -237,11 +236,9 @@ describe('InlineNotification', () => {
     });
 
     it('renders info notification with matching kind value but without <icon name="">', () => {
-      inline.setProps({ kind: 'info' });
       if (!componentsX) {
+        inline.setProps({ kind: 'info' });
         expect(inline.find(Icon).some({ icon: iconInfoSolid })).toBe(true);
-      } else {
-        expect(inline.find(InformationFilled16).length).toBe(1);
       }
     });
 
