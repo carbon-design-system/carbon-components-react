@@ -450,7 +450,7 @@ class Tooltip extends Component {
     const ariaDescribedbyProps = !open
       ? {}
       : {
-          'aria-describedby	': tooltipId,
+          'aria-describedby': tooltipId,
         };
     const finalIcon = IconCustomElement ? (
       <IconCustomElement
