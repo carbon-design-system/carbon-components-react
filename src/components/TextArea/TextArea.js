@@ -81,6 +81,7 @@ const TextArea = ({
       aria-invalid={invalid || null}
       aria-describedby={invalid ? errorId : null}
       data-invalid={(invalid && !componentsX) || null}
+      disabled={other.disabled}
     />
   );
 
