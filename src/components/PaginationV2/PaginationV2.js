@@ -39,11 +39,6 @@ export default class PaginationV2 extends Component {
 
   static propTypes = {
     /**
-     * The description for the backward icon.
-     */
-    backwardText: PropTypes.string,
-
-    /**
      * The CSS class names.
      */
     className: PropTypes.string,
@@ -53,11 +48,6 @@ export default class PaginationV2 extends Component {
      * in a manner of the range of items.
      */
     itemRangeText: PropTypes.func,
-
-    /**
-     * The description for the forward icon.
-     */
-    forwardText: PropTypes.string,
 
     /**
      * The unique ID of this component instance.
@@ -139,9 +129,7 @@ export default class PaginationV2 extends Component {
   };
 
   static defaultProps = {
-    backwardText: 'Backward',
     itemRangeText: (min, max, total) => `${min}-${max} of ${total} items`,
-    forwardText: 'Forward',
     itemsPerPageText: 'Items per page:',
     pageNumberText: 'Page Number',
     pageRangeText: (current, total) =>
@@ -338,32 +326,16 @@ export default class PaginationV2 extends Component {
           <button
             className={backButtonClasses}
             onClick={this.decrementPage}
-            aria-label={backwardText}
+            aria-label="previous page"
             disabled={backButtonDisabled}>
-            {componentsX ? (
-              <CaretLeft24 />
-            ) : (
-              <Icon
-                className={`${prefix}--pagination__button-icon`}
-                icon={iconChevronLeft}
-                description={backwardText}
-              />
-            )}
+            <CaretLeft24 />
           </button>
           <button
             className={forwardButtonClasses}
-            aria-label={forwardText}
+            aria-label="next page"
             onClick={this.incrementPage}
             disabled={forwardButtonDisabled}>
-            {componentsX ? (
-              <CaretRight24 />
-            ) : (
-              <Icon
-                className={`${prefix}--pagination__button-icon`}
-                icon={iconChevronRight}
-                description={forwardText}
-              />
-            )}
+            <CaretRight24 />
           </button>
         </div>
       </div>
