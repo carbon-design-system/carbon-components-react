@@ -12,7 +12,7 @@ import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import { withKnobs, boolean } from '@storybook/addon-knobs';
 import { Breadcrumb, BreadcrumbItem, BreadcrumbSkeleton } from '../Breadcrumb';
-import FeatureFlags from '../../internal/FeatureFlags';
+import * as FeatureFlags from '../../internal/FeatureFlags';
 
 const props = () => ({
   className: 'some-class',
