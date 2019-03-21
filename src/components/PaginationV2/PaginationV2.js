@@ -39,6 +39,11 @@ export default class PaginationV2 extends Component {
 
   static propTypes = {
     /**
+     * The description for the backward icon.
+     */
+    backwardText: PropTypes.string,
+
+    /**
      * The CSS class names.
      */
     className: PropTypes.string,
@@ -48,6 +53,11 @@ export default class PaginationV2 extends Component {
      * in a manner of the range of items.
      */
     itemRangeText: PropTypes.func,
+
+    /**
+     * The description for the forward icon.
+     */
+    forwardText: PropTypes.string,
 
     /**
      * The unique ID of this component instance.
@@ -129,7 +139,9 @@ export default class PaginationV2 extends Component {
   };
 
   static defaultProps = {
+    backwardText: 'Previous page',
     itemRangeText: (min, max, total) => `${min}-${max} of ${total} items`,
+    forwardText: 'Next page',
     itemsPerPageText: 'Items per page:',
     pageNumberText: 'Page Number',
     pageRangeText: (current, total) =>
@@ -326,15 +338,15 @@ export default class PaginationV2 extends Component {
           <button
             className={backButtonClasses}
             onClick={this.decrementPage}
-            aria-label="previous page"
+            aria-label={backwardText}
             disabled={backButtonDisabled}>
             <CaretLeft24 />
           </button>
           <button
             className={forwardButtonClasses}
-            aria-label="next page"
+            aria-label={forwardText}
             onClick={this.incrementPage}
-            disabled={forwardButtonDisabled}>
+            disabled={forwardButtonDisabled || isLastPage}>
             <CaretRight24 />
           </button>
         </div>
