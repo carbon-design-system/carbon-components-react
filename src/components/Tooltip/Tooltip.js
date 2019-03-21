@@ -447,6 +447,11 @@ class Tooltip extends Component {
           'aria-owns': tooltipId,
         };
 
+    const ariaDescribedbyProps = !open
+      ? {}
+      : {
+          'aria-describedby': tooltipId,
+        };
     const finalIcon = IconCustomElement ? (
       <IconCustomElement
         name={iconName}
@@ -489,6 +494,7 @@ class Tooltip extends Component {
                 aria-haspopup="true"
                 aria-label={iconDescription}
                 aria-expanded={open}
+                {...ariaDescribedbyProps}
                 {...ariaOwnsProps}>
                 {finalIcon}
               </div>
@@ -502,12 +508,15 @@ class Tooltip extends Component {
               ref={mergeRefs(ref, node => {
                 this.triggerEl = node;
               })}
+              onClick={this.handleMouse}
+              onKeyDown={this.handleKeyPress}
               onMouseOver={this.handleMouse}
               onMouseOut={this.handleMouse}
               onFocus={this.handleMouse}
               onBlur={this.handleMouse}
               aria-haspopup="true"
               aria-expanded={open}
+              {...ariaDescribedbyProps}
               {...ariaOwnsProps}>
               {triggerText}
             </div>
