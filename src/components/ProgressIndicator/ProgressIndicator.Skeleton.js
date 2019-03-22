@@ -7,19 +7,27 @@
 
 import React from 'react';
 import { settings } from 'carbon-components';
+import { componentsX } from '../../internal/FeatureFlags';
 
 const { prefix } = settings;
 
 export default class ProgressIndicatorSkeleton extends React.Component {
   render() {
+    const currentSvg = componentsX ? (
+      <svg>
+        <path d="M 7, 7 m -7, 0 a 7,7 0 1,0 14,0 a 7,7 0 1,0 -14,0" />
+      </svg>
+    ) : (
+      <svg>
+        <circle cx="12" cy="12" r="12" />
+        <circle cx="12" cy="12" r="6" />
+      </svg>
+    );
+
     const step = (
       <li
         className={`${prefix}--progress-step ${prefix}--progress-step--incomplete`}>
-        <svg>
-          <g>
-            <circle cx="12" cy="12" r="12" />
-          </g>
-        </svg>
+        {currentSvg}
         <p className={`${prefix}--progress-label`} />
         <span className={`${prefix}--progress-line`} />
       </li>
