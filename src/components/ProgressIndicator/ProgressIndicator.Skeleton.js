@@ -27,9 +27,12 @@ export default class ProgressIndicatorSkeleton extends React.Component {
     const step = (
       <li
         className={`${prefix}--progress-step ${prefix}--progress-step--incomplete`}>
-        {currentSvg}
-        <p className={`${prefix}--progress-label`} />
-        <span className={`${prefix}--progress-line`} />
+        <div
+          className={`${prefix}--progress-step-button ${prefix}--progress-step-button--unclickable`}>
+          {currentSvg}
+          <p className={`${prefix}--progress-label`} />
+          <span className={`${prefix}--progress-line`} />
+        </div>
       </li>
     );
 
