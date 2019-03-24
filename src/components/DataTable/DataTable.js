@@ -176,7 +176,10 @@ export default class DataTable extends React.Component {
       onClick: composeEventHandlers([
         this.handleSortBy(header.key),
         onClick
-          ? this.handleOnHeaderClick(onClick, header.key, sortDirection)
+          ? this.handleOnHeaderClick(onClick, {
+              sortHeaderKey: header.key,
+              sortDirection,
+            })
           : null,
       ]),
     };
@@ -186,16 +189,11 @@ export default class DataTable extends React.Component {
    * Decorate consumer's `onClick` event handler with sort parameters
    *
    * @param {Function} onClick
-   * @param {string} sortHeaderKey
-   * @param {string} sortDirection
+   * @param {Object} sortParams
    * @returns {Function}
    */
-  handleOnHeaderClick = (onClick, sortHeaderKey, sortDirection) => {
-    return e =>
-      onClick(e, {
-        sortHeaderKey,
-        sortDirection,
-      });
+  handleOnHeaderClick = (onClick, sortParams) => {
+    return e => onClick(e, sortParams);
   };
 
   /**
