@@ -21,7 +21,28 @@ export ContentSwitcher from './components/ContentSwitcher';
 export Copy from './components/Copy';
 export CopyButton from './components/CopyButton';
 export DangerButton from './components/DangerButton';
-export DataTable from './components/DataTable';
+export {
+  default as DataTable,
+  Table,
+  TableActionList,
+  TableBatchAction,
+  TableBatchActions,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableExpandHeader,
+  TableExpandRow,
+  TableExpandedRow,
+  TableHead,
+  TableHeader,
+  TableRow,
+  TableSelectAll,
+  TableSelectRow,
+  TableToolbar,
+  TableToolbarAction,
+  TableToolbarContent,
+  TableToolbarSearch,
+} from './components/DataTable';
 export DatePicker from './components/DatePicker';
 export DatePickerInput from './components/DatePickerInput';
 export Dropdown from './components/Dropdown';
@@ -82,13 +103,6 @@ export {
 } from './components/StructuredList';
 export Tab from './components/Tab';
 export TabContent from './components/TabContent';
-export Table from './components/Table';
-export TableBody from './components/TableBody';
-export TableData from './components/TableData';
-export TableHead from './components/TableHead';
-export TableHeader from './components/TableHeader';
-export TableRow from './components/TableRow';
-export TableRowExpanded from './components/TableRowExpanded';
 export Tabs from './components/Tabs';
 export Tag from './components/Tag';
 export TextArea from './components/TextArea';
