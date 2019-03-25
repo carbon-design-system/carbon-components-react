@@ -13,6 +13,7 @@ import ListBoxField from './ListBoxField';
 import ListBoxMenu from './ListBoxMenu';
 import { ListBoxType } from './ListBoxPropTypes';
 import childrenOf from '../../prop-types/childrenOf';
+import { breakingChangesX } from '../../internal/FeatureFlags';
 
 const { prefix } = settings;
 
@@ -38,6 +39,7 @@ const ListBox = ({
   disabled,
   innerRef,
   type,
+  inline,
   invalid,
   invalidText,
   light,
@@ -48,7 +50,9 @@ const ListBox = ({
   const className = cx({
     [containerClassName]: !!containerClassName,
     [`${prefix}--list-box`]: true,
-    [`${prefix}--list-box--inline`]: type === 'inline',
+    [`${prefix}--list-box--inline`]: breakingChangesX
+      ? type === 'inline'
+      : inline,
     [`${prefix}--list-box--disabled`]: disabled,
     [`${prefix}--list-box--light`]: light,
     [`${prefix}--list-box--expanded`]: isOpen,
