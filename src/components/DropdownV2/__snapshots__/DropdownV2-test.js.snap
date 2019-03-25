@@ -114,55 +114,39 @@ exports[`DropdownV2 should render 1`] = `
               <div
                 className="bx--list-box__menu-icon"
               >
-                <Icon
-                  alt="Open menu"
-                  description="Open menu"
-                  fillRule="evenodd"
-                  focusable="false"
-                  icon={
-                    Object {
-                      "height": "5",
-                      "id": "icon--caret--down",
-                      "name": "icon--caret--down",
-                      "styles": "",
-                      "svgData": Object {
-                        "circles": "",
-                        "ellipses": "",
-                        "paths": Array [
-                          Object {
-                            "d": "M0 0l5 4.998L10 0z",
-                          },
-                        ],
-                        "polygons": "",
-                        "polylines": "",
-                        "rects": "",
-                      },
-                      "tags": "icon--caret--down",
-                      "viewBox": "0 0 10 5",
-                      "width": "10",
-                    }
-                  }
-                  role="img"
+                <ChevronDown16
+                  aria-label="Open menu"
+                  height={16}
+                  name="chevron--down"
+                  preserveAspectRatio="xMidYMid meet"
+                  viewBox="0 0 16 16"
+                  width={16}
+                  xmlns="http://www.w3.org/2000/svg"
                 >
                   <svg
-                    alt="Open menu"
                     aria-label="Open menu"
-                    fillRule="evenodd"
                     focusable="false"
-                    height="5"
+                    height={16}
+                    name="chevron--down"
+                    preserveAspectRatio="xMidYMid meet"
                     role="img"
-                    viewBox="0 0 10 5"
-                    width="10"
+                    style={
+                      Object {
+                        "willChange": "transform",
+                      }
+                    }
+                    viewBox="0 0 16 16"
+                    width={16}
+                    xmlns="http://www.w3.org/2000/svg"
                   >
                     <title>
                       Open menu
                     </title>
                     <path
-                      d="M0 0l5 4.998L10 0z"
-                      key="key0"
+                      d="M8 11L3 6l.7-.7L8 9.6l4.3-4.3.7.7z"
                     />
                   </svg>
-                </Icon>
+                </ChevronDown16>
               </div>
             </ListBoxMenuIcon>
           </div>
@@ -177,7 +161,7 @@ exports[`DropdownV2 should render DropdownItem components 1`] = `
 <DropdownV2
   disabled={false}
   helperText=""
-  itemToElement={[Function]}
+  itemToElement={null}
   itemToString={[Function]}
   items={
     Array [
@@ -287,55 +271,39 @@ exports[`DropdownV2 should render DropdownItem components 1`] = `
               <div
                 className="bx--list-box__menu-icon bx--list-box__menu-icon--open"
               >
-                <Icon
-                  alt="Close menu"
-                  description="Close menu"
-                  fillRule="evenodd"
-                  focusable="false"
-                  icon={
-                    Object {
-                      "height": "5",
-                      "id": "icon--caret--down",
-                      "name": "icon--caret--down",
-                      "styles": "",
-                      "svgData": Object {
-                        "circles": "",
-                        "ellipses": "",
-                        "paths": Array [
-                          Object {
-                            "d": "M0 0l5 4.998L10 0z",
-                          },
-                        ],
-                        "polygons": "",
-                        "polylines": "",
-                        "rects": "",
-                      },
-                      "tags": "icon--caret--down",
-                      "viewBox": "0 0 10 5",
-                      "width": "10",
-                    }
-                  }
-                  role="img"
+                <ChevronDown16
+                  aria-label="Close menu"
+                  height={16}
+                  name="chevron--down"
+                  preserveAspectRatio="xMidYMid meet"
+                  viewBox="0 0 16 16"
+                  width={16}
+                  xmlns="http://www.w3.org/2000/svg"
                 >
                   <svg
-                    alt="Close menu"
                     aria-label="Close menu"
-                    fillRule="evenodd"
                     focusable="false"
-                    height="5"
+                    height={16}
+                    name="chevron--down"
+                    preserveAspectRatio="xMidYMid meet"
                     role="img"
-                    viewBox="0 0 10 5"
-                    width="10"
+                    style={
+                      Object {
+                        "willChange": "transform",
+                      }
+                    }
+                    viewBox="0 0 16 16"
+                    width={16}
+                    xmlns="http://www.w3.org/2000/svg"
                   >
                     <title>
                       Close menu
                     </title>
                     <path
-                      d="M0 0l5 4.998L10 0z"
-                      key="key0"
+                      d="M8 11L3 6l.7-.7L8 9.6l4.3-4.3.7.7z"
                     />
                   </svg>
-                </Icon>
+                </ChevronDown16>
               </div>
             </ListBoxMenuIcon>
           </div>
@@ -360,35 +328,7 @@ exports[`DropdownV2 should render DropdownItem components 1`] = `
                 onMouseDown={[Function]}
                 onMouseMove={[Function]}
               >
-                <DropdownItem
-                  href=""
-                  id="id-0"
-                  key="Item 0"
-                  label="Item 0"
-                  onClick={[Function]}
-                  onKeyPress={[Function]}
-                  selected={false}
-                  value={0}
-                >
-                  <li
-                    aria-selected={false}
-                    className="bx--dropdown-item"
-                    id="id-0"
-                    label="Item 0"
-                    onClick={[Function]}
-                    onKeyPress={[Function]}
-                    role="option"
-                    tabIndex={-1}
-                    value={0}
-                  >
-                    <a
-                      className="bx--dropdown-link"
-                      href=""
-                      onClick={[Function]}
-                      tabIndex={-1}
-                    />
-                  </li>
-                </DropdownItem>
+                Item 0
               </div>
             </ListBoxMenuItem>
             <ListBoxMenuItem
@@ -407,35 +347,7 @@ exports[`DropdownV2 should render DropdownItem components 1`] = `
                 onMouseDown={[Function]}
                 onMouseMove={[Function]}
               >
-                <DropdownItem
-                  href=""
-                  id="id-1"
-                  key="Item 1"
-                  label="Item 1"
-                  onClick={[Function]}
-                  onKeyPress={[Function]}
-                  selected={false}
-                  value={1}
-                >
-                  <li
-                    aria-selected={false}
-                    className="bx--dropdown-item"
-                    id="id-1"
-                    label="Item 1"
-                    onClick={[Function]}
-                    onKeyPress={[Function]}
-                    role="option"
-                    tabIndex={-1}
-                    value={1}
-                  >
-                    <a
-                      className="bx--dropdown-link"
-                      href=""
-                      onClick={[Function]}
-                      tabIndex={-1}
-                    />
-                  </li>
-                </DropdownItem>
+                Item 1
               </div>
             </ListBoxMenuItem>
             <ListBoxMenuItem
@@ -454,35 +366,7 @@ exports[`DropdownV2 should render DropdownItem components 1`] = `
                 onMouseDown={[Function]}
                 onMouseMove={[Function]}
               >
-                <DropdownItem
-                  href=""
-                  id="id-2"
-                  key="Item 2"
-                  label="Item 2"
-                  onClick={[Function]}
-                  onKeyPress={[Function]}
-                  selected={false}
-                  value={2}
-                >
-                  <li
-                    aria-selected={false}
-                    className="bx--dropdown-item"
-                    id="id-2"
-                    label="Item 2"
-                    onClick={[Function]}
-                    onKeyPress={[Function]}
-                    role="option"
-                    tabIndex={-1}
-                    value={2}
-                  >
-                    <a
-                      className="bx--dropdown-link"
-                      href=""
-                      onClick={[Function]}
-                      tabIndex={-1}
-                    />
-                  </li>
-                </DropdownItem>
+                Item 2
               </div>
             </ListBoxMenuItem>
             <ListBoxMenuItem
@@ -501,35 +385,7 @@ exports[`DropdownV2 should render DropdownItem components 1`] = `
                 onMouseDown={[Function]}
                 onMouseMove={[Function]}
               >
-                <DropdownItem
-                  href=""
-                  id="id-3"
-                  key="Item 3"
-                  label="Item 3"
-                  onClick={[Function]}
-                  onKeyPress={[Function]}
-                  selected={false}
-                  value={3}
-                >
-                  <li
-                    aria-selected={false}
-                    className="bx--dropdown-item"
-                    id="id-3"
-                    label="Item 3"
-                    onClick={[Function]}
-                    onKeyPress={[Function]}
-                    role="option"
-                    tabIndex={-1}
-                    value={3}
-                  >
-                    <a
-                      className="bx--dropdown-link"
-                      href=""
-                      onClick={[Function]}
-                      tabIndex={-1}
-                    />
-                  </li>
-                </DropdownItem>
+                Item 3
               </div>
             </ListBoxMenuItem>
             <ListBoxMenuItem
@@ -548,35 +404,7 @@ exports[`DropdownV2 should render DropdownItem components 1`] = `
                 onMouseDown={[Function]}
                 onMouseMove={[Function]}
               >
-                <DropdownItem
-                  href=""
-                  id="id-4"
-                  key="Item 4"
-                  label="Item 4"
-                  onClick={[Function]}
-                  onKeyPress={[Function]}
-                  selected={false}
-                  value={4}
-                >
-                  <li
-                    aria-selected={false}
-                    className="bx--dropdown-item"
-                    id="id-4"
-                    label="Item 4"
-                    onClick={[Function]}
-                    onKeyPress={[Function]}
-                    role="option"
-                    tabIndex={-1}
-                    value={4}
-                  >
-                    <a
-                      className="bx--dropdown-link"
-                      href=""
-                      onClick={[Function]}
-                      tabIndex={-1}
-                    />
-                  </li>
-                </DropdownItem>
+                Item 4
               </div>
             </ListBoxMenuItem>
           </div>
@@ -701,55 +529,39 @@ exports[`DropdownV2 should render custom item components 1`] = `
               <div
                 className="bx--list-box__menu-icon bx--list-box__menu-icon--open"
               >
-                <Icon
-                  alt="Close menu"
-                  description="Close menu"
-                  fillRule="evenodd"
-                  focusable="false"
-                  icon={
-                    Object {
-                      "height": "5",
-                      "id": "icon--caret--down",
-                      "name": "icon--caret--down",
-                      "styles": "",
-                      "svgData": Object {
-                        "circles": "",
-                        "ellipses": "",
-                        "paths": Array [
-                          Object {
-                            "d": "M0 0l5 4.998L10 0z",
-                          },
-                        ],
-                        "polygons": "",
-                        "polylines": "",
-                        "rects": "",
-                      },
-                      "tags": "icon--caret--down",
-                      "viewBox": "0 0 10 5",
-                      "width": "10",
-                    }
-                  }
-                  role="img"
+                <ChevronDown16
+                  aria-label="Close menu"
+                  height={16}
+                  name="chevron--down"
+                  preserveAspectRatio="xMidYMid meet"
+                  viewBox="0 0 16 16"
+                  width={16}
+                  xmlns="http://www.w3.org/2000/svg"
                 >
                   <svg
-                    alt="Close menu"
                     aria-label="Close menu"
-                    fillRule="evenodd"
                     focusable="false"
-                    height="5"
+                    height={16}
+                    name="chevron--down"
+                    preserveAspectRatio="xMidYMid meet"
                     role="img"
-                    viewBox="0 0 10 5"
-                    width="10"
+                    style={
+                      Object {
+                        "willChange": "transform",
+                      }
+                    }
+                    viewBox="0 0 16 16"
+                    width={16}
+                    xmlns="http://www.w3.org/2000/svg"
                   >
                     <title>
                       Close menu
                     </title>
                     <path
-                      d="M0 0l5 4.998L10 0z"
-                      key="key0"
+                      d="M8 11L3 6l.7-.7L8 9.6l4.3-4.3.7.7z"
                     />
                   </svg>
-                </Icon>
+                </ChevronDown16>
               </div>
             </ListBoxMenuIcon>
           </div>
@@ -1007,55 +819,39 @@ exports[`DropdownV2 should render with strings as items 1`] = `
               <div
                 className="bx--list-box__menu-icon bx--list-box__menu-icon--open"
               >
-                <Icon
-                  alt="Close menu"
-                  description="Close menu"
-                  fillRule="evenodd"
-                  focusable="false"
-                  icon={
-                    Object {
-                      "height": "5",
-                      "id": "icon--caret--down",
-                      "name": "icon--caret--down",
-                      "styles": "",
-                      "svgData": Object {
-                        "circles": "",
-                        "ellipses": "",
-                        "paths": Array [
-                          Object {
-                            "d": "M0 0l5 4.998L10 0z",
-                          },
-                        ],
-                        "polygons": "",
-                        "polylines": "",
-                        "rects": "",
-                      },
-                      "tags": "icon--caret--down",
-                      "viewBox": "0 0 10 5",
-                      "width": "10",
-                    }
-                  }
-                  role="img"
+                <ChevronDown16
+                  aria-label="Close menu"
+                  height={16}
+                  name="chevron--down"
+                  preserveAspectRatio="xMidYMid meet"
+                  viewBox="0 0 16 16"
+                  width={16}
+                  xmlns="http://www.w3.org/2000/svg"
                 >
                   <svg
-                    alt="Close menu"
                     aria-label="Close menu"
-                    fillRule="evenodd"
                     focusable="false"
-                    height="5"
+                    height={16}
+                    name="chevron--down"
+                    preserveAspectRatio="xMidYMid meet"
                     role="img"
-                    viewBox="0 0 10 5"
-                    width="10"
+                    style={
+                      Object {
+                        "willChange": "transform",
+                      }
+                    }
+                    viewBox="0 0 16 16"
+                    width={16}
+                    xmlns="http://www.w3.org/2000/svg"
                   >
                     <title>
                       Close menu
                     </title>
                     <path
-                      d="M0 0l5 4.998L10 0z"
-                      key="key0"
+                      d="M8 11L3 6l.7-.7L8 9.6l4.3-4.3.7.7z"
                     />
                   </svg>
-                </Icon>
+                </ChevronDown16>
               </div>
             </ListBoxMenuIcon>
           </div>
