@@ -13,6 +13,7 @@ import ListBoxField from './ListBoxField';
 import ListBoxMenu from './ListBoxMenu';
 import { ListBoxType } from './ListBoxPropTypes';
 import childrenOf from '../../prop-types/childrenOf';
+import WarningFilled16 from '@carbon/icons-react/lib/warning--filled/16';
 
 const { prefix } = settings;
 
@@ -76,7 +77,7 @@ const ListBox = ({
 };
 
 ListBox.propTypes = {
-  children: childrenOf([ListBoxField, ListBoxMenu]),
+  children: childrenOf([ListBoxField, ListBoxMenu, WarningFilled16]),
 
   /**
    * Specify a class name to be applied on the containing list box node
