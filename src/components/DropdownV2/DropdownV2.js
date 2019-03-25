@@ -147,7 +147,6 @@ export default class DropdownV2 extends React.Component {
       type,
       initialSelectedItem,
       selectedItem,
-      light,
       id,
       titleText,
       helperText,
@@ -157,7 +156,6 @@ export default class DropdownV2 extends React.Component {
     } = this.props;
     const className = ({ isOpen }) =>
       cx(`${prefix}--dropdown`, containerClassName, {
-        [`${prefix}--dropdown--light`]: light,
         [`${prefix}--dropdown--invalid`]: invalid,
         [`${prefix}--dropdown--open`]: isOpen,
         [`${prefix}--dropdown--inline`]: breakingChangesX
@@ -188,14 +186,11 @@ export default class DropdownV2 extends React.Component {
         [`${prefix}--list-box__wrapper--inline--invalid`]: inline && invalid,
       }
     );
-    const error = invalid ? (
-      <div className={`${prefix}--form-requirement`}>{invalidText}</div>
-    ) : null;
 
     // needs to be Capitalized for react to render it correctly
     const ItemToElement = itemToElement;
     const Dropdown = (
-      <>
+      <div className={wrapperClasses}>
         {title}
         {!inline && helper}
         <Downshift
@@ -259,17 +254,8 @@ export default class DropdownV2 extends React.Component {
             </ListBox>
           )}
         </Downshift>
-        {inline && error}
-        {!componentsX && !inline && error}
-      </>
+      </div>
     );
-    return componentsX ? (
-      <>
-        <div class={wrapperClasses}>{Dropdown}</div>
-        {!inline && error}
-      </>
-    ) : (
-      Dropdown
-    );
+    return Dropdown;
   }
 }
