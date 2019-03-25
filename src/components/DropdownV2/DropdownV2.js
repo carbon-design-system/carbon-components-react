@@ -12,7 +12,7 @@ import React from 'react';
 import { settings } from 'carbon-components';
 import WarningFilled16 from '@carbon/icons-react/lib/warning--filled/16';
 import ListBox, { PropTypes as ListBoxPropTypes } from '../ListBox';
-import { componentsX, breakingChangesX } from '../../internal/FeatureFlags';
+import { componentsX } from '../../internal/FeatureFlags';
 
 const { prefix } = settings;
 
@@ -150,17 +150,15 @@ export default class DropdownV2 extends React.Component {
       id,
       titleText,
       helperText,
-      inline,
       invalid,
       invalidText,
     } = this.props;
+    const inline = type === 'inline';
     const className = ({ isOpen }) =>
       cx(`${prefix}--dropdown`, containerClassName, {
         [`${prefix}--dropdown--invalid`]: invalid,
         [`${prefix}--dropdown--open`]: isOpen,
-        [`${prefix}--dropdown--inline`]: breakingChangesX
-          ? type === 'inline'
-          : inline,
+        [`${prefix}--dropdown--inline`]: inline,
       });
     const titleClasses = cx(`${prefix}--label`, {
       [`${prefix}--label--disabled`]: disabled,
@@ -210,12 +208,11 @@ export default class DropdownV2 extends React.Component {
             getLabelProps,
           }) => (
             <ListBox
-              type={breakingChangesX ? type : null}
+              type={type}
               className={className({ isOpen })}
               disabled={disabled}
               ariaLabel={ariaLabel}
               isOpen={isOpen}
-              inline={inline}
               invalid={invalid}
               invalidText={invalidText}
               {...getRootProps({ refKey: 'innerRef' })}>
