@@ -155,7 +155,6 @@ Array [
   "Tooltip",
   "TooltipDefinition",
   "TooltipIcon",
-  "TooltipSimple",
   "UnorderedList",
 ]
 `);
