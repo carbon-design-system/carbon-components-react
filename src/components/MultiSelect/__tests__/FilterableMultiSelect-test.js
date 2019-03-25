@@ -75,7 +75,9 @@ describe('MultiSelect.Filterable', () => {
   });
 
   it('should call `onChange` with each update to selected items', () => {
-    const wrapper = mount(<MultiSelect.Filterable {...mockProps} />);
+    const wrapper = mount(
+      <MultiSelect.Filterable {...mockProps} selectionFeedback="top" />
+    );
     openMenu(wrapper);
 
     // Select the first two items

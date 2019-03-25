@@ -63,8 +63,8 @@ const props = () => ({
   ),
   selectionFeedback: select(
     'Selection feedback',
-    ['top', 'fixed'],
-    componentsX ? 'fixed' : 'top'
+    ['top', 'fixed', 'top-after-reopen'],
+    componentsX ? 'top-after-reopen' : 'top'
   ),
 });
 
@@ -108,6 +108,7 @@ storiesOf('MultiSelect', module)
       const {
         filterable,
         listBoxMenuIconTranslationIds,
+        selectionFeedback,
         ...multiSelectProps
       } = props();
       const ComponentToUse = !filterable ? MultiSelect : MultiSelect.Filterable;
@@ -122,6 +123,7 @@ storiesOf('MultiSelect', module)
             initialSelectedItems={[items[0], items[1]]}
             placeholder={placeholder}
             translateWithId={id => listBoxMenuIconTranslationIds[id]}
+            selectionFeedback={selectionFeedback}
           />
         </div>
       );
