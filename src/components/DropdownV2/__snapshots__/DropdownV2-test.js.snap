@@ -42,134 +42,139 @@ exports[`DropdownV2 should render 1`] = `
   titleText=""
   type="default"
 >
-  <Downshift
-    breakingChanges={Object {}}
-    defaultHighlightedIndex={null}
-    defaultInputValue=""
-    defaultIsOpen={false}
-    defaultSelectedItem={null}
-    environment={[Window]}
-    getA11yStatusMessage={[Function]}
-    itemToString={[Function]}
-    onChange={[Function]}
-    onInputValueChange={[Function]}
-    onOuterClick={[Function]}
-    onSelect={[Function]}
-    onStateChange={[Function]}
-    onUserAction={[Function]}
-    selectedItemChanged={[Function]}
-    stateReducer={[Function]}
+  <div
+    className="bx--dropdown__wrapper bx--list-box__wrapper"
   >
-    <ListBox
-      ariaLabel="Choose an item"
-      className="bx--dropdown"
-      disabled={false}
-      innerRef={[Function]}
-      type="default"
+    <Downshift
+      breakingChanges={Object {}}
+      defaultHighlightedIndex={null}
+      defaultInputValue=""
+      defaultIsOpen={false}
+      defaultSelectedItem={null}
+      environment={[Window]}
+      getA11yStatusMessage={[Function]}
+      itemToString={[Function]}
+      onChange={[Function]}
+      onInputValueChange={[Function]}
+      onOuterClick={[Function]}
+      onSelect={[Function]}
+      onStateChange={[Function]}
+      onUserAction={[Function]}
+      selectedItemChanged={[Function]}
+      stateReducer={[Function]}
     >
-      <div
-        aria-label="Choose an item"
-        className="bx--dropdown bx--list-box"
-        onClick={[Function]}
-        onKeyDown={[Function]}
-        role="listbox"
-        tabIndex={0}
+      <ListBox
+        ariaLabel="Choose an item"
+        className="bx--dropdown"
+        disabled={false}
+        innerRef={[Function]}
+        isOpen={false}
+        type="default"
       >
-        <ListBoxField
-          aria-expanded={false}
-          aria-haspopup={true}
-          aria-label="open menu"
-          data-toggle={true}
-          disabled={false}
-          onBlur={[Function]}
+        <div
+          aria-label="Choose an item"
+          className="bx--dropdown bx--list-box"
           onClick={[Function]}
           onKeyDown={[Function]}
-          role="button"
-          type="button"
+          role="listbox"
+          tabIndex={0}
         >
-          <div
+          <ListBoxField
             aria-expanded={false}
             aria-haspopup={true}
             aria-label="open menu"
-            className="bx--list-box__field"
             data-toggle={true}
             disabled={false}
             onBlur={[Function]}
             onClick={[Function]}
             onKeyDown={[Function]}
             role="button"
-            tabIndex="0"
             type="button"
           >
-            <span
-              className="bx--list-box__label"
-              htmlFor="downshift-1-input"
+            <div
+              aria-expanded={false}
+              aria-haspopup={true}
+              aria-label="open menu"
+              className="bx--list-box__field"
+              data-toggle={true}
+              disabled={false}
+              onBlur={[Function]}
+              onClick={[Function]}
+              onKeyDown={[Function]}
+              role="button"
+              tabIndex="0"
+              type="button"
             >
-              input
-            </span>
-            <ListBoxMenuIcon
-              isOpen={false}
-              translateWithId={[Function]}
-            >
-              <div
-                className="bx--list-box__menu-icon"
+              <span
+                className="bx--list-box__label"
+                htmlFor="downshift-1-input"
               >
-                <Icon
-                  alt="Open menu"
-                  description="Open menu"
-                  fillRule="evenodd"
-                  focusable="false"
-                  icon={
-                    Object {
-                      "height": "5",
-                      "id": "icon--caret--down",
-                      "name": "icon--caret--down",
-                      "styles": "",
-                      "svgData": Object {
-                        "circles": "",
-                        "ellipses": "",
-                        "paths": Array [
-                          Object {
-                            "d": "M0 0l5 4.998L10 0z",
-                          },
-                        ],
-                        "polygons": "",
-                        "polylines": "",
-                        "rects": "",
-                      },
-                      "tags": "icon--caret--down",
-                      "viewBox": "0 0 10 5",
-                      "width": "10",
-                    }
-                  }
-                  role="img"
+                input
+              </span>
+              <ListBoxMenuIcon
+                isOpen={false}
+                translateWithId={[Function]}
+              >
+                <div
+                  className="bx--list-box__menu-icon"
                 >
-                  <svg
+                  <Icon
                     alt="Open menu"
-                    aria-label="Open menu"
+                    description="Open menu"
                     fillRule="evenodd"
                     focusable="false"
-                    height="5"
+                    icon={
+                      Object {
+                        "height": "5",
+                        "id": "icon--caret--down",
+                        "name": "icon--caret--down",
+                        "styles": "",
+                        "svgData": Object {
+                          "circles": "",
+                          "ellipses": "",
+                          "paths": Array [
+                            Object {
+                              "d": "M0 0l5 4.998L10 0z",
+                            },
+                          ],
+                          "polygons": "",
+                          "polylines": "",
+                          "rects": "",
+                        },
+                        "tags": "icon--caret--down",
+                        "viewBox": "0 0 10 5",
+                        "width": "10",
+                      }
+                    }
                     role="img"
-                    viewBox="0 0 10 5"
-                    width="10"
                   >
-                    <title>
-                      Open menu
-                    </title>
-                    <path
-                      d="M0 0l5 4.998L10 0z"
-                      key="key0"
-                    />
-                  </svg>
-                </Icon>
-              </div>
-            </ListBoxMenuIcon>
-          </div>
-        </ListBoxField>
-      </div>
-    </ListBox>
-  </Downshift>
+                    <svg
+                      alt="Open menu"
+                      aria-label="Open menu"
+                      fillRule="evenodd"
+                      focusable="false"
+                      height="5"
+                      role="img"
+                      viewBox="0 0 10 5"
+                      width="10"
+                    >
+                      <title>
+                        Open menu
+                      </title>
+                      <path
+                        d="M0 0l5 4.998L10 0z"
+                        key="key0"
+                      />
+                    </svg>
+                  </Icon>
+                </div>
+              </ListBoxMenuIcon>
+            </div>
+          </ListBoxField>
+        </div>
+      </ListBox>
+    </Downshift>
+  </div>
 </DropdownV2>
 `;
 
@@ -215,375 +220,410 @@ exports[`DropdownV2 should render DropdownItem components 1`] = `
   titleText=""
   type="default"
 >
-  <Downshift
-    breakingChanges={Object {}}
-    defaultHighlightedIndex={null}
-    defaultInputValue=""
-    defaultIsOpen={false}
-    defaultSelectedItem={null}
-    environment={[Window]}
-    getA11yStatusMessage={[Function]}
-    itemToString={[Function]}
-    onChange={[Function]}
-    onInputValueChange={[Function]}
-    onOuterClick={[Function]}
-    onSelect={[Function]}
-    onStateChange={[Function]}
-    onUserAction={[Function]}
-    selectedItemChanged={[Function]}
-    stateReducer={[Function]}
+  <div
+    className="bx--dropdown__wrapper bx--list-box__wrapper"
   >
-    <ListBox
-      ariaLabel="Choose an item"
-      className="bx--dropdown"
-      disabled={false}
-      innerRef={[Function]}
-      type="default"
+    <Downshift
+      breakingChanges={Object {}}
+      defaultHighlightedIndex={null}
+      defaultInputValue=""
+      defaultIsOpen={false}
+      defaultSelectedItem={null}
+      environment={[Window]}
+      getA11yStatusMessage={[Function]}
+      itemToString={[Function]}
+      onChange={[Function]}
+      onInputValueChange={[Function]}
+      onOuterClick={[Function]}
+      onSelect={[Function]}
+      onStateChange={[Function]}
+      onUserAction={[Function]}
+      selectedItemChanged={[Function]}
+      stateReducer={[Function]}
     >
-      <div
-        aria-label="Choose an item"
-        className="bx--dropdown bx--list-box"
-        onClick={[Function]}
-        onKeyDown={[Function]}
-        role="listbox"
-        tabIndex={0}
+      <ListBox
+        ariaLabel="Choose an item"
+        className="bx--dropdown bx--dropdown--open"
+        disabled={false}
+        innerRef={[Function]}
+        isOpen={true}
+        type="default"
       >
-        <ListBoxField
-          aria-expanded={true}
-          aria-haspopup={true}
-          aria-label="close menu"
-          data-toggle={true}
-          disabled={false}
-          onBlur={[Function]}
+        <div
+          aria-label="Choose an item"
+          className="bx--dropdown bx--dropdown--open bx--list-box bx--list-box--expanded"
           onClick={[Function]}
           onKeyDown={[Function]}
-          role="button"
-          type="button"
+          role="listbox"
+          tabIndex={0}
         >
-          <div
+          <ListBoxField
             aria-expanded={true}
             aria-haspopup={true}
             aria-label="close menu"
-            className="bx--list-box__field"
             data-toggle={true}
             disabled={false}
             onBlur={[Function]}
             onClick={[Function]}
             onKeyDown={[Function]}
             role="button"
-            tabIndex="0"
             type="button"
           >
-            <span
-              className="bx--list-box__label"
-              htmlFor="downshift-6-input"
+            <div
+              aria-expanded={true}
+              aria-haspopup={true}
+              aria-label="close menu"
+              className="bx--list-box__field"
+              data-toggle={true}
+              disabled={false}
+              onBlur={[Function]}
+              onClick={[Function]}
+              onKeyDown={[Function]}
+              role="button"
+              tabIndex="0"
+              type="button"
             >
-              input
-            </span>
-            <ListBoxMenuIcon
-              isOpen={true}
-              translateWithId={[Function]}
-            >
-              <div
-                className="bx--list-box__menu-icon bx--list-box__menu-icon--open"
+              <span
+                className="bx--list-box__label"
+                htmlFor="downshift-6-input"
               >
-                <Icon
-                  alt="Close menu"
-                  description="Close menu"
-                  fillRule="evenodd"
-                  focusable="false"
-                  icon={
-                    Object {
-                      "height": "5",
-                      "id": "icon--caret--down",
-                      "name": "icon--caret--down",
-                      "styles": "",
-                      "svgData": Object {
-                        "circles": "",
-                        "ellipses": "",
-                        "paths": Array [
-                          Object {
-                            "d": "M0 0l5 4.998L10 0z",
-                          },
-                        ],
-                        "polygons": "",
-                        "polylines": "",
-                        "rects": "",
-                      },
-                      "tags": "icon--caret--down",
-                      "viewBox": "0 0 10 5",
-                      "width": "10",
-                    }
-                  }
-                  role="img"
+                input
+              </span>
+              <ListBoxMenuIcon
+                isOpen={true}
+                translateWithId={[Function]}
+              >
+                <div
+                  className="bx--list-box__menu-icon bx--list-box__menu-icon--open"
                 >
-                  <svg
+                  <Icon
                     alt="Close menu"
-                    aria-label="Close menu"
+                    description="Close menu"
                     fillRule="evenodd"
                     focusable="false"
-                    height="5"
+                    icon={
+                      Object {
+                        "height": "5",
+                        "id": "icon--caret--down",
+                        "name": "icon--caret--down",
+                        "styles": "",
+                        "svgData": Object {
+                          "circles": "",
+                          "ellipses": "",
+                          "paths": Array [
+                            Object {
+                              "d": "M0 0l5 4.998L10 0z",
+                            },
+                          ],
+                          "polygons": "",
+                          "polylines": "",
+                          "rects": "",
+                        },
+                        "tags": "icon--caret--down",
+                        "viewBox": "0 0 10 5",
+                        "width": "10",
+                      }
+                    }
                     role="img"
-                    viewBox="0 0 10 5"
-                    width="10"
                   >
-                    <title>
-                      Close menu
-                    </title>
-                    <path
-                      d="M0 0l5 4.998L10 0z"
-                      key="key0"
-                    />
-                  </svg>
-                </Icon>
-              </div>
-            </ListBoxMenuIcon>
-          </div>
-        </ListBoxField>
-        <ListBoxMenu>
-          <div
-            className="bx--list-box__menu"
-          >
-            <ListBoxMenuItem
-              id="downshift-6-item-0"
-              isActive={false}
-              isHighlighted={false}
-              key="Item 0"
-              onClick={[Function]}
-              onMouseDown={[Function]}
-              onMouseMove={[Function]}
+                    <svg
+                      alt="Close menu"
+                      aria-label="Close menu"
+                      fillRule="evenodd"
+                      focusable="false"
+                      height="5"
+                      role="img"
+                      viewBox="0 0 10 5"
+                      width="10"
+                    >
+                      <title>
+                        Close menu
+                      </title>
+                      <path
+                        d="M0 0l5 4.998L10 0z"
+                        key="key0"
+                      />
+                    </svg>
+                  </Icon>
+                </div>
+              </ListBoxMenuIcon>
+            </div>
+          </ListBoxField>
+          <ListBoxMenu>
+            <div
+              className="bx--list-box__menu"
             >
-              <div
-                className="bx--list-box__menu-item"
+              <ListBoxMenuItem
                 id="downshift-6-item-0"
+                isActive={false}
+                isHighlighted={false}
+                key="Item 0"
                 onClick={[Function]}
                 onMouseDown={[Function]}
                 onMouseMove={[Function]}
               >
-                <DropdownItem
-                  href=""
-                  id="id-0"
-                  key="Item 0"
-                  label="Item 0"
+                <div
+                  className="bx--list-box__menu-item"
+                  id="downshift-6-item-0"
                   onClick={[Function]}
-                  onKeyPress={[Function]}
-                  selected={false}
-                  value={0}
+                  onMouseDown={[Function]}
+                  onMouseMove={[Function]}
                 >
-                  <li
-                    aria-selected={false}
-                    className="bx--dropdown-item"
-                    id="id-0"
-                    label="Item 0"
-                    onClick={[Function]}
-                    onKeyPress={[Function]}
-                    role="option"
-                    tabIndex={-1}
-                    value={0}
+                  <div
+                    className="bx--list-box__menu-item__option"
+                    role="button"
+                    tabIndex="0"
                   >
-                    <a
-                      className="bx--dropdown-link"
+                    <DropdownItem
                       href=""
+                      id="id-0"
+                      key="Item 0"
+                      label="Item 0"
                       onClick={[Function]}
-                      tabIndex={-1}
-                    />
-                  </li>
-                </DropdownItem>
-              </div>
-            </ListBoxMenuItem>
-            <ListBoxMenuItem
-              id="downshift-6-item-1"
-              isActive={false}
-              isHighlighted={false}
-              key="Item 1"
-              onClick={[Function]}
-              onMouseDown={[Function]}
-              onMouseMove={[Function]}
-            >
-              <div
-                className="bx--list-box__menu-item"
+                      onKeyPress={[Function]}
+                      selected={false}
+                      value={0}
+                    >
+                      <li
+                        aria-selected={false}
+                        className="bx--dropdown-item"
+                        id="id-0"
+                        label="Item 0"
+                        onClick={[Function]}
+                        onKeyPress={[Function]}
+                        role="option"
+                        tabIndex={-1}
+                        value={0}
+                      >
+                        <a
+                          className="bx--dropdown-link"
+                          href=""
+                          onClick={[Function]}
+                          tabIndex={-1}
+                        />
+                      </li>
+                    </DropdownItem>
+                  </div>
+                </div>
+              </ListBoxMenuItem>
+              <ListBoxMenuItem
                 id="downshift-6-item-1"
+                isActive={false}
+                isHighlighted={false}
+                key="Item 1"
                 onClick={[Function]}
                 onMouseDown={[Function]}
                 onMouseMove={[Function]}
               >
-                <DropdownItem
-                  href=""
-                  id="id-1"
-                  key="Item 1"
-                  label="Item 1"
+                <div
+                  className="bx--list-box__menu-item"
+                  id="downshift-6-item-1"
                   onClick={[Function]}
-                  onKeyPress={[Function]}
-                  selected={false}
-                  value={1}
+                  onMouseDown={[Function]}
+                  onMouseMove={[Function]}
                 >
-                  <li
-                    aria-selected={false}
-                    className="bx--dropdown-item"
-                    id="id-1"
-                    label="Item 1"
-                    onClick={[Function]}
-                    onKeyPress={[Function]}
-                    role="option"
-                    tabIndex={-1}
-                    value={1}
+                  <div
+                    className="bx--list-box__menu-item__option"
+                    role="button"
+                    tabIndex="0"
                   >
-                    <a
-                      className="bx--dropdown-link"
+                    <DropdownItem
                       href=""
+                      id="id-1"
+                      key="Item 1"
+                      label="Item 1"
                       onClick={[Function]}
-                      tabIndex={-1}
-                    />
-                  </li>
-                </DropdownItem>
-              </div>
-            </ListBoxMenuItem>
-            <ListBoxMenuItem
-              id="downshift-6-item-2"
-              isActive={false}
-              isHighlighted={false}
-              key="Item 2"
-              onClick={[Function]}
-              onMouseDown={[Function]}
-              onMouseMove={[Function]}
-            >
-              <div
-                className="bx--list-box__menu-item"
+                      onKeyPress={[Function]}
+                      selected={false}
+                      value={1}
+                    >
+                      <li
+                        aria-selected={false}
+                        className="bx--dropdown-item"
+                        id="id-1"
+                        label="Item 1"
+                        onClick={[Function]}
+                        onKeyPress={[Function]}
+                        role="option"
+                        tabIndex={-1}
+                        value={1}
+                      >
+                        <a
+                          className="bx--dropdown-link"
+                          href=""
+                          onClick={[Function]}
+                          tabIndex={-1}
+                        />
+                      </li>
+                    </DropdownItem>
+                  </div>
+                </div>
+              </ListBoxMenuItem>
+              <ListBoxMenuItem
                 id="downshift-6-item-2"
+                isActive={false}
+                isHighlighted={false}
+                key="Item 2"
                 onClick={[Function]}
                 onMouseDown={[Function]}
                 onMouseMove={[Function]}
               >
-                <DropdownItem
-                  href=""
-                  id="id-2"
-                  key="Item 2"
-                  label="Item 2"
+                <div
+                  className="bx--list-box__menu-item"
+                  id="downshift-6-item-2"
                   onClick={[Function]}
-                  onKeyPress={[Function]}
-                  selected={false}
-                  value={2}
+                  onMouseDown={[Function]}
+                  onMouseMove={[Function]}
                 >
-                  <li
-                    aria-selected={false}
-                    className="bx--dropdown-item"
-                    id="id-2"
-                    label="Item 2"
-                    onClick={[Function]}
-                    onKeyPress={[Function]}
-                    role="option"
-                    tabIndex={-1}
-                    value={2}
+                  <div
+                    className="bx--list-box__menu-item__option"
+                    role="button"
+                    tabIndex="0"
                   >
-                    <a
-                      className="bx--dropdown-link"
+                    <DropdownItem
                       href=""
+                      id="id-2"
+                      key="Item 2"
+                      label="Item 2"
                       onClick={[Function]}
-                      tabIndex={-1}
-                    />
-                  </li>
-                </DropdownItem>
-              </div>
-            </ListBoxMenuItem>
-            <ListBoxMenuItem
-              id="downshift-6-item-3"
-              isActive={false}
-              isHighlighted={false}
-              key="Item 3"
-              onClick={[Function]}
-              onMouseDown={[Function]}
-              onMouseMove={[Function]}
-            >
-              <div
-                className="bx--list-box__menu-item"
+                      onKeyPress={[Function]}
+                      selected={false}
+                      value={2}
+                    >
+                      <li
+                        aria-selected={false}
+                        className="bx--dropdown-item"
+                        id="id-2"
+                        label="Item 2"
+                        onClick={[Function]}
+                        onKeyPress={[Function]}
+                        role="option"
+                        tabIndex={-1}
+                        value={2}
+                      >
+                        <a
+                          className="bx--dropdown-link"
+                          href=""
+                          onClick={[Function]}
+                          tabIndex={-1}
+                        />
+                      </li>
+                    </DropdownItem>
+                  </div>
+                </div>
+              </ListBoxMenuItem>
+              <ListBoxMenuItem
                 id="downshift-6-item-3"
+                isActive={false}
+                isHighlighted={false}
+                key="Item 3"
                 onClick={[Function]}
                 onMouseDown={[Function]}
                 onMouseMove={[Function]}
               >
-                <DropdownItem
-                  href=""
-                  id="id-3"
-                  key="Item 3"
-                  label="Item 3"
+                <div
+                  className="bx--list-box__menu-item"
+                  id="downshift-6-item-3"
                   onClick={[Function]}
-                  onKeyPress={[Function]}
-                  selected={false}
-                  value={3}
+                  onMouseDown={[Function]}
+                  onMouseMove={[Function]}
                 >
-                  <li
-                    aria-selected={false}
-                    className="bx--dropdown-item"
-                    id="id-3"
-                    label="Item 3"
-                    onClick={[Function]}
-                    onKeyPress={[Function]}
-                    role="option"
-                    tabIndex={-1}
-                    value={3}
+                  <div
+                    className="bx--list-box__menu-item__option"
+                    role="button"
+                    tabIndex="0"
                   >
-                    <a
-                      className="bx--dropdown-link"
+                    <DropdownItem
                       href=""
+                      id="id-3"
+                      key="Item 3"
+                      label="Item 3"
                       onClick={[Function]}
-                      tabIndex={-1}
-                    />
-                  </li>
-                </DropdownItem>
-              </div>
-            </ListBoxMenuItem>
-            <ListBoxMenuItem
-              id="downshift-6-item-4"
-              isActive={false}
-              isHighlighted={false}
-              key="Item 4"
-              onClick={[Function]}
-              onMouseDown={[Function]}
-              onMouseMove={[Function]}
-            >
-              <div
-                className="bx--list-box__menu-item"
+                      onKeyPress={[Function]}
+                      selected={false}
+                      value={3}
+                    >
+                      <li
+                        aria-selected={false}
+                        className="bx--dropdown-item"
+                        id="id-3"
+                        label="Item 3"
+                        onClick={[Function]}
+                        onKeyPress={[Function]}
+                        role="option"
+                        tabIndex={-1}
+                        value={3}
+                      >
+                        <a
+                          className="bx--dropdown-link"
+                          href=""
+                          onClick={[Function]}
+                          tabIndex={-1}
+                        />
+                      </li>
+                    </DropdownItem>
+                  </div>
+                </div>
+              </ListBoxMenuItem>
+              <ListBoxMenuItem
                 id="downshift-6-item-4"
+                isActive={false}
+                isHighlighted={false}
+                key="Item 4"
                 onClick={[Function]}
                 onMouseDown={[Function]}
                 onMouseMove={[Function]}
               >
-                <DropdownItem
-                  href=""
-                  id="id-4"
-                  key="Item 4"
-                  label="Item 4"
+                <div
+                  className="bx--list-box__menu-item"
+                  id="downshift-6-item-4"
                   onClick={[Function]}
-                  onKeyPress={[Function]}
-                  selected={false}
-                  value={4}
+                  onMouseDown={[Function]}
+                  onMouseMove={[Function]}
                 >
-                  <li
-                    aria-selected={false}
-                    className="bx--dropdown-item"
-                    id="id-4"
-                    label="Item 4"
-                    onClick={[Function]}
-                    onKeyPress={[Function]}
-                    role="option"
-                    tabIndex={-1}
-                    value={4}
+                  <div
+                    className="bx--list-box__menu-item__option"
+                    role="button"
+                    tabIndex="0"
                   >
-                    <a
-                      className="bx--dropdown-link"
+                    <DropdownItem
                       href=""
+                      id="id-4"
+                      key="Item 4"
+                      label="Item 4"
                       onClick={[Function]}
-                      tabIndex={-1}
-                    />
-                  </li>
-                </DropdownItem>
-              </div>
-            </ListBoxMenuItem>
-          </div>
-        </ListBoxMenu>
-      </div>
-    </ListBox>
-  </Downshift>
+                      onKeyPress={[Function]}
+                      selected={false}
+                      value={4}
+                    >
+                      <li
+                        aria-selected={false}
+                        className="bx--dropdown-item"
+                        id="id-4"
+                        label="Item 4"
+                        onClick={[Function]}
+                        onKeyPress={[Function]}
+                        role="option"
+                        tabIndex={-1}
+                        value={4}
+                      >
+                        <a
+                          className="bx--dropdown-link"
+                          href=""
+                          onClick={[Function]}
+                          tabIndex={-1}
+                        />
+                      </li>
+                    </DropdownItem>
+                  </div>
+                </div>
+              </ListBoxMenuItem>
+            </div>
+          </ListBoxMenu>
+        </div>
+      </ListBox>
+    </Downshift>
+  </div>
 </DropdownV2>
 `;
 
@@ -629,290 +669,325 @@ exports[`DropdownV2 should render custom item components 1`] = `
   titleText=""
   type="default"
 >
-  <Downshift
-    breakingChanges={Object {}}
-    defaultHighlightedIndex={null}
-    defaultInputValue=""
-    defaultIsOpen={false}
-    defaultSelectedItem={null}
-    environment={[Window]}
-    getA11yStatusMessage={[Function]}
-    itemToString={[Function]}
-    onChange={[Function]}
-    onInputValueChange={[Function]}
-    onOuterClick={[Function]}
-    onSelect={[Function]}
-    onStateChange={[Function]}
-    onUserAction={[Function]}
-    selectedItemChanged={[Function]}
-    stateReducer={[Function]}
+  <div
+    className="bx--dropdown__wrapper bx--list-box__wrapper"
   >
-    <ListBox
-      ariaLabel="Choose an item"
-      className="bx--dropdown"
-      disabled={false}
-      innerRef={[Function]}
-      type="default"
+    <Downshift
+      breakingChanges={Object {}}
+      defaultHighlightedIndex={null}
+      defaultInputValue=""
+      defaultIsOpen={false}
+      defaultSelectedItem={null}
+      environment={[Window]}
+      getA11yStatusMessage={[Function]}
+      itemToString={[Function]}
+      onChange={[Function]}
+      onInputValueChange={[Function]}
+      onOuterClick={[Function]}
+      onSelect={[Function]}
+      onStateChange={[Function]}
+      onUserAction={[Function]}
+      selectedItemChanged={[Function]}
+      stateReducer={[Function]}
     >
-      <div
-        aria-label="Choose an item"
-        className="bx--dropdown bx--list-box"
-        onClick={[Function]}
-        onKeyDown={[Function]}
-        role="listbox"
-        tabIndex={0}
+      <ListBox
+        ariaLabel="Choose an item"
+        className="bx--dropdown bx--dropdown--open"
+        disabled={false}
+        innerRef={[Function]}
+        isOpen={true}
+        type="default"
       >
-        <ListBoxField
-          aria-expanded={true}
-          aria-haspopup={true}
-          aria-label="close menu"
-          data-toggle={true}
-          disabled={false}
-          onBlur={[Function]}
+        <div
+          aria-label="Choose an item"
+          className="bx--dropdown bx--dropdown--open bx--list-box bx--list-box--expanded"
           onClick={[Function]}
           onKeyDown={[Function]}
-          role="button"
-          type="button"
+          role="listbox"
+          tabIndex={0}
         >
-          <div
+          <ListBoxField
             aria-expanded={true}
             aria-haspopup={true}
             aria-label="close menu"
-            className="bx--list-box__field"
             data-toggle={true}
             disabled={false}
             onBlur={[Function]}
             onClick={[Function]}
             onKeyDown={[Function]}
             role="button"
-            tabIndex="0"
             type="button"
           >
-            <span
-              className="bx--list-box__label"
-              htmlFor="downshift-5-input"
+            <div
+              aria-expanded={true}
+              aria-haspopup={true}
+              aria-label="close menu"
+              className="bx--list-box__field"
+              data-toggle={true}
+              disabled={false}
+              onBlur={[Function]}
+              onClick={[Function]}
+              onKeyDown={[Function]}
+              role="button"
+              tabIndex="0"
+              type="button"
             >
-              input
-            </span>
-            <ListBoxMenuIcon
-              isOpen={true}
-              translateWithId={[Function]}
-            >
-              <div
-                className="bx--list-box__menu-icon bx--list-box__menu-icon--open"
+              <span
+                className="bx--list-box__label"
+                htmlFor="downshift-5-input"
               >
-                <Icon
-                  alt="Close menu"
-                  description="Close menu"
-                  fillRule="evenodd"
-                  focusable="false"
-                  icon={
-                    Object {
-                      "height": "5",
-                      "id": "icon--caret--down",
-                      "name": "icon--caret--down",
-                      "styles": "",
-                      "svgData": Object {
-                        "circles": "",
-                        "ellipses": "",
-                        "paths": Array [
-                          Object {
-                            "d": "M0 0l5 4.998L10 0z",
-                          },
-                        ],
-                        "polygons": "",
-                        "polylines": "",
-                        "rects": "",
-                      },
-                      "tags": "icon--caret--down",
-                      "viewBox": "0 0 10 5",
-                      "width": "10",
-                    }
-                  }
-                  role="img"
+                input
+              </span>
+              <ListBoxMenuIcon
+                isOpen={true}
+                translateWithId={[Function]}
+              >
+                <div
+                  className="bx--list-box__menu-icon bx--list-box__menu-icon--open"
                 >
-                  <svg
+                  <Icon
                     alt="Close menu"
-                    aria-label="Close menu"
+                    description="Close menu"
                     fillRule="evenodd"
                     focusable="false"
-                    height="5"
+                    icon={
+                      Object {
+                        "height": "5",
+                        "id": "icon--caret--down",
+                        "name": "icon--caret--down",
+                        "styles": "",
+                        "svgData": Object {
+                          "circles": "",
+                          "ellipses": "",
+                          "paths": Array [
+                            Object {
+                              "d": "M0 0l5 4.998L10 0z",
+                            },
+                          ],
+                          "polygons": "",
+                          "polylines": "",
+                          "rects": "",
+                        },
+                        "tags": "icon--caret--down",
+                        "viewBox": "0 0 10 5",
+                        "width": "10",
+                      }
+                    }
                     role="img"
-                    viewBox="0 0 10 5"
-                    width="10"
                   >
-                    <title>
-                      Close menu
-                    </title>
-                    <path
-                      d="M0 0l5 4.998L10 0z"
-                      key="key0"
-                    />
-                  </svg>
-                </Icon>
-              </div>
-            </ListBoxMenuIcon>
-          </div>
-        </ListBoxField>
-        <ListBoxMenu>
-          <div
-            className="bx--list-box__menu"
-          >
-            <ListBoxMenuItem
-              id="downshift-5-item-0"
-              isActive={false}
-              isHighlighted={false}
-              key="Item 0"
-              onClick={[Function]}
-              onMouseDown={[Function]}
-              onMouseMove={[Function]}
+                    <svg
+                      alt="Close menu"
+                      aria-label="Close menu"
+                      fillRule="evenodd"
+                      focusable="false"
+                      height="5"
+                      role="img"
+                      viewBox="0 0 10 5"
+                      width="10"
+                    >
+                      <title>
+                        Close menu
+                      </title>
+                      <path
+                        d="M0 0l5 4.998L10 0z"
+                        key="key0"
+                      />
+                    </svg>
+                  </Icon>
+                </div>
+              </ListBoxMenuIcon>
+            </div>
+          </ListBoxField>
+          <ListBoxMenu>
+            <div
+              className="bx--list-box__menu"
             >
-              <div
-                className="bx--list-box__menu-item"
+              <ListBoxMenuItem
                 id="downshift-5-item-0"
+                isActive={false}
+                isHighlighted={false}
+                key="Item 0"
                 onClick={[Function]}
                 onMouseDown={[Function]}
                 onMouseMove={[Function]}
               >
-                <itemToElement
-                  id="id-0"
-                  key="Item 0"
-                  label="Item 0"
-                  value={0}
+                <div
+                  className="bx--list-box__menu-item"
+                  id="downshift-5-item-0"
+                  onClick={[Function]}
+                  onMouseDown={[Function]}
+                  onMouseMove={[Function]}
                 >
                   <div
-                    className="mock-item"
+                    className="bx--list-box__menu-item__option"
+                    role="button"
+                    tabIndex="0"
                   >
-                    Item 0
+                    <itemToElement
+                      id="id-0"
+                      key="Item 0"
+                      label="Item 0"
+                      value={0}
+                    >
+                      <div
+                        className="mock-item"
+                      >
+                        Item 0
+                      </div>
+                    </itemToElement>
                   </div>
-                </itemToElement>
-              </div>
-            </ListBoxMenuItem>
-            <ListBoxMenuItem
-              id="downshift-5-item-1"
-              isActive={false}
-              isHighlighted={false}
-              key="Item 1"
-              onClick={[Function]}
-              onMouseDown={[Function]}
-              onMouseMove={[Function]}
-            >
-              <div
-                className="bx--list-box__menu-item"
+                </div>
+              </ListBoxMenuItem>
+              <ListBoxMenuItem
                 id="downshift-5-item-1"
+                isActive={false}
+                isHighlighted={false}
+                key="Item 1"
                 onClick={[Function]}
                 onMouseDown={[Function]}
                 onMouseMove={[Function]}
               >
-                <itemToElement
-                  id="id-1"
-                  key="Item 1"
-                  label="Item 1"
-                  value={1}
+                <div
+                  className="bx--list-box__menu-item"
+                  id="downshift-5-item-1"
+                  onClick={[Function]}
+                  onMouseDown={[Function]}
+                  onMouseMove={[Function]}
                 >
                   <div
-                    className="mock-item"
+                    className="bx--list-box__menu-item__option"
+                    role="button"
+                    tabIndex="0"
                   >
-                    Item 1
+                    <itemToElement
+                      id="id-1"
+                      key="Item 1"
+                      label="Item 1"
+                      value={1}
+                    >
+                      <div
+                        className="mock-item"
+                      >
+                        Item 1
+                      </div>
+                    </itemToElement>
                   </div>
-                </itemToElement>
-              </div>
-            </ListBoxMenuItem>
-            <ListBoxMenuItem
-              id="downshift-5-item-2"
-              isActive={false}
-              isHighlighted={false}
-              key="Item 2"
-              onClick={[Function]}
-              onMouseDown={[Function]}
-              onMouseMove={[Function]}
-            >
-              <div
-                className="bx--list-box__menu-item"
+                </div>
+              </ListBoxMenuItem>
+              <ListBoxMenuItem
                 id="downshift-5-item-2"
+                isActive={false}
+                isHighlighted={false}
+                key="Item 2"
                 onClick={[Function]}
                 onMouseDown={[Function]}
                 onMouseMove={[Function]}
               >
-                <itemToElement
-                  id="id-2"
-                  key="Item 2"
-                  label="Item 2"
-                  value={2}
+                <div
+                  className="bx--list-box__menu-item"
+                  id="downshift-5-item-2"
+                  onClick={[Function]}
+                  onMouseDown={[Function]}
+                  onMouseMove={[Function]}
                 >
                   <div
-                    className="mock-item"
+                    className="bx--list-box__menu-item__option"
+                    role="button"
+                    tabIndex="0"
                   >
-                    Item 2
+                    <itemToElement
+                      id="id-2"
+                      key="Item 2"
+                      label="Item 2"
+                      value={2}
+                    >
+                      <div
+                        className="mock-item"
+                      >
+                        Item 2
+                      </div>
+                    </itemToElement>
                   </div>
-                </itemToElement>
-              </div>
-            </ListBoxMenuItem>
-            <ListBoxMenuItem
-              id="downshift-5-item-3"
-              isActive={false}
-              isHighlighted={false}
-              key="Item 3"
-              onClick={[Function]}
-              onMouseDown={[Function]}
-              onMouseMove={[Function]}
-            >
-              <div
-                className="bx--list-box__menu-item"
+                </div>
+              </ListBoxMenuItem>
+              <ListBoxMenuItem
                 id="downshift-5-item-3"
+                isActive={false}
+                isHighlighted={false}
+                key="Item 3"
                 onClick={[Function]}
                 onMouseDown={[Function]}
                 onMouseMove={[Function]}
               >
-                <itemToElement
-                  id="id-3"
-                  key="Item 3"
-                  label="Item 3"
-                  value={3}
+                <div
+                  className="bx--list-box__menu-item"
+                  id="downshift-5-item-3"
+                  onClick={[Function]}
+                  onMouseDown={[Function]}
+                  onMouseMove={[Function]}
                 >
                   <div
-                    className="mock-item"
+                    className="bx--list-box__menu-item__option"
+                    role="button"
+                    tabIndex="0"
                   >
-                    Item 3
+                    <itemToElement
+                      id="id-3"
+                      key="Item 3"
+                      label="Item 3"
+                      value={3}
+                    >
+                      <div
+                        className="mock-item"
+                      >
+                        Item 3
+                      </div>
+                    </itemToElement>
                   </div>
-                </itemToElement>
-              </div>
-            </ListBoxMenuItem>
-            <ListBoxMenuItem
-              id="downshift-5-item-4"
-              isActive={false}
-              isHighlighted={false}
-              key="Item 4"
-              onClick={[Function]}
-              onMouseDown={[Function]}
-              onMouseMove={[Function]}
-            >
-              <div
-                className="bx--list-box__menu-item"
+                </div>
+              </ListBoxMenuItem>
+              <ListBoxMenuItem
                 id="downshift-5-item-4"
+                isActive={false}
+                isHighlighted={false}
+                key="Item 4"
                 onClick={[Function]}
                 onMouseDown={[Function]}
                 onMouseMove={[Function]}
               >
-                <itemToElement
-                  id="id-4"
-                  key="Item 4"
-                  label="Item 4"
-                  value={4}
+                <div
+                  className="bx--list-box__menu-item"
+                  id="downshift-5-item-4"
+                  onClick={[Function]}
+                  onMouseDown={[Function]}
+                  onMouseMove={[Function]}
                 >
                   <div
-                    className="mock-item"
+                    className="bx--list-box__menu-item__option"
+                    role="button"
+                    tabIndex="0"
                   >
-                    Item 4
+                    <itemToElement
+                      id="id-4"
+                      key="Item 4"
+                      label="Item 4"
+                      value={4}
+                    >
+                      <div
+                        className="mock-item"
+                      >
+                        Item 4
+                      </div>
+                    </itemToElement>
                   </div>
-                </itemToElement>
-              </div>
-            </ListBoxMenuItem>
-          </div>
-        </ListBoxMenu>
-      </div>
-    </ListBox>
-  </Downshift>
+                </div>
+              </ListBoxMenuItem>
+            </div>
+          </ListBoxMenu>
+        </div>
+      </ListBox>
+    </Downshift>
+  </div>
 </DropdownV2>
 `;
 
@@ -935,177 +1010,194 @@ exports[`DropdownV2 should render with strings as items 1`] = `
   titleText=""
   type="default"
 >
-  <Downshift
-    breakingChanges={Object {}}
-    defaultHighlightedIndex={null}
-    defaultInputValue=""
-    defaultIsOpen={false}
-    defaultSelectedItem={null}
-    environment={[Window]}
-    getA11yStatusMessage={[Function]}
-    itemToString={[Function]}
-    onChange={[Function]}
-    onInputValueChange={[Function]}
-    onOuterClick={[Function]}
-    onSelect={[Function]}
-    onStateChange={[Function]}
-    onUserAction={[Function]}
-    selectedItemChanged={[Function]}
-    stateReducer={[Function]}
+  <div
+    className="bx--dropdown__wrapper bx--list-box__wrapper"
   >
-    <ListBox
-      ariaLabel="Choose an item"
-      className="bx--dropdown"
-      disabled={false}
-      innerRef={[Function]}
-      type="default"
+    <Downshift
+      breakingChanges={Object {}}
+      defaultHighlightedIndex={null}
+      defaultInputValue=""
+      defaultIsOpen={false}
+      defaultSelectedItem={null}
+      environment={[Window]}
+      getA11yStatusMessage={[Function]}
+      itemToString={[Function]}
+      onChange={[Function]}
+      onInputValueChange={[Function]}
+      onOuterClick={[Function]}
+      onSelect={[Function]}
+      onStateChange={[Function]}
+      onUserAction={[Function]}
+      selectedItemChanged={[Function]}
+      stateReducer={[Function]}
     >
-      <div
-        aria-label="Choose an item"
-        className="bx--dropdown bx--list-box"
-        onClick={[Function]}
-        onKeyDown={[Function]}
-        role="listbox"
-        tabIndex={0}
+      <ListBox
+        ariaLabel="Choose an item"
+        className="bx--dropdown bx--dropdown--open"
+        disabled={false}
+        innerRef={[Function]}
+        isOpen={true}
+        type="default"
       >
-        <ListBoxField
-          aria-expanded={true}
-          aria-haspopup={true}
-          aria-label="close menu"
-          data-toggle={true}
-          disabled={false}
-          onBlur={[Function]}
+        <div
+          aria-label="Choose an item"
+          className="bx--dropdown bx--dropdown--open bx--list-box bx--list-box--expanded"
           onClick={[Function]}
           onKeyDown={[Function]}
-          role="button"
-          type="button"
+          role="listbox"
+          tabIndex={0}
         >
-          <div
+          <ListBoxField
             aria-expanded={true}
             aria-haspopup={true}
             aria-label="close menu"
-            className="bx--list-box__field"
             data-toggle={true}
             disabled={false}
             onBlur={[Function]}
             onClick={[Function]}
             onKeyDown={[Function]}
             role="button"
-            tabIndex="0"
             type="button"
           >
-            <span
-              className="bx--list-box__label"
-              htmlFor="downshift-4-input"
+            <div
+              aria-expanded={true}
+              aria-haspopup={true}
+              aria-label="close menu"
+              className="bx--list-box__field"
+              data-toggle={true}
+              disabled={false}
+              onBlur={[Function]}
+              onClick={[Function]}
+              onKeyDown={[Function]}
+              role="button"
+              tabIndex="0"
+              type="button"
             >
-              input
-            </span>
-            <ListBoxMenuIcon
-              isOpen={true}
-              translateWithId={[Function]}
-            >
-              <div
-                className="bx--list-box__menu-icon bx--list-box__menu-icon--open"
+              <span
+                className="bx--list-box__label"
+                htmlFor="downshift-4-input"
               >
-                <Icon
-                  alt="Close menu"
-                  description="Close menu"
-                  fillRule="evenodd"
-                  focusable="false"
-                  icon={
-                    Object {
-                      "height": "5",
-                      "id": "icon--caret--down",
-                      "name": "icon--caret--down",
-                      "styles": "",
-                      "svgData": Object {
-                        "circles": "",
-                        "ellipses": "",
-                        "paths": Array [
-                          Object {
-                            "d": "M0 0l5 4.998L10 0z",
-                          },
-                        ],
-                        "polygons": "",
-                        "polylines": "",
-                        "rects": "",
-                      },
-                      "tags": "icon--caret--down",
-                      "viewBox": "0 0 10 5",
-                      "width": "10",
-                    }
-                  }
-                  role="img"
+                input
+              </span>
+              <ListBoxMenuIcon
+                isOpen={true}
+                translateWithId={[Function]}
+              >
+                <div
+                  className="bx--list-box__menu-icon bx--list-box__menu-icon--open"
                 >
-                  <svg
+                  <Icon
                     alt="Close menu"
-                    aria-label="Close menu"
+                    description="Close menu"
                     fillRule="evenodd"
                     focusable="false"
-                    height="5"
+                    icon={
+                      Object {
+                        "height": "5",
+                        "id": "icon--caret--down",
+                        "name": "icon--caret--down",
+                        "styles": "",
+                        "svgData": Object {
+                          "circles": "",
+                          "ellipses": "",
+                          "paths": Array [
+                            Object {
+                              "d": "M0 0l5 4.998L10 0z",
+                            },
+                          ],
+                          "polygons": "",
+                          "polylines": "",
+                          "rects": "",
+                        },
+                        "tags": "icon--caret--down",
+                        "viewBox": "0 0 10 5",
+                        "width": "10",
+                      }
+                    }
                     role="img"
-                    viewBox="0 0 10 5"
-                    width="10"
                   >
-                    <title>
-                      Close menu
-                    </title>
-                    <path
-                      d="M0 0l5 4.998L10 0z"
-                      key="key0"
-                    />
-                  </svg>
-                </Icon>
-              </div>
-            </ListBoxMenuIcon>
-          </div>
-        </ListBoxField>
-        <ListBoxMenu>
-          <div
-            className="bx--list-box__menu"
-          >
-            <ListBoxMenuItem
-              id="downshift-4-item-0"
-              isActive={false}
-              isHighlighted={false}
-              key="zar"
-              onClick={[Function]}
-              onMouseDown={[Function]}
-              onMouseMove={[Function]}
+                    <svg
+                      alt="Close menu"
+                      aria-label="Close menu"
+                      fillRule="evenodd"
+                      focusable="false"
+                      height="5"
+                      role="img"
+                      viewBox="0 0 10 5"
+                      width="10"
+                    >
+                      <title>
+                        Close menu
+                      </title>
+                      <path
+                        d="M0 0l5 4.998L10 0z"
+                        key="key0"
+                      />
+                    </svg>
+                  </Icon>
+                </div>
+              </ListBoxMenuIcon>
+            </div>
+          </ListBoxField>
+          <ListBoxMenu>
+            <div
+              className="bx--list-box__menu"
             >
-              <div
-                className="bx--list-box__menu-item"
+              <ListBoxMenuItem
                 id="downshift-4-item-0"
+                isActive={false}
+                isHighlighted={false}
+                key="zar"
                 onClick={[Function]}
                 onMouseDown={[Function]}
                 onMouseMove={[Function]}
               >
-                zar
-              </div>
-            </ListBoxMenuItem>
-            <ListBoxMenuItem
-              id="downshift-4-item-1"
-              isActive={false}
-              isHighlighted={false}
-              key="doz"
-              onClick={[Function]}
-              onMouseDown={[Function]}
-              onMouseMove={[Function]}
-            >
-              <div
-                className="bx--list-box__menu-item"
+                <div
+                  className="bx--list-box__menu-item"
+                  id="downshift-4-item-0"
+                  onClick={[Function]}
+                  onMouseDown={[Function]}
+                  onMouseMove={[Function]}
+                >
+                  <div
+                    className="bx--list-box__menu-item__option"
+                    role="button"
+                    tabIndex="0"
+                  >
+                    zar
+                  </div>
+                </div>
+              </ListBoxMenuItem>
+              <ListBoxMenuItem
                 id="downshift-4-item-1"
+                isActive={false}
+                isHighlighted={false}
+                key="doz"
                 onClick={[Function]}
                 onMouseDown={[Function]}
                 onMouseMove={[Function]}
               >
-                doz
-              </div>
-            </ListBoxMenuItem>
-          </div>
-        </ListBoxMenu>
-      </div>
-    </ListBox>
-  </Downshift>
+                <div
+                  className="bx--list-box__menu-item"
+                  id="downshift-4-item-1"
+                  onClick={[Function]}
+                  onMouseDown={[Function]}
+                  onMouseMove={[Function]}
+                >
+                  <div
+                    className="bx--list-box__menu-item__option"
+                    role="button"
+                    tabIndex="0"
+                  >
+                    doz
+                  </div>
+                </div>
+              </ListBoxMenuItem>
+            </div>
+          </ListBoxMenu>
+        </div>
+      </ListBox>
+    </Downshift>
+  </div>
 </DropdownV2>
 `;
