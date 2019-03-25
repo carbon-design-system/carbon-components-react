@@ -10,7 +10,6 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import isEqual from 'lodash.isequal';
 import { settings } from 'carbon-components';
-import TextInput from '../TextInput';
 import { sliderValuePropSync } from '../../internal/FeatureFlags';
 import { componentsX } from '../../internal/FeatureFlags';
 
@@ -397,15 +396,24 @@ export default class Slider extends PureComponent {
 
     const { value, left } = this.state;
 
+    const labelClasses = classNames(`${prefix}--label`, {
+      [`${prefix}--label--disabled`]: disabled,
+    });
+
     const sliderClasses = classNames(
       `${prefix}--slider`,
       { [`${prefix}--slider--disabled`]: disabled },
       className
     );
 
-    const inputClasses = classNames(`${prefix}--slider-text-input`, {
-      [`${prefix}--text-input--light`]: light,
-    });
+    const inputClasses = classNames(
+      `${prefix}--text-input`,
+      `${prefix}--slider-text-input`,
+      {
+        [`${prefix}--text-input--light`]: light,
+        [`${prefix}--text-input--invalid`]: this.props.invalid,
+      }
+    );
 
     const filledTrackStyle = {
       transform: `translate(0%, -50%) scaleX(${left / 100})`,
@@ -416,7 +424,7 @@ export default class Slider extends PureComponent {
 
     return (
       <div className={`${prefix}--form-item`}>
-        <label htmlFor={id} className={`${prefix}--label`}>
+        <label htmlFor={id} className={labelClasses}>
           {labelText}
         </label>
         <div className={`${prefix}--slider-container`}>
@@ -479,7 +487,7 @@ export default class Slider extends PureComponent {
             {formatLabel(max, maxLabel)}
           </span>
           {!hideTextInput && (
-            <TextInput
+            <input
               type={inputType}
               id={`${id}-input-for-slider`}
               className={inputClasses}
@@ -487,6 +495,7 @@ export default class Slider extends PureComponent {
               onChange={this.handleChange}
               labelText=""
               aria-label={ariaLabelInput}
+              disabled={disabled}
             />
           )}
         </div>

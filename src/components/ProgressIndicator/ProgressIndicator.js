@@ -12,6 +12,7 @@ import { settings } from 'carbon-components';
 import CheckmarkOutline16 from '@carbon/icons-react/lib/checkmark--outline/16';
 import Warning16 from '@carbon/icons-react/lib/warning/16';
 import { componentsX } from '../../internal/FeatureFlags';
+import { keys, matches } from '../../tools/key';
 
 const { prefix } = settings;
 const defaultRenderLabel = props => <p {...props} />;
@@ -25,6 +26,7 @@ export const ProgressStep = ({ ...props }) => {
     invalid,
     secondaryLabel,
     disabled,
+    onClick,
     renderLabel: ProgressStepLabel,
   } = props;
 
@@ -37,11 +39,18 @@ export const ProgressStep = ({ ...props }) => {
     [className]: className,
   });
 
+  const handleKeyDown = e => {
+    if (matches(e, [keys.ENTER, keys.SPACE])) {
+      onClick();
+    }
+  };
+
   const currentSvg =
     current &&
     (componentsX ? (
       <svg>
         <path d="M 7, 7 m -7, 0 a 7,7 0 1,0 14,0 a 7,7 0 1,0 -14,0" />
+        <title>{description}</title>
       </svg>
     ) : (
       <svg>
@@ -54,7 +63,9 @@ export const ProgressStep = ({ ...props }) => {
   const completeSvg =
     complete &&
     (componentsX ? (
-      <CheckmarkOutline16 aria-label={description} role="img" />
+      <CheckmarkOutline16 aria-label={description} role="img">
+        <title>{description}</title>
+      </CheckmarkOutline16>
     ) : (
       <svg width="16" height="16" viewBox="0 0 16 16">
         <title>{description}</title>
@@ -70,10 +81,15 @@ export const ProgressStep = ({ ...props }) => {
     }
     if (componentsX) {
       if (invalid) {
-        return <Warning16 className={`${prefix}--progress__warning`} />;
+        return (
+          <Warning16 className={`${prefix}--progress__warning`}>
+            <title>{description}</title>
+          </Warning16>
+        );
       }
       return (
         <svg>
+          <title>{description}</title>
           <path d="M8 1C4.1 1 1 4.1 1 8s3.1 7 7 7 7-3.1 7-7-3.1-7-7-7zm0 13c-3.3 0-6-2.7-6-6s2.7-6 6-6 6 2.7 6 6-2.7 6-6 6z" />
         </svg>
       );
@@ -88,21 +104,35 @@ export const ProgressStep = ({ ...props }) => {
 
   return (
     <li className={classes}>
-      {currentSvg || completeSvg || incompleteSvg}
-      <ProgressStepLabel className={`${prefix}--progress-label`}>
-        {label}
-      </ProgressStepLabel>
-      {componentsX &&
-      secondaryLabel !== null &&
-      secondaryLabel !== undefined ? (
-        <p className={`${prefix}--progress-optional`}>{secondaryLabel}</p>
-      ) : null}
-      <span className={`${prefix}--progress-line`} />
+      <div
+        className={classnames(`${prefix}--progress-step-button`, {
+          [`${prefix}--progress-step-button--unclickable`]: !onClick || current,
+        })}
+        role="button"
+        tabIndex={!current && onClick ? 0 : -1}
+        onClick={!current ? onClick : undefined}
+        onKeyDown={handleKeyDown}>
+        {currentSvg || completeSvg || incompleteSvg}
+        <ProgressStepLabel className={`${prefix}--progress-label`}>
+          {label}
+        </ProgressStepLabel>
+        {componentsX &&
+        secondaryLabel !== null &&
+        secondaryLabel !== undefined ? (
+          <p className={`${prefix}--progress-optional`}>{secondaryLabel}</p>
+        ) : null}
+        <span className={`${prefix}--progress-line`} />
+      </div>
     </li>
   );
 };
 
 ProgressStep.propTypes = {
+  /**
+   * Index of the current step within the ProgressIndicator
+   */
+  index: PropTypes.number,
+
   /**
    * Provide the label for the <ProgressStep>
    */
@@ -142,7 +172,7 @@ ProgressStep.propTypes = {
    * An optional parameter to allow for overflow content to be rendered in a
    * tooltip.
    */
-  renderLabel: PropTypes.function,
+  renderLabel: PropTypes.func,
 
   /**
    * Provide the props that describe a progress step tooltip
@@ -158,6 +188,11 @@ ProgressStep.propTypes = {
    * The ID of the tooltip content.
    */
   tooltipId: PropTypes.string,
+
+  /**
+   * A callback called if the step is clicked or the enter key is pressed
+   */
+  onClick: PropTypes.func,
 };
 
 ProgressStep.defaultProps = {
@@ -183,6 +218,11 @@ export class ProgressIndicator extends Component {
      * Optionally specify the current step array index
      */
     currentIndex: PropTypes.number,
+
+    /**
+     * Optional callback called if a ProgressStep is clicked on.  Returns the index of the step.
+     */
+    onChange: PropTypes.func,
   };
 
   static defaultProps = {
@@ -199,25 +239,36 @@ export class ProgressIndicator extends Component {
         };
   }
 
-  renderSteps = () =>
-    React.Children.map(this.props.children, (child, index) => {
+  renderSteps = () => {
+    const { onChange } = this.props;
+
+    return React.Children.map(this.props.children, (child, index) => {
+      // only setup click handlers if onChange event is passed
+      const onClick = onChange ? () => onChange(index) : undefined;
       if (index === this.state.currentIndex) {
         return React.cloneElement(child, {
           current: true,
+          index,
+          onClick,
         });
       }
       if (index < this.state.currentIndex) {
         return React.cloneElement(child, {
           complete: true,
+          index,
+          onClick,
         });
       }
       if (index > this.state.currentIndex) {
         return React.cloneElement(child, {
           complete: false,
+          index,
+          onClick,
         });
       }
       return null;
     });
+  };
 
   render() {
     const { className, currentIndex, ...other } = this.props; // eslint-disable-line no-unused-vars

@@ -1529,26 +1529,17 @@
     lodash "^4.17.10"
     to-fast-properties "^2.0.0"
 
-"@babel/types@^7.2.2", "@babel/types@^7.3.0", "@babel/types@^7.3.4":
-  version "7.3.4"
-  resolved "https://registry.yarnpkg.com/@babel/types/-/types-7.3.4.tgz#bf482eaeaffb367a28abbf9357a94963235d90ed"
-  integrity sha512-WEkp8MsLftM7O/ty580wAmZzN1nDmCACc5+jFzUt+GUFNNIi3LdRlueYz0YIlmJhlZx1QYDMZL5vdWCL0fNjFQ==
-  dependencies:
-    esutils "^2.0.2"
-    lodash "^4.17.11"
-    to-fast-properties "^2.0.0"
+"@carbon/icon-helpers@0.0.1-beta.2":
+  version "0.0.1-beta.2"
+  resolved "https://registry.yarnpkg.com/@carbon/icon-helpers/-/icon-helpers-0.0.1-beta.2.tgz#8dbe56b72d60e7ca7175eefec8b97481d749b9cb"
+  integrity sha512-bwjRXHH2Ts4grvldW3P8jd2F1VTJezDyeKvGG6WdKovfWWJMD8mi3d7hBlOPW0tRHzTOxkam7OK9Jk/kEoLTkA==
 
-"@carbon/icon-helpers@0.0.1-alpha.32":
-  version "0.0.1-alpha.32"
-  resolved "https://registry.yarnpkg.com/@carbon/icon-helpers/-/icon-helpers-0.0.1-alpha.32.tgz#6bb291b574ebd49784fec4c8751245840aedb80c"
-  integrity sha512-Mx7Uttbv4MvG6V1mBayrM5qivqAamZZp+F3AQvSyngTFIDanCjBzaseqKWYBIT3zAbAQvzpjShDlo9xZgPQ9Xg==
-
-"@carbon/icons-react@^0.0.1-alpha.32":
-  version "0.0.1-alpha.32"
-  resolved "https://registry.yarnpkg.com/@carbon/icons-react/-/icons-react-0.0.1-alpha.32.tgz#8e507d231399e4197e2868c6c215e3bba74f226a"
-  integrity sha512-PO96imAfYa4O+ckMLu7VRK6SOZgkM0nwPbz0KAIXPWsDuAH+hP9OIUYHjRbzLXunzwHGGGygXNAxmMIFSLzUOg==
+"@carbon/icons-react@^0.0.1-beta.2":
+  version "0.0.1-beta.2"
+  resolved "https://registry.yarnpkg.com/@carbon/icons-react/-/icons-react-0.0.1-beta.2.tgz#8e4087bf26a71bbb6e57de976ab762d47d2c482c"
+  integrity sha512-rq6O4w/EY4XxuS8076mxbXkMuov0iwoNuQRcs5cJMPvK+VTjOZyHAlPUVl00aWbWwNoAEuQ6LWe01n/f8KovJg==
   dependencies:
-    "@carbon/icon-helpers" "0.0.1-alpha.32"
+    "@carbon/icon-helpers" "0.0.1-beta.2"
     prop-types "^15.6.2"
 
 "@emotion/babel-utils@^0.6.4":
@@ -4302,13 +4293,13 @@ capture-stack-trace@^1.0.0:
   resolved "https://registry.yarnpkg.com/capture-stack-trace/-/capture-stack-trace-1.0.1.tgz#a6c0bbe1f38f3aa0b92238ecb6ff42c344d4135d"
   integrity sha512-mYQLZnx5Qt1JgB1WEiMCf2647plpGeQ2NMR/5L0HNZzGQo4fuSPnK+wjfPnKZV0aiJDgzmWqqkV/g7JD+DW0qw==
 
-carbon-components@^9.82.10:
-  version "9.82.13"
-  resolved "https://registry.yarnpkg.com/carbon-components/-/carbon-components-9.82.13.tgz#14940eec26d33f8f49b416fa5b371c1471af190d"
-  integrity sha512-P9hqkhFp2eHFRUt0hz85zSUUNsdmP9edYHw3ewhdzszzXG6dvwcvg39qNabpQlrmhwfsNOJQBp5QibS7s9nM1g==
+carbon-components@^9.87.2:
+  version "9.87.2"
+  resolved "https://registry.yarnpkg.com/carbon-components/-/carbon-components-9.87.2.tgz#20a96389975529526fd990789461cf20595a6273"
+  integrity sha512-wUbpYabgaX/rzBVWlKhBzQgO7W/62eFYJ6fnH9ATcz78vqRZy4ptzk1Z5EnyE4CjMOUnCUQrt/VuVSHP88LNtg==
   dependencies:
     carbon-icons "^7.0.7"
-    flatpickr "4.5.2"
+    flatpickr "4.5.7"
     lodash.debounce "^4.0.8"
     warning "^3.0.0"
 
@@ -6741,15 +6732,15 @@ flat-cache@^1.2.1:
     rimraf "~2.6.2"
     write "^0.2.1"
 
-flatpickr@4.5.2:
-  version "4.5.2"
-  resolved "https://registry.yarnpkg.com/flatpickr/-/flatpickr-4.5.2.tgz#47c8ad472a096e5fb7e74b809b0703535383f20d"
-  integrity sha512-jDy4QYGpmiy7+Qk8QvKJ4spjDdxcx9cxMydmq1x427HkKWBw0qizLYeYM2F6tMcvvqGjU5VpJS55j4LnsaBblA==
-
 flatpickr@4.5.5:
   version "4.5.5"
   resolved "https://registry.yarnpkg.com/flatpickr/-/flatpickr-4.5.5.tgz#b138050654932f4cf667897d00b51bb930bf392e"
   integrity sha512-KgAJxBN1BWiOAkwvFSM/nS9YFESOh1yI7uQEd/HQqcTGev84ADO2Mx8C3bUKgIULscb+LireiSDe5D9fh3PFtQ==
+
+flatpickr@4.5.7:
+  version "4.5.7"
+  resolved "https://registry.yarnpkg.com/flatpickr/-/flatpickr-4.5.7.tgz#6efc0d93c65547aa77294205c67830ebabe3565c"
+  integrity sha512-JqPfihUc9A/j9QAsh6otoARmMyUauPE17vRBEG+ThJwbl8zAq4ssGpxlPK3wWM/i8EFxkHg9UuVo0ds7XluKxw==
 
 flush-write-stream@^1.0.0:
   version "1.0.3"

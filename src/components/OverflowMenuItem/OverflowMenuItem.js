@@ -8,7 +8,9 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import classNames from 'classnames';
+import warning from 'warning';
 import { settings } from 'carbon-components';
+import { breakingChangesX, componentsX } from '../../internal/FeatureFlags';
 import { keys } from '../../tools/key';
 
 const { prefix } = settings;
@@ -105,8 +107,11 @@ export default class OverflowMenuItem extends React.Component {
   };
 
   handleClick = evt => {
-    this.props.onClick(evt);
-    this.props.closeMenu();
+    const { onClick, closeMenu } = this.props;
+    onClick(evt);
+    if (closeMenu) {
+      closeMenu();
+    }
   };
 
   render() {
@@ -117,17 +122,32 @@ export default class OverflowMenuItem extends React.Component {
       hasDivider,
       isDelete,
       disabled,
-      closeMenu, // eslint-disable-line
+      closeMenu,
       onClick, // eslint-disable-line
       handleOverflowMenuItemFocus, // eslint-disable-line
       onKeyDown,
       primaryFocus,
-      floatingMenu,
+      floatingMenu: origFloatingMenu,
       wrapperClassName,
       requireTitle,
       index,
       ...other
     } = this.props;
+
+    const floatingMenu = !!breakingChangesX || origFloatingMenu;
+    if (__DEV__) {
+      warning(
+        closeMenu,
+        '`<OverflowMenuItem>` detected missing `closeMenu` prop. ' +
+          '`closeMenu` is required to let `<OverflowMenu>` close the menu upon actions on `<OverflowMenuItem>`. ' +
+          'Please make sure `<OverflowMenuItem>` is a direct child of `<OverflowMenu>.'
+      );
+      warning(
+        floatingMenu,
+        '[OverflowMenuItem] non-floating option has been deprecated.'
+      );
+    }
+
     const overflowMenuBtnClasses = classNames(
       `${prefix}--overflow-menu-options__btn`,
       className
@@ -146,6 +166,16 @@ export default class OverflowMenuItem extends React.Component {
         ? { 'data-floating-menu-primary-focus': true }
         : {};
     const TagToUse = href ? 'a' : 'button';
+    const OverflowMenuItemContent = (() => {
+      if (!componentsX || (componentsX && typeof itemText !== 'string')) {
+        return itemText;
+      }
+      return (
+        <div className={`${prefix}--overflow-menu-options__option-content`}>
+          {itemText}
+        </div>
+      );
+    })();
     return (
       <li className={overflowMenuItemClasses} role="menuitem">
         <TagToUse
@@ -163,7 +193,7 @@ export default class OverflowMenuItem extends React.Component {
           title={requireTitle ? itemText : null}
           tabIndex="-1"
           index={index}>
-          {itemText}
+          {OverflowMenuItemContent}
         </TagToUse>
       </li>
     );

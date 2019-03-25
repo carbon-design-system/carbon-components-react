@@ -139,9 +139,9 @@ export default class PaginationV2 extends Component {
   };
 
   static defaultProps = {
-    backwardText: 'Backward',
+    backwardText: 'Previous page',
     itemRangeText: (min, max, total) => `${min}-${max} of ${total} items`,
-    forwardText: 'Forward',
+    forwardText: 'Next page',
     itemsPerPageText: 'Items per page:',
     pageNumberText: 'Page Number',
     pageRangeText: (current, total) =>
@@ -299,6 +299,7 @@ export default class PaginationV2 extends Component {
           <Select
             id={`${prefix}-pagination-select-${inputId}`}
             className={`${prefix}--select__item-count`}
+            labelText=""
             hideLabel
             inline
             onChange={this.handleSizeChange}
@@ -325,8 +326,9 @@ export default class PaginationV2 extends Component {
             <Select
               id={`${prefix}-pagination-select-${inputId + 2}`}
               className={`${prefix}--select__page-number`}
-              hideLabel
+              labelText={`Page number, of ${totalPages} pages`}
               inline
+              hideLabel
               onChange={this.handlePageInputChange}
               value={statePage}>
               {selectItems}
@@ -338,30 +340,14 @@ export default class PaginationV2 extends Component {
             onClick={this.decrementPage}
             aria-label={backwardText}
             disabled={backButtonDisabled}>
-            {componentsX ? (
-              <CaretLeft24 />
-            ) : (
-              <Icon
-                className={`${prefix}--pagination__button-icon`}
-                icon={iconChevronLeft}
-                description={backwardText}
-              />
-            )}
+            <CaretLeft24 />
           </button>
           <button
             className={forwardButtonClasses}
             aria-label={forwardText}
             onClick={this.incrementPage}
-            disabled={forwardButtonDisabled}>
-            {componentsX ? (
-              <CaretRight24 />
-            ) : (
-              <Icon
-                className={`${prefix}--pagination__button-icon`}
-                icon={iconChevronRight}
-                description={forwardText}
-              />
-            )}
+            disabled={forwardButtonDisabled || isLastPage}>
+            <CaretRight24 />
           </button>
         </div>
       </div>

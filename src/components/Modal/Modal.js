@@ -13,7 +13,7 @@ import Icon from '../Icon';
 import Button from '../Button';
 import { settings } from 'carbon-components';
 import Close20 from '@carbon/icons-react/lib/close/20';
-import { componentsX } from '../../internal/FeatureFlags';
+import { breakingChangesX, componentsX } from '../../internal/FeatureFlags';
 
 const { prefix } = settings;
 
@@ -153,7 +153,7 @@ export default class Modal extends Component {
     } = this.props;
     if (target && typeof target.closest === 'function') {
       return selectorsFloatingMenus.some(selector => target.closest(selector));
-    } else {
+    } else if (!breakingChangesX) {
       // Alternative if closest does not exist.
       while (target) {
         if (typeof target[matchesFuncName] === 'function') {
@@ -286,10 +286,10 @@ export default class Modal extends Component {
         className={`${prefix}--modal-close`}
         type="button"
         onClick={onRequestClose}
+        title={iconDescription}
         ref={this.button}>
         {componentsX ? (
           <Close20
-            alt={iconDescription}
             aria-label={iconDescription}
             className={`${prefix}--modal-close__icon`}
           />

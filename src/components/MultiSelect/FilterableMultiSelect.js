@@ -18,6 +18,7 @@ import { sortingPropTypes } from './MultiSelectPropTypes';
 import { defaultItemToString } from './tools/itemToString';
 import { defaultSortItems, defaultCompareItems } from './tools/sorting';
 import { defaultFilterItems } from '../ComboBox/tools/filter';
+import { componentsX } from '../../internal/FeatureFlags';
 
 const { prefix } = settings;
 
@@ -143,10 +144,15 @@ export default class FilterableMultiSelect extends React.Component {
   handleOnStateChange = changes => {
     const { type } = changes;
     switch (type) {
-      case Downshift.stateChangeTypes.keyDownArrowDown:
       case Downshift.stateChangeTypes.keyDownArrowUp:
       case Downshift.stateChangeTypes.itemMouseEnter:
         this.setState({ highlightedIndex: changes.highlightedIndex });
+        break;
+      case Downshift.stateChangeTypes.keyDownArrowDown:
+        this.setState({
+          highlightedIndex: changes.highlightedIndex,
+          isOpen: true,
+        });
         break;
       case Downshift.stateChangeTypes.keyDownEscape:
       case Downshift.stateChangeTypes.mouseUp:
@@ -253,6 +259,7 @@ export default class FilterableMultiSelect extends React.Component {
                 disabled={disabled}
                 invalid={invalid}
                 invalidText={invalidText}
+                innerTabIndex="-1"
                 {...getRootProps({ refKey: 'innerRef' })}>
                 <ListBox.Field {...getButtonProps({ disabled })}>
                   {selectedItem.length > 0 && (
@@ -278,37 +285,65 @@ export default class FilterableMultiSelect extends React.Component {
                 </ListBox.Field>
                 {isOpen && (
                   <ListBox.Menu>
-                    {sortItems(
-                      filterItems(items, { itemToString, inputValue }),
-                      {
-                        selectedItems,
-                        itemToString,
-                        compareItems,
-                        locale,
-                      }
-                    ).map((item, index) => {
-                      const itemProps = getItemProps({ item });
-                      const itemText = itemToString(item);
-                      const isChecked =
-                        selectedItem.filter(selected => isEqual(selected, item))
-                          .length > 0;
-                      return (
-                        <ListBox.MenuItem
-                          key={itemProps.id}
-                          isActive={isChecked}
-                          isHighlighted={highlightedIndex === index}
-                          {...itemProps}>
-                          <Checkbox
-                            id={itemProps.id}
-                            name={itemText}
-                            checked={isChecked}
-                            readOnly={true}
-                            tabIndex="-1"
-                            labelText={itemText}
-                          />
-                        </ListBox.MenuItem>
-                      );
-                    })}
+                    {componentsX
+                      ? filterItems(items, { itemToString, inputValue }).map(
+                          (item, index) => {
+                            const itemProps = getItemProps({ item });
+                            const itemText = itemToString(item);
+                            const isChecked =
+                              selectedItem.filter(selected =>
+                                isEqual(selected, item)
+                              ).length > 0;
+                            return (
+                              <ListBox.MenuItem
+                                key={itemProps.id}
+                                isActive={isChecked}
+                                isHighlighted={highlightedIndex === index}
+                                {...itemProps}>
+                                <Checkbox
+                                  id={itemProps.id}
+                                  name={itemText}
+                                  checked={isChecked}
+                                  readOnly={true}
+                                  tabIndex="-1"
+                                  labelText={itemText}
+                                />
+                              </ListBox.MenuItem>
+                            );
+                          }
+                        )
+                      : sortItems(
+                          filterItems(items, { itemToString, inputValue }),
+                          {
+                            selectedItems,
+                            itemToString,
+                            compareItems,
+                            locale,
+                          }
+                        ).map((item, index) => {
+                          const itemProps = getItemProps({ item });
+                          const itemText = itemToString(item);
+                          const isChecked =
+                            selectedItem.filter(selected =>
+                              isEqual(selected, item)
+                            ).length > 0;
+                          return (
+                            <ListBox.MenuItem
+                              key={itemProps.id}
+                              isActive={isChecked}
+                              isHighlighted={highlightedIndex === index}
+                              {...itemProps}>
+                              <Checkbox
+                                id={itemProps.id}
+                                name={itemText}
+                                checked={isChecked}
+                                readOnly={true}
+                                tabIndex="-1"
+                                labelText={itemText}
+                              />
+                            </ListBox.MenuItem>
+                          );
+                        })}
                   </ListBox.Menu>
                 )}
               </ListBox>

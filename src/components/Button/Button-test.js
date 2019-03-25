@@ -12,6 +12,7 @@ import Button from '../Button';
 import Link from '../Link';
 import ButtonSkeleton from '../Button/Button.Skeleton';
 import { shallow, mount } from 'enzyme';
+import { componentsX } from '../../internal/FeatureFlags';
 
 describe('Button', () => {
   describe('Renders common props as expected', () => {
@@ -117,7 +118,10 @@ describe('Button', () => {
 
   describe('Renders icon buttons', () => {
     const iconButton = mount(
-      <Button icon={iconSearch} iconDescription="Search">
+      <Button
+        icon={!componentsX && iconSearch}
+        renderIcon={componentsX && Search16}
+        iconDescription="Search">
         Search
       </Button>
     );
@@ -150,7 +154,9 @@ describe('Button', () => {
 
     it('should have the appropriate icon', () => {
       expect(icon.hasClass('bx--btn__icon')).toBe(true);
-      expect(icon.children().html()).toBe(originalIcon.children().html());
+      expect(icon.find(':not(svg):not(title)').html()).toBe(
+        originalIcon.children().html()
+      );
     });
 
     it('should return error if icon given without description', () => {
