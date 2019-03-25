@@ -13,7 +13,6 @@ import DropdownV2 from '../DropdownV2';
 import DropdownItem from '../DropdownItem';
 import DropdownSkeleton from '../DropdownV2/Dropdown.Skeleton';
 import WithState from '../../tools/withState';
-import { breakingChangesX } from '../../internal/FeatureFlags';
 
 const items = [
   {
@@ -47,20 +46,17 @@ const types = {
 };
 
 const props = () => ({
-  type: breakingChangesX
-    ? select('Dropdown type (type)', types, 'default')
-    : null,
-  label: text('Label (label)', 'List box options'),
+  type: select('Dropdown type (type)', types, 'default'),
+  label: text('Label (label)', 'Label'),
   ariaLabel: text('Aria Label (ariaLabel)', 'Dropdown'),
   disabled: boolean('Disabled (disabled)', false),
   light: boolean('Light variant (light)', false),
-  inline: boolean('Position controls inline with label (inline)', false),
   titleText: text('Title (titleText)', 'This is not a dropdown title.'),
   helperText: text('Helper text (helperText)', 'This is not some helper text.'),
   invalid: boolean('Show form validation UI (invalid)', false),
   invalidText: text(
     'Form validation UI content (invalidText)',
-    'This is not a validation message'
+    'A valid value is required'
   ),
 });
 
