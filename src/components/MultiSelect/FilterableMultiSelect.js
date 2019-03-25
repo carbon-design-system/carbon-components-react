@@ -86,6 +86,13 @@ export default class FilterableMultiSelect extends React.Component {
      * Initialize the component with an open(`true`)/closed(`false`) menu.
      */
     open: PropTypes.bool,
+
+    /**
+     * Specify feedback (mode) of the selection.
+     * `top`: selected item jumps to top
+     * `fixed`: selected item stays at it's position
+     */
+    selectionFeedback: PropTypes.oneOf(['top', 'fixed']),
   };
 
   static getDerivedStateFromProps({ open }, state) {
@@ -111,6 +118,7 @@ export default class FilterableMultiSelect extends React.Component {
     sortItems: defaultSortItems,
     light: false,
     open: false,
+    selectionFeedback: componentsX ? 'fixed' : 'top',
   };
 
   constructor(props) {
@@ -315,7 +323,10 @@ export default class FilterableMultiSelect extends React.Component {
                       : sortItems(
                           filterItems(items, { itemToString, inputValue }),
                           {
-                            selectedItems,
+                            selectedItems:
+                              this.props.selectionFeedback === 'top'
+                                ? selectedItems
+                                : [],
                             itemToString,
                             compareItems,
                             locale,

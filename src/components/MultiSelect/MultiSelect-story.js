@@ -8,6 +8,7 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
+import { componentsX } from '../../internal/FeatureFlags';
 
 import {
   withKnobs,
@@ -60,6 +61,11 @@ const props = () => ({
       'open.menu': 'Open menu',
     }
   ),
+  selectionFeedback: select(
+    'Selection feedback',
+    ['top', 'fixed'],
+    componentsX ? 'fixed' : 'top'
+  ),
 });
 
 storiesOf('MultiSelect', module)
@@ -70,6 +76,7 @@ storiesOf('MultiSelect', module)
       const {
         filterable,
         listBoxMenuIconTranslationIds,
+        selectionFeedback,
         ...multiSelectProps
       } = props();
       const ComponentToUse = !filterable ? MultiSelect : MultiSelect.Filterable;
@@ -82,6 +89,7 @@ storiesOf('MultiSelect', module)
             itemToString={item => (item ? item.text : '')}
             placeholder={placeholder}
             translateWithId={id => listBoxMenuIconTranslationIds[id]}
+            selectionFeedback={selectionFeedback}
           />
         </div>
       );

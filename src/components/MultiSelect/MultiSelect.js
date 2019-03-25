@@ -74,7 +74,7 @@ export default class MultiSelect extends React.Component {
     type: PropTypes.oneOf(['default', 'inline']),
 
     /**
-     *  Specify title to show title on hover
+     * Specify title to show title on hover
      */
     useTitleInItem: PropTypes.bool,
 
@@ -102,6 +102,13 @@ export default class MultiSelect extends React.Component {
      * Callback function for translating ListBoxMenuIcon SVG title
      */
     translateWithId: PropTypes.func,
+
+    /**
+     * Specify feedback (mode) of the selection.
+     * `top`: selected item jumps to top
+     * `fixed`: selected item stays at it's position
+     */
+    selectionFeedback: PropTypes.oneOf(['top', 'fixed']),
   };
 
   static getDerivedStateFromProps({ open }, state) {
@@ -128,6 +135,7 @@ export default class MultiSelect extends React.Component {
     light: false,
     title: false,
     open: false,
+    selectionFeedback: componentsX ? 'fixed' : 'top',
   };
 
   constructor(props) {
@@ -251,7 +259,15 @@ export default class MultiSelect extends React.Component {
                 {isOpen && (
                   <ListBox.Menu>
                     {componentsX
-                      ? items.map((item, index) => {
+                      ? sortItems(items, {
+                          selectedItems:
+                            this.props.selectionFeedback === 'top'
+                              ? selectedItems
+                              : [],
+                          itemToString,
+                          compareItems,
+                          locale: 'en',
+                        }).map((item, index) => {
                           const itemProps = getItemProps({ item });
                           const itemText = itemToString(item);
                           const isChecked =
@@ -278,7 +294,10 @@ export default class MultiSelect extends React.Component {
                           );
                         })
                       : sortItems(items, {
-                          selectedItems,
+                          selectedItems:
+                            this.props.selectionFeedback === 'top'
+                              ? selectedItems
+                              : [],
                           itemToString,
                           compareItems,
                           locale: 'en',
