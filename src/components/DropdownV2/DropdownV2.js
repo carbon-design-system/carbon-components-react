@@ -10,8 +10,9 @@ import Downshift from 'downshift';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { settings } from 'carbon-components';
+import WarningFilled16 from '@carbon/icons-react/lib/warning--filled/16';
 import ListBox, { PropTypes as ListBoxPropTypes } from '../ListBox';
-import { componentsX } from '../../internal/FeatureFlags';
+import { componentsX, breakingChangesX } from '../../internal/FeatureFlags';
 
 const { prefix } = settings;
 
@@ -159,6 +160,9 @@ export default class DropdownV2 extends React.Component {
         [`${prefix}--dropdown--light`]: light,
         [`${prefix}--dropdown--invalid`]: invalid,
         [`${prefix}--dropdown--open`]: isOpen,
+        [`${prefix}--dropdown--inline`]: breakingChangesX
+          ? type === 'inline'
+          : inline,
       });
     const titleClasses = cx(`${prefix}--label`, {
       [`${prefix}--label--disabled`]: disabled,
@@ -174,10 +178,16 @@ export default class DropdownV2 extends React.Component {
     const helper = helperText ? (
       <div className={helperClasses}>{helperText}</div>
     ) : null;
-    const wrapperClasses = cx(`${prefix}--dropdown__wrapper`, {
-      [`${prefix}--dropdown__wrapper--inline`]: inline,
-      [`${prefix}--dropdown__wrapper--inline--invalid`]: inline && invalid,
-    });
+    const wrapperClasses = cx(
+      `${prefix}--dropdown__wrapper`,
+      `${prefix}--list-box__wrapper`,
+      {
+        [`${prefix}--dropdown__wrapper--inline`]: inline,
+        [`${prefix}--list-box__wrapper--inline`]: inline,
+        [`${prefix}--dropdown__wrapper--inline--invalid`]: inline && invalid,
+        [`${prefix}--list-box__wrapper--inline--invalid`]: inline && invalid,
+      }
+    );
     const error = invalid ? (
       <div className={`${prefix}--form-requirement`}>{invalidText}</div>
     ) : null;
@@ -205,12 +215,20 @@ export default class DropdownV2 extends React.Component {
             getLabelProps,
           }) => (
             <ListBox
-              type={type}
+              type={breakingChangesX ? type : null}
               className={className({ isOpen })}
               disabled={disabled}
               ariaLabel={ariaLabel}
               isOpen={isOpen}
+              inline={inline}
+              invalid={invalid}
+              invalidText={invalidText}
               {...getRootProps({ refKey: 'innerRef' })}>
+              {componentsX && invalid && (
+                <WarningFilled16
+                  className={`${prefix}--list-box__invalid-icon`}
+                />
+              )}
               <ListBox.Field {...getButtonProps({ disabled })}>
                 <span
                   className={`${prefix}--list-box__label`}
