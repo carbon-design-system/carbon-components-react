@@ -42,6 +42,7 @@ const ListBox = ({
   invalidText,
   light,
   innerTabIndex,
+  isOpen,
   ...rest
 }) => {
   const className = cx({
@@ -50,6 +51,7 @@ const ListBox = ({
     [`${prefix}--list-box--inline`]: type === 'inline',
     [`${prefix}--list-box--disabled`]: disabled,
     [`${prefix}--list-box--light`]: light,
+    [`${prefix}--list-box--expanded`]: isOpen,
   });
   return (
     <>
