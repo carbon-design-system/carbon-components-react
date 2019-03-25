@@ -12,13 +12,7 @@ exports[`ListBoxMenu should render 1`] = `
       <div
         className="bx--list-box__menu-item"
       >
-        <div
-          className="bx--list-box__menu-item__option"
-          role="button"
-          tabIndex="0"
-        >
-          Hello
-        </div>
+        Hello
       </div>
     </ListBoxMenuItem>
   </div>

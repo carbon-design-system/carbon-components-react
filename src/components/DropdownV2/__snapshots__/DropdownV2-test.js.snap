@@ -65,8 +65,7 @@ exports[`DropdownV2 should render 1`] = `
       className="bx--dropdown"
       disabled={false}
       innerRef={[Function]}
-      isOpen={false}
-      type={null}
+      type="default"
     >
       <div
         aria-label="Choose an item"
@@ -236,15 +235,14 @@ exports[`DropdownV2 should render DropdownItem components 1`] = `
   >
     <ListBox
       ariaLabel="Choose an item"
-      className="bx--dropdown bx--dropdown--open"
+      className="bx--dropdown"
       disabled={false}
       innerRef={[Function]}
-      isOpen={true}
-      type={null}
+      type="default"
     >
       <div
         aria-label="Choose an item"
-        className="bx--dropdown bx--dropdown--open bx--list-box bx--list-box--expanded"
+        className="bx--dropdown bx--list-box"
         onClick={[Function]}
         onKeyDown={[Function]}
         role="listbox"
@@ -362,41 +360,35 @@ exports[`DropdownV2 should render DropdownItem components 1`] = `
                 onMouseDown={[Function]}
                 onMouseMove={[Function]}
               >
-                <div
-                  className="bx--list-box__menu-item__option"
-                  role="button"
-                  tabIndex="0"
+                <DropdownItem
+                  href=""
+                  id="id-0"
+                  key="Item 0"
+                  label="Item 0"
+                  onClick={[Function]}
+                  onKeyPress={[Function]}
+                  selected={false}
+                  value={0}
                 >
-                  <DropdownItem
-                    href=""
+                  <li
+                    aria-selected={false}
+                    className="bx--dropdown-item"
                     id="id-0"
-                    key="Item 0"
                     label="Item 0"
                     onClick={[Function]}
                     onKeyPress={[Function]}
-                    selected={false}
+                    role="option"
+                    tabIndex={-1}
                     value={0}
                   >
-                    <li
-                      aria-selected={false}
-                      className="bx--dropdown-item"
-                      id="id-0"
-                      label="Item 0"
+                    <a
+                      className="bx--dropdown-link"
+                      href=""
                       onClick={[Function]}
-                      onKeyPress={[Function]}
-                      role="option"
                       tabIndex={-1}
-                      value={0}
-                    >
-                      <a
-                        className="bx--dropdown-link"
-                        href=""
-                        onClick={[Function]}
-                        tabIndex={-1}
-                      />
-                    </li>
-                  </DropdownItem>
-                </div>
+                    />
+                  </li>
+                </DropdownItem>
               </div>
             </ListBoxMenuItem>
             <ListBoxMenuItem
@@ -415,41 +407,35 @@ exports[`DropdownV2 should render DropdownItem components 1`] = `
                 onMouseDown={[Function]}
                 onMouseMove={[Function]}
               >
-                <div
-                  className="bx--list-box__menu-item__option"
-                  role="button"
-                  tabIndex="0"
+                <DropdownItem
+                  href=""
+                  id="id-1"
+                  key="Item 1"
+                  label="Item 1"
+                  onClick={[Function]}
+                  onKeyPress={[Function]}
+                  selected={false}
+                  value={1}
                 >
-                  <DropdownItem
-                    href=""
+                  <li
+                    aria-selected={false}
+                    className="bx--dropdown-item"
                     id="id-1"
-                    key="Item 1"
                     label="Item 1"
                     onClick={[Function]}
                     onKeyPress={[Function]}
-                    selected={false}
+                    role="option"
+                    tabIndex={-1}
                     value={1}
                   >
-                    <li
-                      aria-selected={false}
-                      className="bx--dropdown-item"
-                      id="id-1"
-                      label="Item 1"
+                    <a
+                      className="bx--dropdown-link"
+                      href=""
                       onClick={[Function]}
-                      onKeyPress={[Function]}
-                      role="option"
                       tabIndex={-1}
-                      value={1}
-                    >
-                      <a
-                        className="bx--dropdown-link"
-                        href=""
-                        onClick={[Function]}
-                        tabIndex={-1}
-                      />
-                    </li>
-                  </DropdownItem>
-                </div>
+                    />
+                  </li>
+                </DropdownItem>
               </div>
             </ListBoxMenuItem>
             <ListBoxMenuItem
@@ -468,41 +454,35 @@ exports[`DropdownV2 should render DropdownItem components 1`] = `
                 onMouseDown={[Function]}
                 onMouseMove={[Function]}
               >
-                <div
-                  className="bx--list-box__menu-item__option"
-                  role="button"
-                  tabIndex="0"
+                <DropdownItem
+                  href=""
+                  id="id-2"
+                  key="Item 2"
+                  label="Item 2"
+                  onClick={[Function]}
+                  onKeyPress={[Function]}
+                  selected={false}
+                  value={2}
                 >
-                  <DropdownItem
-                    href=""
+                  <li
+                    aria-selected={false}
+                    className="bx--dropdown-item"
                     id="id-2"
-                    key="Item 2"
                     label="Item 2"
                     onClick={[Function]}
                     onKeyPress={[Function]}
-                    selected={false}
+                    role="option"
+                    tabIndex={-1}
                     value={2}
                   >
-                    <li
-                      aria-selected={false}
-                      className="bx--dropdown-item"
-                      id="id-2"
-                      label="Item 2"
+                    <a
+                      className="bx--dropdown-link"
+                      href=""
                       onClick={[Function]}
-                      onKeyPress={[Function]}
-                      role="option"
                       tabIndex={-1}
-                      value={2}
-                    >
-                      <a
-                        className="bx--dropdown-link"
-                        href=""
-                        onClick={[Function]}
-                        tabIndex={-1}
-                      />
-                    </li>
-                  </DropdownItem>
-                </div>
+                    />
+                  </li>
+                </DropdownItem>
               </div>
             </ListBoxMenuItem>
             <ListBoxMenuItem
@@ -521,41 +501,35 @@ exports[`DropdownV2 should render DropdownItem components 1`] = `
                 onMouseDown={[Function]}
                 onMouseMove={[Function]}
               >
-                <div
-                  className="bx--list-box__menu-item__option"
-                  role="button"
-                  tabIndex="0"
+                <DropdownItem
+                  href=""
+                  id="id-3"
+                  key="Item 3"
+                  label="Item 3"
+                  onClick={[Function]}
+                  onKeyPress={[Function]}
+                  selected={false}
+                  value={3}
                 >
-                  <DropdownItem
-                    href=""
+                  <li
+                    aria-selected={false}
+                    className="bx--dropdown-item"
                     id="id-3"
-                    key="Item 3"
                     label="Item 3"
                     onClick={[Function]}
                     onKeyPress={[Function]}
-                    selected={false}
+                    role="option"
+                    tabIndex={-1}
                     value={3}
                   >
-                    <li
-                      aria-selected={false}
-                      className="bx--dropdown-item"
-                      id="id-3"
-                      label="Item 3"
+                    <a
+                      className="bx--dropdown-link"
+                      href=""
                       onClick={[Function]}
-                      onKeyPress={[Function]}
-                      role="option"
                       tabIndex={-1}
-                      value={3}
-                    >
-                      <a
-                        className="bx--dropdown-link"
-                        href=""
-                        onClick={[Function]}
-                        tabIndex={-1}
-                      />
-                    </li>
-                  </DropdownItem>
-                </div>
+                    />
+                  </li>
+                </DropdownItem>
               </div>
             </ListBoxMenuItem>
             <ListBoxMenuItem
@@ -574,41 +548,35 @@ exports[`DropdownV2 should render DropdownItem components 1`] = `
                 onMouseDown={[Function]}
                 onMouseMove={[Function]}
               >
-                <div
-                  className="bx--list-box__menu-item__option"
-                  role="button"
-                  tabIndex="0"
+                <DropdownItem
+                  href=""
+                  id="id-4"
+                  key="Item 4"
+                  label="Item 4"
+                  onClick={[Function]}
+                  onKeyPress={[Function]}
+                  selected={false}
+                  value={4}
                 >
-                  <DropdownItem
-                    href=""
+                  <li
+                    aria-selected={false}
+                    className="bx--dropdown-item"
                     id="id-4"
-                    key="Item 4"
                     label="Item 4"
                     onClick={[Function]}
                     onKeyPress={[Function]}
-                    selected={false}
+                    role="option"
+                    tabIndex={-1}
                     value={4}
                   >
-                    <li
-                      aria-selected={false}
-                      className="bx--dropdown-item"
-                      id="id-4"
-                      label="Item 4"
+                    <a
+                      className="bx--dropdown-link"
+                      href=""
                       onClick={[Function]}
-                      onKeyPress={[Function]}
-                      role="option"
                       tabIndex={-1}
-                      value={4}
-                    >
-                      <a
-                        className="bx--dropdown-link"
-                        href=""
-                        onClick={[Function]}
-                        tabIndex={-1}
-                      />
-                    </li>
-                  </DropdownItem>
-                </div>
+                    />
+                  </li>
+                </DropdownItem>
               </div>
             </ListBoxMenuItem>
           </div>
@@ -681,15 +649,14 @@ exports[`DropdownV2 should render custom item components 1`] = `
   >
     <ListBox
       ariaLabel="Choose an item"
-      className="bx--dropdown bx--dropdown--open"
+      className="bx--dropdown"
       disabled={false}
       innerRef={[Function]}
-      isOpen={true}
-      type={null}
+      type="default"
     >
       <div
         aria-label="Choose an item"
-        className="bx--dropdown bx--dropdown--open bx--list-box bx--list-box--expanded"
+        className="bx--dropdown bx--list-box"
         onClick={[Function]}
         onKeyDown={[Function]}
         role="listbox"
@@ -807,24 +774,18 @@ exports[`DropdownV2 should render custom item components 1`] = `
                 onMouseDown={[Function]}
                 onMouseMove={[Function]}
               >
-                <div
-                  className="bx--list-box__menu-item__option"
-                  role="button"
-                  tabIndex="0"
+                <itemToElement
+                  id="id-0"
+                  key="Item 0"
+                  label="Item 0"
+                  value={0}
                 >
-                  <itemToElement
-                    id="id-0"
-                    key="Item 0"
-                    label="Item 0"
-                    value={0}
+                  <div
+                    className="mock-item"
                   >
-                    <div
-                      className="mock-item"
-                    >
-                      Item 0
-                    </div>
-                  </itemToElement>
-                </div>
+                    Item 0
+                  </div>
+                </itemToElement>
               </div>
             </ListBoxMenuItem>
             <ListBoxMenuItem
@@ -843,24 +804,18 @@ exports[`DropdownV2 should render custom item components 1`] = `
                 onMouseDown={[Function]}
                 onMouseMove={[Function]}
               >
-                <div
-                  className="bx--list-box__menu-item__option"
-                  role="button"
-                  tabIndex="0"
+                <itemToElement
+                  id="id-1"
+                  key="Item 1"
+                  label="Item 1"
+                  value={1}
                 >
-                  <itemToElement
-                    id="id-1"
-                    key="Item 1"
-                    label="Item 1"
-                    value={1}
+                  <div
+                    className="mock-item"
                   >
-                    <div
-                      className="mock-item"
-                    >
-                      Item 1
-                    </div>
-                  </itemToElement>
-                </div>
+                    Item 1
+                  </div>
+                </itemToElement>
               </div>
             </ListBoxMenuItem>
             <ListBoxMenuItem
@@ -879,24 +834,18 @@ exports[`DropdownV2 should render custom item components 1`] = `
                 onMouseDown={[Function]}
                 onMouseMove={[Function]}
               >
-                <div
-                  className="bx--list-box__menu-item__option"
-                  role="button"
-                  tabIndex="0"
+                <itemToElement
+                  id="id-2"
+                  key="Item 2"
+                  label="Item 2"
+                  value={2}
                 >
-                  <itemToElement
-                    id="id-2"
-                    key="Item 2"
-                    label="Item 2"
-                    value={2}
+                  <div
+                    className="mock-item"
                   >
-                    <div
-                      className="mock-item"
-                    >
-                      Item 2
-                    </div>
-                  </itemToElement>
-                </div>
+                    Item 2
+                  </div>
+                </itemToElement>
               </div>
             </ListBoxMenuItem>
             <ListBoxMenuItem
@@ -915,24 +864,18 @@ exports[`DropdownV2 should render custom item components 1`] = `
                 onMouseDown={[Function]}
                 onMouseMove={[Function]}
               >
-                <div
-                  className="bx--list-box__menu-item__option"
-                  role="button"
-                  tabIndex="0"
+                <itemToElement
+                  id="id-3"
+                  key="Item 3"
+                  label="Item 3"
+                  value={3}
                 >
-                  <itemToElement
-                    id="id-3"
-                    key="Item 3"
-                    label="Item 3"
-                    value={3}
+                  <div
+                    className="mock-item"
                   >
-                    <div
-                      className="mock-item"
-                    >
-                      Item 3
-                    </div>
-                  </itemToElement>
-                </div>
+                    Item 3
+                  </div>
+                </itemToElement>
               </div>
             </ListBoxMenuItem>
             <ListBoxMenuItem
@@ -951,24 +894,18 @@ exports[`DropdownV2 should render custom item components 1`] = `
                 onMouseDown={[Function]}
                 onMouseMove={[Function]}
               >
-                <div
-                  className="bx--list-box__menu-item__option"
-                  role="button"
-                  tabIndex="0"
+                <itemToElement
+                  id="id-4"
+                  key="Item 4"
+                  label="Item 4"
+                  value={4}
                 >
-                  <itemToElement
-                    id="id-4"
-                    key="Item 4"
-                    label="Item 4"
-                    value={4}
+                  <div
+                    className="mock-item"
                   >
-                    <div
-                      className="mock-item"
-                    >
-                      Item 4
-                    </div>
-                  </itemToElement>
-                </div>
+                    Item 4
+                  </div>
+                </itemToElement>
               </div>
             </ListBoxMenuItem>
           </div>
@@ -1018,15 +955,14 @@ exports[`DropdownV2 should render with strings as items 1`] = `
   >
     <ListBox
       ariaLabel="Choose an item"
-      className="bx--dropdown bx--dropdown--open"
+      className="bx--dropdown"
       disabled={false}
       innerRef={[Function]}
-      isOpen={true}
-      type={null}
+      type="default"
     >
       <div
         aria-label="Choose an item"
-        className="bx--dropdown bx--dropdown--open bx--list-box bx--list-box--expanded"
+        className="bx--dropdown bx--list-box"
         onClick={[Function]}
         onKeyDown={[Function]}
         role="listbox"
@@ -1144,13 +1080,7 @@ exports[`DropdownV2 should render with strings as items 1`] = `
                 onMouseDown={[Function]}
                 onMouseMove={[Function]}
               >
-                <div
-                  className="bx--list-box__menu-item__option"
-                  role="button"
-                  tabIndex="0"
-                >
-                  zar
-                </div>
+                zar
               </div>
             </ListBoxMenuItem>
             <ListBoxMenuItem
@@ -1169,13 +1099,7 @@ exports[`DropdownV2 should render with strings as items 1`] = `
                 onMouseDown={[Function]}
                 onMouseMove={[Function]}
               >
-                <div
-                  className="bx--list-box__menu-item__option"
-                  role="button"
-                  tabIndex="0"
-                >
-                  doz
-                </div>
+                doz
               </div>
             </ListBoxMenuItem>
           </div>

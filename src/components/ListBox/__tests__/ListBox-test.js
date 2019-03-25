@@ -8,7 +8,6 @@
 import React from 'react';
 import { mount } from 'enzyme';
 import ListBox from '../';
-import { breakingChangesX } from '../../../internal/FeatureFlags';
 
 describe('ListBox', () => {
   let mockProps;
@@ -29,13 +28,7 @@ describe('ListBox', () => {
   });
 
   it('should render an inline class if the type=`inline`', () => {
-    const wrapper = mount(
-      <ListBox
-        {...mockProps}
-        type={breakingChangesX ? 'inline' : null}
-        inline={breakingChangesX ? null : true}
-      />
-    );
+    const wrapper = mount(<ListBox {...mockProps} type="inline" />);
     expect(wrapper.find('.bx--list-box--inline').length).toBe(1);
   });
 
