@@ -154,17 +154,25 @@ export default class DropdownV2 extends React.Component {
       invalid,
       invalidText,
     } = this.props;
-    const className = cx(`${prefix}--dropdown`, containerClassName, {
-      [`${prefix}--dropdown--light`]: light,
-      [`${prefix}--dropdown--invalid`]: invalid,
+    const className = ({ isOpen }) =>
+      cx(`${prefix}--dropdown`, containerClassName, {
+        [`${prefix}--dropdown--light`]: light,
+        [`${prefix}--dropdown--invalid`]: invalid,
+        [`${prefix}--dropdown--open`]: isOpen,
+      });
+    const titleClasses = cx(`${prefix}--label`, {
+      [`${prefix}--label--disabled`]: disabled,
     });
     const title = titleText ? (
-      <label htmlFor={id} className={`${prefix}--label`}>
+      <label htmlFor={id} className={titleClasses}>
         {titleText}
       </label>
     ) : null;
+    const helperClasses = cx(`${prefix}--form__helper-text`, {
+      [`${prefix}--form__helper-text--disabled`]: disabled,
+    });
     const helper = helperText ? (
-      <div className={`${prefix}--form__helper-text`}>{helperText}</div>
+      <div className={helperClasses}>{helperText}</div>
     ) : null;
     const wrapperClasses = cx(`${prefix}--dropdown__wrapper`, {
       [`${prefix}--dropdown__wrapper--inline`]: inline,
@@ -198,9 +206,10 @@ export default class DropdownV2 extends React.Component {
           }) => (
             <ListBox
               type={type}
-              className={className}
+              className={className({ isOpen })}
               disabled={disabled}
               ariaLabel={ariaLabel}
+              isOpen={isOpen}
               {...getRootProps({ refKey: 'innerRef' })}>
               <ListBox.Field {...getButtonProps({ disabled })}>
                 <span
