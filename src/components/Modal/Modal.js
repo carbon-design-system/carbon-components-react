@@ -14,6 +14,7 @@ import Button from '../Button';
 import { settings } from 'carbon-components';
 import Close20 from '@carbon/icons-react/lib/close/20';
 import { breakingChangesX, componentsX } from '../../internal/FeatureFlags';
+import FocusTrap from 'focus-trap-react';
 
 const { prefix } = settings;
 
@@ -125,6 +126,12 @@ export default class Modal extends Component {
      * be focused when the Modal opens
      */
     selectorPrimaryFocus: PropTypes.string,
+
+    /**
+     * Specify whether the modal should be a focus trap. NOTE: by default
+     * this is true
+     */
+    focusTrapIsActive: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -137,6 +144,7 @@ export default class Modal extends Component {
     modalHeading: '',
     modalLabel: '',
     selectorPrimaryFocus: '[data-modal-primary-focus]',
+    focusTrap: true,
   };
 
   button = React.createRef();
@@ -266,6 +274,7 @@ export default class Modal extends Component {
       selectorPrimaryFocus, // eslint-disable-line
       selectorsFloatingMenus, // eslint-disable-line
       shouldSubmitOnEnter, // eslint-disable-line
+      focusTrap,
       ...other
     } = this.props;
 
@@ -304,38 +313,42 @@ export default class Modal extends Component {
     );
 
     const modalBody = (
-      <div
-        ref={this.innerModal}
-        role="dialog"
-        className={`${prefix}--modal-container`}
-        aria-label={modalAriaLabel}
-        aria-modal="true">
-        <div className={`${prefix}--modal-header`}>
-          {passiveModal && modalButton}
-          {modalLabel && (
-            <p className={`${prefix}--modal-header__label`}>{modalLabel}</p>
-          )}
-          <p className={`${prefix}--modal-header__heading`}>{modalHeading}</p>
-          {!passiveModal && modalButton}
-        </div>
-        <div className={`${prefix}--modal-content`}>{this.props.children}</div>
-        {!passiveModal && (
-          <div className={`${prefix}--modal-footer`}>
-            <Button
-              kind={danger && !componentsX ? 'tertiary' : 'secondary'}
-              onClick={onSecondaryButtonClick}>
-              {secondaryButtonText}
-            </Button>
-            <Button
-              kind={danger ? 'danger--primary' : 'primary'}
-              disabled={primaryButtonDisabled}
-              onClick={onRequestSubmit}
-              inputref={this.button}>
-              {primaryButtonText}
-            </Button>
+      <FocusTrap active={focusTrap}>
+        <div
+          ref={this.innerModal}
+          role="dialog"
+          className={`${prefix}--modal-container`}
+          aria-label={modalAriaLabel}
+          aria-modal="true">
+          <div className={`${prefix}--modal-header`}>
+            {passiveModal && modalButton}
+            {modalLabel && (
+              <p className={`${prefix}--modal-header__label`}>{modalLabel}</p>
+            )}
+            <p className={`${prefix}--modal-header__heading`}>{modalHeading}</p>
+            {!passiveModal && modalButton}
           </div>
-        )}
-      </div>
+          <div className={`${prefix}--modal-content`}>
+            {this.props.children}
+          </div>
+          {!passiveModal && (
+            <div className={`${prefix}--modal-footer`}>
+              <Button
+                kind={danger && !componentsX ? 'tertiary' : 'secondary'}
+                onClick={onSecondaryButtonClick}>
+                {secondaryButtonText}
+              </Button>
+              <Button
+                kind={danger ? 'danger--primary' : 'primary'}
+                disabled={primaryButtonDisabled}
+                onClick={onRequestSubmit}
+                inputref={this.button}>
+                {primaryButtonText}
+              </Button>
+            </div>
+          )}
+        </div>
+      </FocusTrap>
     );
 
     return (
