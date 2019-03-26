@@ -131,7 +131,7 @@ export default class Modal extends Component {
      * Specify whether the modal should be a focus trap. NOTE: by default
      * this is true
      */
-    focusTrapIsActive: PropTypes.bool,
+    focusTrap: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -313,57 +313,57 @@ export default class Modal extends Component {
     );
 
     const modalBody = (
-      <FocusTrap active={focusTrap}>
-        <div
-          ref={this.innerModal}
-          role="dialog"
-          className={`${prefix}--modal-container`}
-          aria-label={modalAriaLabel}
-          aria-modal="true">
-          <div className={`${prefix}--modal-header`}>
-            {passiveModal && modalButton}
-            {modalLabel && (
-              <p className={`${prefix}--modal-header__label`}>{modalLabel}</p>
-            )}
-            <p className={`${prefix}--modal-header__heading`}>{modalHeading}</p>
-            {!passiveModal && modalButton}
-          </div>
-          <div className={`${prefix}--modal-content`}>
-            {this.props.children}
-          </div>
-          {!passiveModal && (
-            <div className={`${prefix}--modal-footer`}>
-              <Button
-                kind={danger && !componentsX ? 'tertiary' : 'secondary'}
-                onClick={onSecondaryButtonClick}>
-                {secondaryButtonText}
-              </Button>
-              <Button
-                kind={danger ? 'danger--primary' : 'primary'}
-                disabled={primaryButtonDisabled}
-                onClick={onRequestSubmit}
-                inputref={this.button}>
-                {primaryButtonText}
-              </Button>
-            </div>
+      <div
+        ref={this.innerModal}
+        role="dialog"
+        className={`${prefix}--modal-container`}
+        aria-label={modalAriaLabel}
+        aria-modal="true">
+        <div className={`${prefix}--modal-header`}>
+          {passiveModal && modalButton}
+          {modalLabel && (
+            <p className={`${prefix}--modal-header__label`}>{modalLabel}</p>
           )}
+          <p className={`${prefix}--modal-header__heading`}>{modalHeading}</p>
+          {!passiveModal && modalButton}
         </div>
-      </FocusTrap>
+        <div className={`${prefix}--modal-content`}>{this.props.children}</div>
+        {!passiveModal && (
+          <div className={`${prefix}--modal-footer`}>
+            <Button
+              kind={danger && !componentsX ? 'tertiary' : 'secondary'}
+              onClick={onSecondaryButtonClick}>
+              {secondaryButtonText}
+            </Button>
+            <Button
+              kind={danger ? 'danger--primary' : 'primary'}
+              disabled={primaryButtonDisabled}
+              onClick={onRequestSubmit}
+              inputref={this.button}>
+              {primaryButtonText}
+            </Button>
+          </div>
+        )}
+      </div>
     );
 
     return (
-      <div
-        {...other}
-        onKeyDown={this.handleKeyDown}
-        onClick={this.handleClick}
-        onBlur={this.handleBlur}
-        className={modalClasses}
-        role="presentation"
-        tabIndex={-1}
-        onTransitionEnd={this.props.open ? this.handleTransitionEnd : undefined}
-        ref={this.outerModal}>
-        {modalBody}
-      </div>
+      <FocusTrap active={focusTrap}>
+        <div
+          {...other}
+          onKeyDown={this.handleKeyDown}
+          onClick={this.handleClick}
+          onBlur={this.handleBlur}
+          className={modalClasses}
+          role="presentation"
+          tabIndex={-1}
+          onTransitionEnd={
+            this.props.open ? this.handleTransitionEnd : undefined
+          }
+          ref={this.outerModal}>
+          {modalBody}
+        </div>
+      </FocusTrap>
     );
   }
 }
