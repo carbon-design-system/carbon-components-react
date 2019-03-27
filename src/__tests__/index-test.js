@@ -42,7 +42,6 @@ Array [
   "Dropdown",
   "DropdownItem",
   "DropdownSkeleton",
-  "DropdownV2",
   "ExpandableTile",
   "FileUploader",
   "FileUploaderButton",

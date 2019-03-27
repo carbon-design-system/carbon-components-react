@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`DropdownV2 should render 1`] = `
-<DropdownV2
+exports[`Dropdown should render 1`] = `
+<Dropdown
   disabled={false}
   helperText=""
   itemToElement={null}
@@ -154,11 +154,11 @@ exports[`DropdownV2 should render 1`] = `
       </div>
     </ListBox>
   </Downshift>
-</DropdownV2>
+</Dropdown>
 `;
 
-exports[`DropdownV2 should render DropdownItem components 1`] = `
-<DropdownV2
+exports[`Dropdown should render DropdownItem components 1`] = `
+<Dropdown
   disabled={false}
   helperText=""
   itemToElement={null}
@@ -412,11 +412,11 @@ exports[`DropdownV2 should render DropdownItem components 1`] = `
       </div>
     </ListBox>
   </Downshift>
-</DropdownV2>
+</Dropdown>
 `;
 
-exports[`DropdownV2 should render custom item components 1`] = `
-<DropdownV2
+exports[`Dropdown should render custom item components 1`] = `
+<Dropdown
   disabled={false}
   helperText=""
   itemToElement={[Function]}
@@ -725,11 +725,11 @@ exports[`DropdownV2 should render custom item components 1`] = `
       </div>
     </ListBox>
   </Downshift>
-</DropdownV2>
+</Dropdown>
 `;
 
-exports[`DropdownV2 should render with strings as items 1`] = `
-<DropdownV2
+exports[`Dropdown should render with strings as items 1`] = `
+<Dropdown
   disabled={false}
   helperText=""
   itemToElement={null}
@@ -903,5 +903,5 @@ exports[`DropdownV2 should render with strings as items 1`] = `
       </div>
     </ListBox>
   </Downshift>
-</DropdownV2>
+</Dropdown>
 `;
