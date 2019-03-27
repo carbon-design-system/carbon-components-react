@@ -9,8 +9,9 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import { withKnobs, boolean, select, text } from '@storybook/addon-knobs';
-import Dropdown from '../Dropdown';
-import DropdownSkeleton from '../Dropdown/Dropdown.Skeleton';
+import DropdownV2 from '../DropdownV2';
+import DropdownItem from '../DropdownItem';
+import DropdownSkeleton from '../DropdownV2/Dropdown.Skeleton';
 import WithState from '../../tools/withState';
 
 const items = [
@@ -33,6 +34,11 @@ const items = [
 ];
 
 const stringItems = ['Option 1', 'Option 2', 'Option 3'];
+
+const dropdownItems = [
+  { itemText: 'hello', value: 'hello', style: { opacity: 1 } },
+  { itemText: 'world', value: 'world', style: { opacity: 1 } },
+];
 
 const types = {
   'Default (default)': 'default',
@@ -59,13 +65,13 @@ const itemToElement = item => {
   );
 };
 
-storiesOf('Dropdown', module)
+storiesOf('DropdownV2', module)
   .addDecorator(withKnobs)
   .add(
     'default',
     () => (
       <div style={{ width: 300 }}>
-        <Dropdown
+        <DropdownV2
           {...props()}
           items={items}
           itemToString={item => (item ? item.text : '')}
@@ -75,7 +81,7 @@ storiesOf('Dropdown', module)
     ),
     {
       info: {
-        text: 'Dropdown',
+        text: 'DropdownV2',
       },
     }
   )
@@ -83,7 +89,7 @@ storiesOf('Dropdown', module)
     'items as strings',
     () => (
       <div style={{ width: 300 }}>
-        <Dropdown
+        <DropdownV2
           {...props()}
           items={stringItems}
           onChange={action('onChange')}
@@ -100,7 +106,7 @@ storiesOf('Dropdown', module)
     'items as components',
     () => (
       <div style={{ width: 300 }}>
-        <Dropdown
+        <DropdownV2
           {...props()}
           items={items}
           itemToString={item => (item ? item.text : '')}
@@ -116,12 +122,33 @@ storiesOf('Dropdown', module)
     }
   )
   .add(
+    'with DropdownItems',
+    () => (
+      <div style={{ width: 300 }}>
+        <DropdownV2
+          {...props()}
+          items={dropdownItems}
+          itemToString={item => (item ? item.itemText : '')}
+          itemToElement={DropdownItem}
+          onChange={action('onChange')}
+        />
+      </div>
+    ),
+    {
+      info: {
+        text: `
+          Using DropdownItem as the components to render. Has some kinks due to the onClick in the DropdownItem.
+        `,
+      },
+    }
+  )
+  .add(
     'fully controlled',
     () => (
       <WithState initialState={{ selectedItem: items[0] }}>
         {({ state, setState }) => (
           <div style={{ width: 300 }}>
-            <Dropdown
+            <DropdownV2
               {...props()}
               items={items}
               itemToString={item => (item ? item.text : '')}
