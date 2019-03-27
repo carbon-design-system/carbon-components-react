@@ -9,9 +9,6 @@
   "scripts": {
     "build": "node scripts/build.js",
     "build-storybook": "build-storybook",
-    "build-storybook:preview": "yarn build-storybook:preview:stable && yarn build-storybook:preview:experimental",
-    "build-storybook:preview:stable": "cross-env CARBON_USE_EXPERIMENTAL_FEATURES=false build-storybook -o storybook-static-preview/stable",
-    "build-storybook:preview:experimental": "cross-env CARBON_USE_EXPERIMENTAL_FEATURES=true build-storybook -o storybook-static-preview/experimental",
     "ci-check": "yarn prettier:diff && yarn lint && yarn test --runInBand && yarn test:experimental -u --runInBand && yarn test-ssr",
     "contributors:add": "all-contributors add",
     "contributors:generate": "all-contributors generate",
