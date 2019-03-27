@@ -73,7 +73,6 @@ Array [
   "OverflowMenu",
   "OverflowMenuItem",
   "Pagination",
-  "PaginationV2",
   "PrimaryButton",
   "ProgressIndicator",
   "ProgressIndicatorSkeleton",
