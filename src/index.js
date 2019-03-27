@@ -51,7 +51,6 @@ export FileUploader, {
   Filename,
   FileUploaderButton,
 } from './components/FileUploader';
-export Footer from './components/Footer';
 export Form from './components/Form';
 export FormGroup from './components/FormGroup';
 export FormItem from './components/FormItem';

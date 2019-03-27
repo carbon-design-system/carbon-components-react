@@ -47,7 +47,6 @@ Array [
   "FileUploaderButton",
   "FileUploaderSkeleton",
   "Filename",
-  "Footer",
   "Form",
   "FormGroup",
   "FormItem",
