@@ -298,7 +298,7 @@ export default class Modal extends Component {
     );
 
     return (
-      <FocusTrap active={focusTrap} clickOutsideDeactivates={true}>
+      <FocusTrap active={open && focusTrap} clickOutsideDeactivates={true}>
         <div
           {...other}
           onKeyDown={this.handleKeyDown}
