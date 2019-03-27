@@ -99,16 +99,10 @@ describe('Tooltip', () => {
   });
 
   describe('Renders as expected when an Icon component wrapped with forwardRef is provided', () => {
-    const wrapper = mount(
-      <Tooltip
-        renderIcon={React.forwardRef(() => (
-          <Icon name="icon--add" />
-        ))}
-      />
-    );
+    const wrapper = mount(<Tooltip renderIcon={Information} />);
 
     it('does render Icon', () => {
-      const icon = wrapper.find(Icon);
+      const icon = wrapper.find(Information);
       expect(icon.exists()).toBe(true);
     });
   });
