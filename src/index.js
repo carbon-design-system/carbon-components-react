@@ -46,6 +46,8 @@ export {
 export DatePicker from './components/DatePicker';
 export DatePickerInput from './components/DatePickerInput';
 export Dropdown from './components/Dropdown';
+export DropdownItem from './components/DropdownItem';
+export DropdownV2 from './components/DropdownV2';
 export FileUploader, {
   Filename,
   FileUploaderButton,
@@ -138,7 +140,7 @@ export BreadcrumbSkeleton from './components/Breadcrumb/Breadcrumb.Skeleton';
 export ButtonSkeleton from './components/Button/Button.Skeleton';
 export CheckboxSkeleton from './components/Checkbox/Checkbox.Skeleton';
 export CodeSnippetSkeleton from './components/CodeSnippet/CodeSnippet.Skeleton';
-export DropdownSkeleton from './components/Dropdown/Dropdown.Skeleton';
+export DropdownSkeleton from './components/DropdownV2/Dropdown.Skeleton';
 export FileUploaderSkeleton from './components/FileUploader/FileUploader.Skeleton';
 export NumberInputSkeleton from './components/NumberInput/NumberInput.Skeleton';
 export ProgressIndicatorSkeleton from './components/ProgressIndicator/ProgressIndicator.Skeleton';

@@ -5,4 +5,5 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-export default from './Dropdown';
+export * from './Dropdown.Skeleton';
+export default from './DropdownV2';
