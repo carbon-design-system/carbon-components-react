@@ -198,6 +198,25 @@ export default class Modal extends Component {
     }
   };
 
+  focusModal = () => {
+    if (this.outerModal.current) {
+      this.outerModal.current.focus();
+    }
+  };
+
+  handleBlur = evt => {
+    // Keyboard trap
+    if (
+      this.innerModal.current &&
+      this.props.open &&
+      evt.relatedTarget &&
+      !this.innerModal.current.contains(evt.relatedTarget) &&
+      !this.elementOrParentIsFloatingMenu(evt.relatedTarget)
+    ) {
+      this.focusModal();
+    }
+  };
+
   componentDidUpdate(prevProps) {
     if (!prevProps.open && this.props.open) {
       this.beingOpen = true;
@@ -205,6 +224,37 @@ export default class Modal extends Component {
       this.beingOpen = false;
     }
   }
+
+  focusButton = focusContainerElement => {
+    const primaryFocusElement = focusContainerElement
+      ? focusContainerElement.querySelector(this.props.selectorPrimaryFocus)
+      : null;
+    if (primaryFocusElement) {
+      primaryFocusElement.focus();
+      return;
+    }
+    if (this.button && this.button.current) {
+      this.button.current.focus();
+    }
+  };
+
+  componentDidMount() {
+    if (!this.props.open) {
+      return;
+    }
+    this.focusButton(this.innerModal.current);
+  }
+
+  handleTransitionEnd = evt => {
+    if (
+      this.outerModal.current.offsetWidth &&
+      this.outerModal.current.offsetHeight &&
+      this.beingOpen
+    ) {
+      this.focusButton(evt.currentTarget);
+      this.beingOpen = false;
+    }
+  };
 
   render() {
     const {
@@ -298,14 +348,18 @@ export default class Modal extends Component {
     );
 
     return (
-      <FocusTrap active={open && focusTrap} clickOutsideDeactivates={true}>
+      <FocusTrap active={focusTrap}>
         <div
           {...other}
           onKeyDown={this.handleKeyDown}
           onClick={this.handleClick}
+          onBlur={this.handleBlur}
           className={modalClasses}
           role="presentation"
           tabIndex={-1}
+          onTransitionEnd={
+            this.props.open ? this.handleTransitionEnd : undefined
+          }
           ref={this.outerModal}>
           {modalBody}
         </div>
