@@ -43,7 +43,7 @@ Anything in this document is subject to change up until v10 is released._
 | `DatePicker`          | No breaking changes                                                 |
 | `DatePickerInput`     | No breaking changes                                                 |
 | `Dropdown`            | Existing import remapped to `DropdownV2`                            |
-| `DropdownItem`        | Removed                                                             |
+| `DropdownItem`        | No breaking changes                                                 |
 | `DropdownV2`          | Renamed to `Dropdown`                                               |
 | `FileUploader`        | No breaking changes                                                 |
 | `Footer`              | Removed                                                             |
