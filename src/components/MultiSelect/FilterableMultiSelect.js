@@ -273,7 +273,6 @@ export default class FilterableMultiSelect extends React.Component {
       `${prefix}--combo-box`,
       containerClassName,
       {
-        [`${prefix}--list-box--light`]: light,
         [`${prefix}--multi-select--invalid`]: invalid,
         [`${prefix}--multi-select--open`]: isOpen,
         [`${prefix}--multi-select--inline`]: inline,
@@ -320,6 +319,7 @@ export default class FilterableMultiSelect extends React.Component {
               <ListBox
                 className={className}
                 disabled={disabled}
+                light={light}
                 invalid={invalid}
                 invalidText={invalidText}
                 isOpen={isOpen}

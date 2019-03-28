@@ -240,9 +240,7 @@ export default class MultiSelect extends React.Component {
       }
     );
     const className = cx(`${prefix}--multi-select`, containerClassName, {
-      [`${prefix}--list-box--light`]: light,
       [`${prefix}--multi-select--invalid`]: invalid,
-      [`${prefix}--multi-select--open`]: isOpen,
       [`${prefix}--multi-select--inline`]: inline,
     });
     const titleClasses = cx(`${prefix}--label`, {
@@ -288,6 +286,7 @@ export default class MultiSelect extends React.Component {
                 type={type}
                 className={className}
                 disabled={disabled}
+                light={light}
                 invalid={invalid}
                 invalidText={invalidText}
                 isOpen={isOpen}
