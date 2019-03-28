@@ -169,8 +169,8 @@ describe('Pagination', () => {
           const labels = pager.find('.bx--pagination__text');
           expect(labels.at(1).text()).toBe(
             !componentsX
-              ? '\u00a0|\u00a0\u00a01-10 of 50 items'
-              : '1-10 of 50 items'
+              ? '\u00a0|\u00a0\u00a01–10 of 50 items'
+              : '1–10 of 50 items'
           );
           expect(labels.at(2).text()).toBe(
             !componentsX ? '1 of 5 pages' : 'of 5 pages'
