@@ -32,7 +32,10 @@ const TableSelectRow = ({
     <td className={className}>
       <InlineInputComponent
         {...selectionInputProps}
-        {...radio && { labelText: ariaLabel }}
+        {...radio && {
+          labelText: ariaLabel,
+          hideLabel: true,
+        }}
         {...!radio && { ariaLabel }}
       />
     </td>
