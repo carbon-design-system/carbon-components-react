@@ -164,7 +164,6 @@
     "@babel/plugin-transform-object-assign": "^7.0.0",
     "@babel/preset-env": "^7.1.0",
     "@babel/preset-react": "^7.0.0",
-    "@emotion/core": "^10.0.7",
     "@storybook/addon-a11y": "~5.0.0",
     "@storybook/addon-actions": "~5.0.0",
     "@storybook/addon-info": "~5.0.0",
