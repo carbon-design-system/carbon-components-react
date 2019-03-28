@@ -3195,10 +3195,17 @@ capture-stack-trace@^1.0.0:
   resolved "https://registry.yarnpkg.com/capture-stack-trace/-/capture-stack-trace-1.0.1.tgz#a6c0bbe1f38f3aa0b92238ecb6ff42c344d4135d"
   integrity sha512-mYQLZnx5Qt1JgB1WEiMCf2647plpGeQ2NMR/5L0HNZzGQo4fuSPnK+wjfPnKZV0aiJDgzmWqqkV/g7JD+DW0qw==
 
+<<<<<<< HEAD
 carbon-components@^10.0.0-rc.0:
   version "10.0.0-rc.0"
   resolved "https://registry.yarnpkg.com/carbon-components/-/carbon-components-10.0.0-rc.0.tgz#b5e350018f423d94996f600f641c12e92c0bdf37"
   integrity sha512-u/XmHG37y/oVMUtNYXudykPevAGfkoe8A7yW2Rs/xGgbh79KeOvkgoclhjb6OLaMCMTHT1ObllHCbmIS0q8Xyw==
+=======
+carbon-components@^9.90.9:
+  version "9.90.9"
+  resolved "https://registry.yarnpkg.com/carbon-components/-/carbon-components-9.90.9.tgz#3ae43bb29d1ede088c1c683ddc9643bb4feb160e"
+  integrity sha512-h7ugDyO0XjHoe6faO1w27OckmLAm2D/As6H9LVTlW8HEFsRiQjhor4v6k3Ihz6cAAeMK7+DM7eYTaKNR/6dOmA==
+>>>>>>> a7c293c0576f5b2e1e89e03a8f817acd541e42b3
   dependencies:
     carbon-icons "^7.0.7"
     flatpickr "4.5.7"
