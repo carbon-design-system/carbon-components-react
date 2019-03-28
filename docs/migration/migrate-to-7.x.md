@@ -64,7 +64,7 @@ Anything in this document is subject to change up until v10 is released._
 | `Notification`        | Deprecated, use `InlineNotification` or `ToastNotification` instead |
 | `NumberInput`         | [Migrate](../../src/components/NumberInput/migrate-to-7.x.md)       |
 | `OverflowMenu`        | [Migrate](../../src/components/OverflowMenu/migrate-to-7.x.md)      |
-| `OverflowMenuItem`    | No breaking changes                                                 |
+| `OverflowMenuItem`    | [Migrate](../../src/components/OverflowMenuItem/migrate-to-7.x.md)  |
 | `Pagination`          | Export now points to `PaginationV2`                                 |
 | `PaginationV2`        | Renamed to `Pagination`                                             |
 | `PrimaryButton`       | No breaking changes                                                 |
@@ -81,7 +81,7 @@ Anything in this document is subject to change up until v10 is released._
 | `SelectItemGroup`     | No breaking changes                                                 |
 | `SkeletonPlaceholder` | No breaking changes                                                 |
 | `SkeletonText`        | No breaking changes                                                 |
-| `Slider`              | No breaking changes                                                 |
+| `Slider`              | [Migrate](../../src/components/Slider/migrate-to-7.x.md)            |
 | `StructuredList`      | No breaking changes                                                 |
 | `Switch`              | No breaking changes                                                 |
 | `Tab`                 | No breaking changes                                                 |
