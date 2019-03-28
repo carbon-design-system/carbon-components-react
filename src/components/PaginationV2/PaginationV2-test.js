@@ -263,7 +263,7 @@ describe('Pagination', () => {
         );
         const labels = pager.find('.bx--pagination__text');
         expect(labels.at(1).text()).toBe(
-          !componentsX ? '\u00a0|\u00a0\u00a00-0 of 0 items' : '0-0 of 0 items'
+          !componentsX ? '\u00a0|\u00a0\u00a00–0 of 0 items' : '0–0 of 0 items'
         );
         expect(labels.at(2).text()).toBe(
           !componentsX ? '1 of 1 pages' : 'of 1 pages'
