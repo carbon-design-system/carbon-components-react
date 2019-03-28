@@ -150,6 +150,7 @@ export default class DropdownV2 extends React.Component {
       id,
       titleText,
       helperText,
+      light,
       invalid,
       invalidText,
     } = this.props;
@@ -160,6 +161,7 @@ export default class DropdownV2 extends React.Component {
         [`${prefix}--dropdown--open`]: isOpen,
         [`${prefix}--dropdown--inline`]: inline,
         [`${prefix}--dropdown--disabled`]: disabled,
+        [`${prefix}--dropdown--light`]: light,
       });
     const titleClasses = cx(`${prefix}--label`, {
       [`${prefix}--label--disabled`]: disabled,
