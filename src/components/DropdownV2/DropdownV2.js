@@ -191,7 +191,7 @@ export default class DropdownV2 extends React.Component {
     // needs to be Capitalized for react to render it correctly
     const ItemToElement = itemToElement;
     const Dropdown = (
-      <div className={wrapperClasses}>
+      <>
         {title}
         {!inline && helper}
         <Downshift
@@ -254,8 +254,12 @@ export default class DropdownV2 extends React.Component {
             </ListBox>
           )}
         </Downshift>
-      </div>
+      </>
     );
-    return Dropdown;
+    return componentsX ? (
+      <div className={wrapperClasses}>{Dropdown}</div>
+    ) : (
+      Dropdown
+    );
   }
 }
