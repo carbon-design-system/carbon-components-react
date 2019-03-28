@@ -11,6 +11,7 @@ import PropTypes from 'prop-types';
 import Downshift from 'downshift';
 import isEqual from 'lodash.isequal';
 import { settings } from 'carbon-components';
+import WarningFilled16 from '@carbon/icons-react/lib/warning--filled/16';
 import ListBox from '../ListBox';
 import Checkbox from '../Checkbox';
 import Selection from '../../internal/Selection';
@@ -218,7 +219,6 @@ export default class MultiSelect extends React.Component {
       type,
       disabled,
       initialSelectedItems,
-      id,
       sortItems,
       compareItems,
       light,
@@ -291,6 +291,11 @@ export default class MultiSelect extends React.Component {
                 invalidText={invalidText}
                 isOpen={isOpen}
                 {...getRootProps({ refKey: 'innerRef' })}>
+                {componentsX && invalid && (
+                  <WarningFilled16
+                    className={`${prefix}--list-box__invalid-icon`}
+                  />
+                )}
                 <ListBox.Field
                   id={id}
                   tabIndex="0"
