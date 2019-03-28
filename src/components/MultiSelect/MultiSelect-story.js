@@ -18,6 +18,7 @@ import {
 import { withReadme } from 'storybook-readme';
 import readme from './README.md';
 import MultiSelect from '../MultiSelect';
+import { componentsX } from '../../internal/FeatureFlags';
 
 const items = [
   {
@@ -53,6 +54,12 @@ const types = {
 
 const props = () => ({
   id: text('MultiSelect ID (id)', 'carbon-multiselect-example'),
+  ...(componentsX
+    ? {
+        titleText: text('Title (titleText)', 'Multiselect title'),
+        helperText: text('Helper text (helperText)', 'This is not helper text'),
+      }
+    : {}),
   filterable: boolean(
     'Filterable (`<MultiSelect.Filterable>` instead of `<MultiSelect>`)',
     false
