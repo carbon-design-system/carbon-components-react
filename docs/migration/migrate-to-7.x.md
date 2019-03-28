@@ -40,7 +40,7 @@ Anything in this document is subject to change up until v10 is released._
 | `CopyButton`          | No breaking changes                                                 |
 | `DangerButton`        | No breaking changes                                                 |
 | `DataTable`           | [Migrate](../../src/components/DataTable/migrate-to-7.x.md)         |
-| `DatePicker`          | No breaking changes                                                 |
+| `DatePicker`          | [Migrate](../../src/components/DatePicker/migrate-to-7.x.md)        |
 | `DatePickerInput`     | No breaking changes                                                 |
 | `Dropdown`            | Existing import remapped to `DropdownV2`                            |
 | `DropdownItem`        | No breaking changes                                                 |
@@ -94,7 +94,7 @@ Anything in this document is subject to change up until v10 is released._
 | `TableRow`            | Export now points to `DataTable.TableRow`                           |
 | `TableRowExpanded`    | Removed                                                             |
 | `Tabs`                | No breaking changes                                                 |
-| `Tag`                 | No breaking changes                                                 |
+| `Tag`                 | [Migrate](../../src/components/Tag/migrate-to-7.x.md)               |
 | `TextArea`            | No breaking changes                                                 |
 | `TextInput`           | No breaking changes                                                 |
 | `Tile`                | No breaking changes                                                 |
