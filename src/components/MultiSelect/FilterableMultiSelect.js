@@ -242,6 +242,9 @@ export default class FilterableMultiSelect extends React.Component {
       filterItems,
       items,
       itemToString,
+      titleText,
+      helperText,
+      type,
       initialSelectedItems,
       id,
       locale,
@@ -253,15 +256,44 @@ export default class FilterableMultiSelect extends React.Component {
       invalidText,
       translateWithId,
     } = this.props;
+    const inline = type === 'inline';
+    const wrapperClasses = cx(
+      `${prefix}--multi-select__wrapper`,
+      `${prefix}--list-box__wrapper`,
+      {
+        [`${prefix}--multi-select__wrapper--inline`]: inline,
+        [`${prefix}--list-box__wrapper--inline`]: inline,
+        [`${prefix}--multi-select__wrapper--inline--invalid`]:
+          inline && invalid,
+        [`${prefix}--list-box__wrapper--inline--invalid`]: inline && invalid,
+      }
+    );
     const className = cx(
       `${prefix}--multi-select`,
       `${prefix}--combo-box`,
       containerClassName,
       {
         [`${prefix}--list-box--light`]: light,
+        [`${prefix}--multi-select--invalid`]: invalid,
+        [`${prefix}--multi-select--open`]: isOpen,
+        [`${prefix}--multi-select--inline`]: inline,
       }
     );
-    return (
+    const titleClasses = cx(`${prefix}--label`, {
+      [`${prefix}--label--disabled`]: disabled,
+    });
+    const title = titleText ? (
+      <label htmlFor={id} className={titleClasses}>
+        {titleText}
+      </label>
+    ) : null;
+    const helperClasses = cx(`${prefix}--form__helper-text`, {
+      [`${prefix}--form__helper-text--disabled`]: disabled,
+    });
+    const helper = helperText ? (
+      <div className={helperClasses}>{helperText}</div>
+    ) : null;
+    const input = (
       <Selection
         onChange={this.handleOnChange}
         initialSelectedItems={initialSelectedItems}
@@ -290,6 +322,7 @@ export default class FilterableMultiSelect extends React.Component {
                 disabled={disabled}
                 invalid={invalid}
                 invalidText={invalidText}
+                isOpen={isOpen}
                 {...getRootProps({ refKey: 'innerRef' })}>
                 <ListBox.Field id={id} {...getButtonProps({ disabled })}>
                   {selectedItem.length > 0 && (
@@ -363,6 +396,15 @@ export default class FilterableMultiSelect extends React.Component {
           />
         )}
       />
+    );
+    return componentsX ? (
+      <div className={wrapperClasses}>
+        {title}
+        {!inline && helper}
+        {input}
+      </div>
+    ) : (
+      input
     );
   }
 }
