@@ -96,8 +96,8 @@ describe('Pagination', () => {
         const label = left.find('.bx--pagination__text').at(1);
         expect(label.text()).toBe(
           !componentsX
-            ? '\u00a0|\u00a0\u00a01-5 of 50 items'
-            : '1-5 of 50 items'
+            ? '\u00a0|\u00a0\u00a01–5 of 50 items'
+            : '1–5 of 50 items'
         );
       });
 
@@ -139,7 +139,7 @@ describe('Pagination', () => {
         it('should show the item range without the total', () => {
           const label = left.find('.bx--pagination__text').at(1);
           expect(label.text()).toBe(
-            !componentsX ? '\u00a0|\u00a0\u00a01-5 items' : '1-5 items'
+            !componentsX ? '\u00a0|\u00a0\u00a01–5 items' : '1–5 items'
           );
         });
       });
