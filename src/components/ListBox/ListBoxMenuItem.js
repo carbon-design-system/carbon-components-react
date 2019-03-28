@@ -27,10 +27,7 @@ const ListBoxMenuItem = ({ children, isActive, isHighlighted, ...rest }) => {
   return (
     <div className={className} {...rest}>
       {componentsX ? (
-        <div
-          className={`${prefix}--list-box__menu-item__option`}
-          tabIndex="0"
-          role="button">
+        <div className={`${prefix}--list-box__menu-item__option`}>
           {children}
         </div>
       ) : (
