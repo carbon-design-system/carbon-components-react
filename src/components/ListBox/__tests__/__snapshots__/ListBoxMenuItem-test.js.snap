@@ -8,15 +8,9 @@ exports[`ListBoxMenuItem should render 1`] = `
   <div
     className="bx--list-box__menu-item"
   >
-    <div
-      className="bx--list-box__menu-item__option"
-      role="button"
-      tabIndex="0"
-    >
-      <span>
-        ListBox.MenuItem
-      </span>
-    </div>
+    <span>
+      ListBox.MenuItem
+    </span>
   </div>
 </ListBoxMenuItem>
 `;
@@ -29,15 +23,9 @@ exports[`ListBoxMenuItem should render 2`] = `
   <div
     className="bx--list-box__menu-item bx--list-box__menu-item--active"
   >
-    <div
-      className="bx--list-box__menu-item__option"
-      role="button"
-      tabIndex="0"
-    >
-      <span>
-        ListBox.MenuItem
-      </span>
-    </div>
+    <span>
+      ListBox.MenuItem
+    </span>
   </div>
 </ListBoxMenuItem>
 `;
@@ -50,15 +38,9 @@ exports[`ListBoxMenuItem should render 3`] = `
   <div
     className="bx--list-box__menu-item bx--list-box__menu-item--highlighted"
   >
-    <div
-      className="bx--list-box__menu-item__option"
-      role="button"
-      tabIndex="0"
-    >
-      <span>
-        ListBox.MenuItem
-      </span>
-    </div>
+    <span>
+      ListBox.MenuItem
+    </span>
   </div>
 </ListBoxMenuItem>
 `;
