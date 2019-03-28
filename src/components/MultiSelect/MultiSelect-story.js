@@ -8,8 +8,6 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
-import { componentsX } from '../../internal/FeatureFlags';
-
 import {
   withKnobs,
   boolean,
@@ -23,12 +21,25 @@ import MultiSelect from '../MultiSelect';
 
 const items = [
   {
-    id: 'item-1',
-    text: 'Item 1',
+    id: 'downshift-1-item-0',
+    text: 'Option 1',
   },
   {
-    id: 'item-2',
-    text: 'Item 2',
+    id: 'downshift-1-item-1',
+    text: 'Option 2',
+  },
+  {
+    id: 'downshift-1-item-2',
+    text: 'Option 3',
+  },
+  {
+    id: 'downshift-1-item-3',
+    text: 'Option 4',
+  },
+  {
+    id: 'downshift-1-item-4',
+    text:
+      'An example option that is really long to show what should be done to handle long text',
   },
 ];
 
@@ -67,7 +78,7 @@ const props = () => ({
   selectionFeedback: select(
     'Selection feedback',
     ['top', 'fixed', 'top-after-reopen'],
-    componentsX ? 'top-after-reopen' : 'top'
+    'top-after-reopen'
   ),
 });
 
