@@ -153,4 +153,11 @@ storiesOf('DataTable', module)
         `,
       },
     }
-  );
+  )
+  .add('nested', withReadme(readme, require('./stories/nested').default), {
+    info: {
+      text: `
+          DataTable with Nested DataTable.
+        `,
+    },
+  });
