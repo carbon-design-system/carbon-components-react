@@ -17,7 +17,7 @@ const TableExpandedRow = ({
   children,
   ...rest
 }) => {
-  const className = cx(`${prefix}--expandable-row-v2`, customClassName);
+  const className = cx(`${prefix}--expandable-row`, customClassName);
   return (
     <tr {...rest} className={className} data-child-row>
       {children}

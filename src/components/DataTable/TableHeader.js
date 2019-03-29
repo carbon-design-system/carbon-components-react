@@ -67,10 +67,10 @@ const TableHeader = ({
   }
 
   const className = cx(headerClassName, {
-    [`${prefix}--table-sort-v2`]: true,
-    [`${prefix}--table-sort-v2--active`]:
+    [`${prefix}--table-sort`]: true,
+    [`${prefix}--table-sort--active`]:
       isSortHeader && sortDirection !== sortStates.NONE,
-    [`${prefix}--table-sort-v2--ascending`]:
+    [`${prefix}--table-sort--ascending`]:
       isSortHeader && sortDirection === sortStates.DESC,
   });
   const ariaSort = !isSortHeader ? 'none' : sortDirections[sortDirection];
@@ -81,7 +81,7 @@ const TableHeader = ({
         <span className={`${prefix}--table-header-label`}>{children}</span>
         {componentsX ? (
           <CaretUpGlyph
-            className={`${prefix}--table-sort-v2__icon`}
+            className={`${prefix}--table-sort__icon`}
             aria-label={t('carbon.table.header.icon.description', {
               header: children,
               sortDirection,
@@ -91,7 +91,7 @@ const TableHeader = ({
           />
         ) : (
           <Icon
-            className={`${prefix}--table-sort-v2__icon`}
+            className={`${prefix}--table-sort__icon`}
             icon={iconCaretUp}
             description={t('carbon.table.header.icon.description', {
               header: children,

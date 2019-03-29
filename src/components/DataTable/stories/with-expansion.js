@@ -25,7 +25,7 @@ export default () => (
     rows={initialRows}
     headers={headers}
     render={({ rows, headers, getHeaderProps, getRowProps }) => (
-      <TableContainer title="DataTable with expansion">
+      <TableContainer title="DataTable" description="With expansion">
         <Table>
           <TableHead>
             <TableRow>

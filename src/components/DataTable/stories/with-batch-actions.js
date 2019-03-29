@@ -46,7 +46,7 @@ export default () => (
       onInputChange,
       selectedRows,
     }) => (
-      <TableContainer title="DataTable with batch actions">
+      <TableContainer title="DataTable" description="With batch actions">
         <TableToolbar>
           <TableBatchActions {...getBatchActionProps()}>
             <TableBatchAction onClick={batchActionClick(selectedRows)}>

@@ -111,7 +111,9 @@ export default () => {
             onInputChange,
             selectedRows,
           }) => (
-            <TableContainer title="DataTable with dynamic rows">
+            <TableContainer
+              title="DataTable"
+              description="With dynamic content">
               <Button small onClick={this.handleOnRowAdd}>
                 Add new row
               </Button>

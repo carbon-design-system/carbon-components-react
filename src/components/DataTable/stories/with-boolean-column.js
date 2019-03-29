@@ -98,7 +98,7 @@ export default () => (
     rows={initialRows}
     headers={headers}
     render={({ rows, headers, getHeaderProps, getRowProps, onInputChange }) => (
-      <TableContainer title="DataTable with toolbar">
+      <TableContainer title="DataTable" description="With boolean column">
         <TableToolbar>
           <TableToolbarSearch onChange={onInputChange} />
           <TableToolbarContent>

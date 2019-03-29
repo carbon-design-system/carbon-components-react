@@ -30,7 +30,9 @@ export default () => (
       getRowProps,
       getSelectionProps,
     }) => (
-      <TableContainer title="DataTable">
+      <TableContainer
+        title="DataTable"
+        description="With radio button selection">
         <Table>
           <TableHead>
             <TableRow>

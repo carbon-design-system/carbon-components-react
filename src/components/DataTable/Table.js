@@ -20,10 +20,10 @@ export const Table = ({
   shouldShowBorder,
   ...other
 }) => {
-  const componentClass = cx(`${prefix}--data-table-v2`, className, {
-    [`${prefix}--data-table-v2--zebra`]: zebra,
-    [`${prefix}--data-table-v2--short`]: short,
-    [`${prefix}--data-table-v2--no-border`]: !shouldShowBorder,
+  const componentClass = cx(`${prefix}--data-table`, className, {
+    [`${prefix}--data-table--zebra`]: zebra,
+    [`${prefix}--data-table--short`]: short,
+    [`${prefix}--data-table--no-border`]: !shouldShowBorder,
   });
   return (
     <table {...other} className={componentClass}>

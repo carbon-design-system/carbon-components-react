@@ -30,9 +30,9 @@ const TableExpandRow = ({
 }) => {
   const className = cx(
     {
-      [`${prefix}--parent-row-v2`]: true,
-      [`${prefix}--expandable-row-v2`]: isExpanded,
-      [`${prefix}--data-table-v2--selected`]: isSelected,
+      [`${prefix}--parent-row`]: true,
+      [`${prefix}--expandable-row`]: isExpanded,
+      [`${prefix}--data-table--selected`]: isSelected,
     },
     rowClassName
   );
@@ -41,22 +41,22 @@ const TableExpandRow = ({
   return (
     <tr {...rest} className={className} data-parent-row>
       <TableCell
-        className={`${prefix}--table-expand-v2`}
+        className={`${prefix}--table-expand`}
         data-previous-value={previousValue}
         headers={expandHeader}>
         <button
-          className={`${prefix}--table-expand-v2__button`}
+          className={`${prefix}--table-expand__button`}
           onClick={onExpand}
           title={expandIconDescription}
           aria-label={ariaLabel}>
           {componentsX ? (
             <ChevronRight16
-              className={`${prefix}--table-expand-v2__svg`}
+              className={`${prefix}--table-expand__svg`}
               aria-label={expandIconDescription}
             />
           ) : (
             <Icon
-              className={`${prefix}--table-expand-v2__svg`}
+              className={`${prefix}--table-expand__svg`}
               icon={iconChevronRight}
               description={expandIconDescription}
             />
