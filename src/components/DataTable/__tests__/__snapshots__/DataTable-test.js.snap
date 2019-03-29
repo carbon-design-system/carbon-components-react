@@ -100,20 +100,27 @@ exports[`DataTable selection -- radio buttons should not have select-all checkbo
     title="DataTable with selection"
   >
     <div
-      className="bx--data-table-v2-container"
+      className="bx--data-table-container"
     >
-      <h4
-        className="bx--data-table-v2-header"
+      <div
+        className="bx--data-table-header"
       >
-        DataTable with selection
-      </h4>
+        <h4
+          className="bx--data-table-header__title"
+        >
+          DataTable with selection
+        </h4>
+        <p
+          className="bx--data-table-header__description"
+        />
+      </div>
       <Table
         short={false}
         shouldShowBorder={true}
         zebra={true}
       >
         <table
-          className="bx--data-table-v2 bx--data-table-v2--zebra"
+          className="bx--data-table bx--data-table--zebra"
         >
           <TableHead>
             <thead>
@@ -133,7 +140,7 @@ exports[`DataTable selection -- radio buttons should not have select-all checkbo
                       scope="col"
                     >
                       <button
-                        className="bx--table-sort-v2"
+                        className="bx--table-sort"
                         onClick={[Function]}
                       >
                         <span
@@ -143,7 +150,7 @@ exports[`DataTable selection -- radio buttons should not have select-all checkbo
                         </span>
                         <CaretUpGlyph
                           aria-label="Sort rows by this header in ascending order"
-                          className="bx--table-sort-v2__icon"
+                          className="bx--table-sort__icon"
                           height={4}
                           preserveAspectRatio="xMidYMid meet"
                           viewBox="0 0 8 4"
@@ -152,7 +159,7 @@ exports[`DataTable selection -- radio buttons should not have select-all checkbo
                         >
                           <svg
                             aria-label="Sort rows by this header in ascending order"
-                            className="bx--table-sort-v2__icon"
+                            className="bx--table-sort__icon"
                             focusable="false"
                             height={4}
                             preserveAspectRatio="xMidYMid meet"
@@ -188,7 +195,7 @@ exports[`DataTable selection -- radio buttons should not have select-all checkbo
                       scope="col"
                     >
                       <button
-                        className="bx--table-sort-v2"
+                        className="bx--table-sort"
                         onClick={[Function]}
                       >
                         <span
@@ -198,7 +205,7 @@ exports[`DataTable selection -- radio buttons should not have select-all checkbo
                         </span>
                         <CaretUpGlyph
                           aria-label="Sort rows by this header in ascending order"
-                          className="bx--table-sort-v2__icon"
+                          className="bx--table-sort__icon"
                           height={4}
                           preserveAspectRatio="xMidYMid meet"
                           viewBox="0 0 8 4"
@@ -207,7 +214,7 @@ exports[`DataTable selection -- radio buttons should not have select-all checkbo
                         >
                           <svg
                             aria-label="Sort rows by this header in ascending order"
-                            className="bx--table-sort-v2__icon"
+                            className="bx--table-sort__icon"
                             focusable="false"
                             height={4}
                             preserveAspectRatio="xMidYMid meet"
@@ -498,20 +505,27 @@ exports[`DataTable selection -- radio buttons should render 1`] = `
     title="DataTable with selection"
   >
     <div
-      className="bx--data-table-v2-container"
+      className="bx--data-table-container"
     >
-      <h4
-        className="bx--data-table-v2-header"
+      <div
+        className="bx--data-table-header"
       >
-        DataTable with selection
-      </h4>
+        <h4
+          className="bx--data-table-header__title"
+        >
+          DataTable with selection
+        </h4>
+        <p
+          className="bx--data-table-header__description"
+        />
+      </div>
       <Table
         short={false}
         shouldShowBorder={true}
         zebra={true}
       >
         <table
-          className="bx--data-table-v2 bx--data-table-v2--zebra"
+          className="bx--data-table bx--data-table--zebra"
         >
           <TableHead>
             <thead>
@@ -531,7 +545,7 @@ exports[`DataTable selection -- radio buttons should render 1`] = `
                       scope="col"
                     >
                       <button
-                        className="bx--table-sort-v2"
+                        className="bx--table-sort"
                         onClick={[Function]}
                       >
                         <span
@@ -541,7 +555,7 @@ exports[`DataTable selection -- radio buttons should render 1`] = `
                         </span>
                         <CaretUpGlyph
                           aria-label="Sort rows by this header in ascending order"
-                          className="bx--table-sort-v2__icon"
+                          className="bx--table-sort__icon"
                           height={4}
                           preserveAspectRatio="xMidYMid meet"
                           viewBox="0 0 8 4"
@@ -550,7 +564,7 @@ exports[`DataTable selection -- radio buttons should render 1`] = `
                         >
                           <svg
                             aria-label="Sort rows by this header in ascending order"
-                            className="bx--table-sort-v2__icon"
+                            className="bx--table-sort__icon"
                             focusable="false"
                             height={4}
                             preserveAspectRatio="xMidYMid meet"
@@ -586,7 +600,7 @@ exports[`DataTable selection -- radio buttons should render 1`] = `
                       scope="col"
                     >
                       <button
-                        className="bx--table-sort-v2"
+                        className="bx--table-sort"
                         onClick={[Function]}
                       >
                         <span
@@ -596,7 +610,7 @@ exports[`DataTable selection -- radio buttons should render 1`] = `
                         </span>
                         <CaretUpGlyph
                           aria-label="Sort rows by this header in ascending order"
-                          className="bx--table-sort-v2__icon"
+                          className="bx--table-sort__icon"
                           height={4}
                           preserveAspectRatio="xMidYMid meet"
                           viewBox="0 0 8 4"
@@ -605,7 +619,7 @@ exports[`DataTable selection -- radio buttons should render 1`] = `
                         >
                           <svg
                             aria-label="Sort rows by this header in ascending order"
-                            className="bx--table-sort-v2__icon"
+                            className="bx--table-sort__icon"
                             focusable="false"
                             height={4}
                             preserveAspectRatio="xMidYMid meet"
@@ -977,20 +991,27 @@ exports[`DataTable selection should have select-all default to un-checked if no 
     title="DataTable with selection"
   >
     <div
-      className="bx--data-table-v2-container"
+      className="bx--data-table-container"
     >
-      <h4
-        className="bx--data-table-v2-header"
+      <div
+        className="bx--data-table-header"
       >
-        DataTable with selection
-      </h4>
+        <h4
+          className="bx--data-table-header__title"
+        >
+          DataTable with selection
+        </h4>
+        <p
+          className="bx--data-table-header__description"
+        />
+      </div>
       <Table
         short={false}
         shouldShowBorder={true}
         zebra={true}
       >
         <table
-          className="bx--data-table-v2 bx--data-table-v2--zebra"
+          className="bx--data-table bx--data-table--zebra"
         >
           <TableHead>
             <thead>
@@ -1005,6 +1026,7 @@ exports[`DataTable selection should have select-all default to un-checked if no 
                     onSelect={[Function]}
                   >
                     <th
+                      className="bx--table-column-checkbox"
                       scope="col"
                     >
                       <ForwardRef(InlineCheckbox)
@@ -1057,7 +1079,7 @@ exports[`DataTable selection should have select-all default to un-checked if no 
                       scope="col"
                     >
                       <button
-                        className="bx--table-sort-v2"
+                        className="bx--table-sort"
                         onClick={[Function]}
                       >
                         <span
@@ -1067,7 +1089,7 @@ exports[`DataTable selection should have select-all default to un-checked if no 
                         </span>
                         <CaretUpGlyph
                           aria-label="Sort rows by this header in ascending order"
-                          className="bx--table-sort-v2__icon"
+                          className="bx--table-sort__icon"
                           height={4}
                           preserveAspectRatio="xMidYMid meet"
                           viewBox="0 0 8 4"
@@ -1076,7 +1098,7 @@ exports[`DataTable selection should have select-all default to un-checked if no 
                         >
                           <svg
                             aria-label="Sort rows by this header in ascending order"
-                            className="bx--table-sort-v2__icon"
+                            className="bx--table-sort__icon"
                             focusable="false"
                             height={4}
                             preserveAspectRatio="xMidYMid meet"
@@ -1112,7 +1134,7 @@ exports[`DataTable selection should have select-all default to un-checked if no 
                       scope="col"
                     >
                       <button
-                        className="bx--table-sort-v2"
+                        className="bx--table-sort"
                         onClick={[Function]}
                       >
                         <span
@@ -1122,7 +1144,7 @@ exports[`DataTable selection should have select-all default to un-checked if no 
                         </span>
                         <CaretUpGlyph
                           aria-label="Sort rows by this header in ascending order"
-                          className="bx--table-sort-v2__icon"
+                          className="bx--table-sort__icon"
                           height={4}
                           preserveAspectRatio="xMidYMid meet"
                           viewBox="0 0 8 4"
@@ -1131,7 +1153,7 @@ exports[`DataTable selection should have select-all default to un-checked if no 
                         >
                           <svg
                             aria-label="Sort rows by this header in ascending order"
-                            className="bx--table-sort-v2__icon"
+                            className="bx--table-sort__icon"
                             focusable="false"
                             height={4}
                             preserveAspectRatio="xMidYMid meet"
@@ -1429,20 +1451,27 @@ exports[`DataTable selection should render 1`] = `
     title="DataTable with selection"
   >
     <div
-      className="bx--data-table-v2-container"
+      className="bx--data-table-container"
     >
-      <h4
-        className="bx--data-table-v2-header"
+      <div
+        className="bx--data-table-header"
       >
-        DataTable with selection
-      </h4>
+        <h4
+          className="bx--data-table-header__title"
+        >
+          DataTable with selection
+        </h4>
+        <p
+          className="bx--data-table-header__description"
+        />
+      </div>
       <Table
         short={false}
         shouldShowBorder={true}
         zebra={true}
       >
         <table
-          className="bx--data-table-v2 bx--data-table-v2--zebra"
+          className="bx--data-table bx--data-table--zebra"
         >
           <TableHead>
             <thead>
@@ -1457,6 +1486,7 @@ exports[`DataTable selection should render 1`] = `
                     onSelect={[Function]}
                   >
                     <th
+                      className="bx--table-column-checkbox"
                       scope="col"
                     >
                       <ForwardRef(InlineCheckbox)
@@ -1509,7 +1539,7 @@ exports[`DataTable selection should render 1`] = `
                       scope="col"
                     >
                       <button
-                        className="bx--table-sort-v2"
+                        className="bx--table-sort"
                         onClick={[Function]}
                       >
                         <span
@@ -1519,7 +1549,7 @@ exports[`DataTable selection should render 1`] = `
                         </span>
                         <CaretUpGlyph
                           aria-label="Sort rows by this header in ascending order"
-                          className="bx--table-sort-v2__icon"
+                          className="bx--table-sort__icon"
                           height={4}
                           preserveAspectRatio="xMidYMid meet"
                           viewBox="0 0 8 4"
@@ -1528,7 +1558,7 @@ exports[`DataTable selection should render 1`] = `
                         >
                           <svg
                             aria-label="Sort rows by this header in ascending order"
-                            className="bx--table-sort-v2__icon"
+                            className="bx--table-sort__icon"
                             focusable="false"
                             height={4}
                             preserveAspectRatio="xMidYMid meet"
@@ -1564,7 +1594,7 @@ exports[`DataTable selection should render 1`] = `
                       scope="col"
                     >
                       <button
-                        className="bx--table-sort-v2"
+                        className="bx--table-sort"
                         onClick={[Function]}
                       >
                         <span
@@ -1574,7 +1604,7 @@ exports[`DataTable selection should render 1`] = `
                         </span>
                         <CaretUpGlyph
                           aria-label="Sort rows by this header in ascending order"
-                          className="bx--table-sort-v2__icon"
+                          className="bx--table-sort__icon"
                           height={4}
                           preserveAspectRatio="xMidYMid meet"
                           viewBox="0 0 8 4"
@@ -1583,7 +1613,7 @@ exports[`DataTable selection should render 1`] = `
                         >
                           <svg
                             aria-label="Sort rows by this header in ascending order"
-                            className="bx--table-sort-v2__icon"
+                            className="bx--table-sort__icon"
                             focusable="false"
                             height={4}
                             preserveAspectRatio="xMidYMid meet"
@@ -2144,13 +2174,20 @@ exports[`DataTable should render 1`] = `
     title="DataTable with toolbar"
   >
     <div
-      className="bx--data-table-v2-container"
+      className="bx--data-table-container"
     >
-      <h4
-        className="bx--data-table-v2-header"
+      <div
+        className="bx--data-table-header"
       >
-        DataTable with toolbar
-      </h4>
+        <h4
+          className="bx--data-table-header__title"
+        >
+          DataTable with toolbar
+        </h4>
+        <p
+          className="bx--data-table-header__description"
+        />
+      </div>
       <TableToolbar>
         <section
           className="bx--table-toolbar"
@@ -2396,7 +2433,7 @@ exports[`DataTable should render 1`] = `
         zebra={true}
       >
         <table
-          className="bx--data-table-v2 bx--data-table-v2--zebra"
+          className="bx--data-table bx--data-table--zebra"
         >
           <TableHead>
             <thead>
@@ -2416,7 +2453,7 @@ exports[`DataTable should render 1`] = `
                       scope="col"
                     >
                       <button
-                        className="bx--table-sort-v2"
+                        className="bx--table-sort"
                         onClick={[Function]}
                       >
                         <span
@@ -2426,7 +2463,7 @@ exports[`DataTable should render 1`] = `
                         </span>
                         <CaretUpGlyph
                           aria-label="Sort rows by this header in ascending order"
-                          className="bx--table-sort-v2__icon"
+                          className="bx--table-sort__icon"
                           height={4}
                           preserveAspectRatio="xMidYMid meet"
                           viewBox="0 0 8 4"
@@ -2435,7 +2472,7 @@ exports[`DataTable should render 1`] = `
                         >
                           <svg
                             aria-label="Sort rows by this header in ascending order"
-                            className="bx--table-sort-v2__icon"
+                            className="bx--table-sort__icon"
                             focusable="false"
                             height={4}
                             preserveAspectRatio="xMidYMid meet"
@@ -2471,7 +2508,7 @@ exports[`DataTable should render 1`] = `
                       scope="col"
                     >
                       <button
-                        className="bx--table-sort-v2"
+                        className="bx--table-sort"
                         onClick={[Function]}
                       >
                         <span
@@ -2481,7 +2518,7 @@ exports[`DataTable should render 1`] = `
                         </span>
                         <CaretUpGlyph
                           aria-label="Sort rows by this header in ascending order"
-                          className="bx--table-sort-v2__icon"
+                          className="bx--table-sort__icon"
                           height={4}
                           preserveAspectRatio="xMidYMid meet"
                           viewBox="0 0 8 4"
@@ -2490,7 +2527,7 @@ exports[`DataTable should render 1`] = `
                         >
                           <svg
                             aria-label="Sort rows by this header in ascending order"
-                            className="bx--table-sort-v2__icon"
+                            className="bx--table-sort__icon"
                             focusable="false"
                             height={4}
                             preserveAspectRatio="xMidYMid meet"
