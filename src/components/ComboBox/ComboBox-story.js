@@ -38,11 +38,13 @@ const items = [
 ];
 
 const props = () => ({
-  disabled: boolean('Disabled (disabled)', false),
   placeholder: text('Placeholder text (placeholder)', 'Filter...'),
-  onChange: action('onChange'),
   titleText: text('Title (titleText)', 'Combobox title'),
   helperText: text('Helper text (helperText)', 'Optional helper text here'),
+  disabled: boolean('Disabled (disabled)', false),
+  invalid: boolean('Invalid (invalid)', false),
+  invalidText: text('Invalid text (invalidText)', 'A valid value is required'),
+  onChange: action('onChange'),
 });
 
 storiesOf('ComboBox', module)

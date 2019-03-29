@@ -10,6 +10,7 @@ import Downshift from 'downshift';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { settings } from 'carbon-components';
+import WarningFilled16 from '@carbon/icons-react/lib/warning--filled/16';
 import ListBox, { PropTypes as ListBoxPropTypes } from '../ListBox';
 import { componentsX } from '../../internal/FeatureFlags';
 
@@ -277,6 +278,11 @@ export default class ComboBox extends React.Component {
             invalidText={invalidText}
             light={light}
             {...getRootProps({ refKey: 'innerRef' })}>
+            {componentsX && invalid && (
+              <WarningFilled16
+                className={`${prefix}--list-box__invalid-icon`}
+              />
+            )}
             <ListBox.Field
               {...getButtonProps({
                 disabled,
