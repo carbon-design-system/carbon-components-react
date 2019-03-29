@@ -170,6 +170,7 @@ export default class DropdownV2 extends React.Component {
             type={type}
             className={className}
             disabled={disabled}
+            isDropDown="true"
             ariaLabel={ariaLabel}
             {...getRootProps({ refKey: 'innerRef' })}>
             <ListBox.Field {...getButtonProps({ disabled })}>

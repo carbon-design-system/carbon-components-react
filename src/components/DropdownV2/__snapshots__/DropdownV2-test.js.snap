@@ -65,6 +65,7 @@ exports[`DropdownV2 should render 1`] = `
       className="bx--dropdown"
       disabled={false}
       innerRef={[Function]}
+      isDropDown="true"
       type="default"
     >
       <div
@@ -73,7 +74,7 @@ exports[`DropdownV2 should render 1`] = `
         onClick={[Function]}
         onKeyDown={[Function]}
         role="listbox"
-        tabIndex={0}
+        tabIndex={-1}
       >
         <ListBoxField
           aria-expanded={false}
@@ -238,6 +239,7 @@ exports[`DropdownV2 should render DropdownItem components 1`] = `
       className="bx--dropdown"
       disabled={false}
       innerRef={[Function]}
+      isDropDown="true"
       type="default"
     >
       <div
@@ -246,7 +248,7 @@ exports[`DropdownV2 should render DropdownItem components 1`] = `
         onClick={[Function]}
         onKeyDown={[Function]}
         role="listbox"
-        tabIndex={0}
+        tabIndex={-1}
       >
         <ListBoxField
           aria-expanded={true}
@@ -652,6 +654,7 @@ exports[`DropdownV2 should render custom item components 1`] = `
       className="bx--dropdown"
       disabled={false}
       innerRef={[Function]}
+      isDropDown="true"
       type="default"
     >
       <div
@@ -660,7 +663,7 @@ exports[`DropdownV2 should render custom item components 1`] = `
         onClick={[Function]}
         onKeyDown={[Function]}
         role="listbox"
-        tabIndex={0}
+        tabIndex={-1}
       >
         <ListBoxField
           aria-expanded={true}
@@ -958,6 +961,7 @@ exports[`DropdownV2 should render with strings as items 1`] = `
       className="bx--dropdown"
       disabled={false}
       innerRef={[Function]}
+      isDropDown="true"
       type="default"
     >
       <div
@@ -966,7 +970,7 @@ exports[`DropdownV2 should render with strings as items 1`] = `
         onClick={[Function]}
         onKeyDown={[Function]}
         role="listbox"
-        tabIndex={0}
+        tabIndex={-1}
       >
         <ListBoxField
           aria-expanded={true}

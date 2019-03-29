@@ -76,6 +76,7 @@ exports[`MultiSelect should render 1`] = `
         className="bx--multi-select"
         disabled={false}
         innerRef={[Function]}
+        isDropDown={false}
         type="default"
       >
         <div

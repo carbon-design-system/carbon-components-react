@@ -31,6 +31,7 @@ exports[`ListBox should render 1`] = `
       ],
     }
   }
+  isDropDown={false}
   type="default"
 >
   <div
