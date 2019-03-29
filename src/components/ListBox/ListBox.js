@@ -28,6 +28,17 @@ const handleClick = event => {
   event.stopPropagation();
 };
 
+const getTabIndex = (isDropDown, innerTabIndex) => {
+  // if listbox is used in a the dropdown component remove listbox from
+  // the tab order to avoid an extra tab stop
+  const noTabStop = -1;
+
+  if (isDropDown) {
+    return noTabStop;
+  }
+  return innerTabIndex || 0;
+};
+
 /**
  * `ListBox` is a generic container component that handles creating the
  * container class name in response to certain props.
@@ -44,6 +55,7 @@ const ListBox = ({
   light,
   innerTabIndex,
   isOpen,
+  isDropDown,
   ...rest
 }) => {
   const className = cx({
@@ -60,7 +72,7 @@ const ListBox = ({
         {...rest}
         role="listbox"
         aria-label={ariaLabel}
-        tabIndex={innerTabIndex || 0}
+        tabIndex={getTabIndex(isDropDown, innerTabIndex)}
         className={className}
         ref={innerRef}
         onKeyDown={handleOnKeyDown}
@@ -105,6 +117,12 @@ ListBox.propTypes = {
    * Specify the "aria-label" of the ListBox.
    */
   ariaLabel: PropTypes.string,
+
+  /**
+   * Specify if the listbox is rendered in a dropdown. If it is let Downshift handle
+   * tabindex
+   */
+  isDropDown: PropTypes.bool,
 };
 
 ListBox.defaultProps = {
@@ -112,6 +130,7 @@ ListBox.defaultProps = {
   disabled: false,
   type: 'default',
   ariaLabel: 'Choose an item',
+  isDropDown: false,
 };
 
 export default ListBox;
