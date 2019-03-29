@@ -13,6 +13,7 @@ import ListBoxField from './ListBoxField';
 import ListBoxMenu from './ListBoxMenu';
 import { ListBoxType } from './ListBoxPropTypes';
 import childrenOf from '../../prop-types/childrenOf';
+import WarningFilled16 from '@carbon/icons-react/lib/warning--filled/16';
 
 const { prefix } = settings;
 
@@ -25,17 +26,6 @@ const handleOnKeyDown = event => {
 const handleClick = event => {
   event.preventDefault();
   event.stopPropagation();
-};
-
-const getTabIndex = (isDropDown, innerTabIndex) => {
-  // if listbox is used in a the dropdown component remove listbox from
-  // the tab order to avoid an extra tab stop
-  const noTabStop = -1;
-
-  if (isDropDown) {
-    return noTabStop;
-  }
-  return innerTabIndex || 0;
 };
 
 /**
@@ -53,7 +43,7 @@ const ListBox = ({
   invalidText,
   light,
   innerTabIndex,
-  isDropDown,
+  isOpen,
   ...rest
 }) => {
   const className = cx({
@@ -62,6 +52,7 @@ const ListBox = ({
     [`${prefix}--list-box--inline`]: type === 'inline',
     [`${prefix}--list-box--disabled`]: disabled,
     [`${prefix}--list-box--light`]: light,
+    [`${prefix}--list-box--expanded`]: isOpen,
   });
   return (
     <>
@@ -69,7 +60,7 @@ const ListBox = ({
         {...rest}
         role="listbox"
         aria-label={ariaLabel}
-        tabIndex={getTabIndex(isDropDown, innerTabIndex)}
+        tabIndex={innerTabIndex || 0}
         className={className}
         ref={innerRef}
         onKeyDown={handleOnKeyDown}
@@ -86,7 +77,7 @@ const ListBox = ({
 };
 
 ListBox.propTypes = {
-  children: childrenOf([ListBoxField, ListBoxMenu]),
+  children: childrenOf([ListBoxField, ListBoxMenu, WarningFilled16]),
 
   /**
    * Specify a class name to be applied on the containing list box node
@@ -114,12 +105,6 @@ ListBox.propTypes = {
    * Specify the "aria-label" of the ListBox.
    */
   ariaLabel: PropTypes.string,
-
-  /**
-   * Specify if the listbox is rendered in a dropdown. If it is let Downshift handle
-   * tabindex
-   */
-  isDropDown: PropTypes.bool,
 };
 
 ListBox.defaultProps = {
@@ -127,7 +112,6 @@ ListBox.defaultProps = {
   disabled: false,
   type: 'default',
   ariaLabel: 'Choose an item',
-  isDropDown: false,
 };
 
 export default ListBox;
