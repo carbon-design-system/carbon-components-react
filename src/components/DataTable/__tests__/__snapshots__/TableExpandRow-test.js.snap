@@ -72,7 +72,15 @@ exports[`DataTable.TableExpandRow should render 1`] = `
           <tr
             className="bx--expandable-row"
             data-child-row={true}
-          />
+          >
+            <TableCell>
+              <td>
+                <div
+                  className="bx--child-row-inner-container"
+                />
+              </td>
+            </TableCell>
+          </tr>
         </TableExpandedRow>
       </tbody>
     </TableBody>

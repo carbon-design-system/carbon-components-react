@@ -148,20 +148,20 @@ exports[`DataTable selection -- radio buttons should not have select-all checkbo
                         >
                           Field A
                         </span>
-                        <CaretUpGlyph
+                        <ArrowUp20
                           aria-label="Sort rows by this header in ascending order"
                           className="bx--table-sort__icon"
-                          height={4}
+                          height={20}
                           preserveAspectRatio="xMidYMid meet"
-                          viewBox="0 0 8 4"
-                          width={8}
+                          viewBox="0 0 32 32"
+                          width={20}
                           xmlns="http://www.w3.org/2000/svg"
                         >
                           <svg
                             aria-label="Sort rows by this header in ascending order"
                             className="bx--table-sort__icon"
                             focusable="false"
-                            height={4}
+                            height={20}
                             preserveAspectRatio="xMidYMid meet"
                             role="img"
                             style={
@@ -169,15 +169,45 @@ exports[`DataTable selection -- radio buttons should not have select-all checkbo
                                 "willChange": "transform",
                               }
                             }
-                            viewBox="0 0 8 4"
-                            width={8}
+                            viewBox="0 0 32 32"
+                            width={20}
                             xmlns="http://www.w3.org/2000/svg"
                           >
                             <path
-                              d="M0 4l4-4 4 4z"
+                              d="M16 4L6 14l1.41 1.41L15 7.83V30h2V7.83l7.59 7.58L26 14 16 4z"
                             />
                           </svg>
-                        </CaretUpGlyph>
+                        </ArrowUp20>
+                        <ArrowsVertical20
+                          aria-label="Sort rows by this header in ascending order"
+                          className="bx--table-sort__icon-unsorted"
+                          height={20}
+                          preserveAspectRatio="xMidYMid meet"
+                          viewBox="0 0 32 32"
+                          width={20}
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <svg
+                            aria-label="Sort rows by this header in ascending order"
+                            className="bx--table-sort__icon-unsorted"
+                            focusable="false"
+                            height={20}
+                            preserveAspectRatio="xMidYMid meet"
+                            role="img"
+                            style={
+                              Object {
+                                "willChange": "transform",
+                              }
+                            }
+                            viewBox="0 0 32 32"
+                            width={20}
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M26.59 20.59L23 24.17V4h-2v20.17l-3.59-3.58L16 22l6 6 6-6-1.41-1.41zM10 4l-6 6 1.41 1.41L9 7.83V28h2V7.83l3.59 3.58L16 10l-6-6z"
+                            />
+                          </svg>
+                        </ArrowsVertical20>
                       </button>
                     </th>
                   </TableHeader>
@@ -203,20 +233,20 @@ exports[`DataTable selection -- radio buttons should not have select-all checkbo
                         >
                           Field B
                         </span>
-                        <CaretUpGlyph
+                        <ArrowUp20
                           aria-label="Sort rows by this header in ascending order"
                           className="bx--table-sort__icon"
-                          height={4}
+                          height={20}
                           preserveAspectRatio="xMidYMid meet"
-                          viewBox="0 0 8 4"
-                          width={8}
+                          viewBox="0 0 32 32"
+                          width={20}
                           xmlns="http://www.w3.org/2000/svg"
                         >
                           <svg
                             aria-label="Sort rows by this header in ascending order"
                             className="bx--table-sort__icon"
                             focusable="false"
-                            height={4}
+                            height={20}
                             preserveAspectRatio="xMidYMid meet"
                             role="img"
                             style={
@@ -224,15 +254,45 @@ exports[`DataTable selection -- radio buttons should not have select-all checkbo
                                 "willChange": "transform",
                               }
                             }
-                            viewBox="0 0 8 4"
-                            width={8}
+                            viewBox="0 0 32 32"
+                            width={20}
                             xmlns="http://www.w3.org/2000/svg"
                           >
                             <path
-                              d="M0 4l4-4 4 4z"
+                              d="M16 4L6 14l1.41 1.41L15 7.83V30h2V7.83l7.59 7.58L26 14 16 4z"
                             />
                           </svg>
-                        </CaretUpGlyph>
+                        </ArrowUp20>
+                        <ArrowsVertical20
+                          aria-label="Sort rows by this header in ascending order"
+                          className="bx--table-sort__icon-unsorted"
+                          height={20}
+                          preserveAspectRatio="xMidYMid meet"
+                          viewBox="0 0 32 32"
+                          width={20}
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <svg
+                            aria-label="Sort rows by this header in ascending order"
+                            className="bx--table-sort__icon-unsorted"
+                            focusable="false"
+                            height={20}
+                            preserveAspectRatio="xMidYMid meet"
+                            role="img"
+                            style={
+                              Object {
+                                "willChange": "transform",
+                              }
+                            }
+                            viewBox="0 0 32 32"
+                            width={20}
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M26.59 20.59L23 24.17V4h-2v20.17l-3.59-3.58L16 22l6 6 6-6-1.41-1.41zM10 4l-6 6 1.41 1.41L9 7.83V28h2V7.83l3.59 3.58L16 10l-6-6z"
+                            />
+                          </svg>
+                        </ArrowsVertical20>
                       </button>
                     </th>
                   </TableHeader>
@@ -553,20 +613,20 @@ exports[`DataTable selection -- radio buttons should render 1`] = `
                         >
                           Field A
                         </span>
-                        <CaretUpGlyph
+                        <ArrowUp20
                           aria-label="Sort rows by this header in ascending order"
                           className="bx--table-sort__icon"
-                          height={4}
+                          height={20}
                           preserveAspectRatio="xMidYMid meet"
-                          viewBox="0 0 8 4"
-                          width={8}
+                          viewBox="0 0 32 32"
+                          width={20}
                           xmlns="http://www.w3.org/2000/svg"
                         >
                           <svg
                             aria-label="Sort rows by this header in ascending order"
                             className="bx--table-sort__icon"
                             focusable="false"
-                            height={4}
+                            height={20}
                             preserveAspectRatio="xMidYMid meet"
                             role="img"
                             style={
@@ -574,15 +634,45 @@ exports[`DataTable selection -- radio buttons should render 1`] = `
                                 "willChange": "transform",
                               }
                             }
-                            viewBox="0 0 8 4"
-                            width={8}
+                            viewBox="0 0 32 32"
+                            width={20}
                             xmlns="http://www.w3.org/2000/svg"
                           >
                             <path
-                              d="M0 4l4-4 4 4z"
+                              d="M16 4L6 14l1.41 1.41L15 7.83V30h2V7.83l7.59 7.58L26 14 16 4z"
                             />
                           </svg>
-                        </CaretUpGlyph>
+                        </ArrowUp20>
+                        <ArrowsVertical20
+                          aria-label="Sort rows by this header in ascending order"
+                          className="bx--table-sort__icon-unsorted"
+                          height={20}
+                          preserveAspectRatio="xMidYMid meet"
+                          viewBox="0 0 32 32"
+                          width={20}
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <svg
+                            aria-label="Sort rows by this header in ascending order"
+                            className="bx--table-sort__icon-unsorted"
+                            focusable="false"
+                            height={20}
+                            preserveAspectRatio="xMidYMid meet"
+                            role="img"
+                            style={
+                              Object {
+                                "willChange": "transform",
+                              }
+                            }
+                            viewBox="0 0 32 32"
+                            width={20}
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M26.59 20.59L23 24.17V4h-2v20.17l-3.59-3.58L16 22l6 6 6-6-1.41-1.41zM10 4l-6 6 1.41 1.41L9 7.83V28h2V7.83l3.59 3.58L16 10l-6-6z"
+                            />
+                          </svg>
+                        </ArrowsVertical20>
                       </button>
                     </th>
                   </TableHeader>
@@ -608,20 +698,20 @@ exports[`DataTable selection -- radio buttons should render 1`] = `
                         >
                           Field B
                         </span>
-                        <CaretUpGlyph
+                        <ArrowUp20
                           aria-label="Sort rows by this header in ascending order"
                           className="bx--table-sort__icon"
-                          height={4}
+                          height={20}
                           preserveAspectRatio="xMidYMid meet"
-                          viewBox="0 0 8 4"
-                          width={8}
+                          viewBox="0 0 32 32"
+                          width={20}
                           xmlns="http://www.w3.org/2000/svg"
                         >
                           <svg
                             aria-label="Sort rows by this header in ascending order"
                             className="bx--table-sort__icon"
                             focusable="false"
-                            height={4}
+                            height={20}
                             preserveAspectRatio="xMidYMid meet"
                             role="img"
                             style={
@@ -629,15 +719,45 @@ exports[`DataTable selection -- radio buttons should render 1`] = `
                                 "willChange": "transform",
                               }
                             }
-                            viewBox="0 0 8 4"
-                            width={8}
+                            viewBox="0 0 32 32"
+                            width={20}
                             xmlns="http://www.w3.org/2000/svg"
                           >
                             <path
-                              d="M0 4l4-4 4 4z"
+                              d="M16 4L6 14l1.41 1.41L15 7.83V30h2V7.83l7.59 7.58L26 14 16 4z"
                             />
                           </svg>
-                        </CaretUpGlyph>
+                        </ArrowUp20>
+                        <ArrowsVertical20
+                          aria-label="Sort rows by this header in ascending order"
+                          className="bx--table-sort__icon-unsorted"
+                          height={20}
+                          preserveAspectRatio="xMidYMid meet"
+                          viewBox="0 0 32 32"
+                          width={20}
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <svg
+                            aria-label="Sort rows by this header in ascending order"
+                            className="bx--table-sort__icon-unsorted"
+                            focusable="false"
+                            height={20}
+                            preserveAspectRatio="xMidYMid meet"
+                            role="img"
+                            style={
+                              Object {
+                                "willChange": "transform",
+                              }
+                            }
+                            viewBox="0 0 32 32"
+                            width={20}
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M26.59 20.59L23 24.17V4h-2v20.17l-3.59-3.58L16 22l6 6 6-6-1.41-1.41zM10 4l-6 6 1.41 1.41L9 7.83V28h2V7.83l3.59 3.58L16 10l-6-6z"
+                            />
+                          </svg>
+                        </ArrowsVertical20>
                       </button>
                     </th>
                   </TableHeader>
@@ -1087,20 +1207,20 @@ exports[`DataTable selection should have select-all default to un-checked if no 
                         >
                           Field A
                         </span>
-                        <CaretUpGlyph
+                        <ArrowUp20
                           aria-label="Sort rows by this header in ascending order"
                           className="bx--table-sort__icon"
-                          height={4}
+                          height={20}
                           preserveAspectRatio="xMidYMid meet"
-                          viewBox="0 0 8 4"
-                          width={8}
+                          viewBox="0 0 32 32"
+                          width={20}
                           xmlns="http://www.w3.org/2000/svg"
                         >
                           <svg
                             aria-label="Sort rows by this header in ascending order"
                             className="bx--table-sort__icon"
                             focusable="false"
-                            height={4}
+                            height={20}
                             preserveAspectRatio="xMidYMid meet"
                             role="img"
                             style={
@@ -1108,15 +1228,45 @@ exports[`DataTable selection should have select-all default to un-checked if no 
                                 "willChange": "transform",
                               }
                             }
-                            viewBox="0 0 8 4"
-                            width={8}
+                            viewBox="0 0 32 32"
+                            width={20}
                             xmlns="http://www.w3.org/2000/svg"
                           >
                             <path
-                              d="M0 4l4-4 4 4z"
+                              d="M16 4L6 14l1.41 1.41L15 7.83V30h2V7.83l7.59 7.58L26 14 16 4z"
                             />
                           </svg>
-                        </CaretUpGlyph>
+                        </ArrowUp20>
+                        <ArrowsVertical20
+                          aria-label="Sort rows by this header in ascending order"
+                          className="bx--table-sort__icon-unsorted"
+                          height={20}
+                          preserveAspectRatio="xMidYMid meet"
+                          viewBox="0 0 32 32"
+                          width={20}
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <svg
+                            aria-label="Sort rows by this header in ascending order"
+                            className="bx--table-sort__icon-unsorted"
+                            focusable="false"
+                            height={20}
+                            preserveAspectRatio="xMidYMid meet"
+                            role="img"
+                            style={
+                              Object {
+                                "willChange": "transform",
+                              }
+                            }
+                            viewBox="0 0 32 32"
+                            width={20}
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M26.59 20.59L23 24.17V4h-2v20.17l-3.59-3.58L16 22l6 6 6-6-1.41-1.41zM10 4l-6 6 1.41 1.41L9 7.83V28h2V7.83l3.59 3.58L16 10l-6-6z"
+                            />
+                          </svg>
+                        </ArrowsVertical20>
                       </button>
                     </th>
                   </TableHeader>
@@ -1142,20 +1292,20 @@ exports[`DataTable selection should have select-all default to un-checked if no 
                         >
                           Field B
                         </span>
-                        <CaretUpGlyph
+                        <ArrowUp20
                           aria-label="Sort rows by this header in ascending order"
                           className="bx--table-sort__icon"
-                          height={4}
+                          height={20}
                           preserveAspectRatio="xMidYMid meet"
-                          viewBox="0 0 8 4"
-                          width={8}
+                          viewBox="0 0 32 32"
+                          width={20}
                           xmlns="http://www.w3.org/2000/svg"
                         >
                           <svg
                             aria-label="Sort rows by this header in ascending order"
                             className="bx--table-sort__icon"
                             focusable="false"
-                            height={4}
+                            height={20}
                             preserveAspectRatio="xMidYMid meet"
                             role="img"
                             style={
@@ -1163,15 +1313,45 @@ exports[`DataTable selection should have select-all default to un-checked if no 
                                 "willChange": "transform",
                               }
                             }
-                            viewBox="0 0 8 4"
-                            width={8}
+                            viewBox="0 0 32 32"
+                            width={20}
                             xmlns="http://www.w3.org/2000/svg"
                           >
                             <path
-                              d="M0 4l4-4 4 4z"
+                              d="M16 4L6 14l1.41 1.41L15 7.83V30h2V7.83l7.59 7.58L26 14 16 4z"
                             />
                           </svg>
-                        </CaretUpGlyph>
+                        </ArrowUp20>
+                        <ArrowsVertical20
+                          aria-label="Sort rows by this header in ascending order"
+                          className="bx--table-sort__icon-unsorted"
+                          height={20}
+                          preserveAspectRatio="xMidYMid meet"
+                          viewBox="0 0 32 32"
+                          width={20}
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <svg
+                            aria-label="Sort rows by this header in ascending order"
+                            className="bx--table-sort__icon-unsorted"
+                            focusable="false"
+                            height={20}
+                            preserveAspectRatio="xMidYMid meet"
+                            role="img"
+                            style={
+                              Object {
+                                "willChange": "transform",
+                              }
+                            }
+                            viewBox="0 0 32 32"
+                            width={20}
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M26.59 20.59L23 24.17V4h-2v20.17l-3.59-3.58L16 22l6 6 6-6-1.41-1.41zM10 4l-6 6 1.41 1.41L9 7.83V28h2V7.83l3.59 3.58L16 10l-6-6z"
+                            />
+                          </svg>
+                        </ArrowsVertical20>
                       </button>
                     </th>
                   </TableHeader>
@@ -1547,20 +1727,20 @@ exports[`DataTable selection should render 1`] = `
                         >
                           Field A
                         </span>
-                        <CaretUpGlyph
+                        <ArrowUp20
                           aria-label="Sort rows by this header in ascending order"
                           className="bx--table-sort__icon"
-                          height={4}
+                          height={20}
                           preserveAspectRatio="xMidYMid meet"
-                          viewBox="0 0 8 4"
-                          width={8}
+                          viewBox="0 0 32 32"
+                          width={20}
                           xmlns="http://www.w3.org/2000/svg"
                         >
                           <svg
                             aria-label="Sort rows by this header in ascending order"
                             className="bx--table-sort__icon"
                             focusable="false"
-                            height={4}
+                            height={20}
                             preserveAspectRatio="xMidYMid meet"
                             role="img"
                             style={
@@ -1568,15 +1748,45 @@ exports[`DataTable selection should render 1`] = `
                                 "willChange": "transform",
                               }
                             }
-                            viewBox="0 0 8 4"
-                            width={8}
+                            viewBox="0 0 32 32"
+                            width={20}
                             xmlns="http://www.w3.org/2000/svg"
                           >
                             <path
-                              d="M0 4l4-4 4 4z"
+                              d="M16 4L6 14l1.41 1.41L15 7.83V30h2V7.83l7.59 7.58L26 14 16 4z"
                             />
                           </svg>
-                        </CaretUpGlyph>
+                        </ArrowUp20>
+                        <ArrowsVertical20
+                          aria-label="Sort rows by this header in ascending order"
+                          className="bx--table-sort__icon-unsorted"
+                          height={20}
+                          preserveAspectRatio="xMidYMid meet"
+                          viewBox="0 0 32 32"
+                          width={20}
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <svg
+                            aria-label="Sort rows by this header in ascending order"
+                            className="bx--table-sort__icon-unsorted"
+                            focusable="false"
+                            height={20}
+                            preserveAspectRatio="xMidYMid meet"
+                            role="img"
+                            style={
+                              Object {
+                                "willChange": "transform",
+                              }
+                            }
+                            viewBox="0 0 32 32"
+                            width={20}
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M26.59 20.59L23 24.17V4h-2v20.17l-3.59-3.58L16 22l6 6 6-6-1.41-1.41zM10 4l-6 6 1.41 1.41L9 7.83V28h2V7.83l3.59 3.58L16 10l-6-6z"
+                            />
+                          </svg>
+                        </ArrowsVertical20>
                       </button>
                     </th>
                   </TableHeader>
@@ -1602,20 +1812,20 @@ exports[`DataTable selection should render 1`] = `
                         >
                           Field B
                         </span>
-                        <CaretUpGlyph
+                        <ArrowUp20
                           aria-label="Sort rows by this header in ascending order"
                           className="bx--table-sort__icon"
-                          height={4}
+                          height={20}
                           preserveAspectRatio="xMidYMid meet"
-                          viewBox="0 0 8 4"
-                          width={8}
+                          viewBox="0 0 32 32"
+                          width={20}
                           xmlns="http://www.w3.org/2000/svg"
                         >
                           <svg
                             aria-label="Sort rows by this header in ascending order"
                             className="bx--table-sort__icon"
                             focusable="false"
-                            height={4}
+                            height={20}
                             preserveAspectRatio="xMidYMid meet"
                             role="img"
                             style={
@@ -1623,15 +1833,45 @@ exports[`DataTable selection should render 1`] = `
                                 "willChange": "transform",
                               }
                             }
-                            viewBox="0 0 8 4"
-                            width={8}
+                            viewBox="0 0 32 32"
+                            width={20}
                             xmlns="http://www.w3.org/2000/svg"
                           >
                             <path
-                              d="M0 4l4-4 4 4z"
+                              d="M16 4L6 14l1.41 1.41L15 7.83V30h2V7.83l7.59 7.58L26 14 16 4z"
                             />
                           </svg>
-                        </CaretUpGlyph>
+                        </ArrowUp20>
+                        <ArrowsVertical20
+                          aria-label="Sort rows by this header in ascending order"
+                          className="bx--table-sort__icon-unsorted"
+                          height={20}
+                          preserveAspectRatio="xMidYMid meet"
+                          viewBox="0 0 32 32"
+                          width={20}
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <svg
+                            aria-label="Sort rows by this header in ascending order"
+                            className="bx--table-sort__icon-unsorted"
+                            focusable="false"
+                            height={20}
+                            preserveAspectRatio="xMidYMid meet"
+                            role="img"
+                            style={
+                              Object {
+                                "willChange": "transform",
+                              }
+                            }
+                            viewBox="0 0 32 32"
+                            width={20}
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M26.59 20.59L23 24.17V4h-2v20.17l-3.59-3.58L16 22l6 6 6-6-1.41-1.41zM10 4l-6 6 1.41 1.41L9 7.83V28h2V7.83l3.59 3.58L16 10l-6-6z"
+                            />
+                          </svg>
+                        </ArrowsVertical20>
                       </button>
                     </th>
                   </TableHeader>
@@ -2573,20 +2813,20 @@ exports[`DataTable should render 1`] = `
                         >
                           Field A
                         </span>
-                        <CaretUpGlyph
+                        <ArrowUp20
                           aria-label="Sort rows by this header in ascending order"
                           className="bx--table-sort__icon"
-                          height={4}
+                          height={20}
                           preserveAspectRatio="xMidYMid meet"
-                          viewBox="0 0 8 4"
-                          width={8}
+                          viewBox="0 0 32 32"
+                          width={20}
                           xmlns="http://www.w3.org/2000/svg"
                         >
                           <svg
                             aria-label="Sort rows by this header in ascending order"
                             className="bx--table-sort__icon"
                             focusable="false"
-                            height={4}
+                            height={20}
                             preserveAspectRatio="xMidYMid meet"
                             role="img"
                             style={
@@ -2594,15 +2834,45 @@ exports[`DataTable should render 1`] = `
                                 "willChange": "transform",
                               }
                             }
-                            viewBox="0 0 8 4"
-                            width={8}
+                            viewBox="0 0 32 32"
+                            width={20}
                             xmlns="http://www.w3.org/2000/svg"
                           >
                             <path
-                              d="M0 4l4-4 4 4z"
+                              d="M16 4L6 14l1.41 1.41L15 7.83V30h2V7.83l7.59 7.58L26 14 16 4z"
                             />
                           </svg>
-                        </CaretUpGlyph>
+                        </ArrowUp20>
+                        <ArrowsVertical20
+                          aria-label="Sort rows by this header in ascending order"
+                          className="bx--table-sort__icon-unsorted"
+                          height={20}
+                          preserveAspectRatio="xMidYMid meet"
+                          viewBox="0 0 32 32"
+                          width={20}
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <svg
+                            aria-label="Sort rows by this header in ascending order"
+                            className="bx--table-sort__icon-unsorted"
+                            focusable="false"
+                            height={20}
+                            preserveAspectRatio="xMidYMid meet"
+                            role="img"
+                            style={
+                              Object {
+                                "willChange": "transform",
+                              }
+                            }
+                            viewBox="0 0 32 32"
+                            width={20}
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M26.59 20.59L23 24.17V4h-2v20.17l-3.59-3.58L16 22l6 6 6-6-1.41-1.41zM10 4l-6 6 1.41 1.41L9 7.83V28h2V7.83l3.59 3.58L16 10l-6-6z"
+                            />
+                          </svg>
+                        </ArrowsVertical20>
                       </button>
                     </th>
                   </TableHeader>
@@ -2628,20 +2898,20 @@ exports[`DataTable should render 1`] = `
                         >
                           Field B
                         </span>
-                        <CaretUpGlyph
+                        <ArrowUp20
                           aria-label="Sort rows by this header in ascending order"
                           className="bx--table-sort__icon"
-                          height={4}
+                          height={20}
                           preserveAspectRatio="xMidYMid meet"
-                          viewBox="0 0 8 4"
-                          width={8}
+                          viewBox="0 0 32 32"
+                          width={20}
                           xmlns="http://www.w3.org/2000/svg"
                         >
                           <svg
                             aria-label="Sort rows by this header in ascending order"
                             className="bx--table-sort__icon"
                             focusable="false"
-                            height={4}
+                            height={20}
                             preserveAspectRatio="xMidYMid meet"
                             role="img"
                             style={
@@ -2649,15 +2919,45 @@ exports[`DataTable should render 1`] = `
                                 "willChange": "transform",
                               }
                             }
-                            viewBox="0 0 8 4"
-                            width={8}
+                            viewBox="0 0 32 32"
+                            width={20}
                             xmlns="http://www.w3.org/2000/svg"
                           >
                             <path
-                              d="M0 4l4-4 4 4z"
+                              d="M16 4L6 14l1.41 1.41L15 7.83V30h2V7.83l7.59 7.58L26 14 16 4z"
                             />
                           </svg>
-                        </CaretUpGlyph>
+                        </ArrowUp20>
+                        <ArrowsVertical20
+                          aria-label="Sort rows by this header in ascending order"
+                          className="bx--table-sort__icon-unsorted"
+                          height={20}
+                          preserveAspectRatio="xMidYMid meet"
+                          viewBox="0 0 32 32"
+                          width={20}
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <svg
+                            aria-label="Sort rows by this header in ascending order"
+                            className="bx--table-sort__icon-unsorted"
+                            focusable="false"
+                            height={20}
+                            preserveAspectRatio="xMidYMid meet"
+                            role="img"
+                            style={
+                              Object {
+                                "willChange": "transform",
+                              }
+                            }
+                            viewBox="0 0 32 32"
+                            width={20}
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M26.59 20.59L23 24.17V4h-2v20.17l-3.59-3.58L16 22l6 6 6-6-1.41-1.41zM10 4l-6 6 1.41 1.41L9 7.83V28h2V7.83l3.59 3.58L16 10l-6-6z"
+                            />
+                          </svg>
+                        </ArrowsVertical20>
                       </button>
                     </th>
                   </TableHeader>

@@ -535,11 +535,9 @@ describe('DataTable', () => {
                         ))}
                       </TableExpandRow>
                       {row.isExpanded && (
-                        <TableExpandedRow>
-                          <TableCell colSpan={headers.length + 3}>
-                            <h1>Expandable row content</h1>
-                            <p>Description here</p>
-                          </TableCell>
+                        <TableExpandedRow colSpan={headers.length + 3}>
+                          <h1>Expandable row content</h1>
+                          <p>Description here</p>
                         </TableExpandedRow>
                       )}
                     </React.Fragment>
