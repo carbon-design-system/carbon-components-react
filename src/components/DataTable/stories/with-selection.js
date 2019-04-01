@@ -31,7 +31,7 @@ export default () => (
       getSelectionProps,
     }) => (
       <TableContainer title="DataTable" description="With selection">
-        <Table>
+        <Table sortable={true}>
           <TableHead>
             <TableRow>
               <TableSelectAll {...getSelectionProps()} />

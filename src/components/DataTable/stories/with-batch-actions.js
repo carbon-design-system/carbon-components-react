@@ -79,7 +79,7 @@ export default () => (
             </Button>
           </TableToolbarContent>
         </TableToolbar>
-        <Table>
+        <Table sortable={true}>
           <TableHead>
             <TableRow>
               <TableSelectAll {...getSelectionProps()} />

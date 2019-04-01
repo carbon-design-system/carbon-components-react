@@ -33,7 +33,7 @@ export default () => (
       <TableContainer
         title="DataTable"
         description="With radio button selection">
-        <Table>
+        <Table sortable={true}>
           <TableHead>
             <TableRow>
               <th scope="col" />

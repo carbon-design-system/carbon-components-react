@@ -55,7 +55,7 @@ export default () => (
             </Button>
           </TableToolbarContent>
         </TableToolbar>
-        <Table>
+        <Table sortable={true}>
           <TableHead>
             <TableRow>
               {headers.map(header => (

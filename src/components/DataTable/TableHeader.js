@@ -9,7 +9,8 @@ import cx from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { settings } from 'carbon-components';
-import CaretUpGlyph from '@carbon/icons-react/lib/caret--up';
+import Arrow from '@carbon/icons-react/lib/arrow--up/20';
+import Arrows from '@carbon/icons-react/lib/arrows--vertical/20';
 import { sortStates } from './state/sorting';
 
 const { prefix } = settings;
@@ -76,8 +77,17 @@ const TableHeader = ({
     <th scope={scope} className={headerClassName} aria-sort={ariaSort}>
       <button className={className} onClick={onClick} {...rest}>
         <span className={`${prefix}--table-header-label`}>{children}</span>
-        <CaretUpGlyph
+        <Arrow
           className={`${prefix}--table-sort__icon`}
+          aria-label={t('carbon.table.header.icon.description', {
+            header: children,
+            sortDirection,
+            isSortHeader,
+            sortStates,
+          })}
+        />
+        <Arrows
+          className={`${prefix}--table-sort__icon-unsorted`}
           aria-label={t('carbon.table.header.icon.description', {
             header: children,
             sortDirection,
