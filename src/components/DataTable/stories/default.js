@@ -82,7 +82,7 @@ export default ({ short, shouldShowBorder }) => (
             </Button>
           </TableToolbarContent>
         </TableToolbar>
-        <Table {...getTableProps()}>
+        <Table sortable={true} {...getTableProps()}>
           <TableHead>
             <TableRow>
               <TableSelectAll {...getSelectionProps()} />
