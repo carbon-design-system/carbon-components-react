@@ -278,16 +278,16 @@ export default class ComboBox extends React.Component {
             invalidText={invalidText}
             light={light}
             {...getRootProps({ refKey: 'innerRef' })}>
-            {componentsX && invalid && (
-              <WarningFilled16
-                className={`${prefix}--list-box__invalid-icon`}
-              />
-            )}
             <ListBox.Field
               {...getButtonProps({
                 disabled,
                 onClick: this.onToggleClick(isOpen),
               })}>
+              {componentsX && invalid && (
+                <WarningFilled16
+                  className={`${prefix}--list-box__invalid-icon`}
+                />
+              )}
               <input
                 className={`${prefix}--text-input`}
                 aria-label={ariaLabel}
