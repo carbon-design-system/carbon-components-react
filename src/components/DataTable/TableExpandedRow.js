@@ -7,7 +7,7 @@
 
 import cx from 'classnames';
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useRef } from 'react';
 import { settings } from 'carbon-components';
 import TableCell from './TableCell';
 
@@ -19,9 +19,33 @@ const TableExpandedRow = ({
   colSpan,
   ...rest
 }) => {
+  const rowRef = useRef(null);
   const className = cx(`${prefix}--expandable-row`, customClassName);
+
+  const onMouseEnter = () => {
+    if (rowRef && rowRef.current) {
+      rowRef.current.previousSibling.classList.add(
+        `${prefix}--expandable-row--hover`
+      );
+    }
+  };
+
+  const onMouseLeave = () => {
+    if (rowRef && rowRef.current) {
+      rowRef.current.previousSibling.classList.remove(
+        `${prefix}--expandable-row--hover`
+      );
+    }
+  };
+
   return (
-    <tr {...rest} className={className} data-child-row>
+    <tr
+      ref={rowRef}
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
+      {...rest}
+      className={className}
+      data-child-row>
       <TableCell colSpan={colSpan}>
         <div className={`${prefix}--child-row-inner-container`}>{children}</div>
       </TableCell>
