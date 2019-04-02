@@ -101,9 +101,9 @@ export default class PasswordInput extends React.Component {
         );
       }
       return passwordIsVisible ? (
-        <ViewOff16 classname={`${prefix}--icon-visibility-off`} />
+        <ViewOff16 className={`${prefix}--icon-visibility-off`} />
       ) : (
-        <View16 classname={`${prefix}--icon-visibility-on`} />
+        <View16 className={`${prefix}--icon-visibility-on`} />
       );
     })();
     const input = (
