@@ -16,6 +16,8 @@ import Close20 from '@carbon/icons-react/lib/close/20';
 import { breakingChangesX, componentsX } from '../../internal/FeatureFlags';
 import FocusTrap from 'focus-trap-react';
 
+const createFocusTrap = FocusTrap.defaultProps._createFocusTrap;
+
 const { prefix } = settings;
 
 const matchesFuncName =
@@ -225,24 +227,36 @@ export default class Modal extends Component {
     }
   }
 
-  focusButton = focusContainerElement => {
+  initialFocus = focusContainerElement => {
     const primaryFocusElement = focusContainerElement
       ? focusContainerElement.querySelector(this.props.selectorPrimaryFocus)
       : null;
     if (primaryFocusElement) {
-      primaryFocusElement.focus();
-      return;
+      return primaryFocusElement;
     }
-    if (this.button && this.button.current) {
-      this.button.current.focus();
+    return this.button && this.button.current;
+  };
+
+  focusButton = focusContainerElement => {
+    const target = this.initialFocus(focusContainerElement);
+    if (target) {
+      target.focus();
     }
+  };
+
+  createFocusTrap = elem => {
+    return createFocusTrap(elem, {
+      initialFocus: this.initialFocus,
+    });
   };
 
   componentDidMount() {
     if (!this.props.open) {
       return;
     }
-    this.focusButton(this.innerModal.current);
+    if (!this.props.focusTrap) {
+      this.focusButton(this.innerModal.current);
+    }
   }
 
   handleTransitionEnd = evt => {
@@ -251,7 +265,9 @@ export default class Modal extends Component {
       this.outerModal.current.offsetHeight &&
       this.beingOpen
     ) {
-      this.focusButton(evt.currentTarget);
+      if (!this.props.focusTrap) {
+        this.focusButton(evt.currentTarget);
+      }
       this.beingOpen = false;
     }
   };
@@ -347,22 +363,27 @@ export default class Modal extends Component {
       </div>
     );
 
-    return (
-      <FocusTrap active={open && focusTrap}>
-        <div
-          {...other}
-          onKeyDown={this.handleKeyDown}
-          onClick={this.handleClick}
-          onBlur={this.handleBlur}
-          className={modalClasses}
-          role="presentation"
-          tabIndex={-1}
-          onTransitionEnd={
-            this.props.open ? this.handleTransitionEnd : undefined
-          }
-          ref={this.outerModal}>
-          {modalBody}
-        </div>
+    const modal = (
+      <div
+        {...other}
+        onKeyDown={this.handleKeyDown}
+        onClick={this.handleClick}
+        onBlur={this.handleBlur}
+        className={modalClasses}
+        role="presentation"
+        tabIndex={-1}
+        onTransitionEnd={this.props.open ? this.handleTransitionEnd : undefined}
+        ref={this.outerModal}>
+        {modalBody}
+      </div>
+    );
+
+    return !focusTrap ? (
+      modal
+    ) : (
+      // `<FocusTrap>` has `active: true` in its `defaultProps`
+      <FocusTrap active={!!open} _createFocusTrap={this.createFocusTrap}>
+        {modal}
       </FocusTrap>
     );
   }
