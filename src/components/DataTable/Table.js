@@ -18,13 +18,13 @@ export const Table = ({
   children,
   short,
   shouldShowBorder,
-  sortable,
+  isSortable,
   ...other
 }) => {
   const componentClass = cx(`${prefix}--data-table`, className, {
     [`${prefix}--data-table--zebra`]: zebra,
     [`${prefix}--data-table--short`]: short,
-    [`${prefix}--data-table--sort`]: sortable,
+    [`${prefix}--data-table--sort`]: isSortable,
     [`${prefix}--data-table--no-border`]: !shouldShowBorder,
   });
   return (
@@ -53,7 +53,7 @@ Table.propTypes = {
   /**
    * `false` Applies styles for data tables with sorting functionality.
    */
-  sortable: PropTypes.bool,
+  isSortable: PropTypes.bool,
 
   /**
    * `true` for data table without borders.
