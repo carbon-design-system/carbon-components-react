@@ -66,7 +66,7 @@ export default class ComboBox extends React.Component {
     /**
      * Specify a custom `id` for the input
      */
-    id: PropTypes.string,
+    id: PropTypes.string.isRequired,
 
     /**
      * Allow users to pass in an arbitrary item or a string (in case their items are an array of strings)
@@ -279,6 +279,7 @@ export default class ComboBox extends React.Component {
             light={light}
             {...getRootProps({ refKey: 'innerRef' })}>
             <ListBox.Field
+              id={id}
               {...getButtonProps({
                 disabled,
                 onClick: this.onToggleClick(isOpen),
@@ -312,7 +313,7 @@ export default class ComboBox extends React.Component {
               />
             </ListBox.Field>
             {isOpen && (
-              <ListBox.Menu aria-label={ariaLabel}>
+              <ListBox.Menu aria-label={ariaLabel} id={id}>
                 {this.filterItems(items, itemToString, inputValue).map(
                   (item, index) => (
                     <ListBox.MenuItem

@@ -38,6 +38,7 @@ const items = [
 ];
 
 const props = () => ({
+  id: text('Combobox ID (id)', 'carbon-combobox-example'),
   placeholder: text('Placeholder text (placeholder)', 'Filter...'),
   titleText: text('Title (titleText)', 'Combobox title'),
   helperText: text('Helper text (helperText)', 'Optional helper text here'),

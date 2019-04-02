@@ -47,6 +47,11 @@ export default class Dropdown extends React.Component {
     ]),
 
     /**
+     * Specify a custom `id`
+     */
+    id: PropTypes.string.isRequired,
+
+    /**
      * Specify whether you want the inline version of this control
      */
     inline: PropTypes.bool,
@@ -224,7 +229,7 @@ export default class Dropdown extends React.Component {
                   className={`${prefix}--list-box__invalid-icon`}
                 />
               )}
-              <ListBox.Field {...getButtonProps({ disabled })}>
+              <ListBox.Field id={id} {...getButtonProps({ disabled })}>
                 <span
                   className={`${prefix}--list-box__label`}
                   {...getLabelProps()}>
@@ -233,7 +238,7 @@ export default class Dropdown extends React.Component {
                 <ListBox.MenuIcon isOpen={isOpen} />
               </ListBox.Field>
               {isOpen && (
-                <ListBox.Menu aria-label={ariaLabel}>
+                <ListBox.Menu aria-label={ariaLabel} id={id}>
                   {items.map((item, index) => (
                     <ListBox.MenuItem
                       key={itemToString(item)}
