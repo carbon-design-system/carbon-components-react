@@ -233,7 +233,7 @@ export default class Dropdown extends React.Component {
                 <ListBox.MenuIcon isOpen={isOpen} />
               </ListBox.Field>
               {isOpen && (
-                <ListBox.Menu>
+                <ListBox.Menu aria-label={ariaLabel}>
                   {items.map((item, index) => (
                     <ListBox.MenuItem
                       key={itemToString(item)}

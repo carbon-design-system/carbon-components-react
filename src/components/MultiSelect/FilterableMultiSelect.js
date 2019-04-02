@@ -212,6 +212,7 @@ export default class FilterableMultiSelect extends React.Component {
   render() {
     const { highlightedIndex, isOpen, inputValue } = this.state;
     const {
+      ariaLabel,
       className: containerClassName,
       disabled,
       filterItems,
@@ -293,7 +294,7 @@ export default class FilterableMultiSelect extends React.Component {
                   />
                 </ListBox.Field>
                 {isOpen && (
-                  <ListBox.Menu>
+                  <ListBox.Menu aria-label={ariaLabel}>
                     {componentsX
                       ? filterItems(items, { itemToString, inputValue }).map(
                           (item, index) => {

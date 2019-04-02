@@ -187,6 +187,7 @@ export default class MultiSelect extends React.Component {
   render() {
     const { highlightedIndex, isOpen } = this.state;
     const {
+      ariaLabel,
       className: containerClassName,
       items,
       itemToString,
@@ -249,7 +250,7 @@ export default class MultiSelect extends React.Component {
                   />
                 </ListBox.Field>
                 {isOpen && (
-                  <ListBox.Menu>
+                  <ListBox.Menu aria-label={ariaLabel}>
                     {componentsX
                       ? items.map((item, index) => {
                           const itemProps = getItemProps({ item });

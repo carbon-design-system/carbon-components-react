@@ -312,7 +312,7 @@ export default class ComboBox extends React.Component {
               />
             </ListBox.Field>
             {isOpen && (
-              <ListBox.Menu>
+              <ListBox.Menu aria-label={ariaLabel}>
                 {this.filterItems(items, itemToString, inputValue).map(
                   (item, index) => (
                     <ListBox.MenuItem
