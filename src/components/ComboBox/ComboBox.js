@@ -149,7 +149,7 @@ export default class ComboBox extends React.Component {
     itemToString: defaultItemToString,
     shouldFilterItem: defaultShouldFilterItem,
     type: 'default',
-    ariaLabel: 'ListBox input field',
+    ariaLabel: 'Choose an item',
     light: false,
   };
 
@@ -292,6 +292,8 @@ export default class ComboBox extends React.Component {
               <input
                 className={`${prefix}--text-input`}
                 aria-label={ariaLabel}
+                aria-controls={`${id}__menu`}
+                aria-autocomplete="list"
                 ref={this.textInput}
                 {...rest}
                 {...getInputProps({

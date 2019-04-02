@@ -112,6 +112,7 @@ export default class FilterableMultiSelect extends React.Component {
   }
 
   static defaultProps = {
+    ariaLabel: 'Choose an item',
     compareItems: defaultCompareItems,
     disabled: false,
     filterItems: defaultFilterItems,
@@ -282,6 +283,8 @@ export default class FilterableMultiSelect extends React.Component {
                   )}
                   <input
                     className={`${prefix}--text-input`}
+                    aria-controls={`${id}__menu`}
+                    aria-autocomplete="list"
                     ref={el => (this.inputNode = el)}
                     {...getInputProps({
                       disabled,
