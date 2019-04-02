@@ -1,8 +1,15 @@
 import React from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
+import { settings } from 'carbon-components';
+import View16 from '@carbon/icons-react/lib/view/16';
+import ViewOff16 from '@carbon/icons-react/lib/view--off/16';
+import WarningFilled16 from '@carbon/icons-react/lib/warning--filled/16';
 import Icon from '../Icon';
 import { textInputProps, togglePasswordVisibilityIconProps } from './util';
+import { componentsX } from '../../internal/FeatureFlags';
+
+const { prefix } = settings;
 
 export default class PasswordInput extends React.Component {
   state = {
@@ -32,17 +39,15 @@ export default class PasswordInput extends React.Component {
       ...other
     } = this.props;
     const errorId = id + '-error-msg';
-    const textInputClasses = classNames('bx--text-input', className, {
-      'bx--text-input--light': light,
-    });
-    const labelClasses = classNames('bx--label', {
-      'bx--visually-hidden': hideLabel,
-    });
-    const label = labelText ? (
-      <label htmlFor={id} className={labelClasses}>
-        {labelText}
-      </label>
-    ) : null;
+    const textInputClasses = classNames(
+      `${prefix}--text-input`,
+      `${prefix}--password-input`,
+      className,
+      {
+        [`${prefix}--text-input--light`]: light,
+        [`${prefix}--text-input--invalid`]: invalid,
+      }
+    );
     const sharedTextInputProps = {
       id,
       onChange: evt => {
@@ -60,12 +65,47 @@ export default class PasswordInput extends React.Component {
       className: textInputClasses,
       ...other,
     };
+    const labelClasses = classNames(`${prefix}--label`, {
+      [`${prefix}--visually-hidden`]: hideLabel,
+      [`${prefix}--label--disabled`]: other.disabled,
+    });
+    const helperTextClasses = classNames(`${prefix}--form__helper-text`, {
+      [`${prefix}--form__helper-text--disabled`]: other.disabled,
+    });
+    const label = labelText ? (
+      <label htmlFor={id} className={labelClasses}>
+        {labelText}
+      </label>
+    ) : null;
     const error = invalid ? (
-      <div className="bx--form-requirement" id={errorId}>
+      <div className={`${prefix}--form-requirement`} id={errorId}>
         {invalidText}
       </div>
     ) : null;
     const passwordIsVisible = this.state.type === 'text';
+    const passwordVisibilityToggleButtonClasses = classNames(
+      `${prefix}--text-input--password__visibility`,
+      `${prefix}--tooltip__trigger`,
+      `${prefix}--tooltip--icon__bottom`,
+      {}
+    );
+    const passwordVisibilityIcon = (() => {
+      if (!componentsX) {
+        return (
+          <Icon
+            {...togglePasswordVisibilityIconProps({
+              passwordIsVisible,
+              alt,
+            })}
+          />
+        );
+      }
+      return passwordIsVisible ? (
+        <ViewOff16 classname={`${prefix}--icon-visibility-off`} />
+      ) : (
+        <View16 classname={`${prefix}--icon-visibility-on`} />
+      );
+    })();
     const input = (
       <>
         <input
@@ -73,27 +113,37 @@ export default class PasswordInput extends React.Component {
           data-toggle-password-visibility={this.state.type === 'password'}
         />
         <button
-          className="bx--text-input--password__visibility bx--tooltip__trigger bx--tooltip--icon__bottom"
+          className={passwordVisibilityToggleButtonClasses}
           aria-label={alt || `${passwordIsVisible ? 'Hide' : 'Show'} password`}
           onClick={this.togglePasswordVisibility}>
-          <Icon
-            {...togglePasswordVisibilityIconProps({
-              passwordIsVisible,
-              alt,
-            })}
-          />
+          {passwordVisibilityIcon}
         </button>
       </>
     );
     const helper = helperText ? (
-      <div className="bx--form__helper-text">{helperText}</div>
+      <div className={helperTextClasses}>{helperText}</div>
     ) : null;
+    const textInputWrapperClasses = classNames(`${prefix}--form-item`, {
+      [`${prefix}--text-input-wrapper`]: componentsX,
+      [`${prefix}--password-input-wrapper`]: componentsX,
+    });
 
     return (
-      <div className="bx--form-item bx--text-input-wrapper">
+      <div className={textInputWrapperClasses}>
         {label}
-        {input}
         {helper}
+        {componentsX ? (
+          <div className={`${prefix}--text-input__field-wrapper`}>
+            {invalid && (
+              <WarningFilled16
+                className={`${prefix}--text-input__invalid-icon`}
+              />
+            )}
+            {input}
+          </div>
+        ) : (
+          input
+        )}
         {error}
       </div>
     );
