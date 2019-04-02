@@ -2,7 +2,7 @@ import React from 'react';
 import PasswordInput from './PasswordInput';
 import { mount, shallow } from 'enzyme';
 
-describe('TextInput', () => {
+describe('PasswordInput', () => {
   describe('renders as expected', () => {
     const wrapper = mount(
       <PasswordInput
@@ -14,48 +14,48 @@ describe('TextInput', () => {
       />
     );
 
-    const textInput = () => wrapper.find('input');
+    const passwordInput = () => wrapper.find('input');
 
     describe('input', () => {
       it('renders as expected', () => {
-        expect(textInput().length).toBe(1);
+        expect(passwordInput().length).toBe(1);
       });
 
       it('has the expected classes', () => {
-        expect(textInput().hasClass('bx--text-input')).toEqual(true);
+        expect(passwordInput().hasClass('bx--text-input')).toEqual(true);
       });
 
       it('should add extra classes that are passed via className', () => {
-        expect(textInput().hasClass('extra-class')).toEqual(true);
+        expect(passwordInput().hasClass('extra-class')).toEqual(true);
       });
 
       it('has the expected classes for light', () => {
         wrapper.setProps({ light: true });
-        expect(textInput().hasClass('bx--text-input--light')).toEqual(true);
+        expect(passwordInput().hasClass('bx--text-input--light')).toEqual(true);
       });
 
       it('should set type as expected', () => {
-        expect(textInput().props().type).toEqual('password');
+        expect(passwordInput().props().type).toEqual('password');
         wrapper.find('button').simulate('click');
-        expect(textInput().props().type).toEqual('text');
+        expect(passwordInput().props().type).toEqual('text');
       });
 
       it('should set value as expected', () => {
-        expect(textInput().props().defaultValue).toEqual(undefined);
+        expect(passwordInput().props().defaultValue).toEqual(undefined);
         wrapper.setProps({ defaultValue: 'test' });
-        expect(textInput().props().defaultValue).toEqual('test');
+        expect(passwordInput().props().defaultValue).toEqual('test');
       });
 
       it('should set disabled as expected', () => {
-        expect(textInput().props().disabled).toEqual(false);
+        expect(passwordInput().props().disabled).toEqual(false);
         wrapper.setProps({ disabled: true });
-        expect(textInput().props().disabled).toEqual(true);
+        expect(passwordInput().props().disabled).toEqual(true);
       });
 
       it('should set placeholder as expected', () => {
-        expect(textInput().props().placeholder).not.toBeDefined();
+        expect(passwordInput().props().placeholder).not.toBeDefined();
         wrapper.setProps({ placeholder: 'Enter text' });
-        expect(textInput().props().placeholder).toEqual('Enter text');
+        expect(passwordInput().props().placeholder).toEqual('Enter text');
       });
     });
 
