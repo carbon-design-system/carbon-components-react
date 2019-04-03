@@ -58,11 +58,22 @@ export default class SideNav extends React.Component {
 
     this.state = {
       isExpanded: props.defaultExpanded,
+      isFocused: false,
     };
   }
 
   handleExpand = () => {
     this.setState(state => ({ isExpanded: !state.isExpanded }));
+  };
+
+  handleFocus = () => {
+    this.setState(state => {
+      if (!state.isFocused) return { isFocused: true };
+    });
+  };
+
+  handleBlur = () => {
+    this.setState(() => ({ isFocused: false }));
   };
 
   render() {
@@ -73,24 +84,28 @@ export default class SideNav extends React.Component {
       className: customClassName,
       translateById: t,
     } = this.props;
-    const { isExpanded } = this.state;
+    const { isExpanded, isFocused } = this.state;
     const accessibilityLabel = {
       'aria-label': ariaLabel,
       'aria-labelledby': ariaLabelledBy,
     };
-    const assistiveText = isExpanded
-      ? t('carbon.sidenav.state.open')
-      : t('carbon.sidenav.state.closed');
+    const assistiveText =
+      isExpanded || isFocused
+        ? t('carbon.sidenav.state.open')
+        : t('carbon.sidenav.state.closed');
     const className = cx({
       [`${prefix}--side-nav`]: true,
       [`${prefix}--side-nav--expanded`]: isExpanded,
+      [`${prefix}--side-nav--focused`]: isFocused,
       [customClassName]: !!customClassName,
     });
 
     return (
       <nav
         className={`${prefix}--side-nav__navigation ${className}`}
-        {...accessibilityLabel}>
+        {...accessibilityLabel}
+        onFocus={this.handleFocus}
+        onBlur={this.handleBlur}>
         {children}
         <SideNavFooter
           assistiveText={assistiveText}
