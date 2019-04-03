@@ -13,7 +13,8 @@ import Icon from '../Icon';
 import Button from '../Button';
 import { settings } from 'carbon-components';
 import Close20 from '@carbon/icons-react/lib/close/20';
-import { componentsX } from '../../internal/FeatureFlags';
+import { breakingChangesX, componentsX } from '../../internal/FeatureFlags';
+import FocusTrap from 'focus-trap-react';
 
 const { prefix } = settings;
 
@@ -125,6 +126,12 @@ export default class Modal extends Component {
      * be focused when the Modal opens
      */
     selectorPrimaryFocus: PropTypes.string,
+
+    /**
+     * Specify whether the modal should be a focus trap. NOTE: by default
+     * this is true
+     */
+    focusTrap: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -137,6 +144,7 @@ export default class Modal extends Component {
     modalHeading: '',
     modalLabel: '',
     selectorPrimaryFocus: '[data-modal-primary-focus]',
+    focusTrap: true,
   };
 
   button = React.createRef();
@@ -153,7 +161,7 @@ export default class Modal extends Component {
     } = this.props;
     if (target && typeof target.closest === 'function') {
       return selectorsFloatingMenus.some(selector => target.closest(selector));
-    } else {
+    } else if (!breakingChangesX) {
       // Alternative if closest does not exist.
       while (target) {
         if (typeof target[matchesFuncName] === 'function') {
@@ -266,6 +274,7 @@ export default class Modal extends Component {
       selectorPrimaryFocus, // eslint-disable-line
       selectorsFloatingMenus, // eslint-disable-line
       shouldSubmitOnEnter, // eslint-disable-line
+      focusTrap,
       ...other
     } = this.props;
 
@@ -286,10 +295,10 @@ export default class Modal extends Component {
         className={`${prefix}--modal-close`}
         type="button"
         onClick={onRequestClose}
+        title={iconDescription}
         ref={this.button}>
         {componentsX ? (
           <Close20
-            alt={iconDescription}
             aria-label={iconDescription}
             className={`${prefix}--modal-close__icon`}
           />
@@ -339,18 +348,22 @@ export default class Modal extends Component {
     );
 
     return (
-      <div
-        {...other}
-        onKeyDown={this.handleKeyDown}
-        onClick={this.handleClick}
-        onBlur={this.handleBlur}
-        className={modalClasses}
-        role="presentation"
-        tabIndex={-1}
-        onTransitionEnd={this.props.open ? this.handleTransitionEnd : undefined}
-        ref={this.outerModal}>
-        {modalBody}
-      </div>
+      <FocusTrap active={open && focusTrap}>
+        <div
+          {...other}
+          onKeyDown={this.handleKeyDown}
+          onClick={this.handleClick}
+          onBlur={this.handleBlur}
+          className={modalClasses}
+          role="presentation"
+          tabIndex={-1}
+          onTransitionEnd={
+            this.props.open ? this.handleTransitionEnd : undefined
+          }
+          ref={this.outerModal}>
+          {modalBody}
+        </div>
+      </FocusTrap>
     );
   }
 }

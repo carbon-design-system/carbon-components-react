@@ -39,9 +39,15 @@ const matchesFuncName =
  * @returns {boolean} `true` if the given DOM element is a element node and matches the given selector.
  * @private
  */
-const matches = (elem, selector) =>
-  typeof elem[matchesFuncName] === 'function' &&
-  elem[matchesFuncName](selector);
+const matches = (elem, selector) => {
+  if (breakingChangesX) {
+    return elem.matches(selector);
+  }
+  return (
+    typeof elem[matchesFuncName] === 'function' &&
+    elem[matchesFuncName](selector)
+  );
+};
 
 /**
  * @param {Element} elem An element.
@@ -50,6 +56,9 @@ const matches = (elem, selector) =>
  * @private
  */
 const closest = (elem, selector) => {
+  if (breakingChangesX) {
+    return elem.closest(selector);
+  }
   const doc = elem.ownerDocument;
   for (
     let traverse = elem;
@@ -438,6 +447,11 @@ class Tooltip extends Component {
           'aria-owns': tooltipId,
         };
 
+    const ariaDescribedbyProps = !open
+      ? {}
+      : {
+          'aria-describedby': tooltipId,
+        };
     const finalIcon = IconCustomElement ? (
       <IconCustomElement
         name={iconName}
@@ -470,6 +484,7 @@ class Tooltip extends Component {
                 id={triggerId}
                 className={`${prefix}--tooltip__trigger`}
                 tabIndex={tabIndex}
+                title={iconTitle}
                 onClick={this.handleMouse}
                 onKeyDown={this.handleKeyPress}
                 onMouseOver={this.handleMouse}
@@ -479,6 +494,7 @@ class Tooltip extends Component {
                 aria-haspopup="true"
                 aria-label={iconDescription}
                 aria-expanded={open}
+                {...ariaDescribedbyProps}
                 {...ariaOwnsProps}>
                 {finalIcon}
               </div>
@@ -492,12 +508,15 @@ class Tooltip extends Component {
               ref={mergeRefs(ref, node => {
                 this.triggerEl = node;
               })}
+              onClick={this.handleMouse}
+              onKeyDown={this.handleKeyPress}
               onMouseOver={this.handleMouse}
               onMouseOut={this.handleMouse}
               onFocus={this.handleMouse}
               onBlur={this.handleMouse}
               aria-haspopup="true"
               aria-expanded={open}
+              {...ariaDescribedbyProps}
               {...ariaOwnsProps}>
               {triggerText}
             </div>

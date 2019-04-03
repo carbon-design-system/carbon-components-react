@@ -90,8 +90,9 @@ export default class DatePickerInput extends Component {
             className={`${prefix}--date-picker__icon`}
             aria-label={iconDescription}
             onClick={openCalendar}
-            role="img"
-          />
+            role="img">
+            {iconDescription && <title>{iconDescription}</title>}
+          </Calendar16>
         );
       }
       return (
@@ -142,9 +143,21 @@ export default class DatePickerInput extends Component {
 
     return (
       <div className={containerClasses}>
-        {datePickerIcon}
-        {label}
-        {input}
+        {componentsX ? (
+          <>
+            {label}
+            <div className={`${prefix}--date-picker-input__wrapper`}>
+              {input}
+              {datePickerIcon}
+            </div>
+          </>
+        ) : (
+          <>
+            {datePickerIcon}
+            {label}
+            {input}
+          </>
+        )}
         {error}
       </div>
     );

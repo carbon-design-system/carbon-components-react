@@ -94,12 +94,12 @@ export default class CopyButton extends Component {
         type="button"
         className={classNames}
         onClick={this.handleClick}
+        title={iconDescription}
         {...other}>
         {componentsX ? (
           <Copy16
             className={`${prefix}--snippet__icon`}
             aria-label={iconDescription}
-            alt={iconDescription}
           />
         ) : (
           <Icon

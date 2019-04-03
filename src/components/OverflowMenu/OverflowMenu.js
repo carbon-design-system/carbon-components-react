@@ -40,9 +40,15 @@ const matchesFuncName =
  * @returns {boolean} `true` if the given DOM element is a element node and matches the given selector.
  * @private
  */
-const matches = (elem, selector) =>
-  typeof elem[matchesFuncName] === 'function' &&
-  elem[matchesFuncName](selector);
+const matches = (elem, selector) => {
+  if (breakingChangesX) {
+    return elem.matches(selector);
+  }
+  return (
+    typeof elem[matchesFuncName] === 'function' &&
+    elem[matchesFuncName](selector)
+  );
+};
 
 const on = (element, ...args) => {
   element.addEventListener(...args);
@@ -61,6 +67,9 @@ const on = (element, ...args) => {
  * @private
  */
 const closest = (elem, selector) => {
+  if (breakingChangesX) {
+    return elem.closest(selector);
+  }
   const doc = elem.ownerDocument;
   for (
     let traverse = elem;
@@ -142,7 +151,8 @@ export const getMenuOffset = (menuBody, direction, trigger, flip) => {
     switch (triggerButtonPositionProp) {
       case 'top':
       case 'bottom': {
-        const triggerWidth = trigger.offsetWidth;
+        // TODO: Ensure `trigger` is there for `<OverflowMenu open>`
+        const triggerWidth = !trigger ? 0 : trigger.offsetWidth;
         return {
           left: (!flip ? 1 : -1) * (menuWidth / 2 - triggerWidth / 2),
           top: 0,
@@ -150,7 +160,8 @@ export const getMenuOffset = (menuBody, direction, trigger, flip) => {
       }
       case 'left':
       case 'right': {
-        const triggerHeight = trigger.offsetHeight;
+        // TODO: Ensure `trigger` is there for `<OverflowMenu open>`
+        const triggerHeight = !trigger ? 0 : trigger.offsetHeight;
         return {
           left: 0,
           top: (!flip ? 1 : -1) * (menuHeight / 2 - triggerHeight / 2),
@@ -661,13 +672,15 @@ class OverflowMenu extends Component {
       onClick: this.handleClick,
       onKeyDown: this.handleKeyDown,
       className: overflowMenuIconClasses,
-      description: iconDescription,
+      [IconElement ? 'aria-label' : 'description']: iconDescription,
       focusable: 'false', // Prevent `<svg>` in trigger icon from getting focus for IE11
     };
 
     const overflowMenuIcon = (() => {
       return IconElement ? (
-        <IconElement {...iconProps} />
+        <IconElement {...iconProps}>
+          {iconDescription && <title>{iconDescription}</title>}
+        </IconElement>
       ) : (
         <Icon
           {...iconProps}
