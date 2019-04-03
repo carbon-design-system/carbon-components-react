@@ -9,6 +9,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import classNames from 'classnames';
 import { settings } from 'carbon-components';
+import TabContent from '../TabContent';
 
 const { prefix } = settings;
 
@@ -84,6 +85,11 @@ export default class Tab extends React.Component {
      * side router libraries.
      **/
     renderAnchor: PropTypes.func,
+
+    /*
+     * An optional parameter to allow overriding the content rendering.
+     **/
+    renderContent: PropTypes.func,
   };
 
   static defaultProps = {
@@ -92,6 +98,7 @@ export default class Tab extends React.Component {
     tabIndex: 0,
     href: '#',
     selected: false,
+    renderContent: TabContent,
     onClick: () => {},
     onKeyDown: () => {},
   };
@@ -122,6 +129,7 @@ export default class Tab extends React.Component {
       onClick,
       onKeyDown,
       renderAnchor,
+      renderContent, // eslint-disable-line no-unused-vars
       ...other
     } = this.props;
 
