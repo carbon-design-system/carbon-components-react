@@ -95,8 +95,7 @@ export default class SideNav extends React.Component {
         : t('carbon.sidenav.state.closed');
     const className = cx({
       [`${prefix}--side-nav`]: true,
-      [`${prefix}--side-nav--expanded`]: isExpanded,
-      [`${prefix}--side-nav--focused`]: isFocused,
+      [`${prefix}--side-nav--expanded`]: isExpanded || isFocused,
       [customClassName]: !!customClassName,
     });
 
