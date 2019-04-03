@@ -26,9 +26,14 @@ describe('SideNav', () => {
 
   it('should toggle the menu expansion state when clicking on the footer', () => {
     const wrapper = mount(<SideNav {...mockProps} />);
-    expect(wrapper.state('isExpanded')).toBe(true);
-    wrapper.find('button').simulate('click');
     expect(wrapper.state('isExpanded')).toBe(false);
+    wrapper.find('button').simulate('click');
+    expect(wrapper.state('isExpanded')).toBe(true);
     expect(wrapper).toMatchSnapshot();
+  });
+
+  it('should trigger menu expansion state byDefault', () => {
+    const wrapper = mount(<SideNav {...mockProps} defaultExpanded />);
+    expect(wrapper.state('isExpanded')).toBe(true);
   });
 });
