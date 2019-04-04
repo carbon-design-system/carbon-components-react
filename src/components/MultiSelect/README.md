@@ -50,7 +50,7 @@ You can then create the `MultiSelect` by the following:
 
 ## Use-cases
 
-If the variable array provided to the `items` attribute lacks a `label` property, the component would not render.
+If the variable array provided to the `items` attribute lacks a `label` property, the component will not render.
 You can have items in your array without a `label` field, as long as you provide the `itemToString` method that properly maps them.
 
 What the helper function `itemToString` does?<br/>
