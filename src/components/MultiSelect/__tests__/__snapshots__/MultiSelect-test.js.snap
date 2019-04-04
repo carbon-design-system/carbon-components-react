@@ -79,12 +79,12 @@ exports[`MultiSelect should render 1`] = `
         type="default"
       >
         <div
-          aria-label="Choose an item"
+          ariaLabel="Choose an item"
           className="bx--multi-select bx--list-box"
           onClick={[Function]}
           onKeyDown={[Function]}
           role="listbox"
-          tabIndex={0}
+          tabIndex="-1"
         >
           <ListBoxField
             aria-expanded={false}
@@ -99,9 +99,11 @@ exports[`MultiSelect should render 1`] = `
             type="button"
           >
             <div
+              aria-controls="undefined__menu"
               aria-expanded={false}
               aria-haspopup={true}
               aria-label="open menu"
+              aria-owns="undefined__menu"
               className="bx--list-box__field"
               data-toggle={true}
               disabled={false}
@@ -109,7 +111,7 @@ exports[`MultiSelect should render 1`] = `
               onClick={[Function]}
               onKeyDown={[Function]}
               role="button"
-              tabIndex="0"
+              tabIndex={-1}
               type="button"
             >
               <span
@@ -123,6 +125,7 @@ exports[`MultiSelect should render 1`] = `
               >
                 <div
                   className="bx--list-box__menu-icon"
+                  role="button"
                 >
                   <ChevronDown16
                     aria-label="Open menu"

@@ -4,6 +4,8 @@ exports[`ListBoxMenu should render 1`] = `
 <ListBoxMenu>
   <div
     className="bx--list-box__menu"
+    id="undefined__menu"
+    role="listbox"
   >
     <ListBoxMenuItem
       isActive={false}

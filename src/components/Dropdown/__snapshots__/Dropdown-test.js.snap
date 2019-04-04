@@ -72,12 +72,12 @@ exports[`Dropdown should render 1`] = `
         type="default"
       >
         <div
-          aria-label="Choose an item"
+          ariaLabel="Choose an item"
           className="bx--dropdown bx--list-box"
           onClick={[Function]}
           onKeyDown={[Function]}
           role="listbox"
-          tabIndex={0}
+          tabIndex="-1"
         >
           <ListBoxField
             aria-expanded={false}
@@ -92,9 +92,11 @@ exports[`Dropdown should render 1`] = `
             type="button"
           >
             <div
+              aria-controls="undefined__menu"
               aria-expanded={false}
               aria-haspopup={true}
               aria-label="open menu"
+              aria-owns="undefined__menu"
               className="bx--list-box__field"
               data-toggle={true}
               disabled={false}
@@ -102,7 +104,7 @@ exports[`Dropdown should render 1`] = `
               onClick={[Function]}
               onKeyDown={[Function]}
               role="button"
-              tabIndex="0"
+              tabIndex={-1}
               type="button"
             >
               <span
@@ -117,6 +119,7 @@ exports[`Dropdown should render 1`] = `
               >
                 <div
                   className="bx--list-box__menu-icon"
+                  role="button"
                 >
                   <ChevronDown16
                     aria-label="Open menu"
@@ -234,12 +237,12 @@ exports[`Dropdown should render DropdownItem components 1`] = `
         type="default"
       >
         <div
-          aria-label="Choose an item"
+          ariaLabel="Choose an item"
           className="bx--dropdown bx--dropdown--open bx--list-box bx--list-box--expanded"
           onClick={[Function]}
           onKeyDown={[Function]}
           role="listbox"
-          tabIndex={0}
+          tabIndex="-1"
         >
           <ListBoxField
             aria-expanded={true}
@@ -254,9 +257,11 @@ exports[`Dropdown should render DropdownItem components 1`] = `
             type="button"
           >
             <div
+              aria-controls="undefined__menu"
               aria-expanded={true}
               aria-haspopup={true}
               aria-label="close menu"
+              aria-owns="undefined__menu"
               className="bx--list-box__field"
               data-toggle={true}
               disabled={false}
@@ -264,7 +269,7 @@ exports[`Dropdown should render DropdownItem components 1`] = `
               onClick={[Function]}
               onKeyDown={[Function]}
               role="button"
-              tabIndex="0"
+              tabIndex={-1}
               type="button"
             >
               <span
@@ -279,6 +284,7 @@ exports[`Dropdown should render DropdownItem components 1`] = `
               >
                 <div
                   className="bx--list-box__menu-icon bx--list-box__menu-icon--open"
+                  role="button"
                 >
                   <ChevronDown16
                     aria-label="Close menu"
@@ -320,6 +326,8 @@ exports[`Dropdown should render DropdownItem components 1`] = `
           <ListBoxMenu>
             <div
               className="bx--list-box__menu"
+              id="undefined__menu"
+              role="listbox"
             >
               <ListBoxMenuItem
                 id="downshift-6-item-0"
@@ -517,12 +525,12 @@ exports[`Dropdown should render custom item components 1`] = `
         type="default"
       >
         <div
-          aria-label="Choose an item"
+          ariaLabel="Choose an item"
           className="bx--dropdown bx--dropdown--open bx--list-box bx--list-box--expanded"
           onClick={[Function]}
           onKeyDown={[Function]}
           role="listbox"
-          tabIndex={0}
+          tabIndex="-1"
         >
           <ListBoxField
             aria-expanded={true}
@@ -537,9 +545,11 @@ exports[`Dropdown should render custom item components 1`] = `
             type="button"
           >
             <div
+              aria-controls="undefined__menu"
               aria-expanded={true}
               aria-haspopup={true}
               aria-label="close menu"
+              aria-owns="undefined__menu"
               className="bx--list-box__field"
               data-toggle={true}
               disabled={false}
@@ -547,7 +557,7 @@ exports[`Dropdown should render custom item components 1`] = `
               onClick={[Function]}
               onKeyDown={[Function]}
               role="button"
-              tabIndex="0"
+              tabIndex={-1}
               type="button"
             >
               <span
@@ -562,6 +572,7 @@ exports[`Dropdown should render custom item components 1`] = `
               >
                 <div
                   className="bx--list-box__menu-icon bx--list-box__menu-icon--open"
+                  role="button"
                 >
                   <ChevronDown16
                     aria-label="Close menu"
@@ -603,6 +614,8 @@ exports[`Dropdown should render custom item components 1`] = `
           <ListBoxMenu>
             <div
               className="bx--list-box__menu"
+              id="undefined__menu"
+              role="listbox"
             >
               <ListBoxMenuItem
                 id="downshift-5-item-0"
@@ -832,12 +845,12 @@ exports[`Dropdown should render with strings as items 1`] = `
         type="default"
       >
         <div
-          aria-label="Choose an item"
+          ariaLabel="Choose an item"
           className="bx--dropdown bx--dropdown--open bx--list-box bx--list-box--expanded"
           onClick={[Function]}
           onKeyDown={[Function]}
           role="listbox"
-          tabIndex={0}
+          tabIndex="-1"
         >
           <ListBoxField
             aria-expanded={true}
@@ -852,9 +865,11 @@ exports[`Dropdown should render with strings as items 1`] = `
             type="button"
           >
             <div
+              aria-controls="undefined__menu"
               aria-expanded={true}
               aria-haspopup={true}
               aria-label="close menu"
+              aria-owns="undefined__menu"
               className="bx--list-box__field"
               data-toggle={true}
               disabled={false}
@@ -862,7 +877,7 @@ exports[`Dropdown should render with strings as items 1`] = `
               onClick={[Function]}
               onKeyDown={[Function]}
               role="button"
-              tabIndex="0"
+              tabIndex={-1}
               type="button"
             >
               <span
@@ -877,6 +892,7 @@ exports[`Dropdown should render with strings as items 1`] = `
               >
                 <div
                   className="bx--list-box__menu-icon bx--list-box__menu-icon--open"
+                  role="button"
                 >
                   <ChevronDown16
                     aria-label="Close menu"
@@ -918,6 +934,8 @@ exports[`Dropdown should render with strings as items 1`] = `
           <ListBoxMenu>
             <div
               className="bx--list-box__menu"
+              id="undefined__menu"
+              role="listbox"
             >
               <ListBoxMenuItem
                 id="downshift-4-item-0"

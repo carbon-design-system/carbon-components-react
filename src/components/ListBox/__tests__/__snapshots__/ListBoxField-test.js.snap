@@ -3,9 +3,12 @@
 exports[`ListBoxField should render 1`] = `
 <ListBoxField>
   <div
+    aria-controls="undefined__menu"
+    aria-haspopup="listbox"
+    aria-owns="undefined__menu"
     className="bx--list-box__field"
-    role="button"
-    tabIndex="0"
+    role="combobox"
+    tabIndex={-1}
   >
     <ListBoxSelection
       clearSelection={[MockFunction]}
