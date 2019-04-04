@@ -90,7 +90,6 @@ The helper function `itemToString` allows you to render a given item to a string
     { id: 'item-1', text: 'Item 1' }, 
     { id: 'item-2', text: 'Item 2' }
   ]}
-  itemToString={itemToString}
   initialSelectedItems={[
     { id: 'item-1', text: 'Item 1' },
     { id: 'item-2', text: 'Item 2' },
