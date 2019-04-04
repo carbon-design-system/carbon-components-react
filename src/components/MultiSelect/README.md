@@ -38,10 +38,7 @@ You can then create the `MultiSelect` by the following:
   invalid={false}
   invalidText="Invalid Selection"
   onChange={onChange}
-  items={[
-    { id: 'item-1', text: 'Item 1' }, 
-    { id: 'item-2', text: 'Item 2' }
-  ]}
+  items={[{ id: 'item-1', text: 'Item 1' }, { id: 'item-2', text: 'Item 2' }]}
   itemToString={itemToString}
   initialSelectedItems={[
     { id: 'item-1', text: 'Item 1' },
@@ -63,8 +60,8 @@ If the variable array provided to the `items` attribute lacks a `label` property
   invalidText="Invalid Selection"
   onChange={onChange}
   items={[
-    {id: 'item-1',text: 'Item 1', label: 'Item 1'},
-    {id: 'item-2',text: 'Item 2', label: 'Item 2'}
+    { id: 'item-1', text: 'Item 1', label: 'Item 1' },
+    { id: 'item-2', text: 'Item 2', label: 'Item 2' },
   ]}
   itemToString={itemToString}
   initialSelectedItems={[
@@ -74,6 +71,7 @@ If the variable array provided to the `items` attribute lacks a `label` property
   translateWithId={translateWithId}
 />
 ```
+
 However, you can have items in your array without a `label` field, as long as you provide the `itemToString` method that properly maps them.
 
 What does the helper function itemToString do?<br/>
@@ -86,10 +84,7 @@ The helper function `itemToString` allows you to render a given item to a string
   invalid={false}
   invalidText="Invalid Selection"
   onChange={onChange}
-  items={[
-    { id: 'item-1', text: 'Item 1' }, 
-    { id: 'item-2', text: 'Item 2' }
-  ]}
+  items={[{ id: 'item-1', text: 'Item 1' }, { id: 'item-2', text: 'Item 2' }]}
   initialSelectedItems={[
     { id: 'item-1', text: 'Item 1' },
     { id: 'item-2', text: 'Item 2' },
