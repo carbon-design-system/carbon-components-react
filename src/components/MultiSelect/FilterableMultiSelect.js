@@ -26,6 +26,11 @@ export default class FilterableMultiSelect extends React.Component {
   static propTypes = {
     ...sortingPropTypes,
     /**
+     * 'aria-label' of the ListBox component.
+     */
+    ariaLabel: PropTypes.string,
+
+    /**
      * Disable the control
      */
     disabled: PropTypes.bool,

@@ -54,6 +54,11 @@ const findHighlightedIndex = ({ items, itemToString }, inputValue) => {
 export default class ComboBox extends React.Component {
   static propTypes = {
     /**
+     * 'aria-label' of the ListBox component.
+     */
+    ariaLabel: PropTypes.string,
+
+    /**
      * An optional className to add to the container node
      */
     className: PropTypes.string,
