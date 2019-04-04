@@ -277,7 +277,6 @@ export default class FilterableMultiSelect extends React.Component {
                 disabled={disabled}
                 invalid={invalid}
                 invalidText={invalidText}
-                innerTabIndex="-1"
                 {...getRootProps({ refKey: 'innerRef' })}>
                 <ListBox.Field id={id} {...getButtonProps({ disabled })}>
                   {selectedItem.length > 0 && (
