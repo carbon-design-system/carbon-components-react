@@ -12,7 +12,7 @@ import ListBox from '../';
 describe('ListBoxField', () => {
   it('should render', () => {
     const wrapper = mount(
-      <ListBox.Field>
+      <ListBox.Field id="test-listbox">
         <ListBox.Selection clearSelection={jest.fn()} />
       </ListBox.Field>
     );
@@ -21,7 +21,7 @@ describe('ListBoxField', () => {
 
   it('should be focusable via custom tabindex value', () => {
     const wrapper = mount(
-      <ListBox.Field tabIndex="0">
+      <ListBox.Field tabIndex="0" id="test-listbox">
         <ListBox.Selection clearSelection={jest.fn()} />
       </ListBox.Field>
     );
