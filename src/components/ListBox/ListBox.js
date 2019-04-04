@@ -96,18 +96,12 @@ ListBox.propTypes = {
    * `inline` as an option.
    */
   type: ListBoxType.isRequired,
-
-  /**
-   * Specify the "aria-label" of the ListBox.
-   */
-  ariaLabel: PropTypes.string,
 };
 
 ListBox.defaultProps = {
   innerRef: () => {},
   disabled: false,
   type: 'default',
-  ariaLabel: 'Choose an item',
 };
 
 export default ListBox;
