@@ -33,7 +33,6 @@ const handleClick = event => {
  * container class name in response to certain props.
  */
 const ListBox = ({
-  ariaLabel,
   children,
   className: containerClassName,
   disabled,
@@ -42,7 +41,6 @@ const ListBox = ({
   invalid,
   invalidText,
   light,
-  innerTabIndex,
   isOpen,
   ...rest
 }) => {
@@ -59,14 +57,12 @@ const ListBox = ({
       <div
         {...rest}
         role="listbox"
-        aria-label={ariaLabel}
-        tabIndex={innerTabIndex || 0}
+        tabIndex="-1"
         className={className}
         ref={innerRef}
         onKeyDown={handleOnKeyDown}
         onClick={handleClick}
-        data-invalid={invalid || undefined}
-        aria-invalid={invalid || undefined}>
+        data-invalid={invalid || undefined}>
         {children}
       </div>
       {invalid ? (
