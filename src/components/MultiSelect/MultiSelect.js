@@ -236,6 +236,7 @@ export default class MultiSelect extends React.Component {
               getButtonProps,
             }) => (
               <ListBox
+                id={id}
                 type={type}
                 className={className}
                 disabled={disabled}

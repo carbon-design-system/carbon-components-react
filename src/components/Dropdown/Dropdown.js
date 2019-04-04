@@ -200,7 +200,6 @@ export default class Dropdown extends React.Component {
         {title}
         {!inline && helper}
         <Downshift
-          id={id}
           onChange={this.handleOnChange}
           itemToString={itemToString}
           defaultSelectedItem={initialSelectedItem}
@@ -216,6 +215,7 @@ export default class Dropdown extends React.Component {
             getLabelProps,
           }) => (
             <ListBox
+              id={id}
               type={type}
               className={className({ isOpen })}
               disabled={disabled}
