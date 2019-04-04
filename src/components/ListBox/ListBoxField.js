@@ -27,7 +27,7 @@ const ListBoxField = ({ children, id, ...rest }) => (
     aria-owns={`${id}__menu`}
     aria-controls={`${id}__menu`}
     className={`${prefix}--list-box__field`}
-    tabIndex={rest.tabIndex || 0}
+    tabIndex={rest.tabIndex || -1}
     {...rest}>
     {children}
   </div>
