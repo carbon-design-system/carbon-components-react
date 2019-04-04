@@ -72,14 +72,12 @@ exports[`MultiSelect should render 1`] = `
       stateReducer={[Function]}
     >
       <ListBox
-        ariaLabel="Choose an item"
         className="bx--multi-select"
         disabled={false}
         innerRef={[Function]}
         type="default"
       >
         <div
-          ariaLabel="Choose an item"
           className="bx--multi-select bx--list-box"
           onClick={[Function]}
           onKeyDown={[Function]}

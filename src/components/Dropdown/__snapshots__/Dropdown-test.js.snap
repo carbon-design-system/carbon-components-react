@@ -64,7 +64,6 @@ exports[`Dropdown should render 1`] = `
       stateReducer={[Function]}
     >
       <ListBox
-        ariaLabel="Choose an item"
         className="bx--dropdown"
         disabled={false}
         innerRef={[Function]}
@@ -72,7 +71,6 @@ exports[`Dropdown should render 1`] = `
         type="default"
       >
         <div
-          ariaLabel="Choose an item"
           className="bx--dropdown bx--list-box"
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -229,7 +227,6 @@ exports[`Dropdown should render DropdownItem components 1`] = `
       stateReducer={[Function]}
     >
       <ListBox
-        ariaLabel="Choose an item"
         className="bx--dropdown bx--dropdown--open"
         disabled={false}
         innerRef={[Function]}
@@ -237,7 +234,6 @@ exports[`Dropdown should render DropdownItem components 1`] = `
         type="default"
       >
         <div
-          ariaLabel="Choose an item"
           className="bx--dropdown bx--dropdown--open bx--list-box bx--list-box--expanded"
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -517,7 +513,6 @@ exports[`Dropdown should render custom item components 1`] = `
       stateReducer={[Function]}
     >
       <ListBox
-        ariaLabel="Choose an item"
         className="bx--dropdown bx--dropdown--open"
         disabled={false}
         innerRef={[Function]}
@@ -525,7 +520,6 @@ exports[`Dropdown should render custom item components 1`] = `
         type="default"
       >
         <div
-          ariaLabel="Choose an item"
           className="bx--dropdown bx--dropdown--open bx--list-box bx--list-box--expanded"
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -837,7 +831,6 @@ exports[`Dropdown should render with strings as items 1`] = `
       stateReducer={[Function]}
     >
       <ListBox
-        ariaLabel="Choose an item"
         className="bx--dropdown bx--dropdown--open"
         disabled={false}
         innerRef={[Function]}
@@ -845,7 +838,6 @@ exports[`Dropdown should render with strings as items 1`] = `
         type="default"
       >
         <div
-          ariaLabel="Choose an item"
           className="bx--dropdown bx--dropdown--open bx--list-box bx--list-box--expanded"
           onClick={[Function]}
           onKeyDown={[Function]}

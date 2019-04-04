@@ -73,7 +73,6 @@ exports[`MultiSelect.Filterable should render 1`] = `
       stateReducer={[Function]}
     >
       <ListBox
-        ariaLabel="Choose an item"
         className="bx--multi-select bx--combo-box"
         disabled={false}
         innerRef={[Function]}
@@ -81,7 +80,6 @@ exports[`MultiSelect.Filterable should render 1`] = `
         type="default"
       >
         <div
-          ariaLabel="Choose an item"
           className="bx--multi-select bx--combo-box bx--list-box"
           innerTabIndex="-1"
           onClick={[Function]}
