@@ -38,7 +38,10 @@ You can then create the `MultiSelect` by the following:
   invalid={false}
   invalidText="Invalid Selection"
   onChange={onChange}
-  items={[{ id: 'item-1', text: 'Item 1' }, { id: 'item-2', text: 'Item 2' }]}
+  items={[
+    { id: 'item-1', text: 'Item 1' }, 
+    { id: 'item-2', text: 'Item 2' }
+  ]}
   itemToString={itemToString}
   initialSelectedItems={[
     { id: 'item-1', text: 'Item 1' },
@@ -50,14 +53,7 @@ You can then create the `MultiSelect` by the following:
 
 ## Use-cases
 
-If the variable array provided to the `items` attribute lacks a `label` property, the component will not render.
-You can have items in your array without a `label` field, as long as you provide the `itemToString` method that properly maps them.
-
-What the helper function `itemToString` does?<br/>
-The helper function `itemToString` allows to render a given item to a string label.
-By default, it extracts the `label` field from a given item to serve as the item label in the list.
-
-For instance you can use:
+If the variable array provided to the `items` attribute lacks a `label` property, the component will not render. Using the label prop to render items would look like the following:
 
 ```jsx
 <MultiSelect
@@ -66,7 +62,34 @@ For instance you can use:
   invalid={false}
   invalidText="Invalid Selection"
   onChange={onChange}
-  items={[{ id: 'item-1', text: 'Item 1' }, { id: 'item-2', text: 'Item 2' }]}
+  items={[
+    {id: 'item-1',text: 'Item 1', label: 'Item 1'},
+    {id: 'item-2',text: 'Item 2', label: 'Item 2'}
+  ]}
+  itemToString={itemToString}
+  initialSelectedItems={[
+    { id: 'item-1', text: 'Item 1' },
+    { id: 'item-2', text: 'Item 2' },
+  ]}
+  translateWithId={translateWithId}
+/>
+```
+However, you can have items in your array without a `label` field, as long as you provide the `itemToString` method that properly maps them.
+
+What the helper function `itemToString` does?<br/>
+The helper function `itemToString` allows to render a given item to a string label. By default, it extracts the `label` field from a given item to serve as the item label in the list. For instance you can use:
+
+```jsx
+<MultiSelect
+  useTitleInItem={false}
+  label="MultiSelect Label"
+  invalid={false}
+  invalidText="Invalid Selection"
+  onChange={onChange}
+  items={[
+    { id: 'item-1', text: 'Item 1' }, 
+    { id: 'item-2', text: 'Item 2' }
+  ]}
   itemToString={itemToString}
   initialSelectedItems={[
     { id: 'item-1', text: 'Item 1' },
