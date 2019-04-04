@@ -219,7 +219,6 @@ export default class Dropdown extends React.Component {
               type={type}
               className={className({ isOpen })}
               disabled={disabled}
-              ariaLabel={ariaLabel}
               isOpen={isOpen}
               invalid={invalid}
               invalidText={invalidText}
