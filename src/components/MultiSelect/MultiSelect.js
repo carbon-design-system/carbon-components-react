@@ -239,10 +239,12 @@ export default class MultiSelect extends React.Component {
         [`${prefix}--list-box__wrapper--inline--invalid`]: inline && invalid,
       }
     );
-    const className = cx(`${prefix}--multi-select`, containerClassName, {
-      [`${prefix}--multi-select--invalid`]: invalid,
-      [`${prefix}--multi-select--inline`]: inline,
-    });
+    const className = ({ selectedItem }) =>
+      cx(`${prefix}--multi-select`, containerClassName, {
+        [`${prefix}--multi-select--invalid`]: invalid,
+        [`${prefix}--multi-select--inline`]: inline,
+        [`${prefix}--multi-select--selected`]: selectedItem.length > 0,
+      });
     const titleClasses = cx(`${prefix}--label`, {
       [`${prefix}--label--disabled`]: disabled,
     });
@@ -284,7 +286,7 @@ export default class MultiSelect extends React.Component {
               <ListBox
                 id={id}
                 type={type}
-                className={className}
+                className={className({ selectedItem })}
                 disabled={disabled}
                 light={light}
                 invalid={invalid}

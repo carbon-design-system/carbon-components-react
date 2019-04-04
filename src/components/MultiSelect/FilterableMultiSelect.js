@@ -269,16 +269,19 @@ export default class FilterableMultiSelect extends React.Component {
         [`${prefix}--list-box__wrapper--inline--invalid`]: inline && invalid,
       }
     );
-    const className = cx(
-      `${prefix}--multi-select`,
-      `${prefix}--combo-box`,
-      containerClassName,
-      {
-        [`${prefix}--multi-select--invalid`]: invalid,
-        [`${prefix}--multi-select--open`]: isOpen,
-        [`${prefix}--multi-select--inline`]: inline,
-      }
-    );
+    const className = ({ selectedItem }) =>
+      cx(
+        `${prefix}--multi-select`,
+        `${prefix}--combo-box`,
+        `${prefix}--multi-select--filterable`,
+        containerClassName,
+        {
+          [`${prefix}--multi-select--invalid`]: invalid,
+          [`${prefix}--multi-select--open`]: isOpen,
+          [`${prefix}--multi-select--inline`]: inline,
+          [`${prefix}--multi-select--selected`]: selectedItem.length > 0,
+        }
+      );
     const titleClasses = cx(`${prefix}--label`, {
       [`${prefix}--label--disabled`]: disabled,
     });
@@ -318,7 +321,7 @@ export default class FilterableMultiSelect extends React.Component {
               selectedItem,
             }) => (
               <ListBox
-                className={className}
+                className={className({ selectedItem })}
                 disabled={disabled}
                 light={light}
                 invalid={invalid}
