@@ -19,9 +19,9 @@ describe('ListBoxField', () => {
     expect(wrapper).toMatchSnapshot();
   });
 
-  it('should be focusable', () => {
+  it('should be focusable via custom tabindex value', () => {
     const wrapper = mount(
-      <ListBox.Field>
+      <ListBox.Field tabIndex="0">
         <ListBox.Selection clearSelection={jest.fn()} />
       </ListBox.Field>
     );
