@@ -26,10 +26,6 @@ function translateById(id) {
 export default class SideNav extends React.Component {
   static propTypes = {
     /**
-     * Specify whether the side navigation is expanded or collapsed
-     */
-    defaultExpanded: PropTypes.bool,
-    /**
      * Required props for accessibility label on the underlying menu
      */
     ...AriaLabelPropType,
@@ -50,25 +46,12 @@ export default class SideNav extends React.Component {
 
   static defaultProps = {
     translateById,
-    defaultExpanded: false,
   };
 
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      isExpanded: props.defaultExpanded,
-      isFocused: false,
-    };
-  }
-
-  static getDerivedStateFromProps({ defaultExpanded }, state) {
-    return state && state.isExpanded === defaultExpanded
-      ? null
-      : {
-          isExpanded: defaultExpanded,
-        };
-  }
+  state = {
+    isExpanded: true,
+    isFocused: false,
+  };
 
   handleExpand = () => {
     this.setState(state => ({ isExpanded: !state.isExpanded }));
