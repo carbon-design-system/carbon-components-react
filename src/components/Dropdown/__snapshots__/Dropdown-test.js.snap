@@ -91,6 +91,7 @@ exports[`Dropdown should render 1`] = `
             onClick={[Function]}
             onKeyDown={[Function]}
             role="button"
+            tabIndex="0"
             type="button"
           >
             <div
@@ -106,7 +107,7 @@ exports[`Dropdown should render 1`] = `
               onClick={[Function]}
               onKeyDown={[Function]}
               role="button"
-              tabIndex={-1}
+              tabIndex="0"
               type="button"
             >
               <span
@@ -258,6 +259,7 @@ exports[`Dropdown should render DropdownItem components 1`] = `
             onClick={[Function]}
             onKeyDown={[Function]}
             role="button"
+            tabIndex="0"
             type="button"
           >
             <div
@@ -273,7 +275,7 @@ exports[`Dropdown should render DropdownItem components 1`] = `
               onClick={[Function]}
               onKeyDown={[Function]}
               role="button"
-              tabIndex={-1}
+              tabIndex="0"
               type="button"
             >
               <span
@@ -550,6 +552,7 @@ exports[`Dropdown should render custom item components 1`] = `
             onClick={[Function]}
             onKeyDown={[Function]}
             role="button"
+            tabIndex="0"
             type="button"
           >
             <div
@@ -565,7 +568,7 @@ exports[`Dropdown should render custom item components 1`] = `
               onClick={[Function]}
               onKeyDown={[Function]}
               role="button"
-              tabIndex={-1}
+              tabIndex="0"
               type="button"
             >
               <span
@@ -874,6 +877,7 @@ exports[`Dropdown should render with strings as items 1`] = `
             onClick={[Function]}
             onKeyDown={[Function]}
             role="button"
+            tabIndex="0"
             type="button"
           >
             <div
@@ -889,7 +893,7 @@ exports[`Dropdown should render with strings as items 1`] = `
               onClick={[Function]}
               onKeyDown={[Function]}
               role="button"
-              tabIndex={-1}
+              tabIndex="0"
               type="button"
             >
               <span

@@ -76,12 +76,10 @@ exports[`MultiSelect.Filterable should render 1`] = `
         className="bx--multi-select bx--combo-box"
         disabled={false}
         innerRef={[Function]}
-        innerTabIndex="-1"
         type="default"
       >
         <div
           className="bx--multi-select bx--combo-box bx--list-box"
-          innerTabIndex="-1"
           onClick={[Function]}
           onKeyDown={[Function]}
           role="listbox"
