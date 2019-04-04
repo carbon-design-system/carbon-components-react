@@ -77,7 +77,7 @@ If the variable array provided to the `items` attribute lacks a `label` property
 However, you can have items in your array without a `label` field, as long as you provide the `itemToString` method that properly maps them.
 
 What does the helper function itemToString do?<br/>
-The helper function `itemToString` allows to render a given item to a string label. By default, it extracts the `label` field from a given item to serve as the item label in the list. For instance you can use:
+The helper function `itemToString` allows you to render a given item to a string label. By default, it extracts the `label` field from a given item to serve as the item label in the list. For instance you can use:
 
 ```jsx
 <MultiSelect
