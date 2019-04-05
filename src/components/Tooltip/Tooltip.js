@@ -374,6 +374,11 @@ class Tooltip extends Component {
   handleKeyPress = evt => {
     const key = evt.key || evt.which;
 
+    if (key === 'Escape' || key === 27) {
+      evt.stopPropagation();
+      this.setState({ open: false });
+    }
+
     if (key === 'Enter' || key === 13 || key === ' ' || key === 32) {
       evt.stopPropagation();
       this.setState({ open: !this.state.open });
