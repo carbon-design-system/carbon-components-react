@@ -59,12 +59,20 @@ export default class SideNav extends React.Component {
 
   handleFocus = () => {
     this.setState(state => {
-      if (!state.isFocused) return { isFocused: true };
+      if (!state.isFocused) {
+        return { isFocused: true };
+      }
+      return null;
     });
   };
 
   handleBlur = () => {
-    this.setState(() => ({ isFocused: false }));
+    this.setState(state => {
+      if (state.isFocused) {
+        return { isFocused: false };
+      }
+      return null;
+    });
   };
 
   render() {
