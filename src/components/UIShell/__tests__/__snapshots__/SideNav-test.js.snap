@@ -3,7 +3,7 @@
 exports[`SideNav should render 1`] = `
 <SideNav
   aria-label="Navigation"
-  defaultExpanded={false}
+  isExpanded={false}
   translateById={[Function]}
 >
   <nav
@@ -74,7 +74,7 @@ exports[`SideNav should render 1`] = `
 exports[`SideNav should toggle the menu expansion state when clicking on the footer 1`] = `
 <SideNav
   aria-label="Navigation"
-  defaultExpanded={false}
+  isExpanded={false}
   translateById={[Function]}
 >
   <nav
