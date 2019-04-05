@@ -16,8 +16,6 @@ import Close20 from '@carbon/icons-react/lib/close/20';
 import { breakingChangesX, componentsX } from '../../internal/FeatureFlags';
 import FocusTrap from 'focus-trap-react';
 
-const createFocusTrap = FocusTrap.defaultProps._createFocusTrap;
-
 const { prefix } = settings;
 
 const matchesFuncName =
@@ -244,12 +242,6 @@ export default class Modal extends Component {
     }
   };
 
-  createFocusTrap = elem => {
-    return createFocusTrap(elem, {
-      initialFocus: this.initialFocus,
-    });
-  };
-
   componentDidMount() {
     if (!this.props.open) {
       return;
@@ -382,7 +374,9 @@ export default class Modal extends Component {
       modal
     ) : (
       // `<FocusTrap>` has `active: true` in its `defaultProps`
-      <FocusTrap active={!!open} _createFocusTrap={this.createFocusTrap}>
+      <FocusTrap
+        active={!!open}
+        focusTrapOptions={{ initialFocus: this.initialFocus }}>
         {modal}
       </FocusTrap>
     );
