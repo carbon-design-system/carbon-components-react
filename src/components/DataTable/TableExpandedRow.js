@@ -22,17 +22,9 @@ const TableExpandedRow = ({
   const rowRef = useRef(null);
   const className = cx(`${prefix}--expandable-row`, customClassName);
 
-  const onMouseEnter = () => {
-    if (rowRef && rowRef.current) {
-      rowRef.current.previousSibling.classList.add(
-        `${prefix}--expandable-row--hover`
-      );
-    }
-  };
-
-  const onMouseLeave = () => {
-    if (rowRef && rowRef.current) {
-      rowRef.current.previousSibling.classList.remove(
+  const toggleParentHoverClass = () => {
+    if (rowRef && rowRef.current && rowRef.current.previousElementSibling) {
+      rowRef.current.previousElementSibling.classList.toggle(
         `${prefix}--expandable-row--hover`
       );
     }
@@ -41,8 +33,8 @@ const TableExpandedRow = ({
   return (
     <tr
       ref={rowRef}
-      onMouseEnter={onMouseEnter}
-      onMouseLeave={onMouseLeave}
+      onMouseEnter={toggleParentHoverClass}
+      onMouseLeave={toggleParentHoverClass}
       {...rest}
       className={className}
       data-child-row>
