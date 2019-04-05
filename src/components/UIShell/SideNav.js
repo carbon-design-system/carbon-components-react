@@ -57,9 +57,19 @@ export default class SideNav extends React.Component {
     super(props);
 
     this.state = {
+      defaultExpandedState: props.defaultExpanded,
       isExpanded: props.defaultExpanded,
       isFocused: false,
     };
+  }
+
+  static getDerivedStateFromProps({ defaultExpanded }, state) {
+    return state && state.defaultExpandedState === defaultExpanded
+      ? null
+      : {
+          defaultExpandedState: defaultExpanded,
+          isExpanded: defaultExpanded,
+        };
   }
 
   handleExpand = () => {
