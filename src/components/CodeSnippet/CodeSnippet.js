@@ -197,6 +197,7 @@ export default class CodeSnippet extends Component {
         <Copy
           {...other}
           onClick={onClick}
+          role="alert"
           className={codeSnippetClasses}
           aria-label={copyLabel}
           feedback={feedback}>
