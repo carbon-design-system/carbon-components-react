@@ -28,7 +28,7 @@ export default class SideNav extends React.Component {
     /**
      * Specify whether the side navigation is expanded or collapsed
      */
-    defaultExpanded: PropTypes.bool,
+    isExpanded: PropTypes.bool,
     /**
      * Required props for accessibility label on the underlying menu
      */
@@ -50,25 +50,25 @@ export default class SideNav extends React.Component {
 
   static defaultProps = {
     translateById,
-    defaultExpanded: false,
+    isExpanded: false,
   };
 
   constructor(props) {
     super(props);
 
     this.state = {
-      defaultExpandedState: props.defaultExpanded,
-      isExpanded: props.defaultExpanded,
+      defaultExpandedState: props.isExpanded,
+      isExpanded: props.isExpanded,
       isFocused: false,
     };
   }
 
-  static getDerivedStateFromProps({ defaultExpanded }, state) {
-    return state && state.defaultExpandedState === defaultExpanded
+  static getDerivedStateFromProps({ isExpanded }, state) {
+    return state && state.defaultExpandedState === isExpanded
       ? null
       : {
-          defaultExpandedState: defaultExpanded,
-          isExpanded: defaultExpanded,
+          defaultExpandedState: isExpanded,
+          isExpanded,
         };
   }
 
