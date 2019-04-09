@@ -16,8 +16,11 @@ const props = {
   inline: () => ({
     light: boolean('Light variant (light)', false),
     feedback: text('Feedback text (feedback)', 'Feedback Enabled 👍'),
-    copyLabel: text('ARIA label of the copy button (copyLabel)', 'Copy Code'),
     onClick: action('onClick'),
+    ariaLabel: text(
+      'ARIA label for the snippet/copy button (ariaLabel)',
+      'copyable code snippet'
+    ),
   }),
   single: () => ({
     feedback: text('Feedback text (feedback)', 'Feedback Enabled 👍'),

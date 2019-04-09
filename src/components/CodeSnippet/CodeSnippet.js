@@ -40,11 +40,6 @@ export default class CodeSnippet extends Component {
     feedback: PropTypes.string,
 
     /**
-     * Specify the label used for the Copy Button
-     */
-    copyLabel: PropTypes.string,
-
-    /**
      * Specify the description for the Copy Button
      */
     copyButtonDescription: PropTypes.string,
@@ -119,7 +114,6 @@ export default class CodeSnippet extends Component {
       feedback,
       onClick,
       ariaLabel,
-      copyLabel,
       copyButtonDescription,
       light,
       showMoreText,
@@ -192,16 +186,18 @@ export default class CodeSnippet extends Component {
       />
     );
 
+    // TODO: Get the popup announced like an alert
+
     if (type === 'inline') {
       return (
         <Copy
           {...other}
           onClick={onClick}
-          role="alert"
+          aria-label={ariaLabel}
+          aria-describedby="description"
           className={codeSnippetClasses}
-          aria-label={copyLabel}
           feedback={feedback}>
-          <code>{children}</code>
+          <code id="description">{children}</code>
         </Copy>
       );
     }
