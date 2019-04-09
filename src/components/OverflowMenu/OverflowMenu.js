@@ -297,6 +297,11 @@ class OverflowMenu extends Component {
     onClose: PropTypes.func,
 
     /**
+     * The class to apply to the menu options
+     */
+    menuOptionsClass: PropTypes.string,
+
+    /**
      * Function called when menu is closed
      */
     onOpen: PropTypes.func,
@@ -613,6 +618,7 @@ class OverflowMenu extends Component {
     );
 
     const overflowMenuOptionsClasses = classNames(
+      this.props.menuOptionsClass,
       `${prefix}--overflow-menu-options`,
       {
         [`${prefix}--overflow-menu--flip`]: this.props.flipped,
