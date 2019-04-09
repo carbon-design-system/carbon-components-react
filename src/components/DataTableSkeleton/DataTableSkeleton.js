@@ -27,6 +27,16 @@ const DataTableSkeleton = ({
     [`${prefix}--data-table-v2--compact`]: compact,
   });
 
+  let normalizedHeaders;
+
+  if (typeof headers[0] === 'object') {
+    normalizedHeaders = headers.reduce((filtered, current) =>
+      filtered.push(current.header)
+    );
+  } else {
+    normalizedHeaders = headers;
+  }
+
   const rowRepeat = rowCount - 1;
   const rows = Array(rowRepeat);
   const columnsArray = Array.from({ length: columnCount }, (_, index) => index);
@@ -45,7 +55,7 @@ const DataTableSkeleton = ({
       <thead>
         <tr>
           {columnsArray.map(i => (
-            <th key={i}>{headers[i]}</th>
+            <th key={i}>{normalizedHeaders[i]}</th>
           ))}
         </tr>
       </thead>
@@ -88,7 +98,13 @@ DataTableSkeleton.propTypes = {
   /**
    * Optionally specify the displayed headers
    */
-  headers: PropTypes.array,
+  headers: PropTypes.oneOfType([
+    PropTypes.array,
+    PropTypes.shape({
+      key: PropTypes.string,
+      header: PropTypes.node,
+    }),
+  ]),
 };
 
 DataTableSkeleton.defaultProps = {
