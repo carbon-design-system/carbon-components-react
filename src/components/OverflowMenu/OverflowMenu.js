@@ -582,6 +582,7 @@ class OverflowMenu extends Component {
       onOpen, // eslint-disable-line
       renderIcon: IconElement,
       innerRef: ref,
+      menuOptionsClass,
       ...other
     } = this.props;
     const floatingMenu = !!breakingChangesX || origFloatingMenu;
@@ -618,7 +619,7 @@ class OverflowMenu extends Component {
     );
 
     const overflowMenuOptionsClasses = classNames(
-      this.props.menuOptionsClass,
+      menuOptionsClass,
       `${prefix}--overflow-menu-options`,
       {
         [`${prefix}--overflow-menu--flip`]: this.props.flipped,
