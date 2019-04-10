@@ -14,6 +14,7 @@ import Copy from '../Copy';
 import CopyButton from '../CopyButton';
 import Icon from '../Icon';
 import { componentsX } from '../../internal/FeatureFlags';
+import uid from '../../tools/uniqueId';
 
 const { prefix } = settings;
 
@@ -38,6 +39,11 @@ export default class CodeSnippet extends Component {
      * Specify the string displayed when the snippet is copied
      */
     feedback: PropTypes.string,
+
+    /**
+     * Specify the label used for the Copy Button
+     */
+    copyLabel: PropTypes.string,
 
     /**
      * Specify the description for the Copy Button
@@ -121,6 +127,9 @@ export default class CodeSnippet extends Component {
       ...other
     } = this.props;
 
+    // a unique id generated for aria-describedby
+    this.uid = uid();
+
     const codeSnippetClasses = classNames(className, {
       [`${prefix}--snippet`]: true,
       [`${prefix}--snippet--single`]: type === 'single',
@@ -186,18 +195,16 @@ export default class CodeSnippet extends Component {
       />
     );
 
-    // TODO: Get the popup announced like an alert
-
     if (type === 'inline') {
       return (
         <Copy
           {...other}
           onClick={onClick}
           aria-label={ariaLabel}
-          aria-describedby="description"
+          aria-describedby={this.uid}
           className={codeSnippetClasses}
           feedback={feedback}>
-          <code id="description">{children}</code>
+          <code id={this.uid}>{children}</code>
         </Copy>
       );
     }
