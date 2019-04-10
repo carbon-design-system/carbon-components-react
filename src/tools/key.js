@@ -5,6 +5,10 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+/**
+ * TODO: Add support for event.key (IE) checks. Specifically for 'Esc' keys.
+ */
+
 export const keys = {
   TAB: 9,
   ENTER: 13,
