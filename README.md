@@ -15,6 +15,8 @@ Run the following command using [npm](https://www.npmjs.com/):
 npm install -S carbon-components-react carbon-components carbon-icons
 ```
 
+whoope
+
 If you prefer [Yarn](https://yarnpkg.com/en/), use the following command instead:
 
 ```bash
