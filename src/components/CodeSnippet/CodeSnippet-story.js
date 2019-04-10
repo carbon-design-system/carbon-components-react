@@ -17,8 +17,8 @@ const props = {
     light: boolean('Light variant (light)', false),
     feedback: text('Feedback text (feedback)', 'Feedback Enabled 👍'),
     onClick: action('onClick'),
-    ariaLabel: text(
-      'ARIA label for the snippet/copy button (ariaLabel)',
+    copyLabel: text(
+      'ARIA label for the snippet/copy button (copyLabel)',
       'copyable code snippet'
     ),
   }),

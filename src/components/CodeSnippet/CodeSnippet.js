@@ -41,11 +41,6 @@ export default class CodeSnippet extends Component {
     feedback: PropTypes.string,
 
     /**
-     * Specify the label used for the Copy Button
-     */
-    copyLabel: PropTypes.string,
-
-    /**
      * Specify the description for the Copy Button
      */
     copyButtonDescription: PropTypes.string,
@@ -60,7 +55,7 @@ export default class CodeSnippet extends Component {
      * Specify a label to be read by screen readers on the containing <textbox>
      * node
      */
-    ariaLabel: PropTypes.string,
+    copyLabel: PropTypes.string,
 
     /**
      * Specify a string that is displayed when the Code Snippet text is more
@@ -119,7 +114,7 @@ export default class CodeSnippet extends Component {
       children,
       feedback,
       onClick,
-      ariaLabel,
+      copyLabel,
       copyButtonDescription,
       light,
       showMoreText,
@@ -175,7 +170,7 @@ export default class CodeSnippet extends Component {
         role="textbox"
         tabIndex={0}
         className={`${prefix}--snippet-container`}
-        aria-label={ariaLabel ? ariaLabel : 'code-snippet'}>
+        aria-label={copyLabel ? copyLabel : 'code-snippet'}>
         <code>
           <pre
             ref={codeContent => {
@@ -200,7 +195,7 @@ export default class CodeSnippet extends Component {
         <Copy
           {...other}
           onClick={onClick}
-          aria-label={ariaLabel}
+          aria-label={copyLabel}
           aria-describedby={this.uid}
           className={codeSnippetClasses}
           feedback={feedback}>
