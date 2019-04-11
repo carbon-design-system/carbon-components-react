@@ -29,10 +29,8 @@ const DataTableSkeleton = ({
 
   let normalizedHeaders;
 
-  if (typeof headers[0] === 'object') {
-    normalizedHeaders = headers.reduce((filtered, current) =>
-      filtered.push(current.header)
-    );
+  if (headers[0] === Object(headers[0]) && !Array.isArray(headers[0])) {
+    normalizedHeaders = headers.map(current => current.header);
   } else {
     normalizedHeaders = headers;
   }
