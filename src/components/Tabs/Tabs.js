@@ -251,7 +251,7 @@ export default class Tabs extends React.Component {
       }),
     };
 
-    const selectedTab = this.getTabAt(this.state.selected);
+    const selectedTab = tabsWithProps[this.state.selected];
     const selectedLabel = selectedTab ? selectedTab.props.label : '';
 
     return (
