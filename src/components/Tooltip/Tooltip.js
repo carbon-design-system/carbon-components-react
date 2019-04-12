@@ -24,7 +24,7 @@ import FloatingMenu, {
 import ClickListener from '../../internal/ClickListener';
 import { breakingChangesX, componentsX } from '../../internal/FeatureFlags';
 import mergeRefs from '../../tools/mergeRefs';
-import { keys, matches as keyDownMatch } from '../../tools/key';
+import { keys, keyCodes, matches as keyDownMatch } from '../../tools/key';
 
 const { prefix } = settings;
 
@@ -373,12 +373,19 @@ class Tooltip extends Component {
   };
 
   handleKeyPress = event => {
-    if (keyDownMatch(event, [keys.ESC])) {
+    if (keyDownMatch(event, [keys.ESC, keyCodes.ESC, keyCodes.IEESC])) {
       event.stopPropagation();
       this.setState({ open: false });
     }
 
-    if (keyDownMatch(event, [keys.ENTER, keys.SPACE])) {
+    if (
+      keyDownMatch(event, [
+        keys.ENTER,
+        keyCodes.ENTER,
+        keys.SPACE,
+        keyCodes.SPACE,
+      ])
+    ) {
       event.stopPropagation();
       this.setState({ open: !this.state.open });
     }

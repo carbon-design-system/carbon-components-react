@@ -5,10 +5,25 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-/**
- * TODO: Add support for event.key (IE) checks. Specifically for 'Esc' keys.
- */
+// event.key
+export const keyCodes = {
+  TAB: 'Tab',
+  ENTER: 'Enter',
+  ESC: 'Escape',
+  // IE11 Escape
+  IEESC: 'Esc',
+  SPACE: ' ',
+  PAGEUP: 'PageUp',
+  PAGEDOWN: 'PageDown',
+  END: 'End',
+  HOME: 'Home',
+  LEFT: 'ArrowLeft',
+  UP: 'ArrowUp',
+  RIGHT: 'ArrowRight',
+  DOWN: 'ArrowDown',
+};
 
+// event.which (DEPRECATED)
 export const keys = {
   TAB: 9,
   ENTER: 13,
@@ -41,7 +56,7 @@ export const keys = {
  */
 export function matches(event, keysToMatch) {
   for (let i = 0; i < keysToMatch.length; i++) {
-    if (keysToMatch[i] === event.which) {
+    if (keysToMatch[i] === event.which || keysToMatch[i] === event.key) {
       return true;
     }
   }
