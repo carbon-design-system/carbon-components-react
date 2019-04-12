@@ -29,7 +29,7 @@ const SideNav = React.forwardRef(function SideNav(props, ref) {
   const [expandedState, setExpandedState] = useState(defaultExpanded);
   const expanded = controlled ? expandedProp : expandedState;
 
-  const handleToggle = ([event, value = !expanded]) => {
+  const handleToggle = (event, value = !expanded) => {
     if (!controlled) {
       setExpandedState(value);
     }
