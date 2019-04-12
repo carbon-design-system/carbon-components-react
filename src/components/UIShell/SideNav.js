@@ -25,7 +25,7 @@ const SideNav = React.forwardRef(function SideNav(props, ref) {
     className: customClassName,
     translateById: t,
   } = props;
-  const { current: controlled } = useRef(expandedProp != null);
+  const { current: controlled } = useRef(expandedProp !== undefined);
   const [expandedState, setExpandedState] = useState(defaultExpanded);
   const expanded = controlled ? expandedProp : expandedState;
 
