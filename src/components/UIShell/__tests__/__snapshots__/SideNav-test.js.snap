@@ -3,7 +3,7 @@
 exports[`SideNav should render 1`] = `
 <ForwardRef(SideNav)
   aria-label="Navigation"
-  isExpanded={false}
+  defaultExpanded={false}
   translateById={[Function]}
 >
   <nav
@@ -17,6 +17,7 @@ exports[`SideNav should render 1`] = `
     </h2>
     <SideNavFooter
       assistiveText="Open"
+      expanded={false}
       onToggle={[Function]}
     >
       <footer
