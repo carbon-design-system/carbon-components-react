@@ -41,8 +41,10 @@ const prodSettings =
           },
         }),
         {
-          ongenerate(bundle, details) {
-            const gzipSize = gzip.sync(details.code);
+          generateBundle(options, bundle) {
+            const gzipSize = gzip.sync(
+              bundle['carbon-components-react.min.js'].code
+            );
             const { bundleSizeThreshold } = packageJson;
             console.log('Total size (gzipped):', gzipSize); // eslint-disable-line no-console
             if (gzipSize > bundleSizeThreshold) {
@@ -60,13 +62,13 @@ module.exports = {
   input: 'src/index.js',
   plugins: [
     resolve({
-      jsnext: true,
-      main: true,
+      mainFields: ['main', 'jsnext'],
     }),
     commonjs({
       include: 'node_modules/**',
       sourceMap: true,
       namedExports: {
+        'node_modules/carbon-components/umd/index.js': ['settings'],
         'node_modules/react/index.js': [
           'Children',
           'Component',
