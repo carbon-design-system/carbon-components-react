@@ -21,6 +21,7 @@ const SideNav = React.forwardRef(function SideNav(props, ref) {
     'aria-label': ariaLabel,
     'aria-labelledby': ariaLabelledBy,
     children,
+    onToggle,
     className: customClassName,
     translateById: t,
   } = props;
@@ -28,9 +29,12 @@ const SideNav = React.forwardRef(function SideNav(props, ref) {
   const [expandedState, setExpandedState] = useState(defaultExpanded);
   const expanded = controlled ? expandedProp : expandedState;
 
-  const handleExpand = ({ newState = !expanded }) => {
+  const handleToggle = ([event, value = !expanded]) => {
     if (!controlled) {
-      setExpandedState(newState);
+      setExpandedState(value);
+    }
+    if (onToggle) {
+      onToggle(event, value);
     }
   };
 
@@ -54,13 +58,13 @@ const SideNav = React.forwardRef(function SideNav(props, ref) {
       ref={ref}
       className={`${prefix}--side-nav__navigation ${className}`}
       {...accessibilityLabel}
-      onFocus={() => handleExpand({ newState: true })}
-      onBlur={() => handleExpand({ newState: false })}>
+      onFocus={event => handleToggle(event, true)}
+      onBlur={event => handleToggle(event, false)}>
       {children}
       <SideNavFooter
         assistiveText={assistiveText}
-        isExpanded={expanded}
-        onToggle={handleExpand}
+        expanded={expanded}
+        onToggle={handleToggle}
       />
     </nav>
   );
@@ -74,7 +78,7 @@ SideNav.defaultProps = {
     };
     return translations[id];
   },
-  isExpanded: false,
+  defaultExpanded: false,
 };
 
 SideNav.propTypes = {
@@ -88,6 +92,15 @@ SideNav.propTypes = {
    * If `true`, the SideNav will be open on initial render.
    */
   defaultExpanded: PropTypes.bool,
+
+  /**
+   * An optional listener that is called when an event that would cause
+   * toggling the SideNav occurs.
+   *
+   * @param {object} event
+   * @param {boolean} value
+   */
+  onToggle: PropTypes.func,
 
   /**
    * Required props for accessibility label on the underlying menu
