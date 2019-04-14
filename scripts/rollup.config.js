@@ -62,13 +62,12 @@ module.exports = {
   input: 'src/index.js',
   plugins: [
     resolve({
-      mainFields: ['main', 'jsnext'],
+      mainFields: ['main', 'module', 'jsnext'],
     }),
     commonjs({
       include: 'node_modules/**',
       sourceMap: true,
       namedExports: {
-        'node_modules/carbon-components/umd/index.js': ['settings'],
         'node_modules/react/index.js': [
           'Children',
           'Component',
