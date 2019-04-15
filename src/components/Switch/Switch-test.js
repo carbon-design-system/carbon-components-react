@@ -42,6 +42,14 @@ describe('Switch', () => {
       }
     });
 
+    it('label should have the expected class', () => {
+      if (componentsX) {
+        const cls = 'bx--content-switcher__label';
+        expect(buttonWrapper.find('span').hasClass(cls)).toEqual(true);
+        expect(linkWrapper.find('span').hasClass(cls)).toEqual(true);
+      }
+    });
+
     it('icon should have the expected class', () => {
       if (!componentsX) {
         const cls = 'bx--content-switcher__icon';
