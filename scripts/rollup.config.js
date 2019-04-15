@@ -62,7 +62,7 @@ module.exports = {
   input: 'src/index.js',
   plugins: [
     resolve({
-      mainFields: ['main', 'module', 'jsnext'],
+      mainFields: ['jsnext', 'module', 'main'],
     }),
     commonjs({
       include: 'node_modules/**',
