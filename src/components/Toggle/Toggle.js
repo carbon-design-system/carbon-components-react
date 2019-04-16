@@ -113,6 +113,11 @@ class Toggle extends React.Component {
             ref={el => {
               input = el;
             }}
+            onKeyUp={evt => {
+              if (evt.which === 13) {
+                input.checked = !input.checked;
+              }
+            }}
           />
 
           <label className={`${prefix}--toggle__label`} htmlFor={id}>
