@@ -22,10 +22,18 @@ const DataTableSkeleton = ({
 }) => {
   const dataTableSkeletonClasses = classNames({
     [`${prefix}--skeleton`]: true,
-    [`${prefix}--data-table-v2`]: true,
-    [`${prefix}--data-table-v2--zebra`]: zebra,
-    [`${prefix}--data-table-v2--compact`]: compact,
+    [`${prefix}--data-table`]: true,
+    [`${prefix}--data-table--zebra`]: zebra,
+    [`${prefix}--data-table--compact`]: compact,
   });
+
+  let normalizedHeaders;
+
+  if (headers[0] === Object(headers[0]) && !Array.isArray(headers[0])) {
+    normalizedHeaders = headers.map(current => current.header);
+  } else {
+    normalizedHeaders = headers;
+  }
 
   const rowRepeat = rowCount - 1;
   const rows = Array(rowRepeat);
@@ -45,7 +53,7 @@ const DataTableSkeleton = ({
       <thead>
         <tr>
           {columnsArray.map(i => (
-            <th key={i}>{headers[i]}</th>
+            <th key={i}>{normalizedHeaders[i]}</th>
           ))}
         </tr>
       </thead>
@@ -88,7 +96,13 @@ DataTableSkeleton.propTypes = {
   /**
    * Optionally specify the displayed headers
    */
-  headers: PropTypes.array,
+  headers: PropTypes.oneOfType([
+    PropTypes.array,
+    PropTypes.shape({
+      key: PropTypes.string,
+      header: PropTypes.node,
+    }),
+  ]),
 };
 
 DataTableSkeleton.defaultProps = {
