@@ -52,6 +52,11 @@ const ToggleSmall = ({
           input = el;
         }}
         aria-label={ariaLabel}
+        onKeyUp={evt => {
+          if (evt.which === 13) {
+            input.checked = !input.checked;
+          }
+        }}
       />
 
       <label className={`${prefix}--toggle__label`} htmlFor={id}>
