@@ -9,6 +9,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import classNames from 'classnames';
 import { settings } from 'carbon-components';
+import { keys, match } from '../../tools/key';
 
 const { prefix } = settings;
 
@@ -53,7 +54,7 @@ const ToggleSmall = ({
         }}
         aria-label={ariaLabel}
         onKeyUp={evt => {
-          if (evt.which === 13) {
+          if (match(evt, keys.ENTER)) {
             input.checked = !input.checked;
           }
         }}
