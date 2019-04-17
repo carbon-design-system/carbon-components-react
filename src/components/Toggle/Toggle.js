@@ -10,6 +10,7 @@ import React from 'react';
 import classNames from 'classnames';
 import { settings } from 'carbon-components';
 import setupGetInstanceId from '../../tools/setupGetInstanceId';
+import { keys, match } from '../../tools/key';
 
 const { prefix } = settings;
 const getInstanceId = setupGetInstanceId();
@@ -114,7 +115,7 @@ class Toggle extends React.Component {
               input = el;
             }}
             onKeyUp={evt => {
-              if (evt.which === 13) {
+              if (match(evt, keys.ENTER)) {
                 input.checked = !input.checked;
               }
             }}
