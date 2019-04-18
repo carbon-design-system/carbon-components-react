@@ -56,6 +56,8 @@ const ToggleSmall = ({
         onKeyUp={evt => {
           if (match(evt, keys.ENTER)) {
             input.checked = !input.checked;
+            onChange(evt);
+            onToggle(input.checked, id, evt);
           }
         }}
       />
