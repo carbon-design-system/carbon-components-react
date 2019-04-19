@@ -24,6 +24,7 @@ import FloatingMenu, {
 import ClickListener from '../../internal/ClickListener';
 import { breakingChangesX, componentsX } from '../../internal/FeatureFlags';
 import mergeRefs from '../../tools/mergeRefs';
+import { keys, match as keyDownMatch } from '../../tools/key';
 
 const { prefix } = settings;
 
@@ -265,6 +266,8 @@ class Tooltip extends Component {
     requestAnimationFrame(() => {
       this.getTriggerPosition();
     });
+
+    document.addEventListener('keydown', this.handleEscKeyPress, false);
   }
 
   componentWillUnmount() {
@@ -377,6 +380,13 @@ class Tooltip extends Component {
     if (key === 'Enter' || key === 13 || key === ' ' || key === 32) {
       evt.stopPropagation();
       this.setState({ open: !this.state.open });
+    }
+  };
+
+  handleEscKeyPress = event => {
+    const { open } = this.state;
+    if (open && keyDownMatch(event, keys.ESC)) {
+      return this.setState({ open: false });
     }
   };
 
