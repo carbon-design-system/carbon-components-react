@@ -275,6 +275,8 @@ class Tooltip extends Component {
       this._debouncedHandleHover.cancel();
       this._debouncedHandleHover = null;
     }
+
+    document.removeEventListener('keydown', this.handleEscKeyPress, false);
   }
 
   static getDerivedStateFromProps({ open }, state) {
