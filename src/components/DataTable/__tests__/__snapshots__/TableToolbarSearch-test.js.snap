@@ -18,10 +18,11 @@ exports[`DataTable.TableToolbarSearch should render 1`] = `
       className="custom-class bx--search-maginfier"
       id="custom-id"
       labelText="Filter table"
-      onChange={[Function]}
+      onChange={[MockFunction]}
       placeHolderText="Search"
       small={true}
       type="text"
+      value=""
     >
       <div
         aria-labelledby="custom-id-label"
@@ -72,6 +73,7 @@ exports[`DataTable.TableToolbarSearch should render 1`] = `
           onChange={[Function]}
           placeholder="Search"
           type="text"
+          value=""
         />
         <button
           className="bx--search-close bx--search-close--hidden"

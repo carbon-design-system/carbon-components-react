@@ -37,7 +37,8 @@ import { mount } from 'enzyme';
 const getHeaderAt = (wrapper, index) =>
   wrapper.find('TableHeader button').at(index);
 const getRowAt = (wrapper, index) => wrapper.find('tbody tr').at(index);
-const getFilterInput = wrapper => wrapper.find('TableToolbarSearch input');
+const getFilterInput = wrapper =>
+  wrapper.find('TableToolbarContent TableToolbarSearch input');
 const getSelectAll = wrapper =>
   wrapper.find('TableSelectAll input[type="checkbox"]');
 const getLastCallFor = mocker =>
@@ -81,8 +82,8 @@ describe('DataTable', () => {
       render: jest.fn(({ rows, headers, getHeaderProps, onInputChange }) => (
         <TableContainer title="DataTable with toolbar">
           <TableToolbar>
-            <TableToolbarSearch onChange={onInputChange} id="custom-id" />
             <TableToolbarContent>
+              <TableToolbarSearch onChange={onInputChange} id="custom-id" />
               <TableToolbarAction
                 renderIcon={Download16}
                 iconDescription="Download"

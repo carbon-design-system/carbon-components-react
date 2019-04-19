@@ -64,7 +64,7 @@ const TableToolbarSearch = ({
   const onChange = e => {
     setValue(e.currentTarget.value);
     if (onChangeProp) {
-      onChangeProp(value);
+      onChangeProp(e);
     }
   };
 
@@ -83,6 +83,7 @@ const TableToolbarSearch = ({
         className={className + ' ' + `${prefix}--search-maginfier`}
         {...rest}
         small
+        value={value}
         id={id}
         labelText={labelText || t('carbon.table.toolbar.search.label')}
         placeHolderText={
