@@ -234,7 +234,7 @@ class Tooltip extends Component {
     direction: DIRECTION_BOTTOM,
     renderIcon: !componentsX ? undefined : Information,
     showIcon: true,
-    iconDescription: 'tooltip',
+    iconDescription: 'Help',
 
     triggerText: 'Provide triggerText',
     menuOffset: getMenuOffset,
