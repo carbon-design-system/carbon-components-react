@@ -7,7 +7,7 @@
 
 import cx from 'classnames';
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useRef, useState } from 'react';
 import { settings } from 'carbon-components';
 import Search from '../Search';
 import setupGetInstanceId from './tools/instanceId';
@@ -27,21 +27,59 @@ const translateWithId = id => {
 const TableToolbarSearch = ({
   className,
   searchContainerClass,
-  onChange,
+  onChange: onChangeProp,
   translateWithId: t,
   placeHolderText,
   labelText,
+  expanded: expandedProp,
+  defaultExpanded,
+  onExpand,
+  persistant,
   id = `data-table-search-${getInstanceId()}`,
   ...rest
 }) => {
-  const searchContainerClasses = cx(
-    searchContainerClass,
-    `${prefix}--toolbar-search-container-active`,
-    `${prefix}--toolbar-search-container-expandable`
-  );
+  const { current: controlled } = useRef(expandedProp !== undefined);
+  const [expandedState, setExpandedState] = useState(defaultExpanded);
+  const expanded = controlled ? expandedProp : expandedState;
+
+  const searchRef = useRef(null);
+  const [value, setValue] = useState('');
+
+  const searchContainerClasses = cx({
+    [searchContainerClass]: true,
+    [`${prefix}--toolbar-search-container-active`]: expanded,
+    [`${prefix}--toolbar-search-container-expandable`]: !persistant,
+    [`${prefix}--toolbar-search-container-persistant`]: persistant,
+  });
+
+  const handleExpand = (event, value = !expanded) => {
+    if (!controlled && !persistant) {
+      setExpandedState(value);
+    }
+    if (onExpand) {
+      onExpand(event, value);
+    }
+  };
+
+  const onChange = e => {
+    setValue(e.currentTarget.value);
+    if (onChangeProp) {
+      onChangeProp(value);
+    }
+  };
+
+  const onClick = event => {
+    handleExpand(event, true);
+  };
+
   return (
-    <div className={searchContainerClasses}>
+    <div
+      onClick={onClick}
+      onFocus={event => handleExpand(event, true)}
+      onBlur={event => !value && handleExpand(event, false)}
+      className={searchContainerClasses}>
       <Search
+        ref={searchRef}
         className={className + ' ' + `${prefix}--search-maginfier`}
         {...rest}
         small
@@ -93,10 +131,16 @@ TableToolbarSearch.propTypes = {
    * Provide custom text for the component for each translation id
    */
   translateWithId: PropTypes.func.isRequired,
+
+  /**
+   * Whether the search should be expanded by default
+   */
+  persistant: PropTypes.bool,
 };
 
 TableToolbarSearch.defaultProps = {
   translateWithId,
+  persistant: false,
 };
 
 export default TableToolbarSearch;
