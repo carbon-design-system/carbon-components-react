@@ -8,7 +8,7 @@ const commonjs = require('rollup-plugin-commonjs');
 const resolve = require('rollup-plugin-node-resolve');
 const babel = require('rollup-plugin-babel');
 const replace = require('rollup-plugin-replace');
-const uglify = require('rollup-plugin-uglify');
+const { terser } = require('rollup-plugin-terser');
 const sizes = require('rollup-plugin-sizes');
 
 const packageJson = require('../package.json');
@@ -21,7 +21,7 @@ const prodSettings =
   env === 'development'
     ? []
     : [
-        uglify(),
+        terser(),
         sizes({
           report(details) {
             const table = new Table({
@@ -41,8 +41,10 @@ const prodSettings =
           },
         }),
         {
-          ongenerate(bundle, details) {
-            const gzipSize = gzip.sync(details.code);
+          generateBundle(options, bundle) {
+            const gzipSize = gzip.sync(
+              bundle['carbon-components-react.min.js'].code
+            );
             const { bundleSizeThreshold } = packageJson;
             console.log('Total size (gzipped):', gzipSize); // eslint-disable-line no-console
             if (gzipSize > bundleSizeThreshold) {
@@ -60,8 +62,7 @@ module.exports = {
   input: 'src/index.js',
   plugins: [
     resolve({
-      jsnext: true,
-      main: true,
+      mainFields: ['jsnext', 'module', 'main'],
     }),
     commonjs({
       include: 'node_modules/**',

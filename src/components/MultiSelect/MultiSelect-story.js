@@ -16,6 +16,8 @@ import {
   text,
   object,
 } from '@storybook/addon-knobs';
+import { withReadme } from 'storybook-readme';
+import readme from './README.md';
 import MultiSelect from '../MultiSelect';
 
 const items = [
@@ -38,6 +40,7 @@ const types = {
 };
 
 const props = () => ({
+  id: text('MultiSelect ID (id)', 'carbon-multiselect-example'),
   filterable: boolean(
     'Filterable (`<MultiSelect.Filterable>` instead of `<MultiSelect>`)',
     false
@@ -66,7 +69,7 @@ storiesOf('MultiSelect', module)
   .addDecorator(withKnobs)
   .add(
     'default',
-    () => {
+    withReadme(readme, () => {
       const {
         filterable,
         listBoxMenuIconTranslationIds,
@@ -85,7 +88,7 @@ storiesOf('MultiSelect', module)
           />
         </div>
       );
-    },
+    }),
     {
       info: {
         text: `
@@ -96,7 +99,7 @@ storiesOf('MultiSelect', module)
   )
   .add(
     'with initial selected items',
-    () => {
+    withReadme(readme, () => {
       const {
         filterable,
         listBoxMenuIconTranslationIds,
@@ -117,7 +120,7 @@ storiesOf('MultiSelect', module)
           />
         </div>
       );
-    },
+    }),
     {
       info: {
         text: `
