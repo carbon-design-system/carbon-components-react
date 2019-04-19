@@ -216,7 +216,7 @@ class Tooltip extends Component {
     /**
      * The description of the default tooltip icon, to be put in its SVG 'aria-label' and 'alt' .
      */
-    iconDescription: PropTypes.string,
+    iconDescription: PropTypes.string.isRequired,
 
     /**
      * `true` if opening tooltip should be triggered by clicking the trigger button.
@@ -235,8 +235,7 @@ class Tooltip extends Component {
     renderIcon: !componentsX ? undefined : Information,
     showIcon: true,
     iconDescription: 'Help',
-
-    triggerText: 'Provide triggerText',
+    triggerText: null,
     menuOffset: getMenuOffset,
     clickToOpen: breakingChangesX,
   };
@@ -452,14 +451,22 @@ class Tooltip extends Component {
       : {
           'aria-describedby': tooltipId,
         };
+
+    // if the user provides property `triggerText`,
+    // then the button should use aria-labelledby to point to its id,
+    // if the user doesn't provide property `triggerText`,
+    // then they need to provide an aria-label via the `iconDescription` property.
+    const ariaProperties = triggerText
+      ? { 'aria-labelledby': triggerText }
+      : { 'aria-label': iconDescription };
+
     const finalIcon = IconCustomElement ? (
       <IconCustomElement
         name={iconName}
-        aria-labelledby={triggerId}
-        aria-label={iconDescription}
         ref={mergeRefs(ref, node => {
           this.triggerEl = node;
         })}
+        {...ariaProperties}
       />
     ) : (
       <Icon
@@ -469,6 +476,7 @@ class Tooltip extends Component {
         iconRef={mergeRefs(ref, node => {
           this.triggerEl = node;
         })}
+        {...ariaProperties}
       />
     );
 
@@ -490,9 +498,8 @@ class Tooltip extends Component {
                 onFocus={this.handleMouse}
                 onBlur={this.handleMouse}
                 aria-haspopup="true"
-                aria-label={iconDescription}
                 aria-expanded={open}
-                {...ariaDescribedbyProps}
+                {...ariaDescribedbyProps}>
                 {finalIcon}
               </div>
             </div>
@@ -513,7 +520,7 @@ class Tooltip extends Component {
               onBlur={this.handleMouse}
               aria-haspopup="true"
               aria-expanded={open}
-              {...ariaDescribedbyProps}
+              {...ariaDescribedbyProps}>
               {triggerText}
             </div>
           )}
