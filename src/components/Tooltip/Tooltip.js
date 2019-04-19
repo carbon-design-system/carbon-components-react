@@ -452,6 +452,24 @@ class Tooltip extends Component {
       triggerClassName
     );
 
+    const iconProperties = { name: iconName, role: null, description: null };
+
+    const FinalIcon = properties => (
+      <div className={`${prefix}--tooltip__trigger`} {...properties}>
+        {IconCustomElement ? (
+          <IconCustomElement {...iconProperties} />
+        ) : (
+          <Icon
+            icon={!icon && !iconName ? iconInfoGlyph : icon}
+            iconRef={mergeRefs(ref, node => {
+              this.triggerEl = node;
+            })}
+            {...iconProperties}
+          />
+        )}
+      </div>
+    );
+
     const properties = {
       role: 'button',
       tabIndex: tabIndex,
@@ -478,24 +496,6 @@ class Tooltip extends Component {
             'aria-label': iconDescription,
           }),
     };
-
-    const iconProperties = { name: iconName, role: null, description: null };
-
-    const FinalIcon = properties => (
-      <div className={`${prefix}--tooltip__trigger`} {...properties}>
-        {IconCustomElement ? (
-          <IconCustomElement {...iconProperties} />
-        ) : (
-          <Icon
-            icon={!icon && !iconName ? iconInfoGlyph : icon}
-            iconRef={mergeRefs(ref, node => {
-              this.triggerEl = node;
-            })}
-            {...iconProperties}
-          />
-        )}
-      </div>
-    );
 
     return (
       <>
