@@ -446,19 +446,22 @@ class Tooltip extends Component {
       triggerClassName
     );
 
-    const ariaDescribedbyProps = !open
-      ? {}
-      : {
-          'aria-describedby': tooltipId,
-        };
-
     // if the user provides property `triggerText`,
     // then the button should use aria-labelledby to point to its id,
     // if the user doesn't provide property `triggerText`,
     // then they need to provide an aria-label via the `iconDescription` property.
-    const ariaProperties = triggerText
-      ? { 'aria-labelledby': triggerText }
-      : { 'aria-label': iconDescription };
+    const ariaProperties = {
+      'aria-haspopup': 'true',
+      'aria-expanded': open,
+      ...(triggerText
+        ? {
+            'aria-labelledby': triggerId,
+            'aria-describedby': triggerId,
+          }
+        : {
+            'aria-label': iconDescription,
+          }),
+    };
 
     const finalIcon = IconCustomElement ? (
       <IconCustomElement
@@ -484,11 +487,10 @@ class Tooltip extends Component {
       <>
         <ClickListener onClickOutside={this.handleClickOutside}>
           {showIcon ? (
-            <div className={triggerClasses}>
+            <div className={triggerClasses} id={triggerId}>
               {triggerText}
               <div
                 role="button"
-                id={triggerId}
                 className={`${prefix}--tooltip__trigger`}
                 tabIndex={tabIndex}
                 onClick={this.handleMouse}
@@ -496,10 +498,7 @@ class Tooltip extends Component {
                 onMouseOver={this.handleMouse}
                 onMouseOut={this.handleMouse}
                 onFocus={this.handleMouse}
-                onBlur={this.handleMouse}
-                aria-haspopup="true"
-                aria-expanded={open}
-                {...ariaDescribedbyProps}>
+                onBlur={this.handleMouse}>
                 {finalIcon}
               </div>
             </div>
@@ -518,9 +517,7 @@ class Tooltip extends Component {
               onMouseOut={this.handleMouse}
               onFocus={this.handleMouse}
               onBlur={this.handleMouse}
-              aria-haspopup="true"
-              aria-expanded={open}
-              {...ariaDescribedbyProps}>
+              {...ariaProperties}>
               {triggerText}
             </div>
           )}
