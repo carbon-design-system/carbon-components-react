@@ -219,11 +219,6 @@ class Tooltip extends Component {
     iconDescription: PropTypes.string,
 
     /**
-     * The title of the default tooltip icon, to be put in its SVG `<title>` element.
-     */
-    iconTitle: PropTypes.string,
-
-    /**
      * `true` if opening tooltip should be triggered by clicking the trigger button.
      */
     clickToOpen: PropTypes.bool,
@@ -240,7 +235,7 @@ class Tooltip extends Component {
     renderIcon: !componentsX ? undefined : Information,
     showIcon: true,
     iconDescription: 'tooltip',
-    iconTitle: '',
+
     triggerText: 'Provide triggerText',
     menuOffset: getMenuOffset,
     clickToOpen: breakingChangesX,
@@ -411,7 +406,6 @@ class Tooltip extends Component {
       showIcon,
       icon,
       iconName,
-      iconTitle,
       iconDescription,
       renderIcon: IconCustomElement,
       menuOffset,
@@ -477,7 +471,6 @@ class Tooltip extends Component {
         icon={!icon && !iconName ? iconInfoGlyph : icon}
         name={iconName}
         description={iconDescription}
-        iconTitle={iconTitle}
         iconRef={mergeRefs(ref, node => {
           this.triggerEl = node;
         })}
@@ -495,7 +488,6 @@ class Tooltip extends Component {
                 id={triggerId}
                 className={`${prefix}--tooltip__trigger`}
                 tabIndex={tabIndex}
-                title={iconTitle}
                 onClick={this.handleMouse}
                 onKeyDown={this.handleKeyPress}
                 onMouseOver={this.handleMouse}
