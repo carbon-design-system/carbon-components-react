@@ -36,13 +36,13 @@ const TableToolbarSearch = ({
 }) => {
   const searchContainerClasses = cx(
     searchContainerClass,
-    `${prefix}--toolbar-search-container`
+    `${prefix}--toolbar-search-container-active`,
+    `${prefix}--toolbar-search-container-expandable`
   );
   return (
     <div className={searchContainerClasses}>
       <Search
-        light
-        className={className}
+        className={className + ' ' + `${prefix}--search-maginfier`}
         {...rest}
         small
         id={id}

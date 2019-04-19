@@ -7,9 +7,7 @@
 
 import React from 'react';
 import { action } from '@storybook/addon-actions';
-import Download16 from '@carbon/icons-react/lib/download/16';
-import Edit16 from '@carbon/icons-react/lib/edit/16';
-import Settings16 from '@carbon/icons-react/lib/settings/16';
+
 import Button from '../../Button';
 import DataTable, {
   Table,
@@ -24,11 +22,12 @@ import DataTable, {
   TableSelectAll,
   TableSelectRow,
   TableToolbar,
-  TableToolbarAction,
+  TableToolbarMenu,
   TableToolbarContent,
   TableToolbarSearch,
 } from '../../DataTable';
 import { batchActionClick, initialRows, headers } from './shared';
+import TableToolbarAction from '../TableToolbarAction';
 
 export default ({ short, shouldShowBorder }) => (
   <DataTable
@@ -60,23 +59,19 @@ export default ({ short, shouldShowBorder }) => (
               Ghost
             </TableBatchAction>
           </TableBatchActions>
-          <TableToolbarSearch onChange={onInputChange} />
           <TableToolbarContent>
-            <TableToolbarAction
-              renderIcon={Download16}
-              iconDescription="Download"
-              onClick={action('TableToolbarAction - Download')}
-            />
-            <TableToolbarAction
-              renderIcon={Edit16}
-              iconDescription="Edit"
-              onClick={action('TableToolbarAction - Edit')}
-            />
-            <TableToolbarAction
-              renderIcon={Settings16}
-              iconDescription="Settings"
-              onClick={action('TableToolbarAction - Settings')}
-            />
+            <TableToolbarSearch onChange={onInputChange} />
+            <TableToolbarMenu>
+              <TableToolbarAction onClick={() => alert('Alert 1')}>
+                Action 1
+              </TableToolbarAction>
+              <TableToolbarAction onClick={() => alert('Alert 2')}>
+                Action 2
+              </TableToolbarAction>
+              <TableToolbarAction onClick={() => alert('Alert 3')}>
+                Action 3
+              </TableToolbarAction>
+            </TableToolbarMenu>
             <Button onClick={action('Add new row')} small kind="primary">
               Add new
             </Button>
