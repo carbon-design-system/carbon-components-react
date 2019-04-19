@@ -216,7 +216,14 @@ class Tooltip extends Component {
     /**
      * The description of the default tooltip icon, to be put in its SVG 'aria-label' and 'alt' .
      */
-    iconDescription: PropTypes.string.isRequired,
+    iconDescription: ({ triggerText, iconDescription }) => {
+      if (!triggerText && !iconDescription) {
+        return new Error(
+          "Please  add property 'iconDescription' when property 'triggerText' is null. This is according to a11y standards."
+        );
+      }
+      return null;
+    },
 
     /**
      * `true` if opening tooltip should be triggered by clicking the trigger button.
@@ -234,7 +241,6 @@ class Tooltip extends Component {
     direction: DIRECTION_BOTTOM,
     renderIcon: !componentsX ? undefined : Information,
     showIcon: true,
-    iconDescription: 'Help',
     triggerText: null,
     menuOffset: getMenuOffset,
     clickToOpen: breakingChangesX,
@@ -446,16 +452,26 @@ class Tooltip extends Component {
       triggerClassName
     );
 
-    // if the user provides property `triggerText`,
-    // then the button should use aria-labelledby to point to its id,
-    // if the user doesn't provide property `triggerText`,
-    // then they need to provide an aria-label via the `iconDescription` property.
-    const ariaProperties = {
+    const properties = {
+      role: 'button',
+      tabIndex: tabIndex,
+      onClick: this.handleMouse,
+      onKeyDown: this.handleKeyPress,
+      onMouseOver: this.handleMouse,
+      onMouseOut: this.handleMouse,
+      onFocus: this.handleMouse,
+      onBlur: this.handleMouse,
+      ref: mergeRefs(ref, node => {
+        this.triggerEl = node;
+      }),
       'aria-haspopup': 'true',
       'aria-expanded': open,
+      // if the user provides property `triggerText`,
+      // then the button should use aria-describedby to point to its id,
+      // if the user doesn't provide property `triggerText`,
+      // then an aria-label will be provided via the `iconDescription` property.
       ...(triggerText
         ? {
-            'aria-labelledby': triggerId,
             'aria-describedby': triggerId,
           }
         : {
@@ -463,61 +479,34 @@ class Tooltip extends Component {
           }),
     };
 
-    const finalIcon = IconCustomElement ? (
-      <IconCustomElement
-        name={iconName}
-        ref={mergeRefs(ref, node => {
-          this.triggerEl = node;
-        })}
-        {...ariaProperties}
-      />
-    ) : (
-      <Icon
-        icon={!icon && !iconName ? iconInfoGlyph : icon}
-        name={iconName}
-        description={iconDescription}
-        iconRef={mergeRefs(ref, node => {
-          this.triggerEl = node;
-        })}
-        {...ariaProperties}
-      />
+    const iconProperties = { name: iconName, role: null, description: null };
+
+    const FinalIcon = properties => (
+      <div className={`${prefix}--tooltip__trigger`} {...properties}>
+        {IconCustomElement ? (
+          <IconCustomElement {...iconProperties} />
+        ) : (
+          <Icon
+            icon={!icon && !iconName ? iconInfoGlyph : icon}
+            iconRef={mergeRefs(ref, node => {
+              this.triggerEl = node;
+            })}
+            {...iconProperties}
+          />
+        )}
+      </div>
     );
 
     return (
       <>
         <ClickListener onClickOutside={this.handleClickOutside}>
           {showIcon ? (
-            <div className={triggerClasses} id={triggerId}>
+            <div id={triggerId} className={triggerClasses}>
               {triggerText}
-              <div
-                role="button"
-                className={`${prefix}--tooltip__trigger`}
-                tabIndex={tabIndex}
-                onClick={this.handleMouse}
-                onKeyDown={this.handleKeyPress}
-                onMouseOver={this.handleMouse}
-                onMouseOut={this.handleMouse}
-                onFocus={this.handleMouse}
-                onBlur={this.handleMouse}>
-                {finalIcon}
-              </div>
+              <FinalIcon {...properties} />
             </div>
           ) : (
-            <div
-              role="button"
-              tabIndex={tabIndex}
-              id={triggerId}
-              className={triggerClasses}
-              ref={mergeRefs(ref, node => {
-                this.triggerEl = node;
-              })}
-              onClick={this.handleMouse}
-              onKeyDown={this.handleKeyPress}
-              onMouseOver={this.handleMouse}
-              onMouseOut={this.handleMouse}
-              onFocus={this.handleMouse}
-              onBlur={this.handleMouse}
-              {...ariaProperties}>
+            <div id={triggerId} className={triggerClasses} {...properties}>
               {triggerText}
             </div>
           )}
