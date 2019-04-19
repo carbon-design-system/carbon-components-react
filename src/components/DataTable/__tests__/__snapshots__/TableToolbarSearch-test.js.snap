@@ -5,24 +5,27 @@ exports[`DataTable.TableToolbarSearch should render 1`] = `
   className="custom-class"
   id="custom-id"
   onChange={[MockFunction]}
+  persistant={false}
   translateWithId={[Function]}
 >
   <div
-    className="bx--toolbar-search-container"
+    className="undefined bx--toolbar-search-container-expandable"
+    onBlur={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
   >
     <Search
-      className="custom-class"
+      className="custom-class bx--search-maginfier"
       id="custom-id"
       labelText="Filter table"
-      light={true}
-      onChange={[MockFunction]}
+      onChange={[Function]}
       placeHolderText="Search"
       small={true}
       type="text"
     >
       <div
         aria-labelledby="custom-id-label"
-        className="bx--search bx--search--sm bx--search--light custom-class"
+        className="bx--search bx--search--sm custom-class bx--search-maginfier"
         role="search"
       >
         <Search16
