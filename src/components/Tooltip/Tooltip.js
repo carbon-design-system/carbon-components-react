@@ -395,7 +395,7 @@ class Tooltip extends Component {
 
   handleEscKeyPress = event => {
     const { open } = this.state;
-    if (keyDownMatch(event, [keys.ESC, keyCodes.ESC, keyCodes.IEESC])) {
+    if (open && keyDownMatch(event, [keys.ESC, keyCodes.ESC, keyCodes.IEESC])) {
       return this.setState({ open: false });
     }
   };
