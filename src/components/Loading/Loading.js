@@ -36,7 +36,7 @@ export default class Loading extends React.Component {
     small: PropTypes.bool,
 
     /**
-     * Specify an description that would be used to best describe the loading state.
+     * Specify an description that would be used to best describe the loading state
      */
     description: PropTypes.string,
   };
