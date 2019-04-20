@@ -454,22 +454,6 @@ class Tooltip extends Component {
 
     const iconProperties = { name: iconName, role: null, description: null };
 
-    const FinalIcon = properties => (
-      <div className={`${prefix}--tooltip__trigger`} {...properties}>
-        {IconCustomElement ? (
-          <IconCustomElement {...iconProperties} />
-        ) : (
-          <Icon
-            icon={!icon && !iconName ? iconInfoGlyph : icon}
-            iconRef={mergeRefs(ref, node => {
-              this.triggerEl = node;
-            })}
-            {...iconProperties}
-          />
-        )}
-      </div>
-    );
-
     const properties = {
       role: 'button',
       tabIndex: tabIndex,
@@ -503,7 +487,19 @@ class Tooltip extends Component {
           {showIcon ? (
             <div id={triggerId} className={triggerClasses}>
               {triggerText}
-              <FinalIcon {...properties} />
+              <div className={`${prefix}--tooltip__trigger`} {...properties}>
+                {IconCustomElement ? (
+                  <IconCustomElement {...iconProperties} />
+                ) : (
+                  <Icon
+                    icon={!icon && !iconName ? iconInfoGlyph : icon}
+                    iconRef={mergeRefs(ref, node => {
+                      this.triggerEl = node;
+                    })}
+                    {...iconProperties}
+                  />
+                )}
+              </div>
             </div>
           ) : (
             <div id={triggerId} className={triggerClasses} {...properties}>
