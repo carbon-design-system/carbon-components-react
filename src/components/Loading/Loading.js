@@ -34,12 +34,18 @@ export default class Loading extends React.Component {
      * Specify whether you would like the small variant of <Loading>
      */
     small: PropTypes.bool,
+
+    /**
+     * Specify an description that would be used to best describe the Loading state..
+     */
+    description: PropTypes.string,
   };
 
   static defaultProps = {
     active: true,
     withOverlay: true,
     small: false,
+    description: 'Active loading indicator',
   };
 
   render() {
