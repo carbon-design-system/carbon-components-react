@@ -7,7 +7,7 @@
 
 import cx from 'classnames';
 import PropTypes from 'prop-types';
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { settings } from 'carbon-components';
 import Search from '../Search';
 import setupGetInstanceId from './tools/instanceId';
@@ -45,8 +45,15 @@ const TableToolbarSearch = ({
   const searchRef = useRef(null);
   const [value, setValue] = useState('');
 
+  useEffect(() => {
+    if (searchRef.current) {
+      searchRef.current.querySelector('input').focus();
+    }
+  });
+
   const searchContainerClasses = cx({
-    [searchContainerClass]: true,
+    [searchContainerClass]: searchContainerClass,
+    [`${prefix}--toolbar-action`]: true,
     [`${prefix}--toolbar-search-container-active`]: expanded,
     [`${prefix}--toolbar-search-container-expandable`]: !persistant,
     [`${prefix}--toolbar-search-container-persistant`]: persistant,
@@ -62,29 +69,28 @@ const TableToolbarSearch = ({
   };
 
   const onChange = e => {
-    setValue(e.currentTarget.value);
+    setValue(e.target.value);
     if (onChangeProp) {
       onChangeProp(e);
     }
   };
 
-  const onClick = event => {
-    handleExpand(event, true);
-  };
-
   return (
     <div
-      onClick={onClick}
+      tabIndex="0"
+      role="searchbox"
+      ref={searchRef}
+      onClick={event => handleExpand(event, true)}
       onFocus={event => handleExpand(event, true)}
       onBlur={event => !value && handleExpand(event, false)}
       className={searchContainerClasses}>
       <Search
-        ref={searchRef}
-        className={className + ' ' + `${prefix}--search-maginfier`}
         {...rest}
         small
+        className={className + ' ' + `${prefix}--search-maginfier`}
         value={value}
         id={id}
+        aria-hidden={!expanded}
         labelText={labelText || t('carbon.table.toolbar.search.label')}
         placeHolderText={
           placeHolderText || t('carbon.table.toolbar.search.placeholder')
@@ -134,7 +140,7 @@ TableToolbarSearch.propTypes = {
   translateWithId: PropTypes.func.isRequired,
 
   /**
-   * Whether the search should be expanded by default
+   * Whether the search should be allowed to expand
    */
   persistant: PropTypes.bool,
 };

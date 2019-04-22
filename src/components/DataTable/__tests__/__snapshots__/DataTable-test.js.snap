@@ -2876,12 +2876,15 @@ exports[`DataTable should render 1`] = `
                 translateWithId={[Function]}
               >
                 <div
-                  className="undefined bx--toolbar-search-container-persistant"
+                  className="bx--toolbar-action bx--toolbar-search-container-persistant"
                   onBlur={[Function]}
                   onClick={[Function]}
                   onFocus={[Function]}
+                  role="searchbox"
+                  tabIndex="0"
                 >
                   <Search
+                    aria-hidden={true}
                     className="undefined bx--search-maginfier"
                     id="custom-id"
                     labelText="Filter table"
@@ -2935,6 +2938,7 @@ exports[`DataTable should render 1`] = `
                         Filter table
                       </label>
                       <input
+                        aria-hidden={true}
                         className="bx--search-input"
                         id="custom-id"
                         onChange={[Function]}
