@@ -249,6 +249,7 @@ class NumberInput extends Component {
       step,
       onChange: this.handleChange,
       value: this.state.value,
+      ariaLabel,
     };
 
     const buttonProps = {
@@ -274,7 +275,7 @@ class NumberInput extends Component {
     });
 
     const labelText = label ? (
-      <label htmlFor={id} className={labelClasses} aria-label={ariaLabel}>
+      <label htmlFor={id} className={labelClasses}>
         {label}
       </label>
     ) : null;
