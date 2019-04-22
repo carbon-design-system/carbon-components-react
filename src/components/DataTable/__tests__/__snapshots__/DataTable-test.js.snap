@@ -2885,7 +2885,7 @@ exports[`DataTable should render 1`] = `
                 >
                   <Search
                     aria-hidden={true}
-                    className="undefined bx--search-maginfier"
+                    className="bx--search-maginfier"
                     id="custom-id"
                     labelText="Filter table"
                     onChange={[Function]}
@@ -2896,7 +2896,7 @@ exports[`DataTable should render 1`] = `
                   >
                     <div
                       aria-labelledby="custom-id-label"
-                      className="bx--search bx--search--sm undefined bx--search-maginfier"
+                      className="bx--search bx--search--sm bx--search-maginfier"
                       role="search"
                     >
                       <Search16

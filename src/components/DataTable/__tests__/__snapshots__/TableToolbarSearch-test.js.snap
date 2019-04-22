@@ -18,7 +18,7 @@ exports[`DataTable.TableToolbarSearch should render 1`] = `
   >
     <Search
       aria-hidden={true}
-      className="custom-class bx--search-maginfier"
+      className="className bx--search-maginfier"
       id="custom-id"
       labelText="Filter table"
       onChange={[Function]}
@@ -29,7 +29,7 @@ exports[`DataTable.TableToolbarSearch should render 1`] = `
     >
       <div
         aria-labelledby="custom-id-label"
-        className="bx--search bx--search--sm custom-class bx--search-maginfier"
+        className="bx--search bx--search--sm className bx--search-maginfier"
         role="search"
       >
         <Search16
