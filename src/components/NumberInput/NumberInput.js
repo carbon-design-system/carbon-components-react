@@ -135,6 +135,7 @@ class NumberInput extends Component {
     value: 0,
     invalid: false,
     invalidText: 'Provide invalidText',
+    ariaLabel: 'A Numeric Input field with increment and decrement buttons',
     helperText: '',
     light: false,
     allowEmpty: false,
@@ -221,6 +222,7 @@ class NumberInput extends Component {
       invalid,
       invalidText,
       helperText,
+      ariaLabel,
       light,
       allowEmpty,
       innerRef: ref,
@@ -272,7 +274,7 @@ class NumberInput extends Component {
     });
 
     const labelText = label ? (
-      <label htmlFor={id} className={labelClasses}>
+      <label htmlFor={id} className={labelClasses} aria-label={ariaLabel}>
         {label}
       </label>
     ) : null;
