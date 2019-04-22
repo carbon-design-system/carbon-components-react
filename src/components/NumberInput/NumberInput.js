@@ -103,6 +103,10 @@ class NumberInput extends Component {
      */
     helperText: PropTypes.node,
     /**
+     * Provide a description that would be used to best describe the use case of the NumberInput component
+     */
+    ariaLabel: PropTypes.string,
+    /**
      * `true` to use the light version.
      */
     light: PropTypes.bool,
