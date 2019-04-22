@@ -44,8 +44,20 @@ TableToolbarMenu.defaultProps = {
 
 TableToolbarMenu.propTypes = {
   children: PropTypes.node.isRequired,
+
+  /**
+   * Provide an optional class name for the toolbar menu
+   */
   className: PropTypes.string,
+
+  /**
+   * Optional prop to allow overriding the default menu icon
+   */
   renderIcon: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+
+  /**
+   * The description of the menu icon.
+   */
   iconDescription: PropTypes.string.isRequired,
 };
 
