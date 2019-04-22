@@ -6,7 +6,6 @@
  */
 
 import React from 'react';
-import { action } from '@storybook/addon-actions';
 import Delete from '@carbon/icons-react/lib/delete/16';
 import Save from '@carbon/icons-react/lib/save/16';
 import Download from '@carbon/icons-react/lib/download/16';
@@ -32,7 +31,6 @@ import DataTable, {
   TableToolbarSearch,
   TableToolbarMenu,
 } from '../../DataTable';
-import Button from '../../Button';
 import { batchActionClick, initialRows, headers } from './shared';
 
 export default props => {
@@ -115,7 +113,7 @@ export default props => {
           }) => (
             <TableContainer
               title="DataTable"
-              description="Dynamically add rows and headers through the menu">
+              description="Use the toolbar menu to add rows and headers">
               <TableToolbar>
                 <TableBatchActions {...getBatchActionProps()}>
                   <TableBatchAction
@@ -141,15 +139,12 @@ export default props => {
                   <TableToolbarSearch onChange={onInputChange} />
                   <TableToolbarMenu>
                     <TableToolbarAction onClick={this.handleOnRowAdd}>
-                      Add new row
+                      Add row
                     </TableToolbarAction>
                     <TableToolbarAction onClick={this.handleOnHeaderAdd}>
-                      Add new header
+                      Add header
                     </TableToolbarAction>
                   </TableToolbarMenu>
-                  <Button onClick={action('Add new row')} small kind="primary">
-                    Add new
-                  </Button>
                 </TableToolbarContent>
               </TableToolbar>
               <Table {...getTableProps()}>

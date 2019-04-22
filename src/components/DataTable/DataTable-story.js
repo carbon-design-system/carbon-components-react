@@ -13,8 +13,7 @@ import readme from './README.md';
 const readmeURL = 'https://goo.gl/dq6CEK';
 
 const props = () => ({
-  zebra: boolean('Zebra row styles (zebra)', false),
-  sortable: boolean('Sortable table (sort)', false),
+  useZebraStyles: boolean('Zebra row styles (useZebraStyles)', false),
   size: select(
     'Row height (size)',
     { compact: 'compact', short: 'short', tall: 'tall', none: null },
@@ -43,9 +42,9 @@ storiesOf('DataTable', module)
     }
   )
   .add(
-    'with action menu',
+    'with toolbar',
     withReadme(readme, () =>
-      require('./stories/with-action-menu').default(props())
+      require('./stories/with-toolbar').default(props())
     ),
     {
       info: {

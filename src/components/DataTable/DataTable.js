@@ -151,7 +151,7 @@ export default class DataTable extends React.Component {
    * @param {Function} config.onClick a custom click handler for the header
    * @returns {Object}
    */
-  getHeaderProps = ({ header, onClick, isSortable = true, ...rest }) => {
+  getHeaderProps = ({ header, onClick, isSortable = false, ...rest }) => {
     const { sortDirection, sortHeaderKey } = this.state;
     return {
       ...rest,
@@ -275,13 +275,19 @@ export default class DataTable extends React.Component {
    * Helper utility to get the Table Props.
    */
   getTableProps = () => {
-    const { zebra, size, sortable, staticWidth, noBorder } = this.props;
-    return {
-      zebra,
+    const {
+      useZebraStyles,
       size,
-      sortable,
-      staticWidth,
-      noBorder,
+      isSortable,
+      useStaticWidth,
+      shouldShowBorder,
+    } = this.props;
+    return {
+      useZebraStyles,
+      size,
+      isSortable,
+      useStaticWidth,
+      shouldShowBorder,
     };
   };
 

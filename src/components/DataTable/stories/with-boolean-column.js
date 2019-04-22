@@ -6,8 +6,6 @@
  */
 
 import React from 'react';
-import { action } from '@storybook/addon-actions';
-import Button from '../../Button';
 import Checkbox from '../../Checkbox';
 import DataTable, {
   Table,
@@ -17,11 +15,6 @@ import DataTable, {
   TableHead,
   TableHeader,
   TableRow,
-  TableToolbar,
-  TableToolbarAction,
-  TableToolbarContent,
-  TableToolbarSearch,
-  TableToolbarMenu,
 } from '../../DataTable';
 // import { initialRows, headers } from './shared';
 
@@ -94,34 +87,8 @@ export default props => (
     rows={initialRows}
     headers={headers}
     {...props}
-    render={({
-      rows,
-      headers,
-      getHeaderProps,
-      getRowProps,
-      getTableProps,
-      onInputChange,
-    }) => (
+    render={({ rows, headers, getHeaderProps, getRowProps, getTableProps }) => (
       <TableContainer title="DataTable" description="With boolean column">
-        <TableToolbar>
-          <TableToolbarContent>
-            <TableToolbarSearch onChange={onInputChange} />
-            <TableToolbarMenu>
-              <TableToolbarAction onClick={() => alert('Alert 1')}>
-                Action 1
-              </TableToolbarAction>
-              <TableToolbarAction onClick={() => alert('Alert 2')}>
-                Action 2
-              </TableToolbarAction>
-              <TableToolbarAction onClick={() => alert('Alert 3')}>
-                Action 3
-              </TableToolbarAction>
-            </TableToolbarMenu>
-            <Button onClick={action('Add new row')} small kind="primary">
-              Add new
-            </Button>
-          </TableToolbarContent>
-        </TableToolbar>
         <Table {...getTableProps()}>
           <TableHead>
             <TableRow>

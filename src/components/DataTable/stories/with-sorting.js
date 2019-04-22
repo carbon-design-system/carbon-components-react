@@ -21,6 +21,7 @@ export default props => (
   <DataTable
     rows={initialRows}
     headers={headers}
+    isSortable={true}
     {...props}
     render={({ rows, headers, getHeaderProps, getRowProps, getTableProps }) => (
       <TableContainer title="DataTable" description="With sorting">
@@ -28,7 +29,7 @@ export default props => (
           <TableHead>
             <TableRow>
               {headers.map(header => (
-                <TableHeader {...getHeaderProps({ header })}>
+                <TableHeader {...getHeaderProps({ header, isSortable: true })}>
                   {header.header}
                 </TableHeader>
               ))}

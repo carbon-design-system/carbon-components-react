@@ -43,19 +43,17 @@ export default props => (
           <TableToolbarContent>
             <TableToolbarSearch onChange={onInputChange} />
             <TableToolbarMenu>
-              <TableToolbarAction onClick={() => alert('Alert 1')}>
+              <TableToolbarAction onClick={action('Action 1 Click')}>
                 Action 1
               </TableToolbarAction>
-              <TableToolbarAction onClick={() => alert('Alert 2')}>
+              <TableToolbarAction onClick={action('Action 2 Click')}>
                 Action 2
               </TableToolbarAction>
-              <TableToolbarAction onClick={() => alert('Alert 3')}>
+              <TableToolbarAction onClick={action('Action 3 Click')}>
                 Action 3
               </TableToolbarAction>
             </TableToolbarMenu>
-            <Button onClick={action('Primary Action')} kind="primary">
-              Primary Button
-            </Button>
+            <Button onClick={action('ButtonCLick')}>Primary Button</Button>
           </TableToolbarContent>
         </TableToolbar>
         <Table {...getTableProps()}>

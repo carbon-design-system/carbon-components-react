@@ -15,21 +15,21 @@ const { prefix } = settings;
 export const Table = ({
   className,
   children,
-  zebra,
+  useZebraStyles,
   size,
-  sortable,
-  staticWidth,
-  noBorder,
+  isSortable,
+  useStaticWidth,
+  shouldShowBorder,
   ...other
 }) => {
   const componentClass = cx(`${prefix}--data-table`, className, {
     [`${prefix}--data-table--compact`]: size === 'compact',
     [`${prefix}--data-table--short`]: size === 'short',
     [`${prefix}--data-table--tall`]: size === 'tall',
-    [`${prefix}--data-table--sort`]: sortable,
-    [`${prefix}--data-table--zebra`]: zebra,
-    [`${prefix}--data-table--static`]: staticWidth,
-    [`${prefix}--data-table--no-border`]: noBorder,
+    [`${prefix}--data-table--sort`]: isSortable,
+    [`${prefix}--data-table--zebra`]: useZebraStyles,
+    [`${prefix}--data-table--static`]: useStaticWidth,
+    [`${prefix}--data-table--no-border`]: !shouldShowBorder,
   });
   return (
     <table {...other} className={componentClass}>
@@ -42,9 +42,9 @@ Table.propTypes = {
   className: PropTypes.string,
 
   /**
-   * `true` to add zebra striping.
+   * `true` to add useZebraStyles striping.
    */
-  zebra: PropTypes.bool,
+  useZebraStyles: PropTypes.bool,
 
   /**
    * `normal` Change the row height of table
@@ -54,17 +54,21 @@ Table.propTypes = {
   /**
    * `false` If true, will use a width of 'auto' instead of 100%
    */
-  staticWidth: PropTypes.bool,
+  useStaticWidth: PropTypes.bool,
 
   /**
    * `false` If true, will remove the table border
    */
-  noBorder: PropTypes.bool,
+  shouldShowBorder: PropTypes.bool,
 
   /**
    * `false` If true, will apply sorting styles
    */
-  sortable: PropTypes.bool,
+  isSortable: PropTypes.bool,
+};
+
+Table.defaultProps = {
+  isSortable: false,
 };
 
 export default Table;

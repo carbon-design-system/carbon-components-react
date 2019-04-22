@@ -32,9 +32,7 @@ export default props => (
       getSelectionProps,
       getTableProps,
     }) => (
-      <TableContainer
-        title="DataTable"
-        description="With radio button selection">
+      <TableContainer title="DataTable" description="For selecting single rows">
         <Table {...getTableProps()}>
           <TableHead>
             <TableRow>
