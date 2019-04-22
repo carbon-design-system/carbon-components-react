@@ -665,7 +665,6 @@ class Notification extends Component {
         className={notificationClasses.toast}>
         <NotificationTextDetails
           title={title}
-          aria-label="catcatcat"
           subtitle={subtitle}
           caption={caption}
           notificationType="toast"
