@@ -1,9 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`DataTable.TableHead should render 1`] = `
-<Table
-  shouldShowBorder={true}
->
+<Table>
   <table
     className="bx--data-table"
   >

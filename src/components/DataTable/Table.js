@@ -17,17 +17,19 @@ export const Table = ({
   children,
   zebra,
   size,
-  useStaticWidth,
-  shouldShowBorder,
+  sortable,
+  staticWidth,
+  noBorder,
   ...other
 }) => {
   const componentClass = cx(`${prefix}--data-table`, className, {
     [`${prefix}--data-table--compact`]: size === 'compact',
     [`${prefix}--data-table--short`]: size === 'short',
     [`${prefix}--data-table--tall`]: size === 'tall',
+    [`${prefix}--data-table--sort`]: sortable,
     [`${prefix}--data-table--zebra`]: zebra,
-    [`${prefix}--data-table--static`]: useStaticWidth,
-    [`${prefix}--data-table--no-border`]: !shouldShowBorder,
+    [`${prefix}--data-table--static`]: staticWidth,
+    [`${prefix}--data-table--no-border`]: noBorder,
   });
   return (
     <table {...other} className={componentClass}>
@@ -37,9 +39,6 @@ export const Table = ({
 };
 
 Table.propTypes = {
-  /**
-   * The CSS class names.
-   */
   className: PropTypes.string,
 
   /**
@@ -55,16 +54,17 @@ Table.propTypes = {
   /**
    * `false` If true, will use a width of 'auto' instead of 100%
    */
-  useStaticWidth: PropTypes.bool,
+  staticWidth: PropTypes.bool,
 
   /**
-   * `true` for data table without borders.
+   * `false` If true, will remove the table border
    */
-  shouldShowBorder: PropTypes.bool,
-};
+  noBorder: PropTypes.bool,
 
-Table.defaultProps = {
-  shouldShowBorder: true,
+  /**
+   * `false` If true, will apply sorting styles
+   */
+  sortable: PropTypes.bool,
 };
 
 export default Table;

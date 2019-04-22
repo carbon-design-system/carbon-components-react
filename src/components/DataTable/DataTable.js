@@ -275,12 +275,13 @@ export default class DataTable extends React.Component {
    * Helper utility to get the Table Props.
    */
   getTableProps = () => {
-    const { zebra, size, useStaticWidth, shouldShowBorder } = this.props;
+    const { zebra, size, sortable, staticWidth, noBorder } = this.props;
     return {
       zebra,
       size,
-      useStaticWidth,
-      shouldShowBorder,
+      sortable,
+      staticWidth,
+      noBorder,
     };
   };
 

@@ -54,9 +54,7 @@ exports[`DataTable selection -- radio buttons should not have select-all checkbo
           "value": <TableContainer
             title="DataTable with selection"
           >
-            <Table
-              shouldShowBorder={true}
-            >
+            <Table>
               <TableHead>
                 <TableRow>
                   <TableHeader
@@ -110,9 +108,7 @@ exports[`DataTable selection -- radio buttons should not have select-all checkbo
           className="bx--data-table-header__description"
         />
       </div>
-      <Table
-        shouldShowBorder={true}
-      >
+      <Table>
         <table
           className="bx--data-table"
         >
@@ -446,9 +442,7 @@ exports[`DataTable selection -- radio buttons should render 1`] = `
           "value": <TableContainer
             title="DataTable with selection"
           >
-            <Table
-              shouldShowBorder={true}
-            >
+            <Table>
               <TableHead>
                 <TableRow>
                   <TableHeader
@@ -569,9 +563,7 @@ exports[`DataTable selection -- radio buttons should render 1`] = `
           className="bx--data-table-header__description"
         />
       </div>
-      <Table
-        shouldShowBorder={true}
-      >
+      <Table>
         <table
           className="bx--data-table"
         >
@@ -1060,9 +1052,7 @@ exports[`DataTable selection should have select-all default to un-checked if no 
           "value": <TableContainer
             title="DataTable with selection"
           >
-            <Table
-              shouldShowBorder={true}
-            >
+            <Table>
               <TableHead>
                 <TableRow>
                   <TableSelectAll
@@ -1124,9 +1114,7 @@ exports[`DataTable selection should have select-all default to un-checked if no 
           className="bx--data-table-header__description"
         />
       </div>
-      <Table
-        shouldShowBorder={true}
-      >
+      <Table>
         <table
           className="bx--data-table"
         >
@@ -1507,9 +1495,7 @@ exports[`DataTable selection should render 1`] = `
           "value": <TableContainer
             title="DataTable with selection"
           >
-            <Table
-              shouldShowBorder={true}
-            >
+            <Table>
               <TableHead>
                 <TableRow>
                   <TableSelectAll
@@ -1638,9 +1624,7 @@ exports[`DataTable selection should render 1`] = `
           className="bx--data-table-header__description"
         />
       </div>
-      <Table
-        shouldShowBorder={true}
-      >
+      <Table>
         <table
           className="bx--data-table"
         >
@@ -2384,9 +2368,7 @@ exports[`DataTable should render 1`] = `
                 </ForwardRef>
               </TableToolbarContent>
             </TableToolbar>
-            <Table
-              shouldShowBorder={true}
-            >
+            <Table>
               <TableHead>
                 <TableRow>
                   <TableHeader
@@ -3177,9 +3159,7 @@ exports[`DataTable should render 1`] = `
           </TableToolbarContent>
         </section>
       </TableToolbar>
-      <Table
-        shouldShowBorder={true}
-      >
+      <Table>
         <table
           className="bx--data-table"
         >

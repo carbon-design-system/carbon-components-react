@@ -3,7 +3,6 @@
 exports[`DataTable.Table should render 1`] = `
 <Table
   className="custom-class"
-  shouldShowBorder={true}
 >
   <table
     className="bx--data-table custom-class"

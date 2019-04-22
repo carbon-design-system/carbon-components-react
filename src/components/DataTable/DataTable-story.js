@@ -13,7 +13,8 @@ import readme from './README.md';
 const readmeURL = 'https://goo.gl/dq6CEK';
 
 const props = () => ({
-  zebra: boolean('Zebra row styles (zebra)', true),
+  zebra: boolean('Zebra row styles (zebra)', false),
+  sortable: boolean('Sortable table (sort)', false),
   size: select(
     'Row height (size)',
     { compact: 'compact', short: 'short', tall: 'tall', none: null },
