@@ -55,9 +55,7 @@ exports[`DataTable selection -- radio buttons should not have select-all checkbo
             title="DataTable with selection"
           >
             <Table
-              short={false}
               shouldShowBorder={true}
-              zebra={true}
             >
               <TableHead>
                 <TableRow>
@@ -91,8 +89,6 @@ exports[`DataTable selection -- radio buttons should not have select-all checkbo
     }
   }
   rows={Array []}
-  short={false}
-  shouldShowBorder={true}
   sortRow={[Function]}
   translateWithId={[Function]}
 >
@@ -115,12 +111,10 @@ exports[`DataTable selection -- radio buttons should not have select-all checkbo
         />
       </div>
       <Table
-        short={false}
         shouldShowBorder={true}
-        zebra={true}
       >
         <table
-          className="bx--data-table bx--data-table--zebra"
+          className="bx--data-table"
         >
           <TableHead>
             <thead>
@@ -453,9 +447,7 @@ exports[`DataTable selection -- radio buttons should render 1`] = `
             title="DataTable with selection"
           >
             <Table
-              short={false}
               shouldShowBorder={true}
-              zebra={true}
             >
               <TableHead>
                 <TableRow>
@@ -556,8 +548,6 @@ exports[`DataTable selection -- radio buttons should render 1`] = `
       },
     ]
   }
-  short={false}
-  shouldShowBorder={true}
   sortRow={[Function]}
   translateWithId={[Function]}
 >
@@ -580,12 +570,10 @@ exports[`DataTable selection -- radio buttons should render 1`] = `
         />
       </div>
       <Table
-        short={false}
         shouldShowBorder={true}
-        zebra={true}
       >
         <table
-          className="bx--data-table bx--data-table--zebra"
+          className="bx--data-table"
         >
           <TableHead>
             <thead>
@@ -1073,9 +1061,7 @@ exports[`DataTable selection should have select-all default to un-checked if no 
             title="DataTable with selection"
           >
             <Table
-              short={false}
               shouldShowBorder={true}
-              zebra={true}
             >
               <TableHead>
                 <TableRow>
@@ -1117,8 +1103,6 @@ exports[`DataTable selection should have select-all default to un-checked if no 
     }
   }
   rows={Array []}
-  short={false}
-  shouldShowBorder={true}
   sortRow={[Function]}
   translateWithId={[Function]}
 >
@@ -1141,12 +1125,10 @@ exports[`DataTable selection should have select-all default to un-checked if no 
         />
       </div>
       <Table
-        short={false}
         shouldShowBorder={true}
-        zebra={true}
       >
         <table
-          className="bx--data-table bx--data-table--zebra"
+          className="bx--data-table"
         >
           <TableHead>
             <thead>
@@ -1526,9 +1508,7 @@ exports[`DataTable selection should render 1`] = `
             title="DataTable with selection"
           >
             <Table
-              short={false}
               shouldShowBorder={true}
-              zebra={true}
             >
               <TableHead>
                 <TableRow>
@@ -1637,8 +1617,6 @@ exports[`DataTable selection should render 1`] = `
       },
     ]
   }
-  short={false}
-  shouldShowBorder={true}
   sortRow={[Function]}
   translateWithId={[Function]}
 >
@@ -1661,12 +1639,10 @@ exports[`DataTable selection should render 1`] = `
         />
       </div>
       <Table
-        short={false}
         shouldShowBorder={true}
-        zebra={true}
       >
         <table
-          className="bx--data-table bx--data-table--zebra"
+          className="bx--data-table"
         >
           <TableHead>
             <thead>
@@ -2245,18 +2221,99 @@ exports[`DataTable should render 1`] = `
                 <TableBatchAction
                   iconDescription="Add"
                   onClick={[MockFunction]}
+                  renderIcon={
+                    Object {
+                      "$$typeof": Symbol(react.forward_ref),
+                      "defaultProps": Object {
+                        "height": 16,
+                        "preserveAspectRatio": "xMidYMid meet",
+                        "viewBox": "0 0 16 16",
+                        "width": 16,
+                        "xmlns": "http://www.w3.org/2000/svg",
+                      },
+                      "displayName": "AddFilled16",
+                      "propTypes": Object {
+                        "aria-hidden": [Function],
+                        "aria-label": [Function],
+                        "aria-labelledby": [Function],
+                        "children": [Function],
+                        "className": [Function],
+                        "height": [Function],
+                        "preserveAspectRatio": [Function],
+                        "tabIndex": [Function],
+                        "viewBox": [Function],
+                        "width": [Function],
+                        "xmlns": [Function],
+                      },
+                      "render": [Function],
+                    }
+                  }
                 >
                   Ghost
                 </TableBatchAction>
                 <TableBatchAction
                   iconDescription="Add"
                   onClick={[MockFunction]}
+                  renderIcon={
+                    Object {
+                      "$$typeof": Symbol(react.forward_ref),
+                      "defaultProps": Object {
+                        "height": 16,
+                        "preserveAspectRatio": "xMidYMid meet",
+                        "viewBox": "0 0 16 16",
+                        "width": 16,
+                        "xmlns": "http://www.w3.org/2000/svg",
+                      },
+                      "displayName": "AddFilled16",
+                      "propTypes": Object {
+                        "aria-hidden": [Function],
+                        "aria-label": [Function],
+                        "aria-labelledby": [Function],
+                        "children": [Function],
+                        "className": [Function],
+                        "height": [Function],
+                        "preserveAspectRatio": [Function],
+                        "tabIndex": [Function],
+                        "viewBox": [Function],
+                        "width": [Function],
+                        "xmlns": [Function],
+                      },
+                      "render": [Function],
+                    }
+                  }
                 >
                   Ghost
                 </TableBatchAction>
                 <TableBatchAction
                   iconDescription="Add"
                   onClick={[MockFunction]}
+                  renderIcon={
+                    Object {
+                      "$$typeof": Symbol(react.forward_ref),
+                      "defaultProps": Object {
+                        "height": 16,
+                        "preserveAspectRatio": "xMidYMid meet",
+                        "viewBox": "0 0 16 16",
+                        "width": 16,
+                        "xmlns": "http://www.w3.org/2000/svg",
+                      },
+                      "displayName": "AddFilled16",
+                      "propTypes": Object {
+                        "aria-hidden": [Function],
+                        "aria-label": [Function],
+                        "aria-labelledby": [Function],
+                        "children": [Function],
+                        "className": [Function],
+                        "height": [Function],
+                        "preserveAspectRatio": [Function],
+                        "tabIndex": [Function],
+                        "viewBox": [Function],
+                        "width": [Function],
+                        "xmlns": [Function],
+                      },
+                      "render": [Function],
+                    }
+                  }
                 >
                   Ghost
                 </TableBatchAction>
@@ -2328,9 +2385,7 @@ exports[`DataTable should render 1`] = `
               </TableToolbarContent>
             </TableToolbar>
             <Table
-              short={false}
               shouldShowBorder={true}
-              zebra={true}
             >
               <TableHead>
                 <TableRow>
@@ -2407,8 +2462,6 @@ exports[`DataTable should render 1`] = `
       },
     ]
   }
-  short={false}
-  shouldShowBorder={true}
   sortRow={[Function]}
   translateWithId={[Function]}
 >
@@ -2443,255 +2496,362 @@ exports[`DataTable should render 1`] = `
             <div
               className="bx--batch-actions"
             >
-              <TableBatchAction
-                iconDescription="Add"
-                onClick={[MockFunction]}
-              >
-                <ForwardRef
-                  disabled={false}
-                  iconDescription="Add"
-                  kind="ghost"
-                  onClick={[MockFunction]}
-                  renderIcon={
-                    Object {
-                      "$$typeof": Symbol(react.forward_ref),
-                      "defaultProps": Object {
-                        "height": 16,
-                        "preserveAspectRatio": "xMidYMid meet",
-                        "viewBox": "0 0 16 16",
-                        "width": 16,
-                        "xmlns": "http://www.w3.org/2000/svg",
-                      },
-                      "displayName": "AddFilled16",
-                      "propTypes": Object {
-                        "aria-hidden": [Function],
-                        "aria-label": [Function],
-                        "aria-labelledby": [Function],
-                        "children": [Function],
-                        "className": [Function],
-                        "height": [Function],
-                        "preserveAspectRatio": [Function],
-                        "tabIndex": [Function],
-                        "viewBox": [Function],
-                        "width": [Function],
-                        "xmlns": [Function],
-                      },
-                      "render": [Function],
-                    }
-                  }
-                  small={true}
-                  tabIndex={0}
-                  type="button"
+              <TableActionList>
+                <div
+                  className="bx--action-list"
                 >
-                  <button
-                    className="bx--btn bx--btn--sm bx--btn--ghost"
-                    disabled={false}
+                  <TableBatchAction
+                    iconDescription="Add"
                     onClick={[MockFunction]}
+                    renderIcon={
+                      Object {
+                        "$$typeof": Symbol(react.forward_ref),
+                        "defaultProps": Object {
+                          "height": 16,
+                          "preserveAspectRatio": "xMidYMid meet",
+                          "viewBox": "0 0 16 16",
+                          "width": 16,
+                          "xmlns": "http://www.w3.org/2000/svg",
+                        },
+                        "displayName": "AddFilled16",
+                        "propTypes": Object {
+                          "aria-hidden": [Function],
+                          "aria-label": [Function],
+                          "aria-labelledby": [Function],
+                          "children": [Function],
+                          "className": [Function],
+                          "height": [Function],
+                          "preserveAspectRatio": [Function],
+                          "tabIndex": [Function],
+                          "viewBox": [Function],
+                          "width": [Function],
+                          "xmlns": [Function],
+                        },
+                        "render": [Function],
+                      }
+                    }
+                  >
+                    <ForwardRef
+                      disabled={false}
+                      iconDescription="Add"
+                      kind="primary"
+                      onClick={[MockFunction]}
+                      renderIcon={
+                        Object {
+                          "$$typeof": Symbol(react.forward_ref),
+                          "defaultProps": Object {
+                            "height": 16,
+                            "preserveAspectRatio": "xMidYMid meet",
+                            "viewBox": "0 0 16 16",
+                            "width": 16,
+                            "xmlns": "http://www.w3.org/2000/svg",
+                          },
+                          "displayName": "AddFilled16",
+                          "propTypes": Object {
+                            "aria-hidden": [Function],
+                            "aria-label": [Function],
+                            "aria-labelledby": [Function],
+                            "children": [Function],
+                            "className": [Function],
+                            "height": [Function],
+                            "preserveAspectRatio": [Function],
+                            "tabIndex": [Function],
+                            "viewBox": [Function],
+                            "width": [Function],
+                            "xmlns": [Function],
+                          },
+                          "render": [Function],
+                        }
+                      }
+                      small={false}
+                      tabIndex={0}
+                      type="button"
+                    >
+                      <button
+                        className="bx--btn bx--btn--primary"
+                        disabled={false}
+                        onClick={[MockFunction]}
+                        tabIndex={0}
+                        type="button"
+                      >
+                        Ghost
+                        <AddFilled16
+                          aria-hidden={true}
+                          aria-label="Add"
+                          className="bx--btn__icon"
+                          height={16}
+                          preserveAspectRatio="xMidYMid meet"
+                          viewBox="0 0 16 16"
+                          width={16}
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <svg
+                            aria-hidden={true}
+                            aria-label="Add"
+                            className="bx--btn__icon"
+                            focusable="false"
+                            height={16}
+                            preserveAspectRatio="xMidYMid meet"
+                            role="img"
+                            style={
+                              Object {
+                                "willChange": "transform",
+                              }
+                            }
+                            viewBox="0 0 16 16"
+                            width={16}
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M8 1C4.2 1 1 4.2 1 8s3.2 7 7 7 7-3.2 7-7-3.2-7-7-7zm3 7.5H8.5V11h-1V8.5H5v-1h2.5V5h1v2.5H11v1z"
+                            />
+                          </svg>
+                        </AddFilled16>
+                      </button>
+                    </ForwardRef>
+                  </TableBatchAction>
+                  <TableBatchAction
+                    iconDescription="Add"
+                    onClick={[MockFunction]}
+                    renderIcon={
+                      Object {
+                        "$$typeof": Symbol(react.forward_ref),
+                        "defaultProps": Object {
+                          "height": 16,
+                          "preserveAspectRatio": "xMidYMid meet",
+                          "viewBox": "0 0 16 16",
+                          "width": 16,
+                          "xmlns": "http://www.w3.org/2000/svg",
+                        },
+                        "displayName": "AddFilled16",
+                        "propTypes": Object {
+                          "aria-hidden": [Function],
+                          "aria-label": [Function],
+                          "aria-labelledby": [Function],
+                          "children": [Function],
+                          "className": [Function],
+                          "height": [Function],
+                          "preserveAspectRatio": [Function],
+                          "tabIndex": [Function],
+                          "viewBox": [Function],
+                          "width": [Function],
+                          "xmlns": [Function],
+                        },
+                        "render": [Function],
+                      }
+                    }
+                  >
+                    <ForwardRef
+                      disabled={false}
+                      iconDescription="Add"
+                      kind="primary"
+                      onClick={[MockFunction]}
+                      renderIcon={
+                        Object {
+                          "$$typeof": Symbol(react.forward_ref),
+                          "defaultProps": Object {
+                            "height": 16,
+                            "preserveAspectRatio": "xMidYMid meet",
+                            "viewBox": "0 0 16 16",
+                            "width": 16,
+                            "xmlns": "http://www.w3.org/2000/svg",
+                          },
+                          "displayName": "AddFilled16",
+                          "propTypes": Object {
+                            "aria-hidden": [Function],
+                            "aria-label": [Function],
+                            "aria-labelledby": [Function],
+                            "children": [Function],
+                            "className": [Function],
+                            "height": [Function],
+                            "preserveAspectRatio": [Function],
+                            "tabIndex": [Function],
+                            "viewBox": [Function],
+                            "width": [Function],
+                            "xmlns": [Function],
+                          },
+                          "render": [Function],
+                        }
+                      }
+                      small={false}
+                      tabIndex={0}
+                      type="button"
+                    >
+                      <button
+                        className="bx--btn bx--btn--primary"
+                        disabled={false}
+                        onClick={[MockFunction]}
+                        tabIndex={0}
+                        type="button"
+                      >
+                        Ghost
+                        <AddFilled16
+                          aria-hidden={true}
+                          aria-label="Add"
+                          className="bx--btn__icon"
+                          height={16}
+                          preserveAspectRatio="xMidYMid meet"
+                          viewBox="0 0 16 16"
+                          width={16}
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <svg
+                            aria-hidden={true}
+                            aria-label="Add"
+                            className="bx--btn__icon"
+                            focusable="false"
+                            height={16}
+                            preserveAspectRatio="xMidYMid meet"
+                            role="img"
+                            style={
+                              Object {
+                                "willChange": "transform",
+                              }
+                            }
+                            viewBox="0 0 16 16"
+                            width={16}
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M8 1C4.2 1 1 4.2 1 8s3.2 7 7 7 7-3.2 7-7-3.2-7-7-7zm3 7.5H8.5V11h-1V8.5H5v-1h2.5V5h1v2.5H11v1z"
+                            />
+                          </svg>
+                        </AddFilled16>
+                      </button>
+                    </ForwardRef>
+                  </TableBatchAction>
+                  <TableBatchAction
+                    iconDescription="Add"
+                    onClick={[MockFunction]}
+                    renderIcon={
+                      Object {
+                        "$$typeof": Symbol(react.forward_ref),
+                        "defaultProps": Object {
+                          "height": 16,
+                          "preserveAspectRatio": "xMidYMid meet",
+                          "viewBox": "0 0 16 16",
+                          "width": 16,
+                          "xmlns": "http://www.w3.org/2000/svg",
+                        },
+                        "displayName": "AddFilled16",
+                        "propTypes": Object {
+                          "aria-hidden": [Function],
+                          "aria-label": [Function],
+                          "aria-labelledby": [Function],
+                          "children": [Function],
+                          "className": [Function],
+                          "height": [Function],
+                          "preserveAspectRatio": [Function],
+                          "tabIndex": [Function],
+                          "viewBox": [Function],
+                          "width": [Function],
+                          "xmlns": [Function],
+                        },
+                        "render": [Function],
+                      }
+                    }
+                  >
+                    <ForwardRef
+                      disabled={false}
+                      iconDescription="Add"
+                      kind="primary"
+                      onClick={[MockFunction]}
+                      renderIcon={
+                        Object {
+                          "$$typeof": Symbol(react.forward_ref),
+                          "defaultProps": Object {
+                            "height": 16,
+                            "preserveAspectRatio": "xMidYMid meet",
+                            "viewBox": "0 0 16 16",
+                            "width": 16,
+                            "xmlns": "http://www.w3.org/2000/svg",
+                          },
+                          "displayName": "AddFilled16",
+                          "propTypes": Object {
+                            "aria-hidden": [Function],
+                            "aria-label": [Function],
+                            "aria-labelledby": [Function],
+                            "children": [Function],
+                            "className": [Function],
+                            "height": [Function],
+                            "preserveAspectRatio": [Function],
+                            "tabIndex": [Function],
+                            "viewBox": [Function],
+                            "width": [Function],
+                            "xmlns": [Function],
+                          },
+                          "render": [Function],
+                        }
+                      }
+                      small={false}
+                      tabIndex={0}
+                      type="button"
+                    >
+                      <button
+                        className="bx--btn bx--btn--primary"
+                        disabled={false}
+                        onClick={[MockFunction]}
+                        tabIndex={0}
+                        type="button"
+                      >
+                        Ghost
+                        <AddFilled16
+                          aria-hidden={true}
+                          aria-label="Add"
+                          className="bx--btn__icon"
+                          height={16}
+                          preserveAspectRatio="xMidYMid meet"
+                          viewBox="0 0 16 16"
+                          width={16}
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <svg
+                            aria-hidden={true}
+                            aria-label="Add"
+                            className="bx--btn__icon"
+                            focusable="false"
+                            height={16}
+                            preserveAspectRatio="xMidYMid meet"
+                            role="img"
+                            style={
+                              Object {
+                                "willChange": "transform",
+                              }
+                            }
+                            viewBox="0 0 16 16"
+                            width={16}
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M8 1C4.2 1 1 4.2 1 8s3.2 7 7 7 7-3.2 7-7-3.2-7-7-7zm3 7.5H8.5V11h-1V8.5H5v-1h2.5V5h1v2.5H11v1z"
+                            />
+                          </svg>
+                        </AddFilled16>
+                      </button>
+                    </ForwardRef>
+                  </TableBatchAction>
+                  <ForwardRef
+                    className="bx--batch-summary__cancel"
+                    disabled={false}
+                    iconDescription="Provide icon description if icon is used"
+                    kind="primary"
+                    onClick={[Function]}
+                    small={false}
                     tabIndex={0}
                     type="button"
                   >
-                    Ghost
-                    <AddFilled16
-                      aria-hidden={true}
-                      aria-label="Add"
-                      className="bx--btn__icon"
-                      height={16}
-                      preserveAspectRatio="xMidYMid meet"
-                      viewBox="0 0 16 16"
-                      width={16}
-                      xmlns="http://www.w3.org/2000/svg"
+                    <button
+                      className="bx--batch-summary__cancel bx--btn bx--btn--primary"
+                      disabled={false}
+                      onClick={[Function]}
+                      tabIndex={0}
+                      type="button"
                     >
-                      <svg
-                        aria-hidden={true}
-                        aria-label="Add"
-                        className="bx--btn__icon"
-                        focusable="false"
-                        height={16}
-                        preserveAspectRatio="xMidYMid meet"
-                        role="img"
-                        style={
-                          Object {
-                            "willChange": "transform",
-                          }
-                        }
-                        viewBox="0 0 16 16"
-                        width={16}
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          d="M8 1C4.2 1 1 4.2 1 8s3.2 7 7 7 7-3.2 7-7-3.2-7-7-7zm3 7.5H8.5V11h-1V8.5H5v-1h2.5V5h1v2.5H11v1z"
-                        />
-                      </svg>
-                    </AddFilled16>
-                  </button>
-                </ForwardRef>
-              </TableBatchAction>
-              <TableBatchAction
-                iconDescription="Add"
-                onClick={[MockFunction]}
-              >
-                <ForwardRef
-                  disabled={false}
-                  iconDescription="Add"
-                  kind="ghost"
-                  onClick={[MockFunction]}
-                  renderIcon={
-                    Object {
-                      "$$typeof": Symbol(react.forward_ref),
-                      "defaultProps": Object {
-                        "height": 16,
-                        "preserveAspectRatio": "xMidYMid meet",
-                        "viewBox": "0 0 16 16",
-                        "width": 16,
-                        "xmlns": "http://www.w3.org/2000/svg",
-                      },
-                      "displayName": "AddFilled16",
-                      "propTypes": Object {
-                        "aria-hidden": [Function],
-                        "aria-label": [Function],
-                        "aria-labelledby": [Function],
-                        "children": [Function],
-                        "className": [Function],
-                        "height": [Function],
-                        "preserveAspectRatio": [Function],
-                        "tabIndex": [Function],
-                        "viewBox": [Function],
-                        "width": [Function],
-                        "xmlns": [Function],
-                      },
-                      "render": [Function],
-                    }
-                  }
-                  small={true}
-                  tabIndex={0}
-                  type="button"
-                >
-                  <button
-                    className="bx--btn bx--btn--sm bx--btn--ghost"
-                    disabled={false}
-                    onClick={[MockFunction]}
-                    tabIndex={0}
-                    type="button"
-                  >
-                    Ghost
-                    <AddFilled16
-                      aria-hidden={true}
-                      aria-label="Add"
-                      className="bx--btn__icon"
-                      height={16}
-                      preserveAspectRatio="xMidYMid meet"
-                      viewBox="0 0 16 16"
-                      width={16}
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <svg
-                        aria-hidden={true}
-                        aria-label="Add"
-                        className="bx--btn__icon"
-                        focusable="false"
-                        height={16}
-                        preserveAspectRatio="xMidYMid meet"
-                        role="img"
-                        style={
-                          Object {
-                            "willChange": "transform",
-                          }
-                        }
-                        viewBox="0 0 16 16"
-                        width={16}
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          d="M8 1C4.2 1 1 4.2 1 8s3.2 7 7 7 7-3.2 7-7-3.2-7-7-7zm3 7.5H8.5V11h-1V8.5H5v-1h2.5V5h1v2.5H11v1z"
-                        />
-                      </svg>
-                    </AddFilled16>
-                  </button>
-                </ForwardRef>
-              </TableBatchAction>
-              <TableBatchAction
-                iconDescription="Add"
-                onClick={[MockFunction]}
-              >
-                <ForwardRef
-                  disabled={false}
-                  iconDescription="Add"
-                  kind="ghost"
-                  onClick={[MockFunction]}
-                  renderIcon={
-                    Object {
-                      "$$typeof": Symbol(react.forward_ref),
-                      "defaultProps": Object {
-                        "height": 16,
-                        "preserveAspectRatio": "xMidYMid meet",
-                        "viewBox": "0 0 16 16",
-                        "width": 16,
-                        "xmlns": "http://www.w3.org/2000/svg",
-                      },
-                      "displayName": "AddFilled16",
-                      "propTypes": Object {
-                        "aria-hidden": [Function],
-                        "aria-label": [Function],
-                        "aria-labelledby": [Function],
-                        "children": [Function],
-                        "className": [Function],
-                        "height": [Function],
-                        "preserveAspectRatio": [Function],
-                        "tabIndex": [Function],
-                        "viewBox": [Function],
-                        "width": [Function],
-                        "xmlns": [Function],
-                      },
-                      "render": [Function],
-                    }
-                  }
-                  small={true}
-                  tabIndex={0}
-                  type="button"
-                >
-                  <button
-                    className="bx--btn bx--btn--sm bx--btn--ghost"
-                    disabled={false}
-                    onClick={[MockFunction]}
-                    tabIndex={0}
-                    type="button"
-                  >
-                    Ghost
-                    <AddFilled16
-                      aria-hidden={true}
-                      aria-label="Add"
-                      className="bx--btn__icon"
-                      height={16}
-                      preserveAspectRatio="xMidYMid meet"
-                      viewBox="0 0 16 16"
-                      width={16}
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <svg
-                        aria-hidden={true}
-                        aria-label="Add"
-                        className="bx--btn__icon"
-                        focusable="false"
-                        height={16}
-                        preserveAspectRatio="xMidYMid meet"
-                        role="img"
-                        style={
-                          Object {
-                            "willChange": "transform",
-                          }
-                        }
-                        viewBox="0 0 16 16"
-                        width={16}
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          d="M8 1C4.2 1 1 4.2 1 8s3.2 7 7 7 7-3.2 7-7-3.2-7-7-7zm3 7.5H8.5V11h-1V8.5H5v-1h2.5V5h1v2.5H11v1z"
-                        />
-                      </svg>
-                    </AddFilled16>
-                  </button>
-                </ForwardRef>
-              </TableBatchAction>
+                      Cancel
+                    </button>
+                  </ForwardRef>
+                </div>
+              </TableActionList>
               <div
                 className="bx--batch-summary"
               >
@@ -2702,12 +2862,6 @@ exports[`DataTable should render 1`] = `
                     0 item selected
                   </span>
                 </p>
-                <button
-                  className="bx--batch-summary__cancel"
-                  onClick={[Function]}
-                >
-                  Cancel
-                </button>
               </div>
             </div>
           </TableBatchActions>
@@ -3020,12 +3174,10 @@ exports[`DataTable should render 1`] = `
         </section>
       </TableToolbar>
       <Table
-        short={false}
         shouldShowBorder={true}
-        zebra={true}
       >
         <table
-          className="bx--data-table bx--data-table--zebra"
+          className="bx--data-table"
         >
           <TableHead>
             <thead>
