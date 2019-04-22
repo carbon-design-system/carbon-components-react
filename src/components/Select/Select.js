@@ -26,6 +26,7 @@ const Select = React.forwardRef(
       labelText,
       disabled,
       children,
+      noLabel,
       iconDescription,
       hideLabel,
       invalid,
@@ -99,9 +100,11 @@ const Select = React.forwardRef(
     return (
       <div className={`${prefix}--form-item`}>
         <div className={selectClasses}>
-          <label htmlFor={id} className={labelClasses}>
-            {labelText}
-          </label>
+          {!noLabel && (
+            <label htmlFor={id} className={labelClasses}>
+              {labelText}
+            </label>
+          )}
           {!inline && helper}
           {componentsX && inline && (
             <>
