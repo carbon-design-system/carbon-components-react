@@ -466,11 +466,15 @@ export class ExpandableTile extends Component {
         tabIndex={tabIndex}>
         <button
           className={`${prefix}--tile__chevron`}
-          aria-label={
-            this.state.expanded ? tileExpandedIconText : tileCollapsedIconText
-          }>
+          aria-labelledby="tileExpandIcon">
           {componentsX ? (
             <ChevronDown16
+              id="tileExpandIcon"
+              aria-label={
+                this.state.expanded
+                  ? tileExpandedIconText
+                  : tileCollapsedIconText
+              }
               alt={
                 this.state.expanded
                   ? tileExpandedIconText
