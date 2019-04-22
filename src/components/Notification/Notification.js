@@ -155,6 +155,7 @@ export class NotificationButton extends Component {
       <button
         {...other}
         type={type}
+        aria-label={iconDescription}
         title={iconDescription}
         className={buttonClasses}>
         {NotificationButtonIcon}
@@ -664,6 +665,7 @@ class Notification extends Component {
         className={notificationClasses.toast}>
         <NotificationTextDetails
           title={title}
+          aria-label="catcatcat"
           subtitle={subtitle}
           caption={caption}
           notificationType="toast"
