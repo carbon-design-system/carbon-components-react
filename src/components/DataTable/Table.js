@@ -13,18 +13,20 @@ import { settings } from 'carbon-components';
 const { prefix } = settings;
 
 export const Table = ({
-  zebra,
   className,
   children,
-  short,
+  zebra,
+  size,
+  useStaticWidth,
   shouldShowBorder,
-  isSortable,
   ...other
 }) => {
   const componentClass = cx(`${prefix}--data-table`, className, {
+    [`${prefix}--data-table--compact`]: size === 'compact',
+    [`${prefix}--data-table--short`]: size === 'short',
+    [`${prefix}--data-table--tall`]: size === 'tall',
     [`${prefix}--data-table--zebra`]: zebra,
-    [`${prefix}--data-table--short`]: short,
-    [`${prefix}--data-table--sort`]: isSortable,
+    [`${prefix}--data-table--static`]: useStaticWidth,
     [`${prefix}--data-table--no-border`]: !shouldShowBorder,
   });
   return (
@@ -46,14 +48,14 @@ Table.propTypes = {
   zebra: PropTypes.bool,
 
   /**
-   * `true` for short data table.
+   * `normal` Change the row height of table
    */
-  short: PropTypes.bool,
+  size: PropTypes.oneOf(['compact', 'small', 'normal', 'tall']),
 
   /**
-   * `false` Applies styles for data tables with sorting functionality.
+   * `false` If true, will use a width of 'auto' instead of 100%
    */
-  isSortable: PropTypes.bool,
+  useStaticWidth: PropTypes.bool,
 
   /**
    * `true` for data table without borders.
@@ -62,8 +64,6 @@ Table.propTypes = {
 };
 
 Table.defaultProps = {
-  zebra: true,
-  short: false,
   shouldShowBorder: true,
 };
 

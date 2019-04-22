@@ -99,16 +99,6 @@ export default class DataTable extends React.Component {
     translateWithId: PropTypes.func,
 
     /**
-     * Optional boolean to create a short data table.
-     */
-    short: PropTypes.bool,
-
-    /**
-     * Optional boolean to remove borders from data table.
-     */
-    shouldShowBorder: PropTypes.bool,
-
-    /**
      * Specify whether the control should be a radio button or inline checkbox
      */
     radio: PropTypes.bool,
@@ -119,8 +109,6 @@ export default class DataTable extends React.Component {
     filterRows: defaultFilterRows,
     locale: 'en',
     translateWithId,
-    short: false,
-    shouldShowBorder: true,
   };
 
   static translationKeys = Object.values(translationKeys);
@@ -287,9 +275,11 @@ export default class DataTable extends React.Component {
    * Helper utility to get the Table Props.
    */
   getTableProps = () => {
-    const { short, shouldShowBorder } = this.props;
+    const { zebra, size, useStaticWidth, shouldShowBorder } = this.props;
     return {
-      short,
+      zebra,
+      size,
+      useStaticWidth,
       shouldShowBorder,
     };
   };
