@@ -135,7 +135,7 @@ class NumberInput extends Component {
     value: 0,
     invalid: false,
     invalidText: 'Provide invalidText',
-    ariaLabel: 'A Numeric Input field with increment and decrement buttons',
+    ariaLabel: 'Numeric input field with increment and decrement buttons',
     helperText: '',
     light: false,
     allowEmpty: false,
