@@ -147,9 +147,8 @@ describe('DataTable', () => {
 
   describe('sorting', () => {
     it('should sort a row by a header when a header is clicked', () => {
-      const wrapper = mount(<DataTable {...mockProps} />);
+      const wrapper = mount(<DataTable isSortable={true} {...mockProps} />);
       const header = getHeaderAt(wrapper, 0);
-
       header.simulate('click');
       expect(wrapper.state('rowIds')).toEqual(['a', 'b', 'c']);
 
@@ -161,7 +160,7 @@ describe('DataTable', () => {
     });
 
     it('should re-sort new row props by the current sort state', () => {
-      const wrapper = mount(<DataTable {...mockProps} />);
+      const wrapper = mount(<DataTable isSortable={true} {...mockProps} />);
       const header = getHeaderAt(wrapper, 0);
 
       header.simulate('click');
@@ -172,7 +171,8 @@ describe('DataTable', () => {
     });
 
     it('should reset to ASC ordering when another header is clicked', () => {
-      const wrapper = mount(<DataTable {...mockProps} />);
+      const wrapper = mount(<DataTable isSortable={true} {...mockProps} />);
+
       const firstHeader = getHeaderAt(wrapper, 0);
       const secondHeader = getHeaderAt(wrapper, 1);
 

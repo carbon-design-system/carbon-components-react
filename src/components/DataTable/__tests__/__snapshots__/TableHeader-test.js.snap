@@ -1,9 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`DataTable.TableHeader should have an active and ascending class if sorting by ASC 1`] = `
-<Table>
+<Table
+  isSortable={false}
+>
   <table
-    className="bx--data-table"
+    className="bx--data-table bx--data-table--no-border"
   >
     <TableHead>
       <thead>
@@ -20,7 +22,11 @@ exports[`DataTable.TableHeader should have an active and ascending class if sort
               <th
                 scope="col"
               >
-                Header
+                <span
+                  className="bx--table-header-label"
+                >
+                  Header
+                </span>
               </th>
             </TableHeader>
           </tr>
@@ -32,9 +38,11 @@ exports[`DataTable.TableHeader should have an active and ascending class if sort
 `;
 
 exports[`DataTable.TableHeader should have an active class if it is the sort header and the sort state is not NONE 1`] = `
-<Table>
+<Table
+  isSortable={false}
+>
   <table
-    className="bx--data-table"
+    className="bx--data-table bx--data-table--no-border"
   >
     <TableHead>
       <thead>
@@ -51,7 +59,11 @@ exports[`DataTable.TableHeader should have an active class if it is the sort hea
               <th
                 scope="col"
               >
-                Header
+                <span
+                  className="bx--table-header-label"
+                >
+                  Header
+                </span>
               </th>
             </TableHeader>
           </tr>
@@ -63,9 +75,11 @@ exports[`DataTable.TableHeader should have an active class if it is the sort hea
 `;
 
 exports[`DataTable.TableHeader should render 1`] = `
-<Table>
+<Table
+  isSortable={false}
+>
   <table
-    className="bx--data-table"
+    className="bx--data-table bx--data-table--no-border"
   >
     <TableHead>
       <thead>
@@ -82,7 +96,11 @@ exports[`DataTable.TableHeader should render 1`] = `
               <th
                 scope="col"
               >
-                Header
+                <span
+                  className="bx--table-header-label"
+                >
+                  Header
+                </span>
               </th>
             </TableHeader>
           </tr>
@@ -94,9 +112,11 @@ exports[`DataTable.TableHeader should render 1`] = `
 `;
 
 exports[`DataTable.TableHeader should render 2`] = `
-<Table>
+<Table
+  isSortable={false}
+>
   <table
-    className="bx--data-table"
+    className="bx--data-table bx--data-table--no-border"
   >
     <TableHead>
       <thead>
@@ -113,7 +133,11 @@ exports[`DataTable.TableHeader should render 2`] = `
               <th
                 scope="col"
               >
-                Header
+                <span
+                  className="bx--table-header-label"
+                >
+                  Header
+                </span>
               </th>
             </TableHeader>
           </tr>

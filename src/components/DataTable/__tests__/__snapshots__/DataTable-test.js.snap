@@ -54,12 +54,14 @@ exports[`DataTable selection -- radio buttons should not have select-all checkbo
           "value": <TableContainer
             title="DataTable with selection"
           >
-            <Table>
+            <Table
+              isSortable={false}
+            >
               <TableHead>
                 <TableRow>
                   <TableHeader
                     isSortHeader={false}
-                    isSortable={true}
+                    isSortable={false}
                     onClick={[Function]}
                     scope="col"
                     sortDirection="NONE"
@@ -69,7 +71,7 @@ exports[`DataTable selection -- radio buttons should not have select-all checkbo
                   </TableHeader>
                   <TableHeader
                     isSortHeader={false}
-                    isSortable={true}
+                    isSortable={false}
                     onClick={[Function]}
                     scope="col"
                     sortDirection="NONE"
@@ -79,7 +81,9 @@ exports[`DataTable selection -- radio buttons should not have select-all checkbo
                   </TableHeader>
                 </TableRow>
               </TableHead>
-              <TableBody />
+              <TableBody
+                aria-live="polite"
+              />
             </Table>
           </TableContainer>,
         },
@@ -108,9 +112,11 @@ exports[`DataTable selection -- radio buttons should not have select-all checkbo
           className="bx--data-table-header__description"
         />
       </div>
-      <Table>
+      <Table
+        isSortable={false}
+      >
         <table
-          className="bx--data-table"
+          className="bx--data-table bx--data-table--no-border"
         >
           <TableHead>
             <thead>
@@ -118,7 +124,7 @@ exports[`DataTable selection -- radio buttons should not have select-all checkbo
                 <tr>
                   <TableHeader
                     isSortHeader={false}
-                    isSortable={true}
+                    isSortable={false}
                     key="fieldA"
                     onClick={[Function]}
                     scope="col"
@@ -126,84 +132,18 @@ exports[`DataTable selection -- radio buttons should not have select-all checkbo
                     translateWithId={[Function]}
                   >
                     <th
-                      aria-sort="none"
                       scope="col"
                     >
-                      <button
-                        className="bx--table-sort"
-                        onClick={[Function]}
+                      <span
+                        className="bx--table-header-label"
                       >
-                        <span
-                          className="bx--table-header-label"
-                        >
-                          Field A
-                        </span>
-                        <ArrowUp20
-                          aria-label="Sort rows by this header in ascending order"
-                          className="bx--table-sort__icon"
-                          height={20}
-                          preserveAspectRatio="xMidYMid meet"
-                          viewBox="0 0 32 32"
-                          width={20}
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <svg
-                            aria-label="Sort rows by this header in ascending order"
-                            className="bx--table-sort__icon"
-                            focusable="false"
-                            height={20}
-                            preserveAspectRatio="xMidYMid meet"
-                            role="img"
-                            style={
-                              Object {
-                                "willChange": "transform",
-                              }
-                            }
-                            viewBox="0 0 32 32"
-                            width={20}
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <path
-                              d="M16 4L6 14l1.41 1.41L15 7.83V30h2V7.83l7.59 7.58L26 14 16 4z"
-                            />
-                          </svg>
-                        </ArrowUp20>
-                        <ArrowsVertical20
-                          aria-label="Sort rows by this header in ascending order"
-                          className="bx--table-sort__icon-unsorted"
-                          height={20}
-                          preserveAspectRatio="xMidYMid meet"
-                          viewBox="0 0 32 32"
-                          width={20}
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <svg
-                            aria-label="Sort rows by this header in ascending order"
-                            className="bx--table-sort__icon-unsorted"
-                            focusable="false"
-                            height={20}
-                            preserveAspectRatio="xMidYMid meet"
-                            role="img"
-                            style={
-                              Object {
-                                "willChange": "transform",
-                              }
-                            }
-                            viewBox="0 0 32 32"
-                            width={20}
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <path
-                              d="M26.59 20.59L23 24.17V4h-2v20.17l-3.59-3.58L16 22l6 6 6-6-1.41-1.41zM10 4l-6 6 1.41 1.41L9 7.83V28h2V7.83l3.59 3.58L16 10l-6-6z"
-                            />
-                          </svg>
-                        </ArrowsVertical20>
-                      </button>
+                        Field A
+                      </span>
                     </th>
                   </TableHeader>
                   <TableHeader
                     isSortHeader={false}
-                    isSortable={true}
+                    isSortable={false}
                     key="fieldB"
                     onClick={[Function]}
                     scope="col"
@@ -211,87 +151,25 @@ exports[`DataTable selection -- radio buttons should not have select-all checkbo
                     translateWithId={[Function]}
                   >
                     <th
-                      aria-sort="none"
                       scope="col"
                     >
-                      <button
-                        className="bx--table-sort"
-                        onClick={[Function]}
+                      <span
+                        className="bx--table-header-label"
                       >
-                        <span
-                          className="bx--table-header-label"
-                        >
-                          Field B
-                        </span>
-                        <ArrowUp20
-                          aria-label="Sort rows by this header in ascending order"
-                          className="bx--table-sort__icon"
-                          height={20}
-                          preserveAspectRatio="xMidYMid meet"
-                          viewBox="0 0 32 32"
-                          width={20}
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <svg
-                            aria-label="Sort rows by this header in ascending order"
-                            className="bx--table-sort__icon"
-                            focusable="false"
-                            height={20}
-                            preserveAspectRatio="xMidYMid meet"
-                            role="img"
-                            style={
-                              Object {
-                                "willChange": "transform",
-                              }
-                            }
-                            viewBox="0 0 32 32"
-                            width={20}
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <path
-                              d="M16 4L6 14l1.41 1.41L15 7.83V30h2V7.83l7.59 7.58L26 14 16 4z"
-                            />
-                          </svg>
-                        </ArrowUp20>
-                        <ArrowsVertical20
-                          aria-label="Sort rows by this header in ascending order"
-                          className="bx--table-sort__icon-unsorted"
-                          height={20}
-                          preserveAspectRatio="xMidYMid meet"
-                          viewBox="0 0 32 32"
-                          width={20}
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <svg
-                            aria-label="Sort rows by this header in ascending order"
-                            className="bx--table-sort__icon-unsorted"
-                            focusable="false"
-                            height={20}
-                            preserveAspectRatio="xMidYMid meet"
-                            role="img"
-                            style={
-                              Object {
-                                "willChange": "transform",
-                              }
-                            }
-                            viewBox="0 0 32 32"
-                            width={20}
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <path
-                              d="M26.59 20.59L23 24.17V4h-2v20.17l-3.59-3.58L16 22l6 6 6-6-1.41-1.41zM10 4l-6 6 1.41 1.41L9 7.83V28h2V7.83l3.59 3.58L16 10l-6-6z"
-                            />
-                          </svg>
-                        </ArrowsVertical20>
-                      </button>
+                        Field B
+                      </span>
                     </th>
                   </TableHeader>
                 </tr>
               </TableRow>
             </thead>
           </TableHead>
-          <TableBody>
-            <tbody />
+          <TableBody
+            aria-live="polite"
+          >
+            <tbody
+              aria-live="polite"
+            />
           </TableBody>
         </table>
       </Table>
@@ -442,12 +320,14 @@ exports[`DataTable selection -- radio buttons should render 1`] = `
           "value": <TableContainer
             title="DataTable with selection"
           >
-            <Table>
+            <Table
+              isSortable={false}
+            >
               <TableHead>
                 <TableRow>
                   <TableHeader
                     isSortHeader={false}
-                    isSortable={true}
+                    isSortable={false}
                     onClick={[Function]}
                     scope="col"
                     sortDirection="NONE"
@@ -457,7 +337,7 @@ exports[`DataTable selection -- radio buttons should render 1`] = `
                   </TableHeader>
                   <TableHeader
                     isSortHeader={false}
-                    isSortable={true}
+                    isSortable={false}
                     onClick={[Function]}
                     scope="col"
                     sortDirection="NONE"
@@ -467,7 +347,9 @@ exports[`DataTable selection -- radio buttons should render 1`] = `
                   </TableHeader>
                 </TableRow>
               </TableHead>
-              <TableBody>
+              <TableBody
+                aria-live="polite"
+              >
                 <TableRow>
                   <TableSelectRow
                     ariaLabel="Select row"
@@ -563,9 +445,11 @@ exports[`DataTable selection -- radio buttons should render 1`] = `
           className="bx--data-table-header__description"
         />
       </div>
-      <Table>
+      <Table
+        isSortable={false}
+      >
         <table
-          className="bx--data-table"
+          className="bx--data-table bx--data-table--no-border"
         >
           <TableHead>
             <thead>
@@ -573,7 +457,7 @@ exports[`DataTable selection -- radio buttons should render 1`] = `
                 <tr>
                   <TableHeader
                     isSortHeader={false}
-                    isSortable={true}
+                    isSortable={false}
                     key="fieldA"
                     onClick={[Function]}
                     scope="col"
@@ -581,84 +465,18 @@ exports[`DataTable selection -- radio buttons should render 1`] = `
                     translateWithId={[Function]}
                   >
                     <th
-                      aria-sort="none"
                       scope="col"
                     >
-                      <button
-                        className="bx--table-sort"
-                        onClick={[Function]}
+                      <span
+                        className="bx--table-header-label"
                       >
-                        <span
-                          className="bx--table-header-label"
-                        >
-                          Field A
-                        </span>
-                        <ArrowUp20
-                          aria-label="Sort rows by this header in ascending order"
-                          className="bx--table-sort__icon"
-                          height={20}
-                          preserveAspectRatio="xMidYMid meet"
-                          viewBox="0 0 32 32"
-                          width={20}
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <svg
-                            aria-label="Sort rows by this header in ascending order"
-                            className="bx--table-sort__icon"
-                            focusable="false"
-                            height={20}
-                            preserveAspectRatio="xMidYMid meet"
-                            role="img"
-                            style={
-                              Object {
-                                "willChange": "transform",
-                              }
-                            }
-                            viewBox="0 0 32 32"
-                            width={20}
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <path
-                              d="M16 4L6 14l1.41 1.41L15 7.83V30h2V7.83l7.59 7.58L26 14 16 4z"
-                            />
-                          </svg>
-                        </ArrowUp20>
-                        <ArrowsVertical20
-                          aria-label="Sort rows by this header in ascending order"
-                          className="bx--table-sort__icon-unsorted"
-                          height={20}
-                          preserveAspectRatio="xMidYMid meet"
-                          viewBox="0 0 32 32"
-                          width={20}
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <svg
-                            aria-label="Sort rows by this header in ascending order"
-                            className="bx--table-sort__icon-unsorted"
-                            focusable="false"
-                            height={20}
-                            preserveAspectRatio="xMidYMid meet"
-                            role="img"
-                            style={
-                              Object {
-                                "willChange": "transform",
-                              }
-                            }
-                            viewBox="0 0 32 32"
-                            width={20}
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <path
-                              d="M26.59 20.59L23 24.17V4h-2v20.17l-3.59-3.58L16 22l6 6 6-6-1.41-1.41zM10 4l-6 6 1.41 1.41L9 7.83V28h2V7.83l3.59 3.58L16 10l-6-6z"
-                            />
-                          </svg>
-                        </ArrowsVertical20>
-                      </button>
+                        Field A
+                      </span>
                     </th>
                   </TableHeader>
                   <TableHeader
                     isSortHeader={false}
-                    isSortable={true}
+                    isSortable={false}
                     key="fieldB"
                     onClick={[Function]}
                     scope="col"
@@ -666,87 +484,25 @@ exports[`DataTable selection -- radio buttons should render 1`] = `
                     translateWithId={[Function]}
                   >
                     <th
-                      aria-sort="none"
                       scope="col"
                     >
-                      <button
-                        className="bx--table-sort"
-                        onClick={[Function]}
+                      <span
+                        className="bx--table-header-label"
                       >
-                        <span
-                          className="bx--table-header-label"
-                        >
-                          Field B
-                        </span>
-                        <ArrowUp20
-                          aria-label="Sort rows by this header in ascending order"
-                          className="bx--table-sort__icon"
-                          height={20}
-                          preserveAspectRatio="xMidYMid meet"
-                          viewBox="0 0 32 32"
-                          width={20}
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <svg
-                            aria-label="Sort rows by this header in ascending order"
-                            className="bx--table-sort__icon"
-                            focusable="false"
-                            height={20}
-                            preserveAspectRatio="xMidYMid meet"
-                            role="img"
-                            style={
-                              Object {
-                                "willChange": "transform",
-                              }
-                            }
-                            viewBox="0 0 32 32"
-                            width={20}
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <path
-                              d="M16 4L6 14l1.41 1.41L15 7.83V30h2V7.83l7.59 7.58L26 14 16 4z"
-                            />
-                          </svg>
-                        </ArrowUp20>
-                        <ArrowsVertical20
-                          aria-label="Sort rows by this header in ascending order"
-                          className="bx--table-sort__icon-unsorted"
-                          height={20}
-                          preserveAspectRatio="xMidYMid meet"
-                          viewBox="0 0 32 32"
-                          width={20}
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <svg
-                            aria-label="Sort rows by this header in ascending order"
-                            className="bx--table-sort__icon-unsorted"
-                            focusable="false"
-                            height={20}
-                            preserveAspectRatio="xMidYMid meet"
-                            role="img"
-                            style={
-                              Object {
-                                "willChange": "transform",
-                              }
-                            }
-                            viewBox="0 0 32 32"
-                            width={20}
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <path
-                              d="M26.59 20.59L23 24.17V4h-2v20.17l-3.59-3.58L16 22l6 6 6-6-1.41-1.41zM10 4l-6 6 1.41 1.41L9 7.83V28h2V7.83l3.59 3.58L16 10l-6-6z"
-                            />
-                          </svg>
-                        </ArrowsVertical20>
-                      </button>
+                        Field B
+                      </span>
                     </th>
                   </TableHeader>
                 </tr>
               </TableRow>
             </thead>
           </TableHead>
-          <TableBody>
-            <tbody>
+          <TableBody
+            aria-live="polite"
+          >
+            <tbody
+              aria-live="polite"
+            >
               <TableRow
                 key="b"
               >
@@ -1052,7 +808,9 @@ exports[`DataTable selection should have select-all default to un-checked if no 
           "value": <TableContainer
             title="DataTable with selection"
           >
-            <Table>
+            <Table
+              isSortable={false}
+            >
               <TableHead>
                 <TableRow>
                   <TableSelectAll
@@ -1065,7 +823,7 @@ exports[`DataTable selection should have select-all default to un-checked if no 
                   />
                   <TableHeader
                     isSortHeader={false}
-                    isSortable={true}
+                    isSortable={false}
                     onClick={[Function]}
                     scope="col"
                     sortDirection="NONE"
@@ -1075,7 +833,7 @@ exports[`DataTable selection should have select-all default to un-checked if no 
                   </TableHeader>
                   <TableHeader
                     isSortHeader={false}
-                    isSortable={true}
+                    isSortable={false}
                     onClick={[Function]}
                     scope="col"
                     sortDirection="NONE"
@@ -1085,7 +843,9 @@ exports[`DataTable selection should have select-all default to un-checked if no 
                   </TableHeader>
                 </TableRow>
               </TableHead>
-              <TableBody />
+              <TableBody
+                aria-live="polite"
+              />
             </Table>
           </TableContainer>,
         },
@@ -1114,9 +874,11 @@ exports[`DataTable selection should have select-all default to un-checked if no 
           className="bx--data-table-header__description"
         />
       </div>
-      <Table>
+      <Table
+        isSortable={false}
+      >
         <table
-          className="bx--data-table"
+          className="bx--data-table bx--data-table--no-border"
         >
           <TableHead>
             <thead>
@@ -1172,7 +934,7 @@ exports[`DataTable selection should have select-all default to un-checked if no 
                   </TableSelectAll>
                   <TableHeader
                     isSortHeader={false}
-                    isSortable={true}
+                    isSortable={false}
                     key="fieldA"
                     onClick={[Function]}
                     scope="col"
@@ -1180,84 +942,18 @@ exports[`DataTable selection should have select-all default to un-checked if no 
                     translateWithId={[Function]}
                   >
                     <th
-                      aria-sort="none"
                       scope="col"
                     >
-                      <button
-                        className="bx--table-sort"
-                        onClick={[Function]}
+                      <span
+                        className="bx--table-header-label"
                       >
-                        <span
-                          className="bx--table-header-label"
-                        >
-                          Field A
-                        </span>
-                        <ArrowUp20
-                          aria-label="Sort rows by this header in ascending order"
-                          className="bx--table-sort__icon"
-                          height={20}
-                          preserveAspectRatio="xMidYMid meet"
-                          viewBox="0 0 32 32"
-                          width={20}
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <svg
-                            aria-label="Sort rows by this header in ascending order"
-                            className="bx--table-sort__icon"
-                            focusable="false"
-                            height={20}
-                            preserveAspectRatio="xMidYMid meet"
-                            role="img"
-                            style={
-                              Object {
-                                "willChange": "transform",
-                              }
-                            }
-                            viewBox="0 0 32 32"
-                            width={20}
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <path
-                              d="M16 4L6 14l1.41 1.41L15 7.83V30h2V7.83l7.59 7.58L26 14 16 4z"
-                            />
-                          </svg>
-                        </ArrowUp20>
-                        <ArrowsVertical20
-                          aria-label="Sort rows by this header in ascending order"
-                          className="bx--table-sort__icon-unsorted"
-                          height={20}
-                          preserveAspectRatio="xMidYMid meet"
-                          viewBox="0 0 32 32"
-                          width={20}
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <svg
-                            aria-label="Sort rows by this header in ascending order"
-                            className="bx--table-sort__icon-unsorted"
-                            focusable="false"
-                            height={20}
-                            preserveAspectRatio="xMidYMid meet"
-                            role="img"
-                            style={
-                              Object {
-                                "willChange": "transform",
-                              }
-                            }
-                            viewBox="0 0 32 32"
-                            width={20}
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <path
-                              d="M26.59 20.59L23 24.17V4h-2v20.17l-3.59-3.58L16 22l6 6 6-6-1.41-1.41zM10 4l-6 6 1.41 1.41L9 7.83V28h2V7.83l3.59 3.58L16 10l-6-6z"
-                            />
-                          </svg>
-                        </ArrowsVertical20>
-                      </button>
+                        Field A
+                      </span>
                     </th>
                   </TableHeader>
                   <TableHeader
                     isSortHeader={false}
-                    isSortable={true}
+                    isSortable={false}
                     key="fieldB"
                     onClick={[Function]}
                     scope="col"
@@ -1265,87 +961,25 @@ exports[`DataTable selection should have select-all default to un-checked if no 
                     translateWithId={[Function]}
                   >
                     <th
-                      aria-sort="none"
                       scope="col"
                     >
-                      <button
-                        className="bx--table-sort"
-                        onClick={[Function]}
+                      <span
+                        className="bx--table-header-label"
                       >
-                        <span
-                          className="bx--table-header-label"
-                        >
-                          Field B
-                        </span>
-                        <ArrowUp20
-                          aria-label="Sort rows by this header in ascending order"
-                          className="bx--table-sort__icon"
-                          height={20}
-                          preserveAspectRatio="xMidYMid meet"
-                          viewBox="0 0 32 32"
-                          width={20}
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <svg
-                            aria-label="Sort rows by this header in ascending order"
-                            className="bx--table-sort__icon"
-                            focusable="false"
-                            height={20}
-                            preserveAspectRatio="xMidYMid meet"
-                            role="img"
-                            style={
-                              Object {
-                                "willChange": "transform",
-                              }
-                            }
-                            viewBox="0 0 32 32"
-                            width={20}
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <path
-                              d="M16 4L6 14l1.41 1.41L15 7.83V30h2V7.83l7.59 7.58L26 14 16 4z"
-                            />
-                          </svg>
-                        </ArrowUp20>
-                        <ArrowsVertical20
-                          aria-label="Sort rows by this header in ascending order"
-                          className="bx--table-sort__icon-unsorted"
-                          height={20}
-                          preserveAspectRatio="xMidYMid meet"
-                          viewBox="0 0 32 32"
-                          width={20}
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <svg
-                            aria-label="Sort rows by this header in ascending order"
-                            className="bx--table-sort__icon-unsorted"
-                            focusable="false"
-                            height={20}
-                            preserveAspectRatio="xMidYMid meet"
-                            role="img"
-                            style={
-                              Object {
-                                "willChange": "transform",
-                              }
-                            }
-                            viewBox="0 0 32 32"
-                            width={20}
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <path
-                              d="M26.59 20.59L23 24.17V4h-2v20.17l-3.59-3.58L16 22l6 6 6-6-1.41-1.41zM10 4l-6 6 1.41 1.41L9 7.83V28h2V7.83l3.59 3.58L16 10l-6-6z"
-                            />
-                          </svg>
-                        </ArrowsVertical20>
-                      </button>
+                        Field B
+                      </span>
                     </th>
                   </TableHeader>
                 </tr>
               </TableRow>
             </thead>
           </TableHead>
-          <TableBody>
-            <tbody />
+          <TableBody
+            aria-live="polite"
+          >
+            <tbody
+              aria-live="polite"
+            />
           </TableBody>
         </table>
       </Table>
@@ -1495,7 +1129,9 @@ exports[`DataTable selection should render 1`] = `
           "value": <TableContainer
             title="DataTable with selection"
           >
-            <Table>
+            <Table
+              isSortable={false}
+            >
               <TableHead>
                 <TableRow>
                   <TableSelectAll
@@ -1508,7 +1144,7 @@ exports[`DataTable selection should render 1`] = `
                   />
                   <TableHeader
                     isSortHeader={false}
-                    isSortable={true}
+                    isSortable={false}
                     onClick={[Function]}
                     scope="col"
                     sortDirection="NONE"
@@ -1518,7 +1154,7 @@ exports[`DataTable selection should render 1`] = `
                   </TableHeader>
                   <TableHeader
                     isSortHeader={false}
-                    isSortable={true}
+                    isSortable={false}
                     onClick={[Function]}
                     scope="col"
                     sortDirection="NONE"
@@ -1528,7 +1164,9 @@ exports[`DataTable selection should render 1`] = `
                   </TableHeader>
                 </TableRow>
               </TableHead>
-              <TableBody>
+              <TableBody
+                aria-live="polite"
+              >
                 <TableRow>
                   <TableSelectRow
                     ariaLabel="Select row"
@@ -1624,9 +1262,11 @@ exports[`DataTable selection should render 1`] = `
           className="bx--data-table-header__description"
         />
       </div>
-      <Table>
+      <Table
+        isSortable={false}
+      >
         <table
-          className="bx--data-table"
+          className="bx--data-table bx--data-table--no-border"
         >
           <TableHead>
             <thead>
@@ -1682,7 +1322,7 @@ exports[`DataTable selection should render 1`] = `
                   </TableSelectAll>
                   <TableHeader
                     isSortHeader={false}
-                    isSortable={true}
+                    isSortable={false}
                     key="fieldA"
                     onClick={[Function]}
                     scope="col"
@@ -1690,84 +1330,18 @@ exports[`DataTable selection should render 1`] = `
                     translateWithId={[Function]}
                   >
                     <th
-                      aria-sort="none"
                       scope="col"
                     >
-                      <button
-                        className="bx--table-sort"
-                        onClick={[Function]}
+                      <span
+                        className="bx--table-header-label"
                       >
-                        <span
-                          className="bx--table-header-label"
-                        >
-                          Field A
-                        </span>
-                        <ArrowUp20
-                          aria-label="Sort rows by this header in ascending order"
-                          className="bx--table-sort__icon"
-                          height={20}
-                          preserveAspectRatio="xMidYMid meet"
-                          viewBox="0 0 32 32"
-                          width={20}
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <svg
-                            aria-label="Sort rows by this header in ascending order"
-                            className="bx--table-sort__icon"
-                            focusable="false"
-                            height={20}
-                            preserveAspectRatio="xMidYMid meet"
-                            role="img"
-                            style={
-                              Object {
-                                "willChange": "transform",
-                              }
-                            }
-                            viewBox="0 0 32 32"
-                            width={20}
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <path
-                              d="M16 4L6 14l1.41 1.41L15 7.83V30h2V7.83l7.59 7.58L26 14 16 4z"
-                            />
-                          </svg>
-                        </ArrowUp20>
-                        <ArrowsVertical20
-                          aria-label="Sort rows by this header in ascending order"
-                          className="bx--table-sort__icon-unsorted"
-                          height={20}
-                          preserveAspectRatio="xMidYMid meet"
-                          viewBox="0 0 32 32"
-                          width={20}
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <svg
-                            aria-label="Sort rows by this header in ascending order"
-                            className="bx--table-sort__icon-unsorted"
-                            focusable="false"
-                            height={20}
-                            preserveAspectRatio="xMidYMid meet"
-                            role="img"
-                            style={
-                              Object {
-                                "willChange": "transform",
-                              }
-                            }
-                            viewBox="0 0 32 32"
-                            width={20}
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <path
-                              d="M26.59 20.59L23 24.17V4h-2v20.17l-3.59-3.58L16 22l6 6 6-6-1.41-1.41zM10 4l-6 6 1.41 1.41L9 7.83V28h2V7.83l3.59 3.58L16 10l-6-6z"
-                            />
-                          </svg>
-                        </ArrowsVertical20>
-                      </button>
+                        Field A
+                      </span>
                     </th>
                   </TableHeader>
                   <TableHeader
                     isSortHeader={false}
-                    isSortable={true}
+                    isSortable={false}
                     key="fieldB"
                     onClick={[Function]}
                     scope="col"
@@ -1775,87 +1349,25 @@ exports[`DataTable selection should render 1`] = `
                     translateWithId={[Function]}
                   >
                     <th
-                      aria-sort="none"
                       scope="col"
                     >
-                      <button
-                        className="bx--table-sort"
-                        onClick={[Function]}
+                      <span
+                        className="bx--table-header-label"
                       >
-                        <span
-                          className="bx--table-header-label"
-                        >
-                          Field B
-                        </span>
-                        <ArrowUp20
-                          aria-label="Sort rows by this header in ascending order"
-                          className="bx--table-sort__icon"
-                          height={20}
-                          preserveAspectRatio="xMidYMid meet"
-                          viewBox="0 0 32 32"
-                          width={20}
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <svg
-                            aria-label="Sort rows by this header in ascending order"
-                            className="bx--table-sort__icon"
-                            focusable="false"
-                            height={20}
-                            preserveAspectRatio="xMidYMid meet"
-                            role="img"
-                            style={
-                              Object {
-                                "willChange": "transform",
-                              }
-                            }
-                            viewBox="0 0 32 32"
-                            width={20}
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <path
-                              d="M16 4L6 14l1.41 1.41L15 7.83V30h2V7.83l7.59 7.58L26 14 16 4z"
-                            />
-                          </svg>
-                        </ArrowUp20>
-                        <ArrowsVertical20
-                          aria-label="Sort rows by this header in ascending order"
-                          className="bx--table-sort__icon-unsorted"
-                          height={20}
-                          preserveAspectRatio="xMidYMid meet"
-                          viewBox="0 0 32 32"
-                          width={20}
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <svg
-                            aria-label="Sort rows by this header in ascending order"
-                            className="bx--table-sort__icon-unsorted"
-                            focusable="false"
-                            height={20}
-                            preserveAspectRatio="xMidYMid meet"
-                            role="img"
-                            style={
-                              Object {
-                                "willChange": "transform",
-                              }
-                            }
-                            viewBox="0 0 32 32"
-                            width={20}
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <path
-                              d="M26.59 20.59L23 24.17V4h-2v20.17l-3.59-3.58L16 22l6 6 6-6-1.41-1.41zM10 4l-6 6 1.41 1.41L9 7.83V28h2V7.83l3.59 3.58L16 10l-6-6z"
-                            />
-                          </svg>
-                        </ArrowsVertical20>
-                      </button>
+                        Field B
+                      </span>
                     </th>
                   </TableHeader>
                 </tr>
               </TableRow>
             </thead>
           </TableHead>
-          <TableBody>
-            <tbody>
+          <TableBody
+            aria-live="polite"
+          >
+            <tbody
+              aria-live="polite"
+            >
               <TableRow
                 key="b"
               >
@@ -2368,12 +1880,14 @@ exports[`DataTable should render 1`] = `
                 </ForwardRef>
               </TableToolbarContent>
             </TableToolbar>
-            <Table>
+            <Table
+              isSortable={false}
+            >
               <TableHead>
                 <TableRow>
                   <TableHeader
                     isSortHeader={false}
-                    isSortable={true}
+                    isSortable={false}
                     onClick={[Function]}
                     scope="col"
                     sortDirection="NONE"
@@ -2383,7 +1897,7 @@ exports[`DataTable should render 1`] = `
                   </TableHeader>
                   <TableHeader
                     isSortHeader={false}
-                    isSortable={true}
+                    isSortable={false}
                     onClick={[Function]}
                     scope="col"
                     sortDirection="NONE"
@@ -2393,7 +1907,9 @@ exports[`DataTable should render 1`] = `
                   </TableHeader>
                 </TableRow>
               </TableHead>
-              <TableBody>
+              <TableBody
+                aria-live="polite"
+              >
                 <TableRow>
                   <TableCell>
                     Field 2:A
@@ -2468,6 +1984,7 @@ exports[`DataTable should render 1`] = `
       <TableToolbar>
         <section
           className="bx--table-toolbar"
+          role="group"
         >
           <TableBatchActions
             onCancel={[Function]}
@@ -3159,9 +2676,11 @@ exports[`DataTable should render 1`] = `
           </TableToolbarContent>
         </section>
       </TableToolbar>
-      <Table>
+      <Table
+        isSortable={false}
+      >
         <table
-          className="bx--data-table"
+          className="bx--data-table bx--data-table--no-border"
         >
           <TableHead>
             <thead>
@@ -3169,7 +2688,7 @@ exports[`DataTable should render 1`] = `
                 <tr>
                   <TableHeader
                     isSortHeader={false}
-                    isSortable={true}
+                    isSortable={false}
                     key="fieldA"
                     onClick={[Function]}
                     scope="col"
@@ -3177,84 +2696,18 @@ exports[`DataTable should render 1`] = `
                     translateWithId={[Function]}
                   >
                     <th
-                      aria-sort="none"
                       scope="col"
                     >
-                      <button
-                        className="bx--table-sort"
-                        onClick={[Function]}
+                      <span
+                        className="bx--table-header-label"
                       >
-                        <span
-                          className="bx--table-header-label"
-                        >
-                          Field A
-                        </span>
-                        <ArrowUp20
-                          aria-label="Sort rows by this header in ascending order"
-                          className="bx--table-sort__icon"
-                          height={20}
-                          preserveAspectRatio="xMidYMid meet"
-                          viewBox="0 0 32 32"
-                          width={20}
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <svg
-                            aria-label="Sort rows by this header in ascending order"
-                            className="bx--table-sort__icon"
-                            focusable="false"
-                            height={20}
-                            preserveAspectRatio="xMidYMid meet"
-                            role="img"
-                            style={
-                              Object {
-                                "willChange": "transform",
-                              }
-                            }
-                            viewBox="0 0 32 32"
-                            width={20}
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <path
-                              d="M16 4L6 14l1.41 1.41L15 7.83V30h2V7.83l7.59 7.58L26 14 16 4z"
-                            />
-                          </svg>
-                        </ArrowUp20>
-                        <ArrowsVertical20
-                          aria-label="Sort rows by this header in ascending order"
-                          className="bx--table-sort__icon-unsorted"
-                          height={20}
-                          preserveAspectRatio="xMidYMid meet"
-                          viewBox="0 0 32 32"
-                          width={20}
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <svg
-                            aria-label="Sort rows by this header in ascending order"
-                            className="bx--table-sort__icon-unsorted"
-                            focusable="false"
-                            height={20}
-                            preserveAspectRatio="xMidYMid meet"
-                            role="img"
-                            style={
-                              Object {
-                                "willChange": "transform",
-                              }
-                            }
-                            viewBox="0 0 32 32"
-                            width={20}
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <path
-                              d="M26.59 20.59L23 24.17V4h-2v20.17l-3.59-3.58L16 22l6 6 6-6-1.41-1.41zM10 4l-6 6 1.41 1.41L9 7.83V28h2V7.83l3.59 3.58L16 10l-6-6z"
-                            />
-                          </svg>
-                        </ArrowsVertical20>
-                      </button>
+                        Field A
+                      </span>
                     </th>
                   </TableHeader>
                   <TableHeader
                     isSortHeader={false}
-                    isSortable={true}
+                    isSortable={false}
                     key="fieldB"
                     onClick={[Function]}
                     scope="col"
@@ -3262,87 +2715,25 @@ exports[`DataTable should render 1`] = `
                     translateWithId={[Function]}
                   >
                     <th
-                      aria-sort="none"
                       scope="col"
                     >
-                      <button
-                        className="bx--table-sort"
-                        onClick={[Function]}
+                      <span
+                        className="bx--table-header-label"
                       >
-                        <span
-                          className="bx--table-header-label"
-                        >
-                          Field B
-                        </span>
-                        <ArrowUp20
-                          aria-label="Sort rows by this header in ascending order"
-                          className="bx--table-sort__icon"
-                          height={20}
-                          preserveAspectRatio="xMidYMid meet"
-                          viewBox="0 0 32 32"
-                          width={20}
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <svg
-                            aria-label="Sort rows by this header in ascending order"
-                            className="bx--table-sort__icon"
-                            focusable="false"
-                            height={20}
-                            preserveAspectRatio="xMidYMid meet"
-                            role="img"
-                            style={
-                              Object {
-                                "willChange": "transform",
-                              }
-                            }
-                            viewBox="0 0 32 32"
-                            width={20}
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <path
-                              d="M16 4L6 14l1.41 1.41L15 7.83V30h2V7.83l7.59 7.58L26 14 16 4z"
-                            />
-                          </svg>
-                        </ArrowUp20>
-                        <ArrowsVertical20
-                          aria-label="Sort rows by this header in ascending order"
-                          className="bx--table-sort__icon-unsorted"
-                          height={20}
-                          preserveAspectRatio="xMidYMid meet"
-                          viewBox="0 0 32 32"
-                          width={20}
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <svg
-                            aria-label="Sort rows by this header in ascending order"
-                            className="bx--table-sort__icon-unsorted"
-                            focusable="false"
-                            height={20}
-                            preserveAspectRatio="xMidYMid meet"
-                            role="img"
-                            style={
-                              Object {
-                                "willChange": "transform",
-                              }
-                            }
-                            viewBox="0 0 32 32"
-                            width={20}
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <path
-                              d="M26.59 20.59L23 24.17V4h-2v20.17l-3.59-3.58L16 22l6 6 6-6-1.41-1.41zM10 4l-6 6 1.41 1.41L9 7.83V28h2V7.83l3.59 3.58L16 10l-6-6z"
-                            />
-                          </svg>
-                        </ArrowsVertical20>
-                      </button>
+                        Field B
+                      </span>
                     </th>
                   </TableHeader>
                 </tr>
               </TableRow>
             </thead>
           </TableHead>
-          <TableBody>
-            <tbody>
+          <TableBody
+            aria-live="polite"
+          >
+            <tbody
+              aria-live="polite"
+            >
               <TableRow
                 key="b"
               >

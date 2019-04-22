@@ -151,7 +151,12 @@ export default class DataTable extends React.Component {
    * @param {Function} config.onClick a custom click handler for the header
    * @returns {Object}
    */
-  getHeaderProps = ({ header, onClick, isSortable = false, ...rest }) => {
+  getHeaderProps = ({
+    header,
+    onClick,
+    isSortable = this.props.isSortable,
+    ...rest
+  }) => {
     const { sortDirection, sortHeaderKey } = this.state;
     return {
       ...rest,

@@ -1,9 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`DataTable.TableExpandHeader should render 1`] = `
-<Table>
+<Table
+  isSortable={false}
+>
   <table
-    className="bx--data-table"
+    className="bx--data-table bx--data-table--no-border"
   >
     <TableHead>
       <thead>
