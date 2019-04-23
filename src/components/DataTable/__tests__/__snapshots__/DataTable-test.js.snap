@@ -1983,8 +1983,8 @@ exports[`DataTable should render 1`] = `
       </div>
       <TableToolbar>
         <section
+          aria-label="data table toolbar"
           className="bx--table-toolbar"
-          role="group"
         >
           <TableBatchActions
             onCancel={[Function]}
