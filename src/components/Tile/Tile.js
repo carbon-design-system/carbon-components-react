@@ -424,6 +424,9 @@ export class ExpandableTile extends Component {
     return React.Children.map(this.props.children, child => child);
   };
 
+  // a unique ID generated for use in aria-labelledby
+  uid = uid();
+
   render() {
     const {
       tabIndex,
@@ -454,9 +457,6 @@ export class ExpandableTile extends Component {
     const content = this.getChildren().map((child, index) => {
       return React.cloneElement(child, { ref: index });
     });
-
-    // a unique ID generated for use in aria-labelledby
-    this.uid = uid();
 
     return (
       // eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions
