@@ -16,6 +16,7 @@ import ChevronDown16 from '@carbon/icons-react/lib/chevron--down/16';
 import { componentsX } from '../../internal/FeatureFlags';
 import Icon from '../Icon';
 import { keys, matches } from '../../tools/key';
+import uid from '../../tools/uniqueId';
 
 const { prefix } = settings;
 
@@ -453,6 +454,10 @@ export class ExpandableTile extends Component {
     const content = this.getChildren().map((child, index) => {
       return React.cloneElement(child, { ref: index });
     });
+
+    // a unique ID generated for use in aria-labelledby
+    this.uid = uid();
+
     return (
       // eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions
       <div
@@ -466,10 +471,10 @@ export class ExpandableTile extends Component {
         tabIndex={tabIndex}>
         <button
           className={`${prefix}--tile__chevron`}
-          aria-labelledby="tileExpandIcon">
+          aria-labelledby={this.uid}>
           {componentsX ? (
             <ChevronDown16
-              id="tileExpandIcon"
+              id={this.uid}
               aria-label={
                 this.state.expanded
                   ? tileExpandedIconText
