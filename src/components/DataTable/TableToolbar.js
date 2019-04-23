@@ -10,7 +10,7 @@ import { settings } from 'carbon-components';
 const { prefix } = settings;
 
 const TableToolbar = ({ children }) => (
-  <section role="group" className={`${prefix}--table-toolbar`}>
+  <section aria-label="data table toolbar" tabIndex="0" className={`${prefix}--table-toolbar`}>
     {children}
   </section>
 );
