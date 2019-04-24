@@ -26,7 +26,7 @@ const Select = React.forwardRef(
       labelText,
       disabled,
       children,
-      noLabel,
+      noLabel, // reserved for use with <Pagination> component
       iconDescription,
       hideLabel,
       invalid,
