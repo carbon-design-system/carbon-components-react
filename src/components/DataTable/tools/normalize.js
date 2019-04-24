@@ -26,8 +26,9 @@ const normalize = (rows, headers, prevState = {}) => {
     // expansion
     rowsById[row.id] = {
       id: row.id,
-      isSelected: false,
-      isExpanded: false,
+      isSelected: row._selected || false,
+      isExpanded: row._expanded || false,
+      disabled: row._disabled || false,
       cells: new Array(headers.length),
     };
 
