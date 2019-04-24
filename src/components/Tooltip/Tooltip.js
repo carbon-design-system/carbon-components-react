@@ -452,11 +452,6 @@ class Tooltip extends Component {
       `${prefix}--tooltip__label`,
       triggerClassName
     );
-    const ariaOwnsProps = !open
-      ? {}
-      : {
-          'aria-owns': tooltipId,
-        };
 
     const ariaDescribedbyProps = !open
       ? {}
@@ -505,8 +500,7 @@ class Tooltip extends Component {
                 aria-haspopup="true"
                 aria-label={iconDescription}
                 aria-expanded={open}
-                {...ariaDescribedbyProps}
-                {...ariaOwnsProps}>
+                {...ariaDescribedbyProps}>
                 {finalIcon}
               </div>
             </div>
@@ -527,8 +521,7 @@ class Tooltip extends Component {
               onBlur={this.handleMouse}
               aria-haspopup="true"
               aria-expanded={open}
-              {...ariaDescribedbyProps}
-              {...ariaOwnsProps}>
+              {...ariaDescribedbyProps}>
               {triggerText}
             </div>
           )}
