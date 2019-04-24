@@ -160,7 +160,7 @@ const Icon = ({
   const svgContent = icon ? svgShapes(icon.svgData) : '';
 
   return (
-    <svg {...props} aria-label={description} alt={description}>
+    <svg {...props} aria-label={description}>
       <title>
         {typeof iconTitle === 'undefined' ? description : iconTitle}
       </title>
@@ -246,7 +246,6 @@ Icon.propTypes = {
 Icon.defaultProps = {
   fillRule: 'evenodd',
   role: 'img',
-  description: 'Provide a description that will be used as the title',
 };
 
 export { icons };
