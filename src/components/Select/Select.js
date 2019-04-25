@@ -207,6 +207,12 @@ Select.propTypes = {
    * Specify whether you want the light version of this control
    */
   light: PropTypes.bool,
+
+  /**
+   * Reserved for use with <Pagination> component. Will not render a label for the
+   * select since Pagination renders one for us.
+   */
+  noLabel: PropTypes.bool,
 };
 
 Select.defaultProps = {
