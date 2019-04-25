@@ -25,6 +25,7 @@ import ClickListener from '../../internal/ClickListener';
 import { breakingChangesX, componentsX } from '../../internal/FeatureFlags';
 import mergeRefs from '../../tools/mergeRefs';
 import { keys, keyCodes, matches as keyDownMatch } from '../../tools/key';
+import isRequiredOneOf from '../../prop-types/isRequiredOneOf';
 
 const { prefix } = settings;
 
@@ -174,11 +175,6 @@ class Tooltip extends Component {
     ]),
 
     /**
-     * The content to put into the trigger UI, except the (default) tooltip icon.
-     */
-    triggerText: PropTypes.node,
-
-    /**
      * The callback function to optionally render the icon element.
      * It should be a component with React.forwardRef().
      */
@@ -213,17 +209,16 @@ class Tooltip extends Component {
      */
     iconName: PropTypes.string,
 
-    /**
-     * The description of the default tooltip icon, to be put in its SVG 'aria-label' and 'alt' .
-     */
-    iconDescription: ({ triggerText, iconDescription }) => {
-      if (!triggerText && !iconDescription) {
-        return new Error(
-          "Please  add property 'iconDescription' when property 'triggerText' is null. This is according to a11y standards."
-        );
-      }
-      return null;
-    },
+    ...isRequiredOneOf({
+      /**
+       * The content to put into the trigger UI, except the (default) tooltip icon.
+       */
+      triggerText: PropTypes.node,
+      /**
+       * The description of the default tooltip icon, to be put in its SVG 'aria-label' and 'alt' .
+       */
+      iconDescription: PropTypes.string,
+    }),
 
     /**
      * `true` if opening tooltip should be triggered by clicking the trigger button.
