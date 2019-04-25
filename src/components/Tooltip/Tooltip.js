@@ -261,6 +261,8 @@ class Tooltip extends Component {
     requestAnimationFrame(() => {
       this.getTriggerPosition();
     });
+
+    document.addEventListener('keydown', this.handleEscKeyPress, false);
   }
 
   componentWillUnmount() {
@@ -268,6 +270,8 @@ class Tooltip extends Component {
       this._debouncedHandleHover.cancel();
       this._debouncedHandleHover = null;
     }
+
+    document.removeEventListener('keydown', this.handleEscKeyPress, false);
   }
 
   static getDerivedStateFromProps({ open }, state) {
@@ -383,6 +387,13 @@ class Tooltip extends Component {
     ) {
       event.stopPropagation();
       this.setState({ open: !this.state.open });
+    }
+  };
+
+  handleEscKeyPress = event => {
+    const { open } = this.state;
+    if (open && keyDownMatch(event, [keys.ESC, keyCodes.ESC, keyCodes.IEESC])) {
+      return this.setState({ open: false });
     }
   };
 
