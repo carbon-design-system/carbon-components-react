@@ -447,6 +447,10 @@ class Tooltip extends Component {
       triggerClassName
     );
 
+    const refProp = mergeRefs(ref, node => {
+      this.triggerEl = node;
+    });
+
     const iconProperties = { name: iconName, role: null, description: null };
 
     const properties = {
@@ -458,9 +462,6 @@ class Tooltip extends Component {
       onMouseOut: this.handleMouse,
       onFocus: this.handleMouse,
       onBlur: this.handleMouse,
-      ref: mergeRefs(ref, node => {
-        this.triggerEl = node;
-      }),
       'aria-haspopup': 'true',
       'aria-expanded': open,
       // if the user provides property `triggerText`,
@@ -484,20 +485,22 @@ class Tooltip extends Component {
               {triggerText}
               <div className={`${prefix}--tooltip__trigger`} {...properties}>
                 {IconCustomElement ? (
-                  <IconCustomElement {...iconProperties} />
+                  <IconCustomElement ref={refProp} {...iconProperties} />
                 ) : (
                   <Icon
                     icon={!icon && !iconName ? iconInfoGlyph : icon}
-                    iconRef={mergeRefs(ref, node => {
-                      this.triggerEl = node;
-                    })}
+                    iconRef={refProp}
                     {...iconProperties}
                   />
                 )}
               </div>
             </div>
           ) : (
-            <div id={triggerId} className={triggerClasses} {...properties}>
+            <div
+              id={triggerId}
+              className={triggerClasses}
+              ref={refProp}
+              {...properties}>
               {triggerText}
             </div>
           )}
