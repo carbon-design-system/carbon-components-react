@@ -344,6 +344,11 @@ export class ExpandableTile extends Component {
      * The description of the "expanded" icon that can be read by screen readers.
      */
     tileExpandedIconText: PropTypes.string,
+
+    /**
+     * An ID that can be provided to aria-labelledby
+     */
+    id: PropTypes.string,
   };
 
   static defaultProps = {
@@ -424,8 +429,8 @@ export class ExpandableTile extends Component {
     return React.Children.map(this.props.children, child => child);
   };
 
-  // a unique ID generated for use in aria-labelledby
-  uid = uid();
+  // a unique ID generated for use in aria-labelledby if one isn't providedj
+  uid = this.props.id || uid();
 
   render() {
     const {
