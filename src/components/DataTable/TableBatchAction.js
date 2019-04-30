@@ -7,12 +7,10 @@
 
 import PropTypes from 'prop-types';
 import React from 'react';
-import { iconAddSolid } from 'carbon-icons';
+import iconAddSolid from '@carbon/icons-react/lib/add--filled/16';
 import Button from '../Button';
 
-const TableBatchAction = props => (
-  <Button small kind="ghost" icon={iconAddSolid} {...props} />
-);
+const TableBatchAction = props => <Button {...props} />;
 
 TableBatchAction.propTypes = {
   /**
@@ -28,6 +26,7 @@ TableBatchAction.propTypes = {
 
 TableBatchAction.defaultProps = {
   iconDescription: 'Add',
+  renderIcon: iconAddSolid,
 };
 
 export default TableBatchAction;

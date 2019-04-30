@@ -6,8 +6,10 @@
  */
 
 import React from 'react';
-import { action } from '@storybook/addon-actions';
-import { iconDownload, iconEdit, iconSettings } from 'carbon-icons';
+import Delete from '@carbon/icons-react/lib/delete/16';
+import Save from '@carbon/icons-react/lib/save/16';
+import Download from '@carbon/icons-react/lib/download/16';
+
 import DataTable, {
   Table,
   TableBatchAction,
@@ -27,15 +29,11 @@ import DataTable, {
   TableToolbarAction,
   TableToolbarContent,
   TableToolbarSearch,
+  TableToolbarMenu,
 } from '../../DataTable';
-import Button from '../../Button';
-import Download16 from '@carbon/icons-react/lib/download/16';
-import Edit16 from '@carbon/icons-react/lib/edit/16';
-import Settings16 from '@carbon/icons-react/lib/settings/16';
 import { batchActionClick, initialRows, headers } from './shared';
-import { componentsX } from '../../../internal/FeatureFlags';
 
-export default () => {
+export default props => {
   const insertInRandomPosition = (array, element) => {
     const index = Math.floor(Math.random() * (array.length + 1));
     return [...array.slice(0, index), element, ...array.slice(index)];
@@ -101,6 +99,7 @@ export default () => {
         <DataTable
           rows={this.state.rows}
           headers={this.state.headers}
+          {...this.props}
           render={({
             rows,
             headers,
@@ -110,49 +109,45 @@ export default () => {
             getRowProps,
             onInputChange,
             selectedRows,
+            getTableProps,
           }) => (
-            <TableContainer title="DataTable with dynamic rows">
-              <Button small onClick={this.handleOnRowAdd}>
-                Add new row
-              </Button>
-              <Button small onClick={this.handleOnHeaderAdd}>
-                Add new header
-              </Button>
+            <TableContainer
+              title="DataTable"
+              description="Use the toolbar menu to add rows and headers">
               <TableToolbar>
                 <TableBatchActions {...getBatchActionProps()}>
-                  <TableBatchAction onClick={batchActionClick(selectedRows)}>
-                    Ghost
+                  <TableBatchAction
+                    renderIcon={Delete}
+                    iconDescription="Delete the selected rows"
+                    onClick={batchActionClick(selectedRows)}>
+                    Delete
                   </TableBatchAction>
-                  <TableBatchAction onClick={batchActionClick(selectedRows)}>
-                    Ghost
+                  <TableBatchAction
+                    renderIcon={Save}
+                    iconDescription="Save the selected rows"
+                    onClick={batchActionClick(selectedRows)}>
+                    Save
                   </TableBatchAction>
-                  <TableBatchAction onClick={batchActionClick(selectedRows)}>
-                    Ghost
+                  <TableBatchAction
+                    renderIcon={Download}
+                    iconDescription="Download the selected rows"
+                    onClick={batchActionClick(selectedRows)}>
+                    Download
                   </TableBatchAction>
                 </TableBatchActions>
-                <TableToolbarSearch onChange={onInputChange} />
                 <TableToolbarContent>
-                  <TableToolbarAction
-                    renderIcon={!componentsX ? undefined : Download16}
-                    icon={componentsX ? undefined : iconDownload}
-                    iconDescription="Download"
-                    onClick={action('TableToolbarAction - Download')}
-                  />
-                  <TableToolbarAction
-                    renderIcon={!componentsX ? undefined : Edit16}
-                    icon={componentsX ? undefined : iconEdit}
-                    iconDescription="Edit"
-                    onClick={action('TableToolbarAction - Edit')}
-                  />
-                  <TableToolbarAction
-                    renderIcon={!componentsX ? undefined : Settings16}
-                    icon={componentsX ? undefined : iconSettings}
-                    iconDescription="Settings"
-                    onClick={action('TableToolbarAction - Settings')}
-                  />
+                  <TableToolbarSearch onChange={onInputChange} />
+                  <TableToolbarMenu>
+                    <TableToolbarAction onClick={this.handleOnRowAdd}>
+                      Add row
+                    </TableToolbarAction>
+                    <TableToolbarAction onClick={this.handleOnHeaderAdd}>
+                      Add header
+                    </TableToolbarAction>
+                  </TableToolbarMenu>
                 </TableToolbarContent>
               </TableToolbar>
-              <Table>
+              <Table {...getTableProps()}>
                 <TableHead>
                   <TableRow>
                     <TableExpandHeader />
@@ -173,14 +168,10 @@ export default () => {
                           <TableCell key={cell.id}>{cell.value}</TableCell>
                         ))}
                       </TableExpandRow>
-                      {row.isExpanded && (
-                        <TableExpandedRow>
-                          <TableCell colSpan={headers.length + 3}>
-                            <h1>Expandable row content</h1>
-                            <p>Description here</p>
-                          </TableCell>
-                        </TableExpandedRow>
-                      )}
+                      <TableExpandedRow colSpan={headers.length + 3}>
+                        <h1>Expandable row content</h1>
+                        <p>Description here</p>
+                      </TableExpandedRow>
                     </React.Fragment>
                   ))}
                 </TableBody>
@@ -191,6 +182,5 @@ export default () => {
       );
     }
   }
-
-  return <DynamicRows />;
+  return <DynamicRows {...props} />;
 };

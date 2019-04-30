@@ -19,19 +19,21 @@ import DataTable, {
 } from '../../DataTable';
 import { initialRows, headers } from './shared';
 
-export default () => (
+export default props => (
   <DataTable
     rows={initialRows}
     headers={headers}
+    {...props}
     render={({
       rows,
       headers,
       getHeaderProps,
       getRowProps,
       getSelectionProps,
+      getTableProps,
     }) => (
-      <TableContainer title="DataTable">
-        <Table>
+      <TableContainer title="DataTable" description="With selection">
+        <Table {...getTableProps()}>
           <TableHead>
             <TableRow>
               <TableSelectAll {...getSelectionProps()} />

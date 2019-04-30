@@ -14,6 +14,7 @@ import Button from '../Button';
 import { settings } from 'carbon-components';
 import Close20 from '@carbon/icons-react/lib/close/20';
 import { breakingChangesX, componentsX } from '../../internal/FeatureFlags';
+import FocusTrap from 'focus-trap-react';
 
 const { prefix } = settings;
 
@@ -125,6 +126,12 @@ export default class Modal extends Component {
      * be focused when the Modal opens
      */
     selectorPrimaryFocus: PropTypes.string,
+
+    /**
+     * Specify whether the modal should be a focus trap. NOTE: by default
+     * this is true
+     */
+    focusTrap: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -137,6 +144,7 @@ export default class Modal extends Component {
     modalHeading: '',
     modalLabel: '',
     selectorPrimaryFocus: '[data-modal-primary-focus]',
+    focusTrap: true,
   };
 
   button = React.createRef();
@@ -217,16 +225,20 @@ export default class Modal extends Component {
     }
   }
 
-  focusButton = focusContainerElement => {
+  initialFocus = focusContainerElement => {
     const primaryFocusElement = focusContainerElement
       ? focusContainerElement.querySelector(this.props.selectorPrimaryFocus)
       : null;
     if (primaryFocusElement) {
-      primaryFocusElement.focus();
-      return;
+      return primaryFocusElement;
     }
-    if (this.button && this.button.current) {
-      this.button.current.focus();
+    return this.button && this.button.current;
+  };
+
+  focusButton = focusContainerElement => {
+    const target = this.initialFocus(focusContainerElement);
+    if (target) {
+      target.focus();
     }
   };
 
@@ -234,16 +246,22 @@ export default class Modal extends Component {
     if (!this.props.open) {
       return;
     }
-    this.focusButton(this.innerModal.current);
+    if (!this.props.focusTrap) {
+      this.focusButton(this.innerModal.current);
+    }
   }
 
   handleTransitionEnd = evt => {
     if (
+      evt.target === evt.currentTarget && // Not to handle `onTransitionEnd` on child DOM nodes
+      this.outerModal.current &&
       this.outerModal.current.offsetWidth &&
       this.outerModal.current.offsetHeight &&
       this.beingOpen
     ) {
-      this.focusButton(evt.currentTarget);
+      if (!this.props.focusTrap) {
+        this.focusButton(evt.currentTarget);
+      }
       this.beingOpen = false;
     }
   };
@@ -266,6 +284,7 @@ export default class Modal extends Component {
       selectorPrimaryFocus, // eslint-disable-line
       selectorsFloatingMenus, // eslint-disable-line
       shouldSubmitOnEnter, // eslint-disable-line
+      focusTrap,
       ...other
     } = this.props;
 
@@ -327,7 +346,7 @@ export default class Modal extends Component {
               {secondaryButtonText}
             </Button>
             <Button
-              kind={danger ? 'danger--primary' : 'primary'}
+              kind={danger ? 'danger' : 'primary'}
               disabled={primaryButtonDisabled}
               onClick={onRequestSubmit}
               inputref={this.button}>
@@ -338,7 +357,7 @@ export default class Modal extends Component {
       </div>
     );
 
-    return (
+    const modal = (
       <div
         {...other}
         onKeyDown={this.handleKeyDown}
@@ -351,6 +370,17 @@ export default class Modal extends Component {
         ref={this.outerModal}>
         {modalBody}
       </div>
+    );
+
+    return !focusTrap ? (
+      modal
+    ) : (
+      // `<FocusTrap>` has `active: true` in its `defaultProps`
+      <FocusTrap
+        active={!!open}
+        focusTrapOptions={{ initialFocus: this.initialFocus }}>
+        {modal}
+      </FocusTrap>
     );
   }
 }

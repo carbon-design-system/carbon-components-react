@@ -18,10 +18,11 @@ import DataTable, {
 } from '..';
 import { initialRows, headers } from './shared';
 
-export default () => (
+export default props => (
   <DataTable
     rows={initialRows}
     headers={headers}
+    {...props}
     radio
     render={({
       rows,
@@ -29,9 +30,10 @@ export default () => (
       getHeaderProps,
       getRowProps,
       getSelectionProps,
+      getTableProps,
     }) => (
-      <TableContainer title="DataTable">
-        <Table>
+      <TableContainer title="DataTable" description="For selecting single rows">
+        <Table {...getTableProps()}>
           <TableHead>
             <TableRow>
               <th scope="col" />

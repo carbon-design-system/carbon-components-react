@@ -7,10 +7,10 @@
 
 import React from 'react';
 import { action } from '@storybook/addon-actions';
-import { iconDownload, iconEdit, iconSettings } from 'carbon-icons';
-import Download16 from '@carbon/icons-react/lib/download/16';
-import Edit16 from '@carbon/icons-react/lib/edit/16';
-import Settings16 from '@carbon/icons-react/lib/settings/16';
+import Delete from '@carbon/icons-react/lib/delete/16';
+import Save from '@carbon/icons-react/lib/save/16';
+import Download from '@carbon/icons-react/lib/download/16';
+
 import Button from '../../Button';
 import DataTable, {
   Table,
@@ -28,14 +28,16 @@ import DataTable, {
   TableToolbarAction,
   TableToolbarContent,
   TableToolbarSearch,
+  TableToolbarMenu,
 } from '../../DataTable';
-import { batchActionClick, initialRows, headers } from './shared';
-import { componentsX } from '../../../internal/FeatureFlags';
 
-export default () => (
+import { batchActionClick, initialRows, headers } from './shared';
+
+export default props => (
   <DataTable
     rows={initialRows}
     headers={headers}
+    {...props}
     render={({
       rows,
       headers,
@@ -45,46 +47,49 @@ export default () => (
       getBatchActionProps,
       onInputChange,
       selectedRows,
+      getTableProps,
     }) => (
-      <TableContainer title="DataTable with batch actions">
+      <TableContainer title="DataTable" description="With batch actions">
         <TableToolbar>
           <TableBatchActions {...getBatchActionProps()}>
-            <TableBatchAction onClick={batchActionClick(selectedRows)}>
-              Ghost
+            <TableBatchAction
+              renderIcon={Delete}
+              iconDescription="Delete the selected rows"
+              onClick={batchActionClick(selectedRows)}>
+              Delete
             </TableBatchAction>
-            <TableBatchAction onClick={batchActionClick(selectedRows)}>
-              Ghost
+            <TableBatchAction
+              renderIcon={Save}
+              iconDescription="Save the selected rows"
+              onClick={batchActionClick(selectedRows)}>
+              Save
             </TableBatchAction>
-            <TableBatchAction onClick={batchActionClick(selectedRows)}>
-              Ghost
+            <TableBatchAction
+              renderIcon={Download}
+              iconDescription="Download the selected rows"
+              onClick={batchActionClick(selectedRows)}>
+              Download
             </TableBatchAction>
           </TableBatchActions>
-          <TableToolbarSearch onChange={onInputChange} />
           <TableToolbarContent>
-            <TableToolbarAction
-              renderIcon={!componentsX ? undefined : Download16}
-              icon={componentsX ? undefined : iconDownload}
-              iconDescription="Download"
-              onClick={action('TableToolbarAction - Download')}
-            />
-            <TableToolbarAction
-              renderIcon={!componentsX ? undefined : Edit16}
-              icon={componentsX ? undefined : iconEdit}
-              iconDescription="Edit"
-              onClick={action('TableToolbarAction - Edit')}
-            />
-            <TableToolbarAction
-              renderIcon={!componentsX ? undefined : Settings16}
-              icon={componentsX ? undefined : iconSettings}
-              iconDescription="Settings"
-              onClick={action('TableToolbarAction - Settings')}
-            />
+            <TableToolbarSearch onChange={onInputChange} />
+            <TableToolbarMenu>
+              <TableToolbarAction onClick={() => alert('Alert 1')}>
+                Action 1
+              </TableToolbarAction>
+              <TableToolbarAction onClick={() => alert('Alert 2')}>
+                Action 2
+              </TableToolbarAction>
+              <TableToolbarAction onClick={() => alert('Alert 3')}>
+                Action 3
+              </TableToolbarAction>
+            </TableToolbarMenu>
             <Button onClick={action('Add new row')} small kind="primary">
               Add new
             </Button>
           </TableToolbarContent>
         </TableToolbar>
-        <Table>
+        <Table {...getTableProps()}>
           <TableHead>
             <TableRow>
               <TableSelectAll {...getSelectionProps()} />

@@ -1,7 +1,6 @@
 # 7.x Migration
 
-_Note: this migration guide is for a future, unreleased version of Carbon.
-Anything in this document is subject to change up until v10 is released._
+Refer to the [Carbon X Migration Guide](https://www.carbondesignsystem.com/updates/v10-migration/overview) for more information on migrating from v9 to v10.
 
 <!-- prettier-ignore-start -->
 <!-- To run doctoc, just do `npx doctoc migrate-to-7.x.md` in this directory! -->
@@ -40,7 +39,7 @@ Anything in this document is subject to change up until v10 is released._
 | `CopyButton`          | No breaking changes                                                 |
 | `DangerButton`        | No breaking changes                                                 |
 | `DataTable`           | [Migrate](../../src/components/DataTable/migrate-to-7.x.md)         |
-| `DatePicker`          | No breaking changes                                                 |
+| `DatePicker`          | [Migrate](../../src/components/DatePicker/migrate-to-7.x.md)        |
 | `DatePickerInput`     | No breaking changes                                                 |
 | `Dropdown`            | Existing import remapped to `DropdownV2`                            |
 | `DropdownItem`        | No breaking changes                                                 |
@@ -64,7 +63,7 @@ Anything in this document is subject to change up until v10 is released._
 | `Notification`        | Deprecated, use `InlineNotification` or `ToastNotification` instead |
 | `NumberInput`         | [Migrate](../../src/components/NumberInput/migrate-to-7.x.md)       |
 | `OverflowMenu`        | [Migrate](../../src/components/OverflowMenu/migrate-to-7.x.md)      |
-| `OverflowMenuItem`    | No breaking changes                                                 |
+| `OverflowMenuItem`    | [Migrate](../../src/components/OverflowMenuItem/migrate-to-7.x.md)  |
 | `Pagination`          | Export now points to `PaginationV2`                                 |
 | `PaginationV2`        | Renamed to `Pagination`                                             |
 | `PrimaryButton`       | No breaking changes                                                 |
@@ -81,7 +80,7 @@ Anything in this document is subject to change up until v10 is released._
 | `SelectItemGroup`     | No breaking changes                                                 |
 | `SkeletonPlaceholder` | No breaking changes                                                 |
 | `SkeletonText`        | No breaking changes                                                 |
-| `Slider`              | No breaking changes                                                 |
+| `Slider`              | [Migrate](../../src/components/Slider/migrate-to-7.x.md)            |
 | `StructuredList`      | No breaking changes                                                 |
 | `Switch`              | No breaking changes                                                 |
 | `Tab`                 | No breaking changes                                                 |
@@ -94,7 +93,7 @@ Anything in this document is subject to change up until v10 is released._
 | `TableRow`            | Export now points to `DataTable.TableRow`                           |
 | `TableRowExpanded`    | Removed                                                             |
 | `Tabs`                | No breaking changes                                                 |
-| `Tag`                 | No breaking changes                                                 |
+| `Tag`                 | [Migrate](../../src/components/Tag/migrate-to-7.x.md)               |
 | `TextArea`            | No breaking changes                                                 |
 | `TextInput`           | No breaking changes                                                 |
 | `Tile`                | No breaking changes                                                 |

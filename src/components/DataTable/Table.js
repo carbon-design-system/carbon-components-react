@@ -13,17 +13,23 @@ import { settings } from 'carbon-components';
 const { prefix } = settings;
 
 export const Table = ({
-  zebra,
   className,
   children,
-  short,
+  useZebraStyles,
+  size,
+  isSortable,
+  useStaticWidth,
   shouldShowBorder,
   ...other
 }) => {
-  const componentClass = cx(`${prefix}--data-table-v2`, className, {
-    [`${prefix}--data-table-v2--zebra`]: zebra,
-    [`${prefix}--data-table-v2--short`]: short,
-    [`${prefix}--data-table-v2--no-border`]: !shouldShowBorder,
+  const componentClass = cx(`${prefix}--data-table`, className, {
+    [`${prefix}--data-table--compact`]: size === 'compact',
+    [`${prefix}--data-table--short`]: size === 'short',
+    [`${prefix}--data-table--tall`]: size === 'tall',
+    [`${prefix}--data-table--sort`]: isSortable,
+    [`${prefix}--data-table--zebra`]: useZebraStyles,
+    [`${prefix}--data-table--static`]: useStaticWidth,
+    [`${prefix}--data-table--no-border`]: !shouldShowBorder,
   });
   return (
     <table {...other} className={componentClass}>
@@ -33,31 +39,36 @@ export const Table = ({
 };
 
 Table.propTypes = {
-  /**
-   * The CSS class names.
-   */
   className: PropTypes.string,
 
   /**
-   * `true` to add zebra striping.
+   * `true` to add useZebraStyles striping.
    */
-  zebra: PropTypes.bool,
+  useZebraStyles: PropTypes.bool,
 
   /**
-   * `true` for short data table.
+   * `normal` Change the row height of table
    */
-  short: PropTypes.bool,
+  size: PropTypes.oneOf(['compact', 'small', 'normal', 'tall']),
 
   /**
-   * `true` for data table without borders.
+   * `false` If true, will use a width of 'auto' instead of 100%
+   */
+  useStaticWidth: PropTypes.bool,
+
+  /**
+   * `false` If true, will remove the table border
    */
   shouldShowBorder: PropTypes.bool,
+
+  /**
+   * `false` If true, will apply sorting styles
+   */
+  isSortable: PropTypes.bool,
 };
 
 Table.defaultProps = {
-  zebra: true,
-  short: false,
-  shouldShowBorder: true,
+  isSortable: false,
 };
 
 export default Table;

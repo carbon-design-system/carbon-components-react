@@ -6,12 +6,6 @@
  */
 
 import React from 'react';
-import { action } from '@storybook/addon-actions';
-import { iconDownload, iconEdit, iconSettings } from 'carbon-icons';
-import Download16 from '@carbon/icons-react/lib/download/16';
-import Edit16 from '@carbon/icons-react/lib/edit/16';
-import Settings16 from '@carbon/icons-react/lib/settings/16';
-import Button from '../../Button';
 import Checkbox from '../../Checkbox';
 import DataTable, {
   Table,
@@ -21,12 +15,7 @@ import DataTable, {
   TableHead,
   TableHeader,
   TableRow,
-  TableToolbar,
-  TableToolbarAction,
-  TableToolbarContent,
-  TableToolbarSearch,
 } from '../../DataTable';
-import { componentsX } from '../../../internal/FeatureFlags';
 // import { initialRows, headers } from './shared';
 
 const initialRows = [
@@ -93,39 +82,14 @@ export const headers = [
   },
 ];
 
-export default () => (
+export default props => (
   <DataTable
     rows={initialRows}
     headers={headers}
-    render={({ rows, headers, getHeaderProps, getRowProps, onInputChange }) => (
-      <TableContainer title="DataTable with toolbar">
-        <TableToolbar>
-          <TableToolbarSearch onChange={onInputChange} />
-          <TableToolbarContent>
-            <TableToolbarAction
-              renderIcon={!componentsX ? undefined : Download16}
-              icon={componentsX ? undefined : iconDownload}
-              iconDescription="Download"
-              onClick={action('TableToolbarAction - Download')}
-            />
-            <TableToolbarAction
-              renderIcon={!componentsX ? undefined : Edit16}
-              icon={componentsX ? undefined : iconEdit}
-              iconDescription="Edit"
-              onClick={action('TableToolbarAction - Edit')}
-            />
-            <TableToolbarAction
-              renderIcon={!componentsX ? undefined : Settings16}
-              icon={componentsX ? undefined : iconSettings}
-              iconDescription="Settings"
-              onClick={action('TableToolbarAction - Settings')}
-            />
-            <Button onClick={action('Add new row')} small kind="primary">
-              Add new
-            </Button>
-          </TableToolbarContent>
-        </TableToolbar>
-        <Table>
+    {...props}
+    render={({ rows, headers, getHeaderProps, getRowProps, getTableProps }) => (
+      <TableContainer title="DataTable" description="With boolean column">
+        <Table {...getTableProps()}>
           <TableHead>
             <TableRow>
               {headers.map(header => (

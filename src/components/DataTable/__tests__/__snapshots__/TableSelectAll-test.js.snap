@@ -2,12 +2,10 @@
 
 exports[`DataTable.TableSelectAll should render 1`] = `
 <Table
-  short={false}
-  shouldShowBorder={true}
-  zebra={true}
+  isSortable={false}
 >
   <table
-    className="bx--data-table-v2 bx--data-table-v2--zebra"
+    className="bx--data-table bx--data-table--no-border"
   >
     <TableHead>
       <thead>
@@ -22,32 +20,41 @@ exports[`DataTable.TableSelectAll should render 1`] = `
               onSelect={[MockFunction]}
             >
               <th
-                className="custom-class-name"
+                className="bx--table-column-checkbox custom-class-name"
                 scope="col"
               >
-                <InlineCheckbox
+                <ForwardRef(InlineCheckbox)
                   ariaLabel="Select all rows in the table"
                   checked={false}
                   id="id"
                   name="select-all"
-                  onChange={[Function]}
                   onClick={[MockFunction]}
                 >
-                  <input
+                  <InlineCheckbox
+                    ariaLabel="Select all rows in the table"
                     checked={false}
-                    className="bx--checkbox"
                     id="id"
+                    innerRef={null}
                     name="select-all"
                     onChange={[Function]}
                     onClick={[MockFunction]}
-                    type="checkbox"
-                  />
-                  <label
-                    aria-label="Select all rows in the table"
-                    className="bx--checkbox-label"
-                    htmlFor="id"
-                  />
-                </InlineCheckbox>
+                  >
+                    <input
+                      checked={false}
+                      className="bx--checkbox"
+                      id="id"
+                      name="select-all"
+                      onChange={[Function]}
+                      onClick={[MockFunction]}
+                      type="checkbox"
+                    />
+                    <label
+                      aria-label="Select all rows in the table"
+                      className="bx--checkbox-label"
+                      htmlFor="id"
+                    />
+                  </InlineCheckbox>
+                </ForwardRef(InlineCheckbox)>
               </th>
             </TableSelectAll>
           </tr>

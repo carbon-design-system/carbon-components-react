@@ -20,13 +20,14 @@ import DataTable, {
 } from '../../DataTable';
 import { initialRows, headers } from './shared';
 
-export default () => (
+export default props => (
   <DataTable
     rows={initialRows}
     headers={headers}
-    render={({ rows, headers, getHeaderProps, getRowProps }) => (
-      <TableContainer title="DataTable with expansion">
-        <Table>
+    {...props}
+    render={({ rows, headers, getHeaderProps, getRowProps, getTableProps }) => (
+      <TableContainer title="DataTable" description="With expansion">
+        <Table {...getTableProps()}>
           <TableHead>
             <TableRow>
               <TableExpandHeader />
@@ -45,14 +46,10 @@ export default () => (
                     <TableCell key={cell.id}>{cell.value}</TableCell>
                   ))}
                 </TableExpandRow>
-                {row.isExpanded && (
-                  <TableExpandedRow>
-                    <TableCell colSpan={headers.length + 1}>
-                      <h1>Expandable row content</h1>
-                      <p>Description here</p>
-                    </TableCell>
-                  </TableExpandedRow>
-                )}
+                <TableExpandedRow colSpan={headers.length + 1}>
+                  <h1>Expandable row content</h1>
+                  <p>Description here</p>
+                </TableExpandedRow>
               </React.Fragment>
             ))}
           </TableBody>

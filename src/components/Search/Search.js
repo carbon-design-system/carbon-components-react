@@ -56,9 +56,14 @@ export default class Search extends Component {
     closeButtonLabelText: PropTypes.string,
 
     /**
-     * `true` to use the light version.
+     * Specify the value of the <input>
      */
-    light: PropTypes.bool,
+    value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+
+    /**
+     * Optionally provide the default value of the <input>
+     */
+    defaultValue: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   };
 
   static defaultProps = {
@@ -66,7 +71,6 @@ export default class Search extends Component {
     small: false,
     placeHolderText: '',
     onChange: () => {},
-    light: false,
   };
 
   state = {
@@ -121,7 +125,6 @@ export default class Search extends Component {
       labelText,
       closeButtonLabelText,
       small,
-      light,
       ...other
     } = this.props;
 
@@ -131,7 +134,6 @@ export default class Search extends Component {
       [`${prefix}--search`]: true,
       [`${prefix}--search--${componentsX ? 'xl' : 'lg'}`]: !small,
       [`${prefix}--search--sm`]: small,
-      [`${prefix}--search--light`]: light,
       [className]: className,
     });
 
