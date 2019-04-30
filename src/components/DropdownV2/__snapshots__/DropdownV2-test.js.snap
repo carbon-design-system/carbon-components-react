@@ -110,6 +110,8 @@ exports[`DropdownV2 should render 1`] = `
             </span>
             <ListBoxMenuIcon
               isOpen={false}
+              onChange={[MockFunction]}
+              placeholder="Filter..."
               translateWithId={[Function]}
             >
               <div
@@ -284,6 +286,8 @@ exports[`DropdownV2 should render DropdownItem components 1`] = `
             </span>
             <ListBoxMenuIcon
               isOpen={true}
+              onChange={[MockFunction]}
+              placeholder="Filter..."
               translateWithId={[Function]}
             >
               <div
@@ -699,6 +703,8 @@ exports[`DropdownV2 should render custom item components 1`] = `
             </span>
             <ListBoxMenuIcon
               isOpen={true}
+              onChange={[MockFunction]}
+              placeholder="Filter..."
               translateWithId={[Function]}
             >
               <div
@@ -1006,6 +1012,8 @@ exports[`DropdownV2 should render with strings as items 1`] = `
             </span>
             <ListBoxMenuIcon
               isOpen={true}
+              onChange={[MockFunction]}
+              placeholder="Filter..."
               translateWithId={[Function]}
             >
               <div

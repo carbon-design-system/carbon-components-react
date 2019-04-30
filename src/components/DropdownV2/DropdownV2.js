@@ -153,6 +153,7 @@ export default class DropdownV2 extends React.Component {
       light,
       invalid,
       invalidText,
+      ...rest
     } = this.props;
     const inline = type === 'inline';
     const className = ({ isOpen }) =>
@@ -230,7 +231,7 @@ export default class DropdownV2 extends React.Component {
                   {...getLabelProps()}>
                   {selectedItem ? itemToString(selectedItem) : label}
                 </span>
-                <ListBox.MenuIcon isOpen={isOpen} />
+                <ListBox.MenuIcon isOpen={isOpen} {...rest} />
               </ListBox.Field>
               {isOpen && (
                 <ListBox.Menu>
