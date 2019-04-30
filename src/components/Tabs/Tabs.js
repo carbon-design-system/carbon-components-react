@@ -114,9 +114,10 @@ export default class Tabs extends React.Component {
     return React.Children.map(this.props.children, tab => tab);
   }
 
-  getTabAt = index => {
+  getTabAt = (index, useFresh) => {
     return (
-      this[`tab${index}`] || React.Children.toArray(this.props.children)[index]
+      (!useFresh && this[`tab${index}`]) ||
+      React.Children.toArray(this.props.children)[index]
     );
   };
 
@@ -250,7 +251,7 @@ export default class Tabs extends React.Component {
       }),
     };
 
-    const selectedTab = this.getTabAt(this.state.selected);
+    const selectedTab = this.getTabAt(this.state.selected, true);
     const selectedLabel = selectedTab ? selectedTab.props.label : '';
 
     return (
