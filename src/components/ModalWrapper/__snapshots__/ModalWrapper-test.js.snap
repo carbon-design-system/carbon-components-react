@@ -84,20 +84,20 @@ exports[`ModalWrapper should render 1`] = `
             <div
               className="bx--modal-header"
             >
-              <p
+              <h2
                 className="bx--modal-header__label"
               >
                 Test Modal Label
-              </p>
-              <p
+              </h2>
+              <h3
                 className="bx--modal-header__heading"
               >
                 Transactional Modal
-              </p>
+              </h3>
               <button
+                aria-label="close the modal"
                 className="bx--modal-close"
                 onClick={[Function]}
-                title="close the modal"
                 type="button"
               >
                 <Close20
@@ -169,8 +169,8 @@ exports[`ModalWrapper should render 1`] = `
                 inputref={
                   Object {
                     "current": <button
+                      aria-label="close the modal"
                       class="bx--modal-close"
-                      title="close the modal"
                       type="button"
                     >
                       <svg
