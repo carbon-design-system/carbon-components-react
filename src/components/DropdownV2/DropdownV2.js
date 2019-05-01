@@ -113,6 +113,11 @@ export default class DropdownV2 extends React.Component {
     titleText: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
 
     /**
+     * Callback function for translating ListBoxMenuIcon SVG title
+     */
+    translateWithId: PropTypes.func,
+
+    /**
      * Provide helper text that is used alongside the control label for
      * additional help
      */
@@ -150,6 +155,7 @@ export default class DropdownV2 extends React.Component {
       id,
       titleText,
       helperText,
+      translateWithId,
       light,
       invalid,
       invalidText,
@@ -230,7 +236,10 @@ export default class DropdownV2 extends React.Component {
                   {...getLabelProps()}>
                   {selectedItem ? itemToString(selectedItem) : label}
                 </span>
-                <ListBox.MenuIcon isOpen={isOpen} />
+                <ListBox.MenuIcon
+                  isOpen={isOpen}
+                  translateWithId={translateWithId}
+                />
               </ListBox.Field>
               {isOpen && (
                 <ListBox.Menu>
