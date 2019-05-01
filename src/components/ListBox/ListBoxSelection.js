@@ -8,11 +8,8 @@
 import cx from 'classnames';
 import React from 'react';
 import PropTypes from 'prop-types';
-import { iconClose } from 'carbon-icons';
 import Close16 from '@carbon/icons-react/lib/close/16';
 import { settings } from 'carbon-components';
-import Icon from '../Icon';
-import { componentsX } from '../../internal/FeatureFlags';
 
 const { prefix } = settings;
 
@@ -31,12 +28,7 @@ const ListBoxSelection = ({
     [`${prefix}--list-box__selection--multi`]: selectionCount,
   });
   const handleOnClick = event => {
-    // If we have a mult-select badge, clicking it shouldn't open the menu back
-    // up. However, if we have a clear badge then we want the click to have this
-    // behavior.
-    if (selectionCount) {
-      event.stopPropagation();
-    }
+    event.stopPropagation();
     clearSelection(event);
   };
   const handleOnKeyDown = event => {
@@ -55,11 +47,7 @@ const ListBoxSelection = ({
       onKeyDown={handleOnKeyDown}
       title={description}>
       {selectionCount}
-      {componentsX ? (
-        <Close16 role="img" />
-      ) : (
-        <Icon icon={iconClose} description={description} focusable="false" />
-      )}
+      <Close16 role="img" />
     </div>
   );
 };

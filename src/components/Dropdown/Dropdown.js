@@ -12,7 +12,6 @@ import React from 'react';
 import { settings } from 'carbon-components';
 import WarningFilled16 from '@carbon/icons-react/lib/warning--filled/16';
 import ListBox, { PropTypes as ListBoxPropTypes } from '../ListBox';
-import { componentsX } from '../../internal/FeatureFlags';
 
 const { prefix } = settings;
 
@@ -92,6 +91,11 @@ export default class Dropdown extends React.Component {
     label: PropTypes.node.isRequired,
 
     /**
+     * Callback function for translating ListBoxMenuIcon SVG title
+     */
+    translateWithId: PropTypes.func,
+
+    /**
      * 'aria-label' of the ListBox component.
      */
     ariaLabel: PropTypes.string,
@@ -155,6 +159,7 @@ export default class Dropdown extends React.Component {
       id,
       titleText,
       helperText,
+      translateWithId,
       light,
       invalid,
       invalidText,
@@ -195,8 +200,8 @@ export default class Dropdown extends React.Component {
 
     // needs to be Capitalized for react to render it correctly
     const ItemToElement = itemToElement;
-    const Dropdown = (
-      <>
+    return (
+      <div className={wrapperClasses}>
         {title}
         {!inline && helper}
         <Downshift
@@ -223,7 +228,7 @@ export default class Dropdown extends React.Component {
               invalid={invalid}
               invalidText={invalidText}
               {...getRootProps({ refKey: 'innerRef' })}>
-              {componentsX && invalid && (
+              {invalid && (
                 <WarningFilled16
                   className={`${prefix}--list-box__invalid-icon`}
                 />
@@ -237,7 +242,10 @@ export default class Dropdown extends React.Component {
                   {...getLabelProps()}>
                   {selectedItem ? itemToString(selectedItem) : label}
                 </span>
-                <ListBox.MenuIcon isOpen={isOpen} />
+                <ListBox.MenuIcon
+                  isOpen={isOpen}
+                  translateWithId={translateWithId}
+                />
               </ListBox.Field>
               {isOpen && (
                 <ListBox.Menu aria-label={ariaLabel} id={id}>
@@ -261,12 +269,7 @@ export default class Dropdown extends React.Component {
             </ListBox>
           )}
         </Downshift>
-      </>
-    );
-    return componentsX ? (
-      <div className={wrapperClasses}>{Dropdown}</div>
-    ) : (
-      Dropdown
+      </div>
     );
   }
 }
