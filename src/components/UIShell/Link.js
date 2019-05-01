@@ -14,7 +14,7 @@ import React from 'react';
  * in their own components to support use-cases like `react-router` or
  * `@reach/router`
  */
-const Link = React.forwardRef((props, ref) => {
+const Link = React.forwardRef(function Link(props, ref) {
   const { element, ...rest } = props;
   return React.createElement(element, { ...rest, ref });
 });
@@ -24,11 +24,7 @@ const LinkPropTypes = {
    * The base element to use to build the link. Defaults to `a`, can also accept
    * alternative tag names or custom components like `Link` from `react-router`.
    */
-  element: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.node,
-    PropTypes.func,
-  ]),
+  element: PropTypes.elementType,
 };
 
 Link.displayName = 'Link';
