@@ -9,7 +9,7 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 
-import { withKnobs, number, text } from '@storybook/addon-knobs';
+import { withKnobs, boolean, number, text } from '@storybook/addon-knobs';
 import Tabs from '../Tabs';
 import Tab from '../Tab';
 import TabsSkeleton from '../Tabs/Tabs.Skeleton';
@@ -36,6 +36,7 @@ const props = {
     ),
   }),
   tab: () => ({
+    disabled: boolean('Disabled (disabled in <Tab>)', false),
     href: text('The href for tab (href in <Tab>)', '#'),
     role: text('ARIA role (role in <Tab>)', 'presentation'),
     tabIndex: number('Tab index (tabIndex in <Tab>)', 0),
@@ -45,6 +46,13 @@ const props = {
 };
 
 const CustomLabel = ({ text }) => <span>{text}</span>;
+
+const TabContentRenderedOnlyWhenSelected = ({ selected, children, ...other }) =>
+  !selected ? null : (
+    <div {...other} selected={selected}>
+      {children}
+    </div>
+  );
 
 storiesOf('Tabs', module)
   .addDecorator(withKnobs)
@@ -57,19 +65,22 @@ storiesOf('Tabs', module)
             Content for first tab goes here.
           </div>
         </Tab>
-        <Tab {...props.tab()} label="Tab label 3">
+        <Tab {...props.tab()} label="Tab label 2">
+          <div className="some-content" style={{ paddingLeft: 16 }}>
+            Content for second tab goes here.
+          </div>
+        </Tab>
+        <Tab
+          {...props.tab()}
+          label="Tab label 3"
+          renderContent={TabContentRenderedOnlyWhenSelected}>
           <div className="some-content" style={{ paddingLeft: 16 }}>
             Content for third tab goes here.
           </div>
         </Tab>
-        <Tab {...props.tab()} label="Tab label 4">
-          <div className="some-content" style={{ paddingLeft: 16 }}>
-            Content for fourth tab goes here.
-          </div>
-        </Tab>
         <Tab {...props.tab()} label={<CustomLabel text="Custom Label" />}>
           <div className="some-content" style={{ paddingLeft: 16 }}>
-            Content for second tab goes here.
+            Content for fourth tab goes here.
           </div>
         </Tab>
       </Tabs>

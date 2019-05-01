@@ -9,6 +9,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import classNames from 'classnames';
 import { settings } from 'carbon-components';
+import TabContent from '../TabContent';
 
 const { prefix } = settings;
 
@@ -36,6 +37,11 @@ export default class Tab extends React.Component {
      * Reserved for usage in Tabs
      */
     handleTabKeyDown: PropTypes.func,
+
+    /**
+     * Whether your Tab is disabled.
+     */
+    disabled: PropTypes.bool,
 
     /**
      * Provide a string that represents the `href` of the Tab
@@ -84,6 +90,11 @@ export default class Tab extends React.Component {
      * side router libraries.
      **/
     renderAnchor: PropTypes.func,
+
+    /*
+     * An optional parameter to allow overriding the content rendering.
+     **/
+    renderContent: PropTypes.func,
   };
 
   static defaultProps = {
@@ -92,6 +103,7 @@ export default class Tab extends React.Component {
     tabIndex: 0,
     href: '#',
     selected: false,
+    renderContent: TabContent,
     onClick: () => {},
     onKeyDown: () => {},
   };
@@ -114,6 +126,7 @@ export default class Tab extends React.Component {
       handleTabClick,
       handleTabAnchorFocus, // eslint-disable-line
       handleTabKeyDown,
+      disabled,
       href,
       index,
       label,
@@ -122,14 +135,14 @@ export default class Tab extends React.Component {
       onClick,
       onKeyDown,
       renderAnchor,
+      renderContent, // eslint-disable-line no-unused-vars
       ...other
     } = this.props;
 
-    const classes = classNames(
-      `${prefix}--tabs__nav-item`,
-      { [`${prefix}--tabs__nav-item--selected`]: selected },
-      className
-    );
+    const classes = classNames(className, `${prefix}--tabs__nav-item`, {
+      [`${prefix}--tabs__nav-item--disabled`]: disabled,
+      [`${prefix}--tabs__nav-item--selected`]: selected,
+    });
 
     const anchorProps = {
       className: `${prefix}--tabs__nav-link`,
