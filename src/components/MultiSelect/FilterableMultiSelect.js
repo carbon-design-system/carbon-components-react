@@ -328,7 +328,7 @@ export default class FilterableMultiSelect extends React.Component {
                 invalidText={invalidText}
                 isOpen={isOpen}
                 {...getRootProps({ refKey: 'innerRef' })}>
-                {componentsX && invalid && (
+                {invalid && (
                   <WarningFilled16
                     className={`${prefix}--list-box__invalid-icon`}
                   />
@@ -406,14 +406,12 @@ export default class FilterableMultiSelect extends React.Component {
         )}
       />
     );
-    return componentsX ? (
+    return (
       <div className={wrapperClasses}>
         {title}
         {!inline && helper}
         {input}
       </div>
-    ) : (
-      input
     );
   }
 }
