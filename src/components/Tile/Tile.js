@@ -476,7 +476,7 @@ export class ExpandableTile extends Component {
         tabIndex={tabIndex}>
         <button
           className={`${prefix}--tile__chevron`}
-          aria-labelledby={this.uid}>
+          aria-labelledby={buttonId}>
           {componentsX ? (
             <ChevronDown16
               id={this.uid}
