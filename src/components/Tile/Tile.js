@@ -462,7 +462,7 @@ export class ExpandableTile extends Component {
     const content = this.getChildren().map((child, index) => {
       return React.cloneElement(child, { ref: index });
     });
-
+    const buttonId = this.props.id ? `${this.props.id}__button` : this.uid;
     return (
       // eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions
       <div
