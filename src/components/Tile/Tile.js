@@ -430,7 +430,7 @@ export class ExpandableTile extends Component {
   };
 
   // a unique ID generated for use in aria-labelledby if one isn't providedj
-  uid = this.props.id || uid();
+  uid = uid();
 
   render() {
     const {
