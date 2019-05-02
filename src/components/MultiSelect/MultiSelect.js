@@ -17,7 +17,6 @@ import Selection from '../../internal/Selection';
 import { sortingPropTypes } from './MultiSelectPropTypes';
 import { defaultItemToString } from './tools/itemToString';
 import { defaultSortItems, defaultCompareItems } from './tools/sorting';
-import { componentsX } from '../../internal/FeatureFlags';
 
 const { prefix } = settings;
 const noop = () => undefined;
@@ -79,7 +78,7 @@ export default class MultiSelect extends React.Component {
     type: PropTypes.oneOf(['default', 'inline']),
 
     /**
-     *  Specify title to show title on hover
+     * Specify title to show title on hover
      */
     useTitleInItem: PropTypes.bool,
 
@@ -107,6 +106,14 @@ export default class MultiSelect extends React.Component {
      * Callback function for translating ListBoxMenuIcon SVG title
      */
     translateWithId: PropTypes.func,
+
+    /**
+     * Specify feedback (mode) of the selection.
+     * `top`: selected item jumps to top
+     * `fixed`: selected item stays at it's position
+     * `top-after-reopen`: selected item jump to top after reopen dropdown
+     */
+    selectionFeedback: PropTypes.oneOf(['top', 'fixed', 'top-after-reopen']),
   };
 
   static getDerivedStateFromProps({ open }, state) {
@@ -133,6 +140,7 @@ export default class MultiSelect extends React.Component {
     light: false,
     title: false,
     open: false,
+    selectionFeedback: 'top-after-reopen',
   };
 
   constructor(props) {
@@ -140,6 +148,7 @@ export default class MultiSelect extends React.Component {
     this.state = {
       highlightedIndex: null,
       isOpen: props.open,
+      topItems: [],
     };
   }
 
@@ -155,7 +164,11 @@ export default class MultiSelect extends React.Component {
     });
   };
 
-  handleOnStateChange = changes => {
+  handleOnStateChange = (changes, downshift) => {
+    if (changes.isOpen && !this.state.isOpen) {
+      this.setState({ topItems: downshift.selectedItem });
+    }
+
     const { type } = changes;
     switch (type) {
       case Downshift.stateChangeTypes.keyDownArrowDown:
@@ -174,6 +187,7 @@ export default class MultiSelect extends React.Component {
       case Downshift.stateChangeTypes.keyDownSpaceButton:
         this.setState(() => {
           let nextIsOpen = changes.isOpen || false;
+
           if (changes.isOpen === false) {
             // If Downshift is trying to close the menu, but we know the input
             // is the active element in the document, then keep the menu open
@@ -181,6 +195,7 @@ export default class MultiSelect extends React.Component {
               nextIsOpen = true;
             }
           }
+
           return {
             isOpen: nextIsOpen,
           };
@@ -261,64 +276,40 @@ export default class MultiSelect extends React.Component {
                 </ListBox.Field>
                 {isOpen && (
                   <ListBox.Menu aria-label={ariaLabel} id={id}>
-                    {componentsX
-                      ? items.map((item, index) => {
-                          const itemProps = getItemProps({ item });
-                          const itemText = itemToString(item);
-                          const isChecked =
-                            selectedItem.filter(selected =>
-                              isEqual(selected, item)
-                            ).length > 0;
-                          return (
-                            <ListBox.MenuItem
-                              key={itemProps.id}
-                              isActive={isChecked}
-                              isHighlighted={highlightedIndex === index}
-                              {...itemProps}>
-                              <Checkbox
-                                id={`${itemProps.id}__checkbox`}
-                                title={useTitleInItem ? itemText : null}
-                                name={itemText}
-                                checked={isChecked}
-                                disabled={disabled}
-                                readOnly={true}
-                                tabIndex="-1"
-                                labelText={itemText}
-                              />
-                            </ListBox.MenuItem>
-                          );
-                        })
-                      : sortItems(items, {
-                          selectedItems,
-                          itemToString,
-                          compareItems,
-                          locale: 'en',
-                        }).map((item, index) => {
-                          const itemProps = getItemProps({ item });
-                          const itemText = itemToString(item);
-                          const isChecked =
-                            selectedItem.filter(selected =>
-                              isEqual(selected, item)
-                            ).length > 0;
-                          return (
-                            <ListBox.MenuItem
-                              key={itemProps.id}
-                              isActive={isChecked}
-                              isHighlighted={highlightedIndex === index}
-                              {...itemProps}>
-                              <Checkbox
-                                id={`${itemProps.id}__checkbox`}
-                                title={useTitleInItem ? itemText : null}
-                                name={itemText}
-                                checked={isChecked}
-                                disabled={disabled}
-                                readOnly={true}
-                                tabIndex="-1"
-                                labelText={itemText}
-                              />
-                            </ListBox.MenuItem>
-                          );
-                        })}
+                    {sortItems(items, {
+                      selectedItems: {
+                        top: selectedItems,
+                        fixed: [],
+                        'top-after-reopen': this.state.topItems,
+                      }[this.props.selectionFeedback],
+                      itemToString,
+                      compareItems,
+                      locale: 'en',
+                    }).map((item, index) => {
+                      const itemProps = getItemProps({ item });
+                      const itemText = itemToString(item);
+                      const isChecked =
+                        selectedItem.filter(selected => isEqual(selected, item))
+                          .length > 0;
+                      return (
+                        <ListBox.MenuItem
+                          key={itemProps.id}
+                          isActive={isChecked}
+                          isHighlighted={highlightedIndex === index}
+                          {...itemProps}>
+                          <Checkbox
+                            id={`${itemProps.id}__checkbox`}
+                            title={useTitleInItem ? itemText : null}
+                            name={itemText}
+                            checked={isChecked}
+                            disabled={disabled}
+                            readOnly={true}
+                            tabIndex="-1"
+                            labelText={itemText}
+                          />
+                        </ListBox.MenuItem>
+                      );
+                    })}
                   </ListBox.Menu>
                 )}
               </ListBox>
