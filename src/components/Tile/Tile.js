@@ -479,7 +479,7 @@ export class ExpandableTile extends Component {
           aria-labelledby={buttonId}>
           {componentsX ? (
             <ChevronDown16
-              id={this.uid}
+              id={buttonId}
               aria-label={
                 this.state.expanded
                   ? tileExpandedIconText
