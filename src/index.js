@@ -42,11 +42,11 @@ export {
   TableToolbarAction,
   TableToolbarContent,
   TableToolbarSearch,
+  TableToolbarMenu,
 } from './components/DataTable';
 export DatePicker from './components/DatePicker';
 export DatePickerInput from './components/DatePickerInput';
 export Dropdown from './components/Dropdown';
-export DropdownItem from './components/DropdownItem';
 export FileUploader, {
   Filename,
   FileUploaderButton,
@@ -63,7 +63,7 @@ export Loading from './components/Loading';
 export Modal from './components/Modal';
 export ModalWrapper from './components/ModalWrapper';
 export MultiSelect from './components/MultiSelect';
-export Notification, {
+export {
   ToastNotification,
   InlineNotification,
   NotificationButton,
