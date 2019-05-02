@@ -8,3 +8,4 @@ import '@storybook/addon-options/register';
 // Community addons
 import 'storybook-readme/register';
 import 'storybook-addon-rtl/register';
+import 'storybook-addon-intl/register';

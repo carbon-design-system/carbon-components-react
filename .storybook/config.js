@@ -5,7 +5,35 @@ import { withOptions } from '@storybook/addon-options';
 import { configureActions } from '@storybook/addon-actions';
 import { initializeRTL } from 'storybook-addon-rtl';
 // import { checkA11y } from 'storybook-addon-a11y';
+import { addLocaleData } from 'react-intl';
+import { setIntlConfig, withIntl } from 'storybook-addon-intl';
+import enLocaleData from 'react-intl/locale-data/en';
+import faLocaleData from 'react-intl/locale-data/fa';
+
 import Container from './Container';
+
+addLocaleData(enLocaleData);
+addLocaleData(faLocaleData);
+
+const locales = ['en', 'fa'];
+
+// Locale messages
+const messages = {};
+locales.forEach(locale => {
+  messages[locale] = require(`./locales/${locale}.js`).default;
+});
+
+const getMessages = locale => messages[locale];
+
+// Set intl configuration
+setIntlConfig({
+  locales,
+  defaultLocale: locales[0],
+  getMessages,
+});
+
+// Register decorator
+addDecorator(withIntl);
 
 addDecorator(
   withInfo({

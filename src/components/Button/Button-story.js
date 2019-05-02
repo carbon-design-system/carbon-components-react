@@ -16,6 +16,8 @@ import Search16 from '@carbon/icons-react/lib/search/16';
 import Button from '../Button';
 import ButtonSkeleton from '../Button/Button.Skeleton';
 
+import { FormattedMessage } from 'react-intl';
+
 const { prefix } = settings;
 
 const icons = {
@@ -92,15 +94,15 @@ storiesOf('Buttons', module)
             flexWrap: 'wrap',
           }}>
           <Button {...regularProps} className="some-class">
-            Button
+            <FormattedMessage id="Button.Default.1" />
           </Button>
           &nbsp;
           <Button {...regularProps} href="#" className="some-class">
-            Link
+            <FormattedMessage id="Button.Default.2" />
           </Button>
           &nbsp;
           <Button {...regularProps} as="p" href="#" className="some-class">
-            Element
+            <FormattedMessage id="Button.Default.3" />
           </Button>
           &nbsp;
           <Button
@@ -108,7 +110,7 @@ storiesOf('Buttons', module)
             as={CustomLink}
             href="#"
             className="some-class">
-            Custom component
+            <FormattedMessage id="Button.Default.4" />
           </Button>
         </div>
       );
@@ -147,10 +149,10 @@ storiesOf('Buttons', module)
       return (
         <div className={`${prefix}--btn-set`}>
           <Button kind="secondary" {...setProps}>
-            Secondary button
+            <FormattedMessage id="Button.Sets.1" />
           </Button>
           <Button kind="primary" {...setProps}>
-            Primary button
+            <FormattedMessage id="Button.Sets.2" />
           </Button>
         </div>
       );
