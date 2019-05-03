@@ -98,6 +98,7 @@ exports[`ModalWrapper should render 1`] = `
                 aria-label="close the modal"
                 className="bx--modal-close"
                 onClick={[Function]}
+                title="close the modal"
                 type="button"
               >
                 <Close20
@@ -171,6 +172,7 @@ exports[`ModalWrapper should render 1`] = `
                     "current": <button
                       aria-label="close the modal"
                       class="bx--modal-close"
+                      title="close the modal"
                       type="button"
                     >
                       <svg
@@ -205,6 +207,7 @@ exports[`ModalWrapper should render 1`] = `
                       "current": <button
                         aria-label="close the modal"
                         class="bx--modal-close"
+                        title="close the modal"
                         type="button"
                       >
                         <svg
