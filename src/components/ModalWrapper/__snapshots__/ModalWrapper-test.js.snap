@@ -203,8 +203,8 @@ exports[`ModalWrapper should render 1`] = `
                   inputref={
                     Object {
                       "current": <button
+                        aria-label="close the modal"
                         class="bx--modal-close"
-                        title="close the modal"
                         type="button"
                       >
                         <svg
