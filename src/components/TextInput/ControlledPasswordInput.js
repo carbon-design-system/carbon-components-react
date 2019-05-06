@@ -10,7 +10,7 @@ import { textInputProps } from './util';
 const { prefix } = settings;
 
 const ControlledPasswordInput = React.forwardRef(
-  (
+  function ControlledPasswordInput(
     {
       alt,
       labelText,
@@ -31,7 +31,7 @@ const ControlledPasswordInput = React.forwardRef(
       ...other
     },
     ref
-  ) => {
+  ) {
     const errorId = id + '-error-msg';
     const textInputClasses = classNames(
       `${prefix}--text-input`,
