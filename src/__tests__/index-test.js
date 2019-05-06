@@ -23,6 +23,8 @@ describe('Carbon Components React', () => {
         "BreadcrumbSkeleton",
         "Button",
         "ButtonSkeleton",
+        "CarbonContext",
+        "CarbonProvider",
         "Checkbox",
         "CheckboxSkeleton",
         "ClickableTile",
@@ -152,6 +154,7 @@ describe('Carbon Components React', () => {
         "TooltipDefinition",
         "TooltipIcon",
         "UnorderedList",
+        "useCarbonFlag",
       ]
     `);
   });
