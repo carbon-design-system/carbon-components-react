@@ -24,6 +24,11 @@ export default class DatePickerInput extends Component {
      * The description of the calendar icon.
      */
     iconDescription: PropTypes.string,
+    /**
+     * Provide the text that will be read by a screen reader when visiting this
+     * control
+     */
+    labelText: PropTypes.node.isRequired,
   };
 
   static defaultProps = {
@@ -31,7 +36,6 @@ export default class DatePickerInput extends Component {
     type: 'text',
     disabled: false,
     invalid: false,
-    labelText: '',
     onClick: () => {},
     onChange: () => {},
   };
