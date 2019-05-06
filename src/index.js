@@ -9,6 +9,10 @@ export Accordion from './components/Accordion';
 export AccordionItem from './components/AccordionItem';
 export { Breadcrumb, BreadcrumbItem } from './components/Breadcrumb';
 export Button from './components/Button';
+export CarbonProvider, {
+  CarbonContext,
+  useCarbonFlag,
+} from './components/CarbonContext';
 export Checkbox from './components/Checkbox';
 export CodeSnippet from './components/CodeSnippet';
 export ComboBox from './components/ComboBox';
