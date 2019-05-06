@@ -5,9 +5,7 @@ import { settings } from 'carbon-components';
 import View16 from '@carbon/icons-react/lib/view/16';
 import ViewOff16 from '@carbon/icons-react/lib/view--off/16';
 import WarningFilled16 from '@carbon/icons-react/lib/warning--filled/16';
-import Icon from '../Icon';
-import { textInputProps, togglePasswordVisibilityIconProps } from './util';
-import { componentsX } from '../../internal/FeatureFlags';
+import { textInputProps } from './util';
 
 const { prefix } = settings;
 
@@ -89,23 +87,11 @@ export default class PasswordInput extends React.Component {
       `${prefix}--tooltip--icon__bottom`,
       {}
     );
-    const passwordVisibilityIcon = (() => {
-      if (!componentsX) {
-        return (
-          <Icon
-            {...togglePasswordVisibilityIconProps({
-              passwordIsVisible,
-              alt,
-            })}
-          />
-        );
-      }
-      return passwordIsVisible ? (
-        <ViewOff16 className={`${prefix}--icon-visibility-off`} />
-      ) : (
-        <View16 className={`${prefix}--icon-visibility-on`} />
-      );
-    })();
+    const passwordVisibilityIcon = passwordIsVisible ? (
+      <ViewOff16 className={`${prefix}--icon-visibility-off`} />
+    ) : (
+      <View16 className={`${prefix}--icon-visibility-on`} />
+    );
     const input = (
       <>
         <input
@@ -123,29 +109,22 @@ export default class PasswordInput extends React.Component {
     const helper = helperText ? (
       <div className={helperTextClasses}>{helperText}</div>
     ) : null;
-    const textInputWrapperClasses = classNames(`${prefix}--form-item`, {
-      [`${prefix}--text-input-wrapper`]: componentsX,
-      [`${prefix}--password-input-wrapper`]: componentsX,
-    });
 
     return (
-      <div className={textInputWrapperClasses}>
+      <div
+        className={`${prefix}--form-item ${prefix}--text-input-wrapper ${prefix}--password-input-wrapper`}>
         {label}
         {helper}
-        {componentsX ? (
-          <div
-            className={`${prefix}--text-input__field-wrapper`}
-            data-invalid={invalid || null}>
-            {invalid && (
-              <WarningFilled16
-                className={`${prefix}--text-input__invalid-icon`}
-              />
-            )}
-            {input}
-          </div>
-        ) : (
-          input
-        )}
+        <div
+          className={`${prefix}--text-input__field-wrapper`}
+          data-invalid={invalid || null}>
+          {invalid && (
+            <WarningFilled16
+              className={`${prefix}--text-input__invalid-icon`}
+            />
+          )}
+          {input}
+        </div>
         {error}
       </div>
     );
