@@ -138,62 +138,76 @@ ControlledPasswordInput.propTypes = {
    * Provide custom alt text for the password visibility toggle button
    */
   alt: PropTypes.string,
+
   /**
    * Provide a custom className that is applied directly to the underlying
    * <input> node
    */
   className: PropTypes.string,
+
   /**
    * Optionally provide the default value of the <input>
    */
   defaultValue: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+
   /**
    * Specify whether the control is disabled
    */
   disabled: PropTypes.bool,
+
   /**
    * Provide a unique identifier for the input field
    */
   id: PropTypes.string.isRequired,
+
   /**
    * Provide the text that will be read by a screen reader when visiting this
    * control
    */
   labelText: PropTypes.node.isRequired,
+
   /**
    * Optionally provide an `onChange` handler that is called whenever <input>
    * is updated
    */
   onChange: PropTypes.func,
+
   /**
    * Optionally provide an `onClick` handler that is called whenever the
    * <input> is clicked
    */
   onClick: PropTypes.func,
+
   /**
    * Specify the placeholder attribute for the <input>
    */
   placeholder: PropTypes.string,
+
   /**
    * Provide the current value of the <input>
    */
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+
   /**
    * Specify whether or not the underlying label is visually hidden
    */
   hideLabel: PropTypes.bool,
+
   /**
    * Specify whether the control is currently invalid
    */
   invalid: PropTypes.bool,
+
   /**
    * Provide the text that is displayed when the control is in an invalid state
    */
   invalidText: PropTypes.string,
+
   /**
    * Provide text that is used alongside the control label for additional help
    */
   helperText: PropTypes.node,
+
   /**
    * Specify light version or default version of this control
    */
