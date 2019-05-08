@@ -1,9 +1,15 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import cx from 'classnames';
 import React from 'react';
 import PropTypes from 'prop-types';
-import { iconCaretDown } from 'carbon-icons';
+import ChevronDown16 from '@carbon/icons-react/lib/chevron--down/16';
 import { settings } from 'carbon-components';
-import Icon from '../Icon';
 
 const { prefix } = settings;
 
@@ -28,8 +34,10 @@ const ListBoxMenuIcon = ({ isOpen, translateWithId: t }) => {
   });
   const description = isOpen ? t('close.menu') : t('open.menu');
   return (
-    <div className={className}>
-      <Icon icon={iconCaretDown} description={description} alt={description} />
+    <div className={className} role="button">
+      <ChevronDown16 name="chevron--down" aria-label={description}>
+        <title>{description}</title>
+      </ChevronDown16>
     </div>
   );
 };

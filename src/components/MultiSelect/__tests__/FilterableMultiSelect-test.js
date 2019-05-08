@@ -1,3 +1,10 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import React from 'react';
 import { mount } from 'enzyme';
 import MultiSelect from '../../MultiSelect';
@@ -36,6 +43,11 @@ describe('MultiSelect.Filterable', () => {
     expect(wrapper.find(listItemName).length).toBe(mockProps.items.length);
   });
 
+  it('should initially have the menu open when open prop is provided', () => {
+    const wrapper = mount(<MultiSelect.Filterable {...mockProps} open />);
+    expect(wrapper.state('isOpen')).toBe(true);
+  });
+
   it('should let the user toggle the menu by the menu icon', () => {
     const wrapper = mount(<MultiSelect.Filterable {...mockProps} />);
     findMenuIconNode(wrapper).simulate('click');
@@ -63,7 +75,9 @@ describe('MultiSelect.Filterable', () => {
   });
 
   it('should call `onChange` with each update to selected items', () => {
-    const wrapper = mount(<MultiSelect.Filterable {...mockProps} />);
+    const wrapper = mount(
+      <MultiSelect.Filterable {...mockProps} selectionFeedback="top" />
+    );
     openMenu(wrapper);
 
     // Select the first two items
@@ -94,7 +108,7 @@ describe('MultiSelect.Filterable', () => {
       .simulate('click');
     expect(mockProps.onChange).toHaveBeenCalledTimes(3);
     expect(mockProps.onChange).toHaveBeenCalledWith({
-      selectedItems: [mockProps.items[1]],
+      selectedItems: [mockProps.items[0]],
     });
 
     wrapper
@@ -102,6 +116,34 @@ describe('MultiSelect.Filterable', () => {
       .at(0)
       .simulate('click');
     expect(mockProps.onChange).toHaveBeenCalledTimes(4);
+    expect(mockProps.onChange).toHaveBeenCalledWith({
+      selectedItems: [],
+    });
+  });
+
+  it('should let items stay at thier position after selecting', () => {
+    const wrapper = mount(
+      <MultiSelect.Filterable {...mockProps} selectionFeedback="fixed" />
+    );
+    openMenu(wrapper);
+
+    // Select the first two items
+    wrapper
+      .find(listItemName)
+      .at(1)
+      .simulate('click');
+
+    expect(mockProps.onChange).toHaveBeenCalledTimes(1);
+    expect(mockProps.onChange).toHaveBeenCalledWith({
+      selectedItems: [mockProps.items[1]],
+    });
+
+    wrapper
+      .find(listItemName)
+      .at(1)
+      .simulate('click');
+
+    expect(mockProps.onChange).toHaveBeenCalledTimes(2);
     expect(mockProps.onChange).toHaveBeenCalledWith({
       selectedItems: [],
     });

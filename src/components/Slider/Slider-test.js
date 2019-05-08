@@ -1,3 +1,10 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import React from 'react';
 import Slider from '../Slider';
 import SliderSkeleton from '../Slider/Slider.Skeleton';
@@ -159,56 +166,6 @@ describe('Slider', () => {
         expect(handleRelease).toHaveBeenCalled();
       });
     });
-  });
-});
-
-describe('handleMouseEnd', () => {
-  const handleChange = jest.fn();
-  const handleRelease = jest.fn();
-  const wrapper = mount(
-    <Slider
-      id="slider"
-      className="extra-class"
-      value={50}
-      min={0}
-      max={100}
-      step={1}
-      onChange={handleChange}
-      onRelease={handleRelease}
-    />
-  );
-  it('calls onRelease', () => {
-    wrapper.setState({
-      value: 130,
-    });
-    expect(handleRelease).lastCalledWith({ value: 50 });
-    wrapper.instance().handleMouseEnd();
-    expect(handleRelease).lastCalledWith({ value: 130 });
-  });
-});
-
-describe('handleTouchEnd', () => {
-  const handleChange = jest.fn();
-  const handleRelease = jest.fn();
-  const wrapper = mount(
-    <Slider
-      id="slider"
-      className="extra-class"
-      value={50}
-      min={0}
-      max={100}
-      step={1}
-      onChange={handleChange}
-      onRelease={handleRelease}
-    />
-  );
-  it('calls onRelease', () => {
-    wrapper.setState({
-      value: 385,
-    });
-    expect(handleRelease).lastCalledWith({ value: 50 });
-    wrapper.instance().handleTouchEnd();
-    expect(handleRelease).lastCalledWith({ value: 385 });
   });
 });
 

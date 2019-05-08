@@ -1,4 +1,12 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import React from 'react';
+import CloseFilled16 from '@carbon/icons-react/lib/close--filled/16';
 import FileUploader, { FileUploaderButton, Filename } from '../FileUploader';
 import FileUploaderSkeleton from '../FileUploader/FileUploader.Skeleton';
 import { mount, shallow } from 'enzyme';
@@ -10,7 +18,7 @@ describe('Filename', () => {
     it('should have a click event', () => {
       const onClick = jest.fn();
       mountWrapper.setProps({ onClick, status: 'edit' });
-      mountWrapper.find('Icon').simulate('click');
+      mountWrapper.find(CloseFilled16).simulate('click');
       expect(onClick).toBeCalled();
     });
   });

@@ -1,6 +1,16 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import React from 'react';
 import { action } from '@storybook/addon-actions';
-import { iconDownload, iconEdit, iconSettings } from 'carbon-icons';
+import Delete from '@carbon/icons-react/lib/delete/16';
+import Save from '@carbon/icons-react/lib/save/16';
+import Download from '@carbon/icons-react/lib/download/16';
+
 import Button from '../../Button';
 import DataTable, {
   Table,
@@ -18,13 +28,16 @@ import DataTable, {
   TableToolbarAction,
   TableToolbarContent,
   TableToolbarSearch,
+  TableToolbarMenu,
 } from '../../DataTable';
+
 import { batchActionClick, initialRows, headers } from './shared';
 
-export default () => (
+export default props => (
   <DataTable
     rows={initialRows}
     headers={headers}
+    {...props}
     render={({
       rows,
       headers,
@@ -34,43 +47,49 @@ export default () => (
       getBatchActionProps,
       onInputChange,
       selectedRows,
+      getTableProps,
     }) => (
-      <TableContainer title="DataTable with batch actions">
+      <TableContainer title="DataTable" description="With batch actions">
         <TableToolbar>
           <TableBatchActions {...getBatchActionProps()}>
-            <TableBatchAction onClick={batchActionClick(selectedRows)}>
-              Ghost
+            <TableBatchAction
+              renderIcon={Delete}
+              iconDescription="Delete the selected rows"
+              onClick={batchActionClick(selectedRows)}>
+              Delete
             </TableBatchAction>
-            <TableBatchAction onClick={batchActionClick(selectedRows)}>
-              Ghost
+            <TableBatchAction
+              renderIcon={Save}
+              iconDescription="Save the selected rows"
+              onClick={batchActionClick(selectedRows)}>
+              Save
             </TableBatchAction>
-            <TableBatchAction onClick={batchActionClick(selectedRows)}>
-              Ghost
+            <TableBatchAction
+              renderIcon={Download}
+              iconDescription="Download the selected rows"
+              onClick={batchActionClick(selectedRows)}>
+              Download
             </TableBatchAction>
           </TableBatchActions>
-          <TableToolbarSearch onChange={onInputChange} />
           <TableToolbarContent>
-            <TableToolbarAction
-              icon={iconDownload}
-              iconDescription="Download"
-              onClick={action('TableToolbarAction - Download')}
-            />
-            <TableToolbarAction
-              icon={iconEdit}
-              iconDescription="Edit"
-              onClick={action('TableToolbarAction - Edit')}
-            />
-            <TableToolbarAction
-              icon={iconSettings}
-              iconDescription="Settings"
-              onClick={action('TableToolbarAction - Settings')}
-            />
+            <TableToolbarSearch onChange={onInputChange} />
+            <TableToolbarMenu>
+              <TableToolbarAction onClick={() => alert('Alert 1')}>
+                Action 1
+              </TableToolbarAction>
+              <TableToolbarAction onClick={() => alert('Alert 2')}>
+                Action 2
+              </TableToolbarAction>
+              <TableToolbarAction onClick={() => alert('Alert 3')}>
+                Action 3
+              </TableToolbarAction>
+            </TableToolbarMenu>
             <Button onClick={action('Add new row')} small kind="primary">
               Add new
             </Button>
           </TableToolbarContent>
         </TableToolbar>
-        <Table>
+        <Table {...getTableProps()}>
           <TableHead>
             <TableRow>
               <TableSelectAll {...getSelectionProps()} />

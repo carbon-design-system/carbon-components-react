@@ -1,3 +1,10 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 /* eslint-disable no-console */
 
 import React from 'react';
@@ -15,7 +22,7 @@ const props = () => ({
   small: boolean('Small UI (small)', false),
   light: boolean('Light variant (light)', false),
   name: text('Form item name (name)', ''),
-  value: text('Value (value)', 'Default value knob'),
+  defaultValue: text('Default value (defaultValue)', ''),
   labelText: text('Label text (labelText)', 'Search'),
   closeButtonLabelText: text(
     'The label text for the close button (closeButtonLabelText)',

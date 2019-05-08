@@ -1,13 +1,15 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import React from 'react';
+import Close16 from '@carbon/icons-react/lib/close/16';
+import ErrorFilled20 from '@carbon/icons-react/lib/error--filled/20';
+import CheckmarkFilled20 from '@carbon/icons-react/lib/checkmark--filled/20';
 import {
-  iconCheckmarkSolid,
-  iconInfoSolid,
-  iconErrorSolid,
-  iconWarningSolid,
-  iconClose,
-} from 'carbon-icons';
-import Icon from '../Icon';
-import Notification, {
   NotificationButton,
   NotificationTextDetails,
   ToastNotification,
@@ -24,13 +26,19 @@ describe('NotificationButton', () => {
     });
 
     it('renders only one Icon', () => {
-      const icon = wrapper.find('Icon');
+      const icon = wrapper.find(Close16);
       expect(icon.length).toEqual(1);
     });
 
-    it('renders correct Icon', () => {
-      const icon = wrapper.find('Icon');
-      expect(icon.props().icon).toEqual(iconClose);
+    it('supports custom icon', () => {
+      const iconButton = mount(
+        <NotificationButton renderIcon={Close16} iconDescription="Close" />
+      );
+      const originalIcon = mount(<Close16 />).find('svg');
+      const icon = iconButton.find('svg');
+      expect(icon.find(':not(svg):not(title)').html()).toBe(
+        originalIcon.children().html()
+      );
     });
 
     describe('When notificationType equals "toast"', () => {
@@ -41,7 +49,7 @@ describe('NotificationButton', () => {
       });
 
       it('icon should have correct className by default', () => {
-        const icon = wrapper.find('Icon');
+        const icon = wrapper.find(Close16);
         expect(icon.hasClass('bx--toast-notification__close-icon')).toBe(true);
       });
     });
@@ -55,7 +63,7 @@ describe('NotificationButton', () => {
       });
 
       it('icon should have correct className', () => {
-        const icon = wrapper.find('Icon');
+        const icon = wrapper.find(Close16);
         expect(icon.hasClass('bx--inline-notification__close-icon')).toBe(true);
       });
     });
@@ -176,7 +184,7 @@ describe('ToastNotification', () => {
 
 describe('InlineNotification', () => {
   describe('Renders as expected', () => {
-    const inline = shallow(
+    const inline = mount(
       <InlineNotification
         title="this is a title"
         subtitle="this is a subtitle"
@@ -190,39 +198,26 @@ describe('InlineNotification', () => {
 
     it('renders success notification with matching kind and <icon name=""> values', () => {
       inline.setProps({ kind: 'success' });
-      expect(inline.find(Icon).some({ icon: iconCheckmarkSolid })).toBe(true);
+      expect(inline.find(CheckmarkFilled20).length).toBe(1);
     });
 
     it('renders error notification with matching kind and <icon name=""> values', () => {
       inline.setProps({ kind: 'error' });
-      expect(inline.find(Icon).some({ icon: iconErrorSolid })).toBe(true);
+      expect(inline.find(ErrorFilled20).length).toBe(1);
     });
-
-    // removed because of a11y warning icon workaround, depending on TODO: for @carbon/icons-react
-    // it('renders warning notification with matching kind and <icon name=""> values', () => {
-    //   inline.setProps({ kind: 'warning' });
-    //   expect(inline.find(Icon).some({ icon: iconWarningSolid })).toBe(true);
-    // });
 
     it('renders warning notification with matching kind and <icon name=""> values', () => {
       inline.setProps({ kind: 'warning' });
-      expect(
-        inline.children('.bx--inline-notification__details').exists()
-      ).toBe(true);
-    });
-
-    it('renders info notification with matching kind value but without <icon name="">', () => {
-      inline.setProps({ kind: 'info' });
-      expect(inline.find(Icon).some({ icon: iconInfoSolid })).toBe(true);
+      expect(inline.find('.bx--inline-notification__icon').exists()).toBe(true);
     });
 
     it('renders HTML for inline notifications when caption does not exist', () => {
-      expect(inline.hasClass('bx--inline-notification')).toBe(true);
+      expect(inline.find('.bx--inline-notification').exists()).toBe(true);
     });
 
     it('adds extra classes via className', () => {
       inline.setProps({ className: 'extra-class' });
-      expect(inline.hasClass('extra-class')).toBe(true);
+      expect(inline.find('.extra-class').exists()).toBe(true);
     });
 
     it('interpolates matching className based on kind prop', () => {
@@ -230,9 +225,9 @@ describe('InlineNotification', () => {
 
       kinds.forEach(kind => {
         inline.setProps({ kind });
-        expect(inline.hasClass(`bx--inline-notification--${kind}`)).toEqual(
-          true
-        );
+        expect(
+          inline.find(`.bx--inline-notification--${kind}`).exists()
+        ).toEqual(true);
       });
     });
 
@@ -265,7 +260,7 @@ describe('InlineNotification', () => {
     });
 
     it('sets open state to false when close button is clicked', () => {
-      const mountedInline = mount(<Notification {...props} />);
+      const mountedInline = mount(<InlineNotification {...props} />);
 
       mountedInline.find('button').simulate('click');
       expect(mountedInline.state().open).toEqual(false);
@@ -295,125 +290,22 @@ const props = {
   iconDescription: 'description',
 };
 
-describe('[Deprecated]: Notification', () => {
-  describe('Renders as expected', () => {
-    const toast = shallow(<Notification {...props} caption="caption" />);
-    const inline = shallow(<Notification {...props} />);
-    const mountedToast = mount(<Notification {...props} caption="caption" />);
-    const mountedInline = mount(<Notification {...props} />);
-
-    describe('HTML', () => {
-      it('renders itself', () => {
-        expect(toast.length).toEqual(1);
-        expect(inline.length).toEqual(1);
-      });
-
-      it('renders checkmark--solid icon for success inline notification', () => {
-        const icon = inline.find({ icon: iconCheckmarkSolid });
-        expect(icon.props().icon).toEqual(iconCheckmarkSolid);
-      });
-
-      it('renders error notification with matching kind and <icon name=""> values', () => {
-        inline.setProps({ kind: 'error' });
-        expect(inline.find(Icon).some({ icon: iconErrorSolid })).toBe(true);
-      });
-
-      it('renders warning notification with matching kind and <icon name=""> values', () => {
-        inline.setProps({ kind: 'warning' });
-        expect(inline.find(Icon).some({ icon: iconWarningSolid })).toBe(true);
-      });
-
-      it('renders info notification with matching kind and <icon name=""> values', () => {
-        inline.setProps({ kind: 'info' });
-        expect(inline.find(Icon).some({ icon: iconInfoSolid })).toBe(true);
-      });
-
-      it('renders HTML for toast notifications when caption exists', () => {
-        expect(toast.hasClass('bx--toast-notification')).toBe(true);
-      });
-
-      it('renders HTML for inline notifications when caption does not exist', () => {
-        expect(inline.hasClass('bx--inline-notification')).toBe(true);
-      });
-    });
-
-    describe('className', () => {
-      it('adds extra classes via className', () => {
-        toast.setProps({ className: 'extra-class' });
-        inline.setProps({ className: 'extra-class' });
-
-        expect(toast.hasClass('extra-class')).toBe(true);
-        expect(inline.hasClass('extra-class')).toBe(true);
-      });
-
-      it('interpolates matching className based on kind prop', () => {
-        const kinds = ['error', 'info', 'success', 'warning'];
-
-        kinds.forEach(kind => {
-          inline.setProps({ kind });
-          toast.setProps({ kind });
-          expect(inline.hasClass(`bx--inline-notification--${kind}`)).toEqual(
-            true
-          );
-          expect(toast.hasClass(`bx--toast-notification--${kind}`)).toEqual(
-            true
-          );
-        });
-      });
-    });
-
-    describe('other props', () => {
-      it('has [role="alert"] on wrapping <div>', () => {
-        expect(toast.props().role).toEqual('alert');
-        expect(inline.props().role).toEqual('alert');
-      });
-
-      it('sets a new kind when passed in via props', () => {
-        toast.setProps({ kind: 'success' });
-        inline.setProps({ kind: 'success' });
-        expect(toast.props().kind).toEqual('success');
-        expect(inline.props().kind).toEqual('success');
-      });
-
-      it('sets a new title when passed in via props', () => {
-        mountedToast.setProps({ title: 'new-title' });
-        mountedInline.setProps({ title: 'new-title' });
-        expect(mountedToast.props().title).toEqual('new-title');
-        expect(mountedInline.props().title).toEqual('new-title');
-      });
-
-      it('sets a new subtitle when passed in via props', () => {
-        mountedToast.setProps({ subtitle: 'new-subtitle' });
-        mountedInline.setProps({ subtitle: 'new-subtitle' });
-        expect(mountedToast.props().subtitle).toEqual('new-subtitle');
-        expect(mountedInline.props().subtitle).toEqual('new-subtitle');
-      });
-
-      it('sets a new caption when passed in via props', () => {
-        mountedToast.setProps({ caption: 'new-caption' });
-        expect(mountedToast.props().caption).toEqual('new-caption');
-      });
-
-      it('sets a new iconDescription when passed in via props', () => {
-        expect(mountedToast.props().iconDescription).toEqual('description');
-        expect(mountedInline.props().iconDescription).toEqual('description');
-      });
-    });
-  });
-});
-
 describe('events and state', () => {
   it('initial open state set to true', () => {
-    const mountedToast = mount(<Notification {...props} caption="caption" />);
-    const mountedInline = mount(<Notification {...props} />);
+    const mountedToast = mount(
+      <ToastNotification {...props} caption="caption" />
+    );
+    const mountedInline = mount(<InlineNotification {...props} />);
 
     expect(mountedToast.state().open).toBe(true);
     expect(mountedInline.state().open).toBe(true);
   });
 
   it('sets open state to false when close button is clicked', () => {
-    const mountedToast = mount(<Notification {...props} caption="caption" />);
-    const mountedInline = mount(<Notification {...props} />);
+    const mountedToast = mount(
+      <ToastNotification {...props} caption="caption" />
+    );
+    const mountedInline = mount(<InlineNotification {...props} />);
 
     mountedToast.find('button').simulate('click');
     mountedInline.find('button').simulate('click');
@@ -423,15 +315,17 @@ describe('events and state', () => {
 
   it('close button is not shown if hideCloseButton prop set', () => {
     const mountedToast = mount(
-      <Notification {...props} hideCloseButton={true} />
+      <ToastNotification {...props} hideCloseButton={true} />
     );
 
     expect(mountedToast.find('button')).toHaveLength(0);
   });
 
   it('renders null when open state is false', () => {
-    const mountedToast = mount(<Notification {...props} caption="caption" />);
-    const mountedInline = mount(<Notification {...props} />);
+    const mountedToast = mount(
+      <ToastNotification {...props} caption="caption" />
+    );
+    const mountedInline = mount(<InlineNotification {...props} />);
 
     mountedToast.setState({ open: false });
     mountedInline.setState({ open: false });

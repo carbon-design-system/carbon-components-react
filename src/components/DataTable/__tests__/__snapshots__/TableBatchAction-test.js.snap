@@ -4,94 +4,109 @@ exports[`DataTable.TableBatchAction should render 1`] = `
 <TableBatchAction
   className="custom-class"
   iconDescription="Add"
+  renderIcon={
+    Object {
+      "$$typeof": Symbol(react.forward_ref),
+      "defaultProps": Object {
+        "height": 16,
+        "preserveAspectRatio": "xMidYMid meet",
+        "viewBox": "0 0 16 16",
+        "width": 16,
+        "xmlns": "http://www.w3.org/2000/svg",
+      },
+      "displayName": "AddFilled16",
+      "propTypes": Object {
+        "aria-hidden": [Function],
+        "aria-label": [Function],
+        "aria-labelledby": [Function],
+        "children": [Function],
+        "className": [Function],
+        "height": [Function],
+        "preserveAspectRatio": [Function],
+        "tabIndex": [Function],
+        "viewBox": [Function],
+        "width": [Function],
+        "xmlns": [Function],
+      },
+      "render": [Function],
+    }
+  }
 >
-  <Button
+  <ForwardRef(Button)
     className="custom-class"
     disabled={false}
-    icon={
+    iconDescription="Add"
+    kind="primary"
+    renderIcon={
       Object {
-        "height": "16",
-        "id": "icon--add--solid",
-        "name": "icon--add--solid",
-        "styles": "",
-        "svgData": Object {
-          "circles": "",
-          "ellipses": "",
-          "paths": Array [
-            Object {
-              "d": "M7 7H4v2h3v3h2V9h3V7H9V4H7v3zm1 9A8 8 0 1 1 8 0a8 8 0 0 1 0 16z",
-            },
-          ],
-          "polygons": "",
-          "polylines": "",
-          "rects": "",
+        "$$typeof": Symbol(react.forward_ref),
+        "defaultProps": Object {
+          "height": 16,
+          "preserveAspectRatio": "xMidYMid meet",
+          "viewBox": "0 0 16 16",
+          "width": 16,
+          "xmlns": "http://www.w3.org/2000/svg",
         },
-        "tags": "icon--add--solid",
-        "viewBox": "0 0 16 16",
-        "width": "16",
+        "displayName": "AddFilled16",
+        "propTypes": Object {
+          "aria-hidden": [Function],
+          "aria-label": [Function],
+          "aria-labelledby": [Function],
+          "children": [Function],
+          "className": [Function],
+          "height": [Function],
+          "preserveAspectRatio": [Function],
+          "tabIndex": [Function],
+          "viewBox": [Function],
+          "width": [Function],
+          "xmlns": [Function],
+        },
+        "render": [Function],
       }
     }
-    iconDescription="Add"
-    kind="ghost"
-    small={true}
+    small={false}
     tabIndex={0}
     type="button"
   >
     <button
-      className="custom-class bx--btn bx--btn--sm bx--btn--ghost"
+      className="custom-class bx--btn bx--btn--primary"
       disabled={false}
       tabIndex={0}
       type="button"
     >
-      <Icon
+      <AddFilled16
+        aria-hidden={true}
+        aria-label="Add"
         className="bx--btn__icon"
-        description="Add"
-        fillRule="evenodd"
-        icon={
-          Object {
-            "height": "16",
-            "id": "icon--add--solid",
-            "name": "icon--add--solid",
-            "styles": "",
-            "svgData": Object {
-              "circles": "",
-              "ellipses": "",
-              "paths": Array [
-                Object {
-                  "d": "M7 7H4v2h3v3h2V9h3V7H9V4H7v3zm1 9A8 8 0 1 1 8 0a8 8 0 0 1 0 16z",
-                },
-              ],
-              "polygons": "",
-              "polylines": "",
-              "rects": "",
-            },
-            "tags": "icon--add--solid",
-            "viewBox": "0 0 16 16",
-            "width": "16",
-          }
-        }
-        role="img"
+        height={16}
+        preserveAspectRatio="xMidYMid meet"
+        viewBox="0 0 16 16"
+        width={16}
+        xmlns="http://www.w3.org/2000/svg"
       >
         <svg
-          alt="Add"
+          aria-hidden={true}
           aria-label="Add"
           className="bx--btn__icon"
-          fillRule="evenodd"
-          height="16"
+          focusable="false"
+          height={16}
+          preserveAspectRatio="xMidYMid meet"
           role="img"
+          style={
+            Object {
+              "willChange": "transform",
+            }
+          }
           viewBox="0 0 16 16"
-          width="16"
+          width={16}
+          xmlns="http://www.w3.org/2000/svg"
         >
-          <title>
-            Add
-          </title>
           <path
-            d="M7 7H4v2h3v3h2V9h3V7H9V4H7v3zm1 9A8 8 0 1 1 8 0a8 8 0 0 1 0 16z"
-            key="key0"
+            d="M8 1C4.2 1 1 4.2 1 8s3.2 7 7 7 7-3.2 7-7-3.2-7-7-7zm3 7.5H8.5V11h-1V8.5H5v-1h2.5V5h1v2.5H11v1z"
           />
         </svg>
-      </Icon>
+      </AddFilled16>
     </button>
-  </Button>
+  </ForwardRef(Button)>
 </TableBatchAction>
 `;

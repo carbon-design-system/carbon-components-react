@@ -1,3 +1,10 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import React from 'react';
 import Checkbox from '../Checkbox';
 import CheckboxSkeleton from '../Checkbox/Checkbox.Skeleton';
@@ -96,6 +103,49 @@ describe('Checkbox', () => {
       expect(call[1]).toEqual(id);
       expect(call[2].target).toBe(inputElement);
     });
+  });
+});
+
+describe('refs', () => {
+  it('should accept refs', () => {
+    class MyComponent extends React.Component {
+      constructor(props) {
+        super(props);
+        this.myRef = React.createRef();
+        this.focus = this.focus.bind(this);
+      }
+      focus() {
+        this.myRef.current.focus();
+      }
+      render() {
+        return (
+          <Checkbox
+            id="test"
+            labelText="testlabel"
+            hideLabel
+            ref={this.myRef}
+          />
+        );
+      }
+    }
+    const wrapper = mount(<MyComponent />);
+    expect(document.activeElement.type).toBeUndefined();
+    wrapper.instance().focus();
+    expect(document.activeElement.type).toEqual('checkbox');
+  });
+
+  it('should set indeterminate when accepting refs', () => {
+    class MyComponent extends React.Component {
+      constructor(props) {
+        super(props);
+        this.myRef = React.createRef();
+      }
+      render() {
+        return <Checkbox indeterminate ref={this.myRef} />;
+      }
+    }
+    const wrapper = mount(<MyComponent />);
+    expect(wrapper.find('input').getDOMNode().indeterminate).toBe(true);
   });
 });
 

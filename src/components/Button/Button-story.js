@@ -1,60 +1,82 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
-import { withKnobs, boolean, select } from '@storybook/addon-knobs';
-import { iconAddSolid, iconSearch } from 'carbon-icons';
-import { AddFilled16, Search16 } from '@carbon/icons-react';
+import { withKnobs, boolean, select, text } from '@storybook/addon-knobs';
 import { settings } from 'carbon-components';
+import { iconAddSolid, iconSearch } from 'carbon-icons';
+import AddFilled16 from '@carbon/icons-react/lib/add--filled/16';
+import Search16 from '@carbon/icons-react/lib/search/16';
 import Button from '../Button';
 import ButtonSkeleton from '../Button/Button.Skeleton';
-import { componentsX } from '../../internal/FeatureFlags';
 
 const { prefix } = settings;
 
 const icons = {
   None: 'None',
-  'Add with filled circle (iconAddSolid from `carbon-icons`)': componentsX
-    ? 'AddFilled16'
-    : 'iconAddSolid',
-  'Search (iconSearch from `carbon-icons`)': componentsX
-    ? 'Search16'
-    : 'iconSearch',
+  'Add with filled circle (AddFilled16 from `@carbon/icons`)': 'AddFilled16',
+  'Search (Search16 from `@carbon/icons`)': 'Search16',
 };
 
 const iconMap = {
   iconAddSolid,
   iconSearch,
-  AddFilled16: <AddFilled16 className={`${prefix}--btn__icon`} />,
-  Search16: <Search16 className={`${prefix}--btn__icon`} />,
+  AddFilled16,
+  Search16,
 };
 
 const kinds = {
   'Primary button (primary)': 'primary',
   'Secondary button (secondary)': 'secondary',
   'Danger button (danger)': 'danger',
-  'Danger primary button (danger--primary)': 'danger--primary',
   'Ghost button (ghost)': 'ghost',
 };
 
 const props = {
-  regular: () => ({
-    className: 'some-class',
-    kind: select('Button kind (kind)', kinds, 'primary'),
-    disabled: boolean('Disabled (disabled)', false),
-    small: boolean('Small (small)', false),
-    icon: iconMap[select('Icon (icon)', icons, 'none')],
-    onClick: action('onClick'),
-    onFocus: action('onFocus'),
-  }),
-  set: () => ({
-    className: 'some-class',
-    disabled: boolean('Disabled (disabled)', false),
-    small: boolean('Small (small)', false),
-    icon: iconMap[select('Icon (icon)', icons, 'none')],
-    onClick: action('onClick'),
-    onFocus: action('onFocus'),
-  }),
+  regular: () => {
+    const iconToUse = iconMap[select('Icon (icon)', icons, 'none')];
+    return {
+      className: 'some-class',
+      kind: select('Button kind (kind)', kinds, 'primary'),
+      disabled: boolean('Disabled (disabled)', false),
+      small: boolean('Small (small)', false),
+      renderIcon: !iconToUse || iconToUse.svgData ? undefined : iconToUse,
+      iconDescription: text(
+        'Icon description (iconDescription)',
+        'Button icon'
+      ),
+      onClick: action('onClick'),
+      onFocus: action('onFocus'),
+    };
+  },
+  set: () => {
+    const iconToUse = iconMap[select('Icon (icon)', icons, 'none')];
+    return {
+      className: 'some-class',
+      disabled: boolean('Disabled (disabled)', false),
+      small: boolean('Small (small)', false),
+      renderIcon: !iconToUse || iconToUse.svgData ? undefined : iconToUse,
+      iconDescription: text(
+        'Icon description (iconDescription)',
+        'Button icon'
+      ),
+      onClick: action('onClick'),
+      onFocus: action('onFocus'),
+    };
+  },
 };
+
+const CustomLink = ({ children, href, ...other }) => (
+  <a href={href} {...other}>
+    {children}
+  </a>
+);
 
 storiesOf('Buttons', module)
   .addDecorator(withKnobs)
@@ -63,7 +85,12 @@ storiesOf('Buttons', module)
     () => {
       const regularProps = props.regular();
       return (
-        <div style={{ display: 'flex', alignItems: 'center' }}>
+        <div
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            flexWrap: 'wrap',
+          }}>
           <Button {...regularProps} className="some-class">
             Button
           </Button>
@@ -72,6 +99,17 @@ storiesOf('Buttons', module)
             Link
           </Button>
           &nbsp;
+          <Button {...regularProps} as="p" href="#" className="some-class">
+            Element
+          </Button>
+          &nbsp;
+          <Button
+            {...regularProps}
+            as={CustomLink}
+            href="#"
+            className="some-class">
+            Custom component
+          </Button>
         </div>
       );
     },
@@ -107,7 +145,7 @@ storiesOf('Buttons', module)
     () => {
       const setProps = props.set();
       return (
-        <div>
+        <div className={`${prefix}--btn-set`}>
           <Button kind="secondary" {...setProps}>
             Secondary button
           </Button>

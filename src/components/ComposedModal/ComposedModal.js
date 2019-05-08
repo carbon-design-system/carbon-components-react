@@ -1,20 +1,18 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { iconClose } from 'carbon-icons';
 import Button from '../Button';
-import Icon from '../Icon';
 import classNames from 'classnames';
 import { settings } from 'carbon-components';
-// TODO: import { Close20 } from '@carbon/icons-react';
 import Close20 from '@carbon/icons-react/lib/close/20';
-import { componentsX } from '../../internal/FeatureFlags';
 
 const { prefix } = settings;
-const matchesFuncName =
-  typeof Element !== 'undefined' &&
-  ['matches', 'webkitMatchesSelector', 'msMatchesSelector'].filter(
-    name => typeof Element.prototype[name] === 'function'
-  )[0];
 
 export default class ComposedModal extends Component {
   state = {};
@@ -84,21 +82,6 @@ export default class ComposedModal extends Component {
     if (target && typeof target.closest === 'function') {
       return selectorsFloatingMenus.some(selector => target.closest(selector));
     }
-
-    // Alternative if closest does not exist.
-    while (target) {
-      if (typeof target[matchesFuncName] === 'function') {
-        if (
-          selectorsFloatingMenus.some(selector =>
-            target[matchesFuncName](selector)
-          )
-        ) {
-          return true;
-        }
-      }
-      target = target.parentNode;
-    }
-    return false;
   };
 
   handleKeyDown = evt => {
@@ -274,12 +257,12 @@ export class ModalHeader extends Component {
     /**
      * Specify an optional label to be displayed
      */
-    label: PropTypes.string,
+    label: PropTypes.node,
 
     /**
      * Specify an optional title to be displayed
      */
-    title: PropTypes.string,
+    title: PropTypes.node,
 
     /**
      * Specify the content to be placed in the ModalHeader
@@ -366,20 +349,9 @@ export class ModalHeader extends Component {
         <button
           onClick={this.handleCloseButtonClick}
           className={closeClass}
+          title={iconDescription}
           type="button">
-          {componentsX ? (
-            <Close20
-              alt={iconDescription}
-              aria-label={iconDescription}
-              className={closeIconClass}
-            />
-          ) : (
-            <Icon
-              icon={iconClose}
-              className={closeIconClass}
-              description={iconDescription}
-            />
-          )}
+          <Close20 aria-label={iconDescription} className={closeIconClass} />
         </button>
       </div>
     );
@@ -520,8 +492,8 @@ export class ModalFooter extends Component {
             onClick={onRequestSubmit}
             className={primaryClass}
             disabled={primaryButtonDisabled}
-            kind={danger ? 'danger--primary' : 'primary'}
-            inputref={this.props.inputref}>
+            kind={danger ? 'danger' : 'primary'}
+            ref={this.props.inputref}>
             {primaryButtonText}
           </Button>
         )}

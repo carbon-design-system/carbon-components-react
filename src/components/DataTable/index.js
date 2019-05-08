@@ -1,3 +1,10 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import DataTable from './DataTable';
 import Table from './Table';
 import TableActionList from './TableActionList';
@@ -18,6 +25,7 @@ import TableToolbar from './TableToolbar';
 import TableToolbarAction from './TableToolbarAction';
 import TableToolbarContent from './TableToolbarContent';
 import TableToolbarSearch from './TableToolbarSearch';
+import TableToolbarMenu from './TableToolbarMenu';
 
 DataTable.Table = Table;
 DataTable.TableActionList = TableActionList;
@@ -38,6 +46,7 @@ DataTable.TableToolbar = TableToolbar;
 DataTable.TableToolbarAction = TableToolbarAction;
 DataTable.TableToolbarContent = TableToolbarContent;
 DataTable.TableToolbarSearch = TableToolbarSearch;
+DataTable.TableToolbarMenu = TableToolbarMenu;
 
 export {
   Table,
@@ -59,6 +68,7 @@ export {
   TableToolbarAction,
   TableToolbarContent,
   TableToolbarSearch,
+  TableToolbarMenu,
 };
 
 export default DataTable;

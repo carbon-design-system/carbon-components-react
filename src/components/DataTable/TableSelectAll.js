@@ -1,6 +1,18 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import PropTypes from 'prop-types';
 import React from 'react';
 import InlineCheckbox from '../InlineCheckbox';
+import cx from 'classnames';
+
+import { settings } from 'carbon-components';
+
+const { prefix } = settings;
 
 const TableSelectAll = ({
   ariaLabel,
@@ -10,8 +22,9 @@ const TableSelectAll = ({
   name,
   onSelect,
   disabled,
+  className,
 }) => (
-  <th scope="col">
+  <th scope="col" className={cx(`${prefix}--table-column-checkbox`, className)}>
     <InlineCheckbox
       ariaLabel={ariaLabel}
       checked={checked}
@@ -54,6 +67,11 @@ TableSelectAll.propTypes = {
    * Provide a handler to listen to when a user initiates a selection request
    */
   onSelect: PropTypes.func.isRequired,
+
+  /**
+   * The CSS class names of the cell that wraps the underlying input control
+   */
+  className: PropTypes.string,
 };
 
 TableSelectAll.defaultProps = {

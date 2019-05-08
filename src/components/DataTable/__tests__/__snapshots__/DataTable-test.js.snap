@@ -1,5 +1,778 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`DataTable selection -- radio buttons should not have select-all checkbox 1`] = `
+<DataTable
+  filterRows={[Function]}
+  headers={
+    Array [
+      Object {
+        "header": "Field A",
+        "key": "fieldA",
+      },
+      Object {
+        "header": "Field B",
+        "key": "fieldB",
+      },
+    ]
+  }
+  locale="en"
+  radio={true}
+  render={
+    [MockFunction] {
+      "calls": Array [
+        Array [
+          Object {
+            "expandRow": [Function],
+            "getBatchActionProps": [Function],
+            "getHeaderProps": [Function],
+            "getRowProps": [Function],
+            "getSelectionProps": [Function],
+            "getTableProps": [Function],
+            "headers": Array [
+              Object {
+                "header": "Field A",
+                "key": "fieldA",
+              },
+              Object {
+                "header": "Field B",
+                "key": "fieldB",
+              },
+            ],
+            "onInputChange": [Function],
+            "radio": true,
+            "rows": Array [],
+            "selectAll": [Function],
+            "selectRow": [Function],
+            "selectedRows": Array [],
+            "sortBy": [Function],
+          },
+        ],
+      ],
+      "results": Array [
+        Object {
+          "type": "return",
+          "value": <TableContainer
+            title="DataTable with selection"
+          >
+            <Table
+              isSortable={false}
+            >
+              <TableHead>
+                <TableRow>
+                  <TableHeader
+                    isSortHeader={false}
+                    isSortable={false}
+                    onClick={[Function]}
+                    scope="col"
+                    sortDirection="NONE"
+                    translateWithId={[Function]}
+                  >
+                    Field A
+                  </TableHeader>
+                  <TableHeader
+                    isSortHeader={false}
+                    isSortable={false}
+                    onClick={[Function]}
+                    scope="col"
+                    sortDirection="NONE"
+                    translateWithId={[Function]}
+                  >
+                    Field B
+                  </TableHeader>
+                </TableRow>
+              </TableHead>
+              <TableBody
+                aria-live="polite"
+              />
+            </Table>
+          </TableContainer>,
+        },
+      ],
+    }
+  }
+  rows={Array []}
+  sortRow={[Function]}
+  translateWithId={[Function]}
+>
+  <TableContainer
+    title="DataTable with selection"
+  >
+    <div
+      className="bx--data-table-container"
+    >
+      <div
+        className="bx--data-table-header"
+      >
+        <h4
+          className="bx--data-table-header__title"
+        >
+          DataTable with selection
+        </h4>
+        <p
+          className="bx--data-table-header__description"
+        />
+      </div>
+      <Table
+        isSortable={false}
+      >
+        <table
+          className="bx--data-table bx--data-table--no-border"
+        >
+          <TableHead>
+            <thead>
+              <TableRow>
+                <tr>
+                  <TableHeader
+                    isSortHeader={false}
+                    isSortable={false}
+                    key="fieldA"
+                    onClick={[Function]}
+                    scope="col"
+                    sortDirection="NONE"
+                    translateWithId={[Function]}
+                  >
+                    <th
+                      scope="col"
+                    >
+                      <span
+                        className="bx--table-header-label"
+                      >
+                        Field A
+                      </span>
+                    </th>
+                  </TableHeader>
+                  <TableHeader
+                    isSortHeader={false}
+                    isSortable={false}
+                    key="fieldB"
+                    onClick={[Function]}
+                    scope="col"
+                    sortDirection="NONE"
+                    translateWithId={[Function]}
+                  >
+                    <th
+                      scope="col"
+                    >
+                      <span
+                        className="bx--table-header-label"
+                      >
+                        Field B
+                      </span>
+                    </th>
+                  </TableHeader>
+                </tr>
+              </TableRow>
+            </thead>
+          </TableHead>
+          <TableBody
+            aria-live="polite"
+          >
+            <tbody
+              aria-live="polite"
+            />
+          </TableBody>
+        </table>
+      </Table>
+    </div>
+  </TableContainer>
+</DataTable>
+`;
+
+exports[`DataTable selection -- radio buttons should render 1`] = `
+<DataTable
+  filterRows={[Function]}
+  headers={
+    Array [
+      Object {
+        "header": "Field A",
+        "key": "fieldA",
+      },
+      Object {
+        "header": "Field B",
+        "key": "fieldB",
+      },
+    ]
+  }
+  locale="en"
+  radio={true}
+  render={
+    [MockFunction] {
+      "calls": Array [
+        Array [
+          Object {
+            "expandRow": [Function],
+            "getBatchActionProps": [Function],
+            "getHeaderProps": [Function],
+            "getRowProps": [Function],
+            "getSelectionProps": [Function],
+            "getTableProps": [Function],
+            "headers": Array [
+              Object {
+                "header": "Field A",
+                "key": "fieldA",
+              },
+              Object {
+                "header": "Field B",
+                "key": "fieldB",
+              },
+            ],
+            "onInputChange": [Function],
+            "radio": true,
+            "rows": Array [
+              Object {
+                "cells": Array [
+                  Object {
+                    "errors": null,
+                    "id": "b:fieldA",
+                    "info": Object {
+                      "header": "fieldA",
+                    },
+                    "isEditable": false,
+                    "isEditing": false,
+                    "isValid": true,
+                    "value": "Field 2:A",
+                  },
+                  Object {
+                    "errors": null,
+                    "id": "b:fieldB",
+                    "info": Object {
+                      "header": "fieldB",
+                    },
+                    "isEditable": false,
+                    "isEditing": false,
+                    "isValid": true,
+                    "value": "Field 2:B",
+                  },
+                ],
+                "disabled": false,
+                "id": "b",
+                "isExpanded": false,
+                "isSelected": false,
+              },
+              Object {
+                "cells": Array [
+                  Object {
+                    "errors": null,
+                    "id": "a:fieldA",
+                    "info": Object {
+                      "header": "fieldA",
+                    },
+                    "isEditable": false,
+                    "isEditing": false,
+                    "isValid": true,
+                    "value": "Field 1:A",
+                  },
+                  Object {
+                    "errors": null,
+                    "id": "a:fieldB",
+                    "info": Object {
+                      "header": "fieldB",
+                    },
+                    "isEditable": false,
+                    "isEditing": false,
+                    "isValid": true,
+                    "value": "Field 1:B",
+                  },
+                ],
+                "disabled": false,
+                "id": "a",
+                "isExpanded": false,
+                "isSelected": false,
+              },
+              Object {
+                "cells": Array [
+                  Object {
+                    "errors": null,
+                    "id": "c:fieldA",
+                    "info": Object {
+                      "header": "fieldA",
+                    },
+                    "isEditable": false,
+                    "isEditing": false,
+                    "isValid": true,
+                    "value": "Field 3:A",
+                  },
+                  Object {
+                    "errors": null,
+                    "id": "c:fieldB",
+                    "info": Object {
+                      "header": "fieldB",
+                    },
+                    "isEditable": false,
+                    "isEditing": false,
+                    "isValid": true,
+                    "value": "Field 3:B",
+                  },
+                ],
+                "disabled": false,
+                "id": "c",
+                "isExpanded": false,
+                "isSelected": false,
+              },
+            ],
+            "selectAll": [Function],
+            "selectRow": [Function],
+            "selectedRows": Array [],
+            "sortBy": [Function],
+          },
+        ],
+      ],
+      "results": Array [
+        Object {
+          "type": "return",
+          "value": <TableContainer
+            title="DataTable with selection"
+          >
+            <Table
+              isSortable={false}
+            >
+              <TableHead>
+                <TableRow>
+                  <TableHeader
+                    isSortHeader={false}
+                    isSortable={false}
+                    onClick={[Function]}
+                    scope="col"
+                    sortDirection="NONE"
+                    translateWithId={[Function]}
+                  >
+                    Field A
+                  </TableHeader>
+                  <TableHeader
+                    isSortHeader={false}
+                    isSortable={false}
+                    onClick={[Function]}
+                    scope="col"
+                    sortDirection="NONE"
+                    translateWithId={[Function]}
+                  >
+                    Field B
+                  </TableHeader>
+                </TableRow>
+              </TableHead>
+              <TableBody
+                aria-live="polite"
+              >
+                <TableRow>
+                  <TableSelectRow
+                    ariaLabel="Select row"
+                    checked={false}
+                    disabled={false}
+                    id="data-table-11__select-row-b"
+                    name="select-row-b"
+                    onSelect={[Function]}
+                    radio={true}
+                  />
+                  <TableCell>
+                    Field 2:A
+                  </TableCell>
+                  <TableCell>
+                    Field 2:B
+                  </TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableSelectRow
+                    ariaLabel="Select row"
+                    checked={false}
+                    disabled={false}
+                    id="data-table-11__select-row-a"
+                    name="select-row-a"
+                    onSelect={[Function]}
+                    radio={true}
+                  />
+                  <TableCell>
+                    Field 1:A
+                  </TableCell>
+                  <TableCell>
+                    Field 1:B
+                  </TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableSelectRow
+                    ariaLabel="Select row"
+                    checked={false}
+                    disabled={false}
+                    id="data-table-11__select-row-c"
+                    name="select-row-c"
+                    onSelect={[Function]}
+                    radio={true}
+                  />
+                  <TableCell>
+                    Field 3:A
+                  </TableCell>
+                  <TableCell>
+                    Field 3:B
+                  </TableCell>
+                </TableRow>
+              </TableBody>
+            </Table>
+          </TableContainer>,
+        },
+      ],
+    }
+  }
+  rows={
+    Array [
+      Object {
+        "fieldA": "Field 2:A",
+        "fieldB": "Field 2:B",
+        "id": "b",
+      },
+      Object {
+        "fieldA": "Field 1:A",
+        "fieldB": "Field 1:B",
+        "id": "a",
+      },
+      Object {
+        "fieldA": "Field 3:A",
+        "fieldB": "Field 3:B",
+        "id": "c",
+      },
+    ]
+  }
+  sortRow={[Function]}
+  translateWithId={[Function]}
+>
+  <TableContainer
+    title="DataTable with selection"
+  >
+    <div
+      className="bx--data-table-container"
+    >
+      <div
+        className="bx--data-table-header"
+      >
+        <h4
+          className="bx--data-table-header__title"
+        >
+          DataTable with selection
+        </h4>
+        <p
+          className="bx--data-table-header__description"
+        />
+      </div>
+      <Table
+        isSortable={false}
+      >
+        <table
+          className="bx--data-table bx--data-table--no-border"
+        >
+          <TableHead>
+            <thead>
+              <TableRow>
+                <tr>
+                  <TableHeader
+                    isSortHeader={false}
+                    isSortable={false}
+                    key="fieldA"
+                    onClick={[Function]}
+                    scope="col"
+                    sortDirection="NONE"
+                    translateWithId={[Function]}
+                  >
+                    <th
+                      scope="col"
+                    >
+                      <span
+                        className="bx--table-header-label"
+                      >
+                        Field A
+                      </span>
+                    </th>
+                  </TableHeader>
+                  <TableHeader
+                    isSortHeader={false}
+                    isSortable={false}
+                    key="fieldB"
+                    onClick={[Function]}
+                    scope="col"
+                    sortDirection="NONE"
+                    translateWithId={[Function]}
+                  >
+                    <th
+                      scope="col"
+                    >
+                      <span
+                        className="bx--table-header-label"
+                      >
+                        Field B
+                      </span>
+                    </th>
+                  </TableHeader>
+                </tr>
+              </TableRow>
+            </thead>
+          </TableHead>
+          <TableBody
+            aria-live="polite"
+          >
+            <tbody
+              aria-live="polite"
+            >
+              <TableRow
+                key="b"
+              >
+                <tr>
+                  <TableSelectRow
+                    ariaLabel="Select row"
+                    checked={false}
+                    disabled={false}
+                    id="data-table-11__select-row-b"
+                    name="select-row-b"
+                    onSelect={[Function]}
+                    radio={true}
+                  >
+                    <td>
+                      <ForwardRef(RadioButton)
+                        checked={false}
+                        disabled={false}
+                        hideLabel={true}
+                        id="data-table-11__select-row-b"
+                        labelText="Select row"
+                        name="select-row-b"
+                        onClick={[Function]}
+                      >
+                        <RadioButton
+                          checked={false}
+                          disabled={false}
+                          hideLabel={true}
+                          id="data-table-11__select-row-b"
+                          innerRef={null}
+                          labelPosition="right"
+                          labelText="Select row"
+                          name="select-row-b"
+                          onChange={[Function]}
+                          onClick={[Function]}
+                          value=""
+                        >
+                          <div
+                            className="bx--radio-button-wrapper"
+                          >
+                            <input
+                              checked={false}
+                              className="bx--radio-button"
+                              disabled={false}
+                              id="data-table-11__select-row-b"
+                              name="select-row-b"
+                              onChange={[Function]}
+                              onClick={[Function]}
+                              type="radio"
+                              value=""
+                            />
+                            <label
+                              aria-label="Select row"
+                              className="bx--radio-button__label"
+                              htmlFor="data-table-11__select-row-b"
+                            >
+                              <span
+                                className="bx--radio-button__appearance"
+                              />
+                              <span
+                                className="bx--visually-hidden"
+                              >
+                                Select row
+                              </span>
+                            </label>
+                          </div>
+                        </RadioButton>
+                      </ForwardRef(RadioButton)>
+                    </td>
+                  </TableSelectRow>
+                  <TableCell
+                    key="b:fieldA"
+                  >
+                    <td>
+                      Field 2:A
+                    </td>
+                  </TableCell>
+                  <TableCell
+                    key="b:fieldB"
+                  >
+                    <td>
+                      Field 2:B
+                    </td>
+                  </TableCell>
+                </tr>
+              </TableRow>
+              <TableRow
+                key="a"
+              >
+                <tr>
+                  <TableSelectRow
+                    ariaLabel="Select row"
+                    checked={false}
+                    disabled={false}
+                    id="data-table-11__select-row-a"
+                    name="select-row-a"
+                    onSelect={[Function]}
+                    radio={true}
+                  >
+                    <td>
+                      <ForwardRef(RadioButton)
+                        checked={false}
+                        disabled={false}
+                        hideLabel={true}
+                        id="data-table-11__select-row-a"
+                        labelText="Select row"
+                        name="select-row-a"
+                        onClick={[Function]}
+                      >
+                        <RadioButton
+                          checked={false}
+                          disabled={false}
+                          hideLabel={true}
+                          id="data-table-11__select-row-a"
+                          innerRef={null}
+                          labelPosition="right"
+                          labelText="Select row"
+                          name="select-row-a"
+                          onChange={[Function]}
+                          onClick={[Function]}
+                          value=""
+                        >
+                          <div
+                            className="bx--radio-button-wrapper"
+                          >
+                            <input
+                              checked={false}
+                              className="bx--radio-button"
+                              disabled={false}
+                              id="data-table-11__select-row-a"
+                              name="select-row-a"
+                              onChange={[Function]}
+                              onClick={[Function]}
+                              type="radio"
+                              value=""
+                            />
+                            <label
+                              aria-label="Select row"
+                              className="bx--radio-button__label"
+                              htmlFor="data-table-11__select-row-a"
+                            >
+                              <span
+                                className="bx--radio-button__appearance"
+                              />
+                              <span
+                                className="bx--visually-hidden"
+                              >
+                                Select row
+                              </span>
+                            </label>
+                          </div>
+                        </RadioButton>
+                      </ForwardRef(RadioButton)>
+                    </td>
+                  </TableSelectRow>
+                  <TableCell
+                    key="a:fieldA"
+                  >
+                    <td>
+                      Field 1:A
+                    </td>
+                  </TableCell>
+                  <TableCell
+                    key="a:fieldB"
+                  >
+                    <td>
+                      Field 1:B
+                    </td>
+                  </TableCell>
+                </tr>
+              </TableRow>
+              <TableRow
+                key="c"
+              >
+                <tr>
+                  <TableSelectRow
+                    ariaLabel="Select row"
+                    checked={false}
+                    disabled={false}
+                    id="data-table-11__select-row-c"
+                    name="select-row-c"
+                    onSelect={[Function]}
+                    radio={true}
+                  >
+                    <td>
+                      <ForwardRef(RadioButton)
+                        checked={false}
+                        disabled={false}
+                        hideLabel={true}
+                        id="data-table-11__select-row-c"
+                        labelText="Select row"
+                        name="select-row-c"
+                        onClick={[Function]}
+                      >
+                        <RadioButton
+                          checked={false}
+                          disabled={false}
+                          hideLabel={true}
+                          id="data-table-11__select-row-c"
+                          innerRef={null}
+                          labelPosition="right"
+                          labelText="Select row"
+                          name="select-row-c"
+                          onChange={[Function]}
+                          onClick={[Function]}
+                          value=""
+                        >
+                          <div
+                            className="bx--radio-button-wrapper"
+                          >
+                            <input
+                              checked={false}
+                              className="bx--radio-button"
+                              disabled={false}
+                              id="data-table-11__select-row-c"
+                              name="select-row-c"
+                              onChange={[Function]}
+                              onClick={[Function]}
+                              type="radio"
+                              value=""
+                            />
+                            <label
+                              aria-label="Select row"
+                              className="bx--radio-button__label"
+                              htmlFor="data-table-11__select-row-c"
+                            >
+                              <span
+                                className="bx--radio-button__appearance"
+                              />
+                              <span
+                                className="bx--visually-hidden"
+                              >
+                                Select row
+                              </span>
+                            </label>
+                          </div>
+                        </RadioButton>
+                      </ForwardRef(RadioButton)>
+                    </td>
+                  </TableSelectRow>
+                  <TableCell
+                    key="c:fieldA"
+                  >
+                    <td>
+                      Field 3:A
+                    </td>
+                  </TableCell>
+                  <TableCell
+                    key="c:fieldB"
+                  >
+                    <td>
+                      Field 3:B
+                    </td>
+                  </TableCell>
+                </tr>
+              </TableRow>
+            </tbody>
+          </TableBody>
+        </table>
+      </Table>
+    </div>
+  </TableContainer>
+</DataTable>
+`;
+
 exports[`DataTable selection should have select-all default to un-checked if no rows are present 1`] = `
 <DataTable
   filterRows={[Function]}
@@ -38,6 +811,7 @@ exports[`DataTable selection should have select-all default to un-checked if no 
               },
             ],
             "onInputChange": [Function],
+            "radio": undefined,
             "rows": Array [],
             "selectAll": [Function],
             "selectRow": [Function],
@@ -48,14 +822,12 @@ exports[`DataTable selection should have select-all default to un-checked if no 
       ],
       "results": Array [
         Object {
-          "isThrow": false,
+          "type": "return",
           "value": <TableContainer
             title="DataTable with selection"
           >
             <Table
-              short={false}
-              shouldShowBorder={true}
-              zebra={true}
+              isSortable={false}
             >
               <TableHead>
                 <TableRow>
@@ -69,7 +841,7 @@ exports[`DataTable selection should have select-all default to un-checked if no 
                   />
                   <TableHeader
                     isSortHeader={false}
-                    isSortable={true}
+                    isSortable={false}
                     onClick={[Function]}
                     scope="col"
                     sortDirection="NONE"
@@ -79,7 +851,7 @@ exports[`DataTable selection should have select-all default to un-checked if no 
                   </TableHeader>
                   <TableHeader
                     isSortHeader={false}
-                    isSortable={true}
+                    isSortable={false}
                     onClick={[Function]}
                     scope="col"
                     sortDirection="NONE"
@@ -89,7 +861,9 @@ exports[`DataTable selection should have select-all default to un-checked if no 
                   </TableHeader>
                 </TableRow>
               </TableHead>
-              <TableBody />
+              <TableBody
+                aria-live="polite"
+              />
             </Table>
           </TableContainer>,
         },
@@ -97,8 +871,6 @@ exports[`DataTable selection should have select-all default to un-checked if no 
     }
   }
   rows={Array []}
-  short={false}
-  shouldShowBorder={true}
   sortRow={[Function]}
   translateWithId={[Function]}
 >
@@ -106,20 +878,25 @@ exports[`DataTable selection should have select-all default to un-checked if no 
     title="DataTable with selection"
   >
     <div
-      className="bx--data-table-v2-container"
+      className="bx--data-table-container"
     >
-      <h4
-        className="bx--data-table-v2-header"
+      <div
+        className="bx--data-table-header"
       >
-        DataTable with selection
-      </h4>
+        <h4
+          className="bx--data-table-header__title"
+        >
+          DataTable with selection
+        </h4>
+        <p
+          className="bx--data-table-header__description"
+        />
+      </div>
       <Table
-        short={false}
-        shouldShowBorder={true}
-        zebra={true}
+        isSortable={false}
       >
         <table
-          className="bx--data-table-v2 bx--data-table-v2--zebra"
+          className="bx--data-table bx--data-table--no-border"
         >
           <TableHead>
             <thead>
@@ -134,9 +911,10 @@ exports[`DataTable selection should have select-all default to un-checked if no 
                     onSelect={[Function]}
                   >
                     <th
+                      className="bx--table-column-checkbox"
                       scope="col"
                     >
-                      <InlineCheckbox
+                      <ForwardRef(InlineCheckbox)
                         ariaLabel="Select all rows"
                         checked={false}
                         id="data-table-7__select-all"
@@ -144,25 +922,37 @@ exports[`DataTable selection should have select-all default to un-checked if no 
                         name="select-all"
                         onClick={[Function]}
                       >
-                        <input
+                        <InlineCheckbox
+                          ariaLabel="Select all rows"
                           checked={false}
-                          className="bx--checkbox"
                           id="data-table-7__select-all"
+                          indeterminate={false}
+                          innerRef={null}
                           name="select-all"
+                          onChange={[Function]}
                           onClick={[Function]}
-                          type="checkbox"
-                        />
-                        <label
-                          aria-label="Select all rows"
-                          className="bx--checkbox-label"
-                          htmlFor="data-table-7__select-all"
-                        />
-                      </InlineCheckbox>
+                        >
+                          <input
+                            checked={false}
+                            className="bx--checkbox"
+                            id="data-table-7__select-all"
+                            name="select-all"
+                            onChange={[Function]}
+                            onClick={[Function]}
+                            type="checkbox"
+                          />
+                          <label
+                            aria-label="Select all rows"
+                            className="bx--checkbox-label"
+                            htmlFor="data-table-7__select-all"
+                          />
+                        </InlineCheckbox>
+                      </ForwardRef(InlineCheckbox)>
                     </th>
                   </TableSelectAll>
                   <TableHeader
                     isSortHeader={false}
-                    isSortable={true}
+                    isSortable={false}
                     key="fieldA"
                     onClick={[Function]}
                     scope="col"
@@ -170,72 +960,18 @@ exports[`DataTable selection should have select-all default to un-checked if no 
                     translateWithId={[Function]}
                   >
                     <th
-                      aria-sort="none"
                       scope="col"
                     >
-                      <button
-                        className="bx--table-sort-v2"
-                        onClick={[Function]}
+                      <span
+                        className="bx--table-header-label"
                       >
-                        <span
-                          className="bx--table-header-label"
-                        >
-                          Field A
-                        </span>
-                        <Icon
-                          className="bx--table-sort-v2__icon"
-                          description="Sort rows by this header in ascending order"
-                          fillRule="evenodd"
-                          icon={
-                            Object {
-                              "height": "5",
-                              "id": "icon--caret--up",
-                              "name": "icon--caret--up",
-                              "styles": "",
-                              "svgData": Object {
-                                "circles": "",
-                                "ellipses": "",
-                                "paths": Array [
-                                  Object {
-                                    "d": "M0 5L5 .002 10 5z",
-                                  },
-                                ],
-                                "polygons": "",
-                                "polylines": "",
-                                "rects": "",
-                              },
-                              "tags": "icon--caret--up",
-                              "viewBox": "0 0 10 5",
-                              "width": "10",
-                            }
-                          }
-                          role="img"
-                        >
-                          <svg
-                            alt="Sort rows by this header in ascending order"
-                            aria-label="Sort rows by this header in ascending order"
-                            className="bx--table-sort-v2__icon"
-                            fillRule="evenodd"
-                            height="5"
-                            role="img"
-                            viewBox="0 0 10 5"
-                            width="10"
-                          >
-                            <title>
-                              Sort rows by this header in ascending order
-                            </title>
-                            <path
-                              d="M0 5L5 .002 10 5z"
-                              key="key0"
-                            />
-                          </svg>
-                        </Icon>
-                      </button>
+                        Field A
+                      </span>
                     </th>
                   </TableHeader>
                   <TableHeader
                     isSortHeader={false}
-                    isSortable={true}
+                    isSortable={false}
                     key="fieldB"
                     onClick={[Function]}
                     scope="col"
@@ -243,75 +979,25 @@ exports[`DataTable selection should have select-all default to un-checked if no 
                     translateWithId={[Function]}
                   >
                     <th
-                      aria-sort="none"
                       scope="col"
                     >
-                      <button
-                        className="bx--table-sort-v2"
-                        onClick={[Function]}
+                      <span
+                        className="bx--table-header-label"
                       >
-                        <span
-                          className="bx--table-header-label"
-                        >
-                          Field B
-                        </span>
-                        <Icon
-                          className="bx--table-sort-v2__icon"
-                          description="Sort rows by this header in ascending order"
-                          fillRule="evenodd"
-                          icon={
-                            Object {
-                              "height": "5",
-                              "id": "icon--caret--up",
-                              "name": "icon--caret--up",
-                              "styles": "",
-                              "svgData": Object {
-                                "circles": "",
-                                "ellipses": "",
-                                "paths": Array [
-                                  Object {
-                                    "d": "M0 5L5 .002 10 5z",
-                                  },
-                                ],
-                                "polygons": "",
-                                "polylines": "",
-                                "rects": "",
-                              },
-                              "tags": "icon--caret--up",
-                              "viewBox": "0 0 10 5",
-                              "width": "10",
-                            }
-                          }
-                          role="img"
-                        >
-                          <svg
-                            alt="Sort rows by this header in ascending order"
-                            aria-label="Sort rows by this header in ascending order"
-                            className="bx--table-sort-v2__icon"
-                            fillRule="evenodd"
-                            height="5"
-                            role="img"
-                            viewBox="0 0 10 5"
-                            width="10"
-                          >
-                            <title>
-                              Sort rows by this header in ascending order
-                            </title>
-                            <path
-                              d="M0 5L5 .002 10 5z"
-                              key="key0"
-                            />
-                          </svg>
-                        </Icon>
-                      </button>
+                        Field B
+                      </span>
                     </th>
                   </TableHeader>
                 </tr>
               </TableRow>
             </thead>
           </TableHead>
-          <TableBody>
-            <tbody />
+          <TableBody
+            aria-live="polite"
+          >
+            <tbody
+              aria-live="polite"
+            />
           </TableBody>
         </table>
       </Table>
@@ -358,6 +1044,7 @@ exports[`DataTable selection should render 1`] = `
               },
             ],
             "onInputChange": [Function],
+            "radio": undefined,
             "rows": Array [
               Object {
                 "cells": Array [
@@ -384,6 +1071,7 @@ exports[`DataTable selection should render 1`] = `
                     "value": "Field 2:B",
                   },
                 ],
+                "disabled": false,
                 "id": "b",
                 "isExpanded": false,
                 "isSelected": false,
@@ -413,6 +1101,7 @@ exports[`DataTable selection should render 1`] = `
                     "value": "Field 1:B",
                   },
                 ],
+                "disabled": false,
                 "id": "a",
                 "isExpanded": false,
                 "isSelected": false,
@@ -442,6 +1131,7 @@ exports[`DataTable selection should render 1`] = `
                     "value": "Field 3:B",
                   },
                 ],
+                "disabled": false,
                 "id": "c",
                 "isExpanded": false,
                 "isSelected": false,
@@ -456,14 +1146,12 @@ exports[`DataTable selection should render 1`] = `
       ],
       "results": Array [
         Object {
-          "isThrow": false,
+          "type": "return",
           "value": <TableContainer
             title="DataTable with selection"
           >
             <Table
-              short={false}
-              shouldShowBorder={true}
-              zebra={true}
+              isSortable={false}
             >
               <TableHead>
                 <TableRow>
@@ -477,7 +1165,7 @@ exports[`DataTable selection should render 1`] = `
                   />
                   <TableHeader
                     isSortHeader={false}
-                    isSortable={true}
+                    isSortable={false}
                     onClick={[Function]}
                     scope="col"
                     sortDirection="NONE"
@@ -487,7 +1175,7 @@ exports[`DataTable selection should render 1`] = `
                   </TableHeader>
                   <TableHeader
                     isSortHeader={false}
-                    isSortable={true}
+                    isSortable={false}
                     onClick={[Function]}
                     scope="col"
                     sortDirection="NONE"
@@ -497,14 +1185,18 @@ exports[`DataTable selection should render 1`] = `
                   </TableHeader>
                 </TableRow>
               </TableHead>
-              <TableBody>
+              <TableBody
+                aria-live="polite"
+              >
                 <TableRow>
                   <TableSelectRow
                     ariaLabel="Select row"
                     checked={false}
+                    disabled={false}
                     id="data-table-6__select-row-b"
                     name="select-row-b"
                     onSelect={[Function]}
+                    radio={null}
                   />
                   <TableCell>
                     Field 2:A
@@ -517,9 +1209,11 @@ exports[`DataTable selection should render 1`] = `
                   <TableSelectRow
                     ariaLabel="Select row"
                     checked={false}
+                    disabled={false}
                     id="data-table-6__select-row-a"
                     name="select-row-a"
                     onSelect={[Function]}
+                    radio={null}
                   />
                   <TableCell>
                     Field 1:A
@@ -532,9 +1226,11 @@ exports[`DataTable selection should render 1`] = `
                   <TableSelectRow
                     ariaLabel="Select row"
                     checked={false}
+                    disabled={false}
                     id="data-table-6__select-row-c"
                     name="select-row-c"
                     onSelect={[Function]}
+                    radio={null}
                   />
                   <TableCell>
                     Field 3:A
@@ -569,8 +1265,6 @@ exports[`DataTable selection should render 1`] = `
       },
     ]
   }
-  short={false}
-  shouldShowBorder={true}
   sortRow={[Function]}
   translateWithId={[Function]}
 >
@@ -578,20 +1272,25 @@ exports[`DataTable selection should render 1`] = `
     title="DataTable with selection"
   >
     <div
-      className="bx--data-table-v2-container"
+      className="bx--data-table-container"
     >
-      <h4
-        className="bx--data-table-v2-header"
+      <div
+        className="bx--data-table-header"
       >
-        DataTable with selection
-      </h4>
+        <h4
+          className="bx--data-table-header__title"
+        >
+          DataTable with selection
+        </h4>
+        <p
+          className="bx--data-table-header__description"
+        />
+      </div>
       <Table
-        short={false}
-        shouldShowBorder={true}
-        zebra={true}
+        isSortable={false}
       >
         <table
-          className="bx--data-table-v2 bx--data-table-v2--zebra"
+          className="bx--data-table bx--data-table--no-border"
         >
           <TableHead>
             <thead>
@@ -606,9 +1305,10 @@ exports[`DataTable selection should render 1`] = `
                     onSelect={[Function]}
                   >
                     <th
+                      className="bx--table-column-checkbox"
                       scope="col"
                     >
-                      <InlineCheckbox
+                      <ForwardRef(InlineCheckbox)
                         ariaLabel="Select all rows"
                         checked={false}
                         id="data-table-6__select-all"
@@ -616,25 +1316,37 @@ exports[`DataTable selection should render 1`] = `
                         name="select-all"
                         onClick={[Function]}
                       >
-                        <input
+                        <InlineCheckbox
+                          ariaLabel="Select all rows"
                           checked={false}
-                          className="bx--checkbox"
                           id="data-table-6__select-all"
+                          indeterminate={false}
+                          innerRef={null}
                           name="select-all"
+                          onChange={[Function]}
                           onClick={[Function]}
-                          type="checkbox"
-                        />
-                        <label
-                          aria-label="Select all rows"
-                          className="bx--checkbox-label"
-                          htmlFor="data-table-6__select-all"
-                        />
-                      </InlineCheckbox>
+                        >
+                          <input
+                            checked={false}
+                            className="bx--checkbox"
+                            id="data-table-6__select-all"
+                            name="select-all"
+                            onChange={[Function]}
+                            onClick={[Function]}
+                            type="checkbox"
+                          />
+                          <label
+                            aria-label="Select all rows"
+                            className="bx--checkbox-label"
+                            htmlFor="data-table-6__select-all"
+                          />
+                        </InlineCheckbox>
+                      </ForwardRef(InlineCheckbox)>
                     </th>
                   </TableSelectAll>
                   <TableHeader
                     isSortHeader={false}
-                    isSortable={true}
+                    isSortable={false}
                     key="fieldA"
                     onClick={[Function]}
                     scope="col"
@@ -642,72 +1354,18 @@ exports[`DataTable selection should render 1`] = `
                     translateWithId={[Function]}
                   >
                     <th
-                      aria-sort="none"
                       scope="col"
                     >
-                      <button
-                        className="bx--table-sort-v2"
-                        onClick={[Function]}
+                      <span
+                        className="bx--table-header-label"
                       >
-                        <span
-                          className="bx--table-header-label"
-                        >
-                          Field A
-                        </span>
-                        <Icon
-                          className="bx--table-sort-v2__icon"
-                          description="Sort rows by this header in ascending order"
-                          fillRule="evenodd"
-                          icon={
-                            Object {
-                              "height": "5",
-                              "id": "icon--caret--up",
-                              "name": "icon--caret--up",
-                              "styles": "",
-                              "svgData": Object {
-                                "circles": "",
-                                "ellipses": "",
-                                "paths": Array [
-                                  Object {
-                                    "d": "M0 5L5 .002 10 5z",
-                                  },
-                                ],
-                                "polygons": "",
-                                "polylines": "",
-                                "rects": "",
-                              },
-                              "tags": "icon--caret--up",
-                              "viewBox": "0 0 10 5",
-                              "width": "10",
-                            }
-                          }
-                          role="img"
-                        >
-                          <svg
-                            alt="Sort rows by this header in ascending order"
-                            aria-label="Sort rows by this header in ascending order"
-                            className="bx--table-sort-v2__icon"
-                            fillRule="evenodd"
-                            height="5"
-                            role="img"
-                            viewBox="0 0 10 5"
-                            width="10"
-                          >
-                            <title>
-                              Sort rows by this header in ascending order
-                            </title>
-                            <path
-                              d="M0 5L5 .002 10 5z"
-                              key="key0"
-                            />
-                          </svg>
-                        </Icon>
-                      </button>
+                        Field A
+                      </span>
                     </th>
                   </TableHeader>
                   <TableHeader
                     isSortHeader={false}
-                    isSortable={true}
+                    isSortable={false}
                     key="fieldB"
                     onClick={[Function]}
                     scope="col"
@@ -715,75 +1373,25 @@ exports[`DataTable selection should render 1`] = `
                     translateWithId={[Function]}
                   >
                     <th
-                      aria-sort="none"
                       scope="col"
                     >
-                      <button
-                        className="bx--table-sort-v2"
-                        onClick={[Function]}
+                      <span
+                        className="bx--table-header-label"
                       >
-                        <span
-                          className="bx--table-header-label"
-                        >
-                          Field B
-                        </span>
-                        <Icon
-                          className="bx--table-sort-v2__icon"
-                          description="Sort rows by this header in ascending order"
-                          fillRule="evenodd"
-                          icon={
-                            Object {
-                              "height": "5",
-                              "id": "icon--caret--up",
-                              "name": "icon--caret--up",
-                              "styles": "",
-                              "svgData": Object {
-                                "circles": "",
-                                "ellipses": "",
-                                "paths": Array [
-                                  Object {
-                                    "d": "M0 5L5 .002 10 5z",
-                                  },
-                                ],
-                                "polygons": "",
-                                "polylines": "",
-                                "rects": "",
-                              },
-                              "tags": "icon--caret--up",
-                              "viewBox": "0 0 10 5",
-                              "width": "10",
-                            }
-                          }
-                          role="img"
-                        >
-                          <svg
-                            alt="Sort rows by this header in ascending order"
-                            aria-label="Sort rows by this header in ascending order"
-                            className="bx--table-sort-v2__icon"
-                            fillRule="evenodd"
-                            height="5"
-                            role="img"
-                            viewBox="0 0 10 5"
-                            width="10"
-                          >
-                            <title>
-                              Sort rows by this header in ascending order
-                            </title>
-                            <path
-                              d="M0 5L5 .002 10 5z"
-                              key="key0"
-                            />
-                          </svg>
-                        </Icon>
-                      </button>
+                        Field B
+                      </span>
                     </th>
                   </TableHeader>
                 </tr>
               </TableRow>
             </thead>
           </TableHead>
-          <TableBody>
-            <tbody>
+          <TableBody
+            aria-live="polite"
+          >
+            <tbody
+              aria-live="polite"
+            >
               <TableRow
                 key="b"
               >
@@ -791,32 +1399,48 @@ exports[`DataTable selection should render 1`] = `
                   <TableSelectRow
                     ariaLabel="Select row"
                     checked={false}
+                    disabled={false}
                     id="data-table-6__select-row-b"
                     name="select-row-b"
                     onSelect={[Function]}
+                    radio={null}
                   >
                     <td>
-                      <InlineCheckbox
+                      <ForwardRef(InlineCheckbox)
                         ariaLabel="Select row"
                         checked={false}
+                        disabled={false}
                         id="data-table-6__select-row-b"
                         name="select-row-b"
                         onClick={[Function]}
                       >
-                        <input
+                        <InlineCheckbox
+                          ariaLabel="Select row"
                           checked={false}
-                          className="bx--checkbox"
+                          disabled={false}
                           id="data-table-6__select-row-b"
+                          innerRef={null}
                           name="select-row-b"
+                          onChange={[Function]}
                           onClick={[Function]}
-                          type="checkbox"
-                        />
-                        <label
-                          aria-label="Select row"
-                          className="bx--checkbox-label"
-                          htmlFor="data-table-6__select-row-b"
-                        />
-                      </InlineCheckbox>
+                        >
+                          <input
+                            checked={false}
+                            className="bx--checkbox"
+                            disabled={false}
+                            id="data-table-6__select-row-b"
+                            name="select-row-b"
+                            onChange={[Function]}
+                            onClick={[Function]}
+                            type="checkbox"
+                          />
+                          <label
+                            aria-label="Select row"
+                            className="bx--checkbox-label"
+                            htmlFor="data-table-6__select-row-b"
+                          />
+                        </InlineCheckbox>
+                      </ForwardRef(InlineCheckbox)>
                     </td>
                   </TableSelectRow>
                   <TableCell
@@ -842,32 +1466,48 @@ exports[`DataTable selection should render 1`] = `
                   <TableSelectRow
                     ariaLabel="Select row"
                     checked={false}
+                    disabled={false}
                     id="data-table-6__select-row-a"
                     name="select-row-a"
                     onSelect={[Function]}
+                    radio={null}
                   >
                     <td>
-                      <InlineCheckbox
+                      <ForwardRef(InlineCheckbox)
                         ariaLabel="Select row"
                         checked={false}
+                        disabled={false}
                         id="data-table-6__select-row-a"
                         name="select-row-a"
                         onClick={[Function]}
                       >
-                        <input
+                        <InlineCheckbox
+                          ariaLabel="Select row"
                           checked={false}
-                          className="bx--checkbox"
+                          disabled={false}
                           id="data-table-6__select-row-a"
+                          innerRef={null}
                           name="select-row-a"
+                          onChange={[Function]}
                           onClick={[Function]}
-                          type="checkbox"
-                        />
-                        <label
-                          aria-label="Select row"
-                          className="bx--checkbox-label"
-                          htmlFor="data-table-6__select-row-a"
-                        />
-                      </InlineCheckbox>
+                        >
+                          <input
+                            checked={false}
+                            className="bx--checkbox"
+                            disabled={false}
+                            id="data-table-6__select-row-a"
+                            name="select-row-a"
+                            onChange={[Function]}
+                            onClick={[Function]}
+                            type="checkbox"
+                          />
+                          <label
+                            aria-label="Select row"
+                            className="bx--checkbox-label"
+                            htmlFor="data-table-6__select-row-a"
+                          />
+                        </InlineCheckbox>
+                      </ForwardRef(InlineCheckbox)>
                     </td>
                   </TableSelectRow>
                   <TableCell
@@ -893,32 +1533,48 @@ exports[`DataTable selection should render 1`] = `
                   <TableSelectRow
                     ariaLabel="Select row"
                     checked={false}
+                    disabled={false}
                     id="data-table-6__select-row-c"
                     name="select-row-c"
                     onSelect={[Function]}
+                    radio={null}
                   >
                     <td>
-                      <InlineCheckbox
+                      <ForwardRef(InlineCheckbox)
                         ariaLabel="Select row"
                         checked={false}
+                        disabled={false}
                         id="data-table-6__select-row-c"
                         name="select-row-c"
                         onClick={[Function]}
                       >
-                        <input
+                        <InlineCheckbox
+                          ariaLabel="Select row"
                           checked={false}
-                          className="bx--checkbox"
+                          disabled={false}
                           id="data-table-6__select-row-c"
+                          innerRef={null}
                           name="select-row-c"
+                          onChange={[Function]}
                           onClick={[Function]}
-                          type="checkbox"
-                        />
-                        <label
-                          aria-label="Select row"
-                          className="bx--checkbox-label"
-                          htmlFor="data-table-6__select-row-c"
-                        />
-                      </InlineCheckbox>
+                        >
+                          <input
+                            checked={false}
+                            className="bx--checkbox"
+                            disabled={false}
+                            id="data-table-6__select-row-c"
+                            name="select-row-c"
+                            onChange={[Function]}
+                            onClick={[Function]}
+                            type="checkbox"
+                          />
+                          <label
+                            aria-label="Select row"
+                            className="bx--checkbox-label"
+                            htmlFor="data-table-6__select-row-c"
+                          />
+                        </InlineCheckbox>
+                      </ForwardRef(InlineCheckbox)>
                     </td>
                   </TableSelectRow>
                   <TableCell
@@ -984,6 +1640,7 @@ exports[`DataTable should render 1`] = `
               },
             ],
             "onInputChange": [Function],
+            "radio": undefined,
             "rows": Array [
               Object {
                 "cells": Array [
@@ -1010,6 +1667,7 @@ exports[`DataTable should render 1`] = `
                     "value": "Field 2:B",
                   },
                 ],
+                "disabled": false,
                 "id": "b",
                 "isExpanded": false,
                 "isSelected": false,
@@ -1039,6 +1697,7 @@ exports[`DataTable should render 1`] = `
                     "value": "Field 1:B",
                   },
                 ],
+                "disabled": false,
                 "id": "a",
                 "isExpanded": false,
                 "isSelected": false,
@@ -1068,6 +1727,7 @@ exports[`DataTable should render 1`] = `
                     "value": "Field 3:B",
                   },
                 ],
+                "disabled": false,
                 "id": "c",
                 "isExpanded": false,
                 "isSelected": false,
@@ -1082,103 +1742,171 @@ exports[`DataTable should render 1`] = `
       ],
       "results": Array [
         Object {
-          "isThrow": false,
+          "type": "return",
           "value": <TableContainer
             title="DataTable with toolbar"
           >
             <TableToolbar>
-              <TableToolbarSearch
-                id="custom-id"
-                onChange={[Function]}
+              <TableBatchActions
+                onCancel={[Function]}
+                shouldShowBatchActions={false}
+                totalSelected={0}
                 translateWithId={[Function]}
-              />
+              >
+                <TableBatchAction
+                  iconDescription="Add"
+                  onClick={[MockFunction]}
+                  renderIcon={
+                    Object {
+                      "$$typeof": Symbol(react.forward_ref),
+                      "defaultProps": Object {
+                        "height": 16,
+                        "preserveAspectRatio": "xMidYMid meet",
+                        "viewBox": "0 0 16 16",
+                        "width": 16,
+                        "xmlns": "http://www.w3.org/2000/svg",
+                      },
+                      "displayName": "AddFilled16",
+                      "propTypes": Object {
+                        "aria-hidden": [Function],
+                        "aria-label": [Function],
+                        "aria-labelledby": [Function],
+                        "children": [Function],
+                        "className": [Function],
+                        "height": [Function],
+                        "preserveAspectRatio": [Function],
+                        "tabIndex": [Function],
+                        "viewBox": [Function],
+                        "width": [Function],
+                        "xmlns": [Function],
+                      },
+                      "render": [Function],
+                    }
+                  }
+                >
+                  Ghost
+                </TableBatchAction>
+                <TableBatchAction
+                  iconDescription="Add"
+                  onClick={[MockFunction]}
+                  renderIcon={
+                    Object {
+                      "$$typeof": Symbol(react.forward_ref),
+                      "defaultProps": Object {
+                        "height": 16,
+                        "preserveAspectRatio": "xMidYMid meet",
+                        "viewBox": "0 0 16 16",
+                        "width": 16,
+                        "xmlns": "http://www.w3.org/2000/svg",
+                      },
+                      "displayName": "AddFilled16",
+                      "propTypes": Object {
+                        "aria-hidden": [Function],
+                        "aria-label": [Function],
+                        "aria-labelledby": [Function],
+                        "children": [Function],
+                        "className": [Function],
+                        "height": [Function],
+                        "preserveAspectRatio": [Function],
+                        "tabIndex": [Function],
+                        "viewBox": [Function],
+                        "width": [Function],
+                        "xmlns": [Function],
+                      },
+                      "render": [Function],
+                    }
+                  }
+                >
+                  Ghost
+                </TableBatchAction>
+                <TableBatchAction
+                  iconDescription="Add"
+                  onClick={[MockFunction]}
+                  renderIcon={
+                    Object {
+                      "$$typeof": Symbol(react.forward_ref),
+                      "defaultProps": Object {
+                        "height": 16,
+                        "preserveAspectRatio": "xMidYMid meet",
+                        "viewBox": "0 0 16 16",
+                        "width": 16,
+                        "xmlns": "http://www.w3.org/2000/svg",
+                      },
+                      "displayName": "AddFilled16",
+                      "propTypes": Object {
+                        "aria-hidden": [Function],
+                        "aria-label": [Function],
+                        "aria-labelledby": [Function],
+                        "children": [Function],
+                        "className": [Function],
+                        "height": [Function],
+                        "preserveAspectRatio": [Function],
+                        "tabIndex": [Function],
+                        "viewBox": [Function],
+                        "width": [Function],
+                        "xmlns": [Function],
+                      },
+                      "render": [Function],
+                    }
+                  }
+                >
+                  Ghost
+                </TableBatchAction>
+              </TableBatchActions>
               <TableToolbarContent>
-                <TableToolbarAction
-                  icon={
-                    Object {
-                      "height": "16",
-                      "id": "icon--download",
-                      "name": "icon--download",
-                      "styles": "",
-                      "svgData": Object {
-                        "circles": "",
-                        "ellipses": "",
-                        "paths": Array [
-                          Object {
-                            "d": "M7.5 11l4.1-4.4.7.7L7 13 1.6 7.3l.7-.7L6.5 11V0h1v11zm5.5 4v-2h1v2c0 .6-.4 1-1 1H1c-.6 0-1-.4-1-1v-2h1v2h12z",
-                          },
-                        ],
-                        "polygons": "",
-                        "polylines": "",
-                        "rects": "",
-                      },
-                      "tags": "icon--download",
-                      "viewBox": "0 0 14 16",
-                      "width": "14",
-                    }
-                  }
-                  iconDescription="Download"
-                  onClick={[MockFunction]}
+                <TableToolbarSearch
+                  id="custom-id"
+                  onChange={[Function]}
+                  persistant={true}
+                  translateWithId={[Function]}
                 />
-                <TableToolbarAction
-                  icon={
-                    Object {
-                      "height": "16",
-                      "id": "icon--edit",
-                      "name": "icon--edit",
-                      "styles": "",
-                      "svgData": Object {
-                        "circles": "",
-                        "ellipses": "",
-                        "paths": Array [
-                          Object {
-                            "d": "M7.926 3.38L1.002 9.72V12h2.304l6.926-6.316L7.926 3.38zm.738-.675l2.308 2.304 1.451-1.324-2.308-2.309-1.451 1.329zM.002 9.28L9.439.639a1 1 0 0 1 1.383.03l2.309 2.309a1 1 0 0 1-.034 1.446L3.694 13H.002V9.28zM0 16.013v-1h16v1z",
-                            "fill-rule": "nonzero",
-                          },
-                        ],
-                        "polygons": "",
-                        "polylines": "",
-                        "rects": "",
-                      },
-                      "tags": "icon--edit",
-                      "viewBox": "0 0 16 16",
-                      "width": "16",
-                    }
-                  }
-                  iconDescription="Edit"
-                  onClick={[MockFunction]}
-                />
-                <TableToolbarAction
-                  icon={
-                    Object {
-                      "height": "16",
-                      "id": "icon--settings",
-                      "name": "icon--settings",
-                      "styles": "",
-                      "svgData": Object {
-                        "circles": "",
-                        "ellipses": "",
-                        "paths": Array [
-                          Object {
-                            "d": "M7.5 10.5C8.9 10.5 10 9.4 10 8S8.9 5.5 7.5 5.5 5 6.6 5 8s1.2 2.5 2.5 2.5zm0 1C5.6 11.5 4 9.9 4 8s1.6-3.5 3.5-3.5S11 6.1 11 8s-1.5 3.5-3.5 3.5z",
-                          },
-                          Object {
-                            "d": "M6.3 2.6l-.3.1c-.7.2-1.3.5-1.9 1l-.2.2-1.4-.8-1.3 1.8L2.4 6l-.1.2C2.1 6.8 2 7.4 2 8c0 .3 0 .7.1 1l.1.3-1.2 1L2.2 12l1.1-.6.3.3c.6.8 1.4 1.3 2.4 1.6l.3.1.2 1.6h2.1l.2-1.6.3-.1c.8-.2 1.6-.7 2.2-1.3l.3-.2 1.1.6 1.2-1.7-1.1-1 .1-.3c.1-.5.1-1 .1-1.4 0-.5-.1-1.1-.2-1.6l-.1-.3 1.2-1-1.2-1.7-1.4.6-.3-.2c-.6-.5-1.3-.9-2-1.1l-.2-.1L8.6 1H6.5l-.2 1.6zM5.5.9c0-.5.5-.9 1-.9h2.1c.5 0 .9.4 1 .9l.1 1c.6.2 1.2.5 1.8 1l.7-.4c.4-.2 1-.1 1.3.3l1.2 1.7c.3.4.2 1-.1 1.3l-.7.6c.1.5.1 1.1.1 1.6 0 .4 0 .8-.1 1.3l.6.6c.4.3.4.9.1 1.3l-1.2 1.7c-.3.4-.8.5-1.3.3l-.4-.2c-.6.5-1.3.9-2 1.2l-.1 1c-.1.5-.5.9-1 .9H6.5c-.5 0-.9-.4-1-.9l-.1-1c-.8-.3-1.6-.8-2.3-1.4l-.4.2c-.4.2-1 .1-1.3-.3L.2 11c-.3-.4-.2-1 .1-1.3l.8-.7c0-.4-.1-.7-.1-1 0-.6.1-1.2.2-1.8l-.6-.6C.2 5.3.1 4.7.4 4.3l1.2-1.7c.3-.5.9-.6 1.3-.4l.9.5c.5-.3 1-.6 1.6-.8l.1-1z",
-                          },
-                        ],
-                        "polygons": "",
-                        "polylines": "",
-                        "rects": "",
-                      },
-                      "tags": "icon--settings",
-                      "viewBox": "0 0 15 16",
-                      "width": "15",
-                    }
-                  }
+                <TableToolbarMenu
                   iconDescription="Settings"
-                  onClick={[MockFunction]}
-                />
-                <Button
+                  renderIcon={
+                    Object {
+                      "$$typeof": Symbol(react.forward_ref),
+                      "defaultProps": Object {
+                        "height": 16,
+                        "preserveAspectRatio": "xMidYMid meet",
+                        "viewBox": "0 0 16 16",
+                        "width": 16,
+                        "xmlns": "http://www.w3.org/2000/svg",
+                      },
+                      "displayName": "Settings16",
+                      "propTypes": Object {
+                        "aria-hidden": [Function],
+                        "aria-label": [Function],
+                        "aria-labelledby": [Function],
+                        "children": [Function],
+                        "className": [Function],
+                        "height": [Function],
+                        "preserveAspectRatio": [Function],
+                        "tabIndex": [Function],
+                        "viewBox": [Function],
+                        "width": [Function],
+                        "xmlns": [Function],
+                      },
+                      "render": [Function],
+                    }
+                  }
+                >
+                  <TableToolbarAction
+                    onClick={[MockFunction]}
+                  >
+                    Action 1
+                  </TableToolbarAction>
+                  <TableToolbarAction
+                    onClick={[MockFunction]}
+                  >
+                    Action 2
+                  </TableToolbarAction>
+                  <TableToolbarAction
+                    onClick={[MockFunction]}
+                  >
+                    Action 3
+                  </TableToolbarAction>
+                </TableToolbarMenu>
+                <ForwardRef(Button)
                   disabled={false}
                   iconDescription="Provide icon description if icon is used"
                   kind="primary"
@@ -1188,19 +1916,17 @@ exports[`DataTable should render 1`] = `
                   type="button"
                 >
                   Add new
-                </Button>
+                </ForwardRef(Button)>
               </TableToolbarContent>
             </TableToolbar>
             <Table
-              short={false}
-              shouldShowBorder={true}
-              zebra={true}
+              isSortable={false}
             >
               <TableHead>
                 <TableRow>
                   <TableHeader
                     isSortHeader={false}
-                    isSortable={true}
+                    isSortable={false}
                     onClick={[Function]}
                     scope="col"
                     sortDirection="NONE"
@@ -1210,7 +1936,7 @@ exports[`DataTable should render 1`] = `
                   </TableHeader>
                   <TableHeader
                     isSortHeader={false}
-                    isSortable={true}
+                    isSortable={false}
                     onClick={[Function]}
                     scope="col"
                     sortDirection="NONE"
@@ -1220,7 +1946,9 @@ exports[`DataTable should render 1`] = `
                   </TableHeader>
                 </TableRow>
               </TableHead>
-              <TableBody>
+              <TableBody
+                aria-live="polite"
+              >
                 <TableRow>
                   <TableCell>
                     Field 2:A
@@ -1271,8 +1999,6 @@ exports[`DataTable should render 1`] = `
       },
     ]
   }
-  short={false}
-  shouldShowBorder={true}
   sortRow={[Function]}
   translateWithId={[Function]}
 >
@@ -1280,418 +2006,691 @@ exports[`DataTable should render 1`] = `
     title="DataTable with toolbar"
   >
     <div
-      className="bx--data-table-v2-container"
+      className="bx--data-table-container"
     >
-      <h4
-        className="bx--data-table-v2-header"
+      <div
+        className="bx--data-table-header"
       >
-        DataTable with toolbar
-      </h4>
+        <h4
+          className="bx--data-table-header__title"
+        >
+          DataTable with toolbar
+        </h4>
+        <p
+          className="bx--data-table-header__description"
+        />
+      </div>
       <TableToolbar>
         <section
+          aria-label="data table toolbar"
           className="bx--table-toolbar"
         >
-          <TableToolbarSearch
-            id="custom-id"
-            onChange={[Function]}
+          <TableBatchActions
+            onCancel={[Function]}
+            shouldShowBatchActions={false}
+            totalSelected={0}
             translateWithId={[Function]}
           >
             <div
-              className="bx--toolbar-search-container"
+              className="bx--batch-actions"
             >
-              <Search
-                id="custom-id"
-                labelText="Filter table"
-                light={true}
-                onChange={[Function]}
-                placeHolderText="Search"
-                small={true}
-                type="text"
-              >
+              <TableActionList>
                 <div
-                  aria-labelledby="custom-id-label"
-                  className="bx--search bx--search--sm bx--search--light"
-                  role="search"
+                  className="bx--action-list"
                 >
-                  <Icon
-                    className="bx--search-magnifier"
-                    description="Filter table"
-                    fillRule="evenodd"
-                    icon={
+                  <TableBatchAction
+                    iconDescription="Add"
+                    onClick={[MockFunction]}
+                    renderIcon={
                       Object {
-                        "height": "16",
-                        "id": "icon--search",
-                        "name": "icon--search",
-                        "styles": "",
-                        "svgData": Object {
-                          "circles": "",
-                          "ellipses": "",
-                          "paths": Array [
-                            Object {
-                              "d": "M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zm4.936-1.27l4.563 4.557-.707.708-4.563-4.558a6.5 6.5 0 1 1 .707-.707z",
-                              "fill-rule": "nonzero",
-                            },
-                          ],
-                          "polygons": "",
-                          "polylines": "",
-                          "rects": "",
+                        "$$typeof": Symbol(react.forward_ref),
+                        "defaultProps": Object {
+                          "height": 16,
+                          "preserveAspectRatio": "xMidYMid meet",
+                          "viewBox": "0 0 16 16",
+                          "width": 16,
+                          "xmlns": "http://www.w3.org/2000/svg",
                         },
-                        "tags": "icon--search",
-                        "viewBox": "0 0 16 16",
-                        "width": "16",
+                        "displayName": "AddFilled16",
+                        "propTypes": Object {
+                          "aria-hidden": [Function],
+                          "aria-label": [Function],
+                          "aria-labelledby": [Function],
+                          "children": [Function],
+                          "className": [Function],
+                          "height": [Function],
+                          "preserveAspectRatio": [Function],
+                          "tabIndex": [Function],
+                          "viewBox": [Function],
+                          "width": [Function],
+                          "xmlns": [Function],
+                        },
+                        "render": [Function],
                       }
                     }
-                    role="img"
                   >
-                    <svg
-                      alt="Filter table"
-                      aria-label="Filter table"
-                      className="bx--search-magnifier"
-                      fillRule="evenodd"
-                      height="16"
-                      role="img"
-                      viewBox="0 0 16 16"
-                      width="16"
-                    >
-                      <title>
-                        Filter table
-                      </title>
-                      <path
-                        d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zm4.936-1.27l4.563 4.557-.707.708-4.563-4.558a6.5 6.5 0 1 1 .707-.707z"
-                        key="key0"
-                      />
-                    </svg>
-                  </Icon>
-                  <label
-                    className="bx--label"
-                    htmlFor="custom-id"
-                    id="custom-id-label"
-                  >
-                    Filter table
-                  </label>
-                  <input
-                    className="bx--search-input"
-                    id="custom-id"
-                    onChange={[Function]}
-                    placeholder="Search"
-                    type="text"
-                  />
-                  <button
-                    className="bx--search-close bx--search-close--hidden"
-                    onClick={[Function]}
-                    type="button"
-                  >
-                    <Icon
-                      description="Provide a description that will be used as the title"
-                      fillRule="evenodd"
-                      icon={
+                    <ForwardRef(Button)
+                      disabled={false}
+                      iconDescription="Add"
+                      kind="primary"
+                      onClick={[MockFunction]}
+                      renderIcon={
                         Object {
-                          "height": "16",
-                          "id": "icon--close--solid",
-                          "name": "icon--close--solid",
-                          "styles": "",
-                          "svgData": Object {
-                            "circles": "",
-                            "ellipses": "",
-                            "paths": Array [
-                              Object {
-                                "d": "M8 6.586L5.879 4.464 4.464 5.88 6.586 8l-2.122 2.121 1.415 1.415L8 9.414l2.121 2.122 1.415-1.415L9.414 8l2.122-2.121-1.415-1.415L8 6.586zM8 16A8 8 0 1 1 8 0a8 8 0 0 1 0 16z",
-                              },
-                            ],
-                            "polygons": "",
-                            "polylines": "",
-                            "rects": "",
+                          "$$typeof": Symbol(react.forward_ref),
+                          "defaultProps": Object {
+                            "height": 16,
+                            "preserveAspectRatio": "xMidYMid meet",
+                            "viewBox": "0 0 16 16",
+                            "width": 16,
+                            "xmlns": "http://www.w3.org/2000/svg",
                           },
-                          "tags": "icon--close--solid",
-                          "viewBox": "0 0 16 16",
-                          "width": "16",
+                          "displayName": "AddFilled16",
+                          "propTypes": Object {
+                            "aria-hidden": [Function],
+                            "aria-label": [Function],
+                            "aria-labelledby": [Function],
+                            "children": [Function],
+                            "className": [Function],
+                            "height": [Function],
+                            "preserveAspectRatio": [Function],
+                            "tabIndex": [Function],
+                            "viewBox": [Function],
+                            "width": [Function],
+                            "xmlns": [Function],
+                          },
+                          "render": [Function],
                         }
                       }
-                      role="img"
+                      small={false}
+                      tabIndex={0}
+                      type="button"
                     >
-                      <svg
-                        alt="Provide a description that will be used as the title"
-                        aria-label="Provide a description that will be used as the title"
-                        fillRule="evenodd"
-                        height="16"
-                        role="img"
-                        viewBox="0 0 16 16"
-                        width="16"
+                      <button
+                        className="bx--btn bx--btn--primary"
+                        disabled={false}
+                        onClick={[MockFunction]}
+                        tabIndex={0}
+                        type="button"
                       >
-                        <title>
-                          Provide a description that will be used as the title
-                        </title>
-                        <path
-                          d="M8 6.586L5.879 4.464 4.464 5.88 6.586 8l-2.122 2.121 1.415 1.415L8 9.414l2.121 2.122 1.415-1.415L9.414 8l2.122-2.121-1.415-1.415L8 6.586zM8 16A8 8 0 1 1 8 0a8 8 0 0 1 0 16z"
-                          key="key0"
-                        />
-                      </svg>
-                    </Icon>
-                  </button>
+                        Ghost
+                        <AddFilled16
+                          aria-hidden={true}
+                          aria-label="Add"
+                          className="bx--btn__icon"
+                          height={16}
+                          preserveAspectRatio="xMidYMid meet"
+                          viewBox="0 0 16 16"
+                          width={16}
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <svg
+                            aria-hidden={true}
+                            aria-label="Add"
+                            className="bx--btn__icon"
+                            focusable="false"
+                            height={16}
+                            preserveAspectRatio="xMidYMid meet"
+                            role="img"
+                            style={
+                              Object {
+                                "willChange": "transform",
+                              }
+                            }
+                            viewBox="0 0 16 16"
+                            width={16}
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M8 1C4.2 1 1 4.2 1 8s3.2 7 7 7 7-3.2 7-7-3.2-7-7-7zm3 7.5H8.5V11h-1V8.5H5v-1h2.5V5h1v2.5H11v1z"
+                            />
+                          </svg>
+                        </AddFilled16>
+                      </button>
+                    </ForwardRef(Button)>
+                  </TableBatchAction>
+                  <TableBatchAction
+                    iconDescription="Add"
+                    onClick={[MockFunction]}
+                    renderIcon={
+                      Object {
+                        "$$typeof": Symbol(react.forward_ref),
+                        "defaultProps": Object {
+                          "height": 16,
+                          "preserveAspectRatio": "xMidYMid meet",
+                          "viewBox": "0 0 16 16",
+                          "width": 16,
+                          "xmlns": "http://www.w3.org/2000/svg",
+                        },
+                        "displayName": "AddFilled16",
+                        "propTypes": Object {
+                          "aria-hidden": [Function],
+                          "aria-label": [Function],
+                          "aria-labelledby": [Function],
+                          "children": [Function],
+                          "className": [Function],
+                          "height": [Function],
+                          "preserveAspectRatio": [Function],
+                          "tabIndex": [Function],
+                          "viewBox": [Function],
+                          "width": [Function],
+                          "xmlns": [Function],
+                        },
+                        "render": [Function],
+                      }
+                    }
+                  >
+                    <ForwardRef(Button)
+                      disabled={false}
+                      iconDescription="Add"
+                      kind="primary"
+                      onClick={[MockFunction]}
+                      renderIcon={
+                        Object {
+                          "$$typeof": Symbol(react.forward_ref),
+                          "defaultProps": Object {
+                            "height": 16,
+                            "preserveAspectRatio": "xMidYMid meet",
+                            "viewBox": "0 0 16 16",
+                            "width": 16,
+                            "xmlns": "http://www.w3.org/2000/svg",
+                          },
+                          "displayName": "AddFilled16",
+                          "propTypes": Object {
+                            "aria-hidden": [Function],
+                            "aria-label": [Function],
+                            "aria-labelledby": [Function],
+                            "children": [Function],
+                            "className": [Function],
+                            "height": [Function],
+                            "preserveAspectRatio": [Function],
+                            "tabIndex": [Function],
+                            "viewBox": [Function],
+                            "width": [Function],
+                            "xmlns": [Function],
+                          },
+                          "render": [Function],
+                        }
+                      }
+                      small={false}
+                      tabIndex={0}
+                      type="button"
+                    >
+                      <button
+                        className="bx--btn bx--btn--primary"
+                        disabled={false}
+                        onClick={[MockFunction]}
+                        tabIndex={0}
+                        type="button"
+                      >
+                        Ghost
+                        <AddFilled16
+                          aria-hidden={true}
+                          aria-label="Add"
+                          className="bx--btn__icon"
+                          height={16}
+                          preserveAspectRatio="xMidYMid meet"
+                          viewBox="0 0 16 16"
+                          width={16}
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <svg
+                            aria-hidden={true}
+                            aria-label="Add"
+                            className="bx--btn__icon"
+                            focusable="false"
+                            height={16}
+                            preserveAspectRatio="xMidYMid meet"
+                            role="img"
+                            style={
+                              Object {
+                                "willChange": "transform",
+                              }
+                            }
+                            viewBox="0 0 16 16"
+                            width={16}
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M8 1C4.2 1 1 4.2 1 8s3.2 7 7 7 7-3.2 7-7-3.2-7-7-7zm3 7.5H8.5V11h-1V8.5H5v-1h2.5V5h1v2.5H11v1z"
+                            />
+                          </svg>
+                        </AddFilled16>
+                      </button>
+                    </ForwardRef(Button)>
+                  </TableBatchAction>
+                  <TableBatchAction
+                    iconDescription="Add"
+                    onClick={[MockFunction]}
+                    renderIcon={
+                      Object {
+                        "$$typeof": Symbol(react.forward_ref),
+                        "defaultProps": Object {
+                          "height": 16,
+                          "preserveAspectRatio": "xMidYMid meet",
+                          "viewBox": "0 0 16 16",
+                          "width": 16,
+                          "xmlns": "http://www.w3.org/2000/svg",
+                        },
+                        "displayName": "AddFilled16",
+                        "propTypes": Object {
+                          "aria-hidden": [Function],
+                          "aria-label": [Function],
+                          "aria-labelledby": [Function],
+                          "children": [Function],
+                          "className": [Function],
+                          "height": [Function],
+                          "preserveAspectRatio": [Function],
+                          "tabIndex": [Function],
+                          "viewBox": [Function],
+                          "width": [Function],
+                          "xmlns": [Function],
+                        },
+                        "render": [Function],
+                      }
+                    }
+                  >
+                    <ForwardRef(Button)
+                      disabled={false}
+                      iconDescription="Add"
+                      kind="primary"
+                      onClick={[MockFunction]}
+                      renderIcon={
+                        Object {
+                          "$$typeof": Symbol(react.forward_ref),
+                          "defaultProps": Object {
+                            "height": 16,
+                            "preserveAspectRatio": "xMidYMid meet",
+                            "viewBox": "0 0 16 16",
+                            "width": 16,
+                            "xmlns": "http://www.w3.org/2000/svg",
+                          },
+                          "displayName": "AddFilled16",
+                          "propTypes": Object {
+                            "aria-hidden": [Function],
+                            "aria-label": [Function],
+                            "aria-labelledby": [Function],
+                            "children": [Function],
+                            "className": [Function],
+                            "height": [Function],
+                            "preserveAspectRatio": [Function],
+                            "tabIndex": [Function],
+                            "viewBox": [Function],
+                            "width": [Function],
+                            "xmlns": [Function],
+                          },
+                          "render": [Function],
+                        }
+                      }
+                      small={false}
+                      tabIndex={0}
+                      type="button"
+                    >
+                      <button
+                        className="bx--btn bx--btn--primary"
+                        disabled={false}
+                        onClick={[MockFunction]}
+                        tabIndex={0}
+                        type="button"
+                      >
+                        Ghost
+                        <AddFilled16
+                          aria-hidden={true}
+                          aria-label="Add"
+                          className="bx--btn__icon"
+                          height={16}
+                          preserveAspectRatio="xMidYMid meet"
+                          viewBox="0 0 16 16"
+                          width={16}
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <svg
+                            aria-hidden={true}
+                            aria-label="Add"
+                            className="bx--btn__icon"
+                            focusable="false"
+                            height={16}
+                            preserveAspectRatio="xMidYMid meet"
+                            role="img"
+                            style={
+                              Object {
+                                "willChange": "transform",
+                              }
+                            }
+                            viewBox="0 0 16 16"
+                            width={16}
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M8 1C4.2 1 1 4.2 1 8s3.2 7 7 7 7-3.2 7-7-3.2-7-7-7zm3 7.5H8.5V11h-1V8.5H5v-1h2.5V5h1v2.5H11v1z"
+                            />
+                          </svg>
+                        </AddFilled16>
+                      </button>
+                    </ForwardRef(Button)>
+                  </TableBatchAction>
+                  <ForwardRef(Button)
+                    className="bx--batch-summary__cancel"
+                    disabled={false}
+                    iconDescription="Provide icon description if icon is used"
+                    kind="primary"
+                    onClick={[Function]}
+                    small={false}
+                    tabIndex={0}
+                    type="button"
+                  >
+                    <button
+                      className="bx--batch-summary__cancel bx--btn bx--btn--primary"
+                      disabled={false}
+                      onClick={[Function]}
+                      tabIndex={0}
+                      type="button"
+                    >
+                      Cancel
+                    </button>
+                  </ForwardRef(Button)>
                 </div>
-              </Search>
+              </TableActionList>
+              <div
+                className="bx--batch-summary"
+              >
+                <p
+                  className="bx--batch-summary__para"
+                >
+                  <span>
+                    0 item selected
+                  </span>
+                </p>
+              </div>
             </div>
-          </TableToolbarSearch>
+          </TableBatchActions>
           <TableToolbarContent>
             <div
               className="bx--toolbar-content"
             >
-              <TableToolbarAction
-                icon={
-                  Object {
-                    "height": "16",
-                    "id": "icon--download",
-                    "name": "icon--download",
-                    "styles": "",
-                    "svgData": Object {
-                      "circles": "",
-                      "ellipses": "",
-                      "paths": Array [
-                        Object {
-                          "d": "M7.5 11l4.1-4.4.7.7L7 13 1.6 7.3l.7-.7L6.5 11V0h1v11zm5.5 4v-2h1v2c0 .6-.4 1-1 1H1c-.6 0-1-.4-1-1v-2h1v2h12z",
-                        },
-                      ],
-                      "polygons": "",
-                      "polylines": "",
-                      "rects": "",
-                    },
-                    "tags": "icon--download",
-                    "viewBox": "0 0 14 16",
-                    "width": "14",
-                  }
-                }
-                iconDescription="Download"
-                onClick={[MockFunction]}
+              <TableToolbarSearch
+                id="custom-id"
+                onChange={[Function]}
+                persistant={true}
+                translateWithId={[Function]}
               >
-                <button
-                  className="bx--toolbar-action"
-                  onClick={[MockFunction]}
+                <div
+                  className="bx--toolbar-action bx--toolbar-search-container-persistant"
+                  onBlur={[Function]}
+                  onClick={[Function]}
+                  onFocus={[Function]}
+                  role="searchbox"
+                  tabIndex="0"
                 >
-                  <Icon
-                    className="bx--toolbar-action__icon"
-                    description="Download"
-                    fillRule="evenodd"
-                    icon={
-                      Object {
-                        "height": "16",
-                        "id": "icon--download",
-                        "name": "icon--download",
-                        "styles": "",
-                        "svgData": Object {
-                          "circles": "",
-                          "ellipses": "",
-                          "paths": Array [
-                            Object {
-                              "d": "M7.5 11l4.1-4.4.7.7L7 13 1.6 7.3l.7-.7L6.5 11V0h1v11zm5.5 4v-2h1v2c0 .6-.4 1-1 1H1c-.6 0-1-.4-1-1v-2h1v2h12z",
-                            },
-                          ],
-                          "polygons": "",
-                          "polylines": "",
-                          "rects": "",
-                        },
-                        "tags": "icon--download",
-                        "viewBox": "0 0 14 16",
-                        "width": "14",
-                      }
-                    }
-                    role="img"
+                  <Search
+                    aria-hidden={true}
+                    className="bx--search-maginfier"
+                    id="custom-id"
+                    labelText="Filter table"
+                    onChange={[Function]}
+                    placeHolderText="Search"
+                    small={true}
+                    type="text"
+                    value=""
                   >
-                    <svg
-                      alt="Download"
-                      aria-label="Download"
-                      className="bx--toolbar-action__icon"
-                      fillRule="evenodd"
-                      height="16"
-                      role="img"
-                      viewBox="0 0 14 16"
-                      width="14"
+                    <div
+                      aria-labelledby="custom-id-label"
+                      className="bx--search bx--search--sm bx--search-maginfier"
+                      role="search"
                     >
-                      <title>
-                        Download
-                      </title>
-                      <path
-                        d="M7.5 11l4.1-4.4.7.7L7 13 1.6 7.3l.7-.7L6.5 11V0h1v11zm5.5 4v-2h1v2c0 .6-.4 1-1 1H1c-.6 0-1-.4-1-1v-2h1v2h12z"
-                        key="key0"
-                      />
-                    </svg>
-                  </Icon>
-                </button>
-              </TableToolbarAction>
-              <TableToolbarAction
-                icon={
-                  Object {
-                    "height": "16",
-                    "id": "icon--edit",
-                    "name": "icon--edit",
-                    "styles": "",
-                    "svgData": Object {
-                      "circles": "",
-                      "ellipses": "",
-                      "paths": Array [
-                        Object {
-                          "d": "M7.926 3.38L1.002 9.72V12h2.304l6.926-6.316L7.926 3.38zm.738-.675l2.308 2.304 1.451-1.324-2.308-2.309-1.451 1.329zM.002 9.28L9.439.639a1 1 0 0 1 1.383.03l2.309 2.309a1 1 0 0 1-.034 1.446L3.694 13H.002V9.28zM0 16.013v-1h16v1z",
-                          "fill-rule": "nonzero",
-                        },
-                      ],
-                      "polygons": "",
-                      "polylines": "",
-                      "rects": "",
-                    },
-                    "tags": "icon--edit",
-                    "viewBox": "0 0 16 16",
-                    "width": "16",
-                  }
-                }
-                iconDescription="Edit"
-                onClick={[MockFunction]}
-              >
-                <button
-                  className="bx--toolbar-action"
-                  onClick={[MockFunction]}
-                >
-                  <Icon
-                    className="bx--toolbar-action__icon"
-                    description="Edit"
-                    fillRule="evenodd"
-                    icon={
-                      Object {
-                        "height": "16",
-                        "id": "icon--edit",
-                        "name": "icon--edit",
-                        "styles": "",
-                        "svgData": Object {
-                          "circles": "",
-                          "ellipses": "",
-                          "paths": Array [
+                      <Search16
+                        aria-label="Filter table"
+                        className="bx--search-magnifier"
+                        height={16}
+                        preserveAspectRatio="xMidYMid meet"
+                        role="img"
+                        viewBox="0 0 16 16"
+                        width={16}
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <svg
+                          aria-label="Filter table"
+                          className="bx--search-magnifier"
+                          focusable="false"
+                          height={16}
+                          preserveAspectRatio="xMidYMid meet"
+                          role="img"
+                          style={
                             Object {
-                              "d": "M7.926 3.38L1.002 9.72V12h2.304l6.926-6.316L7.926 3.38zm.738-.675l2.308 2.304 1.451-1.324-2.308-2.309-1.451 1.329zM.002 9.28L9.439.639a1 1 0 0 1 1.383.03l2.309 2.309a1 1 0 0 1-.034 1.446L3.694 13H.002V9.28zM0 16.013v-1h16v1z",
-                              "fill-rule": "nonzero",
-                            },
-                          ],
-                          "polygons": "",
-                          "polylines": "",
-                          "rects": "",
-                        },
-                        "tags": "icon--edit",
-                        "viewBox": "0 0 16 16",
-                        "width": "16",
-                      }
-                    }
-                    role="img"
-                  >
-                    <svg
-                      alt="Edit"
-                      aria-label="Edit"
-                      className="bx--toolbar-action__icon"
-                      fillRule="evenodd"
-                      height="16"
-                      role="img"
-                      viewBox="0 0 16 16"
-                      width="16"
-                    >
-                      <title>
-                        Edit
-                      </title>
-                      <path
-                        d="M7.926 3.38L1.002 9.72V12h2.304l6.926-6.316L7.926 3.38zm.738-.675l2.308 2.304 1.451-1.324-2.308-2.309-1.451 1.329zM.002 9.28L9.439.639a1 1 0 0 1 1.383.03l2.309 2.309a1 1 0 0 1-.034 1.446L3.694 13H.002V9.28zM0 16.013v-1h16v1z"
-                        key="key0"
+                              "willChange": "transform",
+                            }
+                          }
+                          viewBox="0 0 16 16"
+                          width={16}
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M15 14.3L10.7 10c1.9-2.3 1.6-5.8-.7-7.7S4.2.7 2.3 3 .7 8.8 3 10.7c2 1.7 5 1.7 7 0l4.3 4.3.7-.7zM2 6.5C2 4 4 2 6.5 2S11 4 11 6.5 9 11 6.5 11 2 9 2 6.5z"
+                          />
+                        </svg>
+                      </Search16>
+                      <label
+                        className="bx--label"
+                        htmlFor="custom-id"
+                        id="custom-id-label"
+                      >
+                        Filter table
+                      </label>
+                      <input
+                        aria-hidden={true}
+                        className="bx--search-input"
+                        id="custom-id"
+                        onChange={[Function]}
+                        placeholder="Search"
+                        type="text"
+                        value=""
                       />
-                    </svg>
-                  </Icon>
-                </button>
-              </TableToolbarAction>
-              <TableToolbarAction
-                icon={
-                  Object {
-                    "height": "16",
-                    "id": "icon--settings",
-                    "name": "icon--settings",
-                    "styles": "",
-                    "svgData": Object {
-                      "circles": "",
-                      "ellipses": "",
-                      "paths": Array [
-                        Object {
-                          "d": "M7.5 10.5C8.9 10.5 10 9.4 10 8S8.9 5.5 7.5 5.5 5 6.6 5 8s1.2 2.5 2.5 2.5zm0 1C5.6 11.5 4 9.9 4 8s1.6-3.5 3.5-3.5S11 6.1 11 8s-1.5 3.5-3.5 3.5z",
-                        },
-                        Object {
-                          "d": "M6.3 2.6l-.3.1c-.7.2-1.3.5-1.9 1l-.2.2-1.4-.8-1.3 1.8L2.4 6l-.1.2C2.1 6.8 2 7.4 2 8c0 .3 0 .7.1 1l.1.3-1.2 1L2.2 12l1.1-.6.3.3c.6.8 1.4 1.3 2.4 1.6l.3.1.2 1.6h2.1l.2-1.6.3-.1c.8-.2 1.6-.7 2.2-1.3l.3-.2 1.1.6 1.2-1.7-1.1-1 .1-.3c.1-.5.1-1 .1-1.4 0-.5-.1-1.1-.2-1.6l-.1-.3 1.2-1-1.2-1.7-1.4.6-.3-.2c-.6-.5-1.3-.9-2-1.1l-.2-.1L8.6 1H6.5l-.2 1.6zM5.5.9c0-.5.5-.9 1-.9h2.1c.5 0 .9.4 1 .9l.1 1c.6.2 1.2.5 1.8 1l.7-.4c.4-.2 1-.1 1.3.3l1.2 1.7c.3.4.2 1-.1 1.3l-.7.6c.1.5.1 1.1.1 1.6 0 .4 0 .8-.1 1.3l.6.6c.4.3.4.9.1 1.3l-1.2 1.7c-.3.4-.8.5-1.3.3l-.4-.2c-.6.5-1.3.9-2 1.2l-.1 1c-.1.5-.5.9-1 .9H6.5c-.5 0-.9-.4-1-.9l-.1-1c-.8-.3-1.6-.8-2.3-1.4l-.4.2c-.4.2-1 .1-1.3-.3L.2 11c-.3-.4-.2-1 .1-1.3l.8-.7c0-.4-.1-.7-.1-1 0-.6.1-1.2.2-1.8l-.6-.6C.2 5.3.1 4.7.4 4.3l1.2-1.7c.3-.5.9-.6 1.3-.4l.9.5c.5-.3 1-.6 1.6-.8l.1-1z",
-                        },
-                      ],
-                      "polygons": "",
-                      "polylines": "",
-                      "rects": "",
-                    },
-                    "tags": "icon--settings",
-                    "viewBox": "0 0 15 16",
-                    "width": "15",
-                  }
-                }
+                      <button
+                        className="bx--search-close bx--search-close--hidden"
+                        onClick={[Function]}
+                        type="button"
+                      >
+                        <Close16
+                          height={16}
+                          preserveAspectRatio="xMidYMid meet"
+                          role="img"
+                          viewBox="0 0 16 16"
+                          width={16}
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <svg
+                            aria-hidden={true}
+                            focusable="false"
+                            height={16}
+                            preserveAspectRatio="xMidYMid meet"
+                            role="img"
+                            style={
+                              Object {
+                                "willChange": "transform",
+                              }
+                            }
+                            viewBox="0 0 16 16"
+                            width={16}
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M12 4.7l-.7-.7L8 7.3 4.7 4l-.7.7L7.3 8 4 11.3l.7.7L8 8.7l3.3 3.3.7-.7L8.7 8z"
+                            />
+                          </svg>
+                        </Close16>
+                      </button>
+                    </div>
+                  </Search>
+                </div>
+              </TableToolbarSearch>
+              <TableToolbarMenu
                 iconDescription="Settings"
-                onClick={[MockFunction]}
+                renderIcon={
+                  Object {
+                    "$$typeof": Symbol(react.forward_ref),
+                    "defaultProps": Object {
+                      "height": 16,
+                      "preserveAspectRatio": "xMidYMid meet",
+                      "viewBox": "0 0 16 16",
+                      "width": 16,
+                      "xmlns": "http://www.w3.org/2000/svg",
+                    },
+                    "displayName": "Settings16",
+                    "propTypes": Object {
+                      "aria-hidden": [Function],
+                      "aria-label": [Function],
+                      "aria-labelledby": [Function],
+                      "children": [Function],
+                      "className": [Function],
+                      "height": [Function],
+                      "preserveAspectRatio": [Function],
+                      "tabIndex": [Function],
+                      "viewBox": [Function],
+                      "width": [Function],
+                      "xmlns": [Function],
+                    },
+                    "render": [Function],
+                  }
+                }
               >
-                <button
-                  className="bx--toolbar-action"
-                  onClick={[MockFunction]}
+                <ForwardRef(OverflowMenu)
+                  className="bx--toolbar-action bx--overflow-menu"
+                  flipped={true}
+                  renderIcon={
+                    Object {
+                      "$$typeof": Symbol(react.forward_ref),
+                      "defaultProps": Object {
+                        "height": 16,
+                        "preserveAspectRatio": "xMidYMid meet",
+                        "viewBox": "0 0 16 16",
+                        "width": 16,
+                        "xmlns": "http://www.w3.org/2000/svg",
+                      },
+                      "displayName": "Settings16",
+                      "propTypes": Object {
+                        "aria-hidden": [Function],
+                        "aria-label": [Function],
+                        "aria-labelledby": [Function],
+                        "children": [Function],
+                        "className": [Function],
+                        "height": [Function],
+                        "preserveAspectRatio": [Function],
+                        "tabIndex": [Function],
+                        "viewBox": [Function],
+                        "width": [Function],
+                        "xmlns": [Function],
+                      },
+                      "render": [Function],
+                    }
+                  }
+                  title="Settings"
                 >
-                  <Icon
-                    className="bx--toolbar-action__icon"
-                    description="Settings"
-                    fillRule="evenodd"
-                    icon={
+                  <OverflowMenu
+                    ariaLabel="list of options"
+                    className="bx--toolbar-action bx--overflow-menu"
+                    direction="bottom"
+                    flipped={true}
+                    iconDescription="open and close list of options"
+                    innerRef={null}
+                    menuOffset={[Function]}
+                    menuOffsetFlip={[Function]}
+                    onClick={[Function]}
+                    onClose={[Function]}
+                    onKeyDown={[Function]}
+                    onOpen={[Function]}
+                    open={false}
+                    renderIcon={
                       Object {
-                        "height": "16",
-                        "id": "icon--settings",
-                        "name": "icon--settings",
-                        "styles": "",
-                        "svgData": Object {
-                          "circles": "",
-                          "ellipses": "",
-                          "paths": Array [
-                            Object {
-                              "d": "M7.5 10.5C8.9 10.5 10 9.4 10 8S8.9 5.5 7.5 5.5 5 6.6 5 8s1.2 2.5 2.5 2.5zm0 1C5.6 11.5 4 9.9 4 8s1.6-3.5 3.5-3.5S11 6.1 11 8s-1.5 3.5-3.5 3.5z",
-                            },
-                            Object {
-                              "d": "M6.3 2.6l-.3.1c-.7.2-1.3.5-1.9 1l-.2.2-1.4-.8-1.3 1.8L2.4 6l-.1.2C2.1 6.8 2 7.4 2 8c0 .3 0 .7.1 1l.1.3-1.2 1L2.2 12l1.1-.6.3.3c.6.8 1.4 1.3 2.4 1.6l.3.1.2 1.6h2.1l.2-1.6.3-.1c.8-.2 1.6-.7 2.2-1.3l.3-.2 1.1.6 1.2-1.7-1.1-1 .1-.3c.1-.5.1-1 .1-1.4 0-.5-.1-1.1-.2-1.6l-.1-.3 1.2-1-1.2-1.7-1.4.6-.3-.2c-.6-.5-1.3-.9-2-1.1l-.2-.1L8.6 1H6.5l-.2 1.6zM5.5.9c0-.5.5-.9 1-.9h2.1c.5 0 .9.4 1 .9l.1 1c.6.2 1.2.5 1.8 1l.7-.4c.4-.2 1-.1 1.3.3l1.2 1.7c.3.4.2 1-.1 1.3l-.7.6c.1.5.1 1.1.1 1.6 0 .4 0 .8-.1 1.3l.6.6c.4.3.4.9.1 1.3l-1.2 1.7c-.3.4-.8.5-1.3.3l-.4-.2c-.6.5-1.3.9-2 1.2l-.1 1c-.1.5-.5.9-1 .9H6.5c-.5 0-.9-.4-1-.9l-.1-1c-.8-.3-1.6-.8-2.3-1.4l-.4.2c-.4.2-1 .1-1.3-.3L.2 11c-.3-.4-.2-1 .1-1.3l.8-.7c0-.4-.1-.7-.1-1 0-.6.1-1.2.2-1.8l-.6-.6C.2 5.3.1 4.7.4 4.3l1.2-1.7c.3-.5.9-.6 1.3-.4l.9.5c.5-.3 1-.6 1.6-.8l.1-1z",
-                            },
-                          ],
-                          "polygons": "",
-                          "polylines": "",
-                          "rects": "",
+                        "$$typeof": Symbol(react.forward_ref),
+                        "defaultProps": Object {
+                          "height": 16,
+                          "preserveAspectRatio": "xMidYMid meet",
+                          "viewBox": "0 0 16 16",
+                          "width": 16,
+                          "xmlns": "http://www.w3.org/2000/svg",
                         },
-                        "tags": "icon--settings",
-                        "viewBox": "0 0 15 16",
-                        "width": "15",
+                        "displayName": "Settings16",
+                        "propTypes": Object {
+                          "aria-hidden": [Function],
+                          "aria-label": [Function],
+                          "aria-labelledby": [Function],
+                          "children": [Function],
+                          "className": [Function],
+                          "height": [Function],
+                          "preserveAspectRatio": [Function],
+                          "tabIndex": [Function],
+                          "viewBox": [Function],
+                          "width": [Function],
+                          "xmlns": [Function],
+                        },
+                        "render": [Function],
                       }
                     }
-                    role="img"
+                    tabIndex={0}
+                    title="Settings"
                   >
-                    <svg
-                      alt="Settings"
-                      aria-label="Settings"
-                      className="bx--toolbar-action__icon"
-                      fillRule="evenodd"
-                      height="16"
-                      role="img"
-                      viewBox="0 0 15 16"
-                      width="15"
+                    <ClickListener
+                      onClickOutside={[Function]}
                     >
-                      <title>
-                        Settings
-                      </title>
-                      <path
-                        d="M7.5 10.5C8.9 10.5 10 9.4 10 8S8.9 5.5 7.5 5.5 5 6.6 5 8s1.2 2.5 2.5 2.5zm0 1C5.6 11.5 4 9.9 4 8s1.6-3.5 3.5-3.5S11 6.1 11 8s-1.5 3.5-3.5 3.5z"
-                        key="key0"
-                      />
-                      <path
-                        d="M6.3 2.6l-.3.1c-.7.2-1.3.5-1.9 1l-.2.2-1.4-.8-1.3 1.8L2.4 6l-.1.2C2.1 6.8 2 7.4 2 8c0 .3 0 .7.1 1l.1.3-1.2 1L2.2 12l1.1-.6.3.3c.6.8 1.4 1.3 2.4 1.6l.3.1.2 1.6h2.1l.2-1.6.3-.1c.8-.2 1.6-.7 2.2-1.3l.3-.2 1.1.6 1.2-1.7-1.1-1 .1-.3c.1-.5.1-1 .1-1.4 0-.5-.1-1.1-.2-1.6l-.1-.3 1.2-1-1.2-1.7-1.4.6-.3-.2c-.6-.5-1.3-.9-2-1.1l-.2-.1L8.6 1H6.5l-.2 1.6zM5.5.9c0-.5.5-.9 1-.9h2.1c.5 0 .9.4 1 .9l.1 1c.6.2 1.2.5 1.8 1l.7-.4c.4-.2 1-.1 1.3.3l1.2 1.7c.3.4.2 1-.1 1.3l-.7.6c.1.5.1 1.1.1 1.6 0 .4 0 .8-.1 1.3l.6.6c.4.3.4.9.1 1.3l-1.2 1.7c-.3.4-.8.5-1.3.3l-.4-.2c-.6.5-1.3.9-2 1.2l-.1 1c-.1.5-.5.9-1 .9H6.5c-.5 0-.9-.4-1-.9l-.1-1c-.8-.3-1.6-.8-2.3-1.4l-.4.2c-.4.2-1 .1-1.3-.3L.2 11c-.3-.4-.2-1 .1-1.3l.8-.7c0-.4-.1-.7-.1-1 0-.6.1-1.2.2-1.8l-.6-.6C.2 5.3.1 4.7.4 4.3l1.2-1.7c.3-.5.9-.6 1.3-.4l.9.5c.5-.3 1-.6 1.6-.8l.1-1z"
-                        key="key1"
-                      />
-                    </svg>
-                  </Icon>
-                </button>
-              </TableToolbarAction>
-              <Button
+                      <div
+                        aria-expanded={false}
+                        aria-haspopup={true}
+                        aria-label="list of options"
+                        className="bx--toolbar-action bx--overflow-menu bx--overflow-menu"
+                        onClick={[Function]}
+                        onClose={[Function]}
+                        onKeyDown={[Function]}
+                        open={false}
+                        role="menu"
+                        tabIndex={0}
+                        title="Settings"
+                      >
+                        <Settings16
+                          aria-label="open and close list of options"
+                          className="bx--overflow-menu__icon"
+                          focusable="false"
+                          height={16}
+                          onClick={[Function]}
+                          onKeyDown={[Function]}
+                          preserveAspectRatio="xMidYMid meet"
+                          viewBox="0 0 16 16"
+                          width={16}
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <svg
+                            aria-label="open and close list of options"
+                            className="bx--overflow-menu__icon"
+                            focusable="false"
+                            height={16}
+                            onClick={[Function]}
+                            onKeyDown={[Function]}
+                            preserveAspectRatio="xMidYMid meet"
+                            role="img"
+                            style={
+                              Object {
+                                "willChange": "transform",
+                              }
+                            }
+                            viewBox="0 0 16 16"
+                            width={16}
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <title>
+                              open and close list of options
+                            </title>
+                            <path
+                              d="M13.5 8.4v-.8l1-.8c.4-.3.4-.9.2-1.3l-1.2-2c-.2-.3-.5-.5-.9-.5-.1 0-.2 0-.3.1l-1.2.4c-.2-.1-.4-.3-.7-.4l-.3-1.3c0-.5-.4-.8-.9-.8H6.8c-.5 0-.9.3-1 .8l-.2 1.3c-.3.1-.5.2-.7.3L3.7 3h-.3c-.4 0-.7.2-.9.5l-1.2 2c-.2.4-.1.9.3 1.3l.9.9v.8l-.9.7c-.4.3-.5.9-.2 1.3l1.2 2c.1.3.4.5.8.5.1 0 .2 0 .3-.1l1.2-.4c.2.1.4.3.7.4l.3 1.3c.1.5.5.8 1 .8h2.4c.5 0 .9-.3 1-.8l.3-1.3c.2-.1.4-.2.7-.4l1.2.4c.1 0 .2.1.3.1.4 0 .7-.2.9-.5l1.1-2c.2-.4.2-.9-.2-1.3l-1.1-.8zm-.9 3.6l-1.7-.6c-.4.3-.9.6-1.4.8L9.2 14H6.8l-.4-1.8c-.5-.2-.9-.5-1.4-.8l-1.6.6-1.2-2 1.4-1.2c-.1-.5-.1-1.1 0-1.6L2.2 6l1.2-2 1.7.6c.4-.4.9-.6 1.4-.8L6.8 2h2.4l.4 1.8c.5.2.9.5 1.4.8l1.6-.6 1.2 2-1.4 1.2c.1.5.1 1.1 0 1.6l1.4 1.2-1.2 2z"
+                            />
+                            <path
+                              d="M8 11c-1.7 0-3-1.3-3-3s1.3-3 3-3 3 1.3 3 3c0 1.6-1.3 3-3 3zm0-5c-1.1 0-2 .8-2 1.9V8c0 1.1.8 2 1.9 2H8c1.1 0 2-.8 2-1.9V8c0-1.1-.8-2-2-2 .1 0 0 0 0 0z"
+                            />
+                          </svg>
+                        </Settings16>
+                      </div>
+                    </ClickListener>
+                  </OverflowMenu>
+                </ForwardRef(OverflowMenu)>
+              </TableToolbarMenu>
+              <ForwardRef(Button)
                 disabled={false}
                 iconDescription="Provide icon description if icon is used"
                 kind="primary"
@@ -1709,18 +2708,16 @@ exports[`DataTable should render 1`] = `
                 >
                   Add new
                 </button>
-              </Button>
+              </ForwardRef(Button)>
             </div>
           </TableToolbarContent>
         </section>
       </TableToolbar>
       <Table
-        short={false}
-        shouldShowBorder={true}
-        zebra={true}
+        isSortable={false}
       >
         <table
-          className="bx--data-table-v2 bx--data-table-v2--zebra"
+          className="bx--data-table bx--data-table--no-border"
         >
           <TableHead>
             <thead>
@@ -1728,7 +2725,7 @@ exports[`DataTable should render 1`] = `
                 <tr>
                   <TableHeader
                     isSortHeader={false}
-                    isSortable={true}
+                    isSortable={false}
                     key="fieldA"
                     onClick={[Function]}
                     scope="col"
@@ -1736,72 +2733,18 @@ exports[`DataTable should render 1`] = `
                     translateWithId={[Function]}
                   >
                     <th
-                      aria-sort="none"
                       scope="col"
                     >
-                      <button
-                        className="bx--table-sort-v2"
-                        onClick={[Function]}
+                      <span
+                        className="bx--table-header-label"
                       >
-                        <span
-                          className="bx--table-header-label"
-                        >
-                          Field A
-                        </span>
-                        <Icon
-                          className="bx--table-sort-v2__icon"
-                          description="Sort rows by this header in ascending order"
-                          fillRule="evenodd"
-                          icon={
-                            Object {
-                              "height": "5",
-                              "id": "icon--caret--up",
-                              "name": "icon--caret--up",
-                              "styles": "",
-                              "svgData": Object {
-                                "circles": "",
-                                "ellipses": "",
-                                "paths": Array [
-                                  Object {
-                                    "d": "M0 5L5 .002 10 5z",
-                                  },
-                                ],
-                                "polygons": "",
-                                "polylines": "",
-                                "rects": "",
-                              },
-                              "tags": "icon--caret--up",
-                              "viewBox": "0 0 10 5",
-                              "width": "10",
-                            }
-                          }
-                          role="img"
-                        >
-                          <svg
-                            alt="Sort rows by this header in ascending order"
-                            aria-label="Sort rows by this header in ascending order"
-                            className="bx--table-sort-v2__icon"
-                            fillRule="evenodd"
-                            height="5"
-                            role="img"
-                            viewBox="0 0 10 5"
-                            width="10"
-                          >
-                            <title>
-                              Sort rows by this header in ascending order
-                            </title>
-                            <path
-                              d="M0 5L5 .002 10 5z"
-                              key="key0"
-                            />
-                          </svg>
-                        </Icon>
-                      </button>
+                        Field A
+                      </span>
                     </th>
                   </TableHeader>
                   <TableHeader
                     isSortHeader={false}
-                    isSortable={true}
+                    isSortable={false}
                     key="fieldB"
                     onClick={[Function]}
                     scope="col"
@@ -1809,75 +2752,25 @@ exports[`DataTable should render 1`] = `
                     translateWithId={[Function]}
                   >
                     <th
-                      aria-sort="none"
                       scope="col"
                     >
-                      <button
-                        className="bx--table-sort-v2"
-                        onClick={[Function]}
+                      <span
+                        className="bx--table-header-label"
                       >
-                        <span
-                          className="bx--table-header-label"
-                        >
-                          Field B
-                        </span>
-                        <Icon
-                          className="bx--table-sort-v2__icon"
-                          description="Sort rows by this header in ascending order"
-                          fillRule="evenodd"
-                          icon={
-                            Object {
-                              "height": "5",
-                              "id": "icon--caret--up",
-                              "name": "icon--caret--up",
-                              "styles": "",
-                              "svgData": Object {
-                                "circles": "",
-                                "ellipses": "",
-                                "paths": Array [
-                                  Object {
-                                    "d": "M0 5L5 .002 10 5z",
-                                  },
-                                ],
-                                "polygons": "",
-                                "polylines": "",
-                                "rects": "",
-                              },
-                              "tags": "icon--caret--up",
-                              "viewBox": "0 0 10 5",
-                              "width": "10",
-                            }
-                          }
-                          role="img"
-                        >
-                          <svg
-                            alt="Sort rows by this header in ascending order"
-                            aria-label="Sort rows by this header in ascending order"
-                            className="bx--table-sort-v2__icon"
-                            fillRule="evenodd"
-                            height="5"
-                            role="img"
-                            viewBox="0 0 10 5"
-                            width="10"
-                          >
-                            <title>
-                              Sort rows by this header in ascending order
-                            </title>
-                            <path
-                              d="M0 5L5 .002 10 5z"
-                              key="key0"
-                            />
-                          </svg>
-                        </Icon>
-                      </button>
+                        Field B
+                      </span>
                     </th>
                   </TableHeader>
                 </tr>
               </TableRow>
             </thead>
           </TableHead>
-          <TableBody>
-            <tbody>
+          <TableBody
+            aria-live="polite"
+          >
+            <tbody
+              aria-live="polite"
+            >
               <TableRow
                 key="b"
               >

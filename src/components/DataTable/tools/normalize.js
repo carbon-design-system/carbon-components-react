@@ -1,3 +1,10 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import { getCellId } from './cells';
 
 /**
@@ -17,10 +24,17 @@ const normalize = (rows, headers, prevState = {}) => {
     rowIds[i] = row.id;
     // Initialize the row info and state values, namely for selection and
     // expansion
-    rowsById[row.id] = {
-      id: row.id,
-      isSelected: false,
-      isExpanded: false,
+    const {
+      id,
+      isSelected = false,
+      isExpanded = false,
+      disabled = false,
+    } = row;
+    rowsById[id] = {
+      id,
+      isSelected,
+      isExpanded,
+      disabled,
       cells: new Array(headers.length),
     };
 

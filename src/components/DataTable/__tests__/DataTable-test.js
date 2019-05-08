@@ -1,5 +1,11 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import React from 'react';
-import { iconDownload, iconEdit, iconSettings } from 'carbon-icons';
 import Button from '../../Button';
 import DataTable, {
   Table,
@@ -20,6 +26,7 @@ import DataTable, {
   TableToolbarAction,
   TableToolbarContent,
   TableToolbarSearch,
+  TableToolbarMenu,
 } from '../';
 import { sortStates } from '../state/sorting';
 import { mount } from 'enzyme';
@@ -28,11 +35,14 @@ import { mount } from 'enzyme';
 const getHeaderAt = (wrapper, index) =>
   wrapper.find('TableHeader button').at(index);
 const getRowAt = (wrapper, index) => wrapper.find('tbody tr').at(index);
-const getFilterInput = wrapper => wrapper.find('TableToolbarSearch input');
+const getFilterInput = wrapper =>
+  wrapper.find('TableToolbarSearch Search input');
 const getSelectAll = wrapper =>
   wrapper.find('TableSelectAll input[type="checkbox"]');
 const getLastCallFor = mocker =>
   mocker.mock.calls[mocker.mock.calls.length - 1];
+const getInputAtIndex = ({ wrapper, index, inputType }) =>
+  getRowAt(wrapper, index).find(`input[type="${inputType}"]`);
 
 describe('DataTable', () => {
   let mockProps;
@@ -67,53 +77,66 @@ describe('DataTable', () => {
         },
       ],
       locale: 'en',
-      render: jest.fn(({ rows, headers, getHeaderProps, onInputChange }) => (
-        <TableContainer title="DataTable with toolbar">
-          <TableToolbar>
-            <TableToolbarSearch onChange={onInputChange} id="custom-id" />
-            <TableToolbarContent>
-              <TableToolbarAction
-                icon={iconDownload}
-                iconDescription="Download"
-                onClick={jest.fn()}
-              />
-              <TableToolbarAction
-                icon={iconEdit}
-                iconDescription="Edit"
-                onClick={jest.fn()}
-              />
-              <TableToolbarAction
-                icon={iconSettings}
-                iconDescription="Settings"
-                onClick={jest.fn()}
-              />
-              <Button onClick={jest.fn()} small kind="primary">
-                Add new
-              </Button>
-            </TableToolbarContent>
-          </TableToolbar>
-          <Table>
-            <TableHead>
-              <TableRow>
-                {headers.map(header => (
-                  <TableHeader {...getHeaderProps({ header })}>
-                    {header.header}
-                  </TableHeader>
-                ))}
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {rows.map(row => (
-                <TableRow key={row.id}>
-                  {row.cells.map(cell => (
-                    <TableCell key={cell.id}>{cell.value}</TableCell>
+      render: jest.fn(
+        ({
+          rows,
+          headers,
+          getHeaderProps,
+          onInputChange,
+          getBatchActionProps,
+        }) => (
+          <TableContainer title="DataTable with toolbar">
+            <TableToolbar>
+              <TableBatchActions {...getBatchActionProps()}>
+                <TableBatchAction onClick={jest.fn()}>Ghost</TableBatchAction>
+                <TableBatchAction onClick={jest.fn()}>Ghost</TableBatchAction>
+                <TableBatchAction onClick={jest.fn()}>Ghost</TableBatchAction>
+              </TableBatchActions>
+              <TableToolbarContent>
+                <TableToolbarSearch
+                  persistant
+                  onChange={onInputChange}
+                  id="custom-id"
+                />
+                <TableToolbarMenu>
+                  <TableToolbarAction onClick={jest.fn()}>
+                    Action 1
+                  </TableToolbarAction>
+                  <TableToolbarAction onClick={jest.fn()}>
+                    Action 2
+                  </TableToolbarAction>
+                  <TableToolbarAction onClick={jest.fn()}>
+                    Action 3
+                  </TableToolbarAction>
+                </TableToolbarMenu>
+                <Button onClick={jest.fn()} small kind="primary">
+                  Add new
+                </Button>
+              </TableToolbarContent>
+            </TableToolbar>
+            <Table>
+              <TableHead>
+                <TableRow>
+                  {headers.map(header => (
+                    <TableHeader {...getHeaderProps({ header })}>
+                      {header.header}
+                    </TableHeader>
                   ))}
                 </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
-      )),
+              </TableHead>
+              <TableBody>
+                {rows.map(row => (
+                  <TableRow key={row.id}>
+                    {row.cells.map(cell => (
+                      <TableCell key={cell.id}>{cell.value}</TableCell>
+                    ))}
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
+        )
+      ),
     };
   });
 
@@ -124,9 +147,8 @@ describe('DataTable', () => {
 
   describe('sorting', () => {
     it('should sort a row by a header when a header is clicked', () => {
-      const wrapper = mount(<DataTable {...mockProps} />);
+      const wrapper = mount(<DataTable isSortable={true} {...mockProps} />);
       const header = getHeaderAt(wrapper, 0);
-
       header.simulate('click');
       expect(wrapper.state('rowIds')).toEqual(['a', 'b', 'c']);
 
@@ -138,7 +160,7 @@ describe('DataTable', () => {
     });
 
     it('should re-sort new row props by the current sort state', () => {
-      const wrapper = mount(<DataTable {...mockProps} />);
+      const wrapper = mount(<DataTable isSortable={true} {...mockProps} />);
       const header = getHeaderAt(wrapper, 0);
 
       header.simulate('click');
@@ -149,7 +171,8 @@ describe('DataTable', () => {
     });
 
     it('should reset to ASC ordering when another header is clicked', () => {
-      const wrapper = mount(<DataTable {...mockProps} />);
+      const wrapper = mount(<DataTable isSortable={true} {...mockProps} />);
+
       const firstHeader = getHeaderAt(wrapper, 0);
       const secondHeader = getHeaderAt(wrapper, 1);
 
@@ -172,11 +195,8 @@ describe('DataTable', () => {
 
       expect(wrapper.state('rowIds').length).toBe(mockProps.rows.length);
 
-      filterInput.simulate('change', {
-        target: {
-          value: 'Field 1',
-        },
-      });
+      filterInput.getDOMNode().value = 'Field 1';
+      filterInput.simulate('change');
 
       expect(mockProps.render).toHaveBeenCalledWith(
         expect.objectContaining({
@@ -279,14 +299,20 @@ describe('DataTable', () => {
     it('should select a specific row when a user interacts with select row', () => {
       const wrapper = mount(<DataTable {...mockProps} />);
       expect(getSelectAll(wrapper).prop('checked')).toBe(false);
+      expect(
+        getInputAtIndex({ wrapper, index: 0, inputType: 'checkbox' }).prop(
+          'checked'
+        )
+      ).toBe(false);
 
-      const beforeInput = getRowAt(wrapper, 0).find('input[type="checkbox"]');
-      expect(beforeInput.prop('checked')).toBe(false);
-
-      beforeInput.simulate('click');
-
-      const afterInput = getRowAt(wrapper, 0).find('input[type="checkbox"]');
-      expect(afterInput.prop('checked')).toBe(true);
+      getInputAtIndex({ wrapper, index: 0, inputType: 'checkbox' }).simulate(
+        'click'
+      );
+      expect(
+        getInputAtIndex({ wrapper, index: 0, inputType: 'checkbox' }).prop(
+          'checked'
+        )
+      ).toBe(true);
 
       const { selectedRows } = getLastCallFor(mockProps.render)[0];
       expect(selectedRows.length).toBe(1);
@@ -307,6 +333,142 @@ describe('DataTable', () => {
       expect(getSelectAll(wrapper).prop('checked')).toBe(false);
       const { selectedRows } = getLastCallFor(mockProps.render)[0];
       expect(selectedRows.length).toBe(0);
+    });
+  });
+
+  describe('selection -- radio buttons', () => {
+    let mockProps;
+
+    beforeEach(() => {
+      mockProps = {
+        rows: [
+          {
+            id: 'b',
+            fieldA: 'Field 2:A',
+            fieldB: 'Field 2:B',
+          },
+          {
+            id: 'a',
+            fieldA: 'Field 1:A',
+            fieldB: 'Field 1:B',
+          },
+          {
+            id: 'c',
+            fieldA: 'Field 3:A',
+            fieldB: 'Field 3:B',
+          },
+        ],
+        headers: [
+          {
+            key: 'fieldA',
+            header: 'Field A',
+          },
+          {
+            key: 'fieldB',
+            header: 'Field B',
+          },
+        ],
+        locale: 'en',
+        radio: true,
+        render: jest.fn(
+          ({ rows, headers, getHeaderProps, getSelectionProps }) => (
+            <TableContainer title="DataTable with selection">
+              <Table>
+                <TableHead>
+                  <TableRow>
+                    {headers.map(header => (
+                      <TableHeader {...getHeaderProps({ header })}>
+                        {header.header}
+                      </TableHeader>
+                    ))}
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {rows.map(row => (
+                    <TableRow key={row.id}>
+                      <TableSelectRow {...getSelectionProps({ row })} />
+                      {row.cells.map(cell => (
+                        <TableCell key={cell.id}>{cell.value}</TableCell>
+                      ))}
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </TableContainer>
+          )
+        ),
+      };
+    });
+
+    it('should render', () => {
+      const wrapper = mount(<DataTable {...mockProps} />);
+      expect(wrapper).toMatchSnapshot();
+    });
+
+    it('should not have select-all checkbox', () => {
+      const wrapper = mount(<DataTable {...mockProps} rows={[]} />);
+      expect(wrapper).toMatchSnapshot();
+    });
+
+    it('should select a specific row when a user interacts with select row', () => {
+      const wrapper = mount(<DataTable {...mockProps} />);
+      expect(
+        getInputAtIndex({ wrapper, index: 0, inputType: 'radio' }).prop(
+          'checked'
+        )
+      ).toBe(false);
+
+      getInputAtIndex({ wrapper, index: 0, inputType: 'radio' }).simulate(
+        'click'
+      );
+      expect(
+        getInputAtIndex({ wrapper, index: 0, inputType: 'radio' }).prop(
+          'checked'
+        )
+      ).toBe(true);
+
+      const { selectedRows } = getLastCallFor(mockProps.render)[0];
+      expect(selectedRows.length).toBe(1);
+    });
+
+    it('should deselect all other rows when a row is selected', () => {
+      const wrapper = mount(<DataTable {...mockProps} />);
+      expect(
+        getInputAtIndex({ wrapper, index: 0, inputType: 'radio' }).prop(
+          'checked'
+        )
+      ).toBe(false);
+
+      getInputAtIndex({ wrapper, index: 0, inputType: 'radio' }).simulate(
+        'click'
+      );
+      expect(
+        getInputAtIndex({ wrapper, index: 0, inputType: 'radio' }).prop(
+          'checked'
+        )
+      ).toBe(true);
+      expect(
+        getInputAtIndex({ wrapper, index: 1, inputType: 'radio' }).prop(
+          'checked'
+        )
+      ).toBe(false);
+
+      getInputAtIndex({ wrapper, index: 1, inputType: 'radio' }).simulate(
+        'click'
+      );
+      expect(
+        getInputAtIndex({ wrapper, index: 0, inputType: 'radio' }).prop(
+          'checked'
+        )
+      ).toBe(false);
+      expect(
+        getInputAtIndex({ wrapper, index: 1, inputType: 'radio' }).prop(
+          'checked'
+        )
+      ).toBe(true);
+
+      const { selectedRows } = getLastCallFor(mockProps.render)[0];
+      expect(selectedRows.length).toBe(1);
     });
   });
 
@@ -382,11 +544,9 @@ describe('DataTable', () => {
                         ))}
                       </TableExpandRow>
                       {row.isExpanded && (
-                        <TableExpandedRow>
-                          <TableCell colSpan={headers.length + 3}>
-                            <h1>Expandable row content</h1>
-                            <p>Description here</p>
-                          </TableCell>
+                        <TableExpandedRow colSpan={headers.length + 3}>
+                          <h1>Expandable row content</h1>
+                          <p>Description here</p>
                         </TableExpandedRow>
                       )}
                     </React.Fragment>

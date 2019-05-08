@@ -1,3 +1,10 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import React from 'react';
 import { mount } from 'enzyme';
 import MultiSelect from '../../MultiSelect';
@@ -34,6 +41,12 @@ describe('MultiSelect', () => {
     const items = generateItems(5, generateGenericItem);
     const wrapper = mount(<MultiSelect label="Field" items={items} />);
     expect(wrapper.state('isOpen')).toEqual(false);
+  });
+
+  it('should initialize with the menu open', () => {
+    const items = generateItems(5, generateGenericItem);
+    const wrapper = mount(<MultiSelect label="Field" items={items} open />);
+    expect(wrapper.state('isOpen')).toEqual(true);
   });
 
   describe('#handleOnToggleMenu', () => {
@@ -219,17 +232,17 @@ describe('MultiSelect', () => {
       const getHighlightedId = () =>
         wrapper.find('.bx--list-box__menu-item--highlighted').prop('id');
       simulateArrowDown();
-      expect(getHighlightedId()).toBe('downshift-12-item-0');
+      expect(getHighlightedId()).toBe('downshift-13-item-0');
       simulateArrowDown();
-      expect(getHighlightedId()).toBe('downshift-12-item-1');
+      expect(getHighlightedId()).toBe('downshift-13-item-1');
       // Simulate "wrap" behavior
       simulateArrowDown();
       simulateArrowDown();
       simulateArrowDown();
       simulateArrowDown();
-      expect(getHighlightedId()).toBe('downshift-12-item-0');
+      expect(getHighlightedId()).toBe('downshift-13-item-0');
       simulateArrowUp();
-      expect(getHighlightedId()).toBe('downshift-12-item-4');
+      expect(getHighlightedId()).toBe('downshift-13-item-4');
     });
 
     it('should close the menu when a user clicks outside of the control', () => {

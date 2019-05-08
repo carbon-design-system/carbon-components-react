@@ -1,8 +1,14 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import React from 'react';
-import Icon from '../Icon';
 import SearchFilterButton from '../SearchFilterButton';
 import { mount } from 'enzyme';
-import { iconFilter } from 'carbon-icons';
+import Filter16 from '@carbon/icons-react/lib/filter/16';
 
 describe('SearchFilterButton', () => {
   const wrapper = mount(<SearchFilterButton labelText="testlabel" />);
@@ -22,8 +28,8 @@ describe('SearchFilterButton', () => {
 
   describe('icons', () => {
     it('should use "filter" icon', () => {
-      const icon = wrapper.find(Icon);
-      expect(icon.props().icon).toEqual(iconFilter);
+      const icon = wrapper.find(Filter16);
+      expect(icon.length).toBe(1);
     });
   });
 });

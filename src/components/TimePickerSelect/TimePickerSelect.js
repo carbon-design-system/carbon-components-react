@@ -1,8 +1,14 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import classNames from 'classnames';
-import Icon from '../Icon';
-import { iconCaretDown } from 'carbon-icons';
+import ChevronDownGlyph from '@carbon/icons-react/lib/chevron--down/index';
 import { settings } from 'carbon-components';
 
 const { prefix } = settings;
@@ -79,7 +85,6 @@ export default class TimePickerSelect extends Component {
     const selectClasses = classNames({
       [`${prefix}--select`]: true,
       [`${prefix}--time-picker__select`]: true,
-      [`${prefix}--select--inline`]: true,
       [className]: className,
     });
 
@@ -103,11 +108,11 @@ export default class TimePickerSelect extends Component {
           disabled={disabled}>
           {children}
         </select>
-        <Icon
-          icon={iconCaretDown}
+        <ChevronDownGlyph
           className={`${prefix}--select__arrow`}
-          description={iconDescription}
-        />
+          aria-label={iconDescription}>
+          {iconDescription && <title>{iconDescription}</title>}
+        </ChevronDownGlyph>
       </div>
     );
   }

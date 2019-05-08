@@ -1,3 +1,10 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import React from 'react';
 import DatePicker from '../DatePicker';
 import DatePickerSkeleton from '../DatePicker/DatePicker.Skeleton';
@@ -170,7 +177,6 @@ describe('DatePicker', () => {
       </DatePicker>
     );
     const datepicker = wrapper.childAt(0);
-    const icon = wrapper.find('svg');
 
     it('has the range date picker class', () => {
       expect(datepicker.children().hasClass('bx--date-picker--range')).toBe(
@@ -194,10 +200,6 @@ describe('DatePicker', () => {
       expect(wrapper.props().value).toEqual(undefined);
       wrapper.setProps({ value: '11/08/2017' });
       expect(wrapper.props().value).toEqual('11/08/2017');
-    });
-
-    it('should render an icon', () => {
-      expect(icon.length).toEqual(1);
     });
   });
 

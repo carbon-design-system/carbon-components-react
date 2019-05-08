@@ -1,9 +1,16 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 /* eslint-disable no-console */
 
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
-import { withKnobs, boolean, text } from '@storybook/addon-knobs';
+import { withKnobs, boolean, number, text } from '@storybook/addon-knobs';
 import Accordion from '../Accordion';
 import AccordionItem from '../AccordionItem';
 import Select from '../Select';
@@ -84,7 +91,10 @@ storiesOf('Accordion', module)
     'skeleton',
     () => (
       <div style={{ width: '500px' }}>
-        <AccordionSkeleton />
+        <AccordionSkeleton
+          open={boolean('Show first item opened (open)', true)}
+          count={number('Set number of items (count)', 4)}
+        />
       </div>
     ),
     {

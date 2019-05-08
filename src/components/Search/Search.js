@@ -1,9 +1,17 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import classNames from 'classnames';
-import { iconSearch, iconCloseSolid } from 'carbon-icons';
+import Search16 from '@carbon/icons-react/lib/search/16';
+import Close16 from '@carbon/icons-react/lib/close/16';
+import Close20 from '@carbon/icons-react/lib/close/20';
 import { settings } from 'carbon-components';
-import Icon from '../Icon';
 
 const { prefix } = settings;
 
@@ -45,9 +53,14 @@ export default class Search extends Component {
     closeButtonLabelText: PropTypes.string,
 
     /**
-     * `true` to use the light version.
+     * Specify the value of the <input>
      */
-    light: PropTypes.bool,
+    value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+
+    /**
+     * Optionally provide the default value of the <input>
+     */
+    defaultValue: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   };
 
   static defaultProps = {
@@ -55,7 +68,6 @@ export default class Search extends Component {
     small: false,
     placeHolderText: '',
     onChange: () => {},
-    light: false,
   };
 
   state = {
@@ -110,7 +122,6 @@ export default class Search extends Component {
       labelText,
       closeButtonLabelText,
       small,
-      light,
       ...other
     } = this.props;
 
@@ -118,9 +129,8 @@ export default class Search extends Component {
 
     const searchClasses = classNames({
       [`${prefix}--search`]: true,
-      [`${prefix}--search--lg`]: !small,
+      [`${prefix}--search--xl`]: !small,
       [`${prefix}--search--sm`]: small,
-      [`${prefix}--search--light`]: light,
       [className]: className,
     });
 
@@ -129,15 +139,17 @@ export default class Search extends Component {
       [`${prefix}--search-close--hidden`]: !hasContent,
     });
 
+    const CloseIconX = !small ? Close20 : Close16;
+
     return (
       <div
         className={searchClasses}
         role="search"
         aria-labelledby={`${id}-label`}>
-        <Icon
-          icon={iconSearch}
-          description={labelText}
+        <Search16
           className={`${prefix}--search-magnifier`}
+          aria-label={labelText}
+          role="img"
         />
         <label id={`${id}-label`} htmlFor={id} className={`${prefix}--label`}>
           {labelText}
@@ -158,7 +170,7 @@ export default class Search extends Component {
           onClick={this.clearInput}
           type="button"
           aria-label={closeButtonLabelText}>
-          <Icon icon={iconCloseSolid} description={closeButtonLabelText} />
+          <CloseIconX aria-label={closeButtonLabelText} role="img" />
         </button>
       </div>
     );

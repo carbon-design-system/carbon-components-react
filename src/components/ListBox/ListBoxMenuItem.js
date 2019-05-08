@@ -1,3 +1,10 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import cx from 'classnames';
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -18,7 +25,7 @@ const ListBoxMenuItem = ({ children, isActive, isHighlighted, ...rest }) => {
   });
   return (
     <div className={className} {...rest}>
-      {children}
+      <div className={`${prefix}--list-box__menu-item__option`}>{children}</div>
     </div>
   );
 };

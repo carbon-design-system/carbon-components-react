@@ -1,10 +1,16 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import React from 'react';
-import Icon from '../Icon';
+import ChevronDownGlyph from '@carbon/icons-react/lib/chevron--down/index';
 import Select from '../Select';
 import SelectItem from '../SelectItem';
 import SelectSkeleton from '../Select/Select.Skeleton';
 import { mount, shallow } from 'enzyme';
-import { iconCaretDown } from 'carbon-icons';
 
 describe('Select', () => {
   describe('Renders as expected', () => {
@@ -21,7 +27,8 @@ describe('Select', () => {
 
     const selectContainer = wrapper.find('.bx--form-item > div');
     const label = wrapper.find('label');
-    const select = wrapper.find('select');
+    const selectWrapper = () => wrapper.find(Select);
+    const select = () => wrapper.find('select');
     const helper = wrapper.find('.bx--form__helper-text');
 
     describe('selectContainer', () => {
@@ -30,12 +37,7 @@ describe('Select', () => {
       });
 
       it('renders the down arrow icon', () => {
-        expect(selectContainer.find(Icon).length).toEqual(1);
-      });
-
-      it('should use correct icon', () => {
-        const icon = wrapper.find(Icon);
-        expect(icon.props().icon).toEqual(iconCaretDown);
+        expect(selectContainer.find(ChevronDownGlyph).length).toEqual(1);
       });
 
       it('has the expected classes', () => {
@@ -47,7 +49,9 @@ describe('Select', () => {
       });
 
       it('has the expected default iconDescription', () => {
-        expect(wrapper.props().iconDescription).toEqual('open list of options');
+        expect(selectWrapper().props().iconDescription).toEqual(
+          'open list of options'
+        );
       });
 
       it('adds new iconDescription when passed via props', () => {
@@ -56,45 +60,46 @@ describe('Select', () => {
       });
 
       it('should have iconDescription match Icon component description prop', () => {
-        const matches =
-          wrapper.props().iconDescription ===
-          wrapper.find(Icon).props().description;
+        const description = wrapper.find(ChevronDownGlyph).props()[
+          'aria-label'
+        ];
+        const matches = wrapper.props().iconDescription === description;
         expect(matches).toEqual(true);
       });
 
       it('should specify light select as expected', () => {
-        expect(wrapper.props().light).toEqual(false);
+        expect(selectWrapper().props().light).toEqual(false);
         wrapper.setProps({ light: true });
-        expect(wrapper.props().light).toEqual(true);
+        expect(selectWrapper().props().light).toEqual(true);
       });
     });
 
     describe('select', () => {
       it('renders a select', () => {
-        expect(select.length).toEqual(1);
+        expect(selectWrapper().length).toEqual(1);
       });
 
       it('has the expected classes', () => {
-        expect(select.hasClass('bx--select-input')).toEqual(true);
+        expect(select().hasClass('bx--select-input')).toEqual(true);
       });
 
       it('has the expected id', () => {
-        expect(select.props().id).toEqual('testing');
+        expect(selectWrapper().props().id).toEqual('testing');
       });
 
       it('should set defaultValue as expected', () => {
         wrapper.setProps({ defaultValue: 'select-1' });
-        expect(wrapper.find('select').props().defaultValue).toEqual('select-1');
+        expect(select().props().defaultValue).toEqual('select-1');
       });
 
       it('should set disabled as expected', () => {
-        expect(select.props().disabled).toEqual(undefined);
+        expect(selectWrapper().props().disabled).toEqual(false);
         wrapper.setProps({ disabled: true });
-        expect(wrapper.find('select').props().disabled).toEqual(true);
+        expect(selectWrapper().props().disabled).toEqual(true);
       });
 
       it('renders children as expected', () => {
-        expect(select.props().children.length).toEqual(2);
+        expect(selectWrapper().props().children.length).toEqual(2);
       });
     });
 
@@ -156,6 +161,28 @@ describe('Select', () => {
     it('has the expected classes', () => {
       expect(selectContainer.hasClass('bx--select--inline')).toEqual(true);
     });
+  });
+});
+
+describe('refs', () => {
+  it('should accept refs', () => {
+    class MyComponent extends React.Component {
+      constructor(props) {
+        super(props);
+        this.myRef = React.createRef();
+        this.focus = this.focus.bind(this);
+      }
+      focus() {
+        this.myRef.current.focus();
+      }
+      render() {
+        return <Select id="test" labelText="testlabel" ref={this.myRef} />;
+      }
+    }
+    const wrapper = mount(<MyComponent />);
+    expect(document.activeElement.type).toBeUndefined();
+    wrapper.instance().focus();
+    expect(document.activeElement.type).toEqual('select-one');
   });
 });
 

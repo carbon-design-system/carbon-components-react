@@ -1,3 +1,10 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
@@ -9,8 +16,11 @@ const props = {
   inline: () => ({
     light: boolean('Light variant (light)', false),
     feedback: text('Feedback text (feedback)', 'Feedback Enabled 👍'),
-    copyLabel: text('ARIA label of the copy button (copyLabel)', 'Copy Code'),
     onClick: action('onClick'),
+    copyLabel: text(
+      'ARIA label for the snippet/copy button (copyLabel)',
+      'copyable code snippet'
+    ),
   }),
   single: () => ({
     feedback: text('Feedback text (feedback)', 'Feedback Enabled 👍'),
@@ -133,7 +143,7 @@ $z-indexes: (
     'skeleton',
     () => (
       <div style={{ width: '800px' }}>
-        <CodeSnippetSkeleton type="single" />
+        <CodeSnippetSkeleton type="single" style={{ paddingBottom: 8 }} />
         <CodeSnippetSkeleton type="multi" />
       </div>
     ),

@@ -1,10 +1,14 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import isEqual from 'lodash.isequal';
 import { settings } from 'carbon-components';
-import TextInput from '../TextInput';
-import { sliderValuePropSync } from '../../internal/FeatureFlags';
 
 const { prefix } = settings;
 
@@ -98,7 +102,7 @@ export default class Slider extends PureComponent {
     /**
      * The `name` attribute of the `<input>`.
      */
-    name: PropTypes.bool,
+    name: PropTypes.string,
 
     /**
      * The `type` attribute of the `<input>`.
@@ -135,16 +139,9 @@ export default class Slider extends PureComponent {
     left: 0,
   };
 
-  componentDidMount() {
-    this.updatePosition();
-  }
-
   static getDerivedStateFromProps({ value, min, max }, state) {
     const { value: currentValue, prevValue, prevMin, prevMax } = state;
-    if (
-      !sliderValuePropSync ||
-      (prevValue === value && prevMin === min && prevMax === max)
-    ) {
+    if (prevValue === value && prevMin === min && prevMax === max) {
       return null;
     }
     const effectiveValue = Math.min(
@@ -158,12 +155,6 @@ export default class Slider extends PureComponent {
       prevMin: min,
       prevMax: max,
     };
-  }
-
-  UNSAFE_componentWillReceiveProps(nextProps) {
-    if (!sliderValuePropSync && !isEqual(nextProps, this.props)) {
-      this.updatePosition();
-    }
   }
 
   updatePosition = evt => {
@@ -387,15 +378,24 @@ export default class Slider extends PureComponent {
 
     const { value, left } = this.state;
 
+    const labelClasses = classNames(`${prefix}--label`, {
+      [`${prefix}--label--disabled`]: disabled,
+    });
+
     const sliderClasses = classNames(
       `${prefix}--slider`,
       { [`${prefix}--slider--disabled`]: disabled },
       className
     );
 
-    const inputClasses = classNames(`${prefix}-slider-text-input`, {
-      [`${prefix}--text-input--light`]: light,
-    });
+    const inputClasses = classNames(
+      `${prefix}--text-input`,
+      `${prefix}--slider-text-input`,
+      {
+        [`${prefix}--text-input--light`]: light,
+        [`${prefix}--text-input--invalid`]: this.props.invalid,
+      }
+    );
 
     const filledTrackStyle = {
       transform: `translate(0%, -50%) scaleX(${left / 100})`,
@@ -406,7 +406,7 @@ export default class Slider extends PureComponent {
 
     return (
       <div className={`${prefix}--form-item`}>
-        <label htmlFor={id} className={`${prefix}--label`}>
+        <label htmlFor={id} className={labelClasses}>
           {labelText}
         </label>
         <div className={`${prefix}--slider-container`}>
@@ -424,16 +424,6 @@ export default class Slider extends PureComponent {
             tabIndex={-1}
             {...other}>
             <div
-              className={`${prefix}--slider__track`}
-              ref={node => {
-                this.track = node;
-              }}
-            />
-            <div
-              className={`${prefix}--slider__filled-track`}
-              style={filledTrackStyle}
-            />
-            <div
               className={`${prefix}--slider__thumb`}
               role="slider"
               id={id}
@@ -446,7 +436,18 @@ export default class Slider extends PureComponent {
               onTouchStart={this.handleTouchStart}
               onKeyDown={this.updatePosition}
             />
+            <div
+              className={`${prefix}--slider__track`}
+              ref={node => {
+                this.track = node;
+              }}
+            />
+            <div
+              className={`${prefix}--slider__filled-track`}
+              style={filledTrackStyle}
+            />
             <input
+              className={`${prefix}--slider__input`}
               type="hidden"
               name={name}
               value={value}
@@ -461,14 +462,15 @@ export default class Slider extends PureComponent {
             {formatLabel(max, maxLabel)}
           </span>
           {!hideTextInput && (
-            <TextInput
+            <input
               type={inputType}
-              id="input-for-slider"
+              id={`${id}-input-for-slider`}
               className={inputClasses}
               value={value}
               onChange={this.handleChange}
               labelText=""
               aria-label={ariaLabelInput}
+              disabled={disabled}
             />
           )}
         </div>

@@ -2,85 +2,69 @@
 
 exports[`DataTable.TableExpandRow should render 1`] = `
 <Table
-  short={false}
-  shouldShowBorder={true}
-  zebra={true}
+  isSortable={false}
 >
   <table
-    className="bx--data-table-v2 bx--data-table-v2--zebra"
+    className="bx--data-table bx--data-table--no-border"
   >
-    <TableBody>
-      <tbody>
+    <TableBody
+      aria-live="polite"
+    >
+      <tbody
+        aria-live="polite"
+      >
         <TableExpandRow
           ariaLabel="Aria label"
           className="custom-class"
+          expandHeader="expand"
           isExpanded={false}
           onExpand={[MockFunction]}
         >
           <tr
-            className="bx--parent-row-v2 custom-class"
+            className="bx--parent-row custom-class"
             data-parent-row={true}
           >
             <TableCell
-              className="bx--table-expand-v2"
+              className="bx--table-expand"
+              headers="expand"
             >
               <td
-                className="bx--table-expand-v2"
+                className="bx--table-expand"
+                headers="expand"
               >
                 <button
                   aria-label="Aria label"
-                  className="bx--table-expand-v2__button"
+                  className="bx--table-expand__button"
                   onClick={[MockFunction]}
                 >
-                  <Icon
-                    className="bx--table-expand-v2__svg"
-                    description="Provide a description that will be used as the title"
-                    fillRule="evenodd"
-                    icon={
-                      Object {
-                        "height": "12",
-                        "id": "icon--chevron--right",
-                        "name": "icon--chevron--right",
-                        "styles": "",
-                        "svgData": Object {
-                          "circles": "",
-                          "ellipses": "",
-                          "paths": Array [
-                            Object {
-                              "d": "M5.569 5.994L0 .726.687 0l6.336 5.994-6.335 6.002L0 11.27z",
-                              "fill-rule": "nonzero",
-                            },
-                          ],
-                          "polygons": "",
-                          "polylines": "",
-                          "rects": "",
-                        },
-                        "tags": "icon--chevron--right",
-                        "viewBox": "0 0 7 12",
-                        "width": "7",
-                      }
-                    }
-                    role="img"
+                  <ChevronRight16
+                    className="bx--table-expand__svg"
+                    height={16}
+                    preserveAspectRatio="xMidYMid meet"
+                    viewBox="0 0 16 16"
+                    width={16}
+                    xmlns="http://www.w3.org/2000/svg"
                   >
                     <svg
-                      alt="Provide a description that will be used as the title"
-                      aria-label="Provide a description that will be used as the title"
-                      className="bx--table-expand-v2__svg"
-                      fillRule="evenodd"
-                      height="12"
-                      role="img"
-                      viewBox="0 0 7 12"
-                      width="7"
+                      aria-hidden={true}
+                      className="bx--table-expand__svg"
+                      focusable="false"
+                      height={16}
+                      preserveAspectRatio="xMidYMid meet"
+                      style={
+                        Object {
+                          "willChange": "transform",
+                        }
+                      }
+                      viewBox="0 0 16 16"
+                      width={16}
+                      xmlns="http://www.w3.org/2000/svg"
                     >
-                      <title>
-                        Provide a description that will be used as the title
-                      </title>
                       <path
-                        d="M5.569 5.994L0 .726.687 0l6.336 5.994-6.335 6.002L0 11.27z"
-                        key="key0"
+                        d="M11 8l-5 5-.7-.7L9.6 8 5.3 3.7 6 3z"
                       />
                     </svg>
-                  </Icon>
+                  </ChevronRight16>
                 </button>
               </td>
             </TableCell>
@@ -88,9 +72,19 @@ exports[`DataTable.TableExpandRow should render 1`] = `
         </TableExpandRow>
         <TableExpandedRow>
           <tr
-            className="bx--expandable-row-v2"
+            className="bx--expandable-row"
             data-child-row={true}
-          />
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
+          >
+            <TableCell>
+              <td>
+                <div
+                  className="bx--child-row-inner-container"
+                />
+              </td>
+            </TableCell>
+          </tr>
         </TableExpandedRow>
       </tbody>
     </TableBody>

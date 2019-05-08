@@ -1,13 +1,19 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 /* eslint react/no-multi-comp: "off" */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { settings } from 'carbon-components';
-import Icon from '../Icon';
 import uid from '../../tools/uniqueId';
 import { ButtonTypes } from '../../prop-types/types';
-import { iconCloseSolid, iconCheckmarkSolid } from 'carbon-icons';
-import { componentsX } from '../../internal/FeatureFlags';
+import CloseFilled16 from '@carbon/icons-react/lib/close--filled/16';
+import CheckmarkFilled16 from '@carbon/icons-react/lib/checkmark--filled/16';
 
 const { prefix } = settings;
 
@@ -140,12 +146,14 @@ export class FileUploaderButton extends Component {
       disabled,
       ...other
     } = this.props;
-    const classes = classNames({
-      [`${prefix}--btn`]: true,
-      [`${prefix}--btn--${buttonKind}`]: true,
-      [`${prefix}--btn--sm`]: componentsX,
-      [className]: className,
-    });
+    const classes = classNames(
+      `${prefix}--btn`,
+      `${prefix}--btn--sm`,
+      className,
+      {
+        [`${prefix}--btn--${buttonKind}`]: buttonKind,
+      }
+    );
 
     this.uid = this.props.id || uid();
 
@@ -227,23 +235,23 @@ export class Filename extends Component {
       );
     } else if (status === 'edit') {
       return (
-        <Icon
-          description={iconDescription}
+        <CloseFilled16
           className={`${prefix}--file-close`}
-          icon={iconCloseSolid}
+          aria-label={iconDescription}
           style={style}
-          {...other}
-        />
+          {...other}>
+          {iconDescription && <title>{iconDescription}</title>}
+        </CloseFilled16>
       );
     } else if (status === 'complete') {
       return (
-        <Icon
-          description={iconDescription}
+        <CheckmarkFilled16
           className={`${prefix}--file-complete`}
-          icon={iconCheckmarkSolid}
+          aria-label={iconDescription}
           style={style}
-          {...other}
-        />
+          {...other}>
+          {iconDescription && <title>{iconDescription}</title>}
+        </CheckmarkFilled16>
       );
     } else {
       return null;
@@ -383,12 +391,7 @@ export default class FileUploader extends Component {
 
     return (
       <div className={classes} {...other}>
-        <strong
-          className={
-            componentsX ? `${prefix}--file--label` : `${prefix}--label`
-          }>
-          {labelTitle}
-        </strong>
+        <strong className={`${prefix}--file--label`}>{labelTitle}</strong>
         <p className={`${prefix}--label-description`}>{labelDescription}</p>
         <FileUploaderButton
           labelText={buttonLabel}

@@ -1,8 +1,14 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import invariant from 'invariant';
 import PropTypes from 'prop-types';
 import React from 'react';
 import icons from 'carbon-icons';
-import isRequiredOneOf from '../../prop-types/isRequiredOneOf';
 
 /**
  * The icons list object from `carbon-icons`.
@@ -113,7 +119,7 @@ const Icon = ({
   fillRule,
   height,
   name,
-  icon = isPrefixed(name) ? findIcon(name) : findIcon(`icon--${name}`),
+  icon,
   role,
   style,
   width,
@@ -137,7 +143,7 @@ const Icon = ({
   const svgContent = icon ? svgShapes(icon.svgData) : '';
 
   return (
-    <svg {...props} aria-label={description} alt={description}>
+    <svg {...props} aria-label={description}>
       <title>
         {typeof iconTitle === 'undefined' ? description : iconTitle}
       </title>
@@ -177,21 +183,14 @@ Icon.propTypes = {
    */
   height: PropTypes.string,
 
-  ...isRequiredOneOf({
-    /**
-     * The icon data.
-     */
-    icon: PropTypes.shape({
-      width: PropTypes.string,
-      height: PropTypes.string,
-      viewBox: PropTypes.string.isRequired,
-      svgData: PropTypes.object.isRequired,
-    }),
-
-    /**
-     * The name in the sprite.
-     */
-    name: PropTypes.string,
+  /**
+   * The icon data.
+   */
+  icon: PropTypes.shape({
+    width: PropTypes.string,
+    height: PropTypes.string,
+    viewBox: PropTypes.string.isRequired,
+    svgData: PropTypes.object.isRequired,
   }),
 
   /**
@@ -223,7 +222,6 @@ Icon.propTypes = {
 Icon.defaultProps = {
   fillRule: 'evenodd',
   role: 'img',
-  description: 'Provide a description that will be used as the title',
 };
 
 export { icons };

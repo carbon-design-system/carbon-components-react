@@ -1,28 +1,16 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
-
-import { withKnobs, select, text } from '@storybook/addon-knobs';
-import { iconAddSolid, iconSearch } from 'carbon-icons';
-import Icon from '../Icon';
+import { withKnobs, boolean } from '@storybook/addon-knobs';
 import ContentSwitcher from '../ContentSwitcher';
 import Switch from '../Switch';
-
-const icons = {
-  None: 'None',
-  'Add with filled circle (iconAddSolid from `carbon-icons`)': 'iconAddSolid',
-  'Search (iconSearch from `carbon-icons`)': 'iconSearch',
-};
-
-const iconMap = {
-  iconAddSolid: <Icon icon={iconAddSolid} />,
-  iconSearch: <Icon icon={iconSearch} />,
-};
-
-const kinds = {
-  'Anchor (anchor)': 'anchor',
-  'Button (button)': 'button',
-};
 
 const props = {
   contentSwitcher: () => ({
@@ -30,9 +18,7 @@ const props = {
   }),
   switch: () => ({
     onClick: action('onClick - Switch'),
-    kind: select('Button kind (kind in <Switch>)', kinds, 'anchor'),
-    href: text('The link href (href in <Switch>)', ''),
-    icon: iconMap[select('Icon (icon in <Switch>)', icons, 'none')],
+    disabled: boolean('Disabled (disabled)', false),
   }),
 };
 

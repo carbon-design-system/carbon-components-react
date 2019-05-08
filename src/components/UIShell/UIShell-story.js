@@ -1,4 +1,12 @@
-import { Notification16, User16 } from '@carbon/icons-react';
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+import Notification16 from '@carbon/icons-react/lib/notification/16';
+import User16 from '@carbon/icons-react/lib/user/16';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 
@@ -136,7 +144,7 @@ storiesOf('[Experimental] UI Shell', module)
           </HeaderGlobalBar>
         </Header>
         <SideNav aria-label="Side navigation">
-          <SideNavHeader icon={<Fade16 />}>
+          <SideNavHeader renderIcon={Fade16}>
             <SideNavDetails title="Side navigation title">
               <SideNavSwitcher
                 labelText="Switcher"
@@ -146,12 +154,12 @@ storiesOf('[Experimental] UI Shell', module)
             </SideNavDetails>
           </SideNavHeader>
           <SideNavItems>
-            <SideNavLink icon={<Fade16 />} href="javascript:void(0)">
+            <SideNavLink renderIcon={Fade16} href="javascript:void(0)">
               Link
             </SideNavLink>
             <SideNavMenu
               defaultExpanded
-              icon={<Fade16 />}
+              renderIcon={Fade16}
               isActive
               title="Category title">
               <SideNavMenuItem href="javascript:void(0)">Link</SideNavMenuItem>

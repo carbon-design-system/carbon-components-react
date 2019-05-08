@@ -1,3 +1,10 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import PropTypes from 'prop-types';
 import React from 'react';
 import Modal from '../Modal';
@@ -22,7 +29,10 @@ export default class ModalWrapper extends React.Component {
     secondaryButtonText: PropTypes.string,
     handleSubmit: PropTypes.func,
     disabled: PropTypes.bool,
-    triggerButtonIcon: PropTypes.string,
+    renderTriggerButtonIcon: PropTypes.oneOfType([
+      PropTypes.func,
+      PropTypes.object,
+    ]),
     triggerButtonIconDescription: PropTypes.string,
     triggerButtonKind: ButtonTypes.buttonKind,
     shouldCloseAfterSubmit: PropTypes.bool,
@@ -69,7 +79,7 @@ export default class ModalWrapper extends React.Component {
       onKeyDown,
       buttonTriggerText,
       buttonTriggerClassName,
-      triggerButtonIcon,
+      renderTriggerButtonIcon,
       triggerButtonIconDescription,
       triggerButtonKind,
       disabled,
@@ -100,10 +110,10 @@ export default class ModalWrapper extends React.Component {
           className={buttonTriggerClassName}
           disabled={disabled}
           kind={triggerButtonKind}
-          icon={triggerButtonIcon}
+          renderIcon={renderTriggerButtonIcon}
           iconDescription={triggerButtonIconDescription}
           onClick={this.handleOpen}
-          inputref={this.triggerButton}>
+          ref={this.triggerButton}>
           {buttonTriggerText}
         </Button>
         <Modal {...props}>{children}</Modal>

@@ -1,9 +1,7 @@
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
-
-const useExperimentalFeatures =
-  process.env.CARBON_USE_EXPERIMENTAL_FEATURES === 'true';
+const rtlcss = require('rtlcss');
 
 const useExternalCss =
   process.env.CARBON_REACT_STORYBOOK_USE_EXTERNAL_CSS === 'true';
@@ -11,9 +9,7 @@ const useExternalCss =
 const useStyleSourceMap =
   process.env.CARBON_REACT_STORYBOOK_USE_STYLE_SOURCEMAP === 'true';
 
-const replaceTable = {
-  componentsX: useExperimentalFeatures,
-};
+const useRtl = process.env.CARBON_REACT_STORYBOOK_USE_RTL === 'true';
 
 const styleLoaders = [
   {
@@ -26,11 +22,12 @@ const styleLoaders = [
   {
     loader: 'postcss-loader',
     options: {
-      plugins: () => [
-        require('autoprefixer')({
+      plugins: () => {
+        const autoPrefixer = require('autoprefixer')({
           browsers: ['last 1 version', 'ie >= 11'],
-        }),
-      ],
+        });
+        return !useRtl ? [autoPrefixer] : [autoPrefixer, rtlcss];
+      },
       sourceMap: useStyleSourceMap,
     },
   },
@@ -40,8 +37,6 @@ const styleLoaders = [
       includePaths: [path.resolve(__dirname, '..', 'node_modules')],
       data: `
         $feature-flags: (
-          components-x: ${useExperimentalFeatures},
-          grid: ${useExperimentalFeatures},
           ui-shell: true,
         );
       `,
@@ -63,18 +58,6 @@ module.exports = (baseConfig, env, defaultConfig) => {
       }),
     ],
   };
-
-  defaultConfig.module.rules.push({
-    test: /(\/|\\)FeatureFlags\.js$/,
-    loader: 'string-replace-loader',
-    options: {
-      multiple: Object.keys(replaceTable).map(key => ({
-        search: `export\\s+const\\s+${key}\\s*=\\s*false`,
-        replace: `export const ${key} = ${replaceTable[key]}`,
-        flags: 'i',
-      })),
-    },
-  });
 
   defaultConfig.module.rules.push({
     test: /-story\.jsx?$/,

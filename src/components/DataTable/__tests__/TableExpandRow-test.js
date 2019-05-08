@@ -1,3 +1,10 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import React from 'react';
 import { mount } from 'enzyme';
 import { Table, TableBody, TableExpandRow, TableExpandedRow } from '../';
@@ -36,12 +43,18 @@ describe('DataTable.TableExpandRow', () => {
       </Table>
     );
     expect(
-      Object.keys(wrapper.find('TableCell').props()).indexOf(
-        'data-previous-value'
-      ) !== -1
+      Object.keys(
+        wrapper
+          .find('TableCell')
+          .first()
+          .props()
+      ).indexOf('data-previous-value') !== -1
     ).toBe(true);
     expect(
-      wrapper.find('TableCell').prop('data-previous-value')
+      wrapper
+        .find('TableCell')
+        .first()
+        .prop('data-previous-value')
     ).not.toBeDefined();
   });
 
@@ -65,8 +78,11 @@ describe('DataTable.TableExpandRow', () => {
         </TableBody>
       </Table>
     );
-    expect(expandedWrapper.find('TableCell').prop('data-previous-value')).toBe(
-      'collapsed'
-    );
+    expect(
+      expandedWrapper
+        .find('TableCell')
+        .first()
+        .prop('data-previous-value')
+    ).toBe('collapsed');
   });
 });

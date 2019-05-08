@@ -1,6 +1,13 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import React from 'react';
-import { iconChevronLeft, iconChevronRight } from 'carbon-icons';
-import Icon from '../Icon';
+import CaretRight24 from '@carbon/icons-react/lib/caret--right/24';
+import CaretLeft24 from '@carbon/icons-react/lib/caret--left/24';
 import Pagination from '../Pagination';
 import Select from '../Select';
 import SelectItem from '../SelectItem';
@@ -15,18 +22,11 @@ describe('Pagination', () => {
     );
 
     describe('icons', () => {
-      const icons = pagination.find(Icon);
+      const iconTypes = [CaretLeft24, CaretRight24];
+      const icons = pagination.findWhere(n => iconTypes.includes(n.type()));
 
-      it('should have 3 icons', () => {
+      it('should have 2 icons', () => {
         expect(icons.length).toEqual(2);
-      });
-
-      it('should use correct "backward" icon', () => {
-        expect(icons.first().props().icon).toEqual(iconChevronLeft);
-      });
-
-      it('should use correct "forward" icon', () => {
-        expect(icons.last().props().icon).toEqual(iconChevronRight);
       });
     });
 
@@ -55,12 +55,12 @@ describe('Pagination', () => {
 
       it('should label the dropdown', () => {
         const label = left.find('.bx--pagination__text').first();
-        expect(label.text()).toBe('items per page | ');
+        expect(label.text()).toBe('Items per page:');
       });
 
       it('should show the item range out of the total', () => {
         const label = left.find('.bx--pagination__text').at(1);
-        expect(label.text()).toBe('1-5 of 50 items');
+        expect(label.text()).toBe('1–5 of 50 items');
       });
 
       describe('pagination size container when total pages unknown', () => {
@@ -84,12 +84,12 @@ describe('Pagination', () => {
 
         it('should label the dropdown', () => {
           const label = left.find('.bx--pagination__text').first();
-          expect(label.text()).toBe('items per page | ');
+          expect(label.text()).toBe('Items per page:');
         });
 
         it('should show the item range without the total', () => {
           const label = left.find('.bx--pagination__text').at(1);
-          expect(label.text()).toBe('1-5 items');
+          expect(label.text()).toBe('1–5 items');
         });
       });
 
@@ -107,14 +107,17 @@ describe('Pagination', () => {
             />
           );
           expect(pager.state().pageSize).toBe(5);
-          pager.find('select').simulate('change', { target: { value: 10 } });
+          pager
+            .find('select')
+            .first()
+            .simulate('change', { target: { value: 10 } });
           expect(actualPageSize).toBe(10);
           expect(pager.state().pageSize).toBe(10);
 
           // Text updates after change
           const labels = pager.find('.bx--pagination__text');
-          expect(labels.at(1).text()).toBe('1-10 of 50 items');
-          expect(labels.at(2).text()).toBe('1 of 5 pages');
+          expect(labels.at(1).text()).toBe('1–10 of 50 items');
+          expect(labels.at(2).text()).toBe('of 5 pages');
         });
 
         it('should reset the page when page size changes', () => {
@@ -131,7 +134,10 @@ describe('Pagination', () => {
           );
           pager.setState({ page: 2 });
           expect(pager.state().page).toBe(2);
-          pager.find('select').simulate('change', { target: { value: 10 } });
+          pager
+            .find('select')
+            .first()
+            .simulate('change', { target: { value: 10 } });
           expect(actualPage).toBe(1);
           expect(pager.state().page).toBe(1);
         });
@@ -143,6 +149,15 @@ describe('Pagination', () => {
           pager.setState({ page: 2 });
           pager.setProps({ pageSizes: [3, 6] });
           expect(pager.state().page).toEqual(1);
+        });
+
+        it('should avoid returning to first page unless actual change in pageSizes is detected', () => {
+          const pager = mount(
+            <Pagination pageSizes={[5, 10]} totalItems={50} />
+          );
+          pager.setState({ page: 2 });
+          pager.setProps({ pageSizes: [5, 10] });
+          expect(pager.state().page).toEqual(2);
         });
 
         it('should default to pageSize if pageSize is provided', () => {
@@ -159,6 +174,15 @@ describe('Pagination', () => {
           pager.setProps({ pageSize: 10 });
           expect(pager.state().pageSize).toEqual(10);
         });
+
+        it('should avoid defaulting to pageSize unless actual change in pageSize is detected', () => {
+          const pager = mount(
+            <Pagination pageSizes={[5, 10]} pageSize={10} totalItems={50} />
+          );
+          pager.setState({ pageSize: 20 });
+          pager.setProps({ pageSize: 10 });
+          expect(pager.state().pageSize).toEqual(20);
+        });
       });
     });
 
@@ -171,14 +195,14 @@ describe('Pagination', () => {
 
       it('should show the current page out of the total number of pages', () => {
         const label = right.find('.bx--pagination__text').first();
-        expect(label.text()).toBe('1 of 10 pages');
+        expect(label.text()).toBe('of 10 pages');
       });
 
       it('should render ranges and pages for no items', () => {
         const pager = mount(<Pagination pageSizes={[5, 10]} totalItems={0} />);
         const labels = pager.find('.bx--pagination__text');
-        expect(labels.at(1).text()).toBe('0-0 of 0 items');
-        expect(labels.at(2).text()).toBe('1 of 1 pages');
+        expect(labels.at(1).text()).toBe('0–0 of 0 items');
+        expect(labels.at(2).text()).toBe('of 1 pages');
       });
 
       it('should have two buttons for navigation', () => {
@@ -270,6 +294,29 @@ describe('Pagination', () => {
           );
           expect(right.length).toEqual(0);
         });
+
+        it('should not append `pagination__button--no-index` class if input is disabled', () => {
+          const pagination = shallow(
+            <Pagination
+              page={2}
+              pageSizes={[100]}
+              pagesUnknown={true}
+              pageInputDisabled={true}
+            />
+          );
+          const forwardButton = pagination.find(
+            '.bx--pagination__button--forward'
+          );
+          const backwardButton = pagination.find(
+            '.bx--pagination__button--backward'
+          );
+          expect(
+            backwardButton.hasClass('bx--pagination__button--no-index')
+          ).toEqual(false);
+          expect(
+            forwardButton.hasClass('bx--pagination__button--no-index')
+          ).toEqual(false);
+        });
       });
 
       describe('pagination navigation', () => {
@@ -310,9 +357,7 @@ describe('Pagination', () => {
           expect(pager.state().page).toBe(1);
         });
 
-        // TODO: Skipping test as `jest.runAllTimers()` call here results in the
-        // test being flakey. Should figure out what's going on here.
-        xit('should jump to the page entered in the input field', () => {
+        it('should jump to the page entered in the input field', () => {
           let actualPage;
           const handler = ({ page }) => {
             actualPage = page;
@@ -326,7 +371,7 @@ describe('Pagination', () => {
           );
           expect(pager.state().page).toBe(1);
           pager
-            .find('.bx--text__input')
+            .find('select')
             .last()
             .simulate('change', { target: { value: 2 } });
           jest.runAllTimers();
@@ -342,57 +387,21 @@ describe('Pagination', () => {
           pager.setProps({ page: 2 });
           expect(pager.state().page).toBe(2);
         });
+
+        it('should avoid jumping to page number unless actual change in prop page is detected', () => {
+          const pager = mount(
+            <Pagination pageSizes={[5, 10]} totalItems={50} page={3} />
+          );
+          expect(pager.state().page).toBe(3);
+          pager.setState({ page: 2 });
+          pager.setProps({ page: 3 });
+          expect(pager.state().page).toBe(2);
+        });
+
         it('should not increment page if there is only 1 page', () => {
           const pager = mount(<Pagination pageSizes={[10]} totalItems={5} />);
           const buttons = pager.find('.bx--pagination__button');
           expect(buttons.at(1).props().disabled).toBe(true);
-        });
-      });
-
-      describe('empty page input', () => {
-        it('sets page to 0', () => {
-          const pager = mount(
-            <Pagination pageSizes={[5, 10]} totalItems={50} page={3} />
-          );
-          pager
-            .find('.bx--text__input')
-            .last()
-            .simulate('change', { target: { value: '' } });
-          expect(pager.state().page).toBe(0);
-        });
-
-        it('uses default page text when current page 0', () => {
-          const defaultMock = jest.fn();
-          const pager = mount(
-            <Pagination
-              pageSizes={[5, 10]}
-              totalItems={50}
-              page={3}
-              defaultPageText={defaultMock}
-            />
-          );
-          pager
-            .find('.bx--text__input')
-            .last()
-            .simulate('change', { target: { value: 0 } });
-          expect(defaultMock).toBeCalledWith(10);
-        });
-
-        it('uses default item text when current page 0', () => {
-          const defaultMock = jest.fn();
-          const pager = mount(
-            <Pagination
-              pageSizes={[5, 10]}
-              totalItems={50}
-              page={3}
-              defaultItemText={defaultMock}
-            />
-          );
-          pager
-            .find('.bx--text__input')
-            .last()
-            .simulate('change', { target: { value: '' } });
-          expect(defaultMock).toBeCalledWith(50);
         });
       });
     });

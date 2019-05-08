@@ -1,3 +1,10 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import classNames from 'classnames';
@@ -144,6 +151,15 @@ export default class TimePicker extends Component {
     } = this.props;
 
     const timePickerInputProps = {
+      className: classNames(
+        `${prefix}--time-picker__input-field`,
+        `${prefix}--text-input`,
+        className,
+        {
+          [`${prefix}--text-input--light`]: light,
+          [`${prefix}--text-input--invalid`]: invalid,
+        }
+      ),
       onChange: evt => {
         if (!other.disabled) {
           this.setState({
@@ -184,6 +200,7 @@ export default class TimePicker extends Component {
 
     const labelClasses = classNames(`${prefix}--label`, {
       [`${prefix}--visually-hidden`]: hideLabel,
+      [`${prefix}--label--disabled`]: other.disabled,
     });
 
     const label = labelText ? (
@@ -205,7 +222,6 @@ export default class TimePicker extends Component {
               {...other}
               {...timePickerInputProps}
               data-invalid={invalid ? invalid : undefined}
-              className={`${prefix}--time-picker__input-field`}
             />
             {error}
           </div>

@@ -1,3 +1,10 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import React from 'react';
 import { ProgressIndicator, ProgressStep } from '../ProgressIndicator';
 import ProgressIndicatorSkeleton from '../ProgressIndicator/ProgressIndicator.Skeleton';
@@ -69,6 +76,18 @@ describe('ProgressIndicator', () => {
       list.setState({ currentIndex: 2 });
       list.setProps({ currentIndex: 1 });
       expect(list.state().currentIndex).toEqual(2);
+    });
+
+    it('should trigger onChange if clicked', () => {
+      const mockOnChange = jest.fn();
+
+      mountedList.setProps({ onChange: mockOnChange });
+      mountedList
+        .find(ProgressStep)
+        .at(0)
+        .find('[role="button"]')
+        .simulate('click');
+      expect(mockOnChange).toHaveBeenCalledWith(0);
     });
 
     describe('ProgressStep', () => {
@@ -167,6 +186,14 @@ describe('ProgressIndicator', () => {
               .at(5)
               .prop('complete')
           ).toBe(false);
+        });
+
+        it('should render any clickable ProgressSteps with correct classname', () => {
+          mountedList.setProps({ onChange: jest.fn() });
+          expect(mountedList.find('.bx--progress-step-button')).toHaveLength(6); // one button for each div
+          expect(
+            mountedList.find('.bx--progress-step-button--unclickable')
+          ).toHaveLength(1); // only the current step should be unclickable
         });
       });
     });

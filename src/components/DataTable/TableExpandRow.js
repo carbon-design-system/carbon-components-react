@@ -1,9 +1,15 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import cx from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { iconChevronRight } from 'carbon-icons';
+import ChevronRight16 from '@carbon/icons-react/lib/chevron--right/16';
 import { settings } from 'carbon-components';
-import Icon from '../Icon';
 import TableCell from './TableCell';
 
 const { prefix } = settings;
@@ -16,13 +22,14 @@ const TableExpandRow = ({
   onExpand,
   expandIconDescription,
   isSelected,
+  expandHeader,
   ...rest
 }) => {
   const className = cx(
     {
-      [`${prefix}--parent-row-v2`]: true,
-      [`${prefix}--expandable-row-v2`]: isExpanded,
-      [`${prefix}--data-table-v2--selected`]: isSelected,
+      [`${prefix}--parent-row`]: true,
+      [`${prefix}--expandable-row`]: isExpanded,
+      [`${prefix}--data-table--selected`]: isSelected,
     },
     rowClassName
   );
@@ -31,16 +38,17 @@ const TableExpandRow = ({
   return (
     <tr {...rest} className={className} data-parent-row>
       <TableCell
-        className={`${prefix}--table-expand-v2`}
-        data-previous-value={previousValue}>
+        className={`${prefix}--table-expand`}
+        data-previous-value={previousValue}
+        headers={expandHeader}>
         <button
-          className={`${prefix}--table-expand-v2__button`}
+          className={`${prefix}--table-expand__button`}
           onClick={onExpand}
+          title={expandIconDescription}
           aria-label={ariaLabel}>
-          <Icon
-            className={`${prefix}--table-expand-v2__svg`}
-            icon={iconChevronRight}
-            description={expandIconDescription}
+          <ChevronRight16
+            className={`${prefix}--table-expand__svg`}
+            aria-label={expandIconDescription}
           />
         </button>
       </TableCell>
@@ -72,6 +80,15 @@ TableExpandRow.propTypes = {
    * The description of the chevron right icon, to be put in its SVG `<title>` element.
    */
   expandIconDescription: PropTypes.string,
+
+  /**
+   * The id of the matching th node in the table head. Addresses a11y concerns outlined here: https://www.ibm.com/able/guidelines/ci162/info_and_relationships.html and https://www.w3.org/TR/WCAG20-TECHS/H43
+   */
+  expandHeader: PropTypes.string,
+};
+
+TableExpandRow.defaultProps = {
+  expandHeader: 'expand',
 };
 
 export default TableExpandRow;

@@ -1,13 +1,21 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
-import { withKnobs, text } from '@storybook/addon-knobs';
+import { withKnobs, text, boolean } from '@storybook/addon-knobs';
 import ToggleSmall from '../ToggleSmall';
 import ToggleSmallSkeleton from '../ToggleSmall/ToggleSmall.Skeleton';
 
 const toggleProps = () => ({
   className: 'some-class',
   ariaLabel: text('ARIA label (ariaLabel)', 'Label Name'),
+  disabled: boolean('Disabled (disabled)', false),
   onChange: action('onChange'),
   onToggle: action('onToggle'),
 });

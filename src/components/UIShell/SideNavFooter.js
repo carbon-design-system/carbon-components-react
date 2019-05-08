@@ -1,4 +1,12 @@
-import { Close20, ChevronRight20 } from '@carbon/icons-react';
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+import Close20 from '@carbon/icons-react/lib/close/20';
+import ChevronRight20 from '@carbon/icons-react/lib/chevron--right/20';
 import { settings } from 'carbon-components';
 import cx from 'classnames';
 import React from 'react';
@@ -14,7 +22,7 @@ const { prefix } = settings;
 const SideNavFooter = ({
   assistiveText,
   className: customClassName,
-  isExpanded,
+  expanded,
   onToggle,
 }) => {
   const className = cx(`${prefix}--side-nav__footer`, customClassName);
@@ -23,10 +31,10 @@ const SideNavFooter = ({
       <button
         className={`${prefix}--side-nav__toggle`}
         type="button"
-        onClick={onToggle}
+        onClick={evt => onToggle(evt)}
         title={assistiveText}>
         <div className={`${prefix}--side-nav__icon`}>
-          {isExpanded ? <Close20 /> : <ChevronRight20 />}
+          {expanded ? <Close20 /> : <ChevronRight20 />}
         </div>
         <span className={`${prefix}--assistive-text`}>{assistiveText}</span>
       </button>
@@ -44,7 +52,7 @@ SideNavFooter.propTypes = {
   /**
    * Specify whether the side navigation is expanded or collapsed
    */
-  isExpanded: PropTypes.bool.isRequired,
+  expanded: PropTypes.bool.isRequired,
 
   /**
    * Provide a function that is called when the toggle button is interacted

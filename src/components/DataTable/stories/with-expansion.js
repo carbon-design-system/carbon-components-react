@@ -1,3 +1,10 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import React from 'react';
 import DataTable, {
   Table,
@@ -13,13 +20,14 @@ import DataTable, {
 } from '../../DataTable';
 import { initialRows, headers } from './shared';
 
-export default () => (
+export default props => (
   <DataTable
     rows={initialRows}
     headers={headers}
-    render={({ rows, headers, getHeaderProps, getRowProps }) => (
-      <TableContainer title="DataTable with expansion">
-        <Table>
+    {...props}
+    render={({ rows, headers, getHeaderProps, getRowProps, getTableProps }) => (
+      <TableContainer title="DataTable" description="With expansion">
+        <Table {...getTableProps()}>
           <TableHead>
             <TableRow>
               <TableExpandHeader />
@@ -38,14 +46,10 @@ export default () => (
                     <TableCell key={cell.id}>{cell.value}</TableCell>
                   ))}
                 </TableExpandRow>
-                {row.isExpanded && (
-                  <TableExpandedRow>
-                    <TableCell colSpan={headers.length + 1}>
-                      <h1>Expandable row content</h1>
-                      <p>Description here</p>
-                    </TableCell>
-                  </TableExpandedRow>
-                )}
+                <TableExpandedRow colSpan={headers.length + 1}>
+                  <h1>Expandable row content</h1>
+                  <p>Description here</p>
+                </TableExpandedRow>
               </React.Fragment>
             ))}
           </TableBody>

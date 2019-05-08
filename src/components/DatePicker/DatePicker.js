@@ -1,3 +1,10 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import classNames from 'classnames';
@@ -6,7 +13,6 @@ import l10n from 'flatpickr/dist/l10n/index';
 import rangePlugin from 'flatpickr/dist/plugins/rangePlugin';
 import { settings } from 'carbon-components';
 import DatePickerInput from '../DatePickerInput';
-import Icon from '../Icon';
 
 const { prefix } = settings;
 
@@ -52,11 +58,6 @@ export default class DatePicker extends Component {
      * * `range` - With calendar dropdown and a date range.
      */
     datePickerType: PropTypes.oneOf(['simple', 'single', 'range']),
-
-    /**
-     * The description of the calendar icon.
-     */
-    iconDescription: PropTypes.string,
 
     /**
      * The date format.
@@ -253,7 +254,6 @@ export default class DatePicker extends Component {
       datePickerType,
       dateFormat,
       locale,
-      appendTo,
       onChange,
       minDate,
       maxDate,
@@ -267,10 +267,9 @@ export default class DatePicker extends Component {
       const onHook = (electedDates, dateStr, instance) => {
         this.updateClassNames(instance);
       };
-      const appendToNode =
-        typeof appendTo === 'string'
-          ? document.querySelector(appendTo)
-          : appendTo;
+
+      let appendToNode;
+
       // inputField ref might not be set in enzyme tests
       if (this.inputField) {
         this.cal = new flatpickr(this.inputField, {
@@ -292,7 +291,7 @@ export default class DatePicker extends Component {
               : '',
           clickOpens: true,
           nextArrow: this.rightArrowHTML(),
-          leftArrow: this.leftArrowHTML(),
+          prevArrow: this.leftArrowHTML(),
           onChange: (...args) => {
             if (onChange) {
               onChange(...args);
@@ -350,15 +349,17 @@ export default class DatePicker extends Component {
 
   rightArrowHTML() {
     return `
-      <svg height="12" width="7" viewBox="0 0 7 12">
-        <path d="M5.569 5.994L0 .726.687 0l6.336 5.994-6.335 6.002L0 11.27z"></path>
+      <svg width="16px" height="16px" viewBox="0 0 16 16">
+        <polygon points="11,8 6,13 5.3,12.3 9.6,8 5.3,3.7 6,3 "/>
+        <rect width="16" height="16" style="fill:none" />
       </svg>`;
   }
 
   leftArrowHTML() {
     return `
-      <svg width="7" height="12" viewBox="0 0 7 12" fill-rule="evenodd">
-        <path d="M1.45 6.002L7 11.27l-.685.726L0 6.003 6.315 0 7 .726z"></path>
+      <svg width="16px" height="16px" viewBox="0 0 16 16">
+        <polygon points="5,8 10,3 10.7,3.7 6.4,8 10.7,12.3 10,13 "/>
+        <rect width="16" height="16" style="fill:none" />
       </svg>`;
   }
 
@@ -467,18 +468,6 @@ export default class DatePicker extends Component {
         datePickerType === 'range' && this.isLabelTextEmpty(children),
     });
 
-    const datePickerIcon =
-      datePickerType === 'range' ? (
-        <Icon
-          name="calendar"
-          className={`${prefix}--date-picker__icon`}
-          description={iconDescription}
-          onClick={this.openCalendar}
-        />
-      ) : (
-        ''
-      );
-
     const childArray = React.Children.toArray(children);
     const childrenWithProps = childArray.map((child, index) => {
       if (index === 0 && child.type === DatePickerInput) {
@@ -506,7 +495,6 @@ export default class DatePicker extends Component {
       <div className={`${prefix}--form-item`}>
         <div className={datePickerClasses} {...other}>
           {childrenWithProps}
-          {datePickerIcon}
         </div>
       </div>
     );

@@ -1,3 +1,10 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import React from 'react';
 import RadioButton from '../RadioButton';
 import { mount } from 'enzyme';
@@ -55,9 +62,17 @@ describe('RadioButton', () => {
         expect(label.props().className).toEqual('bx--radio-button__label');
       });
 
-      it('should render a span with the correct class', () => {
+      it('should render a span with the correct class for radio style', () => {
         const span = label.find('span');
-        expect(span.hasClass('bx--radio-button__appearance')).toEqual(true);
+        expect(span.at(0).hasClass('bx--radio-button__appearance')).toEqual(
+          true
+        );
+      });
+
+      it('should render a span for the label text', () => {
+        const span = label.find('span');
+        expect(span.at(1).hasClass('')).toEqual(true);
+        expect(span.at(1).text()).toEqual('testlabel');
       });
 
       it('should render label text', () => {
@@ -79,7 +94,7 @@ describe('RadioButton', () => {
 
     describe('wrapper', () => {
       it('should have the correct class', () => {
-        expect(div.hasClass('radioButtonWrapper')).toEqual(true);
+        expect(div.hasClass('bx--radio-button-wrapper')).toEqual(true);
       });
 
       it('should have extra classes applied', () => {

@@ -1,4 +1,11 @@
-import { ChevronDown20 } from '@carbon/icons-react';
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+import ChevronDown20 from '@carbon/icons-react/lib/chevron--down/20';
 import { settings } from 'carbon-components';
 import cx from 'classnames';
 import PropTypes from 'prop-types';
@@ -22,7 +29,7 @@ export class SideNavMenu extends React.Component {
     /**
      * Pass in a custom icon to render next to the `SideNavMenu` title
      */
-    icon: PropTypes.node.isRequired,
+    renderIcon: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
 
     /**
      * Specify whether the `SideNavMenu` is "active". `SideNavMenu` should be
@@ -64,7 +71,7 @@ export class SideNavMenu extends React.Component {
       buttonRef,
       className: customClassName,
       children,
-      icon,
+      renderIcon: IconElement,
       isActive,
       title,
     } = this.props;
@@ -83,7 +90,11 @@ export class SideNavMenu extends React.Component {
           onClick={this.handleToggleExpand}
           ref={buttonRef}
           type="button">
-          <SideNavIcon>{icon}</SideNavIcon>
+          {IconElement && (
+            <SideNavIcon>
+              <IconElement />
+            </SideNavIcon>
+          )}
           <span className={`${prefix}--side-nav__submenu-title`}>{title}</span>
           <SideNavIcon className={`${prefix}--side-nav__submenu-chevron`} small>
             <ChevronDown20 />

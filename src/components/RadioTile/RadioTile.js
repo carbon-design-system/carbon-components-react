@@ -1,13 +1,16 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import PropTypes from 'prop-types';
 import React from 'react';
 import uid from '../../tools/uniqueId';
-import Icon from '../Icon';
-import { iconCheckmarkSolid } from 'carbon-icons';
 import classNames from 'classnames';
 import { settings } from 'carbon-components';
-// TODO: import { CheckmarkFilled16 } from '@carbon/icons-react';
 import CheckmarkFilled from '@carbon/icons-react/lib/checkmark--filled/16';
-import { componentsX } from '../../internal/FeatureFlags';
 import { keys, matches } from '../../tools/key';
 
 const { prefix } = settings;
@@ -91,11 +94,7 @@ export default class RadioTile extends React.Component {
     );
 
     return (
-      <label
-        htmlFor={this.uid}
-        className={classes}
-        tabIndex={this.props.tabIndex}
-        onKeyDown={this.handleKeyDown}>
+      <>
         <input
           {...other}
           type="radio"
@@ -103,19 +102,19 @@ export default class RadioTile extends React.Component {
           onChange={this.handleChange}
           id={this.uid}
         />
-        <div className={`${prefix}--tile__checkmark`}>
-          {componentsX ? (
-            <CheckmarkFilled
-              aria-label={iconDescription}
-              alt={iconDescription}
-              description={iconDescription}
-            />
-          ) : (
-            <Icon icon={iconCheckmarkSolid} description={iconDescription} />
-          )}
-        </div>
-        <div className={`${prefix}--tile-content`}>{children}</div>
-      </label>
+        <label
+          htmlFor={this.uid}
+          className={classes}
+          tabIndex={this.props.tabIndex}
+          onKeyDown={this.handleKeyDown}>
+          <div className={`${prefix}--tile__checkmark`}>
+            <CheckmarkFilled aria-label={iconDescription}>
+              {iconDescription && <title>{iconDescription}</title>}
+            </CheckmarkFilled>
+          </div>
+          <div className={`${prefix}--tile-content`}>{children}</div>
+        </label>
+      </>
     );
   }
 }

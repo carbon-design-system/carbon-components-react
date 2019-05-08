@@ -1,3 +1,10 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action, decorateAction } from '@storybook/addon-actions';
@@ -50,6 +57,10 @@ const props = {
       'Form validation UI content (invalidText in <DatePickerInput>)',
       'A valid value is required'
     ),
+    iconDescription: text(
+      'Icon description (iconDescription in <DatePickerInput>)',
+      'Icon description'
+    ),
     onClick: action('onClick'),
     onChange: action('onInputChange'),
   }),
@@ -84,13 +95,7 @@ storiesOf('DatePicker', module)
           'The date format (dateFormat in <DatePicker>)',
           'm/d/Y'
         )}>
-        <DatePickerInput
-          {...props.datePickerInput()}
-          iconDescription={text(
-            'Icon description (iconDescription in <DatePickerInput>)',
-            'Icon description'
-          )}
-        />
+        <DatePickerInput {...props.datePickerInput()} />
       </DatePicker>
     ),
     {
@@ -143,10 +148,6 @@ storiesOf('DatePicker', module)
           dateFormat={text(
             'The date format (dateFormat in <DatePicker>)',
             'm/d/Y'
-          )}
-          iconDescription={text(
-            'Icon description (iconDescription in <DatePicker>)',
-            'Icon description'
           )}>
           <DatePickerInput
             {...datePickerInputProps}

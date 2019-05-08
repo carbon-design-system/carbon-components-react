@@ -1,3 +1,10 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import PropTypes from 'prop-types';
 import React from 'react';
 import classNames from 'classnames';
@@ -5,20 +12,22 @@ import { settings } from 'carbon-components';
 
 const { prefix } = settings;
 
-const Checkbox = ({
-  className,
-  id,
-  labelText,
-  onChange,
-  indeterminate,
-  hideLabel,
-  wrapperClassName,
-  title = '',
-  ...other
-}) => {
-  let input;
+const Checkbox = React.forwardRef(function Checkbox(
+  {
+    className,
+    id,
+    labelText,
+    onChange,
+    indeterminate,
+    hideLabel,
+    wrapperClassName,
+    title = '',
+    ...other
+  },
+  ref
+) {
   const labelClasses = classNames(`${prefix}--checkbox-label`, className);
-  const innerLabelClasses = classNames({
+  const innerLabelClasses = classNames(`${prefix}--checkbox-label-text`, {
     [`${prefix}--visually-hidden`]: hideLabel,
   });
   const wrapperClasses = classNames(
@@ -33,14 +42,18 @@ const Checkbox = ({
         {...other}
         type="checkbox"
         onChange={evt => {
-          onChange(input.checked, id, evt);
+          onChange(evt.target.checked, id, evt);
         }}
         className={`${prefix}--checkbox`}
         id={id}
         ref={el => {
-          input = el;
-          if (input) {
-            input.indeterminate = indeterminate;
+          if (el) {
+            el.indeterminate = indeterminate;
+          }
+          if (typeof ref === 'function') {
+            ref(el);
+          } else if (Object(ref) === ref) {
+            ref.current = el;
           }
         }}
       />
@@ -49,7 +62,7 @@ const Checkbox = ({
       </label>
     </div>
   );
-};
+});
 
 Checkbox.propTypes = {
   /**

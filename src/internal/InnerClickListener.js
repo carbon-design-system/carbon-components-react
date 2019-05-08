@@ -1,3 +1,10 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import PropTypes from 'prop-types';
 import React from 'react';
 
@@ -31,7 +38,12 @@ export default class InnerClickListener extends React.Component {
   }
 
   handleDocumentClick(event) {
-    if (this.element) {
+    // Ensure that the target exists in the DOM before checking the element
+    if (
+      this.element &&
+      (this.element.ownerDocument === event.target ||
+        this.element.ownerDocument.body.contains(event.target))
+    ) {
       if (this.element.contains && !this.element.contains(event.target)) {
         this.props.onClickOutside(event);
       }

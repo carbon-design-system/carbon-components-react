@@ -1,7 +1,15 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import PropTypes from 'prop-types';
 import React from 'react';
 import classNames from 'classnames';
 import { settings } from 'carbon-components';
+import { keys, match } from '../../tools/key';
 
 const { prefix } = settings;
 
@@ -45,6 +53,13 @@ const ToggleSmall = ({
           input = el;
         }}
         aria-label={ariaLabel}
+        onKeyUp={evt => {
+          if (match(evt, keys.ENTER)) {
+            input.checked = !input.checked;
+            onChange(evt);
+            onToggle(input.checked, id, evt);
+          }
+        }}
       />
 
       <label className={`${prefix}--toggle__label`} htmlFor={id}>
@@ -57,6 +72,7 @@ const ToggleSmall = ({
             <path d="M2.2403 2.7299L4.9245 0 6 1.1117 2.2384 5 0 2.6863 1.0612 1.511z" />
           </svg>
         </span>
+        <span className={`${prefix}--assistive-text`}>{ariaLabel}</span>
       </label>
     </div>
   );

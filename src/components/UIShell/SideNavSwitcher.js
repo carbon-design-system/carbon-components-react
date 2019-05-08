@@ -1,4 +1,11 @@
-import { ChevronDown20 } from '@carbon/icons-react';
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+import ChevronDown20 from '@carbon/icons-react/lib/chevron--down/20';
 import { settings } from 'carbon-components';
 import cx from 'classnames';
 import PropTypes from 'prop-types';
@@ -6,7 +13,7 @@ import React from 'react';
 
 const { prefix } = settings;
 
-const SideNavSwitcher = React.forwardRef((props, ref) => {
+const SideNavSwitcher = React.forwardRef(function SideNavSwitcher(props, ref) {
   const { className: customClassName, labelText, onChange, options } = props;
   const className = cx(`${prefix}--side-nav__switcher`, customClassName);
   // Note for usage around `onBlur`: https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/no-onchange.md

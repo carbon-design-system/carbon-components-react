@@ -1,7 +1,14 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import React from 'react';
 import PrimaryButton from '../PrimaryButton';
 import { shallow, mount } from 'enzyme';
-import { iconSearch } from 'carbon-icons';
+import Search16 from '@carbon/icons-react/lib/search/16';
 
 describe('PrimaryButton', () => {
   describe('Renders as expected', () => {
@@ -31,7 +38,7 @@ describe('PrimaryButton', () => {
 
     describe('Renders icon buttons', () => {
       const iconButton = mount(
-        <PrimaryButton icon={iconSearch} iconDescription="Search">
+        <PrimaryButton renderIcon={Search16} iconDescription="Search">
           Search
         </PrimaryButton>
       );

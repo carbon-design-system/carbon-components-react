@@ -1,5 +1,13 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import React from 'react';
 import { shallow, mount } from 'enzyme';
+import Button from '../Button';
 import ComposedModal, {
   ModalHeader,
   ModalBody,
@@ -107,13 +115,13 @@ describe('<ModalFooter />', () => {
     });
 
     it('renders primary button if primary text', () => {
-      const buttonComponent = primaryWrapper.find('Button');
+      const buttonComponent = primaryWrapper.find(Button);
       expect(buttonComponent.exists()).toBe(true);
       expect(buttonComponent.props().kind).toBe('primary');
     });
 
     it('renders primary button if secondary text', () => {
-      const buttonComponent = secondaryWrapper.find('Button');
+      const buttonComponent = secondaryWrapper.find(Button);
       expect(buttonComponent.exists()).toBe(true);
       expect(buttonComponent.props().kind).toBe('secondary');
     });
@@ -127,14 +135,14 @@ describe('<ModalFooter />', () => {
       <ModalFooter secondaryButtonText="test" danger />
     );
 
-    it('renders danger--primary button if primary text && danger', () => {
-      const buttonComponent = primaryWrapper.find('Button');
+    it('renders danger button if primary text && danger', () => {
+      const buttonComponent = primaryWrapper.find(Button);
       expect(buttonComponent.exists()).toBe(true);
-      expect(buttonComponent.props().kind).toBe('danger--primary');
+      expect(buttonComponent.props().kind).toBe('danger');
     });
 
     it('renders tertiary button if secondary text && danger', () => {
-      const buttonComponent = secondaryWrapper.find('Button');
+      const buttonComponent = secondaryWrapper.find(Button);
       expect(buttonComponent.exists()).toBe(true);
       expect(buttonComponent.props().kind).toBe('tertiary');
     });

@@ -1,3 +1,10 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
@@ -9,7 +16,7 @@ import { sliderValuePropSync } from '../../internal/FeatureFlags';
 
 const props = () => ({
   name: text('Form item name (name)', ''),
-  inputType: text('The form element type (inputType)', ''),
+  inputType: text('The form element type (inputType)', 'number'),
   ariaLabelInput: text('The ARIA label for the <input> (ariaLabelInput)', ''),
   disabled: boolean('Disabled (disabled)', false),
   light: boolean('Light variant (light)', false),
@@ -31,21 +38,13 @@ const props = () => ({
 
 storiesOf('Slider', module)
   .addDecorator(withKnobs)
-  .add(
-    'default',
-    () => (
-      <div style={{ marginTop: '2rem' }}>
-        <Slider id="slider" {...props()} />
-      </div>
-    ),
-    {
-      info: {
-        text: `
+  .add('default', () => <Slider id="slider" {...props()} />, {
+    info: {
+      text: `
             Sliders provide a visual indication of adjustable content, where the user can move the handle along a horizontal track to increase or decrease the value.
           `,
-      },
-    }
-  )
+    },
+  })
   .add(
     'skeleton',
     () => (

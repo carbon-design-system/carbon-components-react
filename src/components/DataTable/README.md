@@ -150,6 +150,32 @@ const rows = [
 ];
 ```
 
+#### Extra Options
+
+You can also pass optional options with each row object
+
+| property     | type    | description              |
+| ------------ | ------- | ------------------------ |
+| `disabled`   | boolean | will render row disabled |
+| `isSelected` | boolean | will render row selected |
+| `isExpanded` | boolean | will render row expanded |
+
+```js
+const rows = [
+  {
+    id: 'a',
+    field1: 'Field 1a',
+    disabled: true,
+    isExpanded: true,
+  },
+  {
+    id: 'b',
+    field1: 'Field 1b',
+    isSelected: true,
+  },
+];
+```
+
 ### `headers`
 
 The `headers` prop represents the order in which the headers should appear in the table. We expect an array of objects to be passed in, where `key` is the name of the key in a row object, and `header` is the name of the header. For example:
@@ -393,9 +419,9 @@ In practice, the combination of these components looks like the following:
 <DataTable
   rows={initialRows}
   headers={headers}
-  render={({ rows, headers, getHeaderProps, getRowProps }) => (
+  render={({ rows, headers, getHeaderProps, getRowProps, getTableProps }) => (
     <TableContainer title="DataTable with expansion">
-      <Table>
+      <Table {...getTableProps()}>
         <TableHead>
           <TableRow>
             {/* add the expand header before all other headers */}
@@ -418,11 +444,9 @@ In practice, the combination of these components looks like the following:
               </TableExpandRow>
               {/* toggle based off of if the row is expanded. If it is, render TableExpandedRow */}
               {row.isExpanded && (
-                <TableExpandedRow>
-                  <TableCell colSpan={headers.length + 1}>
-                    <h1>Expandable row content</h1>
-                    <p>Description here</p>
-                  </TableCell>
+                <TableExpandedRow colSpan={headers.length + 1}>
+                  <h1>Expandable row content</h1>
+                  <p>Description here</p>
                 </TableExpandedRow>
               )}
             </React.Fragment>
@@ -440,7 +464,8 @@ Some things to note:
 - `TableExpandRow` is what you use instead of `TableRow` for the content of your row. We make sure to add `getRowProps` so that it has the right props
 - `row.isExpanded` is the field available on `row` to know if the `row` is expanded or not
 - `TableExpandedRow` is used as a wrapper for any content you want to appear in the expanded row
-  - Tip: the `colSpan` attribute on the `TableCell` should be `headers.length + 1` in order to span the whole table
+  - Tip: the `colSpan` attribute on the `TableExpandedRow` should be `headers.length + 1` in order to span the whole table
+  - `TableExpandedRow` should not have a `TableCell` child
 
 #### Programmatic expansion
 

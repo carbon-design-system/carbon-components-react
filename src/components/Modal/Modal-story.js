@@ -1,3 +1,10 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
@@ -16,7 +23,10 @@ const props = () => ({
   ),
   modalHeading: text('Modal heading (modalHeading)', 'Modal heading'),
   modalLabel: text('Optional label (modalLabel)', 'Label'),
-  modalAriaLabel: text('ARIA label (modalAriaLabel)', ''),
+  modalAriaLabel: text(
+    'ARIA label (modalAriaLabel)',
+    'A label to be read by screen readers on the modal root node'
+  ),
   primaryButtonText: text(
     'Primary button text (primaryButtonText)',
     'Primary Button'

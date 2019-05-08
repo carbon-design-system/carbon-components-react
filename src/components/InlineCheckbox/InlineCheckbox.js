@@ -1,10 +1,18 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import PropTypes from 'prop-types';
 import React from 'react';
 import { settings } from 'carbon-components';
+import mergeRefs from '../../tools/mergeRefs';
 
 const { prefix } = settings;
 
-export default class InlineCheckbox extends React.Component {
+class InlineCheckbox extends React.Component {
   static propTypes = {
     /**
      * Specify the label for the control
@@ -49,6 +57,19 @@ export default class InlineCheckbox extends React.Component {
      * Provide an optional tooltip for the InlineCheckbox
      */
     title: PropTypes.string,
+
+    /**
+     * Provide an optional hook that is called each time the input is updated
+     */
+    onChange: PropTypes.func,
+  };
+
+  static defaultProps = {
+    ariaLabel: '',
+    checked: false,
+    id: 'inline-checkbox',
+    name: '',
+    onChange: () => {},
   };
 
   componentDidMount() {
@@ -73,18 +94,23 @@ export default class InlineCheckbox extends React.Component {
       disabled,
       ariaLabel,
       name,
+      onChange,
       onClick,
       onKeyDown,
       title = undefined,
+      innerRef: ref,
     } = this.props;
     const inputProps = {
       id,
       name,
       onClick,
+      onChange: evt => {
+        onChange(evt.target.checked, id, evt);
+      },
       onKeyDown,
       className: `${prefix}--checkbox`,
       type: 'checkbox',
-      ref: this.handleRef,
+      ref: mergeRefs(ref, this.handleRef),
       checked: false,
       disabled,
     };
@@ -114,3 +140,11 @@ export default class InlineCheckbox extends React.Component {
     );
   }
 }
+
+export default (() => {
+  const forwardRef = (props, ref) => (
+    <InlineCheckbox {...props} innerRef={ref} />
+  );
+  forwardRef.displayName = 'InlineCheckbox';
+  return React.forwardRef(forwardRef);
+})();

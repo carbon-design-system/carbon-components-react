@@ -1,8 +1,16 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import cx from 'classnames';
 import Downshift from 'downshift';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { settings } from 'carbon-components';
+import WarningFilled16 from '@carbon/icons-react/lib/warning--filled/16';
 import ListBox, { PropTypes as ListBoxPropTypes } from '../ListBox';
 
 const { prefix } = settings;
@@ -45,6 +53,11 @@ const findHighlightedIndex = ({ items, itemToString }, inputValue) => {
 export default class ComboBox extends React.Component {
   static propTypes = {
     /**
+     * 'aria-label' of the ListBox component.
+     */
+    ariaLabel: PropTypes.string,
+
+    /**
      * An optional className to add to the container node
      */
     className: PropTypes.string,
@@ -57,7 +70,7 @@ export default class ComboBox extends React.Component {
     /**
      * Specify a custom `id` for the input
      */
-    id: PropTypes.string,
+    id: PropTypes.string.isRequired,
 
     /**
      * Allow users to pass in an arbitrary item or a string (in case their items are an array of strings)
@@ -140,7 +153,7 @@ export default class ComboBox extends React.Component {
     itemToString: defaultItemToString,
     shouldFilterItem: defaultShouldFilterItem,
     type: 'default',
-    ariaLabel: 'ListBox input field',
+    ariaLabel: 'Choose an item',
     light: false,
   };
 
@@ -211,6 +224,8 @@ export default class ComboBox extends React.Component {
       id,
       items,
       itemToString,
+      titleText,
+      helperText,
       placeholder,
       initialSelectedItem,
       ariaLabel,
@@ -225,8 +240,22 @@ export default class ComboBox extends React.Component {
       ...rest
     } = this.props;
     const className = cx(`${prefix}--combo-box`, containerClassName);
-
-    return (
+    const titleClasses = cx(`${prefix}--label`, {
+      [`${prefix}--label--disabled`]: disabled,
+    });
+    const title = titleText ? (
+      <label htmlFor={id} className={titleClasses}>
+        {titleText}
+      </label>
+    ) : null;
+    const helperClasses = cx(`${prefix}--form__helper-text`, {
+      [`${prefix}--form__helper-text--disabled`]: disabled,
+    });
+    const helper = helperText ? (
+      <div className={helperClasses}>{helperText}</div>
+    ) : null;
+    const wrapperClasses = cx(`${prefix}--list-box__wrapper`);
+    const input = (
       <Downshift
         onChange={this.handleOnChange}
         onInputValueChange={this.handleOnInputValueChange}
@@ -249,16 +278,25 @@ export default class ComboBox extends React.Component {
             disabled={disabled}
             invalid={invalid}
             invalidText={invalidText}
+            isOpen={isOpen}
             light={light}
             {...getRootProps({ refKey: 'innerRef' })}>
             <ListBox.Field
+              id={id}
               {...getButtonProps({
                 disabled,
                 onClick: this.onToggleClick(isOpen),
               })}>
+              {invalid && (
+                <WarningFilled16
+                  className={`${prefix}--list-box__invalid-icon`}
+                />
+              )}
               <input
                 className={`${prefix}--text-input`}
                 aria-label={ariaLabel}
+                aria-controls={`${id}__menu`}
+                aria-autocomplete="list"
                 ref={this.textInput}
                 {...rest}
                 {...getInputProps({
@@ -280,7 +318,7 @@ export default class ComboBox extends React.Component {
               />
             </ListBox.Field>
             {isOpen && (
-              <ListBox.Menu>
+              <ListBox.Menu aria-label={ariaLabel} id={id}>
                 {this.filterItems(items, itemToString, inputValue).map(
                   (item, index) => (
                     <ListBox.MenuItem
@@ -301,6 +339,14 @@ export default class ComboBox extends React.Component {
           </ListBox>
         )}
       </Downshift>
+    );
+
+    return (
+      <div className={wrapperClasses}>
+        {title}
+        {helper}
+        {input}
+      </div>
     );
   }
 }

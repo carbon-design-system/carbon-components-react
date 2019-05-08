@@ -1,9 +1,15 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import classnames from 'classnames';
-import { iconChevronRight } from 'carbon-icons';
 import { settings } from 'carbon-components';
-import Icon from '../Icon';
+import ChevronRight16 from '@carbon/icons-react/lib/chevron--right/16';
 import { match, keys } from '../../tools/key';
 
 const { prefix } = settings;
@@ -119,18 +125,16 @@ export default class AccordionItem extends Component {
         className={classNames}
         onClick={this.handleClick}
         onKeyDown={this.handleKeyDown}
-        role="presentation"
         {...other}>
         <Expando
           type="button"
           aria-expanded={this.state.open}
           className={`${prefix}--accordion__heading`}
-          onClick={this.handleHeadingClick}>
-          <Icon
+          onClick={this.handleHeadingClick}
+          title={iconDescription}>
+          <ChevronRight16
             className={`${prefix}--accordion__arrow`}
-            icon={iconChevronRight}
-            description={iconDescription}
-            role={null} // eslint-disable-line jsx-a11y/aria-role
+            aria-label={iconDescription}
           />
           <div className={`${prefix}--accordion__title`}>{title}</div>
         </Expando>
