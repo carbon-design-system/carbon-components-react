@@ -485,9 +485,12 @@ class OverflowMenu extends Component {
         React.cloneElement(child, {
           closeMenu: this.closeMenu,
           handleOverflowMenuItemFocus: this.handleOverflowMenuItemFocus,
-          ref: e => {
-            this[`overflowMenuItem${index}`] = e;
-          },
+          ref:
+            typeof child.type !== 'string' && child.type.prototype.render
+              ? e => {
+                  this[`overflowMenuItem${index}`] = e;
+                }
+              : null,
           index,
         })
     );
