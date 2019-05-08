@@ -2,7 +2,7 @@
 name: Question ❓
 about: Usage question or discussion about Carbon Components React.
 title: ''
-labels: ''
+labels: 'type: question :question:'
 assignees: ''
 ---
 
