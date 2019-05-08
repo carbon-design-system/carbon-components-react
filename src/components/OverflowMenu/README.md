@@ -52,7 +52,7 @@ Please refer to [our Storybook](http://react.carbondesignsystem.com/?selectedKin
 
 ## Note about `<OverflowMenu>` children
 
-Make sure children of `<OverflowMenu>` are React components that accepts `ref` as its children - Typically `<OverflowMenuItem>`. Otherwise, you'll get an error like:
+Make sure the children of `<OverflowMenu>` are React components that accept `ref` as their children - Typically `<OverflowMenuItem>`. Otherwise, you'll get an error like:
 
 ```
 Warning: Function components cannot be given refs. Attempts to access this ref will fail. Did you mean to use React.forwardRef()?
