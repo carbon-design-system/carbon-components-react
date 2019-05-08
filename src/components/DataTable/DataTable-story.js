@@ -148,6 +148,32 @@ storiesOf('DataTable', module)
     }
   )
   .add(
+    'with batch actions and radio buttons',
+    withReadme(readme, () =>
+      require('./stories/with-batch-actions-radio').default(props())
+    ),
+    {
+      info: {
+        text: `
+          Uses <TableToolbar> alongside <TableBatchActions> and <TableBatchAction>
+          to create the toolbar and placeholder for where the batch action menu will
+          be displayed.
+
+          You can use the \`getBatchActionProps\` prop getter on the
+          <TableBatchActions> component to have it wire up the ghost menu for you.
+
+          Individual <TableBatchAction> components take in any kind of event handler
+          prop that you would expect to use, like \`onClick\`. You can use these
+          alongside the \`selectedRows\` property in your \`render\` prop function
+          to pass along this info to your batch action handler.
+
+          You can find more detailed information surrounding usage of this component
+          at the following url: ${readmeURL}
+        `,
+      },
+    }
+  )
+  .add(
     'with dynamic content',
     withReadme(readme, () =>
       require('./stories/with-dynamic-content').default(props())
