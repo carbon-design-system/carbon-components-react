@@ -22,6 +22,7 @@ const blacklist = new Set([
   '__mocks__',
   'DataTable.js',
   'stories',
+  'LazyDataTable.js',
 ]);
 const components = fs
   .readdirSync(COMPONENT_PATH)
