@@ -153,4 +153,15 @@ storiesOf('DataTable', module)
         `,
       },
     }
+  )
+  .add(
+    'with lazy loading',
+    withReadme(readme, require('./stories/with-lazy-loading').default),
+    {
+      info: {
+        text: `
+          LazyDataTable with lazy loading of content.
+        `,
+      },
+    }
   );

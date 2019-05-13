@@ -126,8 +126,8 @@
   "peerDependencies": {
     "carbon-components": "^9.87.2",
     "carbon-icons": "^7.0.7",
-    "react": "^16.4.0",
-    "react-dom": "^16.4.0"
+    "react": "^16.8.0",
+    "react-dom": "^16.8.0"
   },
   "dependencies": {
     "@carbon/icons-react": "^0.0.1-beta.2",
@@ -210,8 +210,8 @@
     "prettier": "^1.10.0",
     "promise": "^8.0.1",
     "prop-types": "^15.5.8",
-    "react": "^16.4.0",
-    "react-dom": "^16.4.0",
+    "react": "16.8.0",
+    "react-dom": "16.8.0",
     "react-test-renderer": "^16.4.0",
     "requestanimationframe": "^0.0.23",
     "rimraf": "^2.6.1",

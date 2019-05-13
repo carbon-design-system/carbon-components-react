@@ -6,6 +6,7 @@
  */
 
 import DataTable from './DataTable';
+import LazyDataTable from './LazyDataTable';
 import Table from './Table';
 import TableActionList from './TableActionList';
 import TableBatchAction from './TableBatchAction';
@@ -13,9 +14,9 @@ import TableBatchActions from './TableBatchActions';
 import TableBody from './TableBody';
 import TableCell from './TableCell';
 import TableContainer from './TableContainer';
+import TableExpandedRow from './TableExpandedRow';
 import TableExpandHeader from './TableExpandHeader';
 import TableExpandRow from './TableExpandRow';
-import TableExpandedRow from './TableExpandedRow';
 import TableHead from './TableHead';
 import TableHeader from './TableHeader';
 import TableRow from './TableRow';
@@ -46,7 +47,28 @@ DataTable.TableToolbarAction = TableToolbarAction;
 DataTable.TableToolbarContent = TableToolbarContent;
 DataTable.TableToolbarSearch = TableToolbarSearch;
 
+LazyDataTable.Table = Table;
+LazyDataTable.TableActionList = TableActionList;
+LazyDataTable.TableBatchAction = TableBatchAction;
+LazyDataTable.TableBatchActions = TableBatchActions;
+LazyDataTable.TableBody = TableBody;
+LazyDataTable.TableCell = TableCell;
+LazyDataTable.TableContainer = TableContainer;
+LazyDataTable.TableExpandHeader = TableExpandHeader;
+LazyDataTable.TableExpandRow = TableExpandRow;
+LazyDataTable.TableExpandedRow = TableExpandedRow;
+LazyDataTable.TableHead = TableHead;
+LazyDataTable.TableHeader = TableHeader;
+LazyDataTable.TableRow = TableRow;
+LazyDataTable.TableSelectAll = TableSelectAll;
+LazyDataTable.TableSelectRow = TableSelectRow;
+LazyDataTable.TableToolbar = TableToolbar;
+LazyDataTable.TableToolbarAction = TableToolbarAction;
+LazyDataTable.TableToolbarContent = TableToolbarContent;
+LazyDataTable.TableToolbarSearch = TableToolbarSearch;
+
 export {
+  LazyDataTable,
   Table,
   TableActionList,
   TableBatchAction,
@@ -54,9 +76,9 @@ export {
   TableBody,
   TableCell,
   TableContainer,
+  TableExpandedRow,
   TableExpandHeader,
   TableExpandRow,
-  TableExpandedRow,
   TableHead,
   TableHeader,
   TableRow,
