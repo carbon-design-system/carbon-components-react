@@ -114,6 +114,11 @@ export default class FilterableMultiSelect extends React.Component {
      * Callback function for translating ListBoxMenuIcon SVG title
      */
     translateWithId: PropTypes.func,
+
+    /**
+     * Additional props passed to Downshift
+     */
+    downshiftProps: Downshift.propTypes,
   };
 
   static getDerivedStateFromProps({ open }, state) {
@@ -262,6 +267,7 @@ export default class FilterableMultiSelect extends React.Component {
       invalidText,
       useTitleInItem,
       translateWithId,
+      downshiftProps,
     } = this.props;
     const inline = type === 'inline';
     const wrapperClasses = cx(
@@ -295,6 +301,7 @@ export default class FilterableMultiSelect extends React.Component {
         initialSelectedItems={initialSelectedItems}
         render={({ selectedItems, onItemChange, clearSelection }) => (
           <Downshift
+            {...downshiftProps}
             highlightedIndex={highlightedIndex}
             isOpen={isOpen}
             inputValue={inputValue}
