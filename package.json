@@ -1,11 +1,14 @@
 {
   "name": "carbon-components-react",
-  "version": "6.114.1",
+  "version": "6.115.0",
   "description": "A React wrapper for carbon-components",
   "license": "Apache-2",
   "main": "lib/index.js",
   "module": "es/index.js",
   "sideEffects": false,
+  "publishConfig": {
+    "tag": "6.x"
+  },
   "scripts": {
     "build": "node scripts/build.js",
     "build-storybook": "build-storybook",
