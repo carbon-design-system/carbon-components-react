@@ -57,8 +57,8 @@ describe('ListBox', () => {
     const wrapper = mount(<ListBox {...mockProps} />);
     expect(wrapper.children().prop('tabIndex')).toBe(-1);
   });
-  it('should default the inner divs tabIndex to 0 if no innerTabIndex prop', () => {
+  it('should default the inner divs tabIndex to `null` if no innerTabIndex prop', () => {
     const wrapper = mount(<ListBox {...mockProps} />);
-    expect(wrapper.children().prop('tabIndex')).toBe(0);
+    expect(wrapper.children().prop('tabIndex')).toBe(null);
   });
 });
