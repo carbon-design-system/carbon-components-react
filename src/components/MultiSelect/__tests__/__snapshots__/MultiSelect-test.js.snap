@@ -84,7 +84,7 @@ exports[`MultiSelect should render 1`] = `
           onClick={[Function]}
           onKeyDown={[Function]}
           role="listbox"
-          tabIndex={0}
+          tabIndex={null}
         >
           <ListBoxField
             aria-expanded={false}
