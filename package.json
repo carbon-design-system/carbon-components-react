@@ -1,6 +1,6 @@
 {
   "name": "carbon-components-react",
-  "version": "6.115.1",
+  "version": "6.115.2",
   "description": "A React wrapper for carbon-components",
   "license": "Apache-2",
   "main": "lib/index.js",
