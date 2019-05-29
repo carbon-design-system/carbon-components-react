@@ -59,6 +59,9 @@ export default class DataTable extends React.Component {
     rows: PropTypes.arrayOf(
       PropTypes.shape({
         id: PropTypes.string.isRequired,
+        disabled: PropTypes.bool,
+        isSelected: PropTypes.bool,
+        isExpanded: PropTypes.bool,
       })
     ).isRequired,
 
@@ -218,6 +221,7 @@ export default class DataTable extends React.Component {
       isExpanded: row.isExpanded,
       ariaLabel: t(translationKey),
       isSelected: row.isSelected,
+      disabled: row.disabled,
     };
   };
 
@@ -247,6 +251,7 @@ export default class DataTable extends React.Component {
         id: `${this.getTablePrefix()}__select-row-${row.id}`,
         name: `select-row-${row.id}`,
         ariaLabel: t(translationKey),
+        disabled: row.disabled,
         radio: this.props.radio || null,
       };
     }
@@ -326,7 +331,7 @@ export default class DataTable extends React.Component {
           ...acc,
           [id]: {
             ...initialState.rowsById[id],
-            isSelected,
+            isSelected: initialState.rowsById[id].disabled ? false : isSelected,
           },
         }),
         {}
@@ -352,8 +357,11 @@ export default class DataTable extends React.Component {
    */
   handleSelectAll = () => {
     this.setState(state => {
-      const { rowIds } = state;
-      const isSelected = this.getSelectedRows().length !== rowIds.length;
+      const { rowIds, rowsById } = state;
+      const selectableRows = rowIds.reduce((acc, rowId) => {
+        return (acc += rowsById[rowId].disabled ? 0 : 1);
+      }, 0);
+      const isSelected = this.getSelectedRows().length !== selectableRows;
       return {
         shouldShowBatchActions: isSelected,
         ...this.setAllSelectedState(state, isSelected),
