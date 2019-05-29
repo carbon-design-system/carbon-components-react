@@ -153,4 +153,20 @@ storiesOf('DataTable', module)
         `,
       },
     }
+  )
+  .add(
+    'with options',
+    withReadme(readme, () =>
+      require('./stories/with-options').default(props())
+    ),
+    {
+      info: {
+        text: `
+        DataTable with options like disabled, isSelected, isExpanded etc.
+        
+        You can find more detailed information surrounding usage of this component
+        at the following url: ${readmeURL}
+      `,
+      },
+    }
   );
