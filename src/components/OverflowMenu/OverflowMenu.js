@@ -210,6 +210,11 @@ class OverflowMenu extends Component {
     className: PropTypes.string,
 
     /**
+     * The class to apply to the menu options
+     */
+    menuOptionsClass: PropTypes.string,
+
+    /**
      * The `tabindex` attribute.
      */
     tabIndex: PropTypes.number,
@@ -577,6 +582,7 @@ class OverflowMenu extends Component {
       onOpen, // eslint-disable-line
       renderIcon: IconElement,
       innerRef: ref,
+      menuOptionsClass,
       ...other
     } = this.props;
     const floatingMenu = !!breakingChangesX || origFloatingMenu;
@@ -617,7 +623,8 @@ class OverflowMenu extends Component {
       {
         [`${prefix}--overflow-menu--flip`]: this.props.flipped,
         [`${prefix}--overflow-menu-options--open`]: open,
-      }
+      },
+      menuOptionsClass
     );
 
     const overflowMenuIconClasses = classNames(
