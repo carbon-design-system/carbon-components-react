@@ -28,6 +28,7 @@ export default class ComposedModal extends Component {
   static defaultProps = {
     onKeyDown: () => {},
     selectorPrimaryFocus: '[data-modal-primary-focus]',
+    role: 'region',
   };
 
   outerModal = React.createRef();
@@ -67,6 +68,11 @@ export default class ComposedModal extends Component {
      * focused when the Modal opens
      */
     selectorPrimaryFocus: PropTypes.string,
+
+    /**
+     * Specify a role that best describe the purpose of the modal. Role should be one of the WAI-ARIA roles.
+     */
+    role: PropTypes.string,
   };
 
   static getDerivedStateFromProps({ open }, state) {
@@ -199,6 +205,7 @@ export default class ComposedModal extends Component {
       children,
       danger,
       selectorPrimaryFocus, // eslint-disable-line
+      role,
       ...other
     } = this.props;
 
@@ -241,7 +248,7 @@ export default class ComposedModal extends Component {
         onTransitionEnd={open ? this.handleTransitionEnd : undefined}
         className={modalClass}
         tabIndex={-1}>
-        <div ref={this.innerModal} className={containerClass}>
+        <div ref={this.innerModal} className={containerClass} role={role}>
           {childrenWithProps}
         </div>
       </div>
