@@ -4,6 +4,7 @@ exports[`<ComposedModal /> renders 1`] = `
 <ComposedModal
   onKeyDown={[Function]}
   open={true}
+  role="region"
   selectorPrimaryFocus="[data-modal-primary-focus]"
 >
   <div
@@ -18,6 +19,7 @@ exports[`<ComposedModal /> renders 1`] = `
   >
     <div
       className="bx--modal-container"
+      role="region"
     />
   </div>
 </ComposedModal>
