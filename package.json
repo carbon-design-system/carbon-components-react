@@ -1,6 +1,6 @@
 {
   "name": "carbon-components-react",
-  "version": "6.115.4",
+  "version": "6.115.5",
   "description": "A React wrapper for carbon-components",
   "license": "Apache-2",
   "main": "lib/index.js",
@@ -185,7 +185,7 @@
     "babel-plugin-dev-expression": "^0.2.1",
     "babel-plugin-react-docgen": "^2.0.0",
     "bowser": "^1.6.1",
-    "carbon-components": "^9.91.3",
+    "carbon-components": "^9.91.4",
     "carbon-icons": "^7.0.5",
     "chalk": "^2.3.0",
     "cli-table": "^0.3.0",
