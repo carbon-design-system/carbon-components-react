@@ -104,6 +104,7 @@ const TextArea = React.forwardRef(function TextArea(
   );
 });
 
+TextArea.displayName = 'TextArea';
 TextArea.propTypes = {
   /**
    * Provide a custom className that is applied directly to the underlying
