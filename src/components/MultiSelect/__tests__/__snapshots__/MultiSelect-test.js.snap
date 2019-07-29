@@ -99,9 +99,11 @@ exports[`MultiSelect should render 1`] = `
             type="button"
           >
             <div
+              aria-controls={null}
               aria-expanded={false}
               aria-haspopup={true}
               aria-label="open menu"
+              aria-owns={null}
               className="bx--list-box__field"
               data-toggle={true}
               disabled={false}

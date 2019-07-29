@@ -3,6 +3,88 @@
 exports[`ListBoxField should render 1`] = `
 <ListBoxField>
   <div
+    aria-controls={null}
+    aria-owns={null}
+    className="bx--list-box__field"
+    role="button"
+    tabIndex="0"
+  >
+    <ListBoxSelection
+      clearSelection={[MockFunction]}
+      translateWithId={[Function]}
+    >
+      <div
+        className="bx--list-box__selection"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex="0"
+        title="Clear selected item"
+      >
+        <Icon
+          description="Clear selected item"
+          fillRule="evenodd"
+          focusable="false"
+          icon={
+            Object {
+              "height": "10",
+              "id": "icon--close",
+              "name": "icon--close",
+              "styles": "",
+              "svgData": Object {
+                "circles": "",
+                "ellipses": "",
+                "paths": Array [
+                  Object {
+                    "d": "M6.32 5L10 8.68 8.68 10 5 6.32 1.32 10 0 8.68 3.68 5 0 1.32 1.32 0 5 3.68 8.68 0 10 1.32 6.32 5z",
+                    "fill-rule": "nonzero",
+                  },
+                ],
+                "polygons": "",
+                "polylines": "",
+                "rects": "",
+              },
+              "tags": "icon--close",
+              "viewBox": "0 0 10 10",
+              "width": "10",
+            }
+          }
+          role="img"
+        >
+          <svg
+            alt="Clear selected item"
+            aria-label="Clear selected item"
+            fillRule="evenodd"
+            focusable="false"
+            height="10"
+            role="img"
+            viewBox="0 0 10 10"
+            width="10"
+          >
+            <title>
+              Clear selected item
+            </title>
+            <path
+              d="M6.32 5L10 8.68 8.68 10 5 6.32 1.32 10 0 8.68 3.68 5 0 1.32 1.32 0 5 3.68 8.68 0 10 1.32 6.32 5z"
+              key="key0"
+            />
+          </svg>
+        </Icon>
+      </div>
+    </ListBoxSelection>
+  </div>
+</ListBoxField>
+`;
+
+exports[`ListBoxField should set \`aria-owns\` based when expanded 1`] = `
+<ListBoxField
+  aria-expanded={true}
+  id="test-listbox"
+>
+  <div
+    aria-controls="test-listbox__menu"
+    aria-expanded={true}
+    aria-owns="test-listbox__menu"
     className="bx--list-box__field"
     role="button"
     tabIndex="0"

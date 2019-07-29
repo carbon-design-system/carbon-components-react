@@ -42,6 +42,8 @@ exports[`ListBox should render 1`] = `
   >
     <ListBoxField>
       <div
+        aria-controls={null}
+        aria-owns={null}
         className="bx--list-box__field"
         role="button"
         tabIndex="0"

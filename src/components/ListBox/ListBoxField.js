@@ -18,12 +18,15 @@ const { prefix } = settings;
  * elements inside of a field. It also provides a11y-related attributes like
  * `role` to make sure a user can focus the given field.
  */
-const ListBoxField = ({ children, ...rest }) => (
+const ListBoxField = ({ children, id, ...rest }) => (
   <div
     role="button"
     className={`${prefix}--list-box__field`}
     tabIndex="0"
-    {...rest}>
+    {...rest}
+    aria-expanded={rest['aria-expanded']}
+    aria-owns={(rest['aria-expanded'] && `${id}__menu`) || null}
+    aria-controls={(rest['aria-expanded'] && `${id}__menu`) || null}>
     {children}
   </div>
 );
