@@ -186,8 +186,13 @@ const useIcon = kindProp =>
     warning: WarningFilled20,
   }[kindProp]);
 
-const NotificationIcon = ({ notificationType, kind, iconDescription }) => {
-  const NotificationIconX = useIcon(kind);
+const NotificationIcon = ({
+  icon,
+  notificationType,
+  kind,
+  iconDescription,
+}) => {
+  const NotificationIconX = icon || useIcon(kind);
   return !NotificationIconX ? null : (
     <NotificationIconX
       className={`${prefix}--${notificationType}-notification__icon`}>
@@ -242,7 +247,12 @@ export class ToastNotification extends Component {
     /**
      * Provide a description for "close" icon that can be read by screen readers
      */
-    iconDescription: PropTypes.string.isRequired,
+    closeIconDescription: PropTypes.string.isRequired,
+
+    /**
+     * Provide a description for the notification's left side icon that can be read by screen readers
+     */
+    iconDescription: PropTypes.string,
 
     /**
      * By default, this value is "toast". You can also provide an alternate type
@@ -254,6 +264,11 @@ export class ToastNotification extends Component {
      * Specify the close button should be disabled, or not
      */
     hideCloseButton: PropTypes.bool,
+
+    /**
+     * Specify an icon that should be displayed on the left side of the notification
+     */
+    icon: PropTypes.elementType,
 
     /**
      * Specify an optional duration the notification should be closed in
@@ -268,10 +283,12 @@ export class ToastNotification extends Component {
     caption: 'provide a caption',
     role: 'alert',
     notificationType: 'toast',
-    iconDescription: 'closes notification',
+    closeIconDescription: 'closes notification',
+    iconDescription: 'decorative icon',
     onCloseButtonClick: () => {},
     hideCloseButton: false,
     timeout: 0,
+    icon: null,
   };
 
   state = {
@@ -300,13 +317,15 @@ export class ToastNotification extends Component {
       role,
       notificationType,
       onCloseButtonClick, // eslint-disable-line
-      iconDescription, // eslint-disable-line
+      closeIconDescription,
+      iconDescription,
       className,
       caption,
       subtitle,
       title,
       kind,
       hideCloseButton,
+      icon,
       ...other
     } = this.props;
 
@@ -324,6 +343,7 @@ export class ToastNotification extends Component {
           notificationType={notificationType}
           kind={kind}
           iconDescription={iconDescription}
+          icon={icon}
         />
         <NotificationTextDetails
           title={title}
@@ -334,7 +354,7 @@ export class ToastNotification extends Component {
         </NotificationTextDetails>
         {!hideCloseButton && (
           <NotificationButton
-            iconDescription={iconDescription}
+            iconDescription={closeIconDescription}
             notificationType={notificationType}
             onClick={this.handleCloseButtonClick}
           />
@@ -385,7 +405,12 @@ export class InlineNotification extends Component {
     /**
      * Provide a description for "close" icon that can be read by screen readers
      */
-    iconDescription: PropTypes.string.isRequired,
+    closeIconDescription: PropTypes.string.isRequired,
+
+    /**
+     * Provide a description for the notification's left side icon that can be read by screen readers
+     */
+    iconDescription: PropTypes.string,
 
     /**
      * By default, this value is "inline". You can also provide an alternate type
@@ -397,14 +422,21 @@ export class InlineNotification extends Component {
      * Specify the close button should be disabled, or not
      */
     hideCloseButton: PropTypes.bool,
+
+    /**
+     * Specify an icon that should be displayed on the left side of the notification
+     */
+    icon: PropTypes.elementType,
   };
 
   static defaultProps = {
     role: 'alert',
     notificationType: 'inline',
-    iconDescription: 'closes notification',
+    closeIconDescription: 'closes notification',
+    iconDescription: 'decorative icon',
     onCloseButtonClick: () => {},
     hideCloseButton: false,
+    icon: null,
   };
 
   state = {
@@ -425,12 +457,14 @@ export class InlineNotification extends Component {
       role,
       notificationType,
       onCloseButtonClick, // eslint-disable-line
-      iconDescription, // eslint-disable-line
+      closeIconDescription,
+      iconDescription,
       className,
       subtitle,
       title,
       kind,
       hideCloseButton,
+      icon,
       ...other
     } = this.props;
 
@@ -449,6 +483,7 @@ export class InlineNotification extends Component {
             notificationType={notificationType}
             kind={kind}
             iconDescription={iconDescription}
+            icon={icon}
           />
           <NotificationTextDetails
             title={title}
@@ -459,7 +494,7 @@ export class InlineNotification extends Component {
         </div>
         {!hideCloseButton && (
           <NotificationButton
-            iconDescription={iconDescription}
+            iconDescription={closeIconDescription}
             notificationType={notificationType}
             onClick={this.handleCloseButtonClick}
           />
