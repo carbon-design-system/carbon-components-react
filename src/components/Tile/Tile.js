@@ -185,6 +185,11 @@ export class SelectableTile extends Component {
     title: PropTypes.string,
 
     /**
+     * Provide an optional hook that is called each time the input is updated
+     */
+    onChange: PropTypes.func,
+
+    /**
      * The description of the checkmark icon.
      */
     iconDescription: PropTypes.string,
@@ -202,6 +207,7 @@ export class SelectableTile extends Component {
     selected: false,
     handleClick: () => {},
     handleKeyDown: () => {},
+    onChange: () => {},
     tabIndex: 0,
   };
 
@@ -260,6 +266,7 @@ export class SelectableTile extends Component {
       className,
       handleClick, // eslint-disable-line
       handleKeyDown, // eslint-disable-line
+      onChange,
       ...other
     } = this.props;
 
@@ -286,6 +293,7 @@ export class SelectableTile extends Component {
           name={name}
           title={title}
           checked={this.state.selected}
+          onChange={onChange}
         />
         <label
           htmlFor={id}
