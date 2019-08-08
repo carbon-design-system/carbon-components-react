@@ -225,6 +225,8 @@ class NumberInput extends Component {
       ...other
     } = this.props;
 
+    const errorId = `${id}-error-id`;
+
     const numberInputClasses = classNames(
       `${prefix}--number ${prefix}--number--helpertext`,
       className,
@@ -255,7 +257,9 @@ class NumberInput extends Component {
     if (invalid || (!allowEmpty && this.state.value === '')) {
       inputWrapperProps['data-invalid'] = true;
       error = (
-        <div className={`${prefix}--form-requirement`}>{invalidText}</div>
+        <div className={`${prefix}--form-requirement`} id={errorId}>
+          {invalidText}
+        </div>
       );
     }
 
@@ -323,6 +327,9 @@ class NumberInput extends Component {
                     pattern="[0-9]*"
                     {...other}
                     {...props}
+                    data-invalid={invalid || null}
+                    aria-invalid={invalid || null}
+                    aria-describedby={errorId}
                     ref={mergeRefs(ref, this._handleInputRef)}
                   />
                 </>
