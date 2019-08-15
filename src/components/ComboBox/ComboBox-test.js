@@ -51,6 +51,28 @@ describe('ComboBox', () => {
     assertMenuOpen(wrapper, mockProps);
   });
 
+  it('should render custom component for an item', () => {
+    const itemToElement = item => {
+      return <div className="custom-div">{item.label}</div>;
+    };
+    const wrapper = mount(
+      <ComboBox {...mockProps} itemToElement={itemToElement} />
+    );
+    findInputNode(wrapper).simulate('click');
+
+    assertMenuOpen(wrapper, mockProps);
+
+    expect(
+      wrapper.containsAllMatchingElements([
+        <div className="custom-div">Item 0</div>,
+        <div className="custom-div">Item 1</div>,
+        <div className="custom-div">Item 2</div>,
+        <div className="custom-div">Item 3</div>,
+        <div className="custom-div">Item 4</div>,
+      ])
+    ).toBe(true);
+  });
+
   it('should call `onChange` each time an item is selected', () => {
     const wrapper = mount(<ComboBox {...mockProps} />);
     expect(mockProps.onChange).not.toHaveBeenCalled();
