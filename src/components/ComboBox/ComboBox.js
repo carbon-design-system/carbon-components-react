@@ -89,6 +89,12 @@ export default class ComboBox extends React.Component {
     itemToString: PropTypes.func,
 
     /**
+     * Optional function to render items as custom components instead of strings.
+     * Defaults to null and is overriden by a getter
+     */
+    itemToElement: PropTypes.func,
+
+    /**
      * `onChange` is a utility for this controlled component to communicate to a
      * consuming component when a specific dropdown item is selected.
      * @param {{ selectedItem }}
@@ -145,6 +151,7 @@ export default class ComboBox extends React.Component {
   static defaultProps = {
     disabled: false,
     itemToString: defaultItemToString,
+    itemToElement: null,
     shouldFilterItem: defaultShouldFilterItem,
     type: 'default',
     ariaLabel: 'ListBox input field',
@@ -218,6 +225,7 @@ export default class ComboBox extends React.Component {
       id,
       items,
       itemToString,
+      itemToElement,
       placeholder,
       initialSelectedItem,
       ariaLabel,
@@ -303,7 +311,7 @@ export default class ComboBox extends React.Component {
                         false
                       }
                       {...getItemProps({ item, index })}>
-                      {itemToString(item)}
+                      {itemToElement ? itemToElement(item) : itemToString(item)}
                     </ListBox.MenuItem>
                   )
                 )}
