@@ -75,6 +75,7 @@ export class ClickableTile extends Component {
   };
 
   handleClick = evt => {
+    evt.persist();
     this.setState(
       {
         clicked: !this.state.clicked,
@@ -86,6 +87,7 @@ export class ClickableTile extends Component {
   };
 
   handleKeyDown = evt => {
+    evt.persist();
     if (matches(evt, [keys.ENTER, keys.SPACE])) {
       this.setState(
         {
@@ -212,6 +214,7 @@ export class SelectableTile extends Component {
   };
 
   handleClick = evt => {
+    evt.persist();
     evt.preventDefault();
     const isInput = evt.target === this.input;
     if (!isInput) {
@@ -229,6 +232,7 @@ export class SelectableTile extends Component {
   };
 
   handleKeyDown = evt => {
+    evt.persist();
     if (matches(evt, [keys.ENTER, keys.SPACE])) {
       evt.preventDefault();
       this.setState(
@@ -416,6 +420,7 @@ export class ExpandableTile extends Component {
     });
 
   handleClick = evt => {
+    evt.persist();
     this.setState(
       {
         expanded: !this.state.expanded,
