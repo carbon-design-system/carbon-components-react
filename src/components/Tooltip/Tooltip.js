@@ -24,6 +24,8 @@ import FloatingMenu, {
 import ClickListener from '../../internal/ClickListener';
 import { breakingChangesX, componentsX } from '../../internal/FeatureFlags';
 import mergeRefs from '../../tools/mergeRefs';
+import requiredIfValueExists from '../../prop-types/requiredIfValueExists';
+import { useControlledStateWithValue } from '../../internal/FeatureFlags';
 
 const { prefix } = settings;
 
@@ -123,7 +125,16 @@ let didWarnAboutDeprecationClickToOpen = false;
 let didWarnAboutDeprecationIcon = false;
 
 class Tooltip extends Component {
-  state = {};
+  constructor(props) {
+    super(props);
+    this.isControlled = props.open !== undefined;
+    if (useControlledStateWithValue && this.isControlled) {
+      // Skips the logic of setting initial state if this component is controlled
+      return;
+    }
+    const open = useControlledStateWithValue ? props.defaultOpen : props.open;
+    this.state = { open };
+  }
 
   static propTypes = {
     /**
@@ -135,6 +146,11 @@ class Tooltip extends Component {
      * The ID of the tooltip content.
      */
     tooltipId: PropTypes.string,
+
+    /**
+     * Optional starting value for uncontrolled state
+     */
+    defaultOpen: PropTypes.bool,
 
     /**
      * Open/closed state.
@@ -231,6 +247,16 @@ class Tooltip extends Component {
      * Optional prop to specify the tabIndex of the Tooltip
      */
     tabIndex: PropTypes.number,
+
+    /**
+     * * the signature of the event handler will be:
+     * * `onChange(event, { open })` where:
+     *   * `event` is the (React) raw event
+     *   * `open` is the new value
+     */
+    onChange: !useControlledStateWithValue
+      ? PropTypes.func
+      : requiredIfValueExists(PropTypes.func),
   };
 
   static defaultProps = {
@@ -287,6 +313,14 @@ class Tooltip extends Component {
         };
   }
 
+  _handleUserInputOpenClose = (event, { open }) => {
+    this.setState({ open }, () => {
+      if (this.props.onChange) {
+        this.props.onChange(event, { open });
+      }
+    });
+  };
+
   getTriggerPosition = () => {
     if (this.triggerEl) {
       const triggerPosition = this.triggerEl.getBoundingClientRect();
@@ -297,12 +331,13 @@ class Tooltip extends Component {
   /**
    * Handles `mouseover`/`mouseout`/`focus`/`blur` event.
    * @param {string} state `over` to show the tooltip, `out` to hide the tooltip.
-   * @param {Element} [relatedTarget] For handing `mouseout` event, indicates where the mouse pointer is gone.
+   * @param {Element} [evt] For handing `mouseout` event, indicates where the mouse pointer is gone.
    */
-  _handleHover = (state, relatedTarget) => {
+  _handleHover = (state, evt) => {
+    const { relatedTarget } = evt;
     if (state === 'over') {
       this.getTriggerPosition();
-      this.setState({ open: true });
+      this._handleUserInputOpenClose(evt, { open: true });
     } else {
       // Note: SVGElement in IE11 does not have `.contains()`
       const shouldPreventClose =
@@ -312,7 +347,7 @@ class Tooltip extends Component {
           this.triggerEl.contains(relatedTarget)) ||
           (this._tooltipEl && this._tooltipEl.contains(relatedTarget)));
       if (!shouldPreventClose) {
-        this.setState({ open: false });
+        this._handleUserInputOpenClose(evt, { open: false });
       }
     }
   };
@@ -333,6 +368,7 @@ class Tooltip extends Component {
     document.body;
 
   handleMouse = evt => {
+    evt.persist();
     const state = {
       mouseover: 'over',
       mouseout: 'out',
@@ -345,18 +381,20 @@ class Tooltip extends Component {
     if (this.props.clickToOpen) {
       if (state === 'click') {
         evt.stopPropagation();
-        const shouldOpen = !this.state.open;
+        const shouldOpen = this.isControlled
+          ? !this.props.open
+          : !this.state.open;
         if (shouldOpen) {
           this.getTriggerPosition();
         }
-        this.setState({ open: shouldOpen });
+        this._handleUserInputOpenClose(evt, { open: shouldOpen });
       }
     } else if (
       state &&
       (state !== 'out' || !hadContextMenu) &&
       this._debouncedHandleHover
     ) {
-      this._debouncedHandleHover(state, evt.relatedTarget);
+      this._debouncedHandleHover(state, evt);
     }
   };
 
@@ -367,7 +405,7 @@ class Tooltip extends Component {
       this._tooltipEl &&
       this._tooltipEl.contains(evt.target);
     if (!shouldPreventClose) {
-      this.setState({ open: false });
+      this._handleUserInputOpenClose(evt, { open: false });
     }
   };
 
@@ -376,7 +414,7 @@ class Tooltip extends Component {
 
     if (key === 'Enter' || key === 13 || key === ' ' || key === 32) {
       evt.stopPropagation();
-      this.setState({ open: !this.state.open });
+      this._handleUserInputOpenClose(evt, { open: !this.state.open });
     }
   };
 
@@ -429,7 +467,7 @@ class Tooltip extends Component {
       didWarnAboutDeprecationIcon = true;
     }
 
-    const { open } = this.state;
+    const { open } = this.isControlled ? this.props : this.state;
 
     const tooltipClasses = classNames(
       `${prefix}--tooltip`,
