@@ -8,7 +8,6 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { settings } from 'carbon-components';
-
 import {
   withKnobs,
   boolean,
@@ -16,9 +15,9 @@ import {
   text,
   number,
 } from '@storybook/addon-knobs';
-import Tooltip from '../Tooltip';
-
 import OverflowMenuVertical16 from '@carbon/icons-react/lib/overflow-menu--vertical/16';
+import Tooltip from '../Tooltip';
+import Button from '../Button';
 
 const { prefix } = settings;
 const directions = {
@@ -81,6 +80,37 @@ const props = {
     renderIcon: OverflowMenuVertical16,
   }),
 };
+
+class UncontrolledTooltipExample extends React.Component {
+  state = {
+    value: true,
+  };
+  setValue = value => this.setState({ value });
+  render() {
+    return (
+      <>
+        <Button
+          style={{ padding: '15px 20px', margin: '4px 20px' }}
+          onClick={() => this.setValue(false)}>
+          Hide
+        </Button>
+        <Button
+          style={{ padding: '15px 20px', margin: '4px 20px' }}
+          onClick={() => this.setValue(true)}>
+          Show
+        </Button>
+        <div style={{ padding: '15px', margin: '4px 20px' }}>
+          <Tooltip
+            triggerText={<div>My text wrapped with tooltip</div>}
+            open={this.state.value}
+            showIcon={false}>
+            Some text
+          </Tooltip>
+        </div>
+      </>
+    );
+  }
+}
 
 storiesOf('Tooltip', module)
   .addDecorator(withKnobs)
@@ -211,4 +241,5 @@ storiesOf('Tooltip', module)
           `,
       },
     }
-  );
+  )
+  .add('uncontrolled tooltip', () => <UncontrolledTooltipExample />);
