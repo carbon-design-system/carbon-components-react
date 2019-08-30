@@ -47,6 +47,7 @@ const props = () => ({
   useTitleInItem: boolean('Show tooltip on hover', false),
   type: select('UI type (Only for `<MultiSelect>`) (type)', types, 'default'),
   label: text('Label (label)', defaultLabel),
+  ['aria-label']: text('ARIA label (aria-label)', 'Choose an item'),
   invalid: boolean('Show form validation UI (invalid)', false),
   invalidText: text(
     'Form validation UI content (invalidText)',

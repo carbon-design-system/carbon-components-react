@@ -277,7 +277,7 @@ export default class ComboBox extends React.Component {
               })}>
               <input
                 className={`${prefix}--text-input`}
-                aria-label={ariaLabel}
+                aria-label={rest['aria-label'] || ariaLabel}
                 ref={this.textInput}
                 {...rest}
                 {...getInputProps({

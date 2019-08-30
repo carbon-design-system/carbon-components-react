@@ -59,7 +59,7 @@ const ListBox = ({
       <div
         {...rest}
         role="listbox"
-        aria-label={ariaLabel}
+        aria-label={rest['aria-label'] || ariaLabel}
         tabIndex={innerTabIndex || null}
         className={className}
         ref={innerRef}
