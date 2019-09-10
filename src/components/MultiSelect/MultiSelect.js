@@ -125,9 +125,9 @@ export default class MultiSelect extends React.Component {
     return prevOpen === open
       ? null
       : {
-          isOpen: open,
-          prevOpen: open,
-        };
+        isOpen: open,
+        prevOpen: open,
+      };
   }
 
   static defaultProps = {
@@ -311,6 +311,7 @@ export default class MultiSelect extends React.Component {
                       <ListBox.Selection
                         clearSelection={!disabled ? clearSelection : noop}
                         selectionCount={selectedItem.length}
+                        translateWithId={translateWithId}
                       />
                     )}
                     <span className={`${prefix}--list-box__label`}>
