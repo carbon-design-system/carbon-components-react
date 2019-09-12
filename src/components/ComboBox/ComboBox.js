@@ -146,6 +146,11 @@ export default class ComboBox extends React.Component {
      * should use "light theme" (white background)?
      */
     light: PropTypes.bool,
+
+    /**
+     * Specify the "aria-label" of the ListBox.
+     */
+    ariaLabel: PropTypes.string, // to be deprecated in v8.0.0
   };
 
   static defaultProps = {
