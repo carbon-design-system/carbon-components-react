@@ -234,8 +234,15 @@ export default class MultiSelect extends React.Component {
                 disabled={disabled}
                 invalid={invalid}
                 invalidText={invalidText}
-                {...getRootProps({ refKey: 'innerRef' })}>
-                <ListBox.Field {...getButtonProps({ disabled })}>
+                {...getRootProps({ refKey: 'innerRef' })}
+                aria-label={this.props['aria-label']}>
+                <ListBox.Field
+                  {...getButtonProps({
+                    disabled,
+                    ...(this.props['aria-label'] && {
+                      ['aria-label']: this.props['aria-label'],
+                    }),
+                  })}>
                   {selectedItem.length > 0 && (
                     <ListBox.Selection
                       clearSelection={!disabled ? clearSelection : noop}

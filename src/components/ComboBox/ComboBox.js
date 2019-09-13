@@ -146,6 +146,11 @@ export default class ComboBox extends React.Component {
      * should use "light theme" (white background)?
      */
     light: PropTypes.bool,
+
+    /**
+     * Specify the "aria-label" of the ListBox.
+     */
+    ariaLabel: PropTypes.string, // to be deprecated in v8.0.0
   };
 
   static defaultProps = {
@@ -277,7 +282,7 @@ export default class ComboBox extends React.Component {
               })}>
               <input
                 className={`${prefix}--text-input`}
-                aria-label={ariaLabel}
+                aria-label={rest['aria-label'] || ariaLabel}
                 ref={this.textInput}
                 {...rest}
                 {...getInputProps({

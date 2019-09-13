@@ -230,7 +230,12 @@ export default class DropdownV2 extends React.Component {
                   className={`${prefix}--list-box__invalid-icon`}
                 />
               )}
-              <ListBox.Field {...getButtonProps({ disabled })}>
+              <ListBox.Field
+                {...getButtonProps({
+                  disabled,
+                  ['aria-label']:
+                    this.props['aria-label'] || this.props.ariaLabel,
+                })}>
                 <span
                   className={`${prefix}--list-box__label`}
                   {...getLabelProps()}>

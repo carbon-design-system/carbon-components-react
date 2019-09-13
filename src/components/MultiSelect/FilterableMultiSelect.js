@@ -266,8 +266,15 @@ export default class FilterableMultiSelect extends React.Component {
                 invalid={invalid}
                 invalidText={invalidText}
                 innerTabIndex="-1"
-                {...getRootProps({ refKey: 'innerRef' })}>
-                <ListBox.Field {...getButtonProps({ disabled })}>
+                {...getRootProps({ refKey: 'innerRef' })}
+                aria-label={this.props['aria-label']}>
+                <ListBox.Field
+                  {...getButtonProps({
+                    disabled,
+                    ...(this.props['aria-label'] && {
+                      ['aria-label']: this.props['aria-label'],
+                    }),
+                  })}>
                   {selectedItem.length > 0 && (
                     <ListBox.Selection
                       clearSelection={clearSelection}
