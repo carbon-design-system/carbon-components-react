@@ -612,7 +612,7 @@ In practice, this looks like the following:
     getSelectionProps,
     getBatchActionProps,
     onInputChange,
-    {/* the selected rows are provided as a render prop */
+    /* the selected rows are provided as a render prop */
     selectedRows,
   }) => (
     <TableContainer title="DataTable with batch actions">
