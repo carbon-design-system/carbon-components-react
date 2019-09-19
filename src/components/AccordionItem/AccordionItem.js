@@ -96,7 +96,7 @@ export default class AccordionItem extends Component {
 
   handleKeyDown = evt => {
     if (
-      match(evt.which, keys.ESC) &&
+      match(evt, keys.ESC) &&
       this.state.open &&
       evt.target.classList.contains(`${prefix}--accordion__heading`)
     ) {
