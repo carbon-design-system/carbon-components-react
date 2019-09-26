@@ -60,7 +60,7 @@ export function matches(event, keysToMatch) {
  * @returns {boolean}
  */
 export function match(eventOrCode, key) {
-  return eventOrCode.which === key || eventOrCode === key;
+  return (eventOrCode && eventOrCode.which === key) || eventOrCode === key;
 }
 
 /**
