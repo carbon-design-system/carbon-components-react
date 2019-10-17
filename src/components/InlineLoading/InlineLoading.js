@@ -28,7 +28,7 @@ export default class InlineLoading extends React.Component {
     /**
      * Specify the description for the inline loading text
      */
-    description: PropTypes.string,
+    description: PropTypes.node,
 
     /**
      * Specify a description that would be used for the loading state SVG title
@@ -92,7 +92,7 @@ export default class InlineLoading extends React.Component {
     };
 
     const loadingText = (
-      <p className={`${prefix}--inline-loading__text`}>{description}</p>
+      <div className={`${prefix}--inline-loading__text`}>{description}</div>
     );
 
     return (
