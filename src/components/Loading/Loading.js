@@ -34,16 +34,30 @@ export default class Loading extends React.Component {
      * Specify whether you would like the small variant of <Loading>
      */
     small: PropTypes.bool,
+
+    /**
+     * Specify a description that would be used to describe the loading state
+     * svg title
+     */
+    description: PropTypes.string,
   };
 
   static defaultProps = {
     active: true,
     withOverlay: true,
     small: false,
+    description: 'Active loading indicator',
   };
 
   render() {
-    const { active, className, withOverlay, small, ...other } = this.props;
+    const {
+      active,
+      className,
+      withOverlay,
+      small,
+      description,
+      ...other
+    } = this.props;
 
     const loadingClasses = classNames(`${prefix}--loading`, className, {
       [`${prefix}--loading--small`]: small,
@@ -60,7 +74,7 @@ export default class Loading extends React.Component {
         aria-live={active ? 'assertive' : 'off'}
         className={loadingClasses}>
         <svg className={`${prefix}--loading__svg`} viewBox="-75 -75 150 150">
-          <title>Loading</title>
+          <title>{description}</title>
           {componentsX && small ? (
             <circle
               className={`${prefix}--loading__background`}
