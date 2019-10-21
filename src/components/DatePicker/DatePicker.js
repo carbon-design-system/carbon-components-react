@@ -207,6 +207,11 @@ export default class DatePicker extends Component {
     onChange: PropTypes.func,
 
     /**
+     * The `close` event handler.
+     */
+    onClose: PropTypes.func,
+
+    /**
      * The minimum date that a user can start picking from.
      */
     minDate: PropTypes.string,
@@ -247,6 +252,7 @@ export default class DatePicker extends Component {
       minDate,
       maxDate,
       value,
+      onClose,
     } = this.props;
     if (datePickerType === 'single' || datePickerType === 'range') {
       const onHook = (electedDates, dateStr, instance) => {
@@ -287,6 +293,7 @@ export default class DatePicker extends Component {
               onChange(...args);
             }
           },
+          onClose,
           onReady: onHook,
           onMonthChange: onHook,
           onYearChange: onHook,
