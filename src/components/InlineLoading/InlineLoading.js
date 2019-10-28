@@ -28,7 +28,12 @@ export default class InlineLoading extends React.Component {
     /**
      * Specify the description for the inline loading text
      */
-    description: PropTypes.string,
+    description: PropTypes.node,
+
+    /**
+     * Specify a description that would be used for the loading state SVG title
+     */
+    iconDescription: PropTypes.string,
 
     /**
      * Provide an optional handler to be inovked when <InlineLoading> is
@@ -51,6 +56,7 @@ export default class InlineLoading extends React.Component {
     const {
       className,
       success,
+      iconDescription,
       description,
       onSuccess,
       successDelay,
@@ -80,11 +86,13 @@ export default class InlineLoading extends React.Component {
         );
       }
 
-      return <Loading small withOverlay={false} />;
+      return (
+        <Loading small description={iconDescription} withOverlay={false} />
+      );
     };
 
     const loadingText = (
-      <p className={`${prefix}--inline-loading__text`}>{description}</p>
+      <div className={`${prefix}--inline-loading__text`}>{description}</div>
     );
 
     return (
