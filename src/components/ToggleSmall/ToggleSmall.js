@@ -10,6 +10,8 @@ const ToggleSmall = ({
   onToggle,
   id,
   ariaLabel,
+  labelA,
+  labelB,
   ...other
 }) => {
   let input;
@@ -44,16 +46,10 @@ const ToggleSmall = ({
         aria-label={ariaLabel}
       />
 
-      <label className="bx--toggle__label" htmlFor={id}>
-        <span className="bx--toggle__appearance">
-          <svg
-            className="bx--toggle__check"
-            width="6px"
-            height="5px"
-            viewBox="0 0 6 5">
-            <path d="M2.2403 2.7299L4.9245 0 6 1.1117 2.2384 5 0 2.6863 1.0612 1.511z" />
-          </svg>
-        </span>
+       <label className="bx--toggle__label" htmlFor={id}>
+        <span className="bx--toggle__text--left">{labelA}</span>
+        <span className="bx--toggle__appearance" />
+        <span className="bx--toggle__text--right">{labelB}</span>
       </label>
     </div>
   );
@@ -84,11 +80,17 @@ ToggleSmall.propTypes = {
    * The `aria-label` attribute for the toggle
    */
   ariaLabel: PropTypes.string.isRequired,
+  
+  labelA: PropTypes.string.isRequired,
+  
+  labelB: PropTypes.string.isRequired,
 };
 
 ToggleSmall.defaultProps = {
   defaultToggled: false,
   onToggle: () => {},
+  labelA: 'Off',
+  labelB: 'On',
 };
 
 export default ToggleSmall;
