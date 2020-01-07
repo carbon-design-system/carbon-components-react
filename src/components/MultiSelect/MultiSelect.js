@@ -69,6 +69,11 @@ export default class MultiSelect extends React.Component {
     onChange: PropTypes.func,
 
     /**
+     * Custom comparator function to be used in place of lodash.isequal
+     */
+    comparator: PropTypes.func,
+
+    /**
      * Specify 'inline' to create an inline multi-select.
      */
     type: PropTypes.oneOf(['default', 'inline']),
@@ -190,6 +195,7 @@ export default class MultiSelect extends React.Component {
       className: containerClassName,
       items,
       itemToString,
+      comparator,
       label,
       type,
       disabled,
@@ -215,6 +221,7 @@ export default class MultiSelect extends React.Component {
             highlightedIndex={highlightedIndex}
             isOpen={isOpen}
             itemToString={itemToString}
+            comparator={comparator}
             onChange={onItemChange}
             onStateChange={this.handleOnStateChange}
             onOuterClick={this.handleOnOuterClick}
@@ -264,7 +271,9 @@ export default class MultiSelect extends React.Component {
                           const itemText = itemToString(item);
                           const isChecked =
                             selectedItem.filter(selected =>
-                              isEqual(selected, item)
+                              this.props.comparator
+                                ? this.props.comparator(selected, item)
+                                : isEqual(selected, item)
                             ).length > 0;
                           return (
                             <ListBox.MenuItem
@@ -295,7 +304,9 @@ export default class MultiSelect extends React.Component {
                           const itemText = itemToString(item);
                           const isChecked =
                             selectedItem.filter(selected =>
-                              isEqual(selected, item)
+                              this.props.comparator
+                                ? this.props.comparator(selected, item)
+                                : isEqual(selected, item)
                             ).length > 0;
                           return (
                             <ListBox.MenuItem
