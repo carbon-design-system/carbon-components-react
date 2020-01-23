@@ -62,6 +62,11 @@ export default class FilterableMultiSelect extends React.Component {
     onChange: PropTypes.func,
 
     /**
+     * Custom comparator function to be used in place of lodash.isequal
+     */
+    comparator: PropTypes.func,
+
+    /**
      * Generic `placeholder` that will be used as the textual representation of
      * what this field is for
      */
@@ -217,6 +222,7 @@ export default class FilterableMultiSelect extends React.Component {
       filterItems,
       items,
       itemToString,
+      comparator,
       initialSelectedItems,
       id,
       locale,
@@ -248,6 +254,7 @@ export default class FilterableMultiSelect extends React.Component {
             onInputValueChange={this.handleOnInputValueChange}
             onChange={onItemChange}
             itemToString={itemToString}
+            comparator={comparator}
             onStateChange={this.handleOnStateChange}
             onOuterClick={this.handleOnOuterClick}
             selectedItem={selectedItems}
@@ -305,7 +312,9 @@ export default class FilterableMultiSelect extends React.Component {
                             const itemText = itemToString(item);
                             const isChecked =
                               selectedItem.filter(selected =>
-                                isEqual(selected, item)
+                                this.props.comparator
+                                  ? this.props.comparator(selected, item)
+                                  : isEqual(selected, item)
                               ).length > 0;
                             return (
                               <ListBox.MenuItem
@@ -339,7 +348,9 @@ export default class FilterableMultiSelect extends React.Component {
                           const itemText = itemToString(item);
                           const isChecked =
                             selectedItem.filter(selected =>
-                              isEqual(selected, item)
+                              this.props.comparator
+                                ? this.props.comparator(selected, item)
+                                : isEqual(selected, item)
                             ).length > 0;
                           return (
                             <ListBox.MenuItem
